@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pneu &amp; Garage zur Burg – Burg &amp; Altstadt (Entwurf)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1c2a39;--stone:#efe5d3;--sand:#e2d2b4;--roof:#b4442e;--lake:#3d7fa6;--snow:#f6f9fc;--muted:#5b6673}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Work Sans","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--stone);line-height:1.55;font-size:16px}
+h1,h2,h3{font-family:"Bitter",Georgia,"Times New Roman",serif;line-height:1.15;hyphens:none;word-break:normal;overflow-wrap:normal}
+a{color:inherit}
+.demo{background:#111;color:#fff;font-size:11.5px;text-align:center;padding:6px 10px;letter-spacing:.02em}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:560px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo b{font-family:"Bitter",Georgia,serif;font-size:17px;line-height:1.05;display:block}
+.logo small{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.callmini{background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:9px 14px;border-radius:999px}
+.hero{padding:6px 0 0}
+.hero .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--roof);font-weight:600;margin-bottom:10px}
+.hero h1{font-size:33px;font-weight:800;margin-bottom:12px}
+.hero p.lead{color:#34404d;font-size:16.5px;margin-bottom:18px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15.5px;border:2px solid var(--ink);cursor:pointer;font-family:inherit}
+.btn.primary{background:var(--roof);border-color:var(--roof);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.castle{margin:22px -20px 0;display:block;width:calc(100% + 40px);height:auto;background:#fbf6ec;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+section{padding:46px 0 10px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--roof);font-weight:600;margin-bottom:8px}
+h2{font-size:27px;font-weight:800;margin-bottom:12px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.fact{background:#fbf6ec;border:2px solid var(--ink);border-radius:12px;padding:12px}
+.fact b{display:block;font-family:"Bitter",Georgia,serif;font-size:20px}
+.fact span{font-size:13.5px;color:var(--muted)}
+/* Saison */
+.season{background:var(--ink);color:#fff;border-radius:18px;padding:22px 18px 20px;margin-top:6px;transition:background .6s}
+.season.winter{background:#20384f}
+.season h2{color:#fff}
+.switch{display:flex;background:rgba(255,255,255,.12);border-radius:999px;padding:4px;margin:14px 0 16px;position:relative}
+.switch button{flex:1;border:0;background:transparent;color:#fff;font:600 15px "Work Sans",Arial,sans-serif;padding:10px 0;border-radius:999px;cursor:pointer;position:relative;z-index:1}
+.switch .knob{position:absolute;top:4px;left:4px;width:calc(50% - 4px);height:calc(100% - 8px);background:#f2b53a;border-radius:999px;transition:transform .45s cubic-bezier(.6,.1,.2,1)}
+.season.winter .switch .knob{transform:translateX(100%);background:#cfe6f7}
+.switch button.on{color:var(--ink)}
+.scene{width:100%;height:auto;border-radius:12px;display:block;background:#8cc4e3;transition:background .6s}
+.season.winter .scene{background:#b9cddc}
+.sun,.grass,.leaf{transition:opacity .6s}
+.flakes,.snowcap{opacity:0;transition:opacity .6s}
+.season.winter .flakes,.season.winter .snowcap{opacity:1}
+.season.winter .sun,.season.winter .grass,.season.winter .leaf{opacity:0}
+.flakes circle{animation:fall 4s linear infinite}
+.flakes circle:nth-child(2n){animation-duration:5.5s}
+.flakes circle:nth-child(3n){animation-duration:3.4s}
+@keyframes fall{from{transform:translateY(-30px)}to{transform:translateY(190px)}}
+.wheel{transform-origin:center;transform-box:fill-box;animation:spin 1.6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.seasontext{margin-top:16px}
+.seasontext h3{font-size:21px;margin-bottom:6px}
+.seasontext p{color:#dbe3ea;font-size:15px}
+.seasontext ul{list-style:none;margin:12px 0 16px}
+.seasontext li{padding:6px 0 6px 26px;position:relative;font-size:15px;border-bottom:1px solid rgba(255,255,255,.12)}
+.seasontext li:before{content:"";position:absolute;left:4px;top:13px;width:10px;height:10px;border:2px solid #f2b53a;border-radius:50%}
+.season.winter .seasontext li:before{border-color:#cfe6f7}
+.season .btn.primary{background:#f2b53a;border-color:#f2b53a;color:var(--ink)}
+.season.winter .btn.primary{background:#cfe6f7;border-color:#cfe6f7}
+.ph{display:block;font-size:13px;background:#fff6d6;color:#6b5200;border:1.5px dashed #c9a43a;border-radius:8px;padding:8px 10px;margin-top:12px}
+/* Leistungen */
+.list{margin-top:16px;border-top:2px solid var(--ink)}
+.row{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #cbbd9f}
+.row svg{flex:0 0 38px}
+.row b{display:block;font-size:16.5px}
+.row span{font-size:14.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{border:1.5px solid var(--ink);border-radius:999px;padding:6px 12px;font-size:14px;background:#fbf6ec}
+/* Team */
+.team{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.person{background:#fbf6ec;border:2px solid var(--ink);border-radius:14px;overflow:hidden}
+.person .photo{height:120px;background:var(--sand);display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:#6b5200;padding:10px;border-bottom:2px solid var(--ink)}
+.person div.t{padding:10px 12px}
+.person b{display:block;font-size:15.5px}
+.person span{font-size:13px;color:var(--muted)}
+.aschi{display:flex;gap:14px;align-items:center;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:14px;margin-top:12px}
+.aschi svg{flex:0 0 96px}
+.aschi b{font-family:"Bitter",Georgia,serif;font-size:19px;display:block}
+.aschi span{font-size:14px;color:var(--muted)}
+.voice{margin-top:18px;border-left:4px solid var(--roof);padding:6px 0 6px 14px;font-size:15.5px}
+/* Formular */
+form{background:#fbf6ec;border:2px solid var(--ink);border-radius:16px;padding:18px;margin-top:16px}
+label{display:block;font-weight:600;font-size:14px;margin:12px 0 5px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1.5px solid #8b8070;border-radius:9px;background:#fff;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}
+.seg{display:flex;gap:8px}
+.seg label{flex:1;margin:0;border:1.5px solid #8b8070;border-radius:9px;padding:10px;text-align:center;cursor:pointer;background:#fff;font-weight:500}
+.seg input{display:none}
+.seg input:checked+span{font-weight:700}
+.seg label:has(input:checked){background:var(--ink);color:#fff;border-color:var(--ink)}
+form .btn{width:100%;justify-content:center;margin-top:16px}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+/* Kontakt */
+.hours{width:100%;border-collapse:collapse;margin-top:12px;font-size:15px}
+.hours td{padding:9px 0;border-bottom:1px solid #cbbd9f;vertical-align:top}
+.hours td:last-child{text-align:right}
+.addr{background:var(--ink);color:#fff;border-radius:16px;padding:18px;margin-top:16px}
+.addr p{font-size:15px;color:#dbe3ea}
+.addr b{color:#fff;font-size:17px}
+.addr .btns{margin-top:14px}
+.addr .btn{border-color:#fff;color:#fff}
+.addr .btn.primary{background:var(--roof);border-color:var(--roof)}
+footer{padding:30px 20px 40px;text-align:center;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="demo">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Pneu &amp; Garage zur Burg GmbH</div>
+
+<header class="top">
+  <a class="logo" href="#">
+    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="9" fill="#1c2a39"/><path d="M10 30V16l4-3 4 3v-4h4v4l4-3 4 3v14z" fill="none" stroke="#efe5d3" stroke-width="2" stroke-linejoin="round"/><path d="M8 16l6-5 6 5M20 16l6-5 6 5" fill="none" stroke="#b4442e" stroke-width="2.2" stroke-linejoin="round"/><path d="M17 30v-5a3 3 0 016 0v5" fill="none" stroke="#efe5d3" stroke-width="2"/></svg>
+    <span><b>Garage zur Burg</b><small>Pneu &amp; Garage · Thun</small></span>
+  </a>
+  <a class="callmini" href="tel:+41332224646">Anrufen</a>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Burgzentrum · Thuner Altstadt · seit 2005</div>
+    <h1>Ihre Werkstatt am Fuss des Schlossbergs</h1>
+    <p class="lead">Die Werkstatt mit Fachkompetenz für alle Marken – ob Auto oder Motorrad, wir helfen Ihnen prompt und kompetent.</p>
+    <div class="btns">
+      <a class="btn primary" href="#termin">Termin anfragen</a>
+      <a class="btn ghost" href="tel:+41332224646">033 222 46 46</a>
+    </div>
+    <!-- Schloss Thun, Linienzeichnung -->
+    <svg class="castle" viewBox="0 0 430 230" aria-label="Linienzeichnung Schloss Thun über der Altstadt">
+      <g fill="none" stroke="#1c2a39" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 200 C60 170 120 160 170 150 L270 150 C320 160 380 175 430 190"/>
+        <!-- Hauptturm -->
+        <rect x="170" y="70" width="100" height="80" fill="#fbf6ec"/>
+        <path d="M165 70 L220 22 L275 70Z" fill="#b4442e" stroke="#1c2a39"/>
+        <!-- Ecktürmchen -->
+        <rect x="160" y="62" width="18" height="40" fill="#fbf6ec"/><path d="M156 62 L169 30 L182 62Z" fill="#b4442e"/>
+        <rect x="262" y="62" width="18" height="40" fill="#fbf6ec"/><path d="M258 62 L271 30 L284 62Z" fill="#b4442e"/>
+        <path d="M200 92h12v18h-12zM228 92h12v18h-12zM214 122h12v28h-12z"/>
+        <path d="M220 22v-10M220 12l10 3-10 3"/>
+        <!-- Altstadthäuser -->
+        <path d="M20 205v-40l18-16 18 16v40M56 205v-48l16-13 16 13v48M88 205v-36l14-12 14 12v36M118 205v-44l16-14 16 14v44" fill="#fbf6ec"/>
+        <path d="M290 205v-42l16-14 16 14v42M322 205v-34l15-12 15 12v34M352 205v-46l17-15 17 15v46M386 205v-36l14-12 14 12v36" fill="#fbf6ec"/>
+        <path d="M30 178h8v10h-8zM66 172h8v10h-8zM97 182h8v10h-8zM128 176h8v10h-8zM300 178h8v10h-8zM331 184h8v10h-8zM362 174h8v10h-8zM395 182h8v10h-8z"/>
+        <!-- Werkstatt-Tor -->
+        <path d="M160 205v-34h70v34" fill="#fbf6ec"/>
+        <path d="M168 205v-24h54v24M168 189h54M168 197h54"/>
+        <text x="195" y="167" text-anchor="middle" font-family="Bitter,Georgia,serif" font-size="9" font-weight="700" fill="#1c2a39" stroke="none">GARAGE ZUR BURG</text>
+        <path d="M0 205h430"/>
+        <!-- See/Aare -->
+        <path d="M0 216 C40 212 70 220 110 216 S180 212 220 216 S300 222 340 216 S400 212 430 216" stroke="#3d7fa6"/>
+        <path d="M30 225 C70 221 100 229 140 225 S220 221 260 225 S340 229 400 224" stroke="#3d7fa6"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>Alle Marken</b><span>Auto und Motorrad</span></div>
+    <div class="fact"><b>Seit 2005</b><span>in der Thuner Altstadt</span></div>
+    <div class="fact"><b>Reifenhotel</b><span>Ihre Pneus bleiben bei uns</span></div>
+    <div class="fact"><b>MFK</b><span>Motorfahrzeug-Kontrolle</span></div>
+  </div>
+
+  <!-- Saison-Umschalter -->
+  <section id="saison">
+    <div class="season" id="season">
+      <div class="kicker" style="color:#f2b53a">Halbjährlicher Pneuwechsel</div>
+      <h2>Welche Saison steht an?</h2>
+      <div class="switch" role="tablist">
+        <span class="knob"></span>
+        <button type="button" class="on" data-s="sommer">Sommer</button>
+        <button type="button" data-s="winter">Winter</button>
+      </div>
+      <svg class="scene" viewBox="0 0 400 190" aria-hidden="true">
+        <circle class="sun" cx="335" cy="45" r="22" fill="#f2b53a"/>
+        <g fill="none" stroke="#1c2a39" stroke-width="2" stroke-linejoin="round">
+          <path d="M0 120 L60 70 L100 95 L160 40 L220 100 L270 65 L330 110 L400 80 V190 H0Z" fill="#6f8fa6"/>
+          <path class="snowcap" d="M136 62 L160 40 L184 66 L172 62 L160 70 L148 60Z M252 80 L270 65 L290 84 L278 82 L270 88Z" fill="#fff"/>
+        </g>
+        <rect class="grass" x="0" y="150" width="400" height="40" fill="#7fae5a"/>
+        <rect x="0" y="150" width="400" height="40" fill="#fff" class="snowcap"/>
+        <path d="M0 165 H400" stroke="#1c2a39" stroke-width="2"/>
+        <!-- Auto -->
+        <g transform="translate(120 105)">
+          <path d="M10 45 V30 L40 12 H110 L140 30 H160 V45 Z" fill="#b4442e" stroke="#1c2a39" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M48 16 H78 V30 H34Z M84 16 H106 L128 30 H84Z" fill="#d7ecf7" stroke="#1c2a39" stroke-width="2"/>
+          <g class="wheel"><circle cx="45" cy="47" r="15" fill="#1c2a39"/><circle cx="45" cy="47" r="6" fill="#efe5d3"/><path d="M45 34v6M45 54v6M32 47h6M52 47h6" stroke="#efe5d3" stroke-width="2"/></g>
+          <g class="wheel"><circle cx="128" cy="47" r="15" fill="#1c2a39"/><circle cx="128" cy="47" r="6" fill="#efe5d3"/><path d="M128 34v6M128 54v6M115 47h6M135 47h6" stroke="#efe5d3" stroke-width="2"/></g>
+        </g>
+        <g class="leaf" fill="#4e8a3a"><circle cx="40" cy="140" r="14"/><circle cx="60" cy="135" r="16"/><rect x="48" y="140" width="4" height="12" fill="#1c2a39"/></g>
+        <g class="flakes" fill="#fff">
+          <circle cx="30" cy="10" r="3"/><circle cx="80" cy="0" r="2.5"/><circle cx="130" cy="15" r="3"/><circle cx="180" cy="5" r="2"/><circle cx="230" cy="12" r="3"/><circle cx="280" cy="0" r="2.5"/><circle cx="330" cy="8" r="3"/><circle cx="375" cy="2" r="2"/><circle cx="55" cy="-20" r="2"/><circle cx="205" cy="-15" r="2.5"/><circle cx="305" cy="-25" r="2"/>
+        </g>
+      </svg>
+      <div class="seasontext" id="seasontext"></div>
+    </div>
+  </section>
+
+  <section id="leistungen">
+    <div class="kicker">Werkstatt</div>
+    <h2>Was wir für Sie erledigen</h2>
+    <p>Für Auto und Motorrad, für alle Marken.</p>
+    <div class="list">
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><path d="M12 25l9-9M21 11a4 4 0 105 5l-5-5z" stroke="#1c2a39" stroke-width="2" fill="none"/></svg><div><b>Wartungs-Service</b><span>Regelmässige Wartung für alle Marken</span></div></div>
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><path d="M19 9c4 6 6 9 6 12a6 6 0 01-12 0c0-3 2-6 6-12z" stroke="#1c2a39" stroke-width="2" fill="#b4442e"/></svg><div><b>Öl-Service &amp; Klima-Service</b><span>Ölwechsel und Wartung der Klimaanlage</span></div></div>
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><rect x="10" y="14" width="18" height="12" rx="2" fill="none" stroke="#1c2a39" stroke-width="2"/><path d="M14 11v3M24 11v3M14 20h3M22 20h3M23.5 18.5v3" stroke="#1c2a39" stroke-width="2"/></svg><div><b>Batterien &amp; Fahrzeugelektronik</b><span>Prüfung, Ersatz und Elektronik-Arbeiten</span></div></div>
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><rect x="11" y="12" width="16" height="12" rx="2" fill="none" stroke="#1c2a39" stroke-width="2"/><path d="M14 20l3-3 3 2 4-4M16 28h6" stroke="#1c2a39" stroke-width="2" fill="none"/></svg><div><b>Fehlerdiagnostik</b><span>Wir finden heraus, was Ihr Fahrzeug meldet</span></div></div>
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><path d="M10 22h8c3 0 3-4 6-4h4M26 14c2 1 3 3 3 5" stroke="#1c2a39" stroke-width="2" fill="none"/></svg><div><b>Abgaswartung</b><span>Wartung der Abgasanlage</span></div></div>
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><circle cx="19" cy="19" r="8" fill="none" stroke="#1c2a39" stroke-width="2"/><path d="M19 11v16M11 19h16" stroke="#1c2a39" stroke-width="2"/></svg><div><b>Spur und Lenkung</b><span>Damit Ihr Fahrzeug sauber geradeaus läuft</span></div></div>
+      <div class="row"><svg viewBox="0 0 38 38" width="38" height="38"><circle cx="19" cy="19" r="17" fill="#efe5d3" stroke="#1c2a39" stroke-width="2"/><path d="M12 19l5 5 9-10" stroke="#b4442e" stroke-width="3" fill="none"/></svg><div><b>Motorfahrzeug-Kontrolle (MFK)</b><span>Rund um die Fahrzeugprüfung</span></div></div>
+    </div>
+    <div class="chips"><span class="chip">Pneuwechsel</span><span class="chip">Reifenhotel</span><span class="chip">Reifen &amp; Felgen</span><span class="chip">Zubehör</span><span class="chip">Fahrzeugverkauf</span></div>
+  </section>
+
+  <section id="verkauf">
+    <div class="kicker">Verkauf</div>
+    <h2>Fahrzeugverkauf</h2>
+    <p>Neben Werkstatt und Pneus verkaufen wir auch Fahrzeuge.</p>
+    <span class="ph">[Platzhalter: Aktuelle Fahrzeuge im Angebot mit eigenen Fotos und Angaben]</span>
+  </section>
+
+  <section id="team">
+    <div class="kicker">Wer hier schraubt</div>
+    <h2>Das Team zur Burg</h2>
+    <div class="team">
+      <div class="person"><div class="photo">[Platzhalter: Foto Räto Bolt]</div><div class="t"><b>Räto Bolt</b><span>Geschäftsführer</span></div></div>
+      <div class="person"><div class="photo">[Platzhalter: Foto Adrian Mürner]</div><div class="t"><b>Adrian Mürner</b><span>Mechaniker</span></div></div>
+    </div>
+    <div class="aschi">
+      <svg viewBox="0 0 96 96" width="96" height="96" aria-label="Zeichnung Aschi">
+        <ellipse cx="48" cy="88" rx="28" ry="5" fill="#d8c8a8"/>
+        <path d="M22 84c-4-30 6-52 26-52s30 22 26 52z" fill="#efe5d3" stroke="#1c2a39" stroke-width="2.5"/>
+        <path d="M24 38c2-14 12-22 24-22s22 8 24 22c-14-6-34-6-48 0z" fill="#b4442e" stroke="#1c2a39" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M24 38c-6 0-10 2-10 4 8 0 16-2 22-3" fill="#b4442e" stroke="#1c2a39" stroke-width="2.5"/>
+        <circle cx="39" cy="52" r="3.5" fill="#1c2a39"/><circle cx="57" cy="52" r="3.5" fill="#1c2a39"/>
+        <path d="M40 63c4 4 12 4 16 0" fill="none" stroke="#1c2a39" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="33" cy="60" r="3" fill="#f0b8a8"/><circle cx="63" cy="60" r="3" fill="#f0b8a8"/>
+        <path d="M70 66l12-12M80 50a4 4 0 105 5l-5-5z" fill="none" stroke="#1c2a39" stroke-width="2.5"/>
+      </svg>
+      <div><b>Aschi</b><span>Treuster Mitarbeiter – 7 x 24 Stunden im Einsatz.</span></div>
+    </div>
+    <p class="voice">Viele unserer Kundinnen und Kunden lassen ihre Fahrzeuge seit Jahren bei uns warten – und schätzen uns als kompetent, sympathisch und zuverlässig.</p>
+    <span class="ph">[Platzhalter: echte Kundenstimme mit Name, mit Einverständnis]</span>
+  </section>
+
+  <section id="termin">
+    <div class="kicker">Termin</div>
+    <h2>Service oder Pneuwechsel anfragen</h2>
+    <p>Füllen Sie kurz aus – Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage an info@zurburg.ch. Wir melden uns mit einem Terminvorschlag.</p>
+    <form id="f">
+      <label>Fahrzeug</label>
+      <div class="seg">
+        <label><input type="radio" name="typ" value="Auto" checked><span>Auto</span></label>
+        <label><input type="radio" name="typ" value="Motorrad"><span>Motorrad</span></label>
+      </div>
+      <label for="anliegen">Anliegen</label>
+      <select id="anliegen">
+        <option>Pneuwechsel auf Sommerpneus</option>
+        <option>Pneuwechsel auf Winterpneus</option>
+        <option>Wartungs-Service</option>
+        <option>Öl-Service</option>
+        <option>Klima-Service</option>
+        <option>Fehlerdiagnostik</option>
+        <option>Motorfahrzeug-Kontrolle (MFK)</option>
+        <option>Anderes</option>
+      </select>
+      <label for="marke">Marke / Modell</label>
+      <input id="marke" placeholder="z.B. VW Golf">
+      <label for="wunsch">Wunschtermin</label>
+      <input id="wunsch" placeholder="z.B. nächste Woche, vormittags">
+      <label for="name">Name</label>
+      <input id="name" autocomplete="name">
+      <label for="tel">Telefon</label>
+      <input id="tel" type="tel" autocomplete="tel">
+      <button class="btn primary" type="submit">Anfrage per E-Mail senden</button>
+      <p class="note">Lieber direkt? Rufen Sie an: <a href="tel:+41332224646"><b>033 222 46 46</b></a></p>
+    </form>
+  </section>
+
+  <section id="kontakt">
+    <div class="kicker">Kontakt</div>
+    <h2>So finden Sie uns</h2>
+    <table class="hours">
+      <tr><td>Montag – Donnerstag</td><td>08.00–12.00<br>13.30–17.30</td></tr>
+      <tr><td>Freitag</td><td>08.00–12.00<br>13.30–17.00</td></tr>
+      <tr><td>Samstag / Sonntag</td><td>geschlossen</td></tr>
+    </table>
+    <div class="addr">
+      <b>Pneu &amp; Garage zur Burg GmbH</b>
+      <p>Burgzentrum, Burgstrasse 18, 3600 Thun<br>In der Altstadt, beim Parkhaus City Ost Schlossberg</p>
+      <div class="btns">
+        <a class="btn primary" href="tel:+41332224646">033 222 46 46</a>
+        <a class="btn" href="mailto:info@zurburg.ch">E-Mail</a>
+        <a class="btn" href="https://maps.google.com/?q=Burgstrasse+18,+3600+Thun">Route</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© Pneu &amp; Garage zur Burg GmbH · Burgstrasse 18 · 3600 Thun<br>Entwurf von Max Rathsack</footer>
+
+<script>
+const T={
+ sommer:{h:"Zeit für Sommerpneus",p:"Wenn es wärmer wird, montieren wir Ihre Sommerpneus – und Ihre Winterpneus checken bei uns im Reifenhotel ein.",li:["Halbjährlicher Pneuwechsel","Winterpneus einlagern im Reifenhotel","Reifen und Felgen im Handel","Klima-Service vor den heissen Tagen"],opt:0},
+ winter:{h:"Zeit für Winterpneus",p:"Bevor der erste Schnee auf dem Schlossberg liegt: Wir wechseln auf Winterpneus und lagern Ihre Sommerpneus für Sie.",li:["Halbjährlicher Pneuwechsel","Sommerpneus einlagern im Reifenhotel","Batterie-Check vor der Kälte","Reifen und Felgen im Handel"],opt:1}
+};
+const S=document.getElementById('season'),ST=document.getElementById('seasontext');
+function setS(s){
+  S.classList.toggle('winter',s==='winter');
+  document.querySelectorAll('.switch button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
+  const t=T[s];
+  ST.innerHTML='<h3>'+t.h+'</h3><p>'+t.p+'</p><ul>'+t.li.map(x=>'<li>'+x+'</li>').join('')+'</ul><a class="btn primary" href="#termin" id="sbtn">Pneuwechsel anfragen</a><span class="ph">[Platzhalter: Ihre Preise für Pneuwechsel und Einlagerung]</span>';
+  document.getElementById('sbtn').onclick=()=>{document.getElementById('anliegen').selectedIndex=t.opt;};
+}
+document.querySelectorAll('.switch button').forEach(b=>b.onclick=()=>setS(b.dataset.s));
+const m=new Date().getMonth();setS(m>=8||m<=1?'winter':'sommer');
+document.getElementById('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  const typ=document.querySelector('input[name=typ]:checked').value;
+  const body="Guten Tag\n\nIch möchte gerne einen Termin anfragen.\n\nFahrzeug: "+typ+"\nMarke / Modell: "+v('marke')+"\nAnliegen: "+v('anliegen')+"\nWunschtermin: "+v('wunsch')+"\n\nName: "+v('name')+"\nTelefon: "+v('tel')+"\n\nFreundliche Grüsse";
+  location.href="mailto:info@zurburg.ch?subject="+encodeURIComponent("Terminanfrage: "+v('anliegen'))+"&body="+encodeURIComponent(body);
+});
+</script>
+</body>
+</html>

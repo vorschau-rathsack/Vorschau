@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kilchherr AG – Malerei · Gipserei, Thun (Entwurf «Stuck & Denkmal»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kalk:#f6f1e7; --sand:#e9dfcc; --stein:#cbbd9f; --ocker:#9a6b2f; --tief:#2b2a33; --text:#3a372f; --mild:#6d6656;
+  --serif:"Cormorant Garamond","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Jost","Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--kalk);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6}
+a{color:inherit}
+.demo{background:var(--tief);color:#f6f1e7;font-size:12px;text-align:center;padding:7px 12px;letter-spacing:.02em}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--stein)}
+.logo{font-family:var(--serif);font-weight:700;font-size:24px;color:var(--tief);text-decoration:none;line-height:1}
+.logo small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ocker);font-weight:500;margin-top:4px}
+.top nav a{font-size:13px;text-decoration:none;margin-left:14px;color:var(--mild)}
+@media(max-width:520px){.top nav{display:none}}
+
+.hero{position:relative;text-align:center;padding:34px 22px 40px;overflow:hidden}
+.rosette{width:290px;max-width:80vw;height:auto;display:block;margin:0 auto 8px}
+.rosette path,.rosette circle,.rosette ellipse{fill:none;stroke:var(--ocker);stroke-width:1.4;stroke-linecap:round}
+.rosette .fein{stroke:var(--stein);stroke-width:1}
+.kicker{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ocker);font-weight:600}
+h1{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.08;color:var(--tief);margin:10px 0 12px}
+.hero p.lead{color:var(--mild);max-width:440px;margin:0 auto 22px}
+.hint{font-size:12px;color:var(--mild);margin-top:14px;font-style:italic}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 20px;border-radius:2px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--tief);cursor:pointer;font-family:var(--sans)}
+.btn.voll{background:var(--tief);color:var(--kalk)}
+.btn.leer{background:transparent;color:var(--tief)}
+
+section{padding:52px 0}
+.titel{text-align:center;margin-bottom:28px}
+.titel h2{font-family:var(--serif);font-weight:600;font-size:32px;line-height:1.15;color:var(--tief)}
+.ornament{display:block;margin:10px auto 0;width:120px;height:14px}
+.ornament path{fill:none;stroke:var(--ocker);stroke-width:1.2}
+.band{background:var(--sand)}
+.dunkel{background:var(--tief);color:#e9e3d6}
+.dunkel h2{color:#f6f1e7}
+
+.kapitell{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.leist{background:var(--kalk);border:1px solid var(--stein);padding:18px 14px 16px;text-align:center}
+.leist svg{width:46px;height:46px;margin-bottom:6px}
+.leist svg *{fill:none;stroke:var(--ocker);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.leist h3{font-family:var(--serif);font-size:20px;font-weight:600;line-height:1.15;color:var(--tief)}
+.leist p{font-size:13.5px;color:var(--mild);margin-top:4px}
+.leist.breit{grid-column:1/-1}
+
+.gesch{display:grid;gap:22px}
+.zahl{font-family:var(--serif);font-size:76px;line-height:1;color:var(--ocker);font-weight:600;text-align:center}
+.zitat{font-family:var(--serif);font-size:24px;line-height:1.3;text-align:center;color:var(--tief);font-style:italic}
+.fakten{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.fakt{border-top:2px solid var(--ocker);padding-top:8px;font-size:14px}
+.fakt b{display:block;font-family:var(--serif);font-size:22px;color:var(--tief);line-height:1.2}
+
+.reiter{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;scrollbar-width:none}
+.reiter button{flex:0 0 auto;font-family:var(--sans);font-size:13.5px;padding:8px 14px;border:1px solid var(--stein);background:transparent;color:var(--mild);border-radius:40px;cursor:pointer;white-space:nowrap}
+.reiter button.an{background:var(--ocker);border-color:var(--ocker);color:#fff}
+.refbox{border:1px solid #4a4855;padding:20px}
+.refbox h3{font-family:var(--serif);font-size:26px;color:#f6f1e7;font-weight:600;line-height:1.15}
+.refbox p{font-size:14.5px;color:#c9c2b2;margin-top:6px}
+.platz{margin-top:14px;border:1.5px dashed #7d7663;padding:26px 14px;text-align:center;font-size:13.5px;color:#d8cfbb;display:flex;flex-direction:column;align-items:center;gap:8px}
+.platz svg{width:70px;height:46px}
+.platz svg *{fill:none;stroke:#b79a6a;stroke-width:1.4}
+.refalle{display:none}
+.pdf .refalle{display:block}
+.pdf .refalle .refbox{margin-bottom:12px}
+.pdf .reiter,.pdf .refeinzel{display:none}
+
+.lehr{display:grid;gap:14px}
+.lehrkarte{background:var(--kalk);border:1px solid var(--stein);padding:18px;display:flex;gap:14px;align-items:flex-start}
+.lehrkarte svg{flex:0 0 44px;height:44px}
+.lehrkarte svg *{fill:none;stroke:var(--ocker);stroke-width:1.6;stroke-linecap:round}
+.lehrkarte h3{font-family:var(--serif);font-size:21px;line-height:1.2;color:var(--tief)}
+.lehrkarte p{font-size:14px;color:var(--mild)}
+
+.team{display:grid;gap:12px}
+.person{display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--stein);padding:12px 0}
+.medaillon{flex:0 0 62px;height:62px}
+.person h3{font-family:var(--serif);font-size:21px;line-height:1.15;color:var(--tief)}
+.person .rolle{font-size:13px;color:var(--ocker);font-weight:500}
+.person a{font-size:14px;text-decoration:none;color:var(--text)}
+
+form{display:grid;gap:12px;background:var(--kalk);border:1px solid var(--stein);padding:20px}
+label{font-size:13px;font-weight:600;color:var(--tief);display:block;margin-bottom:4px}
+input,select,textarea{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1px solid var(--stein);background:#fff;color:var(--text);border-radius:2px}
+textarea{min-height:90px;resize:vertical}
+.chk{display:flex;flex-wrap:wrap;gap:8px}
+.chk label{font-weight:400;display:flex;gap:6px;align-items:center;border:1px solid var(--stein);padding:6px 10px;margin:0;background:#fff;font-size:13.5px;cursor:pointer}
+.chk input{width:auto}
+.klein{font-size:12px;color:var(--mild)}
+
+.kontakt{display:grid;gap:14px;text-align:center}
+.kontakt .zeile{font-size:15px}
+.kontakt b{font-family:var(--serif);font-size:22px;display:block;color:#f6f1e7}
+footer{background:#1f1e25;color:#9b9484;font-size:12px;text-align:center;padding:22px}
+.smgv{display:inline-block;border:1px solid var(--ocker);color:var(--ocker);padding:3px 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+
+.zeig{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.zeig.da,.pdf .zeig{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="demo">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Kilchherr AG</div>
+
+<header class="top">
+  <a class="logo" href="#">Kilchherr AG<small>Malerei · Gipserei</small></a>
+  <nav><a href="#leistungen">Leistungen</a><a href="#referenzen">Referenzen</a><a href="#offerte">Offerte</a></nav>
+</header>
+
+<section class="hero" style="padding-top:30px">
+  <svg class="rosette" id="rosette" viewBox="-150 -150 300 300" aria-hidden="true"></svg>
+  <div class="kicker">Thun · seit 1955</div>
+  <h1>Handwerk,<br>das Räume adelt.</h1>
+  <p class="lead">«Seit 1955 helfen wir unseren Kunden Wohn(t)räume zu realisieren.» Maler- und Gipserarbeiten innen und aussen – vom Neuanstrich bis zur dekorativen Gestaltung.</p>
+  <div class="btns">
+    <a class="btn voll" href="#offerte">Offerte anfragen</a>
+    <a class="btn leer" href="tel:+41332251200">033 225 12 00</a>
+  </div>
+  <p class="hint">Scrollen Sie – die Stuckrosette wird von Hand gezogen.</p>
+</section>
+
+<section class="band" id="leistungen">
+  <div class="wrap">
+    <div class="titel zeig"><div class="kicker">Leistungen</div><h2>Was wir für Sie tun</h2><svg class="ornament" viewBox="0 0 120 14"><path d="M0 7h44M76 7h44M60 1c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6z"/></svg></div>
+    <div class="kapitell">
+      <div class="leist zeig"><svg viewBox="0 0 48 48"><path d="M10 8h24v10H10zM34 13h5v10H22v6"/><path d="M20 29h4v13h-4z"/></svg><h3>Malerarbeiten</h3><p>Sämtliche Malerarbeiten innen und aussen</p></div>
+      <div class="leist zeig"><svg viewBox="0 0 48 48"><path d="M8 34l18-18 6 6-18 18H8z"/><path d="M26 16l4-4 6 6-4 4"/><path d="M6 42h36"/></svg><h3>Gipserarbeiten</h3><p>Sämtliche Gipserarbeiten innen und aussen</p></div>
+      <div class="leist zeig"><svg viewBox="0 0 48 48"><path d="M14 6h20l-2 10H16z"/><path d="M24 16v8"/><path d="M18 24h12v18H18z"/></svg><h3>Lackierarbeiten</h3><p>Präzise Lackierungen</p></div>
+      <div class="leist zeig"><svg viewBox="0 0 48 48"><path d="M10 8h20v32H10z"/><path d="M30 8c6 0 8 4 8 8v24h-8"/><path d="M14 16l4 4 4-4 4 4M14 26l4 4 4-4 4 4"/></svg><h3>Tapezierarbeiten</h3><p>Tapeten fachgerecht verlegt</p></div>
+      <div class="leist zeig"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M24 8c4 6 4 26 0 32M8 24c6-4 26-4 32 0"/><circle cx="24" cy="24" r="4"/></svg><h3>Dekorative Gestaltungen</h3><p>Anspruchsvolle dekorative Gestaltungen</p></div>
+      <div class="leist zeig"><svg viewBox="0 0 48 48"><path d="M8 22L24 9l16 13"/><path d="M12 19v21h24V19"/><path d="M20 40V28h8v12"/><path d="M30 6l6 6"/></svg><h3>Renovation</h3><p>Renovationen mit Sorgfalt</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="geschichte">
+  <div class="wrap gesch">
+    <div class="titel zeig"><div class="kicker">Unsere Geschichte</div><h2>Ein Thuner Betrieb mit Tradition</h2><svg class="ornament" viewBox="0 0 120 14"><path d="M0 7h44M76 7h44M60 1c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6z"/></svg></div>
+    <div class="zahl zeig">1955</div>
+    <p class="zitat zeig">«Seit 1955 mit Freude für Sie da.»</p>
+    <div class="fakten zeig">
+      <div class="fakt"><b>rund 40</b>qualifizierte und motivierte Mitarbeitende</div>
+      <div class="fakt"><b>SMGV</b>Mitglied des Schweizerischen Maler- und Gipserunternehmer-Verbands</div>
+      <div class="fakt"><b>Innen &amp; aussen</b>Maler- und Gipserarbeiten aus einer Hand</div>
+      <div class="fakt"><b>Lehrbetrieb</b>Wir bilden Maler/innen und Gipser/innen aus</div>
+    </div>
+    <p class="klein zeig" style="text-align:center">[Platzhalter: Hier kann die Firmengeschichte mit eigenen Worten und historischen Bildern erzählt werden.]</p>
+  </div>
+</section>
+
+<section class="dunkel" id="referenzen">
+  <div class="wrap">
+    <div class="titel zeig"><div class="kicker">Referenzen</div><h2>Von Wohnhaus bis Denkmal</h2><svg class="ornament" viewBox="0 0 120 14"><path d="M0 7h44M76 7h44M60 1c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6z"/></svg></div>
+    <div class="reiter" id="reiter"></div>
+    <div class="refeinzel" id="refeinzel"></div>
+    <div class="refalle" id="refalle"></div>
+  </div>
+</section>
+
+<section class="band" id="lehre">
+  <div class="wrap">
+    <div class="titel zeig"><div class="kicker">Lehrbetrieb</div><h2>Lernen Sie bei uns</h2><svg class="ornament" viewBox="0 0 120 14"><path d="M0 7h44M76 7h44M60 1c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6z"/></svg></div>
+    <div class="lehr">
+      <div class="lehrkarte zeig"><svg viewBox="0 0 44 44"><path d="M8 10h18v8H8zM26 14h6v8H18v4M16 26h4v12h-4z"/></svg><div><h3>Maler/in EFZ</h3><p>Farbe, Technik und Handwerk – vom ersten Anstrich bis zur Gestaltung.</p></div></div>
+      <div class="lehrkarte zeig"><svg viewBox="0 0 44 44"><path d="M6 34L24 16l6 6-18 18H6zM6 40h32"/></svg><div><h3>Gipser/in-Trockenbauer/in EFZ</h3><p>Wände, Decken und Oberflächen formen – innen und aussen.</p></div></div>
+      <p class="klein zeig">Interessiert an einer Schnupperlehre? Melden Sie sich unter <a href="tel:+41332251200">033 225 12 00</a> oder <a href="mailto:info@kilchherr.ch?subject=Schnupperlehre">info@kilchherr.ch</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="titel zeig"><div class="kicker">Ansprechpersonen</div><h2>Ihr Team</h2><svg class="ornament" viewBox="0 0 120 14"><path d="M0 7h44M76 7h44M60 1c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6z"/></svg></div>
+    <div class="team" id="teamliste"></div>
+  </div>
+</section>
+
+<section class="band" id="offerte">
+  <div class="wrap">
+    <div class="titel"><div class="kicker">Offerte</div><h2>Unverbindlich anfragen</h2><svg class="ornament" viewBox="0 0 120 14"><path d="M0 7h44M76 7h44M60 1c-6 0-10 3-10 6s4 6 10 6 10-3 10-6-4-6-10-6z"/></svg></div>
+    <form id="form">
+      <div><label>Was dürfen wir für Sie tun?</label>
+        <div class="chk">
+          <label><input type="checkbox" value="Malerarbeiten">Malerarbeiten</label>
+          <label><input type="checkbox" value="Gipserarbeiten">Gipserarbeiten</label>
+          <label><input type="checkbox" value="Lackierarbeiten">Lackierarbeiten</label>
+          <label><input type="checkbox" value="Tapezierarbeiten">Tapezierarbeiten</label>
+          <label><input type="checkbox" value="Dekorative Gestaltung">Dekorative Gestaltung</label>
+          <label><input type="checkbox" value="Renovation">Renovation</label>
+        </div></div>
+      <div><label for="ort">Innen oder aussen?</label><select id="ort"><option>Innen</option><option>Aussen</option><option>Innen und aussen</option></select></div>
+      <div><label for="besch">Beschreibung</label><textarea id="besch" placeholder="z.B. Altbauwohnung, Stuckdecke auffrischen …"></textarea></div>
+      <div><label for="name">Name</label><input id="name" autocomplete="name"></div>
+      <div><label for="tel">Telefon</label><input id="tel" type="tel" autocomplete="tel"></div>
+      <button class="btn voll" type="submit">Anfrage per E-Mail senden</button>
+      <p class="klein">Öffnet Ihr E-Mail-Programm mit einer fertigen Nachricht an info@kilchherr.ch.</p>
+    </form>
+  </div>
+</section>
+
+<section class="dunkel" id="kontakt">
+  <div class="wrap kontakt">
+    <div class="titel"><div class="kicker">Kontakt</div><h2>Besuchen Sie uns</h2></div>
+    <div class="zeile"><b>Kilchherr AG</b>Burgerstrasse 3, 3600 Thun</div>
+    <div class="zeile"><b>Bürozeiten</b>Mo–Fr 07.30–12.00 und 13.30–17.00 Uhr</div>
+    <div class="btns">
+      <a class="btn voll" style="background:var(--ocker);border-color:var(--ocker)" href="tel:+41332251200">Anrufen</a>
+      <a class="btn leer" style="color:#f6f1e7;border-color:#f6f1e7" href="mailto:info@kilchherr.ch">E-Mail</a>
+    </div>
+  </div>
+</section>
+<footer>© Kilchherr AG · Malerei – Gipserei · Burgerstrasse 3, 3600 Thun<br><span class="smgv">Mitglied SMGV</span><br><span style="display:block;margin-top:8px">Entwurf «Stuck &amp; Denkmal» – Demo von Max Rathsack</span></footer>
+
+<script>
+// Stuckrosette generieren
+(function(){
+  const s=document.getElementById('rosette'),ns='http://www.w3.org/2000/svg';
+  const add=(t,a)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);s.appendChild(e);return e;};
+  add('circle',{r:140,class:'fein'});add('circle',{r:132});
+  for(let i=0;i<48;i++){const a=i*Math.PI/24,x=Math.cos(a)*136,y=Math.sin(a)*136;add('circle',{cx:x.toFixed(1),cy:y.toFixed(1),r:2.4,class:'fein'});}
+  for(let i=0;i<16;i++){const g=i*22.5;add('path',{d:'M0 -60 C 16 -78 18 -104 0 -124 C -18 -104 -16 -78 0 -60 Z',transform:'rotate('+g+')'});
+    add('path',{d:'M0 -70 C 6 -84 6 -100 0 -112',transform:'rotate('+g+')',class:'fein'});}
+  for(let i=0;i<16;i++){const g=i*22.5+11.25;add('path',{d:'M0 -58 C 10 -70 10 -86 0 -96 C -10 -86 -10 -70 0 -58 Z',transform:'rotate('+g+')',class:'fein'});}
+  add('circle',{r:56});add('circle',{r:46,class:'fein'});
+  for(let i=0;i<8;i++){add('path',{d:'M0 -12 C 14 -20 14 -38 0 -44 C -14 -38 -14 -20 0 -12 Z',transform:'rotate('+(i*45)+')'});}
+  add('circle',{r:10});add('circle',{r:4});
+  const els=[...s.children];
+  els.forEach(e=>{const L=e.getTotalLength?e.getTotalLength():300;e.style.strokeDasharray=L;e.style.strokeDashoffset=L;e.dataset.l=L;});
+  function zeichne(){
+    let p=document.documentElement.classList.contains('pdf')?1:Math.min(1,0.18+window.scrollY/(window.innerHeight*0.9));
+    els.forEach((e,i)=>{const lp=Math.max(0,Math.min(1,p*1.6-i/els.length*0.6));e.style.strokeDashoffset=e.dataset.l*(1-lp);});
+  }
+  window.zeichne=zeichne;
+  window.addEventListener('scroll',zeichne,{passive:true});zeichne();
+})();
+
+// Referenzen
+const refs=[
+ ['Wohnhäuser','Neuanstrich, Renovation und Gipserarbeiten im Einfamilien- und Mehrfamilienhaus.'],
+ ['Wohnen im Alter','Freundliche, ruhige Räume für Alters- und Pflegeeinrichtungen.'],
+ ['Hotels & Restaurants','Arbeiten in Gastronomie und Hotellerie – sorgfältig geplant.'],
+ ['Gewerbe, Einkaufszentren & Parkhäuser','Grosse Flächen für Gewerbe, Einkaufszentren und Parkhäuser.'],
+ ['Denkmalpflege & Heimatschutz','Historische Bausubstanz mit Respekt und Fachwissen behandeln.'],
+ ['Grossprojekte','Dank rund 40 Mitarbeitenden auch für umfangreiche Projekte.'],
+ ['Spezialitäten','Anspruchsvolle dekorative Gestaltungen und besondere Techniken.']
+];
+const platz='<div class="platz"><svg viewBox="0 0 70 46"><rect x="2" y="2" width="66" height="42"/><path d="M2 36l18-16 14 12 10-8 24 18"/><circle cx="52" cy="14" r="5"/></svg>[Platzhalter: Hier kommen Ihre eigenen Projektfotos hin]</div>';
+const box=r=>'<div class="refbox"><h3>'+r[0].replace('&','&amp;')+'</h3><p>'+r[1]+'</p>'+platz+'</div>';
+const rt=document.getElementById('reiter'),re=document.getElementById('refeinzel');
+refs.forEach((r,i)=>{const b=document.createElement('button');b.type='button';b.textContent=r[0];b.onclick=()=>{[...rt.children].forEach(x=>x.classList.remove('an'));b.classList.add('an');re.innerHTML=box(r);};rt.appendChild(b);if(!i)b.click();});
+document.getElementById('refalle').innerHTML=refs.map(box).join('');
+
+// Team mit Medaillon-Initialen
+const team=[['Hufret Redzepi','Inhaber, Geschäftsführer','076 262 39 01'],['René Capun','Abteilungsleiter','079 611 15 30'],['Zekir Redzepi','Projektleiter','079 526 64 50'],['Berkant Redzepi','Projektleiter','079 520 56 32']];
+document.getElementById('teamliste').innerHTML=team.map(t=>{const ini=t[0].split(' ').map(w=>w[0]).join('');const n='+41'+t[2].replace(/\s/g,'').slice(1);
+ return '<div class="person zeig"><svg class="medaillon" viewBox="0 0 62 62"><circle cx="31" cy="31" r="29" fill="#e9dfcc" stroke="#9a6b2f" stroke-width="1.4"/><circle cx="31" cy="31" r="24" fill="none" stroke="#cbbd9f" stroke-dasharray="2 3"/><text x="31" y="38" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="21" font-weight="700" fill="#2b2a33">'+ini+'</text></svg><div><h3>'+t[0]+'</h3><div class="rolle">'+t[1]+'</div><a href="tel:'+n+'">'+t[2]+'</a></div></div>';}).join('');
+
+// Formular -> E-Mail
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();
+ const arb=[...document.querySelectorAll('.chk input:checked')].map(x=>x.value).join(', ')||'–';
+ const v=id=>document.getElementById(id).value;
+ const body='Guten Tag\n\nIch interessiere mich für eine Offerte.\n\nArbeiten: '+arb+'\nOrt: '+v('ort')+'\nBeschreibung: '+v('besch')+'\n\nName: '+v('name')+'\nTelefon: '+v('tel')+'\n\nFreundliche Grüsse';
+ location.href='mailto:info@kilchherr.ch?subject='+encodeURIComponent('Offertanfrage')+'&body='+encodeURIComponent(body);});
+
+// Einblenden beim Scrollen
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('da');io.unobserve(x.target);}}),{threshold:.15});
+document.querySelectorAll('.zeig').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

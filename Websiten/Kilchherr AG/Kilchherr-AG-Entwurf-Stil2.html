@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kilchherr AG – Malerei · Gipserei, Thun (Entwurf «Raum-Rechner»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --putz:#eef0ec; --weiss:#ffffff; --petrol:#0f4c5c; --petrol2:#0b3743; --signal:#e8a33d; --linie:#c7cfcc; --text:#1c2a2e; --mild:#5a6a6e;
+  --sans:"Space Grotesk","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--putz);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55}
+a{color:inherit}
+.demo{background:var(--signal);color:#1c2a2e;font-size:12px;text-align:center;padding:7px 12px;font-weight:500}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+header{background:var(--petrol);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.marke svg{width:34px;height:34px}
+.marke b{font-size:19px;letter-spacing:-.01em;display:block;line-height:1.1}
+.marke span{font-family:var(--mono);font-size:10.5px;opacity:.75;letter-spacing:.06em}
+.anruf{font-family:var(--mono);font-size:12.5px;background:rgba(255,255,255,.12);padding:7px 10px;border-radius:6px;text-decoration:none;white-space:nowrap}
+
+.hero{background:var(--petrol);color:#fff;padding:20px 0 36px;position:relative}
+.hero .mass{font-family:var(--mono);font-size:11.5px;color:var(--signal);letter-spacing:.08em}
+.hero h1{font-size:38px;line-height:1.06;letter-spacing:-.02em;margin:10px 0 14px;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--signal)}
+.hero p{color:#cfe0e3;max-width:470px}
+.hero .cta{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans)}
+.btn.gelb{background:var(--signal);color:#1c2a2e}
+.btn.rand{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff}
+.btn.petrol{background:var(--petrol);color:#fff}
+.heroplan{margin-top:26px;width:100%;height:auto;display:block}
+
+section{padding:46px 0}
+.nr{font-family:var(--mono);font-size:12px;color:var(--petrol);letter-spacing:.08em;display:flex;align-items:center;gap:8px}
+.nr::after{content:"";flex:1;height:1px;background:var(--linie)}
+h2{font-size:29px;line-height:1.12;letter-spacing:-.015em;margin:10px 0 18px}
+
+/* Rechner */
+.rechner{background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:18px}
+.typen{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.typen button{font-family:var(--sans);font-size:13px;padding:10px 4px;border:1.5px solid var(--linie);background:#fff;border-radius:8px;cursor:pointer;color:var(--text)}
+.typen button.an{border-color:var(--petrol);background:#e3eef0;font-weight:700}
+.iso{width:100%;height:auto;display:block;background:#f6f8f7;border-radius:10px}
+.regler{display:grid;gap:12px;margin-top:16px}
+.regler label{display:grid;grid-template-columns:86px 1fr 70px;align-items:center;gap:10px;font-size:14px}
+.regler output{font-family:var(--mono);font-size:14px;text-align:right;font-weight:600}
+input[type=range]{width:100%;accent-color:var(--petrol)}
+.schalter{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.schalter label{display:flex;align-items:center;gap:6px;font-size:14px;border:1px solid var(--linie);border-radius:8px;padding:7px 10px;cursor:pointer}
+.ergebnis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px}
+.wert{background:var(--putz);border-radius:10px;padding:10px;text-align:center}
+.wert b{display:block;font-family:var(--mono);font-size:21px;color:var(--petrol);line-height:1.2}
+.wert span{font-size:11.5px;color:var(--mild)}
+.wert.total{background:var(--petrol);color:#fff}
+.wert.total b{color:var(--signal)}
+.wert.total span{color:#cfe0e3}
+.hinweis{font-size:12px;color:var(--mild);margin-top:10px}
+.liste{margin-top:16px;border-top:1px dashed var(--linie);padding-top:12px}
+.liste h3{font-size:15px;margin-bottom:6px}
+.liste ul{list-style:none;font-family:var(--mono);font-size:13px}
+.liste li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid #edf0ef}
+.liste li button{border:0;background:none;color:#b0412e;cursor:pointer;font-size:13px}
+.leer{color:var(--mild);font-size:13px;font-family:var(--sans)}
+
+/* Leistungen */
+.raster{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kachel{background:var(--weiss);border:1px solid var(--linie);border-radius:12px;padding:14px}
+.kachel svg{width:38px;height:38px;margin-bottom:6px}
+.kachel svg *{fill:none;stroke:var(--petrol);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.kachel h3{font-size:16px;line-height:1.2}
+.kachel p{font-size:13px;color:var(--mild);margin-top:3px}
+
+/* Fakten */
+.fakten{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fakt{border-left:3px solid var(--signal);padding:4px 0 4px 12px}
+.fakt b{font-family:var(--mono);font-size:22px;display:block;color:var(--petrol);line-height:1.2}
+.fakt span{font-size:13.5px;color:var(--mild)}
+
+/* Referenzen */
+.refs{display:grid;gap:10px}
+details{background:var(--weiss);border:1px solid var(--linie);border-radius:12px;overflow:hidden}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15.5px;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary .k{font-family:var(--mono);font-size:11px;color:var(--petrol);font-weight:400}
+summary::after{content:"+";font-family:var(--mono);font-size:20px;color:var(--petrol)}
+details[open] summary::after{content:"–"}
+.refin{padding:0 16px 16px;font-size:14px;color:var(--mild)}
+.foto{margin-top:10px;border:1.5px dashed var(--linie);border-radius:10px;padding:18px;text-align:center;font-size:13px;color:var(--mild);background:#f6f8f7}
+
+.dunkel{background:var(--petrol2);color:#e3eef0}
+.dunkel .nr{color:var(--signal)}
+.dunkel .nr::after{background:#24505c}
+.lehrgrid{display:grid;gap:10px}
+.lehr{border:1px solid #24505c;border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center}
+.lehr .abz{font-family:var(--mono);font-size:12px;background:var(--signal);color:#1c2a2e;border-radius:6px;padding:4px 7px;font-weight:600}
+.lehr h3{font-size:17px;line-height:1.2}
+.lehr p{font-size:13px;color:#a9c4c9}
+
+.team{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.person{background:var(--weiss);border:1px solid var(--linie);border-radius:12px;padding:14px;text-align:center}
+.person svg{width:64px;height:64px;margin:0 auto 6px;display:block}
+.person h3{font-size:15.5px;line-height:1.2}
+.person .rolle{font-size:12px;color:var(--mild);min-height:30px}
+.person a{display:inline-block;margin-top:6px;font-family:var(--mono);font-size:12.5px;color:var(--petrol);text-decoration:none;font-weight:600}
+
+form{background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:18px;display:grid;gap:12px}
+form label{font-size:13px;font-weight:700;display:block;margin-bottom:4px}
+form input,form textarea,form select{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1.5px solid var(--linie);border-radius:8px;background:#fff;color:var(--text)}
+form textarea{min-height:110px;font-family:var(--mono);font-size:13px}
+.klein{font-size:12px;color:var(--mild)}
+
+.kontakt{display:grid;gap:12px}
+.kbox{background:var(--weiss);border:1px solid var(--linie);border-radius:12px;padding:14px 16px}
+.kbox b{display:block;font-size:12px;font-family:var(--mono);color:var(--petrol);letter-spacing:.06em}
+footer{background:var(--petrol);color:#a9c4c9;font-size:12px;text-align:center;padding:22px 18px;font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="demo">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Kilchherr AG</div>
+<header>
+  <a class="marke" href="#"><svg viewBox="0 0 34 34"><rect x="1" y="1" width="32" height="32" rx="7" fill="#e8a33d"/><path d="M10 8v18M10 17l10-9M13 15l8 11" stroke="#0f4c5c" stroke-width="3" fill="none" stroke-linecap="round"/></svg><div><b>Kilchherr AG</b><span>MALEREI · GIPSEREI · THUN</span></div></a>
+  <a class="anruf" href="tel:+41332251200">033 225 12 00</a>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="mass">← SEIT 1955 · RUND 40 MITARBEITENDE →</div>
+    <h1>Wie viel Wand hat <em>Ihr Raum?</em></h1>
+    <p>Messen Sie kurz aus, wir rechnen die Fläche – und Sie senden die Offertanfrage direkt an die Kilchherr AG. Maler- und Gipserarbeiten innen und aussen.</p>
+    <div class="cta"><a class="btn gelb" href="#rechner">Raum ausmessen</a><a class="btn rand" href="mailto:info@kilchherr.ch">E-Mail</a></div>
+    <svg class="heroplan" viewBox="0 0 400 120" aria-hidden="true">
+      <g fill="none" stroke="#3f7b89" stroke-width="1.2">
+        <path d="M20 100h360M20 20h360M20 20v80M380 20v80M140 20v80M260 20v50"/>
+        <path d="M260 70h40M330 70h50" />
+        <path d="M140 60a30 30 0 0 1 30-30" stroke-dasharray="3 3"/>
+      </g>
+      <g stroke="#e8a33d" stroke-width="1.2" fill="#e8a33d">
+        <path d="M20 112h120M140 112h120M260 112h120" fill="none"/>
+        <path d="M20 108v8M140 108v8M260 108v8M380 108v8" fill="none"/>
+      </g>
+      <g font-family="JetBrains Mono,Consolas,monospace" font-size="10" fill="#cfe0e3" text-anchor="middle">
+        <text x="80" y="64">Wohnen</text><text x="200" y="64">Küche</text><text x="320" y="48">Bad</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<section id="rechner">
+  <div class="wrap">
+    <div class="nr">01 / RAUM-RECHNER</div>
+    <h2>Raum wählen, Masse eingeben.</h2>
+    <div class="rechner">
+      <div class="typen" id="typen"></div>
+      <svg class="iso" id="iso" viewBox="0 0 360 230"></svg>
+      <div class="regler">
+        <label>Länge <input type="range" id="L" min="1.5" max="12" step="0.1" value="5"><output id="oL">5.0 m</output></label>
+        <label>Breite <input type="range" id="B" min="1.5" max="10" step="0.1" value="4"><output id="oB">4.0 m</output></label>
+        <label>Höhe <input type="range" id="H" min="2" max="4.5" step="0.05" value="2.5"><output id="oH">2.50 m</output></label>
+      </div>
+      <div class="schalter">
+        <label><input type="checkbox" id="mW" checked> Wände</label>
+        <label><input type="checkbox" id="mD" checked> Decke</label>
+      </div>
+      <div class="ergebnis">
+        <div class="wert"><b id="rW">0</b><span>m² Wände</span></div>
+        <div class="wert"><b id="rD">0</b><span>m² Decke</span></div>
+        <div class="wert total"><b id="rT">0</b><span>m² gesamt</span></div>
+      </div>
+      <p class="hinweis">Grobe Rechnung ohne Abzug für Fenster und Türen. Die genaue Offerte erstellt die Kilchherr AG nach Besichtigung.</p>
+      <button class="btn petrol" type="button" id="dazu" style="margin-top:12px;width:100%;justify-content:center">+ Raum zur Anfrage hinzufügen</button>
+      <div class="liste"><h3>Ihre Räume</h3><ul id="liste"><li class="leer">Noch kein Raum hinzugefügt.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="leistungen" style="padding-top:10px">
+  <div class="wrap">
+    <div class="nr">02 / LEISTUNGEN</div>
+    <h2>Alles rund um Wand, Decke und Fassade.</h2>
+    <div class="raster">
+      <div class="kachel"><svg viewBox="0 0 40 40"><path d="M6 6h22v9H6zM28 10h5v9H17v5M15 24h4v11h-4z"/></svg><h3>Malerarbeiten</h3><p>Innen und aussen</p></div>
+      <div class="kachel"><svg viewBox="0 0 40 40"><path d="M6 30L22 14l5 5L11 35H6zM4 36h32"/></svg><h3>Gipserarbeiten</h3><p>Innen und aussen</p></div>
+      <div class="kachel"><svg viewBox="0 0 40 40"><path d="M12 5h16l-2 9H14zM20 14v6M15 20h10v15H15z"/></svg><h3>Lackierarbeiten</h3><p>Saubere Lackierungen</p></div>
+      <div class="kachel"><svg viewBox="0 0 40 40"><path d="M7 6h18v28H7zM25 6c5 0 7 3 7 7v21h-7M11 14l3 3 3-3 3 3"/></svg><h3>Tapezierarbeiten</h3><p>Fachgerecht tapeziert</p></div>
+      <div class="kachel"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="13"/><path d="M20 7c4 5 4 21 0 26M7 20c5-4 21-4 26 0"/></svg><h3>Dekorative Gestaltungen</h3><p>Auch anspruchsvolle</p></div>
+      <div class="kachel"><svg viewBox="0 0 40 40"><path d="M5 19L20 7l15 12M9 16v18h22V16M17 34V24h6v10"/></svg><h3>Renovation</h3><p>Sorgfältig umgesetzt</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="ueber" style="padding-top:10px">
+  <div class="wrap">
+    <div class="nr">03 / ÜBER UNS</div>
+    <h2>Seit 1955 mit Freude für Sie da.</h2>
+    <p style="margin-bottom:16px;color:var(--mild)">«Seit 1955 helfen wir unseren Kunden Wohn(t)räume zu realisieren.» Die Kilchherr AG ist ein Thuner Maler- und Gipserbetrieb und Mitglied des SMGV.</p>
+    <div class="fakten">
+      <div class="fakt"><b>1955</b><span>gegründet</span></div>
+      <div class="fakt"><b>~40</b><span>qualifizierte und motivierte Mitarbeitende</span></div>
+      <div class="fakt"><b>SMGV</b><span>Mitglied</span></div>
+      <div class="fakt"><b>2 Lehrberufe</b><span>Ausbildungsbetrieb</span></div>
+    </div>
+    <p class="klein" style="margin-top:14px">[Platzhalter: Ausführliche Firmengeschichte folgt.]</p>
+  </div>
+</section>
+
+<section id="referenzen" style="padding-top:10px">
+  <div class="wrap">
+    <div class="nr">04 / REFERENZEN</div>
+    <h2>Referenzen nach Kategorie.</h2>
+    <div class="refs" id="refs"></div>
+  </div>
+</section>
+
+<section class="dunkel" id="lehre">
+  <div class="wrap">
+    <div class="nr">05 / LEHRBETRIEB</div>
+    <h2>Deine Lehre bei uns.</h2>
+    <div class="lehrgrid">
+      <div class="lehr"><span class="abz">EFZ</span><div><h3>Maler/in EFZ</h3><p>Malen, lackieren, tapezieren, gestalten</p></div></div>
+      <div class="lehr"><span class="abz">EFZ</span><div><h3>Gipser/in-Trockenbauer/in EFZ</h3><p>Wände und Decken bauen und verputzen</p></div></div>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:#a9c4c9">Fragen zur Lehre oder Schnupperlehre? <a href="tel:+41332251200" style="color:#e8a33d">033 225 12 00</a></p>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="nr">06 / ANSPRECHPERSONEN</div>
+    <h2>Direkt erreichbar.</h2>
+    <div class="team" id="team"></div>
+  </div>
+</section>
+
+<section id="offerte" style="padding-top:10px">
+  <div class="wrap">
+    <div class="nr">07 / OFFERTE</div>
+    <h2>Anfrage senden.</h2>
+    <form id="form">
+      <div><label for="raeume">Ihre Räume (aus dem Rechner)</label><textarea id="raeume" placeholder="Fügen Sie oben Räume hinzu oder beschreiben Sie Ihr Projekt."></textarea></div>
+      <div><label for="art">Gewünschte Arbeit</label><select id="art"><option>Malerarbeiten</option><option>Gipserarbeiten</option><option>Lackierarbeiten</option><option>Tapezierarbeiten</option><option>Dekorative Gestaltung</option><option>Renovation</option></select></div>
+      <div><label for="name">Name</label><input id="name" autocomplete="name"></div>
+      <div><label for="adr">Adresse des Objekts</label><input id="adr"></div>
+      <div><label for="tel">Telefon</label><input id="tel" type="tel"></div>
+      <button class="btn gelb" type="submit" style="justify-content:center">Offerte per E-Mail anfragen</button>
+      <p class="klein">Öffnet Ihr E-Mail-Programm mit einer vorbereiteten Nachricht an info@kilchherr.ch.</p>
+    </form>
+  </div>
+</section>
+
+<section id="kontakt" style="padding-top:10px">
+  <div class="wrap kontakt">
+    <div class="nr">08 / KONTAKT</div>
+    <div class="kbox"><b>ADRESSE</b>Kilchherr AG, Burgerstrasse 3, 3600 Thun</div>
+    <div class="kbox"><b>BÜROZEITEN</b>Mo–Fr 07.30–12.00 und 13.30–17.00 Uhr</div>
+    <div class="kbox"><b>TELEFON / E-MAIL</b><a href="tel:+41332251200">033 225 12 00</a> · <a href="mailto:info@kilchherr.ch">info@kilchherr.ch</a></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn petrol" href="tel:+41332251200">Anrufen</a><a class="btn gelb" href="mailto:info@kilchherr.ch">E-Mail schreiben</a></div>
+  </div>
+</section>
+<footer>© KILCHHERR AG · MALEREI – GIPSEREI · MITGLIED SMGV<br>Entwurf «Raum-Rechner» – Demo von Max Rathsack</footer>
+
+<script>
+const typen=['Wohnzimmer','Schlafzimmer','Küche','Bad','Treppenhaus','Büro'];
+let typ=typen[0];const raeume=[];
+const tb=document.getElementById('typen');
+typen.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.textContent=t;if(!i)b.className='an';b.onclick=()=>{typ=t;[...tb.children].forEach(x=>x.classList.remove('an'));b.classList.add('an');zeichne();};tb.appendChild(b);});
+const $=id=>document.getElementById(id);
+const f=n=>n.toFixed(1).replace('.',',');
+
+function zeichne(){
+  const L=+$('L').value,B=+$('B').value,H=+$('H').value,mW=$('mW').checked,mD=$('mD').checked;
+  $('oL').textContent=L.toFixed(1)+' m';$('oB').textContent=B.toFixed(1)+' m';$('oH').textContent=H.toFixed(2)+' m';
+  const W=2*(L+B)*H,D=L*B,T=(mW?W:0)+(mD?D:0);
+  $('rW').textContent=f(W);$('rD').textContent=f(D);$('rT').textContent=f(T);
+  // isometrische Darstellung
+  const s=Math.min(150/(L+B)*1.55, 120/H, 26);
+  const c=Math.cos(Math.PI/6),sn=0.5;
+  const P=(x,y,z)=>[180+(x-y)*c*s,200-(x+y)*sn*s-z*s];
+  const off=((L-B)*c*s)/2; // zentrieren
+  const p=(x,y,z)=>{const q=P(x,y,z);return (q[0]-off).toFixed(1)+','+q[1].toFixed(1);};
+  const poly=(pts,fill,stroke)=>'<polygon points="'+pts.map(a=>p(...a)).join(' ')+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="1.4"/>';
+  const wl=mW?'#9cc7cf':'#e4e9e7',wr=mW?'#c3dfe4':'#eef2f0',dk=mD?'#e8a33d':'#f3f4f2';
+  let g='';
+  g+=poly([[0,0,0],[L,0,0],[L,B,0],[0,B,0]],'#dfe5e2','#0f4c5c');
+  g+=poly([[0,B,0],[L,B,0],[L,B,H],[0,B,H]],wl,'#0f4c5c');
+  g+=poly([[0,0,0],[0,B,0],[0,B,H],[0,0,H]],wr,'#0f4c5c');
+  g+='<g opacity="'+(mD?0.55:0.25)+'">'+poly([[0,0,H],[L,0,H],[L,B,H],[0,B,H]],dk,'#0f4c5c')+'</g>';
+  // Masslinien
+  const t=(x,y,z,txt)=>{const q=P(x,y,z);return '<text x="'+(q[0]-off).toFixed(1)+'" y="'+q[1].toFixed(1)+'" font-family="JetBrains Mono,Consolas,monospace" font-size="12" font-weight="600" fill="#0f4c5c" text-anchor="middle">'+txt+'</text>';};
+  g+=t(L/2,-0.35,0,'L '+f(L)+' m')+t(-0.4,B/2,0,'B '+f(B)+' m');
+  const h=P(0,0,H/2);g+='<text x="'+(h[0]-off-10).toFixed(1)+'" y="'+h[1].toFixed(1)+'" font-family="JetBrains Mono,Consolas,monospace" font-size="12" font-weight="600" fill="#0f4c5c" text-anchor="end">H '+H.toFixed(2).replace('.',',')+' m</text>';
+  g+='<text x="14" y="22" font-family="Space Grotesk,Arial,sans-serif" font-size="14" font-weight="700" fill="#1c2a2e">'+typ+'</text>';
+  $('iso').innerHTML=g;
+}
+['L','B','H','mW','mD'].forEach(id=>$(id).addEventListener('input',zeichne));
+zeichne();
+
+function liste(){
+  const ul=$('liste');
+  ul.innerHTML=raeume.length?raeume.map((r,i)=>'<li><span>'+r.txt+'</span><button type="button" onclick="raeume.splice('+i+',1);liste()">✕</button></li>').join(''):'<li class="leer">Noch kein Raum hinzugefügt.</li>';
+  $('raeume').value=raeume.map(r=>'- '+r.txt).join('\n');
+}
+$('dazu').onclick=()=>{
+  const L=+$('L').value,B=+$('B').value,H=+$('H').value,mW=$('mW').checked,mD=$('mD').checked;
+  const teile=[];if(mW)teile.push('Wände '+f(2*(L+B)*H)+' m²');if(mD)teile.push('Decke '+f(L*B)+' m²');
+  raeume.push({txt:typ+' '+f(L)+'×'+f(B)+'×'+H.toFixed(2).replace('.',',')+' m: '+(teile.join(', ')||'–')});liste();
+};
+
+const refs=['Wohnhäuser','Wohnen im Alter','Hotels & Restaurants','Gewerbe, Einkaufszentren & Parkhäuser','Denkmalpflege & Heimatschutz','Grossprojekte','Spezialitäten'];
+$('refs').innerHTML=refs.map((r,i)=>'<details'+(i?'':' open')+'><summary><span><span class="k">'+String(i+1).padStart(2,'0')+'</span>&nbsp; '+r.replace('&','&amp;')+'</span></summary><div class="refin">[Platzhalter: Projektname, Ort, ausgeführte Arbeiten]<div class="foto">[Platzhalter: Hier kommen Ihre eigenen Projektfotos hin]</div></div></details>').join('');
+
+const team=[['Hufret Redzepi','Inhaber, Geschäftsführer','076 262 39 01'],['René Capun','Abteilungsleiter','079 611 15 30'],['Zekir Redzepi','Projektleiter','079 526 64 50'],['Berkant Redzepi','Projektleiter','079 520 56 32']];
+$('team').innerHTML=team.map(t=>{const ini=t[0].split(' ').map(w=>w[0]).join('');const n='+41'+t[2].replace(/\s/g,'').slice(1);
+ return '<div class="person"><svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#0f4c5c"/><path d="M2 46h60" stroke="#e8a33d" stroke-width="2"/><path d="M10 46v-4M20 46v-3M30 46v-4M40 46v-3M50 46v-4" stroke="#e8a33d" stroke-width="1.5"/><text x="32" y="36" text-anchor="middle" font-family="JetBrains Mono,Consolas,monospace" font-size="19" font-weight="600" fill="#fff">'+ini+'</text></svg><h3>'+t[0]+'</h3><div class="rolle">'+t[1]+'</div><a href="tel:'+n+'">'+t[2]+'</a></div>';}).join('');
+
+$('form').addEventListener('submit',e=>{e.preventDefault();
+ const body='Guten Tag\n\nIch bitte um eine Offerte.\n\nArbeit: '+$('art').value+'\nRäume / Beschreibung:\n'+$('raeume').value+'\n\nObjekt: '+$('adr').value+'\nName: '+$('name').value+'\nTelefon: '+$('tel').value+'\n\nFreundliche Grüsse';
+ location.href='mailto:info@kilchherr.ch?subject='+encodeURIComponent('Offertanfrage via Raum-Rechner')+'&body='+encodeURIComponent(body);});
+</script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serviceheft – Pneu &amp; Garage zur Burg (Entwurf)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3ead6;--card:#fffaf0;--blue:#1d3b8b;--red:#c8312b;--ink:#1d1d1b;--rule:#c9bc9e;--muted:#5f5a4e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;background:#2a3346;color:var(--ink);line-height:1.5;font-size:16px}
+h1,h2,h3{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;line-height:1.1;hyphens:none;overflow-wrap:normal}
+.mono{font-family:"Courier Prime","Courier New",Courier,monospace}
+a{color:inherit}
+.demo{background:#000;color:#fff;font-size:11.5px;text-align:center;padding:6px 10px}
+.wrap{max-width:520px;margin:0 auto;padding:18px 14px 40px}
+/* Umschlag */
+.cover{background:var(--blue);color:#fff;border-radius:6px 16px 16px 6px;padding:24px 22px 22px;position:relative;border-left:12px solid #142b68}
+.cover .t1{font-size:12px;letter-spacing:.25em;text-transform:uppercase;opacity:.85}
+.cover h1{font-size:44px;margin:8px 0 4px;letter-spacing:-.01em}
+.cover .t2{font-size:16px;opacity:.95}
+.cover .plate{display:inline-block;margin-top:16px;background:#fff;color:var(--ink);border:2px solid #000;border-radius:6px;padding:4px 10px;font-weight:800;letter-spacing:.08em;font-size:15px}
+.cover svg{display:block;width:100%;height:auto;margin-top:18px}
+.cover .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;border-radius:8px;font:800 15px "Archivo",Arial,sans-serif;text-decoration:none;border:2px solid currentColor;cursor:pointer;background:transparent}
+.btn.fill{background:var(--red);border-color:var(--red);color:#fff}
+.btn.white{background:#fff;color:var(--blue);border-color:#fff}
+.cover .btn{color:#fff}
+.cover .btn.white{color:var(--blue)}
+/* Seiten */
+.page{background:var(--card);border-radius:4px 12px 12px 4px;margin-top:18px;padding:20px 18px;position:relative;border-left:6px solid #e2d6bb}
+.page .pno{position:absolute;top:14px;right:16px;font-size:12px;color:var(--muted)}
+.page h2{font-size:26px;color:var(--blue);margin-bottom:6px;padding-right:50px}
+.page .sub{color:var(--muted);font-size:14.5px;margin-bottom:12px}
+.field{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1.5px solid var(--rule);font-size:15px}
+.field span:first-child{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.field span:last-child{text-align:right;font-weight:600}
+/* Heft mit Blättern */
+.book{margin-top:18px;background:var(--card);border-radius:4px 12px 12px 4px;border-left:6px solid #e2d6bb;overflow:hidden}
+.tabs{display:flex;background:#e6dbc2}
+.tabs button{flex:1;border:0;background:transparent;padding:11px 4px;font:800 13px "Archivo",Arial,sans-serif;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;letter-spacing:.02em}
+.tabs button.on{background:var(--card);color:var(--blue);border-bottom-color:var(--red)}
+.leaf{display:none;padding:18px 18px 8px;animation:turn .5s ease}
+.leaf.on{display:block}
+@keyframes turn{from{transform:perspective(900px) rotateY(-25deg);transform-origin:left;opacity:.2}to{transform:none;opacity:1}}
+.leaf h3{font-size:22px;color:var(--blue);margin-bottom:4px}
+.leaf .sub{color:var(--muted);font-size:14px;margin-bottom:8px}
+.item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1.5px dashed var(--rule)}
+.item .txt{flex:1}
+.item .txt b{display:block;font-size:16px}
+.item .txt small{font-size:12.5px;color:var(--muted)}
+.slot{flex:0 0 74px;height:54px;border:2px dashed #b3a37f;border-radius:8px;position:relative;cursor:pointer;background:transparent;display:flex;align-items:center;justify-content:center;font:700 11px "Courier Prime","Courier New",monospace;color:#9a8c6a}
+.slot .stamp{position:absolute;inset:-4px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid var(--red);border-radius:50%;color:var(--red);font:800 10px "Archivo",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;transform:rotate(-14deg) scale(2.4);opacity:0;transition:transform .25s cubic-bezier(.3,1.6,.5,1),opacity .15s;background:rgba(255,250,240,.6);line-height:1.1;text-align:center}
+.slot .stamp i{font-style:normal;font-size:8px}
+.slot.on .stamp{transform:rotate(-14deg) scale(1);opacity:.92}
+.slot.on{border-color:transparent;color:transparent}
+.pager{display:flex;justify-content:space-between;align-items:center;padding:12px 18px 16px}
+.pager button{border:2px solid var(--blue);background:transparent;color:var(--blue);border-radius:8px;padding:8px 12px;font:800 14px "Archivo",Arial,sans-serif;cursor:pointer}
+.pager span{font-size:13px;color:var(--muted)}
+/* Auftragszettel */
+.slip{background:#fff;margin-top:18px;padding:18px;border-radius:2px;border-top:8px solid var(--red)}
+.slip h3{font-size:20px;margin-bottom:4px}
+.slip ol{margin:10px 0 10px 20px;font-size:15px;min-height:24px}
+.slip .empty{color:var(--muted);font-size:14px;font-style:italic}
+.slip label{display:block;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 4px}
+.slip input,.slip select{width:100%;font:inherit;font-size:16px;border:0;border-bottom:2px solid var(--rule);padding:8px 2px;background:transparent;color:var(--ink);border-radius:0}
+.slip .btn{width:100%;margin-top:16px}
+.count{display:inline-block;background:var(--red);color:#fff;border-radius:999px;font-size:13px;padding:1px 9px;margin-left:6px;vertical-align:middle}
+.ph{display:block;font-size:13px;background:#fff1c9;color:#6a4b00;border:1.5px dashed #c9a43a;border-radius:6px;padding:8px 10px;margin-top:12px}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.team div{border:1.5px solid var(--rule);border-radius:8px;padding:10px}
+.team b{display:block}
+.team span{font-size:13px;color:var(--muted)}
+.team .photo{height:88px;border:1.5px dashed #c9a43a;background:#fff8e0;border-radius:6px;margin-bottom:8px;font-size:11.5px;color:#6a4b00;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px}
+.aschi{display:flex;gap:12px;align-items:center;margin-top:12px;border:1.5px solid var(--rule);border-radius:8px;padding:10px}
+.aschi svg{flex:0 0 80px}
+.note{font-size:15px;margin-top:14px;padding:10px 12px;background:#eef1f8;border-left:4px solid var(--blue)}
+.hours .field span:last-child{font-family:"Courier Prime","Courier New",monospace;font-weight:700}
+.back{background:var(--blue);color:#fff;border-radius:6px 16px 16px 6px;border-left:12px solid #142b68;padding:22px;margin-top:18px}
+.back p{opacity:.92;font-size:15px}
+.back .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.back .btn{color:#fff}
+.back .btn.white{color:var(--blue)}
+footer{text-align:center;color:#aab3c6;font-size:13px;padding:22px 10px 30px}
+html.pdf .leaf{display:block;animation:none;border-top:2px solid #e6dbc2}
+html.pdf .tabs,html.pdf .pager{display:none}
+</style>
+</head>
+<body>
+<div class="demo">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Pneu &amp; Garage zur Burg GmbH</div>
+<div class="wrap">
+
+  <div class="cover">
+    <div class="t1">Pneu &amp; Garage zur Burg · Thun</div>
+    <h1>Serviceheft</h1>
+    <div class="t2">für Auto und Motorrad – alle Marken</div>
+    <div class="plate mono">SEIT 2005</div>
+    <svg viewBox="0 0 400 150" aria-label="Zeichnung: Auto und Motorrad nebeneinander">
+      <g fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M10 112 V92 L48 70 H140 L180 92 H210 V112"/>
+        <path d="M58 76 H96 V92 H40Z M104 76 H136 L162 92 H104Z"/>
+        <circle cx="60" cy="114" r="18"/><circle cx="60" cy="114" r="7"/>
+        <circle cx="168" cy="114" r="18"/><circle cx="168" cy="114" r="7"/>
+        <circle cx="270" cy="112" r="20"/><circle cx="270" cy="112" r="6"/>
+        <circle cx="372" cy="112" r="20"/><circle cx="372" cy="112" r="6"/>
+        <path d="M270 112 L300 80 H340 L372 112 M300 80 L292 64 H306 M334 80 L346 62 L360 62 M318 80 v20 h24"/>
+        <path d="M0 134 H400" stroke-dasharray="14 10"/>
+      </g>
+    </svg>
+    <div class="row">
+      <a class="btn white" href="#heft">Stempel setzen</a>
+      <a class="btn" href="tel:+41332224646">033 222 46 46</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <span class="pno mono">S. 1</span>
+    <h2>Angaben zur Werkstatt</h2>
+    <div class="sub">Die Werkstatt mit Fachkompetenz für alle Marken – ob Auto oder Motorrad, wir helfen Ihnen prompt und kompetent.</div>
+    <div class="field"><span>Firma</span><span>Pneu &amp; Garage zur Burg GmbH</span></div>
+    <div class="field"><span>Gegründet</span><span class="mono">2005</span></div>
+    <div class="field"><span>Adresse</span><span>Burgzentrum, Burgstrasse 18<br>3600 Thun</span></div>
+    <div class="field"><span>Lage</span><span>Altstadt, beim Parkhaus<br>City Ost Schlossberg</span></div>
+    <div class="field"><span>Telefon</span><span><a href="tel:+41332224646">033 222 46 46</a></span></div>
+    <div class="field"><span>E-Mail</span><span><a href="mailto:info@zurburg.ch">info@zurburg.ch</a></span></div>
+  </div>
+
+  <div class="book" id="heft">
+    <div class="tabs">
+      <button class="on" data-i="0">Wartung</button>
+      <button data-i="1">Technik</button>
+      <button data-i="2">Pneu</button>
+      <button data-i="3">Mehr</button>
+    </div>
+    <div class="leaf on">
+      <h3>Wartung</h3>
+      <div class="sub">Tippen Sie ins Feld – wir stempeln, was Sie brauchen.</div>
+      <div class="item"><div class="txt"><b>Wartungs-Service</b><small>Regelmässige Wartung, alle Marken</small></div><button class="slot" data-n="Wartungs-Service">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Öl-Service</b><small>Ölwechsel</small></div><button class="slot" data-n="Öl-Service">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Klima-Service</b><small>Wartung der Klimaanlage</small></div><button class="slot" data-n="Klima-Service">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Abgaswartung</b><small>Wartung der Abgasanlage</small></div><button class="slot" data-n="Abgaswartung">STEMPEL</button></div>
+    </div>
+    <div class="leaf">
+      <h3>Technik &amp; Diagnose</h3>
+      <div class="sub">Wenn etwas leuchtet, piept oder zieht.</div>
+      <div class="item"><div class="txt"><b>Fehlerdiagnostik</b><small>Fehler auslesen und finden</small></div><button class="slot" data-n="Fehlerdiagnostik">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Fahrzeugelektronik</b><small>Elektronik-Arbeiten</small></div><button class="slot" data-n="Fahrzeugelektronik">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Batterien</b><small>Prüfen und ersetzen</small></div><button class="slot" data-n="Batterie">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Spur und Lenkung</b><small>Einstellen und prüfen</small></div><button class="slot" data-n="Spur und Lenkung">STEMPEL</button></div>
+    </div>
+    <div class="leaf">
+      <h3>Pneu</h3>
+      <div class="sub">Zweimal im Jahr fällig: Sommer und Winter.</div>
+      <div class="item"><div class="txt"><b>Pneuwechsel</b><small>Halbjährlich, Sommer- / Winterpneus</small></div><button class="slot" data-n="Pneuwechsel">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Reifenhotel</b><small>Wir lagern Ihre Pneus – kein Transport, kein Platzproblem</small></div><button class="slot" data-n="Einlagerung im Reifenhotel">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Reifen &amp; Felgen</b><small>Beratung und Verkauf</small></div><button class="slot" data-n="Neue Reifen / Felgen">STEMPEL</button></div>
+    </div>
+    <div class="leaf">
+      <h3>Kontrolle &amp; Verkauf</h3>
+      <div class="sub">Und alles rundherum.</div>
+      <div class="item"><div class="txt"><b>Motorfahrzeug-Kontrolle</b><small>MFK</small></div><button class="slot" data-n="Motorfahrzeug-Kontrolle (MFK)">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Zubehör</b><small>Für Auto und Motorrad</small></div><button class="slot" data-n="Zubehör">STEMPEL</button></div>
+      <div class="item"><div class="txt"><b>Fahrzeugverkauf</b><small>[Platzhalter: Angebot mit eigenen Fotos]</small></div><button class="slot" data-n="Fahrzeugverkauf">STEMPEL</button></div>
+    </div>
+    <div class="pager"><button id="prev">‹ zurück</button><span class="mono" id="pg">Seite 1 / 4</span><button id="next">weiter ›</button></div>
+  </div>
+
+  <div class="slip" id="zettel">
+    <h3>Auftragszettel <span class="count" id="cnt">0</span></h3>
+    <div class="mono" style="font-size:13px;color:var(--muted)">Gestempelte Punkte:</div>
+    <ol id="list"></ol>
+    <label for="fz">Fahrzeug</label>
+    <select id="fz"><option>Auto</option><option>Motorrad</option></select>
+    <label for="mm">Marke / Modell</label>
+    <input id="mm" placeholder="z.B. Yamaha MT-07">
+    <label for="name">Name</label>
+    <input id="name" autocomplete="name">
+    <label for="tel">Telefon</label>
+    <input id="tel" type="tel" autocomplete="tel">
+    <label for="wann">Wunschtermin</label>
+    <input id="wann" placeholder="z.B. Dienstagnachmittag">
+    <button class="btn fill" id="send" type="button">Auftrag per E-Mail anfragen</button>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px">Es öffnet sich Ihr E-Mail-Programm mit der fertigen Anfrage an info@zurburg.ch. Wir melden uns mit einem Termin.</p>
+  </div>
+
+  <div class="page">
+    <span class="pno mono">S. 6</span>
+    <h2>Mechaniker-Unterschriften</h2>
+    <div class="sub">Wer an Ihrem Fahrzeug arbeitet.</div>
+    <div class="team">
+      <div><div class="photo">[Platzhalter: Foto Räto Bolt]</div><b>Räto Bolt</b><span>Geschäftsführer</span></div>
+      <div><div class="photo">[Platzhalter: Foto Adrian Mürner]</div><b>Adrian Mürner</b><span>Mechaniker</span></div>
+    </div>
+    <div class="aschi">
+      <svg viewBox="0 0 80 80" width="80" height="80" aria-label="Skizze Aschi">
+        <g fill="none" stroke="#1d3b8b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 72c-2-22 6-40 24-40s26 18 24 40z" fill="#eef1f8"/>
+          <circle cx="40" cy="30" r="17" fill="#fffaf0"/>
+          <path d="M23 26c2-10 9-15 17-15s15 5 17 15" fill="#c8312b" stroke="#1d3b8b"/>
+          <path d="M57 26h8"/>
+          <circle cx="34" cy="31" r="1.8" fill="#1d3b8b"/><circle cx="46" cy="31" r="1.8" fill="#1d3b8b"/>
+          <path d="M34 38c4 3 8 3 12 0"/>
+          <path d="M40 48v24M30 54h20"/>
+          <text x="40" y="66" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-size="9" font-weight="800" fill="#1d3b8b" stroke="none">7×24</text>
+        </g>
+      </svg>
+      <div><b>Aschi</b><br><span style="font-size:14px;color:var(--muted)">Treuster Mitarbeiter – 7 x 24 Stunden im Dienst.</span></div>
+    </div>
+    <div class="note">Viele Kundinnen und Kunden lassen ihre Fahrzeuge seit Jahren bei uns warten – kompetent, sympathisch, zuverlässig.</div>
+    <span class="ph">[Platzhalter: echte Kundenstimme mit Einverständnis]</span>
+  </div>
+
+  <div class="page hours">
+    <span class="pno mono">S. 7</span>
+    <h2>Öffnungszeiten</h2>
+    <div class="field"><span>Mo – Do</span><span>08.00–12.00<br>13.30–17.30</span></div>
+    <div class="field"><span>Freitag</span><span>08.00–12.00<br>13.30–17.00</span></div>
+    <div class="field"><span>Sa / So</span><span>geschlossen</span></div>
+  </div>
+
+  <div class="back">
+    <h2 style="font-size:24px">Nächster Service fällig?</h2>
+    <p>Rufen Sie an oder schreiben Sie uns – wir finden einen Termin.</p>
+    <div class="row">
+      <a class="btn white" href="tel:+41332224646">033 222 46 46</a>
+      <a class="btn" href="mailto:info@zurburg.ch">E-Mail</a>
+      <a class="btn" href="https://maps.google.com/?q=Burgstrasse+18,+3600+Thun">Route</a>
+    </div>
+  </div>
+</div>
+<footer>© Pneu &amp; Garage zur Burg GmbH · Burgstrasse 18 · 3600 Thun · Entwurf von Max Rathsack</footer>
+
+<script>
+const leaves=[...document.querySelectorAll('.leaf')],tabs=[...document.querySelectorAll('.tabs button')];let cur=0;
+function go(i){cur=(i+leaves.length)%leaves.length;leaves.forEach((l,k)=>l.classList.toggle('on',k===cur));tabs.forEach((t,k)=>t.classList.toggle('on',k===cur));document.getElementById('pg').textContent='Seite '+(cur+1)+' / '+leaves.length;}
+tabs.forEach(t=>t.onclick=()=>go(+t.dataset.i));
+document.getElementById('prev').onclick=()=>go(cur-1);document.getElementById('next').onclick=()=>go(cur+1);
+const today=new Date().toLocaleDateString('de-CH');
+document.querySelectorAll('.slot').forEach(s=>{
+  s.insertAdjacentHTML('beforeend','<span class="stamp">Zur Burg<i>'+today+'</i>Thun</span>');
+  s.onclick=()=>{s.classList.toggle('on');render();};
+});
+function picked(){return [...document.querySelectorAll('.slot.on')].map(s=>s.dataset.n);}
+function render(){const p=picked();document.getElementById('cnt').textContent=p.length;
+  document.getElementById('list').innerHTML=p.length?p.map(x=>'<li>'+x+'</li>').join(''):'<li class="empty" style="list-style:none;margin-left:-20px">Noch nichts gestempelt – tippen Sie oben ins Stempelfeld.</li>';}
+render();
+document.getElementById('send').onclick=()=>{
+  const v=id=>document.getElementById(id).value.trim();const p=picked();
+  const body="Guten Tag\n\nIch möchte folgende Arbeiten anfragen:\n"+(p.length?p.map(x=>"- "+x).join("\n"):"- (bitte ergänzen)")+"\n\nFahrzeug: "+v('fz')+"\nMarke / Modell: "+v('mm')+"\nWunschtermin: "+v('wann')+"\n\nName: "+v('name')+"\nTelefon: "+v('tel')+"\n\nFreundliche Grüsse";
+  location.href="mailto:info@zurburg.ch?subject="+encodeURIComponent("Serviceanfrage ("+p.length+" Punkte)")+"&body="+encodeURIComponent(body);
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isler Gartengestaltung – Durch den Sucher (Entwurf)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--schwarz:#121412;--kohle:#1d211d;--grau:#2b302b;--licht:#f2efe6;--rot:#ff5a3c;--lime:#c6e36b;--mute:#a8ad9f;
+--d:'Archivo Black','Arial Black',Impact,sans-serif;--t:'Archivo','Helvetica Neue',Arial,sans-serif;--m:'JetBrains Mono','Courier New',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--t);background:var(--schwarz);color:var(--licht);line-height:1.5}
+.note{background:var(--rot);color:#1a0703;font-size:11.5px;text-align:center;padding:6px 10px;font-weight:600}
+.wrap{max-width:430px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px}
+.logo{font-family:var(--d);font-size:17px;letter-spacing:.02em;line-height:1.05}
+.logo span{display:block;font-family:var(--m);font-size:10px;color:var(--lime);letter-spacing:.15em}
+.rec{font-family:var(--m);font-size:11px;display:flex;align-items:center;gap:6px}
+.rec i{width:9px;height:9px;border-radius:50%;background:var(--rot);display:inline-block}
+/* Sucher */
+.vf{margin:4px 14px 0;position:relative;background:#000;border-radius:6px;overflow:hidden}
+.vf svg.scene{display:block;width:100%;height:auto;transition:filter .15s}
+.ov{position:absolute;inset:0;pointer-events:none}
+.ov .c{position:absolute;width:26px;height:26px;border-color:#fff;border-style:solid}
+.c1{top:12px;left:12px;border-width:2px 0 0 2px}.c2{top:12px;right:12px;border-width:2px 2px 0 0}.c3{bottom:44px;left:12px;border-width:0 0 2px 2px}.c4{bottom:44px;right:12px;border-width:0 2px 2px 0}
+.af{position:absolute;left:50%;top:44%;width:64px;height:46px;transform:translate(-50%,-50%);border:2px solid #fff;transition:border-color .2s}
+.af.ok{border-color:var(--lime)}
+.hud{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;font-family:var(--m);font-size:11px;padding:8px 14px;background:rgba(0,0,0,.6)}
+.hud .ok{color:var(--lime)}
+.focus{margin:12px 14px 0;background:var(--kohle);border-radius:6px;padding:12px 14px}
+.focus label{font-family:var(--m);font-size:11px;color:var(--mute);display:flex;justify-content:space-between}
+.focus input{width:100%;margin-top:8px;accent-color:var(--lime);height:28px}
+.hero{padding:26px 18px 0}
+.hero h1{font-family:var(--d);font-size:42px;line-height:1;letter-spacing:-.01em;text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p{margin-top:14px;color:#cfd2c6;font-size:16px}
+.stars{margin-top:14px;font-family:var(--m);font-size:12.5px;color:var(--mute)}
+.stars b{color:#ffc93c;font-size:17px;letter-spacing:3px;font-family:var(--t);margin-right:6px}
+.btns{display:flex;gap:8px;margin-top:16px}
+.btn{flex:1;text-align:center;text-decoration:none;font-weight:600;font-size:14.5px;padding:13px 6px;border-radius:4px}
+.b1{background:var(--lime);color:#14200a}.b2{background:#25d366;color:#07311a}.b3{border:1.5px solid var(--licht);color:var(--licht)}
+.sec{padding:46px 18px 0}
+.lbl{font-family:var(--m);font-size:11px;color:var(--rot);letter-spacing:.14em}
+h2{font-family:var(--d);font-size:28px;line-height:1.05;text-transform:uppercase;margin-top:6px}
+/* Kontaktbogen Leistungen */
+.contact{margin-top:16px;display:grid;gap:12px}
+.frame{background:var(--kohle);border-radius:4px;padding:12px;border-top:3px solid var(--lime)}
+.frame .meta{display:flex;justify-content:space-between;font-family:var(--m);font-size:10.5px;color:var(--mute)}
+.frame h3{font-family:var(--d);font-size:19px;margin-top:6px;text-transform:uppercase;letter-spacing:.01em}
+.frame ul{list-style:none;margin-top:8px;columns:1}
+.frame li{font-size:14.5px;padding:4px 0;border-bottom:1px solid #333a33;color:#dcdfd4}
+.frame svg{float:right;width:46px;height:46px;margin:-2px 0 4px 10px}
+/* Filmstreifen Galerie */
+.strip{margin-top:16px;background:#000;padding:16px 0;position:relative}
+.strip:before,.strip:after{content:'';position:absolute;left:0;right:0;height:8px;background:radial-gradient(circle,#2b302b 3px,transparent 3.5px) 0 0/18px 8px}
+.strip:before{top:4px}.strip:after{bottom:4px}
+.film{display:flex;gap:10px;overflow-x:auto;padding:0 14px;scroll-snap-type:x mandatory}
+.shot{flex:0 0 78%;scroll-snap-align:center;aspect-ratio:3/2;border:1.5px dashed #5d655b;background:var(--kohle);display:flex;flex-direction:column;justify-content:space-between;padding:10px;font-size:13px;color:#cfd2c6}
+.shot .n{font-family:var(--m);font-size:10.5px;color:var(--lime)}
+.hint{font-family:var(--m);font-size:11px;color:var(--mute);margin-top:8px}
+/* Fotograf */
+.bio{margin-top:16px;display:flex;gap:14px;align-items:flex-start}
+.bio .pf{flex:0 0 110px;aspect-ratio:3/4;border:1.5px dashed #5d655b;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--mute);padding:6px}
+.bio p{font-size:15px;color:#d8dbcf}
+.exif{margin-top:14px;font-family:var(--m);font-size:12px;background:var(--kohle);padding:12px;border-radius:4px;line-height:1.8}
+.exif span{color:var(--mute)}
+.vals{margin-top:14px;display:grid;gap:8px}
+.vals div{border:1.5px solid #3a413a;padding:12px;border-radius:4px}
+.vals b{font-family:var(--d);text-transform:uppercase;font-size:15px;color:var(--lime);display:block}
+.vals span{font-size:14px;color:#cfd2c6}
+.form{margin-top:16px;background:var(--licht);color:var(--schwarz);border-radius:4px;padding:16px}
+.form label{display:block;font-family:var(--m);font-size:11px;margin:10px 0 4px}
+.form input,.form textarea{width:100%;font:inherit;font-size:15px;padding:10px;border:1.5px solid #121412;border-radius:3px;background:#fff}
+.form textarea{min-height:84px}
+.form .b3{border-color:var(--schwarz);color:var(--schwarz)}
+.shutter{display:block;width:100%;margin-top:14px;border:none;background:var(--rot);color:#fff;font-family:var(--d);font-size:16px;text-transform:uppercase;padding:14px;border-radius:40px;cursor:pointer}
+footer{margin-top:46px;border-top:1px solid #333a33;padding:24px 18px 36px;font-size:14.5px;color:#cfd2c6}
+footer a{color:var(--licht)}
+footer .g{display:grid;gap:5px;margin-top:10px}
+footer .sl{font-family:var(--d);text-transform:uppercase;font-size:22px;color:var(--lime);margin-top:18px;line-height:1.1}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .25s}
+.flash.go{opacity:.85;transition:none}
+</style>
+</head>
+<body>
+<div class="note">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Isler Gartengestaltung</div>
+<div class="wrap">
+<header>
+  <div class="logo">ISLER<span>GARTENGESTALTUNG · THUN</span></div>
+  <div class="rec"><i></i>REC</div>
+</header>
+
+<div class="vf">
+<svg class="scene" id="scene" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#a9cfe0"/>
+  <circle cx="320" cy="64" r="30" fill="#f6dd8a"/>
+  <path d="M0 150 L70 90 L130 130 L200 70 L270 125 L330 95 L400 140 V300 H0Z" fill="#7d97a6"/>
+  <path d="M170 92 L200 70 L228 92 L214 88 L200 96 L186 88Z" fill="#eef3f6"/>
+  <path d="M0 175 Q100 150 200 170 T400 160 V300 H0Z" fill="#5e9a48"/>
+  <rect x="0" y="210" width="400" height="90" fill="#78b25a"/>
+  <!-- Weg -->
+  <path d="M170 300 Q200 250 205 210 L225 210 Q235 250 250 300Z" fill="#d9cdb3"/>
+  <path d="M182 285h56M190 265h46M197 245h36M202 228h28" stroke="#bfae8c" stroke-width="2"/>
+  <!-- Hecken -->
+  <rect x="0" y="182" width="130" height="36" rx="16" fill="#356b2c"/>
+  <rect x="285" y="182" width="115" height="36" rx="16" fill="#356b2c"/>
+  <!-- Baum -->
+  <rect x="80" y="120" width="12" height="70" fill="#5a3e2b"/>
+  <circle cx="86" cy="112" r="36" fill="#3f7d34"/><circle cx="62" cy="128" r="22" fill="#4a8c3c"/><circle cx="110" cy="126" r="22" fill="#4a8c3c"/>
+  <!-- Steine + Pflanzen -->
+  <ellipse cx="300" cy="250" rx="26" ry="14" fill="#a3a79f"/><ellipse cx="330" cy="262" rx="18" ry="10" fill="#8d9189"/>
+  <g fill="#e86a5a"><circle cx="120" cy="240" r="6"/><circle cx="140" cy="258" r="6"/></g>
+  <g fill="#f2c94c"><circle cx="105" cy="262" r="6"/><circle cx="150" cy="236" r="5"/></g>
+  <g fill="#b06ad0"><circle cx="128" cy="275" r="6"/></g>
+  <text x="200" y="40" text-anchor="middle" font-family="Archivo Black,Arial Black,sans-serif" font-size="22" fill="#fff" opacity=".95">WENN SCHÖNES ENTSTEHT</text>
+</svg>
+<div class="ov">
+  <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+  <div class="af" id="af"></div>
+  <div class="hud"><span>ISO 100</span><span>f/8</span><span>1/250</span><span id="fstat">● FOKUS SUCHEN</span></div>
+</div>
+</div>
+<div class="focus">
+  <label><span>FOKUSRING DREHEN</span><span id="fval">unscharf</span></label>
+  <input type="range" id="ring" min="0" max="100" value="18" aria-label="Fokusring">
+</div>
+
+<section class="hero">
+  <h1>Gärten mit dem <em>Blick</em> eines Fotografen.</h1>
+  <p>Pascal Isler ist Landschaftsgärtner – und fotografiert in der Freizeit Sport und Bands. Dieses Auge für Details steckt in jedem Garten, den er pflegt und gestaltet.</p>
+  <div class="stars"><b>★★★★★</b>5.0 AUF GOOGLE</div>
+  <div class="btns"><a class="btn b1" href="tel:+41796042489">Anrufen</a><a class="btn b2" href="https://wa.me/41796042489">WhatsApp</a><a class="btn b3" href="mailto:islergartengestaltung@gmail.com">E-Mail</a></div>
+</section>
+
+<section class="sec">
+  <div class="lbl">KONTAKTBOGEN · LEISTUNGEN</div>
+  <h2>Sechs Motive, ein Gärtner.</h2>
+  <div class="contact">
+    <div class="frame"><div class="meta"><span>FRAME 01</span><span>PFLEGE</span></div><svg viewBox="0 0 46 46"><circle cx="23" cy="18" r="13" fill="#4a8c3c"/><rect x="21" y="28" width="4" height="14" fill="#7a5a3e"/></svg><h3>Bäume, Sträucher, Hecken, Stauden</h3><ul><li>Rückschnitt für Liegenschaften und Hauswarte</li><li>Gartenpflege im Abo</li><li>Beikrautregulierung</li><li>Schädlingsbekämpfung</li><li>Heckenschnitt</li></ul></div>
+    <div class="frame"><div class="meta"><span>FRAME 02</span><span>GRÜNFLÄCHEN</span></div><svg viewBox="0 0 46 46"><rect x="3" y="26" width="40" height="16" fill="#78b25a"/><path d="M8 26l2-8 2 8M18 26l2-10 2 10M28 26l2-8 2 8M36 26l2-9 2 9" fill="#5e9a48"/></svg><h3>Rasen</h3><ul><li>Grünanlagen und Sportplätze mähen</li><li>Rasensanierung</li><li>Neusaat</li><li>Düngen von Rasen und Pflanzflächen</li></ul></div>
+    <div class="frame"><div class="meta"><span>FRAME 03</span><span>BAU</span></div><svg viewBox="0 0 46 46"><circle cx="15" cy="20" r="6" fill="#e86a5a"/><circle cx="30" cy="16" r="6" fill="#f2c94c"/><rect x="6" y="30" width="34" height="10" rx="3" fill="#7a5a3e"/></svg><h3>Gartenbau</h3><ul><li>Bepflanzungen aller Art</li><li>Lieferservice</li><li>Transporte</li><li>Entsorgung</li><li>Plätze reinigen (Hochdruckreiniger)</li></ul></div>
+    <div class="frame"><div class="meta"><span>FRAME 04</span><span>STEIN &amp; HOLZ</span></div><svg viewBox="0 0 46 46"><rect x="4" y="8" width="17" height="14" fill="#cfc6b3"/><rect x="25" y="8" width="17" height="14" fill="#cfc6b3"/><rect x="4" y="26" width="38" height="5" fill="#b98a5a"/><rect x="4" y="34" width="38" height="5" fill="#b98a5a"/></svg><h3>Hardscaping</h3><ul><li>Steingarten</li><li>Plattenbeläge aller Art</li><li>Stein- und Kiesverbauungen</li><li>Sichtschutz</li><li>Holzdeck und Holzarbeiten</li></ul></div>
+    <div class="frame"><div class="meta"><span>FRAME 05</span><span>DACH</span></div><svg viewBox="0 0 46 46"><rect x="4" y="18" width="38" height="24" fill="#5d655b"/><rect x="4" y="12" width="38" height="7" fill="#9bbf6a"/><circle cx="12" cy="12" r="3" fill="#c7d98f"/><circle cx="26" cy="11" r="3" fill="#e2b33c"/><circle cx="36" cy="12" r="3" fill="#c7d98f"/></svg><h3>Flachdachbegrünung</h3><ul><li>Ansaat von Sedum und Kräutermischungen</li><li>Beikrautregulierung</li><li>Düngen</li></ul></div>
+    <div class="frame"><div class="meta"><span>FRAME 06</span><span>WINTER</span></div><svg viewBox="0 0 46 46"><path d="M23 4v38M6 13l34 20M6 33l34-20" stroke="#cfe3f0" stroke-width="3" stroke-linecap="round"/></svg><h3>Winter</h3><ul><li>Winterschnitt an Bäumen und Sträuchern</li><li>Häckselarbeiten</li><li>Winterdienst</li><li>Baumfällungen und Wurzelstockentfernung</li></ul></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="lbl">PORTFOLIO</div>
+  <h2>Eigene Bilder. Echte Gärten.</h2>
+  <div class="strip"><div class="film">
+    <div class="shot"><span class="n">01A · PROJEKT</span>[Platzhalter: Hier kommen Ihre eigenen Projektfotos hin]</div>
+    <div class="shot"><span class="n">02A · PROJEKT</span>[Platzhalter: eigenes Foto Hardscaping]</div>
+    <div class="shot"><span class="n">03A · PROJEKT</span>[Platzhalter: eigenes Foto Bepflanzung]</div>
+  </div></div>
+  <div class="hint">← wischen → · Fotos von Pascal Isler selbst</div>
+</section>
+
+<section class="sec">
+  <div class="lbl">DER MANN HINTER DER KAMERA</div>
+  <h2>Pascal Isler</h2>
+  <div class="bio">
+    <div class="pf">[Platzhalter: Porträt Pascal]</div>
+    <p>Inhaber von Isler Gartengestaltung. Gelernter Landschaftsgärtner, seit März 2021 selbstständig in Thun. Hobby: Sport- und Bandfotografie.</p>
+  </div>
+  <div class="exif">
+    <span>AUSBILDUNG ....</span> Landschaftsgärtner 2012–2015<br>
+    <span>LEHRBETRIEB ...</span> Fuhrer Wichtrach<br>
+    <span>GEGRÜNDET ....</span> März 2021<br>
+    <span>FOKUS ........</span> Liebe zum Detail
+  </div>
+  <div class="vals">
+    <div><b>Persönlich</b><span>Ein Ansprechpartner, vom ersten Anruf bis zur fertigen Arbeit.</span></div>
+    <div><b>Verlässlich &amp; vertrauensvoll</b><span>Sie können sich auf Abmachungen verlassen.</span></div>
+    <div><b>Professionell &amp; qualitativ</b><span>Saubere Arbeit, gelernt und mit Anspruch.</span></div>
+  </div>
+</section>
+
+<section class="sec" id="anfrage">
+  <div class="lbl">ANFRAGE</div>
+  <h2>Ihr Garten vor die Linse.</h2>
+  <form class="form" onsubmit="return false">
+    <label for="n">NAME</label><input id="n" placeholder="Vorname Nachname">
+    <label for="t">WAS SOLL GEMACHT WERDEN?</label><textarea id="t" placeholder="z.B. Holzdeck und Sichtschutz, Garten in Thun"></textarea>
+    <button class="shutter" id="shut">● Auslösen – per E-Mail senden</button>
+    <div class="btns"><a class="btn b2" href="#" id="sw">WhatsApp</a><a class="btn b3" href="tel:+41796042489">079 604 24 89</a></div>
+  </form>
+</section>
+
+<footer>
+  <div class="logo">ISLER GARTENGESTALTUNG</div>
+  <div class="g">
+    <span>Elsterweg 25a, 3603 Thun</span>
+    <a href="tel:+41796042489">079 604 24 89</a>
+    <a href="mailto:islergartengestaltung@gmail.com">islergartengestaltung@gmail.com</a>
+    <a href="https://instagram.com/islergartengestaltung">instagram.com/islergartengestaltung</a>
+  </div>
+  <div class="sl">Wenn Schönes entsteht.</div>
+</footer>
+</div>
+<div class="flash" id="flash"></div>
+<script>
+const $=id=>document.getElementById(id);
+function focusSet(v){const b=Math.abs(80-v)/80*7;$('scene').style.filter=b<0.4?'none':'blur('+b.toFixed(1)+'px)';
+const ok=b<0.6;$('af').classList.toggle('ok',ok);$('fstat').textContent=ok?'● SCHARF':'● FOKUS SUCHEN';$('fstat').className=ok?'ok':'';
+$('fval').textContent=ok?'scharf ✓':'unscharf';}
+$('ring').oninput=e=>focusSet(+e.target.value);focusSet(18);
+// Tippen ins Bild stellt automatisch scharf
+document.querySelector('.vf').addEventListener('click',()=>{let v=+$('ring').value;const s=setInterval(()=>{v+=(80-v)*.25;if(Math.abs(80-v)<1)v=80;$('ring').value=v;focusSet(v);if(v===80)clearInterval(s);},40);});
+function msg(){return 'Grüezi Herr Isler, '+($('t').value||'ich hätte gerne eine Offerte.')+' '+($('n').value?'Gruss, '+$('n').value:'');}
+$('shut').onclick=()=>{const f=$('flash');f.classList.add('go');setTimeout(()=>f.classList.remove('go'),60);setTimeout(()=>location.href='mailto:islergartengestaltung@gmail.com?subject='+encodeURIComponent('Anfrage Garten')+'&body='+encodeURIComponent(msg()),300);};
+$('sw').onclick=e=>{e.preventDefault();location.href='https://wa.me/41796042489?text='+encodeURIComponent(msg());};
+</script>
+</body>
+</html>

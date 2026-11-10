@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kilchherr AG – Malerei · Gipserei, Thun (Entwurf «Musterbuch»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papier:#fbf6ec; --leinen:#efe5d3; --aubergine:#4a2240; --aub2:#331630; --salbei:#6f8c6a; --kupfer:#b5653a; --text:#2e2329; --mild:#6f6268;
+  --serif:"Fraunces","Rockwell","Georgia",serif;
+  --sans:"Karla","Trebuchet MS","Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--leinen);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6}
+a{color:inherit}
+.demo{background:var(--aub2);color:#f3e6ef;font-size:12px;text-align:center;padding:7px 12px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.logo{font-family:var(--serif);font-weight:700;font-size:22px;color:var(--aubergine);text-decoration:none;line-height:1.05}
+.logo span{display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:var(--kupfer);letter-spacing:.12em;text-transform:uppercase}
+.rund{width:44px;height:44px;border-radius:50%;background:var(--aubergine);display:grid;place-items:center}
+.rund svg{width:20px;height:20px}
+
+.intro{padding:6px 0 18px}
+.intro .etikett{display:inline-block;background:var(--salbei);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:30px;letter-spacing:.04em}
+h1{font-family:var(--serif);font-weight:700;font-size:38px;line-height:1.08;color:var(--aubergine);margin:12px 0 10px;letter-spacing:-.01em}
+.intro p{color:var(--mild);max-width:460px}
+
+/* Buch */
+.buchzone{padding:8px 0 30px}
+.buch{position:relative;height:500px;perspective:1600px;margin:0 auto;max-width:400px}
+.ruecken{position:absolute;left:-6px;top:6px;bottom:-6px;width:100%;background:var(--aub2);border-radius:4px 14px 14px 4px}
+.blatt{position:absolute;inset:0;background:var(--papier);border-radius:2px 12px 12px 2px;transform-origin:left center;transition:transform .8s cubic-bezier(.6,.05,.3,1),opacity .8s;backface-visibility:hidden;padding:22px 22px 54px 30px;border:1px solid #dccfb8;overflow:hidden}
+.blatt::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12px;background:linear-gradient(90deg,#e6dbc6,rgba(230,219,198,0))}
+.blatt.weg{transform:rotateY(-178deg);opacity:0;pointer-events:none}
+.blatt .seite{position:absolute;bottom:16px;right:22px;font-size:12px;color:var(--mild)}
+.blatt .tag{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--kupfer)}
+.blatt h2{font-family:var(--serif);font-size:30px;line-height:1.1;color:var(--aubergine);margin:6px 0 10px}
+.blatt p{font-size:15px;color:var(--text)}
+.muster{width:100%;height:170px;border-radius:8px;display:block;margin:6px 0 14px}
+.blatt .notiz{font-size:12.5px;color:var(--mild);border-top:1px dashed #cdbfa6;padding-top:8px;margin-top:12px}
+.deckel{background:var(--aubergine);color:#f6eaf2;border-color:var(--aub2);display:flex;flex-direction:column;justify-content:center;text-align:center;padding:30px}
+.deckel::before{display:none}
+.deckel h2{color:#fff;font-size:36px}
+.deckel .rahmen{border:1.5px solid #b98aa9;padding:30px 16px;border-radius:6px}
+.deckel p{color:#e2cbd9}
+.deckel .tag{color:#e9b28f}
+.steuer{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.steuer button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--aubergine);background:var(--papier);color:var(--aubergine);font-size:20px;cursor:pointer}
+.steuer button:disabled{opacity:.3}
+.punkte{display:flex;gap:6px}
+.punkte i{width:8px;height:8px;border-radius:50%;background:#cdbfa6;display:block}
+.punkte i.an{background:var(--aubergine);width:20px;border-radius:5px}
+.tipp{text-align:center;font-size:13px;color:var(--mild);margin-top:10px}
+
+/* PDF: alle Seiten untereinander */
+.pdf .buch{height:auto;perspective:none}
+.pdf .ruecken,.pdf .steuer,.pdf .tipp{display:none}
+.pdf .blatt{position:relative;inset:auto;transform:none!important;opacity:1!important;margin-bottom:14px;min-height:0;padding-bottom:44px}
+
+section{padding:46px 0}
+.kopf{margin-bottom:20px}
+.kopf .tag{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--kupfer)}
+.kopf h2{font-family:var(--serif);font-size:30px;line-height:1.12;color:var(--aubergine);margin-top:4px}
+.papier{background:var(--papier)}
+
+.register{display:grid;gap:0;border-top:1px solid #dccfb8}
+.reg{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #dccfb8;align-items:start}
+.reg .zahl{font-family:var(--serif);font-size:24px;color:var(--kupfer);line-height:1.1}
+.reg h3{font-family:var(--serif);font-size:19px;line-height:1.2;color:var(--aubergine)}
+.reg p{font-size:13px;color:var(--mild);margin-top:3px}
+.reg .ph{margin-top:8px;border:1.5px dashed #cdbfa6;border-radius:8px;padding:14px;font-size:12.5px;color:var(--mild);text-align:center;background:var(--leinen)}
+
+.geschichte{display:grid;gap:14px}
+.gross{font-family:var(--serif);font-size:24px;line-height:1.3;color:var(--aubergine)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--papier);border:1px solid #dccfb8;border-radius:30px;padding:6px 12px;font-size:13.5px}
+.chips b{color:var(--kupfer)}
+
+.lehre{background:var(--salbei);color:#fff}
+.lehre .kopf h2{color:#fff}.lehre .kopf .tag{color:#e7f0e3}
+.lk{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);border-radius:12px;padding:16px;margin-bottom:10px}
+.lk h3{font-family:var(--serif);font-size:20px;line-height:1.2}
+.lk p{font-size:14px;color:#eef4ec}
+
+.team{display:grid;gap:10px}
+.p{display:flex;gap:14px;align-items:center;background:var(--papier);border:1px solid #dccfb8;border-radius:12px;padding:12px}
+.p svg{flex:0 0 58px;height:58px}
+.p h3{font-family:var(--serif);font-size:18px;line-height:1.2;color:var(--aubergine)}
+.p .r{font-size:13px;color:var(--mild)}
+.p .links{display:flex;gap:10px;margin-top:4px;font-size:13.5px}
+.p .links a{text-decoration:none;color:var(--kupfer);font-weight:700}
+
+form{background:var(--papier);border:1px solid #dccfb8;border-radius:14px;padding:18px;display:grid;gap:12px}
+form label{font-size:13px;font-weight:700;display:block;margin-bottom:4px;color:var(--aubergine)}
+form input,form textarea,form select{width:100%;font:inherit;font-size:15px;padding:11px 12px;border:1.5px solid #dccfb8;border-radius:8px;background:#fff;color:var(--text)}
+form textarea{min-height:90px}
+.btn{display:inline-block;padding:13px 20px;border-radius:30px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:var(--sans);text-align:center}
+.btn.a{background:var(--aubergine);color:#fff}
+.btn.k{background:var(--kupfer);color:#fff}
+.btn.r{border:1.5px solid var(--aubergine);color:var(--aubergine);background:transparent}
+.klein{font-size:12px;color:var(--mild)}
+
+.kontakt{background:var(--aubergine);color:#efdde8}
+.kontakt .kopf h2{color:#fff}.kontakt .kopf .tag{color:#e9b28f}
+.kontakt dl{display:grid;gap:10px;margin-bottom:18px}
+.kontakt dt{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e9b28f}
+.kontakt dd{font-size:16px}
+footer{background:var(--aub2);color:#bfa3b5;text-align:center;font-size:12px;padding:20px}
+</style>
+</head>
+<body>
+<div class="demo">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Kilchherr AG</div>
+<header>
+  <a class="logo" href="#">Kilchherr AG<span>Malerei – Gipserei</span></a>
+  <a class="rund" href="tel:+41332251200" aria-label="Anrufen"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="#fff"/></svg></a>
+</header>
+
+<div class="wrap intro">
+  <span class="etikett">Thun · seit 1955</span>
+  <h1>Blättern Sie in unserem Musterbuch.</h1>
+  <p>Wie früher beim Maler am Tisch: Seite für Seite zeigt Ihnen die Kilchherr AG, was in rund 40 Händen voll Handwerk steckt.</p>
+</div>
+
+<div class="wrap buchzone">
+  <div class="buch" id="buch">
+    <div class="ruecken"></div>
+  </div>
+  <div class="steuer"><button type="button" id="zur" aria-label="Zurück">‹</button><div class="punkte" id="punkte"></div><button type="button" id="vor" aria-label="Weiter">›</button></div>
+  <p class="tipp">Wischen oder Pfeile tippen, um zu blättern.</p>
+</div>
+
+<section class="papier" id="referenzen">
+  <div class="wrap">
+    <div class="kopf"><div class="tag">Register</div><h2>Referenzen nach Kategorie</h2></div>
+    <div class="register" id="register"></div>
+  </div>
+</section>
+
+<section id="geschichte">
+  <div class="wrap geschichte">
+    <div class="kopf" style="margin:0"><div class="tag">Über uns</div><h2>Seit 1955 mit Freude für Sie da</h2></div>
+    <p class="gross">«Seit 1955 helfen wir unseren Kunden Wohn(t)räume zu realisieren.»</p>
+    <div class="chips"><span><b>1955</b> gegründet</span><span><b>rund 40</b> Mitarbeitende</span><span><b>SMGV</b> Mitglied</span><span><b>Thun</b> Burgerstrasse 3</span></div>
+    <p class="klein">[Platzhalter: Hier erzählt die Kilchherr AG ihre Geschichte – mit eigenen Worten und Bildern aus dem Archiv.]</p>
+  </div>
+</section>
+
+<section class="lehre" id="lehre">
+  <div class="wrap">
+    <div class="kopf"><div class="tag">Lehrbetrieb</div><h2>Eine Lehre mit Farbe und Form</h2></div>
+    <div class="lk"><h3>Maler/in EFZ</h3><p>Malen, lackieren, tapezieren und gestalten – innen und aussen.</p></div>
+    <div class="lk"><h3>Gipser/in-Trockenbauer/in EFZ</h3><p>Wände und Decken mit Gips und Trockenbau gestalten.</p></div>
+    <a class="btn r" style="border-color:#fff;color:#fff;margin-top:6px" href="mailto:info@kilchherr.ch?subject=Lehrstelle%20%2F%20Schnupperlehre">Schnupperlehre anfragen</a>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="kopf"><div class="tag">Ansprechpersonen</div><h2>Ihr Team in Thun</h2></div>
+    <div class="team" id="teamliste"></div>
+  </div>
+</section>
+
+<section class="papier" id="offerte">
+  <div class="wrap">
+    <div class="kopf"><div class="tag">Offerte</div><h2>Ihre Wunschseite anfragen</h2></div>
+    <form id="form">
+      <div><label for="seite">Welche Seite aus dem Musterbuch?</label><select id="seite"></select></div>
+      <div><label for="objekt">Objekt</label><select id="objekt"><option>Wohnung</option><option>Einfamilienhaus</option><option>Mehrfamilienhaus</option><option>Gewerbe</option><option>Anderes</option></select></div>
+      <div><label for="besch">Ihr Anliegen</label><textarea id="besch" placeholder="Kurz beschreiben, was gemacht werden soll."></textarea></div>
+      <div><label for="name">Name</label><input id="name"></div>
+      <div><label for="tel">Telefon</label><input id="tel" type="tel"></div>
+      <button class="btn a" type="submit">Offerte per E-Mail anfragen</button>
+      <p class="klein">Öffnet Ihr E-Mail-Programm mit einer vorbereiteten Nachricht an info@kilchherr.ch.</p>
+    </form>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <div class="kopf"><div class="tag">Kontakt</div><h2>Wir freuen uns auf Sie</h2></div>
+    <dl>
+      <div><dt>Adresse</dt><dd>Kilchherr AG, Burgerstrasse 3, 3600 Thun</dd></div>
+      <div><dt>Bürozeiten</dt><dd>Mo–Fr 07.30–12.00 und 13.30–17.00 Uhr</dd></div>
+      <div><dt>Telefon</dt><dd><a href="tel:+41332251200">033 225 12 00</a></dd></div>
+      <div><dt>E-Mail</dt><dd><a href="mailto:info@kilchherr.ch">info@kilchherr.ch</a></dd></div>
+    </dl>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn k" href="tel:+41332251200">Anrufen</a><a class="btn r" style="border-color:#fff;color:#fff" href="mailto:info@kilchherr.ch">E-Mail</a></div>
+  </div>
+</section>
+<footer>© Kilchherr AG · Malerei – Gipserei · Mitglied SMGV<br>Entwurf «Musterbuch» – Demo von Max Rathsack</footer>
+
+<script>
+// Muster-Illustrationen (einfache SVGs, keine Kacheln)
+const M={
+ maler:'<svg class="muster" viewBox="0 0 340 170"><rect width="340" height="170" fill="#e9dccb"/><path d="M0 0h120v170H0z" fill="#6f8c6a"/><path d="M120 0c10 40-8 90 6 170h-6z" fill="#5d7859"/><g transform="translate(150 40) rotate(-20)"><rect width="110" height="34" rx="8" fill="#4a2240"/><rect x="50" y="34" width="8" height="40" fill="#8a6b5c"/><rect x="44" y="74" width="20" height="56" rx="6" fill="#331630"/></g></svg>',
+ gips:'<svg class="muster" viewBox="0 0 340 170"><rect width="340" height="170" fill="#f2ece2"/><path d="M0 120c60-20 120 10 180-6s110-26 160-8v64H0z" fill="#e2d6c3"/><path d="M0 140c70-14 130 8 200-4s100-16 140-6v40H0z" fill="#d4c4ab"/><g transform="translate(110 30) rotate(-14)"><path d="M0 40h130l-10 26H10z" fill="#b5653a"/><rect x="56" y="0" width="16" height="42" rx="6" fill="#4a2240"/></g></svg>',
+ lack:'<svg class="muster" viewBox="0 0 340 170"><rect width="340" height="170" fill="#efe5d3"/><rect x="40" y="18" width="120" height="152" rx="2" fill="#4a2240"/><rect x="54" y="32" width="92" height="56" fill="#5c2c50"/><rect x="54" y="98" width="92" height="56" fill="#5c2c50"/><circle cx="148" cy="96" r="5" fill="#e9b28f"/><path d="M60 36l20 0" stroke="#fff" stroke-width="3" opacity=".5"/><g transform="translate(210 40)"><rect x="18" y="0" width="12" height="60" rx="4" fill="#8a6b5c"/><rect x="8" y="58" width="32" height="18" fill="#9aa59a"/><path d="M8 76h32l-4 34H12z" fill="#4a2240"/></g></svg>',
+ tapete:'<svg class="muster" viewBox="0 0 340 170"><rect width="340" height="170" fill="#e8dfd0"/><rect x="0" y="0" width="230" height="170" fill="#f5efe4"/><g fill="none" stroke="#6f8c6a" stroke-width="2"><path d="M30 10c20 20 20 40 0 60s-20 40 0 60M100 10c20 20 20 40 0 60s-20 40 0 60M170 10c20 20 20 40 0 60s-20 40 0 60"/></g><g fill="#b5653a"><circle cx="65" cy="40" r="6"/><circle cx="135" cy="100" r="6"/><circle cx="65" cy="140" r="6"/><circle cx="205" cy="40" r="6"/></g><path d="M230 0c40 30 60 80 50 170h-50z" fill="#f5efe4" stroke="#cdbfa6"/></svg>',
+ deko:'<svg class="muster" viewBox="0 0 340 170"><rect width="340" height="170" fill="#331630"/><circle cx="170" cy="85" r="64" fill="none" stroke="#e9b28f" stroke-width="2"/><circle cx="170" cy="85" r="44" fill="none" stroke="#b98aa9" stroke-width="1.5"/><g fill="#e9b28f"><path d="M170 21c8 20 8 40 0 64-8-24-8-44 0-64z"/><path d="M170 149c8-20 8-40 0-64-8 24-8 44 0 64z"/><path d="M106 85c20-8 40-8 64 0-24 8-44 8-64 0z"/><path d="M234 85c-20-8-40-8-64 0 24 8 44 8 64 0z"/></g><circle cx="170" cy="85" r="8" fill="#6f8c6a"/></svg>',
+ reno:'<svg class="muster" viewBox="0 0 340 170"><rect width="340" height="170" fill="#e6efe3"/><path d="M60 170V80l70-50 70 50v90z" fill="#fbf6ec" stroke="#4a2240" stroke-width="2"/><rect x="112" y="118" width="36" height="52" fill="#4a2240"/><rect x="80" y="92" width="24" height="24" fill="#6f8c6a"/><rect x="156" y="92" width="24" height="24" fill="#6f8c6a"/><path d="M230 170V60M300 170V60M226 70h78M226 110h78M226 150h78" stroke="#b5653a" stroke-width="3"/></svg>'
+};
+const seiten=[
+ {deckel:1},
+ {tag:'Seite 1',t:'Malerarbeiten',m:'maler',p:'Sämtliche Malerarbeiten innen und aussen – für Wohnräume, Treppenhäuser und Fassaden.'},
+ {tag:'Seite 2',t:'Gipserarbeiten',m:'gips',p:'Sämtliche Gipserarbeiten innen und aussen, vom Verputz bis zum Trockenbau.'},
+ {tag:'Seite 3',t:'Lackierarbeiten',m:'lack',p:'Lackierarbeiten mit ruhiger Hand und sauberem Finish.'},
+ {tag:'Seite 4',t:'Tapezierarbeiten',m:'tapete',p:'Tapezierarbeiten – Bahn für Bahn fachgerecht verarbeitet.'},
+ {tag:'Seite 5',t:'Dekorative Gestaltungen',m:'deko',p:'Anspruchsvolle dekorative Gestaltungen für Räume mit Charakter.'},
+ {tag:'Seite 6',t:'Renovation',m:'reno',p:'Renovation von Wohn- und Geschäftsräumen – geplant und ausgeführt aus einer Hand.'}
+];
+const buch=document.getElementById('buch'),pk=document.getElementById('punkte');
+seiten.forEach((s,i)=>{
+  const d=document.createElement('div');d.className='blatt'+(s.deckel?' deckel':'');d.style.zIndex=100-i;
+  d.innerHTML=s.deckel?'<div class="rahmen"><div class="tag">Musterbuch</div><h2>Kilchherr AG</h2><p>Malerei – Gipserei<br>Thun · seit 1955</p><p style="margin-top:18px;font-size:13px">Bitte umblättern ›</p></div>'
+   :'<div class="tag">'+s.tag+'</div><h2>'+s.t+'</h2>'+M[s.m]+'<p>'+s.p+'</p><p class="notiz">[Platzhalter: Hier kommen Ihre eigenen Projektfotos hin]</p><span class="seite">'+i+' / 6</span>';
+  buch.appendChild(d);pk.appendChild(document.createElement('i'));
+});
+const blaetter=[...buch.querySelectorAll('.blatt')];let ix=0;
+function zeige(){blaetter.forEach((b,i)=>b.classList.toggle('weg',i<ix));[...pk.children].forEach((p,i)=>p.classList.toggle('an',i===ix));
+  document.getElementById('zur').disabled=ix===0;document.getElementById('vor').disabled=ix===blaetter.length-1;}
+document.getElementById('vor').onclick=()=>{if(ix<blaetter.length-1){ix++;zeige();}};
+document.getElementById('zur').onclick=()=>{if(ix>0){ix--;zeige();}};
+let sx=null;buch.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+buch.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(dx<-40)document.getElementById('vor').click();if(dx>40)document.getElementById('zur').click();sx=null;});
+buch.addEventListener('click',e=>{if(e.target.closest('.blatt')&&ix<blaetter.length-1){ix++;zeige();}});
+zeige();
+document.getElementById('seite').innerHTML=seiten.slice(1).map(s=>'<option>'+s.t+'</option>').join('')+'<option>Noch unklar</option>';
+
+const refs=[['Wohnhäuser','Einfamilien- und Mehrfamilienhäuser'],['Wohnen im Alter','Räume für ältere Menschen'],['Hotels & Restaurants','Hotellerie und Gastronomie'],['Gewerbe, Einkaufszentren & Parkhäuser','Gewerbebauten und grosse Flächen'],['Denkmalpflege & Heimatschutz','Historische und geschützte Bauten'],['Grossprojekte','Umfangreiche Bauvorhaben'],['Spezialitäten','Besondere Techniken und Gestaltungen']];
+document.getElementById('register').innerHTML=refs.map((r,i)=>'<div class="reg"><div class="zahl">'+String.fromCharCode(65+i)+'</div><div><h3>'+r[0].replace('&','&amp;')+'</h3><p>'+r[1]+'</p><div class="ph">[Platzhalter: Hier kommen Ihre eigenen Projektfotos hin]</div></div></div>').join('');
+
+const team=[['Hufret Redzepi','Inhaber, Geschäftsführer','076 262 39 01'],['René Capun','Abteilungsleiter','079 611 15 30'],['Zekir Redzepi','Projektleiter','079 526 64 50'],['Berkant Redzepi','Projektleiter','079 520 56 32']];
+const farben=['#4a2240','#6f8c6a','#b5653a','#331630'];
+document.getElementById('teamliste').innerHTML=team.map((t,i)=>{const ini=t[0].split(' ').map(w=>w[0]).join('');const n='41'+t[2].replace(/\s/g,'').slice(1);
+ return '<div class="p"><svg viewBox="0 0 58 58"><rect x="4" y="2" width="50" height="54" rx="4" fill="'+farben[i]+'"/><rect x="4" y="2" width="50" height="16" rx="4" fill="#fbf6ec" opacity=".18"/><text x="29" y="40" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="20" font-weight="700" fill="#fff">'+ini+'</text></svg><div><h3>'+t[0]+'</h3><div class="r">'+t[1]+'</div><div class="links"><a href="tel:+'+n+'">'+t[2]+'</a><a href="https://wa.me/'+n+'">WhatsApp</a></div></div></div>';}).join('');
+
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();const v=id=>document.getElementById(id).value;
+ const body='Guten Tag\n\nIch interessiere mich für folgende Musterbuch-Seite: '+v('seite')+'\nObjekt: '+v('objekt')+'\nAnliegen: '+v('besch')+'\n\nName: '+v('name')+'\nTelefon: '+v('tel')+'\n\nFreundliche Grüsse';
+ location.href='mailto:info@kilchherr.ch?subject='+encodeURIComponent('Offertanfrage – '+v('seite'))+'&body='+encodeURIComponent(body);});
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isler Gartengestaltung – Gartenplan von oben (Entwurf)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--papier:#eef2ea;--tinte:#14352e;--petrol:#1f5c52;--kalk:#ffffff;--senf:#e2b33c;--linie:#9fb5ab;
+--g:'Space Grotesk','Trebuchet MS',Arial,sans-serif;--m:'IBM Plex Mono','Courier New',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--g);background:var(--papier);color:var(--tinte);line-height:1.5}
+.note{background:var(--senf);color:#2a2105;font-size:11.5px;text-align:center;padding:6px 10px;font-weight:700}
+.wrap{max-width:430px;margin:0 auto}
+.top{padding:18px 20px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.mark{font-weight:700;font-size:19px;letter-spacing:-.01em;line-height:1.1}
+.mark span{display:block;font-family:var(--m);font-size:10.5px;font-weight:400;color:var(--petrol);letter-spacing:.08em;margin-top:3px}
+.plannr{font-family:var(--m);font-size:10px;text-align:right;border:1.5px solid var(--tinte);padding:5px 7px;line-height:1.35}
+.hero{padding:22px 20px 0}
+.hero h1{font-size:40px;line-height:1.02;letter-spacing:-.03em;font-weight:700}
+.hero h1 u{text-decoration:none;background:linear-gradient(transparent 62%,var(--senf) 62%)}
+.hero p{margin-top:12px;font-size:16px;color:#2c4a43}
+.rating{margin-top:14px;font-family:var(--m);font-size:13px;display:flex;align-items:center;gap:10px}
+.rating b{color:#c9900e;font-size:17px;letter-spacing:2px;font-family:var(--g)}
+.row{display:flex;gap:8px;margin-top:16px}
+.btn{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:14.5px;padding:13px 6px;border:2px solid var(--tinte);color:var(--tinte);background:var(--kalk)}
+.btn.f{background:var(--tinte);color:#fff}
+.btn.w{background:#25d366;border-color:#25d366;color:#08331a}
+/* Plan */
+.planbox{margin:26px 14px 0;background:var(--kalk);border:2px solid var(--tinte);position:relative}
+.planhead{display:flex;justify-content:space-between;font-family:var(--m);font-size:10.5px;padding:7px 10px;border-bottom:1.5px solid var(--tinte)}
+.planbox svg{display:block;width:100%;height:auto}
+.zone{cursor:pointer;transition:opacity .25s}
+.zone .hl{fill:none;stroke:var(--senf);stroke-width:0;transition:stroke-width .2s}
+.zone.on .hl{stroke-width:5}
+.zone:hover{opacity:.9}
+.pin{font-family:var(--m);font-size:11px;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:6px;padding:10px;border-top:1.5px solid var(--tinte)}
+.legend button{font-family:var(--m);font-size:11.5px;border:1.5px solid var(--tinte);background:var(--kalk);color:var(--tinte);padding:5px 8px;cursor:pointer}
+.legend button.on{background:var(--tinte);color:#fff}
+.info{margin:0 14px;background:var(--tinte);color:#e8f0ec;padding:18px 18px 20px;min-height:200px}
+.info .lab{font-family:var(--m);font-size:11px;color:var(--senf);letter-spacing:.1em}
+.info h3{font-size:24px;color:#fff;margin-top:4px;line-height:1.15}
+.info ul{list-style:none;margin-top:10px}
+.info li{padding:7px 0;border-bottom:1px solid #2f5a51;font-size:15px;display:flex;gap:10px}
+.info li:before{content:'—';color:var(--senf)}
+.info a{display:inline-block;margin-top:14px;color:var(--tinte);background:var(--senf);text-decoration:none;font-weight:700;padding:10px 14px;font-size:14px}
+.sec{padding:44px 20px 0}
+.lbl{font-family:var(--m);font-size:11px;letter-spacing:.12em;color:var(--petrol)}
+h2{font-size:30px;line-height:1.08;letter-spacing:-.02em;margin-top:6px}
+/* Alle Leistungen Tabelle */
+.tbl{margin-top:16px;border-top:2px solid var(--tinte)}
+.tr{display:grid;grid-template-columns:44px 1fr;gap:6px;padding:12px 0;border-bottom:1px solid var(--linie)}
+.tr .c{font-family:var(--m);font-size:12px;color:var(--petrol);padding-top:3px}
+.tr b{display:block;font-size:17px}
+.tr span{font-size:14px;color:#3d5a53}
+/* Galerie */
+.gal{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ph{border:1.5px dashed var(--petrol);background:var(--kalk);aspect-ratio:4/3;display:flex;flex-direction:column;justify-content:space-between;padding:8px;font-size:12px;color:#3d5a53}
+.ph .t{font-family:var(--m);font-size:10px;color:var(--petrol)}
+.ph.w2{grid-column:span 2;aspect-ratio:16/8}
+/* Über */
+.about{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.about div{background:var(--kalk);border:1.5px solid var(--tinte);padding:12px}
+.about .k{font-family:var(--m);font-size:10.5px;color:var(--petrol)}
+.about .v{font-weight:700;font-size:16px;line-height:1.2;margin-top:3px}
+.about .full{grid-column:span 2}
+.vals{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.vals div{border-left:5px solid var(--senf);padding:6px 12px;background:var(--kalk);font-weight:700}
+/* Formular */
+.form{margin-top:16px;background:var(--kalk);border:2px solid var(--tinte);padding:16px}
+.form label{display:block;font-family:var(--m);font-size:11px;margin:10px 0 4px;color:var(--petrol)}
+.form input,.form textarea{width:100%;font:inherit;font-size:15px;padding:10px;border:1.5px solid var(--tinte);background:var(--papier)}
+.form textarea{min-height:80px}
+.zonepick{font-family:var(--m);font-size:12.5px;background:var(--papier);padding:8px;border:1.5px dashed var(--petrol)}
+footer{margin-top:44px;border-top:2px solid var(--tinte);padding:22px 20px 34px;font-size:14.5px}
+footer .grid{display:grid;gap:5px;margin-top:10px}
+footer a{color:var(--tinte)}
+footer .s{font-family:var(--m);font-size:12px;margin-top:16px;color:var(--petrol)}
+</style>
+</head>
+<body>
+<div class="note">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Isler Gartengestaltung</div>
+<div class="wrap">
+<div class="top">
+  <div class="mark">Isler Gartengestaltung<span>THUN · LANDSCHAFTSGÄRTNER</span></div>
+  <div class="plannr">PLAN NR. 01<br>MASSSTAB 1:100</div>
+</div>
+<section class="hero">
+  <h1>Ihr Garten,<br><u>von oben</u><br>geplant.</h1>
+  <p>Tippen Sie im Plan auf den Bereich, der Arbeit braucht – Rasen, Hecke, Steingarten, Flachdach. Wir zeigen Ihnen, was Isler Gartengestaltung dort für Sie tut.</p>
+  <div class="rating"><b>★★★★★</b> 5.0 · Google-Bewertung</div>
+  <div class="row"><a class="btn f" href="tel:+41796042489">Anrufen</a><a class="btn w" href="https://wa.me/41796042489">WhatsApp</a><a class="btn" href="mailto:islergartengestaltung@gmail.com">E-Mail</a></div>
+</section>
+
+<div class="planbox" id="plan">
+  <div class="planhead"><span>GARTENPLAN · BEREICH WÄHLEN</span><span>N ↑</span></div>
+  <svg viewBox="0 0 400 400" id="svg">
+    <rect width="400" height="400" fill="#f6f8f3"/>
+    <!-- Strasse / Weg -->
+    <rect x="0" y="372" width="400" height="28" fill="#d9dcd6"/>
+    <text x="10" y="390" class="pin" fill="#5c6b66">ELSTERWEG</text>
+    <!-- Hecke -->
+    <g class="zone" data-z="hecke">
+      <rect x="10" y="10" width="380" height="26" rx="13" fill="#3e7a3a"/>
+      <rect x="10" y="10" width="26" height="350" rx="13" fill="#3e7a3a"/>
+      <circle cx="40" cy="23" r="10" fill="#4c8c45"/><circle cx="90" cy="23" r="10" fill="#4c8c45"/><circle cx="140" cy="23" r="10" fill="#4c8c45"/><circle cx="190" cy="23" r="10" fill="#4c8c45"/><circle cx="240" cy="23" r="10" fill="#4c8c45"/><circle cx="290" cy="23" r="10" fill="#4c8c45"/><circle cx="340" cy="23" r="10" fill="#4c8c45"/>
+      <circle cx="23" cy="80" r="10" fill="#4c8c45"/><circle cx="23" cy="140" r="10" fill="#4c8c45"/><circle cx="23" cy="200" r="10" fill="#4c8c45"/><circle cx="23" cy="260" r="10" fill="#4c8c45"/><circle cx="23" cy="320" r="10" fill="#4c8c45"/>
+      <rect class="hl" x="10" y="10" width="380" height="26" rx="13"/><rect class="hl" x="10" y="10" width="26" height="350" rx="13"/>
+    </g>
+    <!-- Haus mit Flachdach -->
+    <g class="zone" data-z="dach">
+      <rect x="230" y="200" width="150" height="160" fill="#9bbf6a"/>
+      <g fill="#c7d98f"><circle cx="250" cy="220" r="5"/><circle cx="280" cy="235" r="4"/><circle cx="310" cy="218" r="5"/><circle cx="345" cy="232" r="4"/><circle cx="260" cy="260" r="4"/><circle cx="300" cy="275" r="5"/><circle cx="355" cy="265" r="5"/><circle cx="250" cy="310" r="5"/><circle cx="290" cy="330" r="4"/><circle cx="330" cy="305" r="5"/><circle cx="360" cy="340" r="4"/></g>
+      <g fill="#e2b33c"><circle cx="270" cy="290" r="3"/><circle cx="335" cy="285" r="3"/><circle cx="315" cy="345" r="3"/></g>
+      <rect x="230" y="200" width="150" height="160" fill="none" stroke="#14352e" stroke-width="3"/>
+      <rect class="hl" x="230" y="200" width="150" height="160"/>
+    </g>
+    <!-- Terrasse / Platten -->
+    <g class="zone" data-z="hard">
+      <rect x="150" y="250" width="80" height="110" fill="#d6cdbb"/>
+      <path d="M150 277h80M150 305h80M150 333h80M190 250v110" stroke="#b5a98f" stroke-width="2"/>
+      <rect x="160" y="200" width="70" height="44" fill="#b98a5a"/>
+      <path d="M160 211h70M160 222h70M160 233h70" stroke="#9a6e44" stroke-width="2"/>
+      <rect class="hl" x="150" y="200" width="80" height="160"/>
+    </g>
+    <!-- Steingarten -->
+    <g class="zone" data-z="stein">
+      <ellipse cx="90" cy="320" rx="48" ry="34" fill="#cfd2cb"/>
+      <g fill="#9ea39a"><ellipse cx="72" cy="310" rx="14" ry="10"/><ellipse cx="104" cy="326" rx="17" ry="11"/><ellipse cx="86" cy="338" rx="9" ry="7"/></g>
+      <g fill="#6e9f58"><circle cx="60" cy="333" r="5"/><circle cx="118" cy="306" r="5"/><circle cx="95" cy="300" r="4"/></g>
+      <ellipse class="hl" cx="90" cy="320" rx="48" ry="34"/>
+    </g>
+    <!-- Rasen -->
+    <g class="zone" data-z="rasen">
+      <rect x="48" y="48" width="200" height="140" rx="6" fill="#86bd5e"/>
+      <path d="M58 48v140M78 48v140M98 48v140M118 48v140M138 48v140M158 48v140M178 48v140M198 48v140M218 48v140M238 48v140" stroke="#7bb354" stroke-width="10"/>
+      <rect class="hl" x="48" y="48" width="200" height="140" rx="6"/>
+    </g>
+    <!-- Baum + Beet -->
+    <g class="zone" data-z="baum">
+      <circle cx="320" cy="110" r="58" fill="#2f6a34" opacity=".95"/>
+      <circle cx="300" cy="95" r="22" fill="#3b7d3e"/><circle cx="342" cy="120" r="20" fill="#3b7d3e"/>
+      <circle cx="320" cy="110" r="5" fill="#6b4a32"/>
+      <circle class="hl" cx="320" cy="110" r="58"/>
+    </g>
+    <g class="zone" data-z="beet">
+      <rect x="48" y="200" width="96" height="64" rx="30" fill="#7a5a3e"/>
+      <g><circle cx="70" cy="222" r="7" fill="#e86a5a"/><circle cx="92" cy="240" r="7" fill="#f2c94c"/><circle cx="116" cy="220" r="7" fill="#b06ad0"/><circle cx="124" cy="246" r="6" fill="#e86a5a"/><circle cx="72" cy="248" r="6" fill="#f2c94c"/></g>
+      <rect class="hl" x="48" y="200" width="96" height="64" rx="30"/>
+    </g>
+    <!-- Nummern -->
+    <g class="pin" fill="#fff">
+      <circle cx="148" cy="118" r="12" fill="#14352e"/><text x="144" y="122">1</text>
+      <circle cx="320" cy="110" r="12" fill="#14352e"/><text x="316" y="114">2</text>
+      <circle cx="96" cy="232" r="12" fill="#14352e"/><text x="92" y="236">3</text>
+      <circle cx="190" cy="305" r="12" fill="#14352e"/><text x="186" y="309">4</text>
+      <circle cx="90" cy="320" r="12" fill="#14352e"/><text x="86" y="324">5</text>
+      <circle cx="305" cy="280" r="12" fill="#14352e"/><text x="301" y="284">6</text>
+      <circle cx="210" cy="23" r="12" fill="#e2b33c"/><text x="206" y="27" fill="#14352e">7</text>
+    </g>
+  </svg>
+  <div class="legend" id="legend">
+    <button data-z="rasen">1 Rasen</button><button data-z="baum">2 Bäume</button><button data-z="beet">3 Beet</button><button data-z="hard">4 Platten/Holz</button><button data-z="stein">5 Steingarten</button><button data-z="dach">6 Flachdach</button><button data-z="hecke">7 Hecke</button><button data-z="winter">❄ Winter</button>
+  </div>
+</div>
+<div class="info" id="info"></div>
+
+<section class="sec">
+  <div class="lbl">LEISTUNGSVERZEICHNIS</div>
+  <h2>Alles auf einen Blick.</h2>
+  <div class="tbl">
+    <div class="tr"><span class="c">A</span><div><b>Bäume, Sträucher, Hecken, Stauden</b><span>Rückschnitt für Liegenschaften und Hauswarte · Gartenpflege im Abo · Beikrautregulierung · Schädlingsbekämpfung · Heckenschnitt</span></div></div>
+    <div class="tr"><span class="c">B</span><div><b>Rasen</b><span>Grünanlagen und Sportplätze mähen · Rasensanierung · Neusaat · Düngen von Rasen und Pflanzflächen</span></div></div>
+    <div class="tr"><span class="c">C</span><div><b>Gartenbau</b><span>Bepflanzungen aller Art · Lieferservice · Transporte · Entsorgung · Plätze reinigen (Hochdruckreiniger)</span></div></div>
+    <div class="tr"><span class="c">D</span><div><b>Hardscaping</b><span>Steingarten · Plattenbeläge aller Art · Stein- und Kiesverbauungen · Sichtschutz · Holzdeck und Holzarbeiten</span></div></div>
+    <div class="tr"><span class="c">E</span><div><b>Flachdachbegrünung</b><span>Ansaat von Sedum und Kräutermischungen · Beikrautregulierung · Düngen</span></div></div>
+    <div class="tr"><span class="c">F</span><div><b>Winter</b><span>Winterschnitt an Bäumen und Sträuchern · Häckselarbeiten · Winterdienst · Baumfällungen und Wurzelstockentfernung</span></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="lbl">AUSGEFÜHRTE PROJEKTE</div>
+  <h2>Echte Gärten statt Stockfotos.</h2>
+  <div class="gal">
+    <div class="ph w2"><span class="t">PROJEKT 01</span>[Platzhalter: Hier kommen Ihre eigenen Projektfotos hin]</div>
+    <div class="ph"><span class="t">PROJEKT 02</span>[Platzhalter: Projektfoto]</div>
+    <div class="ph"><span class="t">PROJEKT 03</span>[Platzhalter: Projektfoto]</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="lbl">PROJEKTLEITUNG</div>
+  <h2>Pascal Isler.</h2>
+  <div class="about">
+    <div><div class="k">AUSBILDUNG</div><div class="v">Landschaftsgärtner 2012–2015</div></div>
+    <div><div class="k">LEHRBETRIEB</div><div class="v">Fuhrer Wichtrach</div></div>
+    <div><div class="k">GEGRÜNDET</div><div class="v">März 2021</div></div>
+    <div><div class="k">STANDORT</div><div class="v">Thun</div></div>
+    <div class="full"><div class="k">LEITSATZ</div><div class="v">«Wenn Schönes entsteht» – mit Liebe zum Detail.</div></div>
+  </div>
+  <div class="vals"><div>Persönlich</div><div>Verlässlich &amp; vertrauensvoll</div><div>Professionell &amp; qualitativ</div></div>
+</section>
+
+<section class="sec" id="anfrage">
+  <div class="lbl">ANFRAGE</div>
+  <h2>Bereich gewählt? Dann los.</h2>
+  <form class="form" onsubmit="return false">
+    <label>GEWÄHLTER BEREICH (AUS DEM PLAN)</label><div class="zonepick" id="zp">Noch kein Bereich gewählt – tippen Sie oben in den Plan.</div>
+    <label for="n">NAME</label><input id="n" placeholder="Vorname Nachname">
+    <label for="t">IHR ANLIEGEN</label><textarea id="t" placeholder="z.B. Grösse des Gartens, Adresse, Wunschtermin"></textarea>
+    <div class="row"><a class="btn f" href="#" id="sm">E-Mail senden</a><a class="btn w" href="#" id="sw">WhatsApp</a></div>
+  </form>
+</section>
+
+<footer>
+  <div class="mark">Isler Gartengestaltung</div>
+  <div class="grid">
+    <span>Elsterweg 25a, 3603 Thun</span>
+    <a href="tel:+41796042489">079 604 24 89</a>
+    <a href="mailto:islergartengestaltung@gmail.com">islergartengestaltung@gmail.com</a>
+    <a href="https://instagram.com/islergartengestaltung">instagram.com/islergartengestaltung</a>
+  </div>
+  <div class="s">PERSÖNLICH · VERLÄSSLICH · PROFESSIONELL</div>
+</footer>
+</div>
+<script>
+const Z={rasen:['01','Rasen',['Grünanlagen und Sportplätze mähen','Rasensanierung','Neusaat','Düngen von Rasen und Pflanzflächen']],
+baum:['02','Bäume &amp; Sträucher',['Rückschnitt für Liegenschaften und Hauswarte','Schädlingsbekämpfung','Winterschnitt an Bäumen und Sträuchern','Baumfällungen und Wurzelstockentfernung']],
+beet:['03','Beete &amp; Stauden',['Bepflanzungen aller Art','Gartenpflege im Abo','Beikrautregulierung','Düngen von Pflanzflächen']],
+hard:['04','Plätze, Platten &amp; Holz',['Plattenbeläge aller Art','Holzdeck und Holzarbeiten','Sichtschutz','Plätze reinigen (Hochdruckreiniger)']],
+stein:['05','Steingarten',['Steingarten','Stein- und Kiesverbauungen','Lieferservice und Transporte','Entsorgung']],
+dach:['06','Flachdachbegrünung',['Ansaat von Sedum und Kräutermischungen','Beikrautregulierung','Düngen']],
+hecke:['07','Hecke',['Heckenschnitt','Rückschnitt für Liegenschaften und Hauswarte','Häckselarbeiten','Entsorgung']],
+winter:['❄','Winter',['Winterschnitt an Bäumen und Sträuchern','Häckselarbeiten','Winterdienst','Baumfällungen und Wurzelstockentfernung']]};
+const $=id=>document.getElementById(id);
+function pick(z){const d=Z[z];
+document.querySelectorAll('.zone').forEach(g=>g.classList.toggle('on',g.dataset.z===z));
+document.querySelectorAll('#legend button').forEach(b=>b.classList.toggle('on',b.dataset.z===z));
+$('info').innerHTML='<div class="lab">BEREICH '+d[0]+'</div><h3>'+d[1]+'</h3><ul>'+d[2].map(x=>'<li>'+x+'</li>').join('')+'</ul><a href="#anfrage">Diesen Bereich anfragen →</a>';
+$('zp').innerHTML='Bereich '+d[0]+': '+d[1];window._z=d[1].replace('&amp;','&');}
+document.querySelectorAll('.zone').forEach(g=>g.addEventListener('click',()=>pick(g.dataset.z)));
+document.querySelectorAll('#legend button').forEach(b=>b.onclick=()=>pick(b.dataset.z));
+pick('rasen');
+function msg(){return 'Grüezi Herr Isler, ich interessiere mich für den Bereich «'+(window._z||'Garten')+'». '+$('t').value+' '+($('n').value?'Gruss, '+$('n').value:'');}
+$('sm').onclick=e=>{e.preventDefault();location.href='mailto:islergartengestaltung@gmail.com?subject='+encodeURIComponent('Anfrage: '+(window._z||'Garten'))+'&body='+encodeURIComponent(msg());};
+$('sw').onclick=e=>{e.preventDefault();location.href='https://wa.me/41796042489?text='+encodeURIComponent(msg());};
+</script>
+</body>
+</html>
