@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurant zum Adler – Bestellzettel</title>
+<meta name="description" content="Entwurf: Bestellzettel im Unterdorf – Restaurant zum Adler, Steffisburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf6ea; --paper2:#f4ecd8; --line:#c9d8ec; --margin:#e58f7f;
+  --pen:#21437c; --tomato:#d8473a; --leaf:#3e7c4c; --kraft:#d8c19b; --note:#ffe48a;
+  --ink:#24262b; --soft:#666a73;
+}
+*{box-sizing:border-box}
+html{background:#e9dfc8}
+body{margin:0;background:#efe5cf;color:var(--ink);font-family:"Outfit",system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.page{max-width:430px;margin:0 auto;background:var(--paper);position:relative;overflow:hidden;padding-bottom:92px;
+  background-image:radial-gradient(rgba(120,95,50,.06) 1px,transparent 1.2px);background-size:7px 7px}
+.hand{font-family:"Nothing You Could Do","Segoe Print","Comic Sans MS",cursive;font-weight:400}
+a{color:inherit}
+.draft{position:relative;background:var(--note);color:#3b2d00;font:600 12.5px/1.35 "Outfit",sans-serif;text-align:center;padding:9px 16px;border-bottom:1px dashed rgba(0,0,0,.25)}
+.draft b{letter-spacing:.1em}
+.label{display:inline-block;font:600 10.5px/1 "Outfit",sans-serif;color:#fff;background:rgba(33,67,124,.82);padding:6px 9px;border-radius:20px}
+
+/* header */
+.top{position:relative}
+.top svg.village{display:block;width:100%;height:auto}
+.top .label{position:absolute;right:12px;top:10px}
+.title{padding:4px 20px 0;position:relative}
+.title .small{font:600 12px/1 "Outfit",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--tomato)}
+.title h1{font-weight:800;font-size:44px;line-height:.98;letter-spacing:-.02em;margin:8px 0 6px}
+.title .scribble{font-size:23px;color:var(--pen);line-height:1.25;margin:4px 0 0;transform:rotate(-1.5deg);transform-origin:left}
+.squig{display:block;width:210px;height:12px;margin:2px 0 0 4px}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;font:800 17px/1.15 "Outfit",sans-serif;padding:17px 18px;border-radius:14px;border:2.5px solid var(--ink);cursor:pointer}
+.btn svg{width:22px;height:22px;flex:none}
+.btn-call{background:var(--tomato);color:#fff;box-shadow:4px 4px 0 var(--ink)}
+.btn-call small{display:block;font-weight:400;font-size:13.5px;opacity:.9}
+.btn-alt{background:#fff;color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.cta{padding:20px 20px 4px}
+
+/* today strip */
+.today{margin:26px 16px 0;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:16px 14px 16px;box-shadow:4px 4px 0 var(--kraft)}
+.today h2{margin:0;font-size:22px;font-weight:800;display:flex;justify-content:space-between;align-items:baseline}
+.today h2 .hand{font-size:17px;color:var(--soft);font-weight:400}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:14px 0 12px}
+.day{position:relative;text-align:center;padding:8px 0 7px;border-radius:10px;font-weight:600;font-size:14px;background:var(--paper2)}
+.day small{display:block;font-weight:400;font-size:9.5px;color:var(--soft);margin-top:2px;line-height:1.1}
+.day.off{color:#a3a39f;background:repeating-linear-gradient(-45deg,#f1ece0 0 4px,#e8e1d1 4px 8px)}
+.day.off small{color:#a3a39f}
+.day.is-today{background:#fff;color:var(--ink)}
+.day.is-today:after{content:"";position:absolute;inset:-5px -3px;border:2.5px solid var(--tomato);border-radius:48% 52% 46% 54%/55% 45% 55% 45%;transform:rotate(-4deg)}
+.status{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none;background:#aaa}
+.status.open .dot{background:#2fa35a;box-shadow:0 0 0 5px rgba(47,163,90,.18)}
+.status.closed .dot{background:var(--tomato);box-shadow:0 0 0 5px rgba(216,71,58,.15)}
+.sub2{font-size:14px;color:var(--soft);margin:6px 0 0 22px}
+.today .note{font-size:12px;color:var(--soft);margin:10px 0 0}
+
+/* menu sheet */
+.sec{padding:40px 16px 0}
+.sec > h2{font-weight:800;font-size:30px;line-height:1.05;margin:0 4px 4px}
+.sec > .hand{font-size:20px;color:var(--pen);margin:0 4px 14px}
+.sheet{position:relative;background:#fffdf7;border-radius:4px;box-shadow:0 1px 0 #e3d9c3,0 10px 24px rgba(80,60,20,.12);padding:22px 14px 18px 46px;
+  background-image:linear-gradient(90deg,transparent 34px,var(--margin) 34px,var(--margin) 35.5px,transparent 35.5px),repeating-linear-gradient(180deg,transparent 0 33px,var(--line) 33px 34px);background-position:0 0,0 14px}
+.sheet:before{content:"";position:absolute;left:0;right:0;top:-9px;height:18px;background:radial-gradient(circle at 9px 9px,var(--paper) 5px,transparent 5.5px) 0 0/22px 18px repeat-x}
+.cat{font:800 11.5px/1 "Outfit",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--tomato);margin:6px 0 4px;height:28px;display:flex;align-items:flex-end;padding-bottom:4px}
+.dish{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;border:0;background:none;padding:6px 0;text-align:left;font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.dish .nm{flex:1;font-size:16.5px;font-weight:600;line-height:1.2}
+.dish .nm em{display:block;font-style:normal;font-weight:400;font-size:12.5px;color:var(--soft)}
+.dish .pr{font-weight:600;font-variant-numeric:tabular-nums;font-size:15.5px}
+.dish .add{width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font:800 20px/1 "Outfit",sans-serif;background:#fff;flex:none;transition:transform .15s,background .2s}
+.dish.in .add{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+.dish:active .add{transform:scale(.9)}
+.dish .q{position:absolute;left:-44px;font-size:19px;color:var(--tomato);width:32px;text-align:center}
+.dish{position:relative}
+.alsocard{margin-top:16px;padding:12px 0 0;border-top:1.5px dashed #c8bfa9}
+.alsocard p{margin:0;font-size:14.5px;color:var(--soft)}
+.alsocard .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.alsocard .chips span{border:1.5px solid var(--ink);border-radius:20px;padding:3px 10px;font-size:13.5px;font-weight:600;background:#fff}
+
+/* order slip */
+.slipwrap{padding:44px 16px 0}
+.slip{position:relative;background:#fff;border-radius:2px;padding:26px 20px 22px;box-shadow:0 14px 30px rgba(60,40,10,.18);transform:rotate(-.8deg);
+  background-image:repeating-linear-gradient(180deg,transparent 0 37px,#e6edf6 37px 38px);background-position:0 92px}
+.slip:before{content:"";position:absolute;left:0;right:0;top:-8px;height:16px;background:radial-gradient(circle at 8px 0,transparent 7px,#fff 7.5px) 0 0/16px 16px repeat-x}
+.slip:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:10px;background:linear-gradient(135deg,#fff 50%,transparent 50%) 0 0/12px 10px repeat-x,linear-gradient(-135deg,#fff 50%,transparent 50%) 0 0/12px 10px repeat-x}
+.tape{position:absolute;top:-16px;left:50%;width:110px;height:30px;margin-left:-55px;background:rgba(255,228,138,.75);transform:rotate(3deg);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.slip .head{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.slip .head b{font-weight:800;font-size:20px;letter-spacing:.02em}
+.slip .head span{font-size:12px;color:var(--soft);text-align:right;line-height:1.3}
+.slip .head span .hand{font-size:17px;color:var(--pen)}
+.lines{min-height:120px;padding-top:6px}
+.empty{font-size:22px;color:#8d9bb4;padding:22px 4px;line-height:1.35}
+.ln{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;min-height:38px;padding:2px 0}
+.ln .nm{font-size:19px;color:var(--pen);line-height:1.1}
+.ln .pr{font-size:21px;color:var(--pen);font-variant-numeric:tabular-nums;white-space:nowrap}
+.qty{display:flex;align-items:center;gap:4px}
+.qty button{width:30px;height:30px;border-radius:8px;border:1.8px solid var(--ink);background:#fff;font:800 17px/1 "Outfit",sans-serif;cursor:pointer;padding:0;color:var(--ink)}
+.qty .n{font-size:22px;color:var(--pen);min-width:22px;text-align:center}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:10px;border-top:2px solid var(--ink)}
+.tot span{font-weight:800;font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+.tot b{font-size:34px;color:var(--pen);font-weight:400;position:relative}
+.tot b:after{content:"";position:absolute;left:-4px;right:-4px;bottom:2px;height:7px;border-top:2px solid var(--tomato);border-bottom:2px solid var(--tomato);transform:rotate(-1.5deg)}
+.slipbtns{display:grid;gap:12px;margin-top:20px}
+.slipnote{font-size:12.5px;color:var(--soft);margin:12px 0 0;line-height:1.45}
+.slipnote a{color:var(--pen)}
+
+/* ratings post-its */
+.posts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.post{background:var(--note);padding:16px 14px 14px;box-shadow:0 8px 16px rgba(80,60,0,.15);position:relative}
+.post:nth-child(1){transform:rotate(-2deg)}
+.post:nth-child(2){transform:rotate(1.8deg);background:#ffd6c9}
+.post .s{font-size:44px;font-weight:800;line-height:1}
+.post .st{color:var(--tomato);letter-spacing:1px;font-size:14px;margin:4px 0}
+.post .w{font-size:13.5px;line-height:1.3}
+.half{background:linear-gradient(90deg,var(--tomato) 50%,rgba(0,0,0,.18) 50%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.praise{font-size:23px;color:var(--pen);line-height:1.3;margin:34px 6px 0;transform:rotate(-1deg)}
+.praise u{text-decoration:none;background:linear-gradient(transparent 62%,rgba(216,71,58,.25) 62%)}
+
+/* hours list */
+.hours{background:#fff;border:2px solid var(--ink);border-radius:14px;overflow:hidden}
+.hours div{display:flex;justify-content:space-between;padding:11px 16px;border-bottom:1.5px dashed #d9d0bc;font-size:15.5px}
+.hours div:last-child{border-bottom:0}
+.hours div span:last-child{font-weight:600;font-variant-numeric:tabular-nums}
+.hours div.cl span:last-child{color:var(--tomato)}
+.hours div.now{background:#fff6d1}
+.hours div.now span:first-child:after{content:" ← heute";font-family:"Nothing You Could Do",cursive;color:var(--tomato);font-size:15px}
+.deliv{margin-top:16px;display:flex;gap:14px;align-items:center;background:#e6f0e3;border:2px solid var(--leaf);border-radius:14px;padding:14px}
+.deliv svg{width:58px;height:58px;flex:none}
+.deliv p{margin:0;font-size:15px}
+.deliv b{display:block;font-size:17px}
+.smallnote{font-size:12.5px;color:var(--soft);margin:10px 4px 0}
+
+/* map */
+.mapbox{background:#fff;border:2px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:4px 4px 0 var(--kraft)}
+.mapbox svg{display:block;width:100%;height:auto}
+.mapbox .t{padding:14px 16px 18px}
+.mapbox address{font-style:normal;font-size:18px;font-weight:600;line-height:1.4}
+
+footer{margin-top:44px;padding:26px 20px 30px;text-align:center;font-size:13px;color:var(--soft);border-top:2px dashed #cfc5ae}
+footer .hand{font-size:22px;color:var(--pen)}
+
+/* sticky slip bar */
+.bar{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);width:min(410px,calc(100% - 20px));display:flex;gap:8px;z-index:60}
+.bar a{flex:1}
+.bar .btn{padding:14px 12px;font-size:15.5px}
+.bar .sum{flex:1.25}
+.bar .sum b{font-family:"Nothing You Could Do",cursive;font-weight:400;font-size:19px;color:var(--pen)}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="draft"><b>ENTWURF</b> / Demo von Max Rathsack – keine offizielle Webseite von Restaurant zum Adler</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="ph" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+  <symbol id="bike" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17" r="3"/><circle cx="18.5" cy="17" r="3"/><path d="M5.5 17h6l3-7h3l1 7M9 7h4"/><rect x="3" y="7" width="6" height="5" rx="1"/></g></symbol>
+</defs></svg>
+
+<!-- HEADER / VILLAGE -->
+<header class="top">
+  <svg class="village" viewBox="0 0 430 270" role="img" aria-label="Gezeichnete Illustration: das Unterdorf mit dem Restaurant zum Adler">
+    <rect width="430" height="270" fill="#fbf6ea"/>
+    <!-- sun + clouds -->
+    <circle cx="66" cy="58" r="22" fill="#ffe48a" stroke="#21437c" stroke-width="2"/>
+    <g stroke="#21437c" stroke-width="2" stroke-linecap="round"><path d="M66 24v-8 M66 100v-8 M32 58h-8 M108 58h-8 M42 34l-6-6 M90 34l6-6 M42 82l-6 6 M90 82l6 6"/></g>
+    <path d="M290 50 q6-16 22-10 q8-14 24-4 q16-2 16 12 q12 4 6 14 h-74 q-8-8 6-12z" fill="#fff" stroke="#21437c" stroke-width="2" stroke-linejoin="round"/>
+    <!-- hills -->
+    <path d="M0 150 C60 110 110 120 160 140 C220 104 300 100 340 128 C380 110 410 116 430 124 V200 H0z" fill="#dfe9d2" stroke="#3e7c4c" stroke-width="2"/>
+    <!-- trees -->
+    <g stroke="#21437c" stroke-width="2"><circle cx="30" cy="158" r="17" fill="#9cc58a"/><path d="M30 175v22"/><circle cx="402" cy="160" r="15" fill="#9cc58a"/><path d="M402 175v22"/></g>
+    <!-- left house -->
+    <g stroke="#21437c" stroke-width="2" stroke-linejoin="round">
+      <path d="M52 200v-48h56v48z" fill="#fff"/><path d="M46 154 l34-28 34 28z" fill="#d8473a"/>
+      <rect x="62" y="166" width="14" height="14" fill="#ffe48a"/><path d="M69 166v14 M62 173h14"/><path d="M86 200v-22h12v22" fill="#d8c19b"/>
+    </g>
+    <!-- right house -->
+    <g stroke="#21437c" stroke-width="2" stroke-linejoin="round">
+      <path d="M330 200v-44h54v44z" fill="#fff"/><path d="M324 158 l33-30 33 30z" fill="#d8c19b"/>
+      <rect x="340" y="168" width="13" height="13" fill="#ffe48a"/><rect x="361" y="168" width="13" height="13" fill="#ffe48a"/><path d="M346.5 168v13 M367.5 168v13"/>
+      <path d="M368 120v-10h8v18"/>
+    </g>
+    <!-- restaurant zum Adler -->
+    <g stroke="#21437c" stroke-width="2.2" stroke-linejoin="round">
+      <path d="M128 202v-70h174v70z" fill="#fffdf6"/>
+      <path d="M112 136 Q130 132 140 116 H290 Q300 132 318 136 Q306 126 300 108 H130 Q124 126 112 136z" fill="#d8473a"/>
+      <path d="M140 108 Q172 84 215 78 Q258 84 290 108z" fill="#b8392e"/>
+      <rect x="162" y="140" width="106" height="24" rx="4" fill="#21437c"/>
+      <rect x="148" y="172" width="30" height="22" fill="#ffe48a"/><path d="M163 172v22 M148 183h30"/>
+      <rect x="252" y="172" width="30" height="22" fill="#ffe48a"/><path d="M267 172v22 M252 183h30"/>
+      <path d="M200 202v-30q15-12 30 0v30" fill="#d8c19b"/>
+    </g>
+    <text x="215" y="157" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="13" fill="#fff" letter-spacing="1">ZUM ADLER</text>
+    <!-- lanterns -->
+    <g stroke="#21437c" stroke-width="1.6"><path d="M136 136v8 M294 136v8"/><ellipse cx="136" cy="152" rx="8" ry="9" fill="#d8473a"/><ellipse cx="294" cy="152" rx="8" ry="9" fill="#d8473a"/><path d="M136 161v6 M294 161v6"/></g>
+    <!-- street -->
+    <path d="M0 200 H430 V270 H0z" fill="#efe5cf"/>
+    <path d="M0 200 H430" stroke="#21437c" stroke-width="2"/>
+    <path d="M20 236 h40 M90 236 h40 M160 236 h40 M230 236 h40 M300 236 h40 M370 236 h40" stroke="#c4b48f" stroke-width="3" stroke-linecap="round"/>
+    <text x="22" y="262" font-family="'Nothing You Could Do',cursive" font-size="16" fill="#21437c">Unterdorfstrasse 9</text>
+    <path d="M196 248 q20 -2 26 -30" fill="none" stroke="#d8473a" stroke-width="2" stroke-linecap="round"/><path d="M216 222 l6-6 3 8" fill="none" stroke="#d8473a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="232" y="256" font-family="'Nothing You Could Do',cursive" font-size="17" fill="#d8473a">hier sind wir!</text>
+  </svg>
+  <span class="label">Illustration – später Ihre echten Fotos</span>
+</header>
+
+<div class="title">
+  <div class="small">Steffisburg · Familie Kuong</div>
+  <h1>Restaurant<br>zum Adler</h1>
+  <p class="scribble hand">Chinesische &amp; asiatische Spezialitäten – mitten im Unterdorf</p>
+  <svg class="squig" viewBox="0 0 210 12" aria-hidden="true"><path d="M2 8 C20 2 30 12 50 6 S80 2 100 7 S140 11 160 5 S195 3 208 7" fill="none" stroke="#d8473a" stroke-width="2.4" stroke-linecap="round"/></svg>
+</div>
+
+<div class="cta">
+  <a class="btn btn-call" href="tel:+41334373366"><svg><use href="#ph"/></svg><span>Anrufen &amp; bestellen<small>033 437 33 66</small></span></a>
+</div>
+
+<!-- TODAY -->
+<section class="today" id="today" aria-live="polite">
+  <h2>Heute geöffnet? <span class="hand" id="clock"></span></h2>
+  <div class="days" id="days">
+    <div class="day off" data-d="1">Mo<small>zu</small></div>
+    <div class="day" data-d="2">Di<small>8:30–<br>23:30</small></div>
+    <div class="day" data-d="3">Mi<small>8:30–<br>23:30</small></div>
+    <div class="day" data-d="4">Do<small>8:30–<br>23:30</small></div>
+    <div class="day" data-d="5">Fr<small>8:30–<br>23:30</small></div>
+    <div class="day" data-d="6">Sa<small>9:00–<br>23:30</small></div>
+    <div class="day" data-d="0">So<small>10:30–<br>22:30</small></div>
+  </div>
+  <div class="status" id="status"><span class="dot"></span><span id="statusTxt">…</span></div>
+  <div class="sub2" id="delivTxt"></div>
+  <p class="note">Zeiten gemäss local.ch – bitte bestätigen.</p>
+</section>
+
+<!-- MENU -->
+<section class="sec" id="karte">
+  <h2>Die Karte zum Ankreuzen</h2>
+  <p class="hand">Tippen Sie auf ein Gericht – es landet auf Ihrem Zettel ↓</p>
+  <div class="sheet" id="menu">
+    <div class="cat">Vorspeisen</div>
+    <button class="dish" type="button" data-id="fr" data-name="Frühlingsrolle mit Ente" data-price="850"><span class="q hand"></span><span class="nm">Frühlingsrolle mit Ente</span><span class="pr">8.50</span><span class="add" aria-hidden="true">+</span></button>
+    <div class="cat">Suppen</div>
+    <button class="dish" type="button" data-id="ko" data-name="Kokos-Suppe mit Crevetten" data-price="950"><span class="q hand"></span><span class="nm">Kokos-Suppe mit Crevetten</span><span class="pr">9.50</span><span class="add" aria-hidden="true">+</span></button>
+    <div class="cat">Poulet</div>
+    <button class="dish" type="button" data-id="sz" data-name="Poulet Szechuan" data-price="2650"><span class="q hand"></span><span class="nm">Poulet Szechuan</span><span class="pr">26.50</span><span class="add" aria-hidden="true">+</span></button>
+    <div class="cat">Rind</div>
+    <button class="dish" type="button" data-id="ri" data-name="Rindfleisch mit Zwiebeln" data-price="2850"><span class="q hand"></span><span class="nm">Rindfleisch mit Zwiebeln</span><span class="pr">28.50</span><span class="add" aria-hidden="true">+</span></button>
+    <div class="cat">Ente</div>
+    <button class="dish" type="button" data-id="en" data-name="Knusprig gebackene Ente" data-price="3200"><span class="q hand"></span><span class="nm">Knusprig gebackene Ente<em>von Gästen als beste der Region gelobt</em></span><span class="pr">32.00</span><span class="add" aria-hidden="true">+</span></button>
+    <div class="cat">Kindergerichte</div>
+    <button class="dish" type="button" data-id="cn" data-name="Chicken Nuggets" data-price="1250"><span class="q hand"></span><span class="nm">Chicken Nuggets</span><span class="pr">12.50</span><span class="add" aria-hidden="true">+</span></button>
+    <div class="alsocard">
+      <p>Ausserdem auf der Karte:</p>
+      <div class="chips"><span>Salate</span><span>Fisch</span><span>Crevetten</span><span>Schwein</span><span>Vegetarisch</span></div>
+      <p class="hand" style="font-size:17px;color:var(--pen)">[weitere Gerichte aus Ihrer Karte]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER SLIP -->
+<section class="slipwrap" id="zettel">
+  <div class="slip">
+    <div class="tape"></div>
+    <div class="head"><b>BESTELLZETTEL</b><span>Restaurant zum Adler<br><span class="hand">für mich</span></span></div>
+    <div class="lines" id="lines"><div class="empty hand" id="empty">Noch leer – tippen Sie oben auf ein Gericht.</div></div>
+    <div class="tot"><span>Total</span><b class="hand" id="total">CHF 0.00</b></div>
+    <div class="slipbtns">
+      <a class="btn btn-call" href="tel:+41334373366"><svg><use href="#ph"/></svg>Jetzt telefonisch bestellen</a>
+      <a class="btn btn-alt" href="https://www.china-restaurant-zum-adler.ch" target="_blank" rel="noopener"><svg><use href="#bike"/></svg>Online liefern lassen</a>
+    </div>
+    <p class="slipnote">Der Zettel ist Ihre Merkliste – bestellt wird telefonisch oder online (Lieferung Di–So, 17:30–21:00 Uhr, auch via <a href="https://www.just-eat.ch" target="_blank" rel="noopener">Just Eat</a>). Preise in CHF.</p>
+  </div>
+</section>
+
+<!-- RATINGS -->
+<section class="sec" id="stimmen">
+  <h2>Was das Dorf sagt</h2>
+  <p class="hand">…und nicht nur das Dorf.</p>
+  <div class="posts">
+    <div class="post"><div class="s">4.7</div><div class="st">★★★★★</div><div class="w"><b>local.ch</b><br>15 Bewertungen</div></div>
+    <div class="post"><div class="s">4.5</div><div class="st">★★★★<span class="half">★</span></div><div class="w"><b>Just Eat</b><br>410 Bewertungen</div></div>
+  </div>
+  <p class="praise hand">Gäste loben das <u>feine Essen</u>, die <u>schnelle, freundliche Lieferung</u> – und natürlich <u>die Ente</u>.</p>
+</section>
+
+<!-- HOURS -->
+<section class="sec" id="zeiten">
+  <h2>Öffnungszeiten</h2>
+  <p class="hand">Montag ist Ruhetag.</p>
+  <div class="hours" id="hours">
+    <div class="cl" data-d="1"><span>Montag</span><span>geschlossen</span></div>
+    <div data-d="2"><span>Dienstag</span><span>08:30 – 23:30</span></div>
+    <div data-d="3"><span>Mittwoch</span><span>08:30 – 23:30</span></div>
+    <div data-d="4"><span>Donnerstag</span><span>08:30 – 23:30</span></div>
+    <div data-d="5"><span>Freitag</span><span>08:30 – 23:30</span></div>
+    <div data-d="6"><span>Samstag</span><span>09:00 – 23:30</span></div>
+    <div data-d="0"><span>Sonntag</span><span>10:30 – 22:30</span></div>
+  </div>
+  <p class="smallnote">Angaben gemäss local.ch – bitte bestätigen.</p>
+  <div class="deliv">
+    <svg viewBox="0 0 24 24" style="color:var(--leaf)"><use href="#bike"/></svg>
+    <p><b>Lieferservice Di–So</b>17:30–21:00 Uhr · via Just Eat oder online auf china-restaurant-zum-adler.ch</p>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="sec" id="anfahrt">
+  <h2>So finden Sie uns</h2>
+  <p class="hand">Unterdorf, Steffisburg</p>
+  <div class="mapbox">
+    <svg viewBox="0 0 390 200" role="img" aria-label="Gezeichnete Lageskizze">
+      <rect width="390" height="200" fill="#fbf6ea"/>
+      <g fill="none" stroke="#21437c" stroke-width="2" stroke-linecap="round">
+        <path d="M-5 132 C80 122 150 104 210 96 S320 80 395 70"/><path d="M-5 150 C80 140 150 122 212 114 S322 98 395 88"/>
+        <path d="M110 -5 C116 50 124 100 128 125 M128 141 C132 170 136 190 138 205"/>
+        <path d="M128 -5 C134 50 142 100 146 121 M146 138 C150 170 154 190 156 205"/>
+      </g>
+      <text x="14" y="124" font-family="'Nothing You Could Do',cursive" font-size="15" fill="#21437c" transform="rotate(-5 14 124)">Unterdorfstrasse</text>
+      <g stroke="#21437c" stroke-width="2" stroke-linejoin="round"><rect x="228" y="56" width="40" height="30" fill="#fff"/><path d="M222 58 l26-18 26 18z" fill="#d8473a"/></g>
+      <circle cx="248" cy="72" r="34" fill="none" stroke="#d8473a" stroke-width="2.4" stroke-dasharray="1 0" transform="rotate(-8 248 72)"/>
+      <text x="290" y="40" font-family="'Nothing You Could Do',cursive" font-size="18" fill="#d8473a">zum Adler</text>
+      <path d="M296 46 q-10 8 -16 14" fill="none" stroke="#d8473a" stroke-width="2" stroke-linecap="round"/>
+      <g fill="#9cc58a" stroke="#21437c" stroke-width="1.5"><circle cx="60" cy="60" r="12"/><circle cx="80" cy="50" r="9"/><circle cx="340" cy="140" r="11"/></g>
+    </svg>
+    <div class="t">
+      <address>Restaurant zum Adler<br>Unterdorfstrasse 9, 3612 Steffisburg</address>
+      <div style="display:grid;gap:12px;margin-top:14px">
+        <a class="btn btn-alt" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurant+zum+Adler+Unterdorfstrasse+9+3612+Steffisburg" target="_blank" rel="noopener">In Google Maps öffnen ↗</a>
+      </div>
+    </div>
+  </div>
+  <p class="smallnote">Lageskizze nicht massstabsgetreu.</p>
+</section>
+
+<footer>
+  <div class="hand">Bis bald im Unterdorf!</div>
+  Restaurant zum Adler · Unterdorfstrasse 9 · 3612 Steffisburg<br>
+  Inhaber: Huong Kuong · <a href="tel:+41334373366">033 437 33 66</a><br><br>
+  Demo-Entwurf von Max Rathsack
+</footer>
+</div>
+
+<div class="bar" id="bar">
+  <a class="btn btn-alt sum" href="#zettel" id="barSum">Zettel: <b id="barTotal">leer</b></a>
+  <a class="btn btn-call" href="tel:+41334373366" aria-label="Anrufen"><svg><use href="#ph"/></svg>Anrufen</a>
+</div>
+
+<script>
+(function(){
+  /* ---------- Heute geöffnet? ---------- */
+  var HOURS={0:[630,1350],1:null,2:[510,1410],3:[510,1410],4:[510,1410],5:[510,1410],6:[540,1410]};
+  var NAMES=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  function fmt(m){var h=Math.floor(m/60),mm=m%60;return (h<10?'0':'')+h+':'+(mm<10?'0':'')+mm}
+  function zurichNow(){
+    try{var p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Zurich',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+      var o={};p.forEach(function(x){o[x.type]=x.value});
+      var wd={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday];return {d:wd,m:(parseInt(o.hour,10)%24)*60+parseInt(o.minute,10)}}
+    catch(e){var n=new Date();return {d:n.getDay(),m:n.getHours()*60+n.getMinutes()}}
+  }
+  function nextOpen(d,m){for(var i=0;i<8;i++){var dd=(d+i)%7,h=HOURS[dd];if(h&&(i>0||m<h[0]))return (i===0?'heute':i===1?'morgen':NAMES[dd])+' um '+fmt(h[0])}return ''}
+  function update(){
+    var t=zurichNow(),h=HOURS[t.d],st=document.getElementById('status'),tx=document.getElementById('statusTxt'),dv=document.getElementById('delivTxt');
+    document.querySelectorAll('.day').forEach(function(x){x.classList.toggle('is-today',+x.dataset.d===t.d)});
+    document.querySelectorAll('#hours [data-d]').forEach(function(x){x.classList.toggle('now',+x.dataset.d===t.d)});
+    document.getElementById('clock').textContent=NAMES[t.d]+', '+fmt(t.m);
+    if(h&&t.m>=h[0]&&t.m<h[1]){st.className='status open';tx.textContent='Jetzt geöffnet – bis '+fmt(h[1])+' Uhr'}
+    else{st.className='status closed';tx.textContent=(t.d===1?'Heute Ruhetag':'Gerade geschlossen')+' – wieder offen '+nextOpen(t.d,t.m)}
+    if(t.d===1)dv.textContent='Lieferung: heute keine (Di–So, 17:30–21:00)';
+    else if(t.m>=1050&&t.m<1260)dv.textContent='Lieferung läuft gerade – bis 21:00 Uhr';
+    else if(t.m<1050)dv.textContent='Lieferung heute ab 17:30 bis 21:00 Uhr';
+    else dv.textContent='Lieferung für heute vorbei – Di–So, 17:30–21:00';
+  }
+  update();setInterval(update,30000);
+
+  /* ---------- Bestellzettel ---------- */
+  var order={},items={};
+  document.querySelectorAll('.dish').forEach(function(b){items[b.dataset.id]={name:b.dataset.name,price:+b.dataset.price,el:b};b.addEventListener('click',function(){add(b.dataset.id,1)})});
+  function chf(c){return 'CHF '+(c/100).toFixed(2)}
+  function add(id,n){order[id]=(order[id]||0)+n;if(order[id]<=0)delete order[id];render()}
+  function render(){
+    var L=document.getElementById('lines'),tot=0,cnt=0;
+    L.querySelectorAll('.ln').forEach(function(x){x.remove()});
+    Object.keys(items).forEach(function(id){
+      var q=order[id]||0,it=items[id];
+      it.el.classList.toggle('in',q>0);it.el.querySelector('.q').textContent=q?q+'×':'';
+      if(!q)return;tot+=q*it.price;cnt+=q;
+      var r=document.createElement('div');r.className='ln';
+      r.innerHTML='<div class="qty"><button type="button" aria-label="weniger">–</button><span class="n hand">'+q+'</span><button type="button" aria-label="mehr">+</button></div><span class="nm hand"></span><span class="pr hand">'+(q*it.price/100).toFixed(2)+'</span>';
+      r.querySelector('.nm').textContent=it.name;
+      var bs=r.querySelectorAll('button');bs[0].onclick=function(){add(id,-1)};bs[1].onclick=function(){add(id,1)};
+      L.appendChild(r);
+    });
+    document.getElementById('empty').hidden=cnt>0;
+    document.getElementById('total').textContent=chf(tot);
+    document.getElementById('barTotal').textContent=cnt?cnt+'× · '+chf(tot):'leer';
+  }
+  render();
+
+  window.__prepPrint=function(){
+    order={en:1,fr:2,ko:1};render();
+    document.getElementById('bar').style.display='none';
+    document.querySelector('.page').style.paddingBottom='0';
+    document.querySelectorAll('details').forEach(function(x){x.open=true});
+  };
+})();
+</script>
+</body>
+</html>

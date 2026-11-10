@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AB Royal – Reinigung mit Concierge-Service · Thun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Italiana&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#101a33; --navy2:#1a2748; --navy3:#24345c;
+  --bord:#5e1a2a; --bord2:#7a2438;
+  --champ:#d6bd86; --champ2:#ecdcb3; --champ3:#a88b52;
+  --ivory:#f8f3e8; --paper:#fffdf7; --ink:#1d1d26; --muted:#6c6a72;
+  --serif:"Crimson Pro","TeX Gyre Pagella",Georgia,serif;
+  --display:"Italiana","Crimson Pro",Georgia,serif;
+  --sans:"Work Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);font-size:16px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+img,svg{display:block}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+
+/* Draft banner */
+.draft{background:repeating-linear-gradient(135deg,#f2c94c 0 14px,#e9b931 14px 28px);color:#2a2000;font:600 12.5px/1.35 var(--sans);text-align:center;padding:9px 14px;letter-spacing:.01em}
+.draft b{letter-spacing:.12em}
+
+/* Header */
+header.top{background:var(--navy);color:var(--champ2);padding:14px 0;border-bottom:1px solid rgba(214,189,134,.25)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .seal{width:42px;height:42px;border-radius:50%;border:1px solid var(--champ);display:grid;place-items:center}
+.brand .name{font-family:var(--display);font-size:25px;font-weight:400;letter-spacing:.06em;color:var(--champ);line-height:1}
+.brand .sub{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#c7c2b5;margin-top:3px}
+.top .tel{font-size:13px;text-decoration:none;border:1px solid rgba(214,189,134,.5);padding:7px 11px;border-radius:2px;color:var(--champ2);white-space:nowrap}
+
+/* Hero */
+.hero{background:radial-gradient(120% 70% at 50% 0%,var(--navy3) 0%,var(--navy) 62%);color:var(--ivory);padding:34px 0 0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(214,189,134,.10) 1px,transparent 1.4px);background-size:18px 18px;pointer-events:none}
+.hero .wrap{position:relative}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--champ);display:flex;align-items:center;gap:10px}
+.eyebrow::before,.eyebrow::after{content:"";height:1px;flex:0 0 26px;background:var(--champ);opacity:.6}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:46px;line-height:1.02;margin:16px 0 14px;letter-spacing:-.005em}
+.hero h1 em{color:var(--champ);font-style:italic}
+.hero p.lead{color:#d5d2ca;font-size:16.5px;font-weight:300;max-width:30em}
+.hero-art{margin:22px auto 0;width:100%;max-width:400px}
+.cta-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:22px}
+.btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-decoration:none;font:500 13px/1.1 var(--sans);letter-spacing:.04em;padding:12px 6px;border-radius:2px;border:1px solid var(--champ);color:var(--champ2);background:transparent;cursor:pointer;text-align:center}
+.btn svg{width:20px;height:20px}
+.btn.gold{background:linear-gradient(180deg,#e6d09b,#c9ab6c);color:var(--navy);border-color:#e6d09b}
+.btn.wa{background:#1f3b34;border-color:#4b8c74;color:#dff3e9}
+.rating-line{display:flex;align-items:center;gap:10px;justify-content:center;margin:20px 0 0;padding:14px 0 26px;font-size:13.5px;color:#cfcabd;border-top:1px solid rgba(214,189,134,.18)}
+.stars{color:var(--champ);letter-spacing:2px;font-size:15px}
+
+/* Section basics */
+section{padding:56px 0}
+.kicker{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--bord2);font-weight:500}
+h2{font-family:var(--serif);font-weight:600;font-size:36px;line-height:1.05;margin:8px 0 12px;color:var(--navy)}
+h2 em{font-style:italic;color:var(--bord2)}
+.intro{color:var(--muted);font-size:15.5px}
+.ornament{display:flex;align-items:center;gap:10px;color:var(--champ3);margin:16px 0 26px}
+.ornament::before,.ornament::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--champ3),transparent)}
+
+/* Door hangers */
+.hangers{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px;margin-top:8px}
+.hanger{perspective:900px;height:300px;cursor:pointer;background:none;border:0;padding:0;font:inherit;text-align:left;-webkit-tap-highlight-color:transparent}
+.hanger .card{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.75,.25,1);transform-style:preserve-3d;transform-origin:50% 28px}
+.hanger.flipped .card{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px 16px 6px 6px;padding:74px 14px 14px;display:flex;flex-direction:column;box-shadow:0 10px 22px -12px rgba(16,26,51,.55),0 2px 0 rgba(0,0,0,.05);overflow:hidden}
+/* hole + slit of door hanger */
+.face::before{content:"";position:absolute;top:16px;left:50%;width:38px;height:38px;margin-left:-19px;border-radius:50%;background:var(--ivory);box-shadow:inset 0 2px 4px rgba(0,0,0,.35)}
+.face::after{content:"";position:absolute;top:34px;left:50%;width:2px;height:28px;margin-left:-1px;background:var(--ivory);opacity:.9}
+.face.front{background:var(--navy);color:var(--ivory);border:1px solid #2b3a62}
+.face.front .frame{position:absolute;inset:8px;border:1px solid rgba(214,189,134,.45);border-radius:11px 11px 3px 3px;pointer-events:none}
+.hanger:nth-child(4n+2) .face.front,.hanger:nth-child(4n+3) .face.front{background:var(--bord);border-color:#7a2a3c}
+.face .please{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--champ);text-align:center}
+.face .ico{width:46px;height:46px;margin:12px auto 10px;color:var(--champ)}
+.face h3{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.05;text-align:center}
+.face .tap{margin-top:auto;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#b9b2a0;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.face.back{transform:rotateY(180deg);background:var(--paper);color:var(--ink);border:1px solid #e4d8bd}
+.face.back::before{background:var(--ivory)}
+.face.back .please{color:var(--bord2)}
+.face.back h3{font-size:20px;color:var(--navy);margin:8px 0 8px}
+.face.back p{font-size:13.2px;line-height:1.45;color:#45434d}
+.face.back .price{margin-top:auto;font-family:var(--serif);font-style:italic;font-size:16px;color:var(--bord2);text-align:center;border-top:1px dashed #d9c9a3;padding-top:8px}
+.hint{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted);margin:0 0 18px}
+.hint svg{flex:0 0 auto}
+
+/* Etagenverzeichnis */
+.directory-sec{background:var(--navy);color:var(--ivory)}
+.directory-sec h2{color:var(--ivory)}
+.directory-sec h2 em{color:var(--champ)}
+.directory-sec .kicker{color:var(--champ)}
+.directory-sec .intro{color:#c7c3b8}
+.board{margin-top:24px;background:linear-gradient(180deg,#0b1226,#131e3b);border:1px solid #39456a;border-radius:4px;padding:18px 16px;box-shadow:inset 0 0 0 6px #0d1530,inset 0 0 0 7px rgba(214,189,134,.35)}
+.board-h{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--champ);padding:4px 4px 12px;border-bottom:1px solid rgba(214,189,134,.3)}
+.floor{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;padding:13px 4px;border-bottom:1px dotted rgba(214,189,134,.25)}
+.floor:last-child{border-bottom:0}
+.floor .no{font-family:var(--serif);font-size:26px;color:var(--champ);text-align:center;border:1px solid rgba(214,189,134,.45);border-radius:50%;width:40px;height:40px;line-height:38px}
+.floor .t{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.1}
+.floor .d{font-size:12.5px;color:#a9a7a8}
+.floor .arrow{color:var(--champ);font-size:18px}
+
+/* Service-Karte */
+.order{background:var(--paper);border:1px solid #e2d4b4;padding:22px 18px 20px;margin-top:22px;position:relative;box-shadow:0 20px 40px -28px rgba(16,26,51,.6)}
+.order::before{content:"";position:absolute;inset:6px;border:1px solid #eadfc4;pointer-events:none}
+.order-head{text-align:center;padding-bottom:14px;border-bottom:2px double var(--champ3);margin-bottom:10px}
+.order-head .t{font-family:var(--display);font-size:30px;font-weight:400;color:var(--navy);letter-spacing:.04em}
+.order-head .s{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.ogroup{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--bord2);margin:16px 0 4px;font-weight:600}
+.oitem{display:flex;align-items:baseline;gap:10px;padding:7px 0;cursor:pointer;position:relative}
+.oitem input{position:absolute;opacity:0;pointer-events:none}
+.oitem .box{flex:0 0 20px;height:20px;border:1.5px solid var(--navy);border-radius:2px;position:relative;top:4px;background:#fff;transition:background .2s}
+.oitem .box::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid var(--champ2);border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform .2s}
+.oitem input:checked + .box{background:var(--navy)}
+.oitem input:checked + .box::after{transform:rotate(45deg) scale(1)}
+.oitem input:focus-visible + .box{outline:2px solid var(--bord2);outline-offset:2px}
+.oitem .lbl{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:62%}
+.oitem .dots{flex:1;border-bottom:1.5px dotted #c8b88f;transform:translateY(-4px);min-width:10px}
+.oitem .pr{font-size:11.5px;color:var(--muted);font-style:italic;white-space:nowrap}
+.fields{display:grid;gap:10px;margin-top:18px}
+.fields label{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.fields input,.fields textarea{width:100%;font:400 16px var(--sans);border:0;border-bottom:1px solid #bfae86;background:transparent;padding:6px 2px;color:var(--ink);outline:none;border-radius:0}
+.fields textarea{resize:vertical;min-height:44px}
+.fields input:focus,.fields textarea:focus{border-bottom-color:var(--navy)}
+.ticket{margin-top:20px;background:var(--navy);color:#e9e4d6;padding:16px 16px 14px;border-radius:2px;position:relative}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:var(--paper);margin-top:-8px}
+.ticket::before{left:-8px}.ticket::after{right:-8px}
+.ticket .lab{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--champ);display:flex;justify-content:space-between}
+.ticket pre{white-space:pre-wrap;word-break:break-word;font:400 13.5px/1.5 var(--sans);margin-top:8px;min-height:110px}
+.count{font-family:var(--serif);color:var(--champ);font-size:15px;letter-spacing:0;text-transform:none;font-style:italic}
+.send{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.send .btn{flex-direction:row;padding:14px 8px;font-size:14px}
+.send .btn.mail{background:var(--bord);border-color:var(--bord);color:#fbeff0}
+
+/* Hosts */
+.hosts{display:grid;gap:14px;margin-top:22px}
+.host{display:flex;gap:16px;align-items:center;background:var(--paper);border:1px solid #e7dcc3;padding:16px}
+.mono{flex:0 0 64px;height:64px;border-radius:50%;background:var(--navy);display:grid;place-items:center;font-family:var(--serif);font-size:24px;color:var(--champ);border:3px double var(--champ3)}
+.host .n{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--navy);line-height:1.1}
+.host .r{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--bord2)}
+
+/* Reviews */
+.reviews{background:linear-gradient(180deg,#efe6d2,#f8f3e8)}
+.rv-card{background:var(--paper);border:1px solid #e2d4b4;padding:22px 18px;text-align:center;margin-top:20px}
+.rv-big{font-family:var(--serif);font-size:64px;line-height:1;color:var(--navy);font-weight:600}
+.rv-card .stars{font-size:22px;margin:4px 0}
+.ph{display:block;border:1.5px dashed #b49a64;background:repeating-linear-gradient(45deg,rgba(214,189,134,.10) 0 10px,transparent 10px 20px);color:#6d5a2e;padding:14px;font-size:13.5px;text-align:center;border-radius:2px;margin-top:14px;font-weight:500}
+
+/* Contact */
+.contact-card{background:var(--navy);color:var(--ivory);padding:24px 20px;margin-top:22px;position:relative;overflow:hidden}
+.contact-card .row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid rgba(214,189,134,.18);align-items:flex-start}
+.contact-card .row:last-of-type{border-bottom:0}
+.contact-card .row svg{flex:0 0 22px;color:var(--champ);margin-top:2px}
+.contact-card .k{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--champ)}
+.contact-card .v{font-size:16px}
+.contact-card .v a{text-decoration:none;border-bottom:1px solid rgba(214,189,134,.5)}
+.contact-card .ph{color:#e8d7ab;border-color:#8f7a49;background:rgba(214,189,134,.06);text-align:left;margin-top:6px}
+.map-art{margin-top:14px;border:1px solid rgba(214,189,134,.3)}
+
+/* Impressum & footer */
+.legal{padding:40px 0}
+.legal h3{font-family:var(--serif);font-size:26px;color:var(--navy)}
+footer{background:#0b1226;color:#a9a49a;font-size:13px;text-align:center;padding:28px 0 100px}
+footer .cr{width:28px;margin:0 auto 10px;color:var(--champ)}
+
+/* Sticky action bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(16,26,51,.96);backdrop-filter:blur(6px);display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(214,189,134,.4)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--champ2);text-decoration:none;font-size:13.5px;padding:13px 4px calc(13px + env(safe-area-inset-bottom))}
+.bar a+a{border-left:1px solid rgba(214,189,134,.2)}
+.bar svg{width:18px;height:18px}
+
+@media (min-width:700px){.hero h1{font-size:58px}}
+@media (prefers-reduced-motion:reduce){.hanger .card{transition:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="crown" viewBox="0 0 32 24"><path d="M3 19 1.5 6.5l7 5.5L16 2l7.5 10 7-5.5L29 19Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 22h25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="2.2" r="1.6" fill="currentColor"/><circle cx="1.6" cy="6.4" r="1.3" fill="currentColor"/><circle cx="30.4" cy="6.4" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4-1.9 1.3a11 11 0 0 0 6.5 6.5l1.3-1.9 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-3.7A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8.5c0 3 2.6 6 5.6 6.3l1.1-1.4-1.8-.9-.8.8c-1-.4-2-1.4-2.4-2.4l.8-.8-.9-1.8z" fill="currentColor"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m3.5 6.5 8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-turn" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M18.5 3v4h-4M5.5 21v-4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <!-- service icons -->
+    <symbol id="s-home" viewBox="0 0 48 48"><path d="M8 22 24 9l16 13v17H8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M20 39V28h8v11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M36 6l1 2.4L39.4 9 37 10l-1 2.4L35 10l-2.4-1L35 8.4Z" fill="currentColor"/></symbol>
+    <symbol id="s-box" viewBox="0 0 48 48"><path d="M8 17 24 10l16 7v17l-16 7-16-7Z M8 17l16 7 16-7M24 24v17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 13.5 32 20.5" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="s-crane" viewBox="0 0 48 48"><path d="M14 42V8M10 42h12M14 8h26M14 14l6-6M40 8v10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="35" y="18" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 20l6-6M14 27l6-6M14 34l6-6" stroke="currentColor" stroke-width="1.2"/></symbol>
+    <symbol id="s-window" viewBox="0 0 48 48"><rect x="10" y="7" width="28" height="34" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M24 7v34M10 24h28" stroke="currentColor" stroke-width="1.8"/><path d="M14 19l6-7M28 36l6-7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+    <symbol id="s-rug" viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M24 16l8 8-8 8-8-8Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13 38v5M18 38v5M23 38v5M28 38v5M33 38v5M13 5v5M18 5v5M23 5v5M28 5v5M33 5v5" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="s-bath" viewBox="0 0 48 48"><path d="M6 24h36v4a10 10 0 0 1-10 10H16A10 10 0 0 1 6 28Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 24V11a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15 38l-2 4M33 38l2 4" stroke="currentColor" stroke-width="1.8"/><circle cx="27" cy="14" r="2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="33" cy="18" r="1.5" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="s-stone" viewBox="0 0 48 48"><path d="M6 32 24 22l18 10-18 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 31c4-1 6 2 10 1M22 37c3-2 7-1 10-3" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M24 6l1.6 4 4 1.6-4 1.6L24 17l-1.6-3.8-4-1.6 4-1.6Z" fill="currentColor"/></symbol>
+    <symbol id="s-shield" viewBox="0 0 48 48"><path d="M24 6 39 11v11c0 9-6.5 16-15 20-8.5-4-15-11-15-20V11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 26h18M15 31h18M17 21h14" stroke="currentColor" stroke-width="1.3"/></symbol>
+  </defs>
+</svg>
+
+<div class="draft"><b>ENTWURF</b> / Demo von Max Rathsack – keine offizielle Webseite von AB Royal Bajramovic Reinigung</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <span class="seal"><svg width="24" height="18" style="color:var(--champ)"><use href="#crown"/></svg></span>
+      <span><span class="name">AB ROYAL</span><span class="sub" style="display:block">Bajramovic Reinigung</span></span>
+    </a>
+    <a class="tel" href="tel:+41782221022">078 222 10 22</a>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="eyebrow">Reinigung · Thun</div>
+    <h1>Ihr Zuhause,<br>behandelt wie eine <em>Suite.</em></h1>
+    <p class="lead">AB Royal reinigt Wohnungen, Praxen, Büros und Ladenlokale in Thun und Umgebung – vom regelmässigen Unterhalt bis zur Umzugsreinigung. Sagen Sie uns einfach, was Sie wünschen.</p>
+
+    <!-- Hero illustration: reception bell, key & door hanger -->
+    <svg class="hero-art" viewBox="0 0 400 270" role="img" aria-label="Illustration: Concierge-Glocke, Zimmerschlüssel und Türanhänger">
+      <defs>
+        <linearGradient id="g-gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f6e7bf"/><stop offset=".45" stop-color="#d6bd86"/><stop offset="1" stop-color="#8f7340"/></linearGradient>
+        <linearGradient id="g-dome" x1="0" x2="1"><stop offset="0" stop-color="#8f7340"/><stop offset=".3" stop-color="#f7ebc8"/><stop offset=".55" stop-color="#d6bd86"/><stop offset="1" stop-color="#6f5830"/></linearGradient>
+        <linearGradient id="g-desk" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5e1a2a"/><stop offset="1" stop-color="#3a0f1a"/></linearGradient>
+        <radialGradient id="g-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d6bd86" stop-opacity=".35"/><stop offset="1" stop-color="#d6bd86" stop-opacity="0"/></radialGradient>
+      </defs>
+      <ellipse cx="200" cy="150" rx="190" ry="110" fill="url(#g-glow)"/>
+      <!-- arch / door frame -->
+      <path d="M262 236V70a52 52 0 0 1 104 0v166" fill="none" stroke="#d6bd86" stroke-opacity=".5" stroke-width="1.5"/>
+      <path d="M272 236V74a42 42 0 0 1 84 0v162" fill="#1a2748" stroke="#d6bd86" stroke-opacity=".3"/>
+      <circle cx="342" cy="160" r="4" fill="url(#g-gold)"/>
+      <!-- door hanger on handle -->
+      <g transform="translate(322 150) rotate(-6)">
+        <path d="M0 0h40a6 6 0 0 1 6 6v84a4 4 0 0 1-4 4H-2a4 4 0 0 1-4-4V6a6 6 0 0 1 6-6Z" fill="#f8f3e8" transform="translate(-20 8)"/>
+        <circle cx="20" cy="22" r="9" fill="#1a2748" transform="translate(-20 0)"/>
+        <text x="0" y="56" text-anchor="middle" font-family="Crimson Pro,Georgia,serif" font-size="8" font-weight="700" fill="#5e1a2a" letter-spacing=".5">BITTE</text>
+        <text x="0" y="67" text-anchor="middle" font-family="Crimson Pro,Georgia,serif" font-size="7" font-weight="700" fill="#5e1a2a" letter-spacing=".3">REINIGEN</text>
+        <path d="M-12 76h24" stroke="#d6bd86"/>
+        <g transform="translate(-7 80) scale(.45)" color="#a88b52"><use href="#crown" width="32" height="24"/></g>
+      </g>
+      <!-- desk -->
+      <rect x="0" y="232" width="400" height="38" fill="url(#g-desk)"/>
+      <rect x="0" y="228" width="400" height="6" fill="#d6bd86" opacity=".85"/>
+      <!-- bell -->
+      <ellipse cx="140" cy="226" rx="78" ry="9" fill="#000" opacity=".25"/>
+      <path d="M68 222h144l-6-12H74Z" fill="url(#g-gold)"/>
+      <path d="M78 210a62 62 0 0 1 124 0Z" fill="url(#g-dome)"/>
+      <path d="M100 196a44 44 0 0 1 22-30" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="4" stroke-linecap="round"/>
+      <rect x="135" y="140" width="10" height="10" fill="#a88b52"/>
+      <ellipse cx="140" cy="140" rx="13" ry="4" fill="url(#g-gold)"/>
+      <!-- ring lines -->
+      <g stroke="#d6bd86" stroke-width="2" stroke-linecap="round" opacity=".8"><path d="M140 118v-14M114 124l-8-10M166 124l8-10"/></g>
+      <!-- key with tag -->
+      <g transform="translate(216 186) rotate(12)">
+        <circle cx="0" cy="0" r="11" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
+        <path d="M11 0h34M36 0v7M42 0v5" stroke="url(#g-gold)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M-6 -8c-14 -10 -26 -6 -30 2" fill="none" stroke="#d6bd86" stroke-width="1.2"/>
+        <g transform="translate(-58 -6) rotate(-20)">
+          <path d="M0 6 10 0h34v24H10L0 18Z" fill="#5e1a2a" stroke="#d6bd86" stroke-width="1"/>
+          <text x="27" y="16" text-anchor="middle" font-family="Crimson Pro,Georgia,serif" font-size="11" font-weight="700" fill="#ecdcb3">15A</text>
+        </g>
+      </g>
+      <!-- sparkles -->
+      <g fill="#ecdcb3"><path d="M40 70l2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/><path d="M226 54l1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5Z" opacity=".8"/><path d="M60 150l1.2 3.5 3.5 1.2-3.5 1.2-1.2 3.5-1.2-3.5-3.5-1.2 3.5-1.2Z" opacity=".6"/></g>
+    </svg>
+  </div>
+  <div style="background:var(--navy)">
+    <div class="wrap">
+      <div class="cta-row">
+        <a class="btn gold" href="tel:+41782221022"><svg><use href="#i-phone"/></svg>Anrufen</a>
+        <a class="btn wa" href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="btn" href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail</a>
+      </div>
+      <div class="rating-line"><span class="stars">★★★★★</span><span><b style="color:#fff">5.0</b> · 2 Bewertungen auf local.ch</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Door hangers -->
+<section id="leistungen">
+  <div class="wrap">
+    <div class="kicker">Unsere Leistungen</div>
+    <h2>Hängen Sie einfach <em>das Schild</em> an die Tür.</h2>
+    <p class="intro">Wie im Hotel: Ein Schild genügt, und wir kümmern uns um den Rest. Alle Preise auf Anfrage.</p>
+    <div class="ornament"><svg width="26" height="20"><use href="#crown"/></svg></div>
+    <p class="hint"><svg width="20" height="20" style="color:var(--bord2)"><use href="#i-turn"/></svg>Tippen Sie auf ein Schild, um es umzudrehen.</p>
+
+    <div class="hangers">
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte reinigen</div><svg class="ico"><use href="#s-home"/></svg><h3>Unterhalts&shy;reinigung</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Unterhaltsreinigung</div><h3>Regelmässig gepflegt</h3><p>Für Wohnungen, Büros und Geschäftsräume – wiederkehrend, im Rhythmus, den Sie bestimmen.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte reinigen</div><svg class="ico"><use href="#s-box"/></svg><h3>Umzugs&shy;reinigung</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Umzugsreinigung</div><h3>Zum Pauschalpreis</h3><p>Damit Ihre alte Wohnung bereit für die Übergabe ist. Den Pauschalbetrag nennen wir Ihnen gerne persönlich.</p><div class="price">Pauschal · auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte reinigen</div><svg class="ico"><use href="#s-crane"/></svg><h3>Bau&shy;reinigung</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Baureinigung</div><h3>Nach dem Handwerk</h3><p>Staub, Rückstände und Spuren nach Umbau oder Neubau – damit die Räume bezugsbereit werden.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte reinigen</div><svg class="ico"><use href="#s-window"/></svg><h3>Fenster&shy;reinigung</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Fensterreinigung</div><h3>Klare Sicht</h3><p>Fenster und Glasflächen in Wohnung, Praxis oder Laden – für mehr Licht im Raum.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte reinigen</div><svg class="ico"><use href="#s-rug"/></svg><h3>Teppich&shy;reinigung</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Teppichreinigung</div><h3>Fasern wie neu</h3><p>Reinigung von Teppichen und textilen Bodenbelägen in Wohn- und Geschäftsräumen.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte reinigen</div><svg class="ico"><use href="#s-bath"/></svg><h3>Sanitär &amp; Entkalken</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Sanitär</div><h3>Reinigen &amp; entkalken</h3><p>Bad, Dusche, WC und Armaturen – gründlich gereinigt und vom Kalk befreit.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte pflegen</div><svg class="ico"><use href="#s-stone"/></svg><h3>Marmor &amp; Granit</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Steinböden</div><h3>Schleifen · Polieren · Versiegeln</h3><p>Aufbereitung von Steinböden aus Marmor und Granit in drei Schritten.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+      <button class="hanger" type="button" aria-pressed="false">
+        <div class="card">
+          <div class="face front"><span class="frame"></span><div class="please">Bitte schützen</div><svg class="ico"><use href="#s-shield"/></svg><h3>Bodenschutz</h3><div class="tap"><svg width="12" height="12"><use href="#i-turn"/></svg>Details</div></div>
+          <div class="face back"><div class="please">Bodenschutz-Behandlung</div><h3>Für viele Beläge</h3><p>Schutzbehandlung für Platten, Holz, PVC und Linoleum.</p><div class="price">Preis auf Anfrage</div></div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Etagenverzeichnis -->
+<section class="directory-sec" id="gewerbe">
+  <div class="wrap">
+    <div class="kicker">Für Gewerbe &amp; Liegenschaften</div>
+    <h2>Das <em>Etagen&shy;verzeichnis</em> unserer Objekte.</h2>
+    <p class="intro">Auch für Geschäftsräume sind wir Ihr Concierge – wir reinigen und betreuen diese Bereiche:</p>
+    <div class="board" role="list">
+      <div class="board-h"><span>Verzeichnis</span><svg width="22" height="16"><use href="#crown"/></svg><span>AB Royal</span></div>
+      <div class="floor" role="listitem"><div class="no">1</div><div><div class="t">Arztpraxen</div><div class="d">Wartezimmer, Behandlungs&shy;räume, Empfang</div></div><div class="arrow">›</div></div>
+      <div class="floor" role="listitem"><div class="no">2</div><div><div class="t">Büroräume</div><div class="d">Arbeitsplätze, Sitzungszimmer, Küche</div></div><div class="arrow">›</div></div>
+      <div class="floor" role="listitem"><div class="no">3</div><div><div class="t">Ladenlokale</div><div class="d">Verkaufsfläche, Schaufenster</div></div><div class="arrow">›</div></div>
+      <div class="floor" role="listitem"><div class="no">4</div><div><div class="t">Eingangsbereiche</div><div class="d">Der erste Eindruck Ihres Hauses</div></div><div class="arrow">›</div></div>
+      <div class="floor" role="listitem"><div class="no">5</div><div><div class="t">Aufenthaltsräume</div><div class="d">Pausen- und Gemeinschafts&shy;räume</div></div><div class="arrow">›</div></div>
+      <div class="floor" role="listitem"><div class="no">6</div><div><div class="t">Objektbetreuung</div><div class="d">Gebäude- und Objektbetreuung</div></div><div class="arrow">›</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Service-Karte -->
+<section id="karte">
+  <div class="wrap">
+    <div class="kicker">Room-Service</div>
+    <h2>Ihre <em>Service-Karte</em></h2>
+    <p class="intro">Kreuzen Sie an, was Sie wünschen – Ihre Anfrage wird direkt unten vorformuliert und kann per WhatsApp oder E-Mail gesendet werden.</p>
+
+    <form class="order" id="order" onsubmit="return false">
+      <div class="order-head">
+        <svg width="30" height="22" style="margin:0 auto 6px;color:var(--champ3)"><use href="#crown"/></svg>
+        <div class="t">Service-Karte</div>
+        <div class="s">Bitte ankreuzen · Preise auf Anfrage</div>
+      </div>
+
+      <div class="ogroup">Wohnen</div>
+      <label class="oitem"><input type="checkbox" value="Unterhaltsreinigung"><span class="box"></span><span class="lbl">Unterhaltsreinigung</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Umzugsreinigung (Pauschalpreis)"><span class="box"></span><span class="lbl">Umzugsreinigung</span><span class="dots"></span><span class="pr">pauschal</span></label>
+      <label class="oitem"><input type="checkbox" value="Fensterreinigung"><span class="box"></span><span class="lbl">Fensterreinigung</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Teppichreinigung"><span class="box"></span><span class="lbl">Teppichreinigung</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Sanitär reinigen &amp; entkalken"><span class="box"></span><span class="lbl">Sanitär &amp; Entkalken</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Baureinigung"><span class="box"></span><span class="lbl">Baureinigung</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+
+      <div class="ogroup">Böden</div>
+      <label class="oitem"><input type="checkbox" value="Steinboden (Marmor/Granit) schleifen, polieren, versiegeln"><span class="box"></span><span class="lbl">Marmor &amp; Granit</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Bodenschutz-Behandlung (Platten, Holz, PVC, Linoleum)"><span class="box"></span><span class="lbl">Bodenschutz</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+
+      <div class="ogroup">Gewerbe</div>
+      <label class="oitem"><input type="checkbox" value="Reinigung Arztpraxis"><span class="box"></span><span class="lbl">Arztpraxis</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Reinigung Büroräume"><span class="box"></span><span class="lbl">Büroräume</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Reinigung Ladenlokal"><span class="box"></span><span class="lbl">Ladenlokal</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+      <label class="oitem"><input type="checkbox" value="Gebäude- und Objektbetreuung"><span class="box"></span><span class="lbl">Objektbetreuung</span><span class="dots"></span><span class="pr">auf Anfrage</span></label>
+
+      <div class="fields">
+        <div><label for="f-name">Ihr Name</label><input id="f-name" autocomplete="name" placeholder="z. B. Anna Muster"></div>
+        <div><label for="f-ort">Objekt &amp; Ort</label><input id="f-ort" placeholder="z. B. 3½-Zimmer-Wohnung, Thun"></div>
+        <div><label for="f-date">Wunschtermin</label><input id="f-date" placeholder="z. B. Ende Monat"></div>
+      </div>
+
+      <div class="ticket" aria-live="polite">
+        <div class="lab"><span>Ihre Anfrage · Vorschau</span><span class="count" id="count">0 gewählt</span></div>
+        <pre id="preview"></pre>
+      </div>
+      <div class="send">
+        <a class="btn wa" id="send-wa" href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>Per WhatsApp</a>
+        <a class="btn mail" id="send-mail" href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>Per E-Mail</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Hosts -->
+<section style="padding-top:10px">
+  <div class="wrap">
+    <div class="kicker">Ihre Gastgeber</div>
+    <h2>Persönlich <em>für Sie da.</em></h2>
+    <div class="hosts">
+      <div class="host"><div class="mono">AB</div><div><div class="r">Inhaber</div><div class="n">Adnan Bajramović</div></div></div>
+      <div class="host"><div class="mono">AB</div><div><div class="r">Key Account Management</div><div class="n">Alma Bajramović</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="kicker">Gästebuch</div>
+    <h2>Was Kunden <em>sagen</em></h2>
+    <div class="rv-card">
+      <div class="rv-big">5.0</div>
+      <div class="stars">★★★★★</div>
+      <div style="font-size:14px;color:var(--muted)">2 Bewertungen auf local.ch</div>
+      <span class="ph">[Platzhalter: Ihre Google-Bewertungen]</span>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="kicker">Rezeption</div>
+    <h2>So erreichen <em>Sie uns</em></h2>
+    <div class="contact-card">
+      <div class="row"><svg width="22" height="22"><use href="#i-pin"/></svg><div><div class="k">Adresse</div><div class="v">AB Royal Bajramovic Reinigung<br>Jungfraustrasse 15A<br>3600 Thun</div><div class="v" style="margin-top:6px;font-size:14px"><a href="https://www.google.com/maps/search/?api=1&query=Jungfraustrasse+15A+3600+Thun" target="_blank" rel="noopener">In Google Maps öffnen ›</a></div></div></div>
+      <div class="row"><svg width="22" height="22"><use href="#i-phone"/></svg><div><div class="k">Telefon &amp; WhatsApp</div><div class="v"><a href="tel:+41782221022">078 222 10 22</a></div></div></div>
+      <div class="row"><svg width="22" height="22"><use href="#i-mail"/></svg><div><div class="k">E-Mail</div><div class="v"><a href="mailto:info@ab-royal.ch">info@ab-royal.ch</a></div></div></div>
+      <div class="row"><svg width="22" height="22"><use href="#i-clock"/></svg><div style="flex:1"><div class="k">Öffnungszeiten</div><span class="ph">[Platzhalter: Öffnungszeiten]</span></div></div>
+      <svg class="map-art" viewBox="0 0 360 150" role="img" aria-label="Schematische Lageskizze Thun">
+        <rect width="360" height="150" fill="#0d1530"/>
+        <g stroke="#24345c" stroke-width="1"><path d="M0 30h360M0 60h360M0 90h360M0 120h360M45 0v150M90 0v150M135 0v150M180 0v150M225 0v150M270 0v150M315 0v150"/></g>
+        <path d="M230 150c10-30 40-44 70-50s50-10 60-24v74Z" fill="#1d3a5c"/>
+        <text x="320" y="138" fill="#5f7fa8" font-size="9" font-family="Work Sans,sans-serif" text-anchor="middle" letter-spacing="2">THUNERSEE</text>
+        <path d="M-5 40C60 50 120 70 160 92s70 34 90 40" fill="none" stroke="#2a527c" stroke-width="7" stroke-linecap="round"/>
+        <text x="80" y="50" fill="#5f7fa8" font-size="9" font-family="Work Sans,sans-serif" letter-spacing="2" transform="rotate(12 80 50)">AARE</text>
+        <path d="M150 0 168 150M40 150 330 10" stroke="#3a4b76" stroke-width="2"/>
+        <circle cx="160" cy="70" r="22" fill="#d6bd86" opacity=".12"/>
+        <path d="M160 72s-12-11-12-20a12 12 0 0 1 24 0c0 9-12 20-12 20Z" fill="#d6bd86"/>
+        <circle cx="160" cy="52" r="4.5" fill="#0d1530"/>
+        <text x="182" y="58" fill="#ecdcb3" font-size="12" font-family="Crimson Pro,Georgia,serif" font-weight="700">Jungfraustrasse 15A</text>
+        <text x="8" y="142" fill="#5f7fa8" font-size="8" font-family="Work Sans,sans-serif" letter-spacing="1">SCHEMATISCH · NICHT MASSSTÄBLICH</text>
+      </svg>
+      <div class="cta-row" style="margin-top:16px">
+        <a class="btn gold" href="tel:+41782221022"><svg><use href="#i-phone"/></svg>Anrufen</a>
+        <a class="btn wa" href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="btn" href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="legal" id="impressum">
+  <div class="wrap">
+    <h3>Impressum &amp; Datenschutz</h3>
+    <span class="ph" style="text-align:left">[Platzhalter: Impressum &amp; Datenschutz]</span>
+  </div>
+</section>
+
+<footer>
+  <svg class="cr" width="28" height="21"><use href="#crown"/></svg>
+  <div style="font-family:var(--display);font-size:22px;color:var(--champ2);letter-spacing:.12em">AB ROYAL</div>
+  <div>Bajramovic Reinigung · Jungfraustrasse 15A · 3600 Thun</div>
+  <div style="margin-top:14px;font-size:12px;opacity:.8">Demo-Entwurf von Max Rathsack</div>
+</footer>
+
+<nav class="bar" aria-label="Schnellkontakt">
+  <a href="tel:+41782221022"><svg><use href="#i-phone"/></svg>Anrufen</a>
+  <a href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+  <a href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail</a>
+</nav>
+
+<script>
+// Door hangers flip
+document.querySelectorAll('.hanger').forEach(h=>{
+  h.addEventListener('click',()=>{
+    const f=h.classList.toggle('flipped');
+    h.setAttribute('aria-pressed',f);
+  });
+});
+
+// Service-Karte -> request text
+const form=document.getElementById('order');
+const pv=document.getElementById('preview');
+const cnt=document.getElementById('count');
+const wa=document.getElementById('send-wa');
+const ml=document.getElementById('send-mail');
+function build(){
+  const picks=[...form.querySelectorAll('input[type=checkbox]:checked')].map(i=>i.value);
+  const name=document.getElementById('f-name').value.trim();
+  const ort=document.getElementById('f-ort').value.trim();
+  const date=document.getElementById('f-date').value.trim();
+  let t='Guten Tag AB Royal\n\n';
+  if(picks.length){
+    t+='Ich interessiere mich für folgende Leistungen:\n'+picks.map(p=>'• '+p).join('\n')+'\n';
+  }else{
+    t+='(Bitte oben Leistungen ankreuzen …)\n';
+  }
+  if(ort) t+='\nObjekt / Ort: '+ort;
+  if(date) t+='\nWunschtermin: '+date;
+  t+='\n\nKönnen Sie mir eine Offerte senden?\n\nFreundliche Grüsse'+(name?'\n'+name:'');
+  pv.textContent=t;
+  cnt.textContent=picks.length+' gewählt';
+  wa.href='https://wa.me/41782221022?text='+encodeURIComponent(t);
+  ml.href='mailto:info@ab-royal.ch?subject='+encodeURIComponent('Anfrage über die Service-Karte')+'&body='+encodeURIComponent(t);
+}
+form.addEventListener('input',build);
+form.addEventListener('change',build);
+build();
+</script>
+</body>
+</html>

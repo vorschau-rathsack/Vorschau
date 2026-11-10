@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Stil 3 (dunkel & edel) – Mae Lek</title>
+<style>
+  :root{--bg:#0f0d0b;--panel:#1a1714;--ink:#f3ece1;--muted:#a99c8b;--gold:#c9a45c;--line:#2c2620}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;padding-bottom:80px}
+  @media(min-width:820px){body{padding-bottom:0}}
+  a{color:inherit}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  .demo{background:var(--gold);color:#111;font-size:12px;text-align:center;padding:6px 12px;font-weight:600}
+  /* Platzhalter-Bilder: einfach durch <img src="foto.jpg"> ersetzen */
+  .img{position:relative;overflow:hidden;display:grid;place-items:center;background:var(--g,radial-gradient(circle at 30% 30%,#5a3a22,#1a1210))}
+  .img span{font-size:clamp(56px,12vw,120px);opacity:.9}
+  .img em{position:absolute;right:12px;bottom:12px;font-style:normal;font-size:11px;letter-spacing:.06em;color:var(--gold);border:1px solid var(--gold);padding:3px 8px;border-radius:2px;background:rgba(0,0,0,.4)}
+  .img img{width:100%;height:100%;object-fit:cover}
+  nav{position:absolute;top:28px;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:auto;padding:0 20px}
+  .logo{font-family:Georgia,serif;font-size:26px;letter-spacing:.06em}
+  .logo b{color:var(--gold);font-weight:400}
+  nav a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);padding:9px 14px;color:var(--gold)}
+  .hero{position:relative;min-height:88vh;display:flex;align-items:flex-end}
+  .hero .img{position:absolute;inset:0}
+  .slide{opacity:0;transition:opacity 1.6s ease;transform:scale(1.08)}
+  .slide.on{opacity:1;animation:kb 7s ease-out forwards}
+  @keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
+  .dots{position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:4;display:flex;flex-direction:column;gap:8px}
+  .dots i{width:8px;height:8px;border-radius:50%;border:1px solid var(--gold);display:block;cursor:pointer}
+  .dots i.on{background:var(--gold)}
+  .hero .img span{font-size:clamp(120px,28vw,260px);opacity:.55}
+  .hero .shade{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 8%,rgba(15,13,11,.2) 60%,rgba(15,13,11,.6))}
+  .hero .in{position:relative;z-index:3;max-width:1100px;margin:auto;width:100%;padding:0 20px 60px}
+  .kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(46px,9vw,96px);line-height:1;margin:14px 0}
+  h1 i{color:var(--gold)}
+  .hero p{color:var(--muted);max-width:40ch;font-size:18px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-block;padding:15px 26px;text-decoration:none;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border:0;cursor:pointer;font-family:inherit}
+  .btn.gold{background:var(--gold);color:#111}
+  .btn.ghost{border:1px solid var(--ink)}
+  .stars{margin-top:26px;font-size:14px;color:var(--muted)}
+  .stars b{color:var(--gold);letter-spacing:.1em}
+  section{max-width:1100px;margin:auto;padding:70px 20px}
+  h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(32px,5vw,50px);margin:10px 0 14px}
+  .lead{color:var(--muted);max-width:52ch}
+  .split{display:grid;gap:28px;align-items:center}
+  @media(min-width:820px){.split{grid-template-columns:1fr 1fr}}
+  .split .img{aspect-ratio:4/5}
+  .divider{height:1px;background:var(--line);max-width:1100px;margin:auto}
+  .menu{margin-top:30px;display:grid;gap:0}
+  @media(min-width:820px){.menu{grid-template-columns:1fr 1fr;column-gap:56px}}
+  .dish{padding:18px 0;border-bottom:1px solid var(--line)}
+  .dish b{font-family:Georgia,serif;font-weight:400;font-size:20px}
+  .dish p{color:var(--muted);font-size:15px}
+  .dish .v{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .strip .img{aspect-ratio:1/1}
+  .lunch{background:var(--panel);border:1px solid var(--line);padding:30px}
+  .lunch .row{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .lunch .row:last-of-type{border:0}
+  .lunch small{color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+  .big{font-family:Georgia,serif;font-size:42px;color:var(--gold)}
+  form{display:grid;gap:12px;margin-top:20px}
+  input,select{width:100%;font:inherit;padding:14px;background:transparent;border:1px solid var(--line);color:var(--ink)}
+  select option{color:#111}
+  .r2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .note{font-size:13px;color:var(--muted)}
+  .hours div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+  .off{color:#6b6157}
+  footer{border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);padding:30px 20px}
+  .fab{position:fixed;left:12px;right:12px;bottom:12px;display:flex;gap:8px;z-index:9}
+  .fab a{flex:1;text-align:center;padding:15px;text-decoration:none;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+  .fab .a{background:var(--gold);color:#111}.fab .b{background:var(--panel);border:1px solid var(--gold);color:var(--gold)}
+  @media(min-width:820px){.fab{display:none}}
+  .ok{display:none;margin-top:12px;border:1px solid var(--gold);padding:12px;color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf Stil 3 (dunkel & edel) von Max Rathsack · keine offizielle Seite · Bilder sind Platzhalter</div>
+
+<div class="hero">
+  <nav><div class="logo">Mae <b>Lek</b></div><a href="#reservieren">Reservieren</a></nav>
+  <div class="img slide on" style="--g:radial-gradient(circle at 70% 35%,#7a4a24 0,#2b1a10 45%,#0f0d0b 80%)"><span>🍜</span><em>FOTO 1: NUDELSUPPE</em></div>
+  <div class="img slide" style="--g:radial-gradient(circle at 30% 40%,#7a2a1a 0,#2a1210 45%,#0f0d0b 80%)"><span>🔥</span><em>FOTO 2: EKK AM WOK</em></div>
+  <div class="img slide" style="--g:radial-gradient(circle at 60% 30%,#5a5226 0,#1f1a10 45%,#0f0d0b 80%)"><span>🕯️</span><em>FOTO 3: GASTRAUM ABENDS</em></div>
+  <div class="img slide" style="--g:radial-gradient(circle at 40% 35%,#3e5a2c 0,#141a10 45%,#0f0d0b 80%)"><span>🍛</span><em>FOTO 4: GRÜNES CURRY</em></div>
+  <div class="dots" id="dots"></div>
+  <div class="shade"></div>
+  <div class="in">
+    <div class="kicker">Thai Restaurant · Steffisburg</div>
+    <h1>Gekocht wie bei <i>Mutter Lek.</i></h1>
+    <p>Hausgemacht, frisch und mit echten thailändischen Kräutern und Gewürzen. Ein kleines Familienrestaurant mit viel Herz.</p>
+    <div class="cta"><a class="btn gold" href="#reservieren">Tisch reservieren</a><a class="btn ghost" href="#karte">Speisekarte</a></div>
+    <div class="stars"><b>★★★★★</b> &nbsp;4.9 auf Google · über 500 Bewertungen</div>
+  </div>
+</div>
+
+<section>
+  <div class="split">
+    <div class="img" style="--g:radial-gradient(circle at 40% 40%,#6b4a2b,#1a1210)"><span>👩‍🍳</span><em>FOTO: EKK / KÜCHE</em></div>
+    <div>
+      <div class="kicker">Unsere Geschichte</div>
+      <h2>«Mae Lek» heisst «Mutter Lek».</h2>
+      <p class="lead">Bei uns wird jedes Gericht frisch für Sie zubereitet, genau so, wie Sie es mögen. Mild oder richtig scharf, mit Poulet, Rind, Tofu oder Jackfruit.</p>
+      <p class="lead" style="margin-top:14px">Samstag und Sonntag mittags gibt es original thailändische Nudelsuppe.</p>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="img" style="--g:radial-gradient(circle,#7a3a1e,#1a1210)"><span>🌶️</span><em>FOTO</em></div>
+  <div class="img" style="--g:radial-gradient(circle,#3e5a2c,#121510)"><span>🍲</span><em>FOTO</em></div>
+  <div class="img" style="--g:radial-gradient(circle,#6e5328,#1a1510)"><span>🥢</span><em>FOTO</em></div>
+</div>
+
+<section id="karte">
+  <div class="kicker">À la carte</div>
+  <h2>Speisekarte</h2>
+  <div class="menu">
+    <div class="dish"><b>Geng Kiew Wan Gai</b><p>Grünes Curry mit Pouletbrust</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Geng Deng Gai</b><p>Rotes Curry mit Pouletbrust</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Massaman Curry</b><p>Das klassische Massaman Curry</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Pad Thai Gung</b><p>Reisnudeln mit Crevetten, Ei und Erdnüssen</p></div>
+    <div class="dish"><b>Pad Kra Pao Gai</b><p>Pouletbrust mit Thai-Basilikum</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Pad Khing Gai</b><p>Pouletbrust mit Ingwer und Gemüse</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Nua Pad Naman Hoi</b><p>Rind mit Gemüse an Austernsauce</p></div>
+    <div class="dish"><b>Pad Med Mamuang</b><p>Poulet mit Cashewnüssen, süss-sauer</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Pad Si Yu Gai</b><p>Reisnudeln mit Poulet an süsser Sojasauce</p><span class="v">Vegan möglich</span></div>
+    <div class="dish"><b>Khao Pad Gai</b><p>Gebratener Reis mit Poulet und Gemüse</p><span class="v">Vegan möglich</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="mittag">
+  <div class="split">
+    <div class="lunch">
+      <div class="kicker">Mittags</div>
+      <h2 style="margin-bottom:6px">Mittagsmenü</h2>
+      <p class="note">Mit Jasminreis und Salat</p>
+      <div class="row"><small>Montag</small><span>Massaman Poulet</span></div>
+      <div class="row"><small>Donnerstag</small><span>Rotes Curry mit Gemüse</span></div>
+      <div class="row"><small>Freitag</small><span>Grünes Curry mit Gemüse</span></div>
+      <p class="note" style="margin:6px 0 16px">Täglich alternativ: Poulet mit Thai-Basilikum</p>
+      <div class="big">CHF 19</div>
+      <p class="note">Takeaway CHF 16 (ohne Salat)</p>
+    </div>
+    <div id="reservieren">
+      <div class="kicker">Reservation</div>
+      <h2>Ihr Tisch wartet.</h2>
+      <p class="lead">Wir haben nur wenige Tische. Am Abend empfehlen wir eine Reservation.</p>
+      <form onsubmit="event.preventDefault();this.style.display='none';this.nextElementSibling.style.display='block'">
+        <input placeholder="Name" required>
+        <input placeholder="Telefon" type="tel" required>
+        <div class="r2"><input type="date" required><select><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>11:30</option><option>12:00</option><option>12:30</option></select></div>
+        <select><option>2 Personen</option><option>1 Person</option><option>3 Personen</option><option>4 Personen</option><option>5+ Personen</option></select>
+        <button class="btn gold">Reservation anfragen</button>
+        <span class="note">Demo: Es wird nichts verschickt.</span>
+      </form>
+      <div class="ok">✓ In der fertigen Seite käme die Anfrage jetzt direkt ins Restaurant.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="split">
+    <div>
+      <div class="kicker">Öffnungszeiten</div>
+      <div class="hours" style="margin-top:14px">
+        <div><span>Montag</span><span>11:30–14:00 · 18:00–21:30</span></div>
+        <div class="off"><span>Dienstag & Mittwoch</span><span>geschlossen</span></div>
+        <div><span>Donnerstag–Sonntag</span><span>11:30–14:00 · 18:00–21:30</span></div>
+      </div>
+      <p class="note" style="margin-top:10px">Die Küche schliesst um 20:30 Uhr</p>
+    </div>
+    <div>
+      <div class="kicker">Kontakt</div>
+      <p style="margin-top:14px;font-family:Georgia,serif;font-size:22px">Bernstrasse 33<br>3613 Steffisburg</p>
+      <p style="margin-top:10px"><a href="tel:+41335251499">033 525 14 99</a><br><a href="mailto:info@mae-lek.ch">info@mae-lek.ch</a><br>Instagram <a href="https://www.instagram.com/mae.lek2021">@mae.lek2021</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>© Mae Lek Steffisburg · Entwurf von Max Rathsack</footer>
+<script>
+(function(){
+  var s=document.querySelectorAll('.slide'),d=document.getElementById('dots'),i=0,t;
+  s.forEach(function(_,k){var b=document.createElement('i');b.onclick=function(){go(k);restart()};d.appendChild(b)});
+  function go(k){s[i].classList.remove('on');d.children[i].classList.remove('on');i=k;
+    void s[i].offsetWidth;s[i].classList.add('on');d.children[i].classList.add('on')}
+  function restart(){clearInterval(t);t=setInterval(function(){go((i+1)%s.length)},5000)}
+  d.children[0].classList.add('on');restart();
+})();
+</script>
+<div class="fab"><a class="a" href="#reservieren">Reservieren</a><a class="b" href="tel:+41335251499">Anrufen</a></div>
+</body>
+</html>

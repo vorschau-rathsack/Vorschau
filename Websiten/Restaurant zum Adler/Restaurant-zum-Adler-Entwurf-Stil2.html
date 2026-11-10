@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurant zum Adler – Die Ente</title>
+<meta name="description" content="Entwurf: Die knusprig gebackene Ente und mehr – Restaurant zum Adler, Steffisburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6ecda; --paper2:#efdfc3; --amber:#e39a32; --amber2:#f4b955;
+  --crisp:#8a4316; --roast:#5c2a0e; --esp:#2a150a; --chili:#c3401e; --leaf:#5f7f2e;
+  --ink:#2a150a; --soft:#6d4d36;
+}
+*{box-sizing:border-box}
+html{background:#e7d6b8}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.page{max-width:430px;margin:0 auto;background:var(--paper);position:relative;overflow:hidden;padding-bottom:86px;box-shadow:0 0 60px rgba(90,42,14,.18)}
+.draft{background:var(--esp);color:#f8dca6;font:600 12.5px/1.35 "Bricolage Grotesque",sans-serif;text-align:center;padding:8px 14px}
+.draft b{color:#fff;letter-spacing:.1em}
+.serif{font-family:"Gloock",Georgia,serif;font-weight:400}
+.it{font-family:"Instrument Serif",Georgia,serif;font-style:italic}
+a{color:inherit}
+.label{display:inline-block;font:600 10.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.04em;color:#fff7e8;background:rgba(42,21,10,.72);padding:6px 9px;border-radius:3px}
+
+/* masthead */
+.mast{padding:14px 18px 0;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--ink)}
+.mast .logo{font-family:"Gloock",serif;font-size:30px;line-height:1;letter-spacing:-.01em;padding-bottom:8px}
+.mast .logo span{font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;color:var(--crisp)}
+.mast .meta{font:600 10.5px/1.35 "Bricolage Grotesque",sans-serif;letter-spacing:.12em;text-transform:uppercase;text-align:right;padding-bottom:9px;color:var(--soft)}
+.subbar{display:flex;justify-content:space-between;font:600 10.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border-bottom:1px solid var(--ink)}
+
+/* cover */
+.cover{position:relative;padding:18px 18px 0}
+.cover h1{font-family:"Gloock",serif;font-weight:400;font-size:112px;line-height:.82;letter-spacing:-.045em;margin:6px 0 0;color:var(--esp)}
+.cover h1 .dot{color:var(--amber)}
+.cover .deck{font-family:"Instrument Serif",serif;font-style:italic;font-size:25px;line-height:1.15;margin:12px 0 0;color:var(--roast);max-width:330px}
+.coverart{position:relative;margin:10px -18px 0}
+.coverart svg{display:block;width:100%;height:auto}
+.coverart .label{position:absolute;left:18px;bottom:16px}
+.tag{position:absolute;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;line-height:1;color:var(--esp)}
+.tag.price{right:16px;top:10px;width:104px;height:104px;border-radius:50%;background:var(--chili);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(9deg);box-shadow:0 6px 18px rgba(195,64,30,.35)}
+.tag.price small{font-weight:600;font-size:11px;letter-spacing:.12em}
+.tag.price b{font-family:"Gloock",serif;font-weight:400;font-size:32px;margin:4px 0 2px}
+.coverlines{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);margin:0 -18px}
+.coverlines div{padding:14px 18px}
+.coverlines div+div{border-left:1px solid var(--ink)}
+.coverlines b{display:block;font-family:"Gloock",serif;font-weight:400;font-size:34px;line-height:1}
+.coverlines span{font-size:13px;color:var(--soft);line-height:1.35;display:block;margin-top:6px}
+
+.cta{padding:20px 18px 6px;display:grid;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;font:800 17px/1.1 "Bricolage Grotesque",sans-serif;padding:18px 20px;border-radius:14px}
+.btn svg{width:22px;height:22px;flex:none}
+.btn-call{background:var(--esp);color:#fff4df;box-shadow:0 8px 0 var(--amber)}
+.btn-call small{display:block;font-weight:400;font-size:13.5px;opacity:.8;margin-top:3px;letter-spacing:.03em}
+.btn-line{border:2px solid var(--esp);color:var(--esp);background:transparent}
+
+/* article */
+.art{padding:44px 18px 10px}
+.kick{font:800 11px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--chili);display:flex;gap:10px;align-items:center}
+.kick:after{content:"";flex:1;height:1px;background:currentColor;opacity:.4}
+.art h2{font-family:"Gloock",serif;font-weight:400;font-size:44px;line-height:.98;letter-spacing:-.02em;margin:14px 0 14px}
+.art h2 em{font-family:"Instrument Serif",serif;color:var(--crisp)}
+.art p{margin:0 0 14px;font-size:16.5px}
+.drop:first-letter{font-family:"Gloock",serif;float:left;font-size:72px;line-height:.82;padding:6px 10px 0 0;color:var(--crisp)}
+.pull{margin:22px 0;padding:18px 0 16px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);font-family:"Instrument Serif",serif;font-style:italic;font-size:29px;line-height:1.12;color:var(--roast)}
+.pull small{display:block;font:600 11.5px/1.4 "Bricolage Grotesque",sans-serif;font-style:normal;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:10px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);margin-top:6px}
+.facts div{padding:12px 10px;text-align:center}
+.facts div+div{border-left:1px solid var(--ink)}
+.facts b{display:block;font-family:"Gloock",serif;font-weight:400;font-size:21px}
+.facts span{font-size:11.5px;color:var(--soft);letter-spacing:.06em;text-transform:uppercase}
+
+/* numbers */
+.numbers{background:var(--esp);color:#fbe8c6;padding:46px 18px 40px;margin-top:36px;position:relative}
+.numbers .kick{color:var(--amber2)}
+.numbers h2{font-family:"Gloock",serif;font-weight:400;font-size:36px;line-height:1.02;margin:14px 0 22px}
+.bignum{display:flex;align-items:flex-end;gap:12px;border-bottom:1px solid rgba(251,232,198,.25);padding-bottom:18px;margin-bottom:18px}
+.bignum .n{font-family:"Gloock",serif;font-size:118px;line-height:.8;letter-spacing:-.04em;color:var(--amber2);font-variant-numeric:tabular-nums;min-width:2.2ch}
+.bignum .t{font-size:15px;line-height:1.35;padding-bottom:6px}
+.bignum .t b{display:block;font-size:19px;color:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.row2 .box{border:1px solid rgba(251,232,198,.3);border-radius:12px;padding:14px}
+.row2 .n{font-family:"Gloock",serif;font-size:52px;line-height:1;color:#fff}
+.row2 .stars{color:var(--amber2);letter-spacing:2px;font-size:14px;margin:4px 0}
+.row2 .s{font-size:13px;color:#e5cfa9;line-height:1.35}
+.half{background:linear-gradient(90deg,var(--amber2) 50%,rgba(251,232,198,.25) 50%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.praise{margin:20px 0 0;font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;line-height:1.2;color:#fbe8c6}
+
+/* fortune cookie */
+.cookie-sec{padding:50px 18px 30px;text-align:center;background:radial-gradient(circle at 50% 55%,#fbe1a9 0,var(--paper) 62%)}
+.cookie-sec h2{font-family:"Gloock",serif;font-weight:400;font-size:38px;line-height:1;margin:14px 0 6px}
+.cookie-sec p.lead{margin:0 auto;max-width:320px;color:var(--soft)}
+.cookie{position:relative;width:300px;height:250px;margin:16px auto 0;cursor:pointer;-webkit-tap-highlight-color:transparent;border:0;background:none;padding:0;display:block}
+.cookie .half-l,.cookie .half-r{position:absolute;top:58px;width:130px;height:118px;transition:transform .9s cubic-bezier(.2,1.4,.4,1)}
+.cookie .half-l{left:29px;transform-origin:100% 80%}
+.cookie .half-r{right:29px;transform-origin:0 80%}
+.cookie.open .half-l{transform:translate(-14px,22px) rotate(-26deg)}
+.cookie.open .half-r{transform:translate(14px,22px) rotate(26deg)}
+.cookie:not(.open) .half-l,.cookie:not(.open) .half-r{animation:wobble 2.8s ease-in-out infinite}
+@keyframes wobble{0%,86%,100%{rotate:0deg}90%{rotate:-3deg}94%{rotate:3deg}}
+.slip{position:absolute;left:50%;top:96px;width:268px;margin-left:-134px;background:#fffdf6;border:1px solid #e3d3b4;box-shadow:0 8px 22px rgba(90,42,14,.22);padding:14px 16px 12px;transform:translateY(16px) scale(.2,.6);opacity:0;transition:transform .8s .25s cubic-bezier(.2,1.2,.4,1),opacity .4s .25s;z-index:3;text-align:center}
+.cookie.open .slip{transform:translateY(-62px) scale(1) rotate(-2deg);opacity:1}
+.slip .q{font:600 10.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--chili)}
+.slip .d{font-family:"Instrument Serif",serif;font-style:italic;font-size:24px;line-height:1.1;margin:8px 0 6px;color:var(--esp)}
+.slip .p{font:800 14px/1 "Bricolage Grotesque",sans-serif;color:var(--crisp)}
+.slip .num{font:400 10px/1 "Bricolage Grotesque",sans-serif;color:#b59a7a;letter-spacing:.2em;margin-top:8px}
+.crumbs{position:absolute;left:0;right:0;bottom:22px;height:20px;opacity:0;transition:opacity .4s .3s}
+.cookie.open .crumbs{opacity:1}
+.hint{display:inline-flex;align-items:center;gap:8px;margin-top:4px;font:800 13px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.06em;color:var(--esp);background:var(--amber2);padding:10px 16px;border-radius:30px}
+.again{margin-top:10px;font-size:13.5px;color:var(--soft)}
+
+/* menu as table of contents */
+.toc{padding:44px 18px 20px}
+.toc h2{font-family:"Gloock",serif;font-weight:400;font-size:46px;line-height:.95;margin:14px 0 6px;letter-spacing:-.02em}
+.toc .sub{font-family:"Instrument Serif",serif;font-style:italic;font-size:20px;color:var(--soft);margin:0 0 18px}
+.toc ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.toc li{border-bottom:1px solid rgba(42,21,10,.35);padding:12px 0}
+.toc .c{display:flex;align-items:baseline;gap:12px}
+.toc .no{font-family:"Gloock",serif;font-size:15px;color:var(--chili);width:24px;flex:none}
+.toc .cn{font-family:"Gloock",serif;font-size:23px;line-height:1.1}
+.toc .dish{display:flex;align-items:baseline;gap:8px;margin:6px 0 0 36px;font-size:15.5px}
+.toc .dish .dl{flex:1;border-bottom:1px dashed rgba(42,21,10,.4);transform:translateY(-4px)}
+.toc .dish b{font-weight:800;white-space:nowrap}
+.toc li.star{background:linear-gradient(90deg,rgba(227,154,50,.22),transparent);margin:0 -18px;padding-left:18px;padding-right:18px}
+.toc .badge{font:800 10px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.12em;text-transform:uppercase;background:var(--chili);color:#fff;padding:4px 6px;border-radius:3px;margin-left:6px;vertical-align:3px}
+.toc .more{font-family:"Instrument Serif",serif;font-style:italic;color:var(--soft);font-size:17px;margin:14px 0 0}
+
+/* delivery + info */
+.deliver{margin:26px 18px 0;background:var(--amber);border-radius:18px;padding:22px 20px;position:relative;overflow:hidden}
+.deliver h3{font-family:"Gloock",serif;font-weight:400;font-size:30px;line-height:1;margin:0 0 8px}
+.deliver p{margin:0 0 16px;max-width:250px}
+.deliver svg.scooter{position:absolute;right:-6px;top:14px;width:120px;height:auto}
+.deliver .btn{background:var(--esp);color:#fff4df}
+.info{padding:44px 18px 10px}
+.info h2{font-family:"Gloock",serif;font-weight:400;font-size:36px;line-height:1;margin:14px 0 16px}
+table.h{width:100%;border-collapse:collapse;font-size:15.5px}
+table.h td{padding:10px 0;border-bottom:1px solid rgba(42,21,10,.25)}
+table.h td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+table.h tr.today td{color:var(--chili)}
+table.h tr.today td:first-child:after{content:"  ← heute";font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+table.h tr.closed td:last-child{color:var(--soft);font-weight:400}
+.note{font-size:12.5px;color:var(--soft);margin:10px 0 0}
+.addr{margin-top:28px;border:2px solid var(--ink);border-radius:16px;overflow:hidden}
+.addr svg{display:block;width:100%;height:auto}
+.addr .t{padding:16px 18px 18px}
+.addr address{font-style:normal;font-family:"Gloock",serif;font-size:22px;line-height:1.25}
+.addr .btn{margin-top:14px}
+
+footer{margin-top:40px;padding:26px 18px 30px;border-top:2px solid var(--ink);text-align:center;font-size:13px;color:var(--soft)}
+footer .logo{font-family:"Gloock",serif;font-size:24px;color:var(--ink)}
+.callbar{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:min(410px,calc(100% - 20px));z-index:50}
+.callbar .btn{box-shadow:0 6px 24px rgba(42,21,10,.35);padding:16px}
+[hidden]{display:none!important}
+.callbar{opacity:0;pointer-events:none;transition:opacity .35s}
+.callbar.show{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="draft"><b>ENTWURF</b> / Demo von Max Rathsack – keine offizielle Webseite von Restaurant zum Adler</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="ph" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></symbol>
+  <linearGradient id="skin2" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#f6b45a"/><stop offset=".3" stop-color="#d07425"/><stop offset=".75" stop-color="#9a4614"/><stop offset="1" stop-color="#5e260a"/></linearGradient>
+  <linearGradient id="meat2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2cfae"/><stop offset="1" stop-color="#c98e6c"/></linearGradient>
+  <symbol id="chunk" viewBox="0 0 60 44">
+    <path d="M3 12 Q2 3 12 2 L48 1 Q58 2 58 12 L57 30 Q56 40 46 41 L12 42 Q3 41 3 32z" fill="url(#skin2)"/>
+    <path d="M4 30 Q20 34 57 29 L57 31 Q56 40 46 41 L12 42 Q3 41 4 32z" fill="url(#meat2)"/>
+    <path d="M4 30 Q20 34 57 29" stroke="#fbe6c6" stroke-width="1.6" fill="none"/>
+    <ellipse cx="20" cy="9" rx="11" ry="3.4" fill="#fff" opacity=".35"/>
+    <path d="M14 18 l6 3 M30 13 l5 4 M42 20 l6 2 M24 25 l4 2 M46 10 l3 4" stroke="#5e260a" stroke-width="1" stroke-linecap="round" opacity=".45"/>
+  </symbol>
+  <symbol id="cookieL" viewBox="0 0 130 118">
+    <defs><linearGradient id="ck" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9d58a"/><stop offset=".55" stop-color="#e6a443"/><stop offset="1" stop-color="#b9701f"/></linearGradient></defs>
+    <path d="M130 10 C104 2 46 6 18 42 C2 66 10 98 42 104 C68 108 92 98 114 92 L130 90 L123 80 L131 70 L122 60 L130 49 L121 38 L130 26 Z" fill="url(#ck)"/>
+    <path d="M130 62 C112 64 98 76 92 96 C102 96 112 93 122 91 L130 90 L123 80 L131 70 Z" fill="#9c5a18" opacity=".55"/>
+    <path d="M114 92 C92 82 64 80 40 92" fill="none" stroke="#b06a1f" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+    <path d="M36 34 C58 16 92 10 124 14" fill="none" stroke="#fff3d0" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+    <path d="M20 70 C22 84 30 94 42 98" fill="none" stroke="#a5611b" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+  </symbol>
+</defs></svg>
+
+<div class="mast">
+  <div class="logo">zum Adler <span>Steffisburg</span></div>
+  <div class="meta">Chinesisch &amp;<br>asiatisch</div>
+</div>
+<div class="subbar"><span>Unterdorfstrasse 9</span><span>Familie Kuong</span></div>
+
+<!-- COVER -->
+<header class="cover">
+  <h1>Die<br>Ente<span class="dot">.</span></h1>
+  <p class="deck">Knusprig gebacken, goldbraun – und von Gästen als die beste der Region gelobt.</p>
+  <div class="coverart">
+    <svg viewBox="0 0 430 400" role="img" aria-label="Illustration: knusprig gebackene Ente auf einem Teller, von oben">
+      <defs>
+        <radialGradient id="burst" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f6c063"/><stop offset=".7" stop-color="#e99a33"/><stop offset="1" stop-color="#e99a33" stop-opacity="0"/></radialGradient>
+        <radialGradient id="plate" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#fffdf7"/><stop offset=".8" stop-color="#f3eadb"/><stop offset="1" stop-color="#dccbb0"/></radialGradient>
+        <radialGradient id="sauce" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f06a2a"/><stop offset="1" stop-color="#9e2510"/></radialGradient>
+      </defs>
+      <circle cx="215" cy="210" r="205" fill="url(#burst)"/>
+      <g stroke="#f7c66a" stroke-width="2" opacity=".55">
+        <path d="M215 0 v28 M215 392 v-28 M10 210 h28 M420 210 h-28 M70 65 l20 20 M360 65 l-20 20 M70 355 l20-20 M360 355 l-20-20"/>
+      </g>
+      <!-- chopsticks -->
+      <g transform="rotate(-32 330 300)"><rect x="250" y="292" width="190" height="7" rx="3.5" fill="#3a1c0c"/><rect x="250" y="306" width="190" height="7" rx="3.5" fill="#56301a"/><rect x="250" y="292" width="40" height="7" fill="#c3401e"/><rect x="250" y="306" width="40" height="7" fill="#c3401e"/></g>
+      <!-- plate shadow + plate -->
+      <ellipse cx="208" cy="222" rx="150" ry="146" fill="#5c2a0e" opacity=".28"/>
+      <circle cx="205" cy="210" r="146" fill="url(#plate)"/>
+      <circle cx="205" cy="210" r="122" fill="none" stroke="#c3401e" stroke-width="2.5"/>
+      <circle cx="205" cy="210" r="116" fill="none" stroke="#e39a32" stroke-width="1" stroke-dasharray="2 6"/>
+      <!-- cucumber + lettuce bed -->
+      <path d="M110 230 q-10-60 40-92 q50-34 110-10 q52 22 50 84 q-6 56-70 70 q-70 12-112-30 q-14-12-18-22z" fill="#86a845"/>
+      <path d="M118 228 q0-50 44-80 q46-28 98-6 q40 20 40 72" fill="none" stroke="#5f7f2e" stroke-width="3" opacity=".6"/>
+      <!-- chunks heap -->
+      <use href="#chunk" x="112" y="180" width="70" height="52" transform="rotate(-18 147 206)"/>
+      <use href="#chunk" x="236" y="190" width="70" height="52" transform="rotate(22 271 216)"/>
+      <use href="#chunk" x="168" y="232" width="72" height="54" transform="rotate(6 204 259)"/>
+      <use href="#chunk" x="132" y="134" width="66" height="50" transform="rotate(14 165 159)"/>
+      <use href="#chunk" x="214" y="132" width="70" height="52" transform="rotate(-12 249 158)"/>
+      <use href="#chunk" x="168" y="172" width="78" height="58" transform="rotate(-4 207 201)"/>
+      <use href="#chunk" x="120" y="226" width="60" height="46" transform="rotate(30 150 249)"/>
+      <use href="#chunk" x="244" y="236" width="60" height="46" transform="rotate(-24 274 259)"/>
+      <!-- sauce drizzle -->
+      <path d="M140 170 C170 150 190 196 214 178 S258 150 276 176" fill="none" stroke="#b2321a" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+      <path d="M150 242 C178 222 200 262 230 240 S262 226 280 244" fill="none" stroke="#b2321a" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+      <!-- sesame -->
+      <g fill="#fff8e6"><ellipse cx="160" cy="186" rx="2.4" ry="1.3" transform="rotate(30 160 186)"/><ellipse cx="196" cy="168" rx="2.4" ry="1.3"/><ellipse cx="226" cy="200" rx="2.4" ry="1.3" transform="rotate(-40 226 200)"/><ellipse cx="250" cy="170" rx="2.4" ry="1.3" transform="rotate(60 250 170)"/><ellipse cx="186" cy="214" rx="2.4" ry="1.3" transform="rotate(10 186 214)"/><ellipse cx="214" cy="250" rx="2.4" ry="1.3" transform="rotate(-20 214 250)"/><ellipse cx="170" cy="240" rx="2.4" ry="1.3" transform="rotate(50 170 240)"/><ellipse cx="262" cy="226" rx="2.4" ry="1.3"/><ellipse cx="236" cy="152" rx="2.4" ry="1.3" transform="rotate(-60 236 152)"/></g>
+      <!-- scallion rings -->
+      <g fill="none" stroke="#6ea83a" stroke-width="2.4"><circle cx="178" cy="198" r="4"/><circle cx="238" cy="222" r="3.6"/><circle cx="206" cy="232" r="4"/><circle cx="152" cy="216" r="3.4"/><circle cx="262" cy="190" r="3.4"/><circle cx="220" cy="176" r="3.6"/></g>
+      <!-- sauce dish -->
+      <circle cx="96" cy="330" r="38" fill="#5c2a0e" opacity=".25"/>
+      <circle cx="92" cy="326" r="36" fill="#fffaf0" stroke="#c3401e" stroke-width="2"/>
+      <circle cx="92" cy="326" r="26" fill="url(#sauce)"/>
+      <ellipse cx="84" cy="318" rx="9" ry="4" fill="#fff" opacity=".35"/>
+      <!-- star anise -->
+      <g transform="translate(352 120)" fill="#7a3510"><path d="M0-20 l5 14 15-4-10 11 10 11-15-4-5 14-5-14-15 4 10-11-10-11 15 4z"/><circle r="4" fill="#c88a4a"/></g>
+      <g transform="translate(70 90) scale(.7) rotate(20)" fill="#7a3510"><path d="M0-20 l5 14 15-4-10 11 10 11-15-4-5 14-5-14-15 4 10-11-10-11 15 4z"/><circle r="4" fill="#c88a4a"/></g>
+    </svg>
+    <div class="tag price"><small>CHF</small><b>32.00</b><small>KNUSPRIG</small></div>
+    <span class="label">Illustration – später Ihre echten Fotos</span>
+  </div>
+  <div class="coverlines">
+    <div><b>4.5 ★</b><span>bei 410 Bewertungen auf Just Eat</span></div>
+    <div><b>4.7 ★</b><span>bei 15 Bewertungen auf local.ch</span></div>
+  </div>
+</header>
+
+<div class="cta">
+  <a class="btn btn-call" href="tel:+41334373366"><svg><use href="#ph"/></svg><span>Jetzt anrufen &amp; reservieren<small>033 437 33 66</small></span></a>
+  <a class="btn btn-line" href="https://www.china-restaurant-zum-adler.ch" target="_blank" rel="noopener">Online bestellen ↗</a>
+</div>
+
+<!-- ARTICLE -->
+<article class="art">
+  <div class="kick">Titelgeschichte</div>
+  <h2>Ein Gericht, <em>über das</em> man spricht.</h2>
+  <p class="drop">Wer im Unterdorf von Steffisburg nach chinesischem Essen fragt, hört früher oder später von ihr: der knusprig gebackenen Ente aus dem Restaurant zum Adler. In den Bewertungen taucht sie immer wieder auf – Gäste nennen sie die beste Ente der Region.</p>
+  <p>Familie Kuong kocht chinesische und asiatische Spezialitäten – die Ente ist der Star, aber längst nicht alles: Die Karte reicht von Vorspeisen und Suppen über Fisch und Crevetten bis zu Poulet, Schwein, Rind und vegetarischen Gerichten.</p>
+  <div class="pull">Von Gästen gelobt als die beste Ente der Region.<small>Sinngemäss aus den Gästebewertungen</small></div>
+  <div class="facts">
+    <div><b>32.00</b><span>CHF</span></div>
+    <div><b>Ente</b><span>Rubrik</span></div>
+    <div><b>Di–So</b><span>Lieferung</span></div>
+  </div>
+</article>
+
+<!-- NUMBERS -->
+<section class="numbers" id="numbers">
+  <div class="kick">In Zahlen</div>
+  <h2>Was 410 Bewertungen erzählen.</h2>
+  <div class="bignum"><div class="n" id="cnt410" data-to="410">0</div><div class="t"><b>Bewertungen</b>auf Just Eat – gelobt werden das feine Essen, die schnelle, freundliche Lieferung und die Ente.</div></div>
+  <div class="row2">
+    <div class="box"><div class="n" id="cnt45" data-to="4.5">0.0</div><div class="stars">★★★★<span class="half">★</span></div><div class="s">Durchschnitt<br>Just Eat</div></div>
+    <div class="box"><div class="n" id="cnt47" data-to="4.7">0.0</div><div class="stars">★★★★★</div><div class="s">15 Bewertungen<br>local.ch</div></div>
+  </div>
+  <p class="praise">Feines Essen, schnelle und freundliche Lieferung – und immer wieder: die Ente.</p>
+</section>
+
+<!-- FORTUNE COOKIE -->
+<section class="cookie-sec" id="glueck">
+  <div class="kick" style="justify-content:center">Unentschlossen?</div>
+  <h2>Der Glückskeks<br>entscheidet.</h2>
+  <p class="lead">Tippen Sie auf den Keks – er verrät Ihnen ein Gericht aus der Karte.</p>
+  <button class="cookie" id="cookie" type="button" aria-label="Glückskeks öffnen">
+    <div class="slip" id="slip" aria-live="polite">
+      <div class="q">Ihr Glück heute</div>
+      <div class="d" id="slipDish">Knusprig gebackene Ente</div>
+      <div class="p" id="slipPrice">CHF 32.00</div>
+      <div class="num">8 · 17 · 32 · 33 · 37</div>
+    </div>
+    <svg class="half-l" viewBox="0 0 130 118"><use href="#cookieL"/></svg>
+    <svg class="half-r" viewBox="0 0 130 118" style="transform-box:fill-box"><g transform="translate(130 0) scale(-1 1)"><use href="#cookieL"/></g></svg>
+    <svg class="crumbs" viewBox="0 0 300 20" aria-hidden="true"><g fill="#d79a46"><circle cx="110" cy="10" r="3"/><circle cx="130" cy="14" r="2"/><circle cx="170" cy="12" r="2.6"/><circle cx="190" cy="8" r="1.8"/><circle cx="150" cy="16" r="1.6"/></g></svg>
+  </button>
+  <div class="hint" id="hint">✦ Keks antippen</div>
+  <div class="again" id="again" hidden>Nochmals tippen für ein neues Glück.</div>
+</section>
+
+<!-- MENU TOC -->
+<section class="toc" id="karte">
+  <div class="kick">Inhalt</div>
+  <h2>Die Karte,<br>Rubrik für Rubrik.</h2>
+  <p class="sub">Elf Kapitel – von der Vorspeise bis zum Kinderteller.</p>
+  <ol>
+    <li><div class="c"><span class="no">01</span><span class="cn">Vorspeisen</span></div>
+      <div class="dish"><span>Frühlingsrolle mit Ente</span><span class="dl"></span><b>8.50</b></div></li>
+    <li><div class="c"><span class="no">02</span><span class="cn">Salate</span></div></li>
+    <li><div class="c"><span class="no">03</span><span class="cn">Suppen</span></div>
+      <div class="dish"><span>Kokos-Suppe mit Crevetten</span><span class="dl"></span><b>9.50</b></div></li>
+    <li><div class="c"><span class="no">04</span><span class="cn">Fisch</span></div></li>
+    <li><div class="c"><span class="no">05</span><span class="cn">Crevetten</span></div></li>
+    <li><div class="c"><span class="no">06</span><span class="cn">Poulet</span></div>
+      <div class="dish"><span>Poulet Szechuan</span><span class="dl"></span><b>26.50</b></div></li>
+    <li><div class="c"><span class="no">07</span><span class="cn">Schwein</span></div></li>
+    <li><div class="c"><span class="no">08</span><span class="cn">Rind</span></div>
+      <div class="dish"><span>Rindfleisch mit Zwiebeln</span><span class="dl"></span><b>28.50</b></div></li>
+    <li class="star"><div class="c"><span class="no">09</span><span class="cn">Ente <span class="badge">Titelgeschichte</span></span></div>
+      <div class="dish"><span>Knusprig gebackene Ente</span><span class="dl"></span><b>32.00</b></div></li>
+    <li><div class="c"><span class="no">10</span><span class="cn">Vegetarisch</span></div></li>
+    <li><div class="c"><span class="no">11</span><span class="cn">Kindergerichte</span></div>
+      <div class="dish"><span>Chicken Nuggets</span><span class="dl"></span><b>12.50</b></div></li>
+  </ol>
+  <p class="more">[weitere Gerichte aus Ihrer Karte] · Preise in CHF</p>
+</section>
+
+<!-- DELIVERY -->
+<div class="deliver">
+  <svg class="scooter" viewBox="0 0 120 90" aria-hidden="true">
+    <circle cx="26" cy="70" r="14" fill="#2a150a"/><circle cx="26" cy="70" r="6" fill="#e39a32"/>
+    <circle cx="94" cy="70" r="14" fill="#2a150a"/><circle cx="94" cy="70" r="6" fill="#e39a32"/>
+    <path d="M18 62 h50 q10-22 26-22 l8 22" fill="none" stroke="#2a150a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="18" y="26" width="34" height="30" rx="4" fill="#c3401e"/><path d="M24 34 h22 M24 42 h14" stroke="#fff3df" stroke-width="3" stroke-linecap="round"/>
+    <path d="M94 40 l-6-18 h10" fill="none" stroke="#2a150a" stroke-width="5" stroke-linecap="round"/>
+  </svg>
+  <h3>Die Ente<br>kommt auch<br>zu Ihnen.</h3>
+  <p>Lieferung Dienstag bis Sonntag, 17:30–21:00 Uhr – via Just Eat oder direkt online.</p>
+  <a class="btn" href="https://www.china-restaurant-zum-adler.ch" target="_blank" rel="noopener">Online bestellen ↗</a>
+</div>
+
+<!-- INFO -->
+<section class="info" id="info">
+  <div class="kick">Service</div>
+  <h2>Öffnungszeiten</h2>
+  <table class="h" id="hours">
+    <tr data-d="1" class="closed"><td>Montag</td><td>geschlossen</td></tr>
+    <tr data-d="2"><td>Dienstag</td><td>08:30–23:30</td></tr>
+    <tr data-d="3"><td>Mittwoch</td><td>08:30–23:30</td></tr>
+    <tr data-d="4"><td>Donnerstag</td><td>08:30–23:30</td></tr>
+    <tr data-d="5"><td>Freitag</td><td>08:30–23:30</td></tr>
+    <tr data-d="6"><td>Samstag</td><td>09:00–23:30</td></tr>
+    <tr data-d="0"><td>Sonntag</td><td>10:30–22:30</td></tr>
+  </table>
+  <p class="note">Angaben gemäss local.ch – bitte bestätigen.</p>
+
+  <div class="addr">
+    <svg viewBox="0 0 390 170" role="img" aria-label="Schematische Lagekarte">
+      <rect width="390" height="170" fill="#efdfc3"/>
+      <g fill="none" stroke="#f6ecda" stroke-width="14" stroke-linecap="round"><path d="M-10 120 C80 108 160 90 220 80 S330 60 400 52"/><path d="M120 -10 C130 60 150 120 170 180"/><path d="M300 -10 C290 60 300 120 330 180"/></g>
+      <g fill="none" stroke="#d9c4a0" stroke-width="1"><path d="M-10 120 C80 108 160 90 220 80 S330 60 400 52"/></g>
+      <text x="16" y="108" font-family="Bricolage Grotesque" font-size="11" fill="#8a6a4e" transform="rotate(-6 16 108)">Unterdorfstrasse</text>
+      <circle cx="220" cy="80" r="26" fill="#c3401e" opacity=".15"/>
+      <path d="M220 86 c-14-16-18-24-18-32a18 18 0 0 1 36 0c0 8-4 16-18 32z" fill="#c3401e"/>
+      <circle cx="220" cy="54" r="7" fill="#fff4df"/>
+    </svg>
+    <div class="t">
+      <address>Restaurant zum Adler<br>Unterdorfstrasse 9<br>3612 Steffisburg</address>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurant+zum+Adler+Unterdorfstrasse+9+3612+Steffisburg" target="_blank" rel="noopener">Route in Google Maps ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">zum Adler</div>
+  Unterdorfstrasse 9 · 3612 Steffisburg · <a href="tel:+41334373366">033 437 33 66</a><br>
+  Inhaber: Huong Kuong<br><br>
+  Demo-Entwurf von Max Rathsack
+</footer>
+</div>
+
+<div class="callbar" id="callbar"><a class="btn btn-call" href="tel:+41334373366" style="box-shadow:0 6px 24px rgba(42,21,10,.35)"><svg><use href="#ph"/></svg>Anrufen · 033 437 33 66</a></div>
+
+<script>
+(function(){
+  // Zähler
+  function run(el,instant){
+    if(el.dataset.done)return; el.dataset.done=1;
+    var to=parseFloat(el.dataset.to),dec=el.dataset.to.indexOf('.')>-1?1:0,t0=null,dur=1800;
+    if(instant){el.textContent=to.toFixed(dec);return}
+    function step(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/dur);k=1-Math.pow(1-k,3);el.textContent=(to*k).toFixed(dec);if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  var nums=[].slice.call(document.querySelectorAll('[data-to]'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){nums.forEach(function(n){run(n)});io.disconnect()}})},{threshold:.3});
+    io.observe(document.getElementById('numbers'));
+  } else nums.forEach(function(n){run(n,true)});
+
+  // Glückskeks
+  var dishes=[
+    ['Knusprig gebackene Ente','CHF 32.00'],
+    ['Frühlingsrolle mit Ente','CHF 8.50'],
+    ['Kokos-Suppe mit Crevetten','CHF 9.50'],
+    ['Poulet Szechuan','CHF 26.50'],
+    ['Rindfleisch mit Zwiebeln','CHF 28.50'],
+    ['Chicken Nuggets (für die Kinder)','CHF 12.50']
+  ];
+  var c=document.getElementById('cookie'),last=-1;
+  function pick(){var i;do{i=Math.floor(Math.random()*dishes.length)}while(i===last&&dishes.length>1);last=i;return dishes[i]}
+  function show(d){document.getElementById('slipDish').textContent=d[0];document.getElementById('slipPrice').textContent=d[1]}
+  c.addEventListener('click',function(){
+    if(c.classList.contains('open')){c.classList.remove('open');setTimeout(function(){show(pick());c.classList.add('open')},650);return}
+    show(pick());c.classList.add('open');
+    document.getElementById('hint').hidden=true;document.getElementById('again').hidden=false;
+  });
+
+  var d=new Date().getDay(),r=document.querySelector('#hours [data-d="'+d+'"]');if(r)r.classList.add('today');
+
+  var cb=document.getElementById('callbar');function sc(){cb.classList.toggle('show',window.scrollY>520)}window.addEventListener('scroll',sc,{passive:true});sc();
+  window.__prepPrint=function(){
+    nums.forEach(function(n){delete n.dataset.done;run(n,true)});
+    show(dishes[0]);c.classList.add('open');
+    document.getElementById('hint').hidden=true;document.getElementById('again').hidden=false;
+    document.querySelectorAll('details').forEach(function(x){x.open=true});
+    document.getElementById('callbar').style.display='none';
+    document.querySelector('.page').style.paddingBottom='0';
+  };
+})();
+</script>
+</body>
+</html>

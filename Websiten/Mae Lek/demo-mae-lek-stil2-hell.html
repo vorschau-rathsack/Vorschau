@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwurf Stil 2 (hell & modern) – Mae Lek</title>
+<style>
+  :root{--ink:#111;--muted:#6b6b6b;--bg:#fff;--soft:#f4f1ea;--accent:#e2552d;--line:#ececec}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;padding-bottom:80px}
+  @media(min-width:820px){body{padding-bottom:0}}
+  a{color:inherit}
+  .demo{background:#111;color:#fff;font-size:12px;text-align:center;padding:6px 12px}
+  header{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:auto;padding:18px 20px}
+  .logo{font-weight:900;font-size:22px;letter-spacing:.18em;text-transform:uppercase}
+  .logo i{font-style:normal;color:var(--accent)}
+  header a{font-size:14px;font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent)}
+  /* Platzhalter-Bilder: einfach durch <img src="foto.jpg"> ersetzen */
+  .img{position:relative;border-radius:22px;overflow:hidden;display:grid;place-items:center;background:var(--bg-img,linear-gradient(135deg,#f6d6a8,#e2552d))}
+  .img span{font-size:clamp(48px,10vw,90px);filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+  .img em{position:absolute;left:12px;bottom:12px;font-style:normal;font-size:11px;font-weight:700;background:rgba(255,255,255,.9);padding:4px 8px;border-radius:999px}
+  .img img{width:100%;height:100%;object-fit:cover}
+  .hero{max-width:1100px;margin:auto;padding:10px 20px 40px;display:grid;gap:24px}
+  @media(min-width:820px){.hero{grid-template-columns:1fr 1fr;align-items:center;padding-top:30px}}
+  .hero h1{font-size:clamp(44px,8vw,84px);line-height:.95;font-weight:900;letter-spacing:-.04em}
+  .hero h1 span{color:var(--accent)}
+  .hero p{color:var(--muted);font-size:18px;margin:18px 0 24px;max-width:36ch}
+  .hero .img{aspect-ratio:1/1}
+  .rating{display:flex;align-items:center;gap:10px;font-size:14px;margin-bottom:18px}
+  .rating b{background:var(--ink);color:#fff;padding:4px 10px;border-radius:999px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:15px 24px;border-radius:999px;font-weight:800;text-decoration:none;font-size:15px;border:0;font-family:inherit;cursor:pointer}
+  .btn.dark{background:var(--ink);color:#fff}
+  .btn.line{border:2px solid var(--ink)}
+  .marquee{background:var(--accent);color:#fff;overflow:hidden;white-space:nowrap;font-weight:800;font-size:15px;padding:12px 0}
+  .marquee div{display:inline-block;animation:m 22s linear infinite}
+  @keyframes m{to{transform:translateX(-50%)}}
+  section{max-width:1100px;margin:auto;padding:60px 20px}
+  h2{font-size:clamp(30px,5vw,48px);font-weight:900;letter-spacing:-.03em;margin-bottom:8px}
+  .sub{color:var(--muted);margin-bottom:26px}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(min-width:820px){.gallery{grid-template-columns:repeat(4,1fr)}}
+  .gallery .img{aspect-ratio:1/1}
+  .gallery .big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+  .menu{display:grid;gap:0}
+  @media(min-width:820px){.menu{grid-template-columns:1fr 1fr;column-gap:40px}}
+  .item{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+  .item .img{width:64px;height:64px;border-radius:16px;flex:none}
+  .item .img span{font-size:28px}
+  .item b{display:block}
+  .item small{color:var(--muted);font-size:14px}
+  .lunch{background:var(--soft);border-radius:28px;padding:28px}
+  .days{display:grid;gap:12px;margin-top:18px}
+  @media(min-width:720px){.days{grid-template-columns:repeat(3,1fr)}}
+  .day{background:#fff;border-radius:18px;padding:18px}
+  .day small{font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+  .price{font-weight:900;font-size:28px;margin-top:20px}
+  .price small{font-size:14px;font-weight:600;color:var(--muted)}
+  .two{display:grid;gap:16px}
+  @media(min-width:820px){.two{grid-template-columns:1fr 1fr}}
+  .box{border:1px solid var(--line);border-radius:24px;padding:24px}
+  form{display:grid;gap:10px;margin-top:14px}
+  input,select{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fafafa}
+  .r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .note{font-size:13px;color:var(--muted)}
+  .hours div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .off{color:#aaa}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px}
+  .fab{position:fixed;left:12px;right:12px;bottom:12px;display:flex;gap:8px;z-index:9}
+  .fab a{flex:1;text-align:center;padding:15px;border-radius:999px;font-weight:800;text-decoration:none}
+  .fab .a{background:var(--ink);color:#fff}.fab .b{background:var(--accent);color:#fff}
+  @media(min-width:820px){.fab{display:none}}
+  .ok{display:none;margin-top:10px;background:#eef7ef;padding:12px;border-radius:12px}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf Stil 2 (hell & modern) von Max Rathsack · keine offizielle Seite · Bilder sind Platzhalter</div>
+
+<header>
+  <div class="logo">Mae<i>·</i>Lek</div>
+  <a href="#reservieren">Tisch reservieren</a>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="rating"><b>★ 4.9</b> über 500 Google-Bewertungen</div>
+    <h1>Echtes<br>Thai Food.<br><span>Steffisburg.</span></h1>
+    <p>Hausgemacht und frisch gekocht, wie bei Mutter Lek. Genau so scharf, wie du es magst.</p>
+    <div class="btns">
+      <a class="btn dark" href="#reservieren">Reservieren</a>
+      <a class="btn line" href="#karte">Speisekarte</a>
+    </div>
+  </div>
+  <div class="img" style="--bg-img:linear-gradient(135deg,#ffe2b8,#e2552d)"><span>🍛</span><em>Foto: Lieblingsgericht von oben</em></div>
+</div>
+
+<div class="marquee"><div>🌶 Pad Thai · Grünes Curry · Massaman · Pad Kra Pao · Sa & So: Thai-Nudelsuppe · Vegan möglich · 🌶 Pad Thai · Grünes Curry · Massaman · Pad Kra Pao · Sa & So: Thai-Nudelsuppe · Vegan möglich ·&nbsp;</div></div>
+
+<section>
+  <h2>Frisch aus der Küche</h2>
+  <p class="sub">Hier kommen die Fotos von Ekk und seinem Team hin.</p>
+  <div class="gallery">
+    <div class="img big" style="--bg-img:linear-gradient(160deg,#c8e6c0,#3f8f5a)"><span>🥗</span><em>Foto: Restaurant innen</em></div>
+    <div class="img" style="--bg-img:linear-gradient(160deg,#fff0c9,#f0a63a)"><span>🍜</span><em>Foto: Nudelsuppe</em></div>
+    <div class="img" style="--bg-img:linear-gradient(160deg,#ffd3c4,#d9482a)"><span>🌶️</span><em>Foto: Rotes Curry</em></div>
+    <div class="img" style="--bg-img:linear-gradient(160deg,#f3e3d0,#a86f3d)"><span>🥢</span><em>Foto: Pad Thai</em></div>
+    <div class="img" style="--bg-img:linear-gradient(160deg,#e2edf8,#4a7fb5)"><span>👩‍🍳</span><em>Foto: Team / Küche</em></div>
+  </div>
+</section>
+
+<section id="mittag" style="padding-top:0">
+  <div class="lunch">
+    <h2>Mittagsmenü</h2>
+    <p class="note">Mit Jasminreis & Salat · Poulet, Schwein, Rind, Tofu oder Jackfruit</p>
+    <div class="days">
+      <div class="day"><small>Montag</small><p><b>Massaman Poulet</b><br>oder Poulet mit Thai-Basilikum</p></div>
+      <div class="day"><small>Donnerstag</small><p><b>Rotes Curry</b><br>oder Poulet mit Thai-Basilikum</p></div>
+      <div class="day"><small>Freitag</small><p><b>Grünes Curry</b><br>oder Poulet mit Thai-Basilikum</p></div>
+    </div>
+    <div class="price">CHF 19 <small>im Restaurant · Takeaway CHF 16</small></div>
+  </div>
+</section>
+
+<section id="karte" style="padding-top:0">
+  <h2>Speisekarte</h2>
+  <p class="sub">Fast alles auch vegetarisch oder vegan möglich.</p>
+  <div class="menu">
+    <div class="item"><div class="img" style="--bg-img:#ffe7d9"><span>🍛</span></div><div><b>Geng Deng Gai</b><small>Rotes Curry mit Pouletbrust</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#e3f2df"><span>🍲</span></div><div><b>Geng Kiew Wan Gai</b><small>Grünes Curry mit Pouletbrust</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#fff1d6"><span>🥘</span></div><div><b>Massaman Curry</b><small>Das klassische Massaman Curry</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#e6f0e2"><span>🌿</span></div><div><b>Pad Kra Pao Gai</b><small>Pouletbrust mit Thai-Basilikum</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#f7ecdf"><span>🫚</span></div><div><b>Pad Khing Gai</b><small>Pouletbrust mit Ingwer und Gemüse</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#f2e4dc"><span>🥩</span></div><div><b>Nua Pad Naman Hoi</b><small>Rind mit Gemüse an Austernsauce</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#fdf0d8"><span>🥜</span></div><div><b>Pad Med Mamuang</b><small>Poulet mit Cashewnüssen, süss-sauer</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#fbe7dc"><span>🍤</span></div><div><b>Pad Thai Gung</b><small>Reisnudeln mit Crevetten, Ei und Erdnüssen</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#f1ece2"><span>🍝</span></div><div><b>Pad Si Yu Gai</b><small>Reisnudeln mit Poulet an süsser Sojasauce</small></div></div>
+    <div class="item"><div class="img" style="--bg-img:#fbf3df"><span>🍚</span></div><div><b>Khao Pad Gai</b><small>Gebratener Reis mit Poulet und Gemüse</small></div></div>
+  </div>
+</section>
+
+<section id="reservieren" style="padding-top:0">
+  <div class="two">
+    <div class="box">
+      <h2 style="font-size:30px">Reservieren</h2>
+      <p class="note">Nur wenige Tische, am Abend lieber reservieren.</p>
+      <form onsubmit="event.preventDefault();this.style.display='none';this.nextElementSibling.style.display='block'">
+        <input placeholder="Name" required>
+        <input placeholder="Telefon" type="tel" required>
+        <div class="r2"><input type="date" required><select><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>11:30</option><option>12:00</option><option>12:30</option></select></div>
+        <select><option>2 Personen</option><option>1 Person</option><option>3 Personen</option><option>4 Personen</option><option>5+ Personen</option></select>
+        <button class="btn dark">Anfrage senden</button>
+        <span class="note">Demo: Es wird nichts verschickt.</span>
+      </form>
+      <div class="ok">✓ In der fertigen Seite käme die Anfrage jetzt direkt ins Restaurant.</div>
+    </div>
+    <div class="box">
+      <h2 style="font-size:30px">Öffnungszeiten</h2>
+      <div class="hours" style="margin-top:12px">
+        <div><span>Mo</span><span>11:30–14 · 18–21:30</span></div>
+        <div class="off"><span>Di / Mi</span><span>geschlossen</span></div>
+        <div><span>Do–So</span><span>11:30–14 · 18–21:30</span></div>
+      </div>
+      <p class="note" style="margin-top:10px">Küche bis 20:30 · Takeaway: bitte vorher anrufen</p>
+      <p style="margin-top:18px"><b>Bernstrasse 33, 3613 Steffisburg</b><br><a href="tel:+41335251499">033 525 14 99</a> · <a href="mailto:info@mae-lek.ch">info@mae-lek.ch</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>© Mae Lek Steffisburg · Entwurf von Max Rathsack</footer>
+<div class="fab"><a class="a" href="#reservieren">Reservieren</a><a class="b" href="tel:+41335251499">Takeaway ☎</a></div>
+</body>
+</html>

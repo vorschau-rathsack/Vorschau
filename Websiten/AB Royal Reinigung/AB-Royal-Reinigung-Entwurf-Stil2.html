@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AB Royal Reinigung · Rein nach Plan · Thun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef3f9; --paper2:#e3ebf5; --grid:#cfdbeb; --grid2:#b3c6e0;
+  --ink:#143a7b; --ink2:#0b2350; --line:#2a5bb0; --muted:#53709b;
+  --clean:#14b89a; --clean2:#c9f3e8; --red:#ef5b2a;
+  --bp:#103a86; --bp2:#0c2e6c;
+  --mono:"IBM Plex Mono","DejaVu Sans Mono",ui-monospace,monospace;
+  --sans:"Instrument Sans","Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink2);background-color:var(--paper);
+  background-image:linear-gradient(var(--grid2) 1px,transparent 1px),linear-gradient(90deg,var(--grid2) 1px,transparent 1px),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:100px 100px,100px 100px,20px 20px,20px 20px;background-position:-1px -1px;
+  font-size:16px;line-height:1.5;overflow-x:hidden}
+a{color:inherit}
+svg{display:block}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+.mono{font-family:var(--mono)}
+
+.draft{background:var(--red);color:#fff;font:500 12px/1.4 var(--mono);text-align:center;padding:9px 12px;border-bottom:2px solid var(--ink2)}
+.draft b{background:#fff;color:var(--red);padding:1px 6px;margin-right:4px}
+
+/* title block header */
+.tb{margin:16px 0 0;border:2px solid var(--ink2);background:rgba(255,255,255,.75);display:grid;grid-template-columns:1fr auto}
+.tb > div{padding:9px 12px}
+.tb .logo{display:flex;align-items:center;gap:10px;border-right:1.5px solid var(--ink2)}
+.tb .logo b{font:700 22px/1 var(--sans);letter-spacing:-.01em;color:var(--ink2)}
+.tb .logo small{display:block;font:500 10px/1.2 var(--mono);color:var(--muted);letter-spacing:.06em;margin-top:3px}
+.tb .sheet{font:500 10px/1.5 var(--mono);color:var(--muted);text-align:right}
+.tb .sheet b{display:block;font-size:15px;color:var(--ink2)}
+
+/* hero */
+.hero{padding:26px 0 10px}
+.tag{font:500 11px/1 var(--mono);letter-spacing:.12em;color:var(--red);text-transform:uppercase;display:inline-flex;gap:8px;align-items:center}
+.tag::before{content:"";width:9px;height:9px;border:2px solid var(--red);border-radius:50%}
+h1{font:700 50px/0.98 var(--sans);letter-spacing:-.03em;margin:14px 0 0;color:var(--ink2)}
+h1 .u{position:relative;display:inline-block;color:var(--line)}
+h1 .u::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:10px;border:1.5px solid var(--red);border-top:0}
+.dim{display:flex;align-items:center;gap:8px;font:500 10.5px var(--mono);color:var(--muted);margin:20px 0 12px}
+.dim::before,.dim::after{content:"";flex:1;height:0;border-top:1px solid var(--muted)}
+.lead{font-size:16.5px;color:#2b4677}
+.hero-svg{margin:18px 0 6px;width:100%}
+.cta{display:grid;grid-template-columns:1fr 1fr 1fr;border:2px solid var(--ink2);background:#fff;margin-top:16px}
+.cta a{display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;padding:12px 4px 10px;font:600 13px var(--sans);color:var(--ink2)}
+.cta a+a{border-left:1.5px solid var(--ink2)}
+.cta a small{font:400 9.5px var(--mono);color:var(--muted);letter-spacing:.04em}
+.cta a.primary{background:var(--ink2);color:#fff}
+.cta a.primary small{color:#a9c1ea}
+.cta svg{width:20px;height:20px}
+.rate{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font:500 12px var(--mono);color:var(--muted);border-top:1px dashed var(--grid2);padding-top:10px}
+.rate b{color:var(--ink2);font-size:14px}
+.rate .st{color:#f0a020;letter-spacing:1px}
+
+/* sections */
+section{padding:46px 0 10px}
+.sh{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;margin-bottom:14px}
+.sh .no{font:600 13px/1 var(--mono);color:#fff;background:var(--ink2);padding:7px 7px;margin-top:6px}
+h2{font:700 31px/1.04 var(--sans);letter-spacing:-.02em;color:var(--ink2)}
+h2 span{color:var(--line)}
+.p{color:#2f4a79;font-size:15.5px}
+
+/* plan */
+.plan-box{background:#fff;border:2px solid var(--ink2);margin-top:16px;position:relative}
+.plan-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid var(--ink2);padding:8px 12px;font:500 10.5px var(--mono);color:var(--muted);letter-spacing:.04em}
+.plan-head b{color:var(--ink2)}
+.plan-svg{width:100%;height:auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.room{cursor:pointer}
+.room .fill{fill:#fff;transition:fill .35s}
+.room .hatch{opacity:0;transition:opacity .35s}
+.room text{font-family:var(--mono);font-size:10.5px;fill:var(--ink);font-weight:500;pointer-events:none;letter-spacing:.02em}
+.room .tick{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.3);transition:all .35s cubic-bezier(.3,1.6,.5,1)}
+.room.on .fill{fill:var(--clean2)}
+.room.on .hatch{opacity:1}
+.room.on .tick{opacity:1;transform:scale(1)}
+.room.on text{fill:#05634f;font-weight:600}
+.room:hover .fill{fill:#f2f7ff}
+.room.on:hover .fill{fill:#b9eedf}
+.room:focus{outline:none}
+.room:focus-visible .fill{stroke:var(--red);stroke-width:3}
+.win line.glass{stroke:#7fa6dd;transition:stroke .3s}
+.win .hit{stroke:transparent;stroke-width:22;cursor:pointer}
+.win.on line.glass{stroke:var(--clean)}
+.win .wlab{opacity:0;transition:opacity .3s}
+.win.on .wlab{opacity:1}
+.sparkle{opacity:0}
+.on .sparkle{animation:spk 1.8s ease-in-out infinite}
+.on .sparkle:nth-of-type(2){animation-delay:.6s}
+.on .sparkle:nth-of-type(3){animation-delay:1.2s}
+@keyframes spk{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
+.sparkle{transform-box:fill-box;transform-origin:center}
+
+.counter{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-top:1.5px solid var(--ink2);padding:12px}
+.counter .big{font:600 44px/1 var(--mono);color:var(--clean);letter-spacing:-.04em}
+.counter .big small{font-size:20px;color:var(--grid2)}
+.counter .t{font:500 12px/1.4 var(--mono);color:var(--muted)}
+.counter .t b{color:var(--ink2);display:block;font-family:var(--sans);font-size:15px}
+.bar-prog{height:6px;background:var(--paper2);margin:0 12px 12px;position:relative;overflow:hidden}
+.bar-prog i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,var(--clean) 0 8px,#2fd3b4 8px 10px);transition:width .4s}
+
+/* Raumbuch table */
+.rb{width:100%;border-collapse:collapse;font:400 13px var(--mono);background:#fff;border:2px solid var(--ink2);border-top:0}
+.rb th{font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:7px 10px;border-bottom:1.5px solid var(--ink2);background:var(--paper2)}
+.rb td{padding:9px 10px;border-bottom:1px solid var(--grid)}
+.rb tr{cursor:pointer}
+.rb tr.on td{background:#e9fbf5}
+.rb .cb{width:18px;height:18px;border:1.5px solid var(--ink2);display:inline-block;vertical-align:middle;position:relative}
+.rb tr.on .cb{background:var(--clean);border-color:var(--clean)}
+.rb tr.on .cb::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.rb td.st{text-align:right;color:var(--muted);font-size:11px}
+.rb tr.on td.st{color:#05634f}
+.tools{display:flex;gap:8px;margin-top:10px}
+.tools button{flex:1;font:500 12px var(--mono);background:#fff;border:1.5px solid var(--ink2);padding:9px;cursor:pointer;color:var(--ink2)}
+.order-out{margin-top:16px;background:var(--ink2);color:#e6eeff;padding:16px;position:relative}
+.order-out .lbl{font:500 10.5px var(--mono);color:#8fb0e8;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
+.order-out pre{font:400 13px/1.55 var(--mono);white-space:pre-wrap;word-break:break-word;margin-top:8px}
+.field{margin-top:12px}
+.field label{display:block;font:500 10.5px var(--mono);color:#8fb0e8;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.field input{width:100%;background:transparent;border:1.5px dashed #5c7fbf;color:#fff;font:400 16px var(--mono);padding:8px 10px;border-radius:0;outline:none}
+.field input:focus{border-style:solid;border-color:var(--clean)}
+.sendrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.sendrow a{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 14px var(--sans);padding:13px 6px;border:1.5px solid #fff}
+.sendrow a.wa{background:var(--clean);border-color:var(--clean);color:#04241d}
+.sendrow a.ml{color:#fff}
+.sendrow svg{width:18px;height:18px}
+.note{font:400 11.5px/1.5 var(--mono);color:var(--muted);margin-top:10px}
+
+/* Stückliste */
+.list{background:#fff;border:2px solid var(--ink2);margin-top:14px}
+.li{display:grid;grid-template-columns:40px 1fr auto;gap:8px;align-items:baseline;padding:10px 12px;border-bottom:1px solid var(--grid)}
+.li:last-child{border-bottom:0}
+.li .n{font:500 12px var(--mono);color:var(--red)}
+.li .t{font-weight:600;font-size:15.5px;line-height:1.25}
+.li .t small{display:block;font:400 12px/1.4 var(--mono);color:var(--muted);margin-top:2px}
+.li .pr{font:400 10.5px var(--mono);color:var(--muted);white-space:nowrap}
+
+/* blueprint cards */
+.bpc{display:grid;gap:14px;margin-top:16px}
+.bp{background:var(--bp);color:#dce8ff;border:2px solid var(--ink2);position:relative;overflow:hidden;
+  background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:16px 16px}
+.bp .art{border-bottom:1px solid rgba(255,255,255,.25)}
+.bp .body{padding:12px 14px 14px;display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:end}
+.bp h3{font:700 22px/1.1 var(--sans);color:#fff}
+.bp p{font:400 12.5px/1.45 var(--mono);color:#b9cdf2;grid-column:1/-1}
+.bp .code{font:500 11px var(--mono);color:#8fb0e8;border:1px solid #8fb0e8;padding:3px 6px}
+.mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}
+.mini div{background:var(--bp2);color:#fff;border:2px solid var(--ink2);padding:12px 10px;font:600 14px/1.2 var(--sans);min-height:96px;display:flex;flex-direction:column;justify-content:space-between;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:12px 12px}
+.mini small{font:400 10px var(--mono);color:#8fb0e8}
+
+/* section drawing */
+.section-draw{background:#fff;border:2px solid var(--ink2);margin-top:16px}
+.section-draw .cap{display:flex;justify-content:space-between;padding:8px 12px;border-top:1.5px solid var(--ink2);font:500 10.5px var(--mono);color:var(--muted)}
+
+/* team */
+.team{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink2);background:#fff;margin-top:14px}
+.team > div{padding:14px 12px}
+.team > div+div{border-left:1.5px solid var(--ink2)}
+.team small{font:500 10px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px}
+.team b{font-size:17px;line-height:1.2;display:block}
+.sig{height:28px;margin-top:8px}
+
+.ph{display:block;border:1.5px dashed var(--red);color:#b23e15;background:repeating-linear-gradient(-45deg,rgba(239,91,42,.06) 0 8px,transparent 8px 16px);font:500 12.5px/1.4 var(--mono);padding:12px;margin-top:10px}
+.rv{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:#fff;border:2px solid var(--ink2);padding:14px;margin-top:14px}
+.rv .big{font:600 46px/1 var(--mono);color:var(--ink2)}
+.rv .st{color:#f0a020;font-size:18px;letter-spacing:2px}
+.rv .t{font:400 12px var(--mono);color:var(--muted)}
+
+/* contact */
+.ct{background:#fff;border:2px solid var(--ink2);margin-top:14px}
+.ct .r{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--grid)}
+.ct .r:last-child{border-bottom:0}
+.ct .k{font:500 10.5px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;padding:12px;border-right:1px solid var(--grid);background:var(--paper2)}
+.ct .v{padding:11px 12px;font-size:15.5px}
+.ct .v a{color:var(--line);text-decoration-thickness:1px;text-underline-offset:3px}
+.ct .v .ph{margin-top:0}
+.legal{padding:40px 0 30px}
+footer{border-top:2px solid var(--ink2);background:var(--ink2);color:#a9c1ea;font:400 12px/1.6 var(--mono);padding:22px 0 96px}
+footer .row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.fbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 1fr 1fr;background:#fff;border-top:2px solid var(--ink2)}
+.fbar a{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 4px calc(12px + env(safe-area-inset-bottom));text-decoration:none;font:600 13px var(--sans);color:var(--ink2)}
+.fbar a+a{border-left:1.5px solid var(--ink2)}
+.fbar a:first-child{background:var(--ink2);color:#fff}
+.fbar svg{width:17px;height:17px}
+@media (prefers-reduced-motion:reduce){.on .sparkle{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4-1.9 1.3a11 11 0 0 0 6.5 6.5l1.3-1.9 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-3.7A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.5c0 3 2.6 6 5.6 6.3l1.1-1.4-1.8-.9-.8.8c-1-.4-2-1.4-2.4-2.4l.8-.8-.9-1.8z" fill="currentColor"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3.5 6.5 8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <pattern id="clean-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#14b89a" stroke-width="1.2" stroke-opacity=".35"/></pattern>
+    <symbol id="spark" viewBox="-10 -10 20 20"><path d="M0-9 2-2 9 0 2 2 0 9-2 2-9 0-2-2Z" fill="#14b89a"/></symbol>
+  </defs>
+</svg>
+
+<div class="draft"><b>ENTWURF</b> / Demo von Max Rathsack – keine offizielle Webseite von AB Royal Bajramovic Reinigung</div>
+
+<div class="wrap">
+  <header class="tb">
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" fill="none" stroke="#0b2350" stroke-width="2"/><path d="M7 24 9 12l4 4 4-7 4 7 4-4 2 12Z" fill="none" stroke="#2a5bb0" stroke-width="1.8" stroke-linejoin="round"/><path d="M1 28h32" stroke="#0b2350"/></svg>
+      <div><b>AB ROYAL</b><small>BAJRAMOVIC REINIGUNG · THUN</small></div>
+    </div>
+    <div class="sheet">PLAN NR.<b>AB-01</b>Blatt 1/1</div>
+  </header>
+</div>
+
+<section class="hero" style="padding-top:26px">
+  <div class="wrap">
+    <span class="tag">Reinigung · Thun und Umgebung</span>
+    <h1>Rein nach <span class="u">Plan.</span></h1>
+    <div class="dim">Wohnung · Büro · Praxis · Laden</div>
+    <p class="lead">Von der Umzugsreinigung bis zur Steinboden-Pflege: AB Royal plant Ihre Reinigung Raum für Raum – und Sie sehen vorher genau, was gemacht wird.</p>
+
+    <svg class="hero-svg" viewBox="0 0 394 250" role="img" aria-label="Technische Zeichnung eines Hauses mit beschrifteten Reinigungsbereichen">
+      <g fill="none" stroke="#0b2350" stroke-width="1.6" stroke-linejoin="round">
+        <path d="M60 220V110l85-62 85 62v110"/>
+        <path d="M48 118 145 46l97 72"/>
+        <path d="M230 220V140h110v80"/>
+        <path d="M222 146l63-38 63 38"/>
+        <rect x="80" y="130" width="34" height="40"/><path d="M97 130v40M80 150h34"/>
+        <rect x="176" y="130" width="34" height="40"/><path d="M193 130v40M176 150h34"/>
+        <rect x="128" y="84" width="34" height="30"/><path d="M145 84v30"/>
+        <path d="M128 220v-42h34v42"/><circle cx="155" cy="200" r="1.8" fill="#0b2350"/>
+        <rect x="255" y="160" width="60" height="34"/><path d="M285 160v34"/>
+      </g>
+      <path d="M20 220h360" stroke="#0b2350" stroke-width="2.4"/>
+      <path d="M20 226h360" stroke="#2a5bb0" stroke-width=".8" stroke-dasharray="2 4"/>
+      <!-- clean fills -->
+      <rect x="81" y="131" width="32" height="38" fill="#c9f3e8" opacity=".9"/><path d="M97 130v40M80 150h34" stroke="#0b2350" stroke-width="1.6"/>
+      <path d="M86 144l8-9M101 165l8-9" stroke="#14b89a" stroke-width="1.6" stroke-linecap="round"/>
+      <rect x="129" y="210" width="32" height="9" fill="#c9f3e8"/>
+      <!-- annotation leaders -->
+      <g font-family="IBM Plex Mono,monospace" font-size="10" fill="#0b2350">
+        <path d="M80 140 30 92h-6" fill="none" stroke="#ef5b2a" stroke-width="1"/><circle cx="80" cy="140" r="3" fill="#ef5b2a"/>
+        <text x="4" y="86">01 FENSTER</text>
+        <path d="M145 214 145 236H70" fill="none" stroke="#ef5b2a" stroke-width="1"/><circle cx="145" cy="214" r="3" fill="#ef5b2a"/>
+        <text x="4" y="240">02 EINGANG</text>
+        <path d="M285 177 360 100" fill="none" stroke="#ef5b2a" stroke-width="1"/><circle cx="285" cy="177" r="3" fill="#ef5b2a"/>
+        <text x="300" y="92">03 LADEN</text>
+        <path d="M145 60 200 22h30" fill="none" stroke="#ef5b2a" stroke-width="1"/><circle cx="145" cy="60" r="3" fill="#ef5b2a"/>
+        <text x="234" y="26">04 OBJEKT</text>
+      </g>
+      <g transform="translate(103 118) scale(.6)"><use href="#spark" width="20" height="20"/></g>
+      <g transform="translate(118 158) scale(.45)"><use href="#spark" width="20" height="20"/></g>
+    </svg>
+
+    <div class="cta">
+      <a class="primary" href="tel:+41782221022"><svg><use href="#i-phone"/></svg>Anrufen<small>078 222 10 22</small></a>
+      <a href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp<small>Nachricht</small></a>
+      <a href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail<small>info@ab-royal.ch</small></a>
+    </div>
+    <div class="rate"><span><span class="st">★★★★★</span> <b>5.0</b></span><span>2 Bewertungen auf local.ch</span></div>
+  </div>
+</section>
+
+<!-- 01 Floor plan -->
+<section id="umzug">
+  <div class="wrap">
+    <div class="sh"><span class="no">01</span><div><h2>Umzugs&shy;reinigung: <span>Markieren Sie Ihre Räume.</span></h2></div></div>
+    <p class="p">Tippen Sie im Grundriss auf die Bereiche, die gereinigt werden sollen. Ihre Offerte-Anfrage entsteht dabei automatisch. Die Umzugsreinigung bieten wir zum Pauschalpreis an – den Betrag nennen wir Ihnen auf Anfrage.</p>
+
+    <div class="plan-box">
+      <div class="plan-head"><span><b>GRUNDRISS</b> · Musterwohnung</span><span>schematisch</span></div>
+      <svg class="plan-svg" id="plan" viewBox="0 0 400 392" aria-label="Interaktiver Grundriss">
+        <!-- dimension lines -->
+        <g stroke="#53709b" stroke-width=".8" fill="none">
+          <path d="M20 8h360M20 4v8M380 4v8M150 5v6M240 5v6"/>
+          <path d="M392 20v290M388 20h8M388 310h8M388 170h8"/>
+        </g>
+        <g font-family="IBM Plex Mono,monospace" font-size="8" fill="#53709b" text-anchor="middle">
+          <text x="85" y="17">A</text><text x="166" y="17">B</text><text x="310" y="17">C</text>
+          
+        </g>
+
+        <!-- rooms -->
+        <g class="room" data-room="Küche" tabindex="0" role="button" aria-pressed="false">
+          <rect class="fill" x="20" y="20" width="130" height="150"/>
+          <rect class="hatch" x="20" y="20" width="130" height="150" fill="url(#clean-hatch)"/>
+          <g stroke="#2a5bb0" stroke-width="1" fill="none"><rect x="26" y="26" width="118" height="22"/><circle cx="44" cy="37" r="6"/><circle cx="62" cy="37" r="6"/><rect x="96" y="29" width="30" height="16" rx="2"/><rect x="26" y="52" width="22" height="70"/></g>
+          <text x="85" y="104" text-anchor="middle">KÜCHE</text>
+          <g class="tick"><circle cx="85" cy="128" r="10" fill="#14b89a"/><path d="M80 128l4 4 7-8" stroke="#fff" stroke-width="2" fill="none"/></g>
+          <use class="sparkle" href="#spark" x="112" y="72" width="14" height="14"/><use class="sparkle" href="#spark" x="56" y="140" width="10" height="10"/><use class="sparkle" href="#spark" x="124" y="146" width="9" height="9"/>
+        </g>
+
+        <g class="room" data-room="Bad" tabindex="0" role="button" aria-pressed="false">
+          <rect class="fill" x="150" y="80" width="90" height="90"/>
+          <rect class="hatch" x="150" y="80" width="90" height="90" fill="url(#clean-hatch)"/>
+          <g stroke="#2a5bb0" stroke-width="1" fill="none"><rect x="156" y="136" width="62" height="28" rx="9"/><rect x="156" y="87" width="20" height="26" rx="9"/><ellipse cx="188" cy="92" rx="8" ry="6"/></g>
+          <text x="196" y="126" text-anchor="middle">BAD</text>
+          <g class="tick"><circle cx="229" cy="150" r="8" fill="#14b89a"/><path d="M225 150l3 3 5.5-6.5" stroke="#fff" stroke-width="2" fill="none"/></g>
+          <use class="sparkle" href="#spark" x="216" y="118" width="11" height="11"/><use class="sparkle" href="#spark" x="180" y="142" width="9" height="9"/><use class="sparkle" href="#spark" x="160" y="118" width="8" height="8"/>
+        </g>
+
+        <!-- entree (not selectable) -->
+        <rect x="150" y="20" width="90" height="60" fill="#f4f7fc"/>
+        <text x="195" y="55" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8aa0c4">ENTRÉE</text>
+
+        <g class="room" data-room="Schlafzimmer" tabindex="0" role="button" aria-pressed="false">
+          <rect class="fill" x="240" y="20" width="140" height="150"/>
+          <rect class="hatch" x="240" y="20" width="140" height="150" fill="url(#clean-hatch)"/>
+          <g stroke="#2a5bb0" stroke-width="1" fill="none"><rect x="286" y="40" width="70" height="86"/><rect x="292" y="44" width="27" height="16" rx="3"/><rect x="323" y="44" width="27" height="16" rx="3"/><path d="M286 70h70"/><rect x="250" y="136" width="56" height="26"/></g>
+          <text x="321" y="100" text-anchor="middle">SCHLAFEN</text>
+          <g class="tick"><circle cx="360" cy="150" r="10" fill="#14b89a"/><path d="M355 150l4 4 7-8" stroke="#fff" stroke-width="2" fill="none"/></g>
+          <use class="sparkle" href="#spark" x="252" y="40" width="14" height="14"/><use class="sparkle" href="#spark" x="330" y="132" width="10" height="10"/><use class="sparkle" href="#spark" x="262" y="96" width="9" height="9"/>
+        </g>
+
+        <g class="room" data-room="Wohnzimmer" tabindex="0" role="button" aria-pressed="false">
+          <rect class="fill" x="20" y="170" width="360" height="140"/>
+          <rect class="hatch" x="20" y="170" width="360" height="140" fill="url(#clean-hatch)"/>
+          <g stroke="#2a5bb0" stroke-width="1" fill="none"><path d="M40 196h100v26H66v54H40Z"/><rect x="80" y="234" width="46" height="28" rx="3"/><rect x="250" y="200" width="90" height="56" rx="4"/><circle cx="262" cy="196" r="6"/><circle cx="295" cy="196" r="6"/><circle cx="328" cy="196" r="6"/><circle cx="262" cy="260" r="6"/><circle cx="295" cy="260" r="6"/><circle cx="328" cy="260" r="6"/></g>
+          <text x="186" y="248" text-anchor="middle">WOHNEN / ESSEN</text>
+          <g class="tick"><circle cx="186" cy="276" r="10" fill="#14b89a"/><path d="M181 276l4 4 7-8" stroke="#fff" stroke-width="2" fill="none"/></g>
+          <use class="sparkle" href="#spark" x="150" y="190" width="14" height="14"/><use class="sparkle" href="#spark" x="226" y="284" width="11" height="11"/><use class="sparkle" href="#spark" x="56" y="284" width="9" height="9"/>
+        </g>
+
+        <g class="room" data-room="Balkon" tabindex="0" role="button" aria-pressed="false">
+          <rect class="fill" x="200" y="310" width="180" height="58"/>
+          <rect class="hatch" x="200" y="310" width="180" height="58" fill="url(#clean-hatch)"/>
+          <path d="M200 310v58h180v-58" fill="none" stroke="#0b2350" stroke-width="2" stroke-dasharray="6 3"/>
+          <g stroke="#2a5bb0" stroke-width="1" fill="none"><circle cx="350" cy="338" r="11"/><circle cx="326" cy="330" r="4"/></g>
+          <text x="262" y="343" text-anchor="middle">BALKON</text>
+          <g class="tick"><circle cx="300" cy="339" r="9" fill="#14b89a"/><path d="M295.5 339l3.5 3.5 6-7" stroke="#fff" stroke-width="2" fill="none"/></g>
+          <use class="sparkle" href="#spark" x="212" y="316" width="11" height="11"/><use class="sparkle" href="#spark" x="362" y="352" width="9" height="9"/><use class="sparkle" href="#spark" x="236" y="352" width="8" height="8"/>
+        </g>
+
+        <!-- walls -->
+        <g fill="none" stroke="#0b2350" stroke-linecap="square">
+          <rect x="20" y="20" width="360" height="290" stroke-width="5"/>
+          <path d="M150 20v150M240 20v150M150 80h50M230 80h10M20 170h65M115 170h35M150 170h90M240 170h70M340 170h40" stroke-width="3"/>
+        </g>
+        <!-- doors -->
+        <g fill="none" stroke="#2a5bb0" stroke-width="1">
+          <path d="M85 170a30 30 0 0 1 30-30" /><path d="M115 170v-30"/>
+          <path d="M200 80a30 30 0 0 0 30 30M230 80v30"/>
+          <path d="M310 170a30 30 0 0 1 30-30M340 170v-30"/>
+          <path d="M150 50a24 24 0 0 1 24 -24" transform="translate(0 0)"/>
+        </g>
+        <!-- entrance gap -->
+        <rect x="178" y="15" width="34" height="10" fill="#fff"/>
+        <path d="M180 20h30" stroke="#ef5b2a" stroke-width="1.4"/>
+        
+        
+
+        <!-- windows -->
+        <g class="win" data-room="Fenster" tabindex="0" role="button" aria-pressed="false">
+          <g>
+            <line class="hit" x1="20" y1="70" x2="20" y2="120"/>
+            <line class="hit" x1="270" y1="20" x2="350" y2="20"/>
+            <line class="hit" x1="380" y1="60" x2="380" y2="130"/>
+            <line class="hit" x1="20" y1="210" x2="20" y2="280"/>
+            <line class="hit" x1="40" y1="310" x2="180" y2="310"/>
+            <line class="hit" x1="220" y1="310" x2="360" y2="310"/>
+          </g>
+          <g fill="#fff" stroke="#0b2350" stroke-width="1">
+            <rect x="17" y="70" width="6" height="50"/><rect x="270" y="17" width="80" height="6"/><rect x="377" y="60" width="6" height="70"/><rect x="17" y="210" width="6" height="70"/><rect x="40" y="307" width="140" height="6"/><rect x="220" y="307" width="140" height="6"/>
+          </g>
+          <g stroke-width="2.4">
+            <line class="glass" x1="20" y1="72" x2="20" y2="118"/><line class="glass" x1="272" y1="20" x2="348" y2="20"/><line class="glass" x1="380" y1="62" x2="380" y2="128"/><line class="glass" x1="20" y1="212" x2="20" y2="278"/><line class="glass" x1="42" y1="310" x2="178" y2="310"/><line class="glass" x1="222" y1="310" x2="358" y2="310"/>
+          </g>
+          <g class="wlab" font-family="IBM Plex Mono,monospace" font-size="8" fill="#05634f" font-weight="600">
+            <use class="sparkle" href="#spark" x="26" y="88" width="10" height="10"/><use class="sparkle" href="#spark" x="300" y="26" width="10" height="10"/><use class="sparkle" href="#spark" x="364" y="90" width="10" height="10"/>
+          </g>
+          <g font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#2a5bb0">
+            <path d="M110 330 110 314" stroke="#2a5bb0" stroke-width=".8"/>
+            <text x="64" y="342">FENSTER ↑ tippen</text>
+          </g>
+        </g>
+
+        <!-- north arrow -->
+        <g transform="translate(46 352)" font-family="IBM Plex Mono,monospace" font-size="8" fill="#0b2350">
+          <circle r="13" fill="none" stroke="#0b2350"/><path d="M0-11 5 6 0 2-5 6Z" fill="#0b2350"/><text x="-3" y="-15">N</text>
+        </g>
+      </svg>
+      <div class="counter">
+        <div class="big" id="cnt">0<small>/6</small></div>
+        <div class="t"><b id="cnt-title">Noch nichts markiert</b><span id="cnt-list">Tippen Sie auf einen Raum im Plan.</span></div>
+      </div>
+      <div class="bar-prog"><i id="prog"></i></div>
+    </div>
+
+    <table class="rb" id="rb" aria-label="Raumbuch">
+      <thead><tr><th style="width:38px"></th><th>Raumbuch</th><th style="text-align:right">Status</th></tr></thead>
+      <tbody>
+        <tr data-room="Küche"><td><span class="cb"></span></td><td>Küche</td><td class="st">offen</td></tr>
+        <tr data-room="Bad"><td><span class="cb"></span></td><td>Bad / WC</td><td class="st">offen</td></tr>
+        <tr data-room="Wohnzimmer"><td><span class="cb"></span></td><td>Wohnzimmer</td><td class="st">offen</td></tr>
+        <tr data-room="Schlafzimmer"><td><span class="cb"></span></td><td>Schlafzimmer</td><td class="st">offen</td></tr>
+        <tr data-room="Balkon"><td><span class="cb"></span></td><td>Balkon</td><td class="st">offen</td></tr>
+        <tr data-room="Fenster"><td><span class="cb"></span></td><td>Fenster</td><td class="st">offen</td></tr>
+      </tbody>
+    </table>
+    <div class="tools"><button type="button" id="all">▣ Ganze Wohnung</button><button type="button" id="none">▢ Zurücksetzen</button></div>
+
+    <div class="order-out">
+      <div class="lbl"><span>Offerte-Anfrage · Vorschau</span><span id="out-n">0 Bereiche</span></div>
+      <pre id="out"></pre>
+      <div class="field"><label for="zi">Anzahl Zimmer (optional)</label><input id="zi" inputmode="decimal" placeholder="z. B. 3½"></div>
+      <div class="field"><label for="dt">Übergabetermin (optional)</label><input id="dt" placeholder="z. B. 30. November"></div>
+      <div class="sendrow">
+        <a class="wa" id="go-wa" href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="ml" id="go-ml" href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail</a>
+      </div>
+    </div>
+    <p class="note">* Grundriss dient nur zur Auswahl. Pauschalpreis auf Anfrage.</p>
+  </div>
+</section>
+
+<!-- 02 Leistungen -->
+<section id="leistungen">
+  <div class="wrap">
+    <div class="sh"><span class="no">02</span><div><h2>Leistungs&shy;verzeichnis</h2></div></div>
+    <p class="p">Alle Positionen im Überblick. Preise jeweils auf Anfrage.</p>
+    <div class="list">
+      <div class="li"><span class="n">02.1</span><span class="t">Unterhaltsreinigung<small>regelmässig, Wohnung &amp; Gewerbe</small></span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.2</span><span class="t">Umzugsreinigung<small>zum Pauschalpreis</small></span><span class="pr">pauschal</span></div>
+      <div class="li"><span class="n">02.3</span><span class="t">Baureinigung<small>nach Umbau &amp; Neubau</small></span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.4</span><span class="t">Fensterreinigung</span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.5</span><span class="t">Teppichreinigung</span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.6</span><span class="t">Sanitär reinigen &amp; entkalken</span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.7</span><span class="t">Bodenschutz-Behandlung<small>Platten · Holz · PVC · Linoleum</small></span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.8</span><span class="t">Steinböden Marmor &amp; Granit<small>schleifen · polieren · versiegeln</small></span><span class="pr">a. A.</span></div>
+      <div class="li"><span class="n">02.9</span><span class="t">Gebäude- und Objektbetreuung</span><span class="pr">a. A.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Gewerbe -->
+<section id="gewerbe">
+  <div class="wrap">
+    <div class="sh"><span class="no">03</span><div><h2>Für Büro, Praxis <span>&amp; Laden</span></h2></div></div>
+    <p class="p">Geschäftsräume brauchen einen eigenen Plan. Wir reinigen:</p>
+    <div class="bpc">
+      <article class="bp">
+        <svg class="art" viewBox="0 0 390 130" aria-hidden="true">
+          <g fill="none" stroke="#dce8ff" stroke-width="1.3">
+            <rect x="14" y="14" width="362" height="102" stroke-width="3"/>
+            <path d="M200 14v40M200 80v36"/>
+            <g><rect x="34" y="30" width="44" height="24"/><rect x="34" y="72" width="44" height="24"/><rect x="104" y="30" width="44" height="24"/><rect x="104" y="72" width="44" height="24"/>
+            <circle cx="56" cy="62" r="6"/><circle cx="126" cy="62" r="6"/><circle cx="56" cy="104" r="6"/><circle cx="126" cy="104" r="6"/></g>
+            <rect x="236" y="38" width="110" height="52" rx="26"/>
+            <circle cx="250" cy="30" r="6"/><circle cx="276" cy="28" r="6"/><circle cx="304" cy="28" r="6"/><circle cx="332" cy="30" r="6"/><circle cx="250" cy="98" r="6"/><circle cx="276" cy="100" r="6"/><circle cx="304" cy="100" r="6"/><circle cx="332" cy="100" r="6"/>
+          </g>
+          <g font-family="IBM Plex Mono,monospace" font-size="8" fill="#8fb0e8"><text x="22" y="26">ARBEITSPLÄTZE</text><text x="250" y="68">SITZUNG</text></g>
+        </svg>
+        <div class="body"><h3>Büroräume</h3><span class="code">G-01</span><p>Arbeitsplätze, Sitzungszimmer und Aufenthaltsräume.</p></div>
+      </article>
+      <article class="bp">
+        <svg class="art" viewBox="0 0 390 130" aria-hidden="true">
+          <g fill="none" stroke="#dce8ff" stroke-width="1.3">
+            <rect x="14" y="14" width="362" height="102" stroke-width="3"/>
+            <path d="M130 14v102M260 14v60M260 96v20"/>
+            <g><rect x="28" y="30" width="16" height="16"/><rect x="50" y="30" width="16" height="16"/><rect x="72" y="30" width="16" height="16"/><rect x="94" y="30" width="16" height="16"/><rect x="28" y="84" width="80" height="20" rx="3"/></g>
+            <rect x="160" y="48" width="70" height="26" rx="6"/><circle cx="176" cy="61" r="7"/><rect x="164" y="90" width="20" height="16"/>
+            <path d="M318 40v24M306 52h24" stroke-width="3"/>
+            <rect x="286" y="82" width="70" height="22"/>
+          </g>
+          <g font-family="IBM Plex Mono,monospace" font-size="8" fill="#8fb0e8"><text x="28" y="76">WARTEZIMMER</text><text x="148" y="34">BEHANDLUNG</text><text x="290" y="30">EMPFANG</text></g>
+        </svg>
+        <div class="body"><h3>Arztpraxen</h3><span class="code">G-02</span><p>Wartezimmer, Behandlungsräume und Empfang.</p></div>
+      </article>
+      <article class="bp">
+        <svg class="art" viewBox="0 0 390 130" aria-hidden="true">
+          <g fill="none" stroke="#dce8ff" stroke-width="1.3">
+            <rect x="14" y="14" width="362" height="102" stroke-width="3"/>
+            <path d="M14 116h362" stroke="#14b89a" stroke-width="5"/>
+            <g><rect x="40" y="30" width="120" height="14"/><rect x="40" y="58" width="120" height="14"/><rect x="40" y="86" width="120" height="14"/></g>
+            <rect x="200" y="30" width="14" height="70"/><rect x="232" y="30" width="14" height="70"/>
+            <path d="M290 60h60v26h-60Z"/><circle cx="320" cy="73" r="5"/>
+          </g>
+          <g font-family="IBM Plex Mono,monospace" font-size="8" fill="#8fb0e8"><text x="290" y="54">KASSE</text><text x="150" y="128" fill="#7fe9cf">SCHAUFENSTER</text></g>
+        </svg>
+        <div class="body"><h3>Ladenlokale</h3><span class="code">G-03</span><p>Verkaufsfläche, Regale und Schaufenster.</p></div>
+      </article>
+    </div>
+    <div class="mini">
+      <div>Eingangs&shy;bereiche<small>G-04</small></div>
+      <div>Aufenthalts&shy;räume<small>G-05</small></div>
+      <div>Objekt&shy;betreuung<small>G-06</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Detail section: floors -->
+<section id="boden">
+  <div class="wrap">
+    <div class="sh"><span class="no">04</span><div><h2>Detail: <span>Bodenaufbau</span></h2></div></div>
+    <p class="p">Steinböden aus Marmor und Granit werden geschliffen, poliert und versiegelt. Platten, Holz, PVC und Linoleum erhalten eine Bodenschutz-Behandlung.</p>
+    <div class="section-draw">
+      <svg viewBox="0 0 394 210" role="img" aria-label="Schnittzeichnung: Steinboden mit drei Bearbeitungsschritten">
+        <defs>
+          <pattern id="stone" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 14 14 0" stroke="#2a5bb0" stroke-width=".6"/><circle cx="4" cy="4" r="1" fill="#2a5bb0"/></pattern>
+          <pattern id="screed" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".8" fill="#53709b"/><circle cx="5" cy="5" r=".5" fill="#53709b"/></pattern>
+        </defs>
+        <rect x="20" y="130" width="354" height="40" fill="url(#screed)" stroke="#0b2350"/>
+        <rect x="20" y="96" width="354" height="34" fill="url(#stone)" stroke="#0b2350" stroke-width="1.5"/>
+        <!-- 3 zones -->
+        <path d="M138 96v74M256 96v74" stroke="#0b2350" stroke-dasharray="3 3"/>
+        <!-- zone 1 rough -->
+        <path d="M20 96l8-4 8 5 10-6 9 6 8-3 10 4 9-5 10 5 10-3 8 4 10-4 9 3 9-2" fill="none" stroke="#ef5b2a" stroke-width="1.6"/>
+        <!-- zone 2 smooth -->
+        <path d="M138 95.5h118" stroke="#2a5bb0" stroke-width="2"/>
+        <path d="M150 88l30-10M200 88l30-10" stroke="#7fa6dd" stroke-width="1.2"/>
+        <!-- zone 3 sealed -->
+        <rect x="256" y="88" width="118" height="8" fill="#c9f3e8" stroke="#14b89a"/>
+        <path d="M268 80l20-14M300 80l20-14M332 80l20-14" stroke="#14b89a" stroke-width="1.6" stroke-linecap="round"/>
+        <g font-family="IBM Plex Mono,monospace" fill="#0b2350">
+          <text x="79" y="40" text-anchor="middle" font-size="22" font-weight="600" fill="#ef5b2a">1</text>
+          <text x="197" y="40" text-anchor="middle" font-size="22" font-weight="600" fill="#2a5bb0">2</text>
+          <text x="315" y="40" text-anchor="middle" font-size="22" font-weight="600" fill="#14b89a">3</text>
+          <text x="79" y="58" text-anchor="middle" font-size="10.5" font-weight="600">SCHLEIFEN</text>
+          <text x="197" y="58" text-anchor="middle" font-size="10.5" font-weight="600">POLIEREN</text>
+          <text x="315" y="58" text-anchor="middle" font-size="10.5" font-weight="600">VERSIEGELN</text>
+          <rect x="24" y="108" width="84" height="13" fill="#fff"/><text x="27" y="118" font-size="8.5">MARMOR / GRANIT</text>
+          <rect x="24" y="151" width="60" height="13" fill="#fff"/><text x="27" y="161" font-size="8.5" fill="#53709b">UNTERGRUND</text>
+        </g>
+        <path d="M20 186h354M20 182v8M138 182v8M256 182v8M374 182v8" stroke="#53709b" stroke-width=".8"/>
+        <text x="197" y="202" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#53709b">ARBEITSSCHRITTE STEINBODEN</text>
+      </svg>
+      <div class="cap"><span>SCHNITT S-1</span><span>schematisch</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Team + Bewertung -->
+<section>
+  <div class="wrap">
+    <div class="sh"><span class="no">05</span><div><h2>Ansprech&shy;personen</h2></div></div>
+    <div class="team">
+      <div><small>Inhaber</small><b>Adnan Bajramović</b></div>
+      <div><small>Key Account Management</small><b>Alma Bajramović</b></div>
+    </div>
+    <div class="rv">
+      <div class="big">5.0</div>
+      <div><div class="st">★★★★★</div><div class="t">2 Bewertungen auf local.ch</div></div>
+    </div>
+    <span class="ph">[Platzhalter: Ihre Google-Bewertungen]</span>
+  </div>
+</section>
+
+<!-- 06 Kontakt -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="sh"><span class="no">06</span><div><h2>Kontakt &amp; <span>Standort</span></h2></div></div>
+    <div class="ct">
+      <div class="r"><div class="k">Firma</div><div class="v">AB Royal Bajramovic Reinigung</div></div>
+      <div class="r"><div class="k">Adresse</div><div class="v">Jungfraustrasse 15A<br>3600 Thun<br><a href="https://www.google.com/maps/search/?api=1&query=Jungfraustrasse+15A+3600+Thun" target="_blank" rel="noopener">→ Google Maps</a></div></div>
+      <div class="r"><div class="k">Telefon</div><div class="v"><a href="tel:+41782221022">078 222 10 22</a></div></div>
+      <div class="r"><div class="k">WhatsApp</div><div class="v"><a href="https://wa.me/41782221022">Nachricht senden</a></div></div>
+      <div class="r"><div class="k">E-Mail</div><div class="v"><a href="mailto:info@ab-royal.ch">info@ab-royal.ch</a></div></div>
+      <div class="r"><div class="k">Zeiten</div><div class="v"><span class="ph">[Platzhalter: Öffnungszeiten]</span></div></div>
+    </div>
+    <div class="cta">
+      <a class="primary" href="tel:+41782221022"><svg><use href="#i-phone"/></svg>Anrufen<small>078 222 10 22</small></a>
+      <a href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp<small>Nachricht</small></a>
+      <a href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail<small>info@ab-royal.ch</small></a>
+    </div>
+  </div>
+</section>
+
+<section class="legal" id="impressum">
+  <div class="wrap">
+    <div class="sh"><span class="no">07</span><div><h2>Impressum &amp; Datenschutz</h2></div></div>
+    <span class="ph">[Platzhalter: Impressum &amp; Datenschutz]</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row"><span>AB ROYAL · Bajramovic Reinigung</span><span>3600 Thun</span></div>
+    <div style="margin-top:8px;color:#fff">Demo-Entwurf von Max Rathsack</div>
+  </div>
+</footer>
+
+<nav class="fbar" aria-label="Schnellkontakt">
+  <a href="tel:+41782221022"><svg><use href="#i-phone"/></svg>Anrufen</a>
+  <a href="https://wa.me/41782221022"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+  <a href="mailto:info@ab-royal.ch"><svg><use href="#i-mail"/></svg>E-Mail</a>
+</nav>
+
+<script>
+const ORDER=['Küche','Bad','Wohnzimmer','Schlafzimmer','Balkon','Fenster'];
+const sel=new Set();
+const els=[...document.querySelectorAll('#plan [data-room]')];
+const rows=[...document.querySelectorAll('#rb tr[data-room]')];
+function toggle(r){sel.has(r)?sel.delete(r):sel.add(r);render();}
+els.forEach(e=>{
+  e.addEventListener('click',()=>toggle(e.dataset.room));
+  e.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();toggle(e.dataset.room);}});
+});
+rows.forEach(r=>r.addEventListener('click',()=>toggle(r.dataset.room)));
+document.getElementById('all').onclick=()=>{ORDER.forEach(r=>sel.add(r));render();};
+document.getElementById('none').onclick=()=>{sel.clear();render();};
+['zi','dt'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+function render(){
+  els.forEach(e=>{const on=sel.has(e.dataset.room);e.classList.toggle('on',on);e.setAttribute('aria-pressed',on);});
+  rows.forEach(r=>{const on=sel.has(r.dataset.room);r.classList.toggle('on',on);r.querySelector('.st').textContent=on?'✓ reinigen':'offen';});
+  const list=ORDER.filter(r=>sel.has(r));
+  const n=list.length;
+  document.getElementById('cnt').innerHTML=n+'<small>/6</small>';
+  document.getElementById('cnt-title').textContent=n===0?'Noch nichts markiert':n===6?'Ganze Wohnung markiert':n+(n===1?' Bereich markiert':' Bereiche markiert');
+  document.getElementById('cnt-list').textContent=n?list.join(' · '):'Tippen Sie auf einen Raum im Plan.';
+  document.getElementById('prog').style.width=(n/6*100)+'%';
+  document.getElementById('out-n').textContent=n+(n===1?' Bereich':' Bereiche');
+  const zi=document.getElementById('zi').value.trim();
+  const dt=document.getElementById('dt').value.trim();
+  let t='Guten Tag AB Royal\n\nIch möchte eine Offerte für eine Umzugsreinigung (Pauschalpreis).\n';
+  if(zi) t+='Wohnung: '+zi+' Zimmer\n';
+  t+='\nBereiche:\n'+(n?list.map(r=>'[x] '+r).join('\n'):'[ ] bitte im Grundriss markieren');
+  if(dt) t+='\n\nÜbergabetermin: '+dt;
+  t+='\n\nFreundliche Grüsse';
+  document.getElementById('out').textContent=t;
+  document.getElementById('go-wa').href='https://wa.me/41782221022?text='+encodeURIComponent(t);
+  document.getElementById('go-ml').href='mailto:info@ab-royal.ch?subject='+encodeURIComponent('Offerte Umzugsreinigung')+'&body='+encodeURIComponent(t);
+}
+render();
+window.__demo=()=>{['Küche','Bad','Wohnzimmer','Fenster'].forEach(r=>sel.add(r));document.getElementById('zi').value='3½';document.getElementById('dt').value='30. November';render();};
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Malerei Strauss Spiez – Graffiti-Entfernung &amp; Bodenmarkierung | Kundenmalerei Strauss (Entwurf)</title>
+<meta name="description" content="Malerei Strauss, Spiez: Graffiti-Entfernung, Parkplatz- &amp; Bodenmarkierung, Anstriche. Entwurf / Demo.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#16171a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'StrCond';src:local('TeX Gyre Heros Cn Bold'),local('TeXGyreHerosCondensed-Bold'),local('Arial Narrow Bold'),local('Roboto Condensed Bold');}
+:root{--asph:#16171a;--asph2:#222428;--conc:#c4c1b8;--conc2:#a9a69d;--line:#f2f1ea;--yel:#ffd21f;--org:#ff5b24;--wa:#25a35a;
+  --head:'Bebas Neue','StrCond','Oswald','Arial Narrow',sans-serif;--body:'Barlow','TeX Gyre Heros','Helvetica Neue',Arial,sans-serif;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .18 0 0 0 .55 -.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--asph);color:var(--line);font:500 16.5px/1.55 var(--body);overflow-x:hidden;padding-bottom:84px;
+  background-image:var(--noise);background-size:220px}
+a{color:inherit}
+svg{display:block}
+.w{max-width:560px;margin:0 auto;padding:0 18px}
+.draft{background:var(--yel);color:#1a1600;font:700 12.5px/1.35 var(--body);text-align:center;padding:8px 14px;position:relative}
+.draft:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:repeating-linear-gradient(-45deg,#16171a 0 10px,var(--yel) 10px 20px)}
+.st{font-family:var(--head);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
+.cut{-webkit-mask-image:linear-gradient(180deg,#000 0 50%,transparent 50% 56%,#000 56%);mask-image:linear-gradient(180deg,#000 0 50%,transparent 50% 56%,#000 56%);-webkit-mask-size:100% .9em;mask-size:100% .9em}
+
+header{display:flex;align-items:center;justify-content:space-between;padding:24px 18px 14px;max-width:560px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .box{background:var(--yel);color:var(--asph);font:32px/1 var(--head);padding:7px 10px 3px;transform:rotate(-2deg);letter-spacing:.02em}
+.logo small{font:600 11.5px/1.25 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#a5a49d}
+.hcall{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--org);color:#fff}
+.hcall svg{width:20px;height:20px}
+
+/* Wand */
+.kick{font:600 12px var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--yel);display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.kick:before{content:"";width:22px;height:3px;background:var(--yel)}
+.wallwrap{margin:6px -18px 0;position:relative}
+.wall{position:relative;height:470px;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
+.clean{position:absolute;inset:0;background:var(--conc);background-image:var(--grit),var(--noise),linear-gradient(180deg,#cdcac2,#b7b4ab);background-size:260px,220px,100%;
+  display:flex;flex-direction:column;justify-content:center;padding:0 26px;color:#141414}
+.clean:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 116px,rgba(0,0,0,.13) 116px 118px),repeating-linear-gradient(90deg,transparent 0 196px,rgba(0,0,0,.1) 196px 198px);pointer-events:none}
+.clean .tag{position:relative;font:700 12px var(--body);letter-spacing:.22em;text-transform:uppercase;background:#141414;color:var(--yel);align-self:flex-start;padding:5px 9px;margin-bottom:14px}
+.clean h1{position:relative;font-size:96px;color:#141414}
+.clean h1 span{color:var(--org)}
+.clean p{position:relative;font:600 17px/1.4 var(--body);margin-top:14px;max-width:18em}
+#gCanvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{display:flex;align-items:center;gap:12px;padding:12px 18px;background:#0d0e10;border-top:3px solid var(--yel)}
+.hud .lbl{font:20px/1 var(--head);letter-spacing:.04em;white-space:nowrap}
+.hud .lbl b{color:var(--yel);font-weight:400;display:inline-block;min-width:3ch;text-align:right}
+.bar{flex:1;height:10px;background:#2b2d31;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,var(--yel) 0 8px,#e0b400 8px 16px);transition:width .2s}
+.hud button{all:unset;cursor:pointer;font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--line);padding:7px 10px}
+.finger{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);pointer-events:none;background:rgba(10,10,12,.82);color:#fff;font:700 14px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:12px 16px 12px 12px;display:flex;align-items:center;gap:10px;border:2px solid var(--yel);transition:opacity .4s;white-space:nowrap}
+.finger svg{width:30px;height:30px;animation:scrub 1.1s ease-in-out infinite}
+@keyframes scrub{0%,100%{transform:translateX(-5px) rotate(-8deg)}50%{transform:translateX(5px) rotate(8deg)}}
+.wall.touched .finger{opacity:0}
+
+.ctas{display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin:22px 0 0}
+.b{display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;font:700 15.5px/1.1 var(--body);padding:16px 10px;text-transform:uppercase;letter-spacing:.04em}
+.b svg{width:19px;height:19px;flex:none}
+.b.y{background:var(--yel);color:#141414}
+.b.g{background:var(--wa);color:#fff}
+.b.o{border:2px solid var(--line)}
+.sub{font-size:14px;color:#a5a49d;margin-top:12px}
+.sub a{color:var(--yel)}
+
+section{padding:58px 0}
+h2{font-size:52px;color:var(--line);margin-bottom:12px}
+h2 em{font-style:normal;color:var(--yel)}
+.lead{color:#c9c8c1;font-size:17px}
+
+/* Leistungen */
+.feat{display:grid;gap:12px;margin-top:24px}
+.fcard{position:relative;padding:20px 18px 18px;background:var(--asph2);border-left:6px solid var(--yel);overflow:hidden}
+.fcard.o{border-color:var(--org)}
+.fcard h3{font-size:34px;padding-right:64px}
+.fcard p{color:#c9c8c1;font-size:15px;margin-top:6px;max-width:19em}
+.fcard .ico{position:absolute;right:4px;top:12px;width:68px;height:68px;opacity:.9}
+.list{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#2b2d31;border:2px solid #2b2d31}
+.list div{background:var(--asph);padding:14px 12px;font:600 15px/1.25 var(--body);min-height:74px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;hyphens:auto;-webkit-hyphens:auto}
+.list div span{font:16px/1 var(--head);color:var(--yel);letter-spacing:.06em}
+.list div.full{grid-column:1/-1;min-height:0;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px}
+
+/* Parkplatz */
+.park{background:#1c1d20;background-image:var(--noise);background-size:220px;position:relative}
+.lot{margin:22px auto 0;max-width:560px;position:relative}
+#lot{width:100%;height:auto}
+#lot .dl{fill:none;stroke-dasharray:1 1;stroke-dashoffset:1}
+.car{transition:transform 1.1s cubic-bezier(.3,.7,.2,1),opacity .6s}
+.lotcap{font-size:12px;color:#8f8e88;text-align:right;padding:6px 18px 0}
+.meterline{display:flex;justify-content:space-between;font:18px var(--head);letter-spacing:.06em;color:#8f8e88;margin-top:14px}
+.meterline b{color:var(--yel);font-weight:400}
+
+/* Geschichte */
+.hist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px}
+.km{background:#f2f1ea;color:#141414;text-align:center;padding:14px 6px 12px;border-radius:6px 6px 0 0;position:relative;box-shadow:0 6px 0 #a5a49d}
+.km:before{content:"";position:absolute;left:8px;right:8px;top:6px;height:4px;background:var(--org)}
+.km b{display:block;font:38px/1 var(--head);margin-top:8px}
+.km span{display:block;font:600 13px/1.25 var(--body)}
+.km small{display:block;font:500 11.5px/1.25 var(--body);color:#555;margin-top:4px}
+
+/* Bewertungen */
+.poster{margin-top:24px;background:#f2f1ea;color:#141414;padding:30px 20px;text-align:center;transform:rotate(-1.5deg);position:relative;box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.poster:before,.poster:after{content:"";position:absolute;top:-12px;width:80px;height:24px;background:rgba(255,210,31,.85)}
+.poster:before{left:18px;transform:rotate(-8deg)}.poster:after{right:18px;transform:rotate(7deg)}
+.poster b{display:block;font:34px/1 var(--head)}
+.poster span{display:block;font-size:14px;color:#555;margin-top:10px}
+
+/* Kontakt */
+.contact{background:var(--yel);color:#141414;background-image:var(--noise);background-blend-mode:multiply}
+.contact h2{color:#141414}
+.contact .lead{color:#3b3505}
+.rowc{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:3px solid #141414;text-decoration:none}
+.rowc small{display:block;font:700 11.5px var(--body);letter-spacing:.14em;text-transform:uppercase}
+.rowc strong{display:block;font:36px/1 var(--head);letter-spacing:.02em;margin-top:2px}
+.rowc em{display:block;font:700 17px/1.3 var(--body);font-style:normal;word-break:break-all}
+.rowc .ar{font:30px var(--head)}
+.hours{margin-top:24px;background:#141414;color:var(--line);padding:18px}
+.hours h3{font-size:28px;color:var(--yel);margin-bottom:6px}
+.hours div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #444;font-weight:600}
+.hours div:last-child{border:0;color:#8f8e88}
+.addr{margin-top:14px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:#141414;color:var(--line);padding:18px}
+.addr p{font:600 17px/1.35 var(--body)}
+.addr a{background:var(--yel);color:#141414;text-decoration:none;font:20px/1 var(--head);padding:12px 14px 9px;letter-spacing:.04em}
+footer{text-align:center;padding:30px 18px 36px;color:#8f8e88;font-size:14px}
+footer b{display:block;color:var(--yel);font:22px/1 var(--head);letter-spacing:.06em;margin-top:10px}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(15,16,18,.94);border-top:3px solid var(--yel)}
+.dock .b{padding:13px 8px;font-size:14.5px}
+</style>
+</head>
+<body>
+<div class="draft">ENTWURF / Demo von Max Rathsack – keine offizielle Webseite von Malerei Strauss</div>
+
+<header>
+  <a class="logo" href="#top"><span class="box">STRAUSS</span><small>Malerei<br>Spiez · seit 1953</small></a>
+  <a class="hcall" href="tel:+41798853737" aria-label="Anrufen"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></a>
+</header>
+
+<main id="top">
+<section style="padding:6px 0 40px">
+  <div class="w">
+    <div class="kick">Graffiti weg · Linien drauf</div>
+    <div class="wallwrap">
+      <div class="wall" id="wall">
+        <div class="clean">
+          <span class="tag">Wand sauber</span>
+          <h1 class="st cut">Malerei<br><span>Strauss</span></h1>
+          <p>Graffiti-Entfernung, Anstriche und Markierungen – aus Spiez, seit 1953.</p>
+        </div>
+        <canvas id="gCanvas" aria-label="Mit Graffiti besprühte Wand – mit dem Finger wegschrubben"></canvas>
+        <div class="finger"><svg viewBox="0 0 32 32" fill="none" stroke="#ffd21f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V6.5a2 2 0 0 1 4 0V15m0-2.5a2 2 0 0 1 4 0V16m0-2a2 2 0 0 1 4 0v5c0 5-3 9-8 9h-1c-3 0-5-1.5-6.5-4L6 19.5a2 2 0 0 1 3.3-2.2L12 20"/></svg>Wegschrubben!</div>
+      </div>
+      <div class="hud"><span class="lbl">Sauber: <b id="pct">0</b>%</span><div class="bar"><i id="bar"></i></div><button type="button" id="blast">Alles weg</button></div>
+    </div>
+    <div class="ctas">
+      <a class="b y" href="tel:+41798853737"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>079 885 37 37</a>
+      <a class="b g" href="https://wa.me/41798853737?text=Gr%C3%BCezi%20Herr%20Strauss%2C%20ich%20habe%20eine%20Anfrage%20zu%3A%20"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>WhatsApp</a>
+    </div>
+    <p class="sub">Offertanfragen: Mona Künzi · <a href="tel:+41799008067">079 900 80 67</a></p>
+  </div>
+</section>
+
+<section id="leistungen" style="padding-top:20px">
+  <div class="w">
+    <h2 class="st">Was wir<br><em>draufhaben.</em></h2>
+    <p class="lead">Ob Hauswand, Parkplatz oder Wohnzimmer – wir bringen Flächen wieder in Form.</p>
+    <div class="feat">
+      <div class="fcard o">
+        <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><rect x="30" y="34" width="34" height="56" rx="5" fill="#ff5b24"/><rect x="38" y="22" width="18" height="14" fill="#f2f1ea"/><rect x="42" y="14" width="10" height="8" fill="#888"/><circle cx="66" cy="18" r="2.5" fill="#f2f1ea" opacity=".7"/><circle cx="74" cy="12" r="2" fill="#f2f1ea" opacity=".5"/><circle cx="76" cy="22" r="1.6" fill="#f2f1ea" opacity=".5"/><path d="M36 50h22" stroke="#141414" stroke-width="3"/></svg>
+        <h3 class="st">Graffiti-<br>Entfernung</h3>
+        <p>Schmierereien an Fassaden und Mauern entfernen – damit die Wand wieder aussieht wie vorher.</p>
+      </div>
+      <div class="fcard">
+        <svg class="ico" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 90 L36 10 M64 10 L80 90" stroke="#f2f1ea" stroke-width="6"/><path d="M50 14v14M50 40v14M50 66v14" stroke="#ffd21f" stroke-width="6"/></svg>
+        <h3 class="st">Parkplatz- &amp;<br>Bodenmarkierung</h3>
+        <p>Klare Linien für Parkplätze, Garagen und Böden.</p>
+      </div>
+    </div>
+    <div class="list">
+      <div><span>01</span>Innen- &amp; Aussenanstriche</div>
+      <div><span>02</span>Fassaden&shy;renovationen</div>
+      <div><span>03</span>Spritzarbeiten</div>
+      <div><span>04</span>Tapezierarbeiten</div>
+      <div><span>05</span>Gipserarbeiten &amp; Ausbesserungen</div>
+      <div><span>06</span>Dekorative Spezial&shy;techniken</div>
+      <div><span>07</span>Entsorgungen &amp; Reinigungen</div>
+      <div><span>08</span>Farbberatung</div>
+      <div><span>09</span>Holz- und Wetterschutz</div>
+      <div><span>10</span>Lackarbeiten</div>
+    </div>
+  </div>
+</section>
+
+<section class="park" id="markierung">
+  <div class="w">
+    <div class="kick">Bodenmarkierung</div>
+    <h2 class="st">Linien,<br><em>die sitzen.</em></h2>
+    <p class="lead">Scrollen Sie weiter – die Markierung zieht sich von selbst.</p>
+  </div>
+  <div class="lot">
+    <svg id="lot" viewBox="0 0 360 560" aria-label="Illustration eines Parkplatzes, dessen Markierungen sich beim Scrollen zeichnen">
+      <defs>
+        <pattern id="asph" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#2a2c30"/><circle cx="1.5" cy="2" r=".7" fill="#3a3c41"/><circle cx="4.5" cy="4.6" r=".6" fill="#1f2023"/></pattern>
+      </defs>
+      <rect width="360" height="560" fill="url(#asph)"/>
+      <path d="M0 0 H360 V14 H0Z" fill="#9b988f"/>
+      <path d="M0 546 H360 V560 H0Z" fill="#9b988f"/>
+      <!-- Ölflecken -->
+      <ellipse cx="96" cy="96" rx="20" ry="12" fill="#1c1d20" opacity=".7"/><ellipse cx="280" cy="470" rx="16" ry="10" fill="#1c1d20" opacity=".7"/>
+      <!-- obere Reihe: Parkfelder -->
+      <g stroke="#f2f1ea" stroke-width="5" stroke-linecap="square">
+        <path class="dl" pathLength="1" d="M10 160 H350"/>
+        <path class="dl" pathLength="1" d="M10 160 V20"/>
+        <path class="dl" pathLength="1" d="M94 160 V20"/>
+        <path class="dl" pathLength="1" d="M178 160 V20"/>
+        <path class="dl" pathLength="1" d="M262 160 V20"/>
+        <path class="dl" pathLength="1" d="M346 160 V20"/>
+      </g>
+      <!-- Fahrgasse: Pfeile + Mittellinie -->
+      <g stroke="#ffd21f" stroke-width="5" fill="none" stroke-linecap="butt">
+        <path class="dl" pathLength="1" d="M20 280 H340"/>
+      </g>
+      <g stroke="#f2f1ea" stroke-width="6" fill="none" stroke-linejoin="miter">
+        <path class="dl" pathLength="1" d="M40 235 H120 M100 220 L122 235 L100 250"/>
+        <path class="dl" pathLength="1" d="M320 325 H240 M260 310 L238 325 L260 340"/>
+      </g>
+      <!-- untere Reihe: Schrägparkfelder -->
+      <g stroke="#f2f1ea" stroke-width="5" stroke-linecap="square">
+        <path class="dl" pathLength="1" d="M10 400 H350"/>
+        <path class="dl" pathLength="1" d="M30 400 L-10 540"/>
+        <path class="dl" pathLength="1" d="M110 400 L70 540"/>
+        <path class="dl" pathLength="1" d="M190 400 L150 540"/>
+        <path class="dl" pathLength="1" d="M270 400 L230 540"/>
+        <path class="dl" pathLength="1" d="M350 400 L310 540"/>
+      </g>
+      <!-- P-Zeichen -->
+      <g>
+        <rect x="200" y="186" width="64" height="70" fill="none" stroke="#ffd21f" stroke-width="5" class="dl" pathLength="1"/>
+        <path class="dl" pathLength="1" d="M221 244 V200 H236 a12 12 0 0 1 0 24 H221" fill="none" stroke="#ffd21f" stroke-width="7"/>
+      </g>
+      <!-- Auto -->
+      <g class="car" id="car" style="transform:translate(0,-170px);opacity:0">
+        <g transform="translate(114 46)">
+          <rect x="0" y="0" width="44" height="88" rx="10" fill="#ff5b24"/>
+          <rect x="5" y="18" width="34" height="16" rx="4" fill="#1a1b1e"/>
+          <rect x="5" y="60" width="34" height="12" rx="4" fill="#1a1b1e"/>
+          <rect x="7" y="36" width="30" height="22" rx="3" fill="#e64a17"/>
+          <rect x="4" y="2" width="8" height="4" rx="2" fill="#fff6c2"/><rect x="32" y="2" width="8" height="4" rx="2" fill="#fff6c2"/>
+        </g>
+      </g>
+      <text x="352" y="553" text-anchor="end" font-family="Barlow,Arial" font-size="9" fill="#2a2c30">Illustration – später Ihre echten Fotos</text>
+    </svg>
+  </div>
+  <div class="w"><div class="meterline"><span>Markierung</span><b id="lotPct">0 %</b></div></div>
+</section>
+
+<section id="geschichte">
+  <div class="w">
+    <h2 class="st">Drei<br><em>Generationen.</em></h2>
+    <p class="lead">Ein Familienbetrieb mit Wurzeln in Spiez.</p>
+    <div class="hist">
+      <div class="km"><b>1953</b><span>Werner Strauss</span><small>gründet die Malerei</small></div>
+      <div class="km"><b>1985</b><span>Ulrich Strauss</span><small>führt bis 2023</small></div>
+      <div class="km"><b>2023</b><span>Dylan Strauss</span><small>3. Generation</small></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="w">
+    <h2 class="st">Was<br><em>Kunden sagen.</em></h2>
+    <div class="poster"><b>[Platzhalter: Ihre Google-Bewertungen]</b><span>Hier kommen später Ihre echten Google-Bewertungen hin.</span></div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <div class="w">
+    <h2 class="st">Ein Anruf<br>genügt.</h2>
+    <p class="lead">In Spiez und Umgebung – und in der ganzen Schweiz.</p>
+    <div style="margin-top:18px;border-top:3px solid #141414">
+      <a class="rowc" href="tel:+41798853737"><div><small>Dylan Strauss</small><strong>079 885 37 37</strong></div><span class="ar">→</span></a>
+      <a class="rowc" href="tel:+41799008067"><div><small>Offertanfragen · Mona Künzi</small><strong>079 900 80 67</strong></div><span class="ar">→</span></a>
+      <a class="rowc" href="https://wa.me/41798853737"><div><small>WhatsApp</small><strong>Nachricht senden</strong></div><span class="ar">→</span></a>
+      <a class="rowc" href="mailto:malerei.strauss@gmail.com"><div><small>E-Mail</small><em>malerei.strauss@gmail.com</em></div><span class="ar">→</span></a>
+      <a class="rowc" href="https://www.instagram.com/malerei_strauss/"><div><small>Instagram</small><em>@malerei_strauss</em></div><span class="ar">→</span></a>
+    </div>
+    <div class="hours">
+      <h3 class="st">Öffnungszeiten</h3>
+      <div><span>Mo – Fr</span><span>07:30 – 18:00</span></div>
+      <div><span>Samstag</span><span>09:00 – 17:00</span></div>
+      <div><span>Sonntag</span><span>geschlossen</span></div>
+    </div>
+    <div class="addr"><p>Malerei Strauss<br>Thunstrasse 56<br>3700 Spiez</p><a href="https://www.google.com/maps/search/?api=1&amp;query=Malerei%20Strauss%2C%20Thunstrasse%2056%2C%203700%20Spiez">Karte ↗</a></div>
+  </div>
+</section>
+</main>
+
+<footer>Malerei Strauss · Thunstrasse 56 · 3700 Spiez<b>Demo-Entwurf von Max Rathsack</b></footer>
+
+<nav class="dock">
+  <a class="b y" href="tel:+41798853737"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>Anrufen</a>
+  <a class="b g" href="https://wa.me/41798853737"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</a>
+</nav>
+
+<script>
+(function(){
+  /* ---------- Graffiti-Wand ---------- */
+  var wall=document.getElementById('wall'),cv=document.getElementById('gCanvas'),ctx=cv.getContext('2d');
+  var W,H,dpr,done=false,last=null,n=0;
+  var seed=7;function R(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;}
+  function r(a,b){return a+R()*(b-a)}
+  var COND='"Bebas Neue", StrCond, "Arial Narrow", sans-serif';
+  function drips(x,y,col,k){ctx.strokeStyle=col;ctx.fillStyle=col;for(var i=0;i<k;i++){var dx=x+r(-30,30),len=r(14,60);ctx.lineWidth=r(2,4);ctx.beginPath();ctx.moveTo(dx,y);ctx.lineTo(dx,y+len);ctx.stroke();ctx.beginPath();ctx.arc(dx,y+len,ctx.lineWidth*.9,0,7);ctx.fill();}}
+  function spray(x,y,rad,col,cnt){ctx.fillStyle=col;for(var i=0;i<cnt;i++){var a=r(0,6.3),d=Math.pow(R(),1.8)*rad;ctx.fillRect(x+Math.cos(a)*d,y+Math.sin(a)*d,1.3,1.3);}}
+  function piece(txt,x,y,size,rot,skew,g1,g2){
+    ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.transform(1,0,skew,1,0,0);
+    ctx.font=size+'px '+COND;ctx.textBaseline='middle';ctx.lineJoin='round';
+    var w=ctx.measureText(txt).width;
+    ctx.lineWidth=size*.2;ctx.strokeStyle='#0b0b0d';ctx.strokeText(txt,6,6);ctx.strokeText(txt,0,0);
+    var g=ctx.createLinearGradient(0,-size/2,0,size/2);g.addColorStop(0,g1);g.addColorStop(1,g2);
+    ctx.fillStyle=g;ctx.fillText(txt,0,0);
+    ctx.lineWidth=size*.035;ctx.strokeStyle='rgba(255,255,255,.85)';ctx.strokeText(txt,-2,-2);
+    // Glanzpunkte
+    ctx.fillStyle='#fff';for(var i=0;i<4;i++){var px=r(0,w),py=r(-size*.3,size*.1);ctx.beginPath();ctx.moveTo(px,py-6);ctx.lineTo(px+2,py);ctx.lineTo(px,py+6);ctx.lineTo(px-2,py);ctx.fill();}
+    ctx.restore();return w;
+  }
+  function scribble(x,y,w,col,lw){
+    ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(x,y);
+    var cx=x;while(cx<x+w){var nx=cx+r(10,26);ctx.bezierCurveTo(cx+r(-6,10),y+r(-38,10),nx+r(-10,6),y+r(-10,34),nx,y+r(-12,12));cx=nx;}
+    ctx.stroke();ctx.beginPath();ctx.moveTo(x-6,y+20);ctx.quadraticCurveTo(x+w/2,y+38,x+w+12,y+8);ctx.stroke();
+  }
+  function paintGraffiti(){
+    seed=7;dpr=Math.min(window.devicePixelRatio||1,2);W=wall.clientWidth;H=wall.clientHeight;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,W,H);
+    // Schmutzschleier
+    for(var i=0;i<14;i++){var gx=r(0,W),gy=r(0,H),gr=r(40,120),g=ctx.createRadialGradient(gx,gy,0,gx,gy,gr);g.addColorStop(0,'rgba(40,38,34,.32)');g.addColorStop(1,'rgba(40,38,34,0)');ctx.fillStyle=g;ctx.fillRect(gx-gr,gy-gr,gr*2,gr*2);}
+    ctx.fillStyle='rgba(60,58,52,.18)';ctx.fillRect(0,0,W,H);
+    // Hintergrund-Füllflächen
+    ctx.fillStyle='rgba(35,120,200,.55)';ctx.beginPath();ctx.moveTo(-10,H*.08);ctx.bezierCurveTo(W*.4,H*.02,W*.7,H*.2,W+10,H*.12);ctx.lineTo(W+10,H*.34);ctx.bezierCurveTo(W*.6,H*.4,W*.3,H*.26,-10,H*.36);ctx.fill();
+    spray(W*.5,H*.22,W*.5,'rgba(35,120,200,.5)',900);
+    // grosses Piece
+    piece('KRZO',W*.06,H*.24,Math.min(W*.42,170),-.08,-.18,'#ff4fa3','#ff8a1f');
+    drips(W*.3,H*.36,'#ff4fa3',6);
+    // zweites Piece
+    piece('VEK',W*.3,H*.6,Math.min(W*.36,150),.06,-.1,'#b4ff3a','#19c3b0');
+    drips(W*.55,H*.7,'#19c3b0',5);
+    // Tags
+    scribble(W*.08,H*.86,W*.38,'#0b0b0d',5);
+    scribble(W*.56,H*.44,W*.32,'#f2f1ea',4);
+    scribble(W*.6,H*.9,W*.3,'#e8202a',4.5);
+    ctx.save();ctx.translate(W*.72,H*.1);ctx.rotate(.18);ctx.font='44px '+COND;ctx.lineWidth=3;ctx.strokeStyle='#0b0b0d';ctx.strokeText('ZOK!',0,0);ctx.restore();
+    // Throw-up Kreise
+    ctx.lineWidth=4;ctx.strokeStyle='#f7e82a';ctx.beginPath();ctx.arc(W*.86,H*.66,26,0,7);ctx.stroke();ctx.beginPath();ctx.moveTo(W*.86-18,H*.66+18);ctx.lineTo(W*.86+18,H*.66-18);ctx.stroke();
+    spray(W*.2,H*.75,60,'rgba(11,11,13,.6)',380);spray(W*.85,H*.3,50,'rgba(232,32,42,.6)',300);
+  }
+  function scrub(x,y){
+    ctx.globalCompositeOperation='destination-out';
+    var g=ctx.createRadialGradient(x,y,4,x,y,34);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.6,'rgba(0,0,0,.9)');g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,34,0,7);ctx.fill();
+  }
+  function seg(a,b){var dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),k=Math.max(1,Math.ceil(d/6));for(var i=1;i<=k;i++)scrub(a.x+dx*i/k,a.y+dy*i/k);}
+  function pos(e){var q=wall.getBoundingClientRect();return{x:e.clientX-q.left,y:e.clientY-q.top};}
+  function clean(){var st=12*dpr,d=ctx.getImageData(0,0,cv.width,cv.height).data,t=0,c=0;for(var y=0;y<cv.height;y+=st)for(var x=0;x<cv.width;x+=st){t++;if(d[(y*cv.width+x)*4+3]<30)c++;}return c/t;}
+  function upd(){var c=clean(),p=Math.round(c*100);document.getElementById('pct').textContent=p;document.getElementById('bar').style.width=p+'%';if(c>.72&&!done)blast();}
+  function blast(){done=true;wall.classList.add('touched');cv.style.transition='opacity .8s, clip-path 1s';cv.style.clipPath='inset(0 0 0 100%)';cv.style.opacity='.0';document.getElementById('pct').textContent='100';document.getElementById('bar').style.width='100%';}
+  wall.addEventListener('pointerdown',function(e){if(done)return;wall.setPointerCapture(e.pointerId);wall.classList.add('touched');last=pos(e);scrub(last.x,last.y);});
+  wall.addEventListener('pointermove',function(e){if(!last||done)return;var p=pos(e);seg(last,p);last=p;if(++n%8===0)upd();});
+  ['pointerup','pointercancel'].forEach(function(t){wall.addEventListener(t,function(){last=null;if(!done)upd();})});
+  document.getElementById('blast').addEventListener('click',blast);
+  paintGraffiti();
+  var lw=W;window.addEventListener('resize',function(){if(!done&&wall.clientWidth!==lw){lw=wall.clientWidth;paintGraffiti();}});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){if(!done&&n===0)paintGraffiti();});
+
+  /* ---------- Parkplatz-Linien beim Scrollen ---------- */
+  var lot=document.getElementById('lot'),paths=[].slice.call(lot.querySelectorAll('.dl')),car=document.getElementById('car'),lp=document.getElementById('lotPct');
+  function drawLot(p){
+    var N=paths.length;
+    paths.forEach(function(el,i){var s=i/N*.75,e=s+.25,t=Math.min(1,Math.max(0,(p-s)/(e-s)));el.style.strokeDashoffset=(1-t);});
+    lp.textContent=Math.round(Math.min(1,Math.max(0,p))*100)+' %';
+    var parked=p>.9;car.style.opacity=parked?1:0;car.style.transform=parked?'translate(0,0)':'translate(0,-170px)';
+  }
+  var forced=null;
+  function onScroll(){if(forced!==null)return;var q=lot.getBoundingClientRect(),vh=window.innerHeight;var p=(vh*.9-q.top)/(q.height*.95);drawLot(p);}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+
+  window.__pdfState=function(){
+    paintGraffiti();wall.classList.add('touched');
+    // halb geschrubbt: diagonale Bahnen von links oben
+    for(var k=0;k<7;k++){var y0=-20+k*44;seg({x:-10,y:y0+H*.05},{x:W*.62-k*18,y:y0+H*.62});}
+    upd();
+    forced=.95;drawLot(.95);
+  };
+  window.__revealAll=function(){};
+})();
+</script>
+</body>
+</html>
