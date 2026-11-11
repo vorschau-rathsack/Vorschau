@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schreinerei Michael Neuenschwander – Entwurf «Altstadt-Werkstatt»</title>
+<meta name="description" content="Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Schreinerei Michael Neuenschwander, Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;800&family=Work+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --beton:#d6d4cf; --beton2:#bdbab3; --beton3:#8e8b84; --night:#202324; --night2:#2d3133;
+  --orange:#ff5a1a; --orange2:#ff8a4f; --green:#1d4a37; --green2:#2c6650; --white:#f6f4ef; --wood:#e0b47a; --wood2:#b9854a;
+  --drop:#8cc4d8;
+  --disp:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif; --sans:"Work Sans", Arial, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--night)}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--night);background:var(--night);-webkit-font-smoothing:antialiased}
+.wrap{max-width:430px;margin:0 auto;background:var(--beton);overflow:hidden}
+.demo{background:var(--orange);color:var(--night);font:13px/1.4 var(--sans);padding:9px 16px;text-align:center}
+.demo b{font-weight:700}
+.disp{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+/* Hero */
+.hero{padding:22px 18px 0;position:relative}
+.topbar{display:flex;justify-content:space-between;align-items:center}
+.mark{display:flex;align-items:center;gap:10px;font:800 19px/1 var(--disp);text-transform:uppercase;letter-spacing:.04em}
+.mark svg{width:36px;height:36px}
+.addr{font:700 12px/1.25 var(--sans);text-align:right;text-transform:uppercase;letter-spacing:.06em}
+.big{font:800 clamp(44px,16.5vw,76px)/.86 var(--disp);overflow-wrap:anywhere;text-transform:uppercase;margin-top:26px;letter-spacing:-.005em}
+.big span{display:block}
+.big .o{color:var(--orange)}
+.big .g{color:var(--green)}
+.who{margin-top:16px;font-size:17px;max-width:24em}
+.who b{font-weight:700}
+.tags{display:flex;gap:6px;margin-top:18px;flex-wrap:wrap}
+.tags span{font:800 17px/1 var(--disp);text-transform:uppercase;letter-spacing:.06em;padding:9px 11px 8px;background:var(--night);color:var(--white)}
+.tags span.o{background:var(--orange);color:var(--night)}
+.tags span.g{background:var(--green)}
+.motto{margin-top:20px;border-left:6px solid var(--orange);padding:4px 0 4px 12px;font-size:19px;font-weight:700;line-height:1.35}
+.cta{display:grid;grid-template-columns:1.2fr 1fr;gap:8px;margin-top:20px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;min-height:56px;padding:0 12px;font:800 21px/1 var(--disp);text-transform:uppercase;letter-spacing:.05em;text-decoration:none;color:var(--white);background:var(--night);border:0;cursor:pointer}
+.btn.o{background:var(--orange);color:var(--night)}
+.btn.g{background:var(--green);color:var(--white)}
+.btn.w{background:var(--white);color:var(--night)}
+.btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;flex:0 0 20px}
+.skyline{display:block;width:calc(100% + 36px);margin:26px -18px 0;height:auto}
+section{padding:44px 18px}
+.kicker{display:inline-block;font:800 15px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;background:var(--night);color:var(--white);padding:7px 9px 6px}
+.kicker.o{background:var(--orange);color:var(--night)}
+h2{font:800 46px/.92 var(--disp);text-transform:uppercase;margin:14px 0 12px}
+.dark{background:var(--night);color:var(--white)}
+.green{background:var(--green);color:var(--white)}
+.green .kicker,.dark .kicker{background:var(--white);color:var(--night)}
+.sub{opacity:.85}
+/* Van */
+.vanbox{margin-top:22px;background:var(--green2);padding:14px 8px 8px;position:relative}
+.vanbox svg{display:block;width:100%;height:auto}
+.door{transition:transform .8s cubic-bezier(.5,.1,.2,1);transform-box:view-box;cursor:pointer}
+#doorL{transform-origin:44px 0}
+#doorR{transform-origin:316px 0}
+.van.open #doorL,.van.open #doorR{transform:scaleX(-.2)}
+.van.open .door .dp{fill:#c9c6bd}
+.mod{opacity:0;transform:translateY(16px);transition:opacity .45s, transform .45s;transform-box:view-box}
+.mod.on{opacity:1;transform:none}
+.tapnote{position:absolute;top:12px;right:12px;font:800 13px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;background:var(--orange);color:var(--night);padding:6px 8px 5px;transition:opacity .4s}
+.van.open ~ .tapnote{opacity:0}
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.mods button{background:var(--white);color:var(--night);border:3px solid var(--white);padding:10px 4px 9px;font:800 17px/1 var(--disp);text-transform:uppercase;letter-spacing:.05em;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:7px}
+.mods button svg{width:44px;height:30px}
+.mods button.on{background:var(--orange);border-color:var(--orange)}
+.mods button .st{font:700 11px/1 var(--sans);letter-spacing:.04em;text-transform:none;opacity:.75}
+.doorbtn{margin-top:8px;width:100%}
+.mine{margin-top:16px;background:var(--white);color:var(--night);padding:16px}
+.mine h3{font:800 26px/1 var(--disp);text-transform:uppercase;display:flex;justify-content:space-between;align-items:baseline}
+.mine h3 small{font:700 13px var(--sans);text-transform:none;color:var(--beton3)}
+.mine ol{list-style:none;margin-top:10px;counter-reset:m}
+.mine li{counter-increment:m;display:flex;align-items:center;gap:10px;padding:8px 0;border-top:2px solid var(--beton)}
+.mine li::before{content:counter(m);font:800 18px/1 var(--disp);background:var(--night);color:var(--white);width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex:0 0 28px}
+.mine li span{font-size:14px;color:#55524c;display:block;line-height:1.3}
+.mine .empty{margin-top:10px;color:#6b6861;font-style:italic}
+.mine .btn{margin-top:12px;width:100%}
+/* Trocknung */
+.meter{margin-top:22px;background:var(--night2);padding:12px;position:relative}
+.meter svg{display:block;width:100%;height:auto}
+.drop{transition:opacity .9s, transform .9s;transform-box:fill-box;transform-origin:center}
+.drop.gone{opacity:0;transform:scale(.3) translateY(-10px)}
+#needle{transition:transform 4.5s ease-in-out;transform-box:view-box;transform-origin:270px 118px;transform:rotate(-58deg)}
+.run #needle{transform:rotate(58deg)}
+#knob{transition:transform .6s;transform-box:view-box;transform-origin:270px 222px;cursor:pointer}
+.run #knob{transform:rotate(120deg)}
+#led{fill:#4a4f52;transition:fill .3s}
+.run #led{fill:var(--orange)}
+.air path{stroke-dasharray:6 10;opacity:0;transition:opacity .4s}
+.run .air path{opacity:.8;animation:air 1s linear infinite}
+@keyframes air{to{stroke-dashoffset:-32}}
+.status{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.status b{font:800 24px/1 var(--disp);text-transform:uppercase;letter-spacing:.04em}
+.status .btn{min-height:50px;font-size:19px;flex:0 0 auto;padding:0 16px}
+.illu{margin-top:12px;font-size:13.5px;line-height:1.45;color:#c3c0b8;border-top:2px dashed #4a4f52;padding-top:10px}
+.illu b{color:var(--orange2)}
+/* Leistungen */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:20px}
+.tile{background:var(--white);padding:12px 12px 13px;min-height:84px;display:flex;flex-direction:column;justify-content:space-between}
+.tile i{font:800 14px/1 var(--disp);font-style:normal;color:var(--beton3);letter-spacing:.06em}
+.tile b{font:800 23px/1 var(--disp);text-transform:uppercase;letter-spacing:.02em;word-break:break-word;hyphens:auto}
+.tile.o{background:var(--orange)}
+.tile.o i{color:var(--night)}
+.tile.g{background:var(--green);color:var(--white)}
+.tile.g i{color:#9dc1b0}
+.tile.wide{grid-column:1/-1}
+.tile small{font:12.5px/1.3 var(--sans);margin-top:4px}
+/* Referenzen */
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:20px}
+.ph{background:repeating-linear-gradient(-45deg,var(--beton2) 0 2px,transparent 2px 14px),var(--beton);border:3px solid var(--night);aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:flex-end;padding:10px}
+.ph.wide{grid-column:1/-1;aspect-ratio:16/9}
+.ph b{font:800 21px/1 var(--disp);text-transform:uppercase}
+.ph span{font-size:13px}
+/* Standort */
+.gasse{margin-top:20px;background:var(--white);padding:10px;border:3px solid var(--night)}
+.gasse svg{display:block;width:100%;height:auto}
+.cap{font-size:12.5px;color:#6b6861;margin-top:6px}
+.sign{margin-top:16px;background:var(--night);color:var(--white);padding:18px 16px;border:6px solid var(--orange)}
+.sign h3{font:800 28px/1 var(--disp);text-transform:uppercase;color:var(--orange)}
+.sign .r{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid #3b3f41;padding:9px 0;margin-top:10px}
+.sign .r b{font:800 23px/1 var(--disp);text-transform:uppercase;letter-spacing:.04em}
+.sign .r span{font:800 23px/1.25 var(--disp);text-align:right}
+.photo{margin-top:16px;aspect-ratio:4/3}
+/* Kontakt */
+.contact{background:var(--orange);color:var(--night)}
+.contact .kicker{background:var(--night);color:var(--white)}
+.cl{display:grid;gap:8px;margin-top:20px}
+.cl a{display:flex;justify-content:space-between;align-items:center;background:var(--night);color:var(--white);text-decoration:none;padding:14px 16px;gap:10px}
+.cl a small{display:block;font:700 12px/1 var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--orange2);margin-bottom:5px}
+.cl a b{font:800 29px/1 var(--disp);letter-spacing:.02em}
+.cl a b.m{font-size:20px;word-break:break-all;letter-spacing:0}
+.cl svg{width:28px;height:28px;fill:none;stroke:var(--orange);stroke-width:2.2;flex:0 0 28px}
+address{font-style:normal;margin-top:18px;font-weight:700}
+footer{background:var(--night);color:#a9a69e;font-size:13px;padding:20px 18px 92px;text-align:center}
+.bar{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;display:grid;grid-template-columns:1.4fr 1fr;z-index:40}
+.bar .btn{min-height:60px}
+html.pdf .bar{position:static;transform:none}
+html.pdf footer{padding-bottom:20px}
+html.pdf *{transition:none!important;animation:none!important}
+html.pdf .run .air path{opacity:.8}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s, transform .6s}
+.rv.in{opacity:1;transform:none}
+html.pdf .rv{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="demo"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite der Schreinerei Michael Neuenschwander</div>
+
+<header class="hero">
+  <div class="topbar">
+    <div class="mark"><svg viewBox="0 0 36 36"><rect width="36" height="36" fill="#202324"/><path d="M6 28V12l12-6 12 6v16" fill="none" stroke="#ff5a1a" stroke-width="3"/><rect x="14" y="17" width="8" height="11" fill="#f6f4ef"/></svg>Neuenschwander</div>
+    <div class="addr">Mittlere Strasse 10<br>3600 Thun</div>
+  </div>
+  <h1 class="big"><span>Schreinerei</span><span class="o">mitten in</span><span>der Thuner</span><span class="g">Altstadt</span></h1>
+  <p class="who"><b>Schreinerei Michael Neuenschwander</b> – ein kleines Team, eine Werkstatt in der Altstadt und eine eher seltene Kombination: Holzhandwerk, Fahrzeugausbau und Bauaustrocknung.</p>
+  <div class="tags"><span>Innenausbau</span><span class="o">Fahrzeugausbau</span><span class="g">Bauaustrocknung</span><span>Küchen</span><span>Reparaturen</span></div>
+  <p class="motto">«Wir planen und realisieren Ihr Projekt von A bis Z.»</p>
+  <div class="cta">
+    <a class="btn o" href="tel:+41332226481"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>033 222 64 81</a>
+    <a class="btn" href="mailto:schreinerei@neuenschwander-thun.ch"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+  </div>
+  <svg class="skyline" viewBox="0 0 430 150" aria-hidden="true">
+    <rect y="138" width="430" height="12" fill="#202324"/>
+    <path d="M0 150V60l30-26 30 26v90z" fill="#8e8b84"/>
+    <path d="M60 150V44h58v106z" fill="#1d4a37"/><path d="M56 46l33-30 33 30z" fill="#202324"/>
+    <path d="M118 150V70l28-28 28 28v80z" fill="#bdbab3"/>
+    <path d="M174 150V36h70v114z" fill="#202324"/><path d="M170 38l39-28 39 28z" fill="#ff5a1a"/>
+    <rect x="194" y="98" width="30" height="40" fill="#ff5a1a"/><text x="209" y="124" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="800" font-size="20" fill="#202324">10</text>
+    <path d="M244 150V58l26-22 26 22v92z" fill="#8e8b84"/>
+    <path d="M296 150V48h62v102z" fill="#1d4a37"/><path d="M292 50l35-30 35 30z" fill="#202324"/>
+    <path d="M358 150V66l36-30 36 30v84z" fill="#bdbab3"/>
+    <g fill="#f6f4ef" opacity=".9"><rect x="74" y="62" width="10" height="14"/><rect x="94" y="62" width="10" height="14"/><rect x="74" y="92" width="10" height="14"/><rect x="94" y="92" width="10" height="14"/><rect x="188" y="52" width="12" height="16"/><rect x="218" y="52" width="12" height="16"/><rect x="312" y="64" width="10" height="14"/><rect x="334" y="64" width="10" height="14"/><rect x="312" y="96" width="10" height="14"/><rect x="334" y="96" width="10" height="14"/></g>
+    <g fill="#202324" opacity=".55"><rect x="20" y="80" width="18" height="18"/><rect x="136" y="88" width="18" height="18"/><rect x="262" y="78" width="16" height="18"/><rect x="384" y="84" width="20" height="18"/></g>
+  </svg>
+</header>
+
+<section class="green" id="fahrzeug">
+  <span class="kicker">Fahrzeugausbau</span>
+  <h2>Bauen Sie Ihren Kastenwagen aus</h2>
+  <p class="sub">Tippen Sie auf die Hecktüren und setzen Sie Module ein. Ihr Ausbau erscheint unten in der Liste – als Gesprächsgrundlage für die Werkstatt.</p>
+  <div class="vanbox">
+    <svg class="van" id="van" viewBox="0 0 360 300" role="img" aria-label="Kastenwagen von hinten, Hecktüren zum Öffnen">
+      <!-- Räder -->
+      <rect x="52" y="252" width="56" height="38" rx="10" fill="#141617"/><rect x="252" y="252" width="56" height="38" rx="10" fill="#141617"/>
+      <!-- Karosserie -->
+      <path d="M34 248V54c0-20 14-34 36-36h220c22 2 36 16 36 36v194z" fill="#f6f4ef"/>
+      <path d="M34 248V54c0-20 14-34 36-36h220c22 2 36 16 36 36v194z" fill="none" stroke="#202324" stroke-width="3"/>
+      <rect x="36" y="150" width="8" height="48" fill="#ff5a1a"/><rect x="316" y="150" width="8" height="48" fill="#ff5a1a"/>
+      <!-- Laderaum -->
+      <rect x="44" y="34" width="272" height="212" fill="#2d3133"/>
+      <path d="M44 34L104 78M316 34L256 78M44 246L104 204M316 246L256 204" stroke="#45494b" stroke-width="2"/>
+      <rect x="104" y="78" width="152" height="126" fill="#3a3e40"/>
+      <path d="M44 246L104 204H256L316 246z" fill="#4c4a45"/>
+      <!-- Module -->
+      <g class="mod" id="m-regal">
+        <path d="M104 92H256M104 128H256" stroke="#b9854a" stroke-width="5"/>
+        <path d="M104 92L76 74M104 128L76 106" stroke="#b9854a" stroke-width="4"/>
+        <rect x="118" y="74" width="14" height="18" fill="#ff8a4f"/><rect x="136" y="78" width="10" height="14" fill="#f6f4ef"/><rect x="150" y="70" width="18" height="22" fill="#2c6650"/>
+        <rect x="200" y="76" width="22" height="16" fill="#e0b47a"/><rect x="226" y="80" width="12" height="12" fill="#ff5a1a"/>
+        <rect x="120" y="110" width="26" height="18" fill="#e0b47a"/><rect x="172" y="114" width="12" height="14" fill="#8cc4d8"/><rect x="214" y="106" width="22" height="22" fill="#f6f4ef"/>
+      </g>
+      <g class="mod" id="m-bett">
+        <path d="M44 172L104 150H256L316 172z" fill="#ff8a4f"/>
+        <path d="M60 166L106 152H254L300 166z" fill="#ffb28a"/>
+        <rect x="44" y="172" width="272" height="12" fill="#e0b47a"/>
+        <rect x="44" y="184" width="272" height="3" fill="#b9854a"/>
+        <path d="M180 152v14" stroke="#ff5a1a" stroke-width="2"/>
+      </g>
+      <g class="mod" id="m-schub">
+        <rect x="56" y="190" width="248" height="54" fill="#e0b47a"/>
+        <path d="M138 190v54M222 190v54" stroke="#b9854a" stroke-width="3"/>
+        <path d="M84 217h28M166 217h28M250 217h28" stroke="#202324" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <!-- Türen -->
+      <g class="door" id="doorL">
+        <rect class="dp" x="44" y="34" width="136" height="212" fill="#eceae4" stroke="#202324" stroke-width="3"/>
+        <rect x="58" y="48" width="108" height="64" rx="4" fill="#202324"/>
+        <rect x="150" y="150" width="18" height="7" rx="2" fill="#202324"/>
+        <rect x="44" y="200" width="136" height="10" fill="#ff5a1a"/>
+      </g>
+      <g class="door" id="doorR">
+        <rect class="dp" x="180" y="34" width="136" height="212" fill="#eceae4" stroke="#202324" stroke-width="3"/>
+        <rect x="194" y="48" width="108" height="64" rx="4" fill="#202324"/>
+        <rect x="192" y="150" width="18" height="7" rx="2" fill="#202324"/>
+        <rect x="180" y="200" width="136" height="10" fill="#ff5a1a"/>
+        <rect x="228" y="222" width="72" height="16" fill="#f6f4ef" stroke="#202324" stroke-width="2"/>
+        <text x="264" y="234.5" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="800" font-size="12" fill="#202324" letter-spacing="1">MEIN AUSBAU</text>
+      </g>
+      <!-- Stossstange -->
+      <rect x="28" y="246" width="304" height="16" rx="3" fill="#202324"/>
+    </svg>
+    <span class="tapnote">Türen antippen</span>
+  </div>
+  <div class="mods" id="mods">
+    <button data-m="bett"><svg viewBox="0 0 44 30"><rect x="2" y="12" width="40" height="6" fill="#e0b47a"/><rect x="4" y="6" width="36" height="6" fill="#ff8a4f"/><path d="M4 18v10M40 18v10" stroke="#202324" stroke-width="3"/></svg>Bett<span class="st">einsetzen</span></button>
+    <button data-m="schub"><svg viewBox="0 0 44 30"><rect x="2" y="4" width="40" height="22" fill="#e0b47a"/><path d="M15 4v22M29 4v22" stroke="#b9854a" stroke-width="2"/><path d="M5 15h7M18 15h7M32 15h7" stroke="#202324" stroke-width="2.5"/></svg>Schublade<span class="st">einsetzen</span></button>
+    <button data-m="regal"><svg viewBox="0 0 44 30"><path d="M2 12h40M2 26h40" stroke="#b9854a" stroke-width="3"/><rect x="6" y="3" width="6" height="9" fill="#ff5a1a"/><rect x="16" y="5" width="8" height="7" fill="#2c6650"/><rect x="28" y="17" width="9" height="9" fill="#202324"/></svg>Regal<span class="st">einsetzen</span></button>
+  </div>
+  <button class="btn w doorbtn" id="doorbtn">Hecktüren öffnen</button>
+  <div class="mine">
+    <h3>Mein Ausbau <small id="cnt">0 Module</small></h3>
+    <ol id="mylist"></ol>
+    <p class="empty" id="empty">Noch leer – tippen Sie oben auf ein Modul.</p>
+    <a class="btn o" id="vanmail" href="mailto:schreinerei@neuenschwander-thun.ch"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>Ausbau anfragen</a>
+  </div>
+</section>
+
+<section class="dark" id="trocknung">
+  <span class="kicker">Bauaustrocknung</span>
+  <h2>Wenn Wände zu nass sind</h2>
+  <p class="sub">Nach einem Wasserschaden oder im Neubau steckt oft Feuchtigkeit in Wänden und Böden. Bevor Holz eingebaut wird, muss sie raus – deshalb gehört die Bauaustrocknung bei uns gleich mit dazu.</p>
+  <div class="meter" id="meter">
+    <svg viewBox="0 0 360 300" role="img" aria-label="Illustration: Wand mit Feuchtigkeitstropfen und Messgerät mit Drehknopf">
+      <!-- Wand -->
+      <rect x="0" y="0" width="190" height="300" fill="#8e8b84"/>
+      <g stroke="#7b7871" stroke-width="2"><path d="M0 50H190M0 100H190M0 150H190M0 200H190M0 250H190"/><path d="M60 0v50M140 0v50M30 50v50M110 50v50M170 50v50M60 100v50M140 100v50M30 150v50M110 150v50M170 150v50M60 200v50M140 200v50M30 250v50M110 250v50"/></g>
+      <rect x="0" y="286" width="360" height="14" fill="#202324"/>
+      <g id="drops" fill="#8cc4d8"></g>
+      <!-- Luftstrom -->
+      <g class="air" fill="none" stroke="#f6f4ef" stroke-width="2.4" stroke-linecap="round">
+        <path d="M200 92 C190 80 180 70 162 70"/><path d="M200 118 C186 118 176 130 156 132"/><path d="M200 144 C188 152 176 176 152 186"/>
+      </g>
+      <!-- Gerät -->
+      <rect x="204" y="40" width="132" height="236" rx="10" fill="#ff5a1a"/>
+      <rect x="204" y="40" width="132" height="236" rx="10" fill="none" stroke="#202324" stroke-width="3"/>
+      <rect x="214" y="54" width="112" height="90" rx="4" fill="#f6f4ef"/>
+      <path d="M226 118 A44 44 0 0 1 314 118" fill="none" stroke="#202324" stroke-width="2"/>
+      <path d="M226 118 A44 44 0 0 1 239 87" fill="none" stroke="#8cc4d8" stroke-width="7"/>
+      <path d="M301 87 A44 44 0 0 1 314 118" fill="none" stroke="#e0b47a" stroke-width="7"/>
+      <text x="219" y="136" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#202324">NASS</text>
+      <text x="321" y="136" text-anchor="end" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#202324">TROCKEN</text>
+      <g id="needle"><path d="M270 118V80" stroke="#202324" stroke-width="3" stroke-linecap="round"/></g>
+      <circle cx="270" cy="118" r="5" fill="#202324"/>
+      <circle id="led" cx="320" cy="162" r="6"/>
+      <text x="216" y="166" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="800" font-size="13" fill="#202324" letter-spacing="1">TROCKNUNG</text>
+      <text x="216" y="182" font-family="Work Sans, sans-serif" font-size="9" fill="#202324">Illustration</text>
+      <g id="knob" role="button" tabindex="0" aria-label="Drehknopf Trocknung">
+        <circle cx="270" cy="222" r="34" fill="#202324"/>
+        <circle cx="270" cy="222" r="26" fill="#2d3133" stroke="#f6f4ef" stroke-width="2"/>
+        <rect x="267" y="194" width="6" height="22" rx="3" fill="#ff8a4f"/>
+      </g>
+      <text x="216" y="268" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#202324">AUS</text>
+      <text x="324" y="268" text-anchor="end" font-family="Work Sans, sans-serif" font-size="8.5" font-weight="700" fill="#202324">LÄUFT</text>
+    </svg>
+    <div class="status"><b id="stxt">Gerät aus</b><button class="btn o" id="knobbtn">Knopf drehen</button></div>
+    <p class="illu"><b>Reine Illustration:</b> Die Animation zeigt nur das Prinzip – sie ist keine Messung und sagt nichts über Dauer oder Ergebnis einer Trocknung aus. Das klärt die Werkstatt vor Ort.</p>
+  </div>
+</section>
+
+<section id="leistungen">
+  <span class="kicker">Alles aus einer Werkstatt</span>
+  <h2>Was wir machen</h2>
+  <p>Von A bis Z – zwölf Bereiche aus einer Werkstatt.</p>
+  <div class="grid">
+    <div class="tile"><i>01</i><b>Innenausbau</b></div>
+    <div class="tile"><i>02</i><b>Türen</b></div>
+    <div class="tile"><i>03</i><b>Fenster</b></div>
+    <div class="tile"><i>04</i><b>Küchen</b></div>
+    <div class="tile"><i>05</i><b>Schränke</b></div>
+    <div class="tile"><i>06</i><b>Möbel</b></div>
+    <div class="tile"><i>07</i><b>Garderoben</b></div>
+    <div class="tile"><i>08</i><b>Bodenbeläge</b></div>
+    <div class="tile o wide"><i>09</i><b>Fahrzeugausbau</b><small>Oben ausprobieren: Kastenwagen ausbauen</small></div>
+    <div class="tile"><i>10</i><b>Reparaturen</b></div>
+    <div class="tile"><i>11</i><b>Rundholzbau</b></div>
+    <div class="tile g wide"><i>12</i><b>Bauaustrocknung</b><small>Selten bei einer Schreinerei – hier im selben Betrieb</small></div>
+  </div>
+</section>
+
+<section style="background:var(--beton2)" id="referenzen">
+  <span class="kicker o">Referenzen</span>
+  <h2>Aus der Werkstatt</h2>
+  <div class="refs">
+    <div class="ph wide"><b>Fahrzeugausbau</b><span>[Ihre Referenzfotos]</span></div>
+    <div class="ph"><b>Küchen</b><span>[Ihre Referenzfotos]</span></div>
+    <div class="ph"><b>Innenausbau</b><span>[Ihre Referenzfotos]</span></div>
+    <div class="ph"><b>Rundholzbau</b><span>[Ihre Referenzfotos]</span></div>
+    <div class="ph"><b>Bauaus&shy;trocknung</b><span>[Ihre Referenzfotos]</span></div>
+  </div>
+</section>
+
+<section id="standort">
+  <span class="kicker">Standort</span>
+  <h2>Hier ist die Werkstatt</h2>
+  <p>Mitten in der Thuner Altstadt, an der Mittleren Strasse 10.</p>
+  <div class="gasse">
+    <svg viewBox="0 0 380 240" aria-label="Skizze einer Altstadtgasse mit Markierung Mittlere Strasse 10">
+      <rect width="380" height="240" fill="#f6f4ef"/>
+      <!-- Gasse -->
+      <path d="M150 240 L176 104 H204 L230 240Z" fill="#d6d4cf"/>
+      <g stroke="#bdbab3" stroke-width="1.5"><path d="M160 200H220M166 168H214M171 140H209M174 120H206"/></g>
+      <!-- Häuser links -->
+      <path d="M0 40 L60 60 V240 H0Z" fill="#8e8b84"/>
+      <path d="M60 60 L110 76 V240 H60Z" fill="#1d4a37"/>
+      <path d="M110 76 L150 88 V240 H110Z" fill="#bdbab3"/>
+      <path d="M150 88 L176 96 V240 L150 240Z" fill="#8e8b84"/>
+      <path d="M0 40 L60 60 L30 24Z" fill="#202324"/><path d="M60 60 L110 76 L84 46Z" fill="#202324"/><path d="M110 76 L150 88 L128 64Z" fill="#202324"/>
+      <!-- Häuser rechts -->
+      <path d="M380 34 L322 56 V240 H380Z" fill="#bdbab3"/>
+      <path d="M322 56 L270 74 V240 H322Z" fill="#202324"/>
+      <path d="M270 74 L230 88 V240 H270Z" fill="#1d4a37"/>
+      <path d="M230 88 L204 96 V240 L230 240Z" fill="#8e8b84"/>
+      <path d="M380 34 L322 56 L352 20Z" fill="#202324"/><path d="M322 56 L270 74 L298 42Z" fill="#ff5a1a"/><path d="M270 74 L230 88 L252 62Z" fill="#202324"/>
+      <!-- Fenster -->
+      <g fill="#f6f4ef" opacity=".85"><path d="M14 80l18 5v20l-18-5zM74 96l14 4v18l-14-4zM122 108l10 3v15l-10-3zM360 80l-16 5v20l16-5zM300 96l-14 4v18l14-4zM254 108l-10 3v15l10-3z"/></g>
+      <g fill="#f6f4ef" opacity=".85"><path d="M14 140l18 4v20l-18-4zM74 150l14 3v18l-14-3zM360 140l-16 4v20l16-4zM300 150l-14 3v18l14-3z"/></g>
+      <!-- Werkstatttor -->
+      <path d="M278 200 l34 -8 v48 h-34z" fill="#ff5a1a"/>
+      <!-- Pin -->
+      <g>
+        <path d="M296 186 c-18 -22 -24 -32 -24 -44 a24 24 0 0 1 48 0 c0 12 -6 22 -24 44z" fill="#ff5a1a" stroke="#202324" stroke-width="3"/>
+        <circle cx="296" cy="142" r="8" fill="#202324"/>
+        <rect x="196" y="2" width="148" height="30" fill="#202324"/>
+        <text x="270" y="23" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="800" font-size="17" fill="#f6f4ef" letter-spacing="1">MITTLERE STRASSE 10</text>
+        <path d="M296 32 V112" stroke="#202324" stroke-width="2" stroke-dasharray="4 4"/>
+      </g>
+    </svg>
+  </div>
+  <p class="cap">Skizze, nicht massstäblich – Altstadt Thun, 3600 Thun.</p>
+  <div class="ph photo"><b>Werkstatt</b><span>[Foto Ihrer Werkstatt]</span></div>
+  <div class="sign">
+    <h3>Öffnungszeiten</h3>
+    <div class="r"><b>Mo – Fr</b><span>07:15 – 12:00<br>13:15 – 17:15</span></div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <span class="kicker">Kontakt</span>
+  <h2>Rufen Sie die Werkstatt an</h2>
+  <p>Ob Küche, Kastenwagen oder nasse Wand – erzählen Sie uns, worum es geht.</p>
+  <div class="cl">
+    <a href="tel:+41332226481"><span><small>Werkstatt</small><b>033 222 64 81</b></span><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></a>
+    <a href="tel:+41792101490"><span><small>Mobile</small><b>079 210 14 90</b></span><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></a>
+    <a href="mailto:schreinerei@neuenschwander-thun.ch"><span><small>E-Mail</small><b class="m">schreinerei@neuenschwander-thun.ch</b></span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></a>
+  </div>
+  <address>Schreinerei Michael Neuenschwander · Mittlere Strasse 10 · 3600 Thun</address>
+</section>
+
+<footer>Entwurf «Altstadt-Werkstatt» – Demo von Max Rathsack. Keine offizielle Webseite der Schreinerei Michael Neuenschwander. Bildflächen sind Platzhalter.</footer>
+<nav class="bar" aria-label="Schnellkontakt">
+  <a class="btn o" href="tel:+41332226481"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+  <a class="btn" href="mailto:schreinerei@neuenschwander-thun.ch"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+</nav>
+</div>
+
+<script>
+// --- Kastenwagen ---
+const van=document.getElementById('van'),doorbtn=document.getElementById('doorbtn');
+const MODS={bett:['Bett','Liegefläche quer über den Laderaum'],schub:['Schublade','Schubladenblock unter der Liegefläche'],regal:['Regal','Ablagen an der Stirnwand']};
+const order=[];
+function setDoors(o){van.classList.toggle('open',o);doorbtn.textContent=o?'Hecktüren schliessen':'Hecktüren öffnen'}
+document.querySelectorAll('.door').forEach(d=>d.addEventListener('click',()=>setDoors(!van.classList.contains('open'))));
+doorbtn.onclick=()=>setDoors(!van.classList.contains('open'));
+function toggleMod(m){
+  const i=order.indexOf(m);
+  if(i<0)order.push(m);else order.splice(i,1);
+  if(i<0&&!van.classList.contains('open'))setDoors(true);
+  renderVan();
+}
+function renderVan(){
+  Object.keys(MODS).forEach(k=>{
+    const on=order.includes(k);
+    document.getElementById('m-'+k).classList.toggle('on',on);
+    const b=document.querySelector(`.mods button[data-m=${k}]`);b.classList.toggle('on',on);b.querySelector('.st').textContent=on?'✓ eingesetzt':'einsetzen';b.setAttribute('aria-pressed',on);
+  });
+  const ol=document.getElementById('mylist');ol.innerHTML='';
+  order.forEach(k=>{const li=document.createElement('li');li.innerHTML=`<div><b>${MODS[k][0]}</b><span>${MODS[k][1]}</span></div>`;ol.appendChild(li)});
+  document.getElementById('empty').style.display=order.length?'none':'block';
+  document.getElementById('cnt').textContent=order.length+(order.length===1?' Modul':' Module');
+  const body='Guten Tag Herr Neuenschwander\n\nIch interessiere mich für einen Fahrzeugausbau.\n\nMein Ausbau (Skizze von Ihrer Webseite):\n'+(order.length?order.map((k,i)=>`${i+1}. ${MODS[k][0]} – ${MODS[k][1]}`).join('\n'):'(noch offen)')+'\n\nFahrzeug (Marke/Modell):\n\nFreundliche Grüsse\n';
+  document.getElementById('vanmail').href='mailto:schreinerei@neuenschwander-thun.ch?subject='+encodeURIComponent('Anfrage Fahrzeugausbau')+'&body='+encodeURIComponent(body);
+}
+document.querySelectorAll('.mods button').forEach(b=>b.onclick=()=>toggleMod(b.dataset.m));
+renderVan();
+// --- Trocknung (Illustration) ---
+const NS="http://www.w3.org/2000/svg",dg=document.getElementById('drops');
+const DP=[[24,30],[78,22],[132,36],[50,74],[104,68],[160,80],[20,120],[86,116],[140,128],[44,168],[112,160],[170,176],[26,214],[80,206],[138,222],[60,258],[120,262],[176,248]];
+const drops=DP.map(([x,y])=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',`M${x} ${y-9}c5 7 7 10 7 13a7 7 0 0 1-14 0c0-3 2-6 7-13z`);p.setAttribute('class','drop');dg.appendChild(p);return p});
+const meter=document.getElementById('meter'),stxt=document.getElementById('stxt'),kb=document.getElementById('knobbtn');
+let timers=[];
+function run(on){
+  timers.forEach(clearTimeout);timers=[];
+  meter.classList.toggle('run',on);
+  if(on){
+    stxt.textContent='Trocknung läuft';kb.textContent='Zurück';
+    const ord=drops.map((d,i)=>i).sort((a,b)=>DP[b][0]-DP[a][0]);
+    ord.forEach((i,k)=>timers.push(setTimeout(()=>drops[i].classList.add('gone'),300+k*250)));
+    timers.push(setTimeout(()=>{stxt.textContent='Wand trocken (Illustration)'},300+ord.length*250+600));
+  }else{
+    stxt.textContent='Gerät aus';kb.textContent='Knopf drehen';drops.forEach(d=>d.classList.remove('gone'));
+  }
+}
+const toggleRun=()=>run(!meter.classList.contains('run'));
+kb.onclick=toggleRun;
+const knob=document.getElementById('knob');knob.addEventListener('click',toggleRun);knob.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleRun()}});
+// --- PDF-Beispielzustand ---
+window.__pdf=function(){
+  order.length=0;order.push('bett','schub','regal');setDoors(true);renderVan();
+  meter.classList.add('run');stxt.textContent='Trocknung läuft';kb.textContent='Zurück';
+  drops.forEach((d,i)=>{if(DP[i][0]>70)d.classList.add('gone')});
+  document.getElementById('needle').style.transform='rotate(10deg)';
+};
+// --- Einblenden ---
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1}):null;
+document.querySelectorAll('h2, .grid, .refs, .gasse, .sign, .cl').forEach(e=>{e.classList.add('rv');io?io.observe(e):e.classList.add('in')});
+</script>
+</body>
+</html>

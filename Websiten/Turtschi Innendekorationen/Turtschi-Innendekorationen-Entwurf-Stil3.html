@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turtschi Innendekorationen + Sattlerei – Entwurf «Fenster zum See»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --linen:#f4efe6; --linen-2:#e9e1d3; --sand:#d8ccb7; --see:#3d6e8f; --see-d:#1f3b4d; --see-l:#cfe0ea; --ink:#22303a; --muted:#66727a;
+  --serif:"Instrument Serif", Georgia, serif; --sans:"Outfit", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--linen)}
+body{background:var(--linen);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;max-width:430px;margin:0 auto;overflow-x:hidden}
+.demo{font-size:12px;line-height:1.4;padding:8px 16px;text-align:center;color:var(--see-d);background:var(--see-l)}
+header{padding:20px 22px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.wm{font-family:var(--serif);font-size:25px;line-height:1.05}
+.wm i{color:var(--see)}
+.wm small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.tel{font-size:13px;color:var(--see-d);text-decoration:none;border-bottom:1px solid var(--see);padding-bottom:1px;white-space:nowrap;margin-top:6px}
+.intro{padding:34px 22px 10px}
+.no{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--see)}
+h1{font-family:var(--serif);font-weight:400;font-size:54px;line-height:.98;margin:10px 0 14px;letter-spacing:-.01em}
+h1 i{color:var(--see)}
+.intro p{color:var(--muted);font-size:17px;max-width:32ch}
+.scene{margin:20px 12px 0;position:relative}
+.scene svg{display:block;width:100%;height:auto;border-radius:4px;touch-action:none}
+.hintbub{position:absolute;right:48px;top:calc(53% - 13px);background:var(--see-d);color:#fff;font-size:12px;padding:5px 9px;border-radius:999px;pointer-events:none;transition:opacity .4s}
+.hintbub:after{content:"";position:absolute;right:-5px;top:50%;margin-top:-5px;border:5px solid transparent;border-right:0;border-left-color:var(--see-d)}
+.ctrl{padding:16px 22px 0}
+.ctrl h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:14px 0 8px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--see);border-radius:999px;overflow:hidden}
+.seg button{font:inherit;font-size:15px;border:0;background:transparent;color:var(--see-d);padding:11px 4px;cursor:pointer;border-left:1px solid var(--see)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--see);color:#fff}
+.readout{margin:18px 22px 0;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;border-top:1px solid var(--sand);border-bottom:1px solid var(--sand);padding:14px 0}
+.pct{font-family:var(--serif);font-size:48px;line-height:1;color:var(--see-d)}
+.pct small{font-family:var(--sans);font-size:11px;display:block;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.readout p{font-size:15px;color:var(--ink)}
+.toggle{margin:14px 22px 0;display:flex;gap:10px}
+.toggle button{flex:1;font:inherit;font-size:15px;background:var(--linen-2);border:1px solid var(--sand);border-radius:8px;padding:10px;color:var(--see-d);cursor:pointer}
+section{padding:54px 22px 0}
+h2{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.04;margin:8px 0 14px}
+h2 i{color:var(--see)}
+.lede{font-size:17px;color:var(--muted)}
+.list{margin-top:22px}
+.item{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--sand)}
+.item svg{width:54px;height:54px}
+.item h4{font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.1}
+.item p{font-size:15px;color:var(--muted)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--see-d);color:#fff;border-radius:3px;padding:1px 7px;margin-left:4px;vertical-align:4px;font-family:var(--sans)}
+.ph{border:1px dashed var(--see);border-radius:4px;min-height:200px;display:grid;place-items:center;color:var(--see);font-size:14px;text-align:center;background:linear-gradient(180deg,#eef3f5,#e7eef1);margin-top:18px;padding:16px}
+.ph-i{color:var(--see);background:#e6eef3;border:1px dashed var(--see);border-radius:3px;padding:0 4px;font-size:.92em;white-space:nowrap}
+.pull{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.15;color:var(--see-d);margin-top:10px}
+.pull + small{display:block;font-size:12px;color:var(--muted);margin-top:8px}
+.aktion{background:var(--see-d);color:#fff;border-radius:6px;padding:22px 96px 22px 22px;position:relative;overflow:hidden}
+.aktion h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.05}
+.aktion p{font-size:15px;opacity:.92;margin-top:6px}
+.aktion .ph-i{background:rgba(255,255,255,.12);color:#fff;border-color:#9fbccd}
+.aktion svg{position:absolute;right:-6px;top:-6px;opacity:.35}
+dl.hours{display:grid;grid-template-columns:1fr auto;border-top:1px solid var(--sand);font-size:16px}
+dl.hours dt,dl.hours dd{padding:10px 0;border-bottom:1px solid var(--sand)}
+dl.hours dd{text-align:right;font-weight:700;color:var(--see-d)}
+.btns{display:grid;gap:10px;margin-top:18px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;text-decoration:none;font-size:16px;font-weight:700;text-align:center;padding:12px 18px}
+.btn.p{background:var(--see);color:#fff}
+.btn.s{border:1px solid var(--see);color:var(--see-d)}
+address{font-style:normal;color:var(--muted);margin-top:14px}
+footer{margin-top:56px;padding:24px 22px 34px;background:var(--linen-2);font-size:12px;color:var(--muted);border-top:1px solid var(--sand)}
+html.pdf .hintbub{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Turtschi Innendekorationen + Sattlerei</div>
+<header>
+  <div class="wm">Turtschi <i>Innendekorationen</i><small>+ Sattlerei · Spiez</small></div>
+  <a class="tel" href="tel:+41336542141">033 654 21 41</a>
+</header>
+
+<div class="intro">
+  <div class="no">Nr. 1 — Vorhänge</div>
+  <h1>Ein Fenster.<br><i>Drei Stimmungen.</i></h1>
+  <p>Ziehen Sie an der Kordel, wählen Sie den Stoff und die Tageszeit – und sehen Sie, wie Vorhänge das Licht in einem Raum am Thunersee verändern.</p>
+</div>
+
+<div class="scene">
+  <svg id="room" viewBox="0 0 400 450" role="img" aria-label="Gezeichnetes Zimmer mit Fenster auf Thunersee und Niesen, Vorhänge verstellbar">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop id="sk1" offset="0" stop-color="#f3d7b4"/><stop id="sk2" offset="1" stop-color="#bcd4e4"/></linearGradient>
+      <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop id="lk1" offset="0" stop-color="#7fa6bf"/><stop id="lk2" offset="1" stop-color="#3d6e8f"/></linearGradient>
+      <linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop id="bm1" offset="0" stop-color="#fff2d6" stop-opacity=".9"/><stop offset="1" stop-color="#fff2d6" stop-opacity="0"/></linearGradient>
+      <linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe8db"/><stop offset="1" stop-color="#e3d9c7"/></linearGradient>
+      <linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9ad86"/><stop offset="1" stop-color="#ad8e66"/></linearGradient>
+      <pattern id="folds" width="14" height="10" patternUnits="userSpaceOnUse">
+        <rect width="14" height="10" fill="#000" fill-opacity="0"/>
+        <rect x="0" width="3" height="10" fill="#000" fill-opacity=".14"/><rect x="3" width="2" height="10" fill="#000" fill-opacity=".06"/>
+        <rect x="9" width="3" height="10" fill="#fff" fill-opacity=".22"/>
+      </pattern>
+      <clipPath id="glass"><rect x="100" y="62" width="200" height="226"/></clipPath>
+    </defs>
+    <!-- Wand und Boden -->
+    <rect width="400" height="450" fill="url(#wallG)"/>
+    <rect y="372" width="400" height="78" fill="url(#floorG)"/>
+    <g stroke="#9a7b55" stroke-width="1" opacity=".55"><path d="M0 390H400M0 412H400M0 436H400"/><path d="M60 372v18M180 372v18M300 372v18M120 390v22M250 390v22M370 390v22M30 412v24M200 412v24M330 412v24"/></g>
+    <rect y="366" width="400" height="7" fill="#f7f2e8"/>
+    <!-- Ausblick -->
+    <g clip-path="url(#glass)">
+      <rect x="100" y="62" width="200" height="226" fill="url(#sky)"/>
+      <circle id="sun" cx="140" cy="130" r="14" fill="#ffe2b0"/>
+      <path id="mFar" d="M100 206 L128 178 L150 190 L170 172 L190 186 L200 206Z" fill="#9db3c4"/>
+      <path id="niesen" d="M150 208 L226 116 L234 114 L306 206Z" fill="#6f879c"/>
+      <path d="M226 116 L234 114 L246 130 L238 128 L232 136 L224 128 L214 132Z" fill="#fff" opacity=".7"/>
+      <rect x="100" y="204" width="200" height="84" fill="url(#lake)"/>
+      <path id="shore" d="M100 212 Q160 206 220 211 T300 210 L300 216 L100 216Z" fill="#4f6d58" opacity=".7"/>
+      <rect id="glint" x="0" y="222" width="22" height="2" rx="1" fill="#fff" opacity=".7"/>
+      <rect id="glint2" x="0" y="232" width="34" height="2" rx="1" fill="#fff" opacity=".5"/>
+      <path d="M182 250 l0 -18 l12 16z M180 251 h18 l-3 4 h-12z" fill="#fff" opacity=".9"/>
+    </g>
+    <!-- Fensterrahmen -->
+    <g fill="none" stroke="#fbf8f2" stroke-width="10"><rect x="95" y="57" width="210" height="236"/></g>
+    <path d="M200 62V288M100 170H300" stroke="#fbf8f2" stroke-width="7"/>
+    <rect x="92" y="54" width="216" height="242" fill="none" stroke="#c9bca6" stroke-width="1"/>
+    <rect x="82" y="293" width="236" height="10" rx="2" fill="#f7f2e8" stroke="#c9bca6"/>
+    <!-- Lichtkegel -->
+    <path id="beam" d="M108 303 L292 303 L360 450 L20 450Z" fill="url(#beamG)" opacity=".7"/>
+    <!-- Raum-Licht -->
+    <rect id="dim" width="400" height="450" fill="#1f2b3a" opacity=".1"/>
+    <!-- Stange -->
+    <path d="M40 36H360" stroke="#5d5040" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="38" cy="36" r="6" fill="#5d5040"/><circle cx="362" cy="36" r="6" fill="#5d5040"/>
+    <!-- Vorhänge -->
+    <g id="curL"><rect class="cur" x="48" y="40" width="156" height="322"/><rect x="48" y="40" width="156" height="322" fill="url(#folds)"/><path class="hem" d="M48 358H204" stroke-width="3"/></g>
+    <g id="curR"><rect class="cur" x="196" y="40" width="156" height="322"/><rect x="196" y="40" width="156" height="322" fill="url(#folds)"/><path class="hem" d="M196 358H352" stroke-width="3"/></g>
+    <g fill="#5d5040"><circle cx="60" cy="38" r="3"/><circle cx="100" cy="38" r="3"/><circle cx="140" cy="38" r="3"/><circle cx="260" cy="38" r="3"/><circle cx="300" cy="38" r="3"/><circle cx="340" cy="38" r="3"/></g>
+    <!-- Zugkordel -->
+    <g id="cord" style="cursor:grab">
+      <line id="cordLine" x1="372" y1="36" x2="372" y2="230" stroke="#8b7a62" stroke-width="2"/>
+      <rect x="352" y="36" width="40" height="280" fill="transparent"/>
+      <g id="tassel" transform="translate(372 230)">
+        <circle r="22" fill="transparent"/>
+        <path d="M-5 0 h10 l2 6 h-14z" fill="#3d6e8f"/>
+        <path d="M-7 6 h14 l4 26 h-22z" fill="#3d6e8f"/>
+        <path d="M-5 10 v20 M-1 10 v21 M3 10 v21 M7 10 v20" stroke="#2a5470" stroke-width="1"/>
+      </g>
+    </g>
+  </svg>
+  <div class="hintbub" id="hint">Kordel ziehen oder tippen</div>
+</div>
+
+<div class="toggle"><button id="btnOpen">Vorhänge öffnen</button><button id="btnClose">Vorhänge schliessen</button></div>
+
+<div class="ctrl">
+  <h3>Stoff</h3>
+  <div class="seg" id="fabric">
+    <button data-f="trans" aria-pressed="true">Transparent</button>
+    <button data-f="leinen" aria-pressed="false">Leinen</button>
+    <button data-f="dunkel" aria-pressed="false">Verdunkelung</button>
+  </div>
+  <h3>Tageszeit</h3>
+  <div class="seg" id="time">
+    <button data-t="morgen" aria-pressed="true">Morgen</button>
+    <button data-t="mittag" aria-pressed="false">Mittag</button>
+    <button data-t="abend" aria-pressed="false">Abend</button>
+  </div>
+</div>
+
+<div class="readout">
+  <div class="pct"><span id="pct">72</span>%<small>Licht im Raum</small></div>
+  <p id="desc">Morgen, transparenter Stoff: weiches, gefiltertes Licht – der Blick auf den Niesen bleibt.</p>
+</div>
+
+<section>
+  <div class="no">Nr. 2 — Vorhänge</div>
+  <h2>Licht ist ein <i>Material.</i></h2>
+  <p class="lede">Ob luftig-transparent, natürliches Leinen oder ganz verdunkelnd: Bei Turtschi in Spiez finden Sie Stoffe und Fachberatung für Ihre Fenster – persönlich im Geschäft oder nach Online-Termin.</p>
+  <div class="ph">[Foto eines Raumes mit Turtschi-Vorhängen]</div>
+</section>
+
+<section>
+  <div class="no">Nr. 3 — Was wir sonst machen</div>
+  <h2>Vom Bett bis zum <i>Boden.</i></h2>
+  <div class="list">
+    <div class="item"><svg viewBox="0 0 54 54" fill="none" stroke="#3d6e8f" stroke-width="1.5"><path d="M6 40V16M6 32h42v8M48 40V28a4 4 0 0 0-4-4H22v8"/><rect x="10" y="24" width="9" height="6" rx="3"/></svg><div><h4>Betten</h4><p>Für erholsamen Schlaf – mit Beratung vom Fachmann.</p></div></div>
+    <div class="item"><svg viewBox="0 0 54 54" fill="none" stroke="#3d6e8f" stroke-width="1.5"><path d="M4 34l23-12 23 12-23 12z"/><path d="M15 28l23 12M27 22l23 12M10 31l23-12" opacity=".5"/></svg><div><h4>Bodenbeläge</h4><p>Passend zu Vorhängen, Möbeln und Raum.</p></div></div>
+    <div class="item"><svg viewBox="0 0 54 54" fill="none" stroke="#3d6e8f" stroke-width="1.5"><path d="M10 30V18q17-8 34 0v12M6 30h42v10H6zM10 40v5M44 40v5"/></svg><div><h4>Polsterei</h4><p>Neu, stilgerecht oder als Renovation – dazu Polstermaterial.</p></div></div>
+    <div class="item"><svg viewBox="0 0 54 54" fill="none" stroke="#3d6e8f" stroke-width="1.5"><rect x="8" y="16" width="38" height="28" rx="3"/><path d="M8 26h38M20 16v-5h14v5"/><path d="M8 36h38" stroke-width="3"/><path d="M12 20h30" stroke-dasharray="2 2"/></svg><div><h4>Sattlerei <span class="tag">nur bei uns</span></h4><p>Eigene Produkte und Lederartikel – inklusive der eigenen Feuerwehr-Taschenlinie.</p></div></div>
+    <div class="item"><svg viewBox="0 0 54 54" fill="none" stroke="#3d6e8f" stroke-width="1.5"><circle cx="24" cy="24" r="12"/><path d="M33 33l12 12"/></svg><div><h4>Forschung + Entwicklung</h4><p>Neue Ideen aus der eigenen Werkstatt.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="no">Nr. 4 — Familienbetrieb</div>
+  <h2>Mehr als <i>100 Jahre</i> in Spiez.</h2>
+  <p class="lede">Geführt von Jürg Turtschi, eidg. dipl. INSA-Meister Innendekorationen und Sattlerei. Gegründet <span class="ph-i">[Gründungsjahr]</span>.</p>
+  <div class="ph" style="min-height:160px">[Foto Jürg Turtschi / Geschäft an der Thunstrasse]</div>
+  <p class="pull">Hervorragender Service – freundlich, schnell und präzise.</p>
+  <small>Sinngemäss aus einer Kundenbewertung auf search.ch, 2024</small>
+</section>
+
+<section>
+  <div class="aktion">
+    <svg width="120" height="120" viewBox="0 0 64 64"><g fill="#cfe0ea"><path d="M31 32 C22 12 6 14 9 28 C11 36 22 36 31 33Z"/><path d="M33 32 C42 12 58 14 55 28 C53 36 42 36 33 33Z"/><path d="M31 34 C22 38 14 50 22 52 C28 53 30 44 31 36Z"/><path d="M33 34 C42 38 50 50 42 52 C36 53 34 44 33 36Z"/></g></svg>
+    <h3>Schmetterlings&shy;wochen</h3>
+    <p>Unsere aktuelle Aktion – <span class="ph-i">[Zeitraum und Angebot]</span></p>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="no">Nr. 5 — Besuch</div>
+  <h2>Thunstrasse 96, <i>Spiez.</i></h2>
+  <dl class="hours"><dt>Montag – Freitag</dt><dd>07–12 Uhr</dd><dt></dt><dd>13–17 Uhr</dd></dl>
+  <address>Turtschi Innendekorationen + Sattlerei<br>Thunstrasse 96, 3700 Spiez</address>
+  <div class="btns">
+    <a class="btn p" href="tel:+41336542141">Anrufen · 033 654 21 41</a>
+    <a class="btn s" href="tel:+41796068606">Mobile · 079 606 8 606</a>
+    <a class="btn s" href="mailto:info@turtschi-spiez.ch?subject=Anfrage%20Vorh%C3%A4nge">E-Mail · info@turtschi-spiez.ch</a>
+    <a class="btn s" href="#" onclick="return false">Online-Termin&nbsp;<span class="ph-i">[Link]</span></a>
+  </div>
+</section>
+
+<footer>Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Turtschi Innendekorationen + Sattlerei. Raum, Fenster und Aussicht sind Zeichnungen, keine Fotos.</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var S={closed:.15,target:.15,fab:"trans",time:"morgen"};
+  var FAB={trans:{fill:"#ffffff",op:.42,hem:"#d8d2c6",block:.3,name:"transparenter Stoff"},
+           leinen:{fill:"#e2d6c1",op:.93,hem:"#b9a888",block:.68,name:"Leinen"},
+           dunkel:{fill:"#2d3d4f",op:1,hem:"#1b2633",block:.97,name:"Verdunkelung"}};
+  var TIME={morgen:{sk:["#f3d3ae","#bdd5e6"],lk:["#a3bfd1","#4f7f9d"],sun:[136,128,"#ffe1ae"],ni:"#7690a6",far:"#a9bccb",beam:"#ffe7c2",base:.85,dimC:"#2b3340",name:"Morgen"},
+            mittag:{sk:["#7fb6dd","#d6e9f4"],lk:["#6d9fc0","#2f6487"],sun:[262,82,"#fffbe9"],ni:"#6c8499",far:"#9fb6c6",beam:"#fffaf0",base:1,dimC:"#1f2b3a",name:"Mittag"},
+            abend:{sk:["#6c6fa2","#f2a676"],lk:["#c78a76","#3c4f74"],sun:[284,184,"#ff9d5c"],ni:"#4b4763",far:"#7a6f8e",beam:"#ffb985",base:.6,dimC:"#2a1d2c",name:"Abend"}};
+  function draw(){
+    var c=S.closed, sL=.2+.8*c; // scale 0.2 (offen) .. 1 (zu)
+    $("curL").setAttribute("transform","translate(48 0) scale("+sL+" 1) translate(-48 0)");
+    $("curR").setAttribute("transform","translate(352 0) scale("+sL+" 1) translate(-352 0)");
+    var f=FAB[S.fab],t=TIME[S.time];
+    document.querySelectorAll(".cur").forEach(function(r){r.setAttribute("fill",f.fill);r.setAttribute("fill-opacity",f.op)});
+    document.querySelectorAll(".hem").forEach(function(r){r.setAttribute("stroke",f.hem)});
+    $("sk1").setAttribute("stop-color",t.sk[0]);$("sk2").setAttribute("stop-color",t.sk[1]);
+    $("lk1").setAttribute("stop-color",t.lk[0]);$("lk2").setAttribute("stop-color",t.lk[1]);
+    $("sun").setAttribute("cx",t.sun[0]);$("sun").setAttribute("cy",t.sun[1]);$("sun").setAttribute("fill",t.sun[2]);
+    $("niesen").setAttribute("fill",t.ni);$("mFar").setAttribute("fill",t.far);
+    $("glint").setAttribute("x",t.sun[0]-11);$("glint2").setAttribute("x",t.sun[0]-17);
+    $("bm1").setAttribute("stop-color",t.beam);
+    // Licht: Anteil abgedeckter Fensterfläche
+    var cover=Math.max(0,Math.min(1,(c-.12)/.88));
+    var light=t.base*(1-cover*f.block);
+    $("beam").setAttribute("opacity",(light*.85).toFixed(2));
+    $("dim").setAttribute("fill",t.dimC);$("dim").setAttribute("opacity",((1-light)*.62).toFixed(2));
+    $("cordLine").setAttribute("y2",200+c*90);$("tassel").setAttribute("transform","translate(372 "+(200+c*90)+")");
+    var pct=Math.round(light*100);$("pct").textContent=pct;
+    var state=cover<.15?"Vorhänge offen":cover>.85?"Vorhänge geschlossen":"Vorhänge halb zu";
+    var mood;
+    if(cover<.15)mood="volles Tageslicht und freier Blick auf See und Niesen.";
+    else if(S.fab==="trans")mood="weiches, gefiltertes Licht – der Blick nach draussen bleibt erahnbar.";
+    else if(S.fab==="leinen")mood="warmes, gedämpftes Licht und angenehmer Sichtschutz.";
+    else mood=cover>.85?"der Raum wird fast dunkel – ideal fürs Schlafzimmer.":"klare Lichtkante: hell, wo offen – dunkel, wo der Stoff hängt.";
+    $("desc").textContent=t.name+", "+f.name+", "+state+": "+mood;
+  }
+  var raf=null;
+  function animTo(v){S.target=v;if(document.documentElement.classList.contains("pdf")){S.closed=v;draw();return}
+    if(raf)cancelAnimationFrame(raf);
+    (function step(){var d=S.target-S.closed;if(Math.abs(d)<.004){S.closed=S.target;draw();raf=null;return}S.closed+=d*.14;draw();raf=requestAnimationFrame(step)})();}
+  window.__setCurtain=function(v){S.closed=S.target=v;draw()};
+  // Kordel
+  var svg=$("room"),cord=$("cord"),drag=null;
+  function svgY(e){var pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse()).y}
+  cord.addEventListener("pointerdown",function(e){drag={y0:svgY(e),c0:S.closed,moved:false};cord.setPointerCapture(e.pointerId);$("hint").style.opacity=0;e.preventDefault()});
+  cord.addEventListener("pointermove",function(e){if(!drag)return;var dy=svgY(e)-drag.y0;if(Math.abs(dy)>4)drag.moved=true;if(drag.moved){if(raf){cancelAnimationFrame(raf);raf=null}S.closed=S.target=Math.max(0,Math.min(1,drag.c0+dy/90));draw()}});
+  function end(){if(!drag)return;if(!drag.moved)animTo(S.closed>.5?0:1);drag=null}
+  cord.addEventListener("pointerup",end);cord.addEventListener("pointercancel",end);
+  $("btnOpen").onclick=function(){animTo(0)};$("btnClose").onclick=function(){animTo(1)};
+  function seg(id,key,attr){var bs=$(id).querySelectorAll("button");bs.forEach(function(b){b.addEventListener("click",function(){bs.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});S[key]=b.dataset[attr];draw()})})}
+  seg("fabric","fab","f");seg("time","time","t");
+  draw();
+})();
+</script>
+</body>
+</html>

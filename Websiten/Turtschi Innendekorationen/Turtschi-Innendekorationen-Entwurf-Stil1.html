@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turtschi Innendekorationen + Sattlerei – Entwurf «Neu bezogen»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tabak:#6b4226; --tabak-d:#4a2c18; --olive:#6b6a33; --olive-d:#4c4b22;
+  --creme:#f5eddc; --creme-2:#ebdfc6; --ink:#2b2017; --muted:#6e5e4d; --line:#d9c9a8;
+  --serif:"Young Serif", Georgia, serif; --sans:"Instrument Sans", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--creme)}
+body{font-family:var(--sans);color:var(--ink);background:var(--creme);font-size:16px;line-height:1.55;max-width:430px;margin:0 auto;overflow-x:hidden}
+a{color:inherit}
+.demo{background:var(--ink);color:#f1e6cf;font-size:12px;line-height:1.4;padding:8px 16px;text-align:center;letter-spacing:.01em}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(245,237,220,.96);z-index:20}
+.brand{line-height:1.1}
+.brand b{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--tabak);display:block}
+.brand span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hcall{font-size:13px;font-weight:700;text-decoration:none;background:var(--tabak);color:var(--creme);padding:9px 13px;border-radius:999px;white-space:nowrap}
+.hero{padding:26px 18px 8px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);font-weight:700}
+h1{font-family:var(--serif);font-weight:400;font-size:46px;line-height:1.02;color:var(--tabak-d);margin:8px 0 10px}
+h1 em{font-style:normal;color:var(--olive)}
+.lead{color:var(--muted);font-size:16px;max-width:36ch}
+.stage{position:relative;margin:14px 0 0;background:radial-gradient(120% 80% at 50% 30%, #fbf6ea 0%, var(--creme-2) 70%);border-radius:18px;border:1px solid var(--line);overflow:hidden}
+.stage svg{display:block;width:100%;height:auto}
+.tag{position:absolute;left:14px;top:12px;background:var(--creme);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--tabak)}
+.tag b{font-weight:700}
+.step{padding:22px 18px 6px}
+.step h2{font-family:var(--serif);font-weight:400;font-size:24px;color:var(--tabak-d);display:flex;gap:10px;align-items:baseline}
+.step h2 i{font-style:normal;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--creme);background:var(--olive);border-radius:999px;width:24px;height:24px;display:inline-grid;place-items:center;flex:none;transform:translateY(-3px)}
+.step p.hint{color:var(--muted);font-size:14px;margin:4px 0 12px}
+/* Stoffmusterkarte */
+.card{background:#fffaf0;border:1px solid var(--line);border-radius:14px;padding:14px 12px 12px;box-shadow:0 1px 0 #fff inset,0 10px 24px -18px rgba(60,35,15,.5)}
+.card-head{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px dashed var(--line);padding:0 2px 8px;margin-bottom:12px}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sw{appearance:none;border:0;background:none;cursor:pointer;text-align:center;font:inherit;color:var(--ink);padding:0}
+.sw svg{width:100%;aspect-ratio:3/4;display:block;border-radius:6px 6px 3px 3px;box-shadow:0 2px 4px rgba(60,35,15,.25);transition:transform .2s}
+.sw span{display:block;font-size:12px;margin-top:6px}
+.sw[aria-pressed="true"] svg{transform:translateY(-5px);outline:2px solid var(--tabak);outline-offset:2px}
+.sw[aria-pressed="true"] span{font-weight:700;color:var(--tabak)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;font:inherit;font-size:15px;border:1.5px solid var(--tabak);color:var(--tabak);background:transparent;border-radius:999px;padding:9px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--tabak);color:var(--creme)}
+.chip.ol{border-color:var(--olive);color:var(--olive-d)}
+.chip.ol[aria-pressed="true"]{background:var(--olive);color:#fff}
+/* Projekt */
+.project{margin:18px 18px 0;background:var(--tabak-d);color:var(--creme);border-radius:18px;padding:20px 18px;position:relative;overflow:hidden}
+.project:before{content:"";position:absolute;inset:8px;border:1.5px dashed rgba(245,237,220,.35);border-radius:12px;pointer-events:none}
+.project h3{font-family:var(--serif);font-weight:400;font-size:26px;margin-bottom:10px}
+.project dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;margin-bottom:16px}
+.project dt{color:#cdb894;font-size:13px;text-transform:uppercase;letter-spacing:.08em;padding-top:2px}
+.project dd{font-weight:700}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:16px;border-radius:12px;padding:14px 16px;min-height:50px;text-align:center}
+.btn.light{background:var(--creme);color:var(--tabak-d)}
+.btn.tab{background:var(--tabak);color:var(--creme)}
+.btn.out{border:1.5px solid var(--tabak);color:var(--tabak)}
+.project small{display:block;margin-top:10px;color:#cdb894;font-size:12px;line-height:1.4;position:relative}
+section.block{padding:34px 18px 0}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);font-weight:700;margin-bottom:6px}
+h2.big{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1.1;color:var(--tabak-d);margin-bottom:12px}
+.svc{list-style:none;border-top:1px solid var(--line)}
+.svc li{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.svc li svg{width:30px;height:30px}
+.svc b{display:block;font-weight:700}
+.svc span{color:var(--muted);font-size:14px}
+.svc .badge{color:#fff;display:inline-block;background:var(--olive);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;letter-spacing:.04em;vertical-align:2px}
+.meister{display:grid;grid-template-columns:1fr;gap:14px}
+.ph{background:repeating-linear-gradient(135deg,var(--creme-2) 0 10px,#e4d6b8 10px 20px);border:1.5px dashed #bba57e;border-radius:14px;min-height:170px;display:grid;place-items:center;color:var(--tabak);font-size:14px;text-align:center;padding:16px}
+.seal{display:flex;gap:14px;align-items:center;background:#fffaf0;border:1px solid var(--line);border-radius:14px;padding:14px}
+.seal svg{flex:none;width:76px;height:76px}
+.seal p{font-size:14px;color:var(--muted)}
+.seal p b{color:var(--ink);font-size:16px}
+.voice{background:var(--olive);color:#fbf5e6;border-radius:18px;padding:22px 20px;margin-top:4px}
+.voice .stars{letter-spacing:4px;color:#f0d68a;font-size:18px}
+.voice p{font-family:var(--serif);font-size:21px;line-height:1.3;margin:6px 0 8px}
+.voice small{font-size:12px;color:#e3dcc0}
+.aktion{border:1.5px solid var(--tabak);border-radius:18px;padding:18px;display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center;background:#fffaf0}
+.aktion h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--tabak-d)}
+.aktion p{font-size:14px;color:var(--muted)}
+.ph-inline{background:#f0e2c4;border:1px dashed #bba57e;border-radius:4px;padding:0 4px;color:var(--tabak);white-space:nowrap}
+.hours{width:100%;border-collapse:collapse;font-size:15px}
+.hours td{padding:9px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-weight:700}
+.contact{display:grid;gap:10px;margin-top:16px}
+address{font-style:normal;margin-top:14px;color:var(--muted);font-size:15px}
+footer{margin-top:40px;padding:22px 18px 28px;background:var(--ink);color:#d9c9a8;font-size:12px;line-height:1.5}
+footer b{color:var(--creme)}
+/* PDF */
+html.pdf header{position:static}
+html.pdf .sw svg{transition:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Turtschi Innendekorationen + Sattlerei</div>
+
+<header>
+  <div class="brand"><b>Turtschi</b><span>Innendekorationen + Sattlerei · Spiez</span></div>
+  <a class="hcall" href="tel:+41336542141">033 654 21 41</a>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Stoffmuster -->
+    <pattern id="p-leinen" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#d8c9a6"/>
+      <path d="M0 1.5H6M0 4.5H6" stroke="#c4b28c" stroke-width=".9"/>
+      <path d="M1.5 0V6M4.5 0V6" stroke="#e6dabf" stroke-width=".7"/>
+    </pattern>
+    <pattern id="p-samt" width="4" height="10" patternUnits="userSpaceOnUse">
+      <rect width="4" height="10" fill="#4f5a26"/>
+      <path d="M1 0V10" stroke="#5f6b30" stroke-width="1.2"/>
+    </pattern>
+    <pattern id="p-leder" width="22" height="22" patternUnits="userSpaceOnUse">
+      <rect width="22" height="22" fill="#8a4a20"/>
+      <circle cx="4" cy="5" r="1.1" fill="#7a3f1a"/><circle cx="14" cy="3" r=".8" fill="#9a5a2c"/>
+      <circle cx="10" cy="12" r="1.3" fill="#7a3f1a"/><circle cx="19" cy="15" r=".9" fill="#7a3f1a"/>
+      <circle cx="5" cy="18" r=".8" fill="#9a5a2c"/><circle cx="16" cy="9" r=".6" fill="#6f3815"/>
+    </pattern>
+    <pattern id="p-karo" width="28" height="28" patternUnits="userSpaceOnUse">
+      <rect width="28" height="28" fill="#eadfc4"/>
+      <rect x="0" y="9" width="28" height="10" fill="#6b6a33" opacity=".55"/>
+      <rect x="9" y="0" width="10" height="28" fill="#6b6a33" opacity=".55"/>
+      <path d="M0 2H28M2 0V28" stroke="#6b4226" stroke-width="1.6"/>
+      <path d="M0 14H28M14 0V28" stroke="#f5eddc" stroke-width=".8"/>
+    </pattern>
+    <pattern id="p-blumen" width="30" height="30" patternUnits="userSpaceOnUse">
+      <rect width="30" height="30" fill="#f1e5cb"/>
+      <g id="flower">
+        <circle cx="8" cy="8" r="2.6" fill="#b5653a"/><circle cx="12" cy="8" r="2.6" fill="#b5653a"/>
+        <circle cx="10" cy="5" r="2.6" fill="#c97a4c"/><circle cx="10" cy="11" r="2.6" fill="#c97a4c"/>
+        <circle cx="10" cy="8" r="1.6" fill="#f0d68a"/>
+        <path d="M13 12 q4 3 7 1" stroke="#6b6a33" stroke-width="1.3" fill="none"/>
+      </g>
+      <use href="#flower" x="13" y="15"/>
+    </pattern>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+      <stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2b1606" stop-opacity=".38"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a341b"/><stop offset="1" stop-color="#3a2010"/>
+    </linearGradient>
+
+    <!-- Möbel: Polsterflächen (ohne fill) -->
+    <g id="u-sessel">
+      <path d="M96 44 Q150 18 204 44 L208 152 L92 152 Z"/>
+      <path d="M96 52 Q66 56 62 90 Q60 124 78 144 L96 144 Z"/>
+      <path d="M204 52 Q234 56 238 90 Q240 124 222 144 L204 144 Z"/>
+      <path d="M58 136 Q56 118 76 117 L102 120 L102 202 L62 202 Q54 172 58 136 Z"/>
+      <path d="M242 136 Q244 118 224 117 L198 120 L198 202 L238 202 Q246 172 242 136 Z"/>
+      <path d="M98 152 Q150 141 202 152 L204 182 Q150 192 96 182 Z"/>
+      <path d="M62 198 L238 198 L234 218 L66 218 Z"/>
+    </g>
+    <g id="s-sessel">
+      <path d="M110 70 Q150 58 190 70" /><path d="M150 40 V150"/>
+      <circle cx="125" cy="80" r="2" fill="#2b2017" stroke="none"/><circle cx="175" cy="80" r="2" fill="#2b2017" stroke="none"/><circle cx="150" cy="105" r="2" fill="#2b2017" stroke="none"/><circle cx="125" cy="128" r="2" fill="#2b2017" stroke="none"/><circle cx="175" cy="128" r="2" fill="#2b2017" stroke="none"/>
+    </g>
+    <g id="w-sessel">
+      <path d="M74 218 L86 218 L84 244 L78 244 Z"/><path d="M214 218 L226 218 L222 244 L216 244 Z"/>
+    </g>
+
+    <g id="u-sofa">
+      <path d="M32 72 Q150 54 268 72 L272 152 L28 152 Z"/>
+      <path d="M12 116 Q12 98 32 97 L52 99 L52 202 L16 202 Q8 164 12 116 Z"/>
+      <path d="M288 116 Q288 98 268 97 L248 99 L248 202 L284 202 Q292 164 288 116 Z"/>
+      <path d="M52 152 Q100 144 150 152 L150 184 Q100 190 52 184 Z"/>
+      <path d="M150 152 Q200 144 248 152 L248 184 Q200 190 150 184 Z"/>
+      <path d="M16 198 L284 198 L280 216 L20 216 Z"/>
+    </g>
+    <g id="s-sofa"><path d="M150 64 V150"/><path d="M60 100 Q150 90 240 100"/></g>
+    <g id="w-sofa">
+      <path d="M28 216 L40 216 L38 242 L32 242 Z"/><path d="M260 216 L272 216 L268 242 L262 242 Z"/><path d="M145 216 L155 216 L153 236 L147 236 Z"/>
+    </g>
+
+    <g id="u-stuhl">
+      <path d="M108 50 Q150 40 192 50 L190 128 Q150 136 110 128 Z"/>
+      <path d="M84 150 Q150 140 216 150 L218 174 Q150 184 82 174 Z"/>
+    </g>
+    <g id="s-stuhl"><path d="M120 62 Q150 56 180 62"/><path d="M120 116 Q150 122 180 116"/></g>
+    <g id="w-stuhl">
+      <path d="M96 30 L106 30 L106 150 L96 150 Z"/><path d="M194 30 L204 30 L204 150 L194 150 Z"/>
+      <path d="M94 26 Q150 14 206 26 L206 36 Q150 24 94 36 Z"/>
+      <path d="M90 176 L102 176 L100 246 L94 246 Z"/><path d="M198 176 L210 176 L206 246 L200 246 Z"/>
+      <path d="M100 210 L200 210 L200 216 L100 216 Z"/>
+    </g>
+
+    <g id="u-bank">
+      <path d="M18 72 Q20 64 30 64 L196 64 L196 140 L18 140 Z"/>
+      <path d="M196 64 L276 98 Q284 102 284 112 L284 168 L196 140 Z"/>
+      <path d="M14 140 L198 140 L198 172 L14 172 Q10 156 14 140 Z"/>
+      <path d="M198 140 L286 168 L286 196 L198 172 Z"/>
+    </g>
+    <g id="s-bank"><path d="M76 66 V140"/><path d="M136 66 V140"/><path d="M240 84 V156"/><circle cx="46" cy="100" r="2" fill="#2b2017" stroke="none"/><circle cx="106" cy="100" r="2" fill="#2b2017" stroke="none"/><circle cx="166" cy="100" r="2" fill="#2b2017" stroke="none"/></g>
+    <g id="w-bank">
+      <path d="M16 172 L198 172 L198 214 L16 214 Z"/><path d="M198 172 L286 196 L286 236 L198 214 Z"/>
+    </g>
+  </defs>
+</svg>
+
+<section class="hero">
+  <div class="kicker">Polsterei · Vorhänge · Sattlerei</div>
+  <h1>Neu bezogen.<br><em>Wie neu geliebt.</em></h1>
+  <p class="lead">Probieren Sie es aus: Wählen Sie unten ein Möbel und einen Stoff – und sehen Sie, wie Ihr Stück aus der Werkstatt in Spiez zurückkommen könnte.</p>
+  <div class="stage" aria-live="polite">
+    <div class="tag" id="stageTag"><b>Ohrensessel</b> · Leinen</div>
+    <svg id="furn" viewBox="0 0 300 262" role="img" aria-label="Gezeichnetes Möbel mit gewähltem Stoff">
+      <ellipse cx="150" cy="248" rx="128" ry="9" fill="#2b1606" opacity=".12"/>
+      <use id="useWood" href="#w-sessel" fill="url(#wood)"/>
+      <use id="useOld" href="#u-sessel" fill="url(#p-leinen)"/>
+      <g clip-path="url(#wipeClip)"><use id="useNew" href="#u-sessel" fill="url(#p-leinen)"/></g>
+      <use id="useShade" href="#u-sessel" fill="url(#shade)"/>
+      <use id="useLine" href="#u-sessel" fill="none" stroke="#2b2017" stroke-width="1.6" stroke-linejoin="round"/>
+      <use id="useSeam" href="#s-sessel" fill="none" stroke="#2b2017" stroke-opacity=".45" stroke-width="1" stroke-dasharray="3 3"/>
+      <clipPath id="wipeClip"><rect id="wipe" x="0" y="0" width="300" height="262"/></clipPath>
+      <line id="needleLine" x1="0" x2="300" y1="-10" y2="-10" stroke="#6b4226" stroke-width="1.4" stroke-dasharray="5 4" opacity="0"/>
+    </svg>
+  </div>
+</section>
+
+<div class="step">
+  <h2><i>1</i>Was soll neu werden?</h2>
+  <p class="hint">Wir polstern neu, stilgerecht oder renovieren Bestehendes.</p>
+  <div class="chips" id="types">
+    <button class="chip" data-type="sessel" data-name="Ohrensessel" aria-pressed="true">Sessel</button>
+    <button class="chip" data-type="sofa" data-name="Sofa" aria-pressed="false">Sofa</button>
+    <button class="chip" data-type="stuhl" data-name="Stuhl" aria-pressed="false">Stuhl</button>
+    <button class="chip" data-type="bank" data-name="Eckbank" aria-pressed="false">Eckbank</button>
+  </div>
+</div>
+
+<div class="step">
+  <h2><i>2</i>Stoff aus der Musterkarte</h2>
+  <p class="hint">Tippen Sie auf ein Muster – das Möbel oben wird live neu bezogen.</p>
+  <div class="card">
+    <div class="card-head"><span>Stoffmusterkarte</span><span>Nr. 1–5</span></div>
+    <div class="swatches" id="swatches">
+      <button class="sw" data-p="leinen" data-name="Leinen" aria-pressed="true"><svg viewBox="0 0 30 40"><rect width="30" height="40" fill="url(#p-leinen)"/><path d="M0 34 l3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3V40H0Z" fill="#fffaf0"/></svg><span>Leinen</span></button>
+      <button class="sw" data-p="samt" data-name="Samt" aria-pressed="false"><svg viewBox="0 0 30 40"><rect width="30" height="40" fill="url(#p-samt)"/><rect width="30" height="40" fill="url(#shade)"/><path d="M0 34 l3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3V40H0Z" fill="#fffaf0"/></svg><span>Samt</span></button>
+      <button class="sw" data-p="leder" data-name="Leder" aria-pressed="false"><svg viewBox="0 0 30 40"><rect width="30" height="40" fill="url(#p-leder)"/><path d="M0 34 l3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3V40H0Z" fill="#fffaf0"/></svg><span>Leder</span></button>
+      <button class="sw" data-p="karo" data-name="Karo" aria-pressed="false"><svg viewBox="0 0 30 40"><rect width="30" height="40" fill="url(#p-karo)"/><path d="M0 34 l3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3V40H0Z" fill="#fffaf0"/></svg><span>Karo</span></button>
+      <button class="sw" data-p="blumen" data-name="Blumen" aria-pressed="false"><svg viewBox="0 0 30 40"><rect width="30" height="40" fill="url(#p-blumen)"/><path d="M0 34 l3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3 3 3 3-3V40H0Z" fill="#fffaf0"/></svg><span>Blumen</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <h2><i>3</i>Welche Arbeit?</h2>
+  <div class="chips" id="works">
+    <button class="chip ol" data-work="Neu polstern" aria-pressed="true">Neu polstern</button>
+    <button class="chip ol" data-work="Stilgerecht polstern" aria-pressed="false">Stilgerecht</button>
+    <button class="chip ol" data-work="Renovation" aria-pressed="false">Renovation</button>
+  </div>
+</div>
+
+<div class="project" id="projekt">
+  <h3>Mein Polster-Projekt</h3>
+  <dl>
+    <dt>Möbel</dt><dd id="sumType">Ohrensessel</dd>
+    <dt>Stoff</dt><dd id="sumFab">Leinen</dd>
+    <dt>Arbeit</dt><dd id="sumWork">Neu polstern</dd>
+  </dl>
+  <a class="btn light" id="mailBtn" href="mailto:info@turtschi-spiez.ch">✉ Projekt per E-Mail senden</a>
+  <small>Öffnet Ihr E-Mail-Programm mit vorausgefülltem Text an info@turtschi-spiez.ch. Die Stoffe hier sind Beispiele – die echte Auswahl sehen Sie bei der Fachberatung im Geschäft.</small>
+</div>
+
+<section class="block">
+  <div class="eyebrow">Was wir machen</div>
+  <h2 class="big">Alles rund ums Wohnen – aus einer Hand.</h2>
+  <ul class="svc">
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><path d="M4 4h22M7 4c0 8 3 14 1 22M12 4c0 8-2 14 0 22M18 4c0 8 2 14 0 22M23 4c0 8-3 14-1 22"/></svg><div><b>Vorhänge</b><span>Stoffe und Fachberatung für Ihre Fenster.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><path d="M6 14V7q9-4 18 0v7M3 14h24v8H3zM6 22v4M24 22v4"/></svg><div><b>Polsterei</b><span>Neu, stilgerecht oder als Renovation.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><rect x="4" y="9" width="22" height="12" rx="3"/><path d="M9 9v12M15 9v12M21 9v12"/></svg><div><b>Polstermaterial</b><span>Auch für Ihre eigenen Projekte.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><path d="M6 10h18l-2 15H8zM11 10V7a4 4 0 0 1 8 0v3"/><path d="M8 14h14" stroke-dasharray="2 2"/></svg><div><b>Sattlerei</b><span>Lederarbeiten vom INSA-Meister.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><path d="M3 22V9M3 17h24v5M27 22v-6a4 4 0 0 0-4-4H12v5M7 14a2 2 0 1 0 0-.1"/></svg><div><b>Betten</b><span>Für erholsamen Schlaf.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><path d="M3 20l12-6 12 6-12 6z M3 20v2l12 6 12-6v-2"/></svg><div><b>Bodenbeläge</b><span>Passend zum ganzen Raum.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><rect x="5" y="9" width="20" height="16" rx="2"/><path d="M5 14h20M11 9V6h8v3"/><path d="M5 19h20" stroke="#6b6a33" stroke-width="2.4"/></svg><div><b>Eigene Produkte &amp; Lederartikel<span class="badge">NUR BEI UNS</span></b><span>Inklusive eigener Feuerwehr-Taschenlinie.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><path d="M5 7h20v12H13l-6 5v-5H5z"/></svg><div><b>Fachberatung</b><span>Gerne im Geschäft – Termin auch online möglich.</span></div></li>
+    <li><svg viewBox="0 0 30 30" fill="none" stroke="#6b4226" stroke-width="1.6"><circle cx="13" cy="13" r="7"/><path d="M18 18l7 7"/></svg><div><b>Forschung + Entwicklung</b><span>Ideen aus der eigenen Werkstatt.</span></div></li>
+  </ul>
+</section>
+
+<section class="block">
+  <div class="aktion">
+    <svg viewBox="0 0 64 64" width="64" height="64"><g fill="#6b4226"><path d="M31 32 C22 12 6 14 9 28 C11 36 22 36 31 33Z"/><path d="M33 32 C42 12 58 14 55 28 C53 36 42 36 33 33Z"/></g><g fill="#6b6a33"><path d="M31 34 C22 38 14 50 22 52 C28 53 30 44 31 36Z"/><path d="M33 34 C42 38 50 50 42 52 C36 53 34 44 33 36Z"/></g><rect x="30.5" y="22" width="3" height="28" rx="1.5" fill="#2b2017"/><path d="M31 23 Q27 15 24 14 M33 23 Q37 15 40 14" stroke="#2b2017" stroke-width="1.2" fill="none"/></svg>
+    <div><h3>Schmetterlingswochen</h3><p>Unsere aktuelle Aktion: <span class="ph-inline">[Details, Zeitraum und Angebot]</span></p></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="eyebrow">Familienbetrieb</div>
+  <h2 class="big">Seit mehr als 100&nbsp;Jahren in Spiez.</h2>
+  <div class="meister">
+    <div class="ph">[Foto Ihrer Werkstatt]</div>
+    <div class="seal">
+      <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="37" fill="none" stroke="#6b4226" stroke-width="2"/><circle cx="40" cy="40" r="31" fill="none" stroke="#6b4226" stroke-width="1" stroke-dasharray="3 3"/><text x="40" y="38" text-anchor="middle" font-family="Young Serif, Georgia, serif" font-size="20" fill="#6b4226">100+</text><text x="40" y="53" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="8" letter-spacing="1.5" fill="#6b6a33" font-weight="700">JAHRE</text></svg>
+      <p><b>Jürg Turtschi</b><br>Inhaber, eidg. dipl. INSA-Meister Innendekorationen und Sattlerei. Gegründet <span class="ph-inline">[Gründungsjahr]</span>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="voice">
+    <svg width="34" height="26" viewBox="0 0 34 26" aria-hidden="true"><path d="M0 26V14Q0 2 13 0v5Q6 7 6 13h7v13zM20 26V14Q20 2 33 0v5q-7 2-7 8h7v13z" fill="#f0d68a"/></svg>
+    <p>Hervorragender Service – freundlich, schnell und präzise.</p>
+    <small>Sinngemäss aus einer Kundenbewertung auf search.ch (2024)</small>
+  </div>
+</section>
+
+<section class="block" id="kontakt">
+  <div class="eyebrow">Besuchen Sie uns</div>
+  <h2 class="big">Öffnungszeiten</h2>
+  <table class="hours">
+    <tr><td>Montag – Freitag</td><td>07.00 – 12.00</td></tr>
+    <tr><td></td><td>13.00 – 17.00</td></tr>
+      </table>
+  <address>Turtschi Innendekorationen + Sattlerei<br>Thunstrasse 96, 3700 Spiez</address>
+  <div class="contact">
+    <a class="btn tab" href="tel:+41336542141">☎ Anrufen: 033 654 21 41</a>
+    <a class="btn out" href="tel:+41796068606">Mobile: 079 606 8 606</a>
+    <a class="btn out" href="mailto:info@turtschi-spiez.ch">✉ info@turtschi-spiez.ch</a>
+    <a class="btn out" href="#" onclick="return false">Online-Termin buchen <span class="ph-inline">[Link]</span></a>
+  </div>
+</section>
+
+<footer>
+  <b>Turtschi Innendekorationen + Sattlerei</b> · Thunstrasse 96 · 3700 Spiez<br>
+  Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Turtschi Innendekorationen + Sattlerei. Alle Zeichnungen sind Illustrationen, keine Fotos.
+</footer>
+
+<script>
+(function(){
+  var state={type:"sessel",typeName:"Ohrensessel",p:"leinen",fab:"Leinen",work:"Neu polstern"};
+  var $=function(id){return document.getElementById(id)};
+  var old=$("useOld"),nw=$("useNew"),shade=$("useShade"),line=$("useLine"),seam=$("useSeam"),wood=$("useWood"),wipe=$("wipe"),nl=$("needleLine");
+  function setHref(el,id){el.setAttribute("href","#"+id)}
+  function anim(){
+    if(document.documentElement.classList.contains("pdf")){wipe.setAttribute("y",0);wipe.setAttribute("height",262);return}
+    var t0=null,dur=900;
+    nl.setAttribute("opacity","1");
+    function f(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/dur);var e=1-Math.pow(1-k,3);var y=262*(1-e);
+      wipe.setAttribute("y",y);wipe.setAttribute("height",262-y);nl.setAttribute("y1",y);nl.setAttribute("y2",y);
+      if(k<1)requestAnimationFrame(f);else{old.setAttribute("fill",nw.getAttribute("fill"));nl.setAttribute("opacity","0")}}
+    requestAnimationFrame(f);
+  }
+  function render(changed){
+    if(changed==="type"){["useOld","useNew","useShade","useLine"].forEach(function(i){setHref($(i),"u-"+state.type)});setHref(seam,"s-"+state.type);setHref(wood,"w-"+state.type)}
+    if(changed==="fab"){old.setAttribute("fill",nw.getAttribute("fill"));nw.setAttribute("fill","url(#p-"+state.p+")");}
+    if(changed==="type"){old.setAttribute("fill","url(#p-"+state.p+")");nw.setAttribute("fill","url(#p-"+state.p+")")}
+    if(changed)anim();
+    $("stageTag").innerHTML="<b>"+state.typeName+"</b> · "+state.fab;
+    $("sumType").textContent=state.typeName;$("sumFab").textContent=state.fab;$("sumWork").textContent=state.work;
+    var body="Grüezi Herr Turtschi\n\nIch interessiere mich für folgendes Polster-Projekt:\n\nMöbel: "+state.typeName+"\nGewünschter Stoff: "+state.fab+"\nArbeit: "+state.work+"\n\nBitte melden Sie sich für eine Beratung bzw. einen Termin.\n\nFreundliche Grüsse\n";
+    $("mailBtn").href="mailto:info@turtschi-spiez.ch?subject="+encodeURIComponent("Mein Polster-Projekt: "+state.typeName+" in "+state.fab)+"&body="+encodeURIComponent(body);
+  }
+  function group(id,attr,cb){var btns=$(id).querySelectorAll("button");btns.forEach(function(b){b.addEventListener("click",function(){btns.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});cb(b)})})}
+  group("types","type",function(b){state.type=b.dataset.type;state.typeName=b.dataset.name;render("type")});
+  group("swatches","p",function(b){if(state.p===b.dataset.p)return;state.p=b.dataset.p;state.fab=b.dataset.name;render("fab")});
+  group("works","work",function(b){state.work=b.dataset.work;render()});
+  render();
+})();
+</script>
+</body>
+</html>

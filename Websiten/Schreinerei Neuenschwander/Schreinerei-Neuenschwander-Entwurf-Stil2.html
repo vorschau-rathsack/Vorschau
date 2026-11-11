@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schreinerei Michael Neuenschwander – Entwurf «Werkplan»</title>
+<meta name="description" content="Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Schreinerei Michael Neuenschwander, Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Instrument+Sans:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0f2c52; --blue2:#163a68; --chalk:#e9eff8; --chalk2:#9fb4d2; --paper:#f4f1e8; --paper2:#e9e4d6;
+  --ink:#0f2c52; --graphite:#5b6573; --red:#c9472f; --redb:#ff9a82;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace; --sans:"Instrument Sans", "Helvetica Neue", Arial, sans-serif; --hand:"Nothing You Could Do", "Segoe Print", cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--blue)}
+body{font-family:var(--sans);color:var(--ink);background:var(--blue);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden}
+.demo{font:12px/1.45 var(--mono);background:var(--paper);color:var(--ink);padding:9px 16px;border-bottom:1.5px solid var(--ink);text-align:center}
+.bp{position:relative;background:var(--blue);color:var(--chalk)}
+.bp > .grid{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.bp > *:not(.grid){position:relative}
+.pp{position:relative;background:var(--paper);color:var(--ink)}
+.pp > .grid{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pp > *:not(.grid){position:relative}
+header{padding:20px 18px 22px}
+.sheet{border:1.5px solid var(--chalk2);padding:18px 16px 0}
+.top{display:flex;justify-content:space-between;font:11.5px/1.3 var(--mono);color:var(--chalk2);letter-spacing:.06em;text-transform:uppercase}
+.logo{display:flex;align-items:center;gap:10px;margin-top:18px;font:700 14px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.logo svg{width:34px;height:34px}
+h1{font:700 35px/1.05 var(--sans);letter-spacing:-.01em;margin-top:22px}
+.h1sub{font:15px/1.4 var(--mono);color:var(--chalk2);margin-top:10px}
+.az{margin:22px -4px 4px;display:block;width:calc(100% + 8px)}
+.az text{font-family:var(--mono)}
+.motto{font:400 24px/1.25 var(--hand);color:var(--chalk);margin:6px 0 14px;transform:rotate(-1.5deg)}
+.hsk{display:block;width:100%;margin-top:4px}
+.tb{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--chalk2);margin:16px -16px 0}
+.tb div{border-right:1px solid var(--chalk2);border-bottom:1px solid var(--chalk2);padding:7px 10px;font:12.5px/1.35 var(--mono)}
+.tb div:nth-child(2n){border-right:0}
+.tb div.full{grid-column:1/-1;border-right:0}
+.tb small{display:block;font-size:10px;color:var(--chalk2);letter-spacing:.08em;text-transform:uppercase}
+.tb div:last-child,.tb div:nth-last-child(2):not(.full){border-bottom:0}
+.tb a{color:var(--chalk)}
+.hbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.b{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;font:700 15.5px/1.1 var(--mono);text-decoration:none;border:1.5px solid currentColor;padding:0 12px;cursor:pointer;background:none;color:inherit;text-align:center}
+.b.solid{background:var(--chalk);color:var(--blue);border-color:var(--chalk)}
+.pp .b.solid{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.b svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;flex:0 0 18px}
+section{padding:42px 18px}
+.no{display:flex;align-items:center;gap:10px;font:700 12.5px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.no i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid currentColor;border-radius:50%;font-size:12px}
+.no::after{content:"";flex:1;border-top:1px dashed currentColor;opacity:.5}
+h2{font:700 29px/1.12 var(--sans);margin:14px 0 10px;letter-spacing:-.01em}
+.lead{color:var(--graphite)}
+.bp .lead{color:var(--chalk2)}
+.hand{font-family:var(--hand);color:var(--red);font-size:20px;line-height:1.25}
+.bp .hand{color:var(--redb)}
+/* Stückliste */
+table.parts{width:100%;border-collapse:collapse;margin-top:20px;font-size:15.5px;border:1.5px solid var(--ink)}
+.parts th{font:700 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:8px;border-bottom:1.5px solid var(--ink);background:var(--paper2)}
+.parts td{padding:9px 8px;border-bottom:1px solid #c9c2ae;vertical-align:top}
+.parts td:first-child{font:700 13px var(--mono);width:40px;color:var(--graphite)}
+.parts td b{font-weight:700;display:block}
+.parts td span{color:var(--graphite);font-size:14px;line-height:1.35;display:block}
+.parts tr.star td{background:#fbe9e2}
+.parts tr:last-child td{border-bottom:0}
+.notebox{margin-top:14px;display:flex;gap:10px;align-items:flex-start}
+.notebox svg{flex:0 0 46px;width:46px;height:40px}
+/* Skizze */
+.tool{margin-top:22px;border:1.5px solid var(--chalk2)}
+.tool svg#sk{display:block;width:100%;height:auto;touch-action:manipulation}
+.ctl{border-top:1.5px solid var(--chalk2);padding:14px 14px 16px}
+.rng{display:grid;grid-template-columns:70px 1fr 78px;align-items:center;gap:10px;margin-bottom:10px;font:13px var(--mono)}
+.rng output{font:700 16px var(--mono);text-align:right}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--chalk2)}
+input[type=range]::-moz-range-track{height:2px;background:var(--chalk2)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-12px;border:2px solid var(--chalk);background:var(--blue);transform:rotate(45deg)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:2px solid var(--chalk);background:var(--blue);border-radius:0}
+.add{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.add button{font:700 13.5px/1.2 var(--mono);color:var(--chalk);background:var(--blue2);border:1.5px solid var(--chalk2);padding:10px 4px 9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
+.add button svg{width:36px;height:26px;fill:none;stroke:var(--chalk);stroke-width:1.5}
+.add button:active{background:var(--chalk);color:var(--blue)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.row2 button{font:13px var(--mono);color:var(--chalk2);background:none;border:1px dashed var(--chalk2);padding:9px;cursor:pointer}
+.sendwrap{padding:0 14px 16px}
+.sendwrap .b{width:100%}
+.skhint{font:12.5px/1.4 var(--mono);color:var(--chalk2);margin-top:10px}
+#sk .pl{fill:none;stroke:var(--chalk);stroke-width:1.6;stroke-linecap:round}
+#sk .pl2{fill:none;stroke:var(--chalk);stroke-width:.8;opacity:.45;stroke-linecap:round}
+#sk .dim{fill:none;stroke:var(--redb);stroke-width:1}
+#sk .dt{font:700 12px var(--mono);fill:var(--redb)}
+#sk .ds{font:10.5px var(--mono);fill:var(--chalk2)}
+#sk .lab{font:10.5px var(--mono);fill:var(--chalk2);letter-spacing:.05em}
+#sk .dash{fill:none;stroke:var(--chalk2);stroke-width:.9;stroke-dasharray:4 4}
+#sk .hit{fill:transparent;cursor:pointer}
+#sk .hit:hover{fill:rgba(255,255,255,.06)}
+#sk .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .6s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.list{font:13px/1.6 var(--mono);color:var(--chalk2);margin-top:10px}
+/* Referenzen */
+.frames{display:grid;gap:14px;margin-top:22px}
+.frame{position:relative;border:1.5px solid var(--ink);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(15,44,82,.07) 9px 10px)}
+.frame b{font:700 15px var(--mono);letter-spacing:.04em}
+.frame span{font:13.5px var(--mono);color:var(--graphite)}
+.frame .tag{position:absolute;left:-1.5px;top:-1.5px;background:var(--ink);color:var(--paper);font:700 11px var(--mono);padding:4px 8px;letter-spacing:.08em}
+.frames .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.frames .two .frame{aspect-ratio:1/1}
+/* Werkstatt */
+.site{margin-top:20px;border:1.5px solid var(--chalk2)}
+.site svg{display:block;width:100%;height:auto}
+.kv{display:grid;grid-template-columns:1fr;margin-top:16px;border:1.5px solid var(--chalk2)}
+.kv div{padding:10px 12px;border-bottom:1px solid var(--chalk2);font-size:16px}
+.kv div:last-child{border-bottom:0}
+.kv small{display:block;font:10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--chalk2)}
+/* Zeiten */
+.tl{margin-top:22px}
+.tl svg{display:block;width:100%;height:auto}
+.tl text{font-family:var(--mono)}
+.tl text.hw{font-family:var(--hand)}
+/* Kontakt */
+.cgrid{display:grid;gap:10px;margin-top:22px}
+.cgrid .b{justify-content:space-between;min-height:62px;padding:0 16px;font-size:16px}
+.cgrid .b small{display:block;font:400 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.75;text-align:left}
+.cgrid .b span{text-align:left;word-break:break-all}
+address{font:normal 14px/1.6 var(--mono);margin-top:20px;color:var(--graphite)}
+footer{font:12px/1.5 var(--mono);color:var(--chalk2);padding:22px 18px 90px;text-align:center}
+.fab{position:fixed;right:max(14px, calc(50vw - 201px));bottom:16px;z-index:30;display:flex;gap:0;border:1.5px solid var(--chalk);background:var(--blue);box-shadow:4px 4px 0 rgba(15,44,82,.35)}
+.fab a{display:flex;align-items:center;gap:7px;padding:12px 14px;color:var(--chalk);text-decoration:none;font:700 14px var(--mono)}
+.fab a+a{border-left:1.5px solid var(--chalk)}
+.fab svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .7s, transform .7s}
+.rv.in{opacity:1;transform:none}
+html.pdf .rv{opacity:1;transform:none;transition:none}
+html.pdf #sk .draw{animation:none;stroke-dashoffset:0;stroke-dasharray:none}
+html.pdf .fab{position:static;margin:0 auto 24px;width:max-content;box-shadow:none}
+html.pdf footer{padding-bottom:22px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="demo"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite der Schreinerei Michael Neuenschwander</div>
+
+<header class="bp">
+  <svg class="grid" aria-hidden="true"><defs><pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#2a4f80" stroke-width=".6"/></pattern></defs><rect width="100%" height="100%" fill="url(#g1)"/></svg>
+  <div class="sheet">
+    <div class="top"><span>Werkplan Nr. 01</span><span>Massstab nach Wunsch</span></div>
+    <div class="logo"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="28" height="28"/><path d="M3 12h28M12 12v19M3 3l9 9"/><circle cx="22" cy="22" r="3"/></svg>Schreinerei<br>Neuenschwander</div>
+    <h1>Schreinerei Michael Neuenschwander</h1>
+    <p class="h1sub">Mittlere Strasse 10 · 3600 Thun<br>Werkstatt in der Altstadt</p>
+    <svg class="az" viewBox="0 0 400 74" aria-label="Von A bis Z">
+      <g stroke="#ff9a82" stroke-width="1.2" fill="none">
+        <path d="M14 10v40M386 10v40"/>
+        <path d="M14 38H386"/>
+        <path d="M8 44l12-12M380 44l12-12"/>
+      </g>
+      <rect x="150" y="27" width="100" height="22" fill="#0f2c52"/>
+      <text x="200" y="42" text-anchor="middle" font-size="12.5" fill="#ff9a82" font-weight="700">IHR PROJEKT</text>
+      <text x="14" y="68" text-anchor="middle" font-size="18" font-weight="700" fill="#e9eff8">A</text>
+      <text x="386" y="68" text-anchor="middle" font-size="18" font-weight="700" fill="#e9eff8">Z</text>
+    </svg>
+    <p class="motto">«Wir planen und realisieren Ihr Projekt von A bis Z.»</p>
+    <svg class="hsk" viewBox="0 0 400 210" aria-hidden="true">
+      <g fill="none" stroke="#e9eff8" stroke-linecap="round">
+        <!-- Konstruktionslinien -->
+        <g stroke-width=".7" opacity=".4"><path d="M0 190H400M60 0V210M300 0V210M0 30H400"/></g>
+        <!-- Schrank isometrisch skizziert -->
+        <g stroke-width="1.7">
+          <path d="M60 190V30L120 6V166Z" opacity=".0"/>
+          <path d="M58 191 L61 29"/><path d="M60 30 L302 31"/><path d="M300 29 L299 191"/><path d="M57 190 L303 189"/>
+          <path d="M60 30 L96 10 L338 11 L300 31"/><path d="M338 10 L337 168 L300 190"/>
+          <path d="M180 31 L181 190"/><path d="M60 135 L300 134"/><path d="M60 162 L300 162"/>
+          <path d="M168 70 v30M193 70 v30"/>
+          <path d="M110 148h20M230 148h20M110 176h20M230 176h20"/>
+        </g>
+        <g stroke-width=".7" opacity=".5"><path d="M60 30 L180 82 L60 134"/><path d="M300 30 L180 82 L300 134" /></g>
+      </g>
+      <g stroke="#ff9a82" fill="none" stroke-width="1"><path d="M60 202H300M60 196v12M300 196v12M55 207l10-10M295 207l10-10"/><path d="M350 30V190M344 30h12M344 190h12M345 35l10-10M345 195l10-10"/></g>
+      <text x="180" y="200" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#ff9a82" style="paint-order:stroke" stroke="#0f2c52" stroke-width="5">nach Mass</text>
+      <text x="372" y="114" font-family="Nothing You Could Do, cursive" font-size="15" fill="#e9eff8" transform="rotate(90 372 114)" text-anchor="middle">Ihre Höhe</text>
+    </svg>
+    <div class="tb">
+      <div><small>Ausführung</small>Schreinerei M.&nbsp;Neuenschwander</div>
+      <div><small>Inhaber</small>Michael Neuenschwander</div>
+      <div><small>Ort</small>Mittlere Strasse 10, Thun</div>
+      <div><small>Telefon</small><a href="tel:+41332226481">033 222 64 81</a></div>
+      <div class="full"><small>Bürozeiten</small>Mo–Fr 07:15–12:00 · 13:15–17:15</div>
+    </div>
+  </div>
+  <div class="hbtns">
+    <a class="b solid" href="tel:+41332226481"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+    <a class="b" href="#skizze"><svg viewBox="0 0 24 24"><path d="M4 20 16 8l3 3L7 23H4zM14 6l3-3 4 4-3 3"/></svg>Skizze zeichnen</a>
+  </div>
+</header>
+
+<section class="pp" id="leistungen">
+  <p class="no"><i>01</i>Stückliste</p>
+  <h2>Was in unserer Werkstatt entsteht</h2>
+  <p class="lead">Zwölf Positionen – vom Innenausbau bis zum Rundholzbau.</p>
+  <table class="parts">
+    <thead><tr><th>Pos.</th><th>Bezeichnung</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td><b>Innenausbau</b><span>Wände, Decken, Einbauten</span></td></tr>
+      <tr><td>02</td><td><b>Türen</b><span>für Wohnung, Haus und Geschäft</span></td></tr>
+      <tr><td>03</td><td><b>Fenster</b></td></tr>
+      <tr><td>04</td><td><b>Küchen</b></td></tr>
+      <tr><td>05</td><td><b>Schränke</b><span>siehe Blatt 02 – Skizze zeichnen</span></td></tr>
+      <tr><td>06</td><td><b>Möbel</b></td></tr>
+      <tr><td>07</td><td><b>Garderoben</b></td></tr>
+      <tr><td>08</td><td><b>Bodenbeläge</b></td></tr>
+      <tr><td>09</td><td><b>Fahrzeugausbau</b><span>Einbauten für unterwegs</span></td></tr>
+      <tr><td>10</td><td><b>Reparaturen</b></td></tr>
+      <tr class="star"><td>11</td><td><b>Bauaustrocknung</b><span>im selben Betrieb wie die Schreinerei</span></td></tr>
+      <tr><td>12</td><td><b>Rundholzbau</b></td></tr>
+    </tbody>
+  </table>
+  <div class="notebox"><svg viewBox="0 0 46 40" fill="none" stroke="#c9472f" stroke-width="1.6" stroke-linecap="round"><path d="M44 6C30 4 14 10 8 30"/><path d="M3 22l5 9 8-6"/></svg><p class="hand">Pos. 11 – Schreinerei und Bauaustrocknung aus einer Hand: eine eher seltene Kombination.</p></div>
+</section>
+
+<section class="bp" id="skizze">
+  <svg class="grid" aria-hidden="true"><rect width="100%" height="100%" fill="url(#g1)"/></svg>
+  <p class="no"><i>02</i>Schrank-Skizze</p>
+  <h2>Skizzieren Sie Ihren Schrank</h2>
+  <p class="lead">Breite und Höhe einstellen, Fächer, Türen und Schubladen antippen – die Skizze zeichnet sich mit Bemassung neu. Danach als Anfrage senden.</p>
+  <div class="tool">
+    <svg id="sk" viewBox="0 0 380 400" role="img" aria-label="Schrank-Skizze mit Bemassung"></svg>
+    <div class="ctl">
+      <div class="rng"><label for="w">Breite</label><input id="w" type="range" min="40" max="300" step="5" value="120"><output id="wo">120 cm</output></div>
+      <div class="rng"><label for="h">Höhe</label><input id="h" type="range" min="40" max="260" step="5" value="200"><output id="ho">200 cm</output></div>
+      <div class="add">
+        <button data-a="fach"><svg viewBox="0 0 36 26"><rect x="2" y="2" width="32" height="22"/><path d="M2 13h32"/></svg>+ Fach</button>
+        <button data-a="tuer"><svg viewBox="0 0 36 26"><rect x="2" y="2" width="32" height="22"/><path d="M18 2v22M14 10v6M22 10v6"/></svg>+ Türen</button>
+        <button data-a="schub"><svg viewBox="0 0 36 26"><rect x="2" y="2" width="32" height="22"/><path d="M2 13h32M14 7.5h8M14 18.5h8"/></svg>+ Schublade</button>
+      </div>
+      <div class="row2"><button id="undo">↶ Letztes entfernen</button><button id="clr">Alles leeren</button></div>
+      <p class="skhint">Tipp: Ein Element in der Skizze antippen, um es zu entfernen. Max. 8 Elemente.</p>
+      <p class="list" id="list"></p>
+    </div>
+    <div class="sendwrap"><a class="b solid" id="send" href="#"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>Skizze als Anfrage senden</a></div>
+  </div>
+  <p class="hand" style="margin-top:16px">Grobe Skizze genügt – den Rest planen wir gemeinsam.</p>
+</section>
+
+<section class="pp" id="referenzen">
+  <p class="no"><i>03</i>Details &amp; Referenzen</p>
+  <h2>Ausgeführte Arbeiten</h2>
+  <p class="lead">Platz für Ihre Referenzgalerien – pro Bereich ein Detailblatt.</p>
+  <div class="frames">
+    <div class="frame"><span class="tag">DETAIL A · KÜCHEN</span><b>[Ihre Referenzfotos]</b><span>Küchen</span></div>
+    <div class="two">
+      <div class="frame"><span class="tag">B · TÜREN</span><b>[Ihre</b><b>Referenzfotos]</b></div>
+      <div class="frame"><span class="tag">C · SCHRÄNKE</span><b>[Ihre</b><b>Referenzfotos]</b></div>
+    </div>
+    <div class="two">
+      <div class="frame"><span class="tag">D · INNENAUSBAU</span><b>[Ihre</b><b>Referenzfotos]</b></div>
+      <div class="frame"><span class="tag">E · RUNDHOLZ</span><b>[Ihre</b><b>Referenzfotos]</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="bp" id="werkstatt">
+  <svg class="grid" aria-hidden="true"><rect width="100%" height="100%" fill="url(#g1)"/></svg>
+  <p class="no"><i>04</i>Werkstatt</p>
+  <h2>Werkstatt mitten in der Thuner Altstadt</h2>
+  <p class="lead">Ein kleines Team um Inhaber Michael Neuenschwander – geplant und gebaut wird an der Mittleren Strasse.</p>
+  <div class="site">
+    <svg viewBox="0 0 380 250" aria-label="Platzhalter für ein Foto der Werkstatt">
+      <g fill="none" stroke="#9fb4d2" stroke-width="1"><path d="M0 0L380 250M380 0L0 250" stroke-dasharray="5 6"/></g>
+      <rect x="95" y="100" width="190" height="50" fill="#0f2c52" stroke="#e9eff8" stroke-width="1.2"/>
+      <text x="190" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700" fill="#e9eff8">[Foto Ihrer Werkstatt]</text>
+      <text x="190" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#9fb4d2">Mittlere Strasse 10</text>
+    </svg>
+  </div>
+  <div class="kv">
+    <div><small>Adresse</small>Mittlere Strasse 10, 3600 Thun</div>
+    <div><small>Inhaber</small>Michael Neuenschwander</div>
+    <div><small>Team</small>Klein – planen und realisieren unter einem Dach</div>
+  </div>
+</section>
+
+<section class="pp" id="zeiten">
+  <p class="no"><i>05</i>Öffnungszeiten</p>
+  <h2>Montag bis Freitag</h2>
+  <div class="tl">
+    <svg viewBox="0 0 394 150" aria-label="Öffnungszeiten Montag bis Freitag 07:15 bis 12:00 und 13:15 bis 17:15">
+      <g stroke="#0f2c52" fill="none">
+        <path d="M10 70H384" stroke-width="1.2"/>
+        <g stroke-width="1"><path d="M10 64v12M44 64v12M78 64v12M112 64v12M146 64v12M180 64v12M214 64v12M248 64v12M282 64v12M316 64v12M350 64v12M384 64v12"/></g>
+      </g>
+      <g font-size="10" fill="#5b6573" text-anchor="middle"><text x="10" y="92">07</text><text x="78" y="92">09</text><text x="146" y="92">11</text><text x="214" y="92">13</text><text x="282" y="92">15</text><text x="350" y="92">17</text></g>
+      <!-- 07:15 => 10+34*0.25=18.5 ; 12:00 => 180 ; 13:15 => 222.5 ; 17:15 => 358.5 -->
+      <rect x="18.5" y="56" width="161.5" height="12" fill="#0f2c52"/>
+      <rect x="222.5" y="56" width="136" height="12" fill="#0f2c52"/>
+      <g stroke="#c9472f" fill="none" stroke-width="1"><path d="M18.5 20v34M180 20v34M222.5 20v34M358.5 20v34M18.5 30H180M222.5 30H358.5M13.5 35l10-10M175 35l10-10M217.5 35l10-10M353.5 35l10-10"/></g>
+      <g font-size="11.5" font-weight="700" fill="#c9472f" text-anchor="middle"><text x="99" y="22">07:15 – 12:00</text><text x="290" y="22">13:15 – 17:15</text></g>
+      <text class="hw" x="201" y="128" text-anchor="middle" font-size="17" fill="#c9472f">Mittagspause 12:00 – 13:15</text>
+      <path d="M201 108 C 201 96 201 88 201 74" stroke="#c9472f" fill="none" stroke-width="1" stroke-dasharray="3 3"/>
+    </svg>
+  </div>
+</section>
+
+<section class="pp" id="kontakt" style="border-top:1.5px solid var(--ink)">
+  <p class="no"><i>06</i>Kontakt</p>
+  <h2>Plan besprechen?</h2>
+  <p class="lead">Rufen Sie an oder schreiben Sie – gerne mit Skizze, Massen oder Foto.</p>
+  <div class="cgrid">
+    <a class="b solid" href="tel:+41332226481"><span><small>Werkstatt</small>033 222 64 81</span><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></a>
+    <a class="b" href="tel:+41792101490"><span><small>Mobile</small>079 210 14 90</span><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></a>
+    <a class="b" href="mailto:schreinerei@neuenschwander-thun.ch"><span><small>E-Mail</small>schreinerei@neuenschwander-thun.ch</span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg></a>
+  </div>
+  <address>Schreinerei Michael Neuenschwander<br>Mittlere Strasse 10 · 3600 Thun</address>
+</section>
+
+<footer class="bp">Entwurf «Werkplan» – Demo von Max Rathsack.<br>Keine offizielle Webseite der Schreinerei Michael Neuenschwander. Bildflächen sind Platzhalter.</footer>
+<nav class="fab" aria-label="Schnellkontakt">
+  <a href="tel:+41332226481"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+  <a href="mailto:schreinerei@neuenschwander-thun.ch"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+</nav>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const sk=document.getElementById('sk');
+const st={w:120,h:200,m:['fach','tuer','schub','schub']};
+const NAME={fach:'Offenes Fach',tuer:'Türen',schub:'Schublade'};
+const WT={fach:1,tuer:2.4,schub:.62};
+let seed=1;function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
+function el(n,a,p){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);(p||sk).appendChild(e);return e}
+// Bleistiftstrich: leichte Unruhe, Überstand an den Enden, zweiter feiner Strich
+function pl(x1,y1,x2,y2,g,cls='pl',over=4){
+  const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
+  const a=[x1-ux*over*rnd(),y1-uy*over*rnd()],b=[x2+ux*over*rnd(),y2+uy*over*rnd()];
+  const mx=(a[0]+b[0])/2+(-uy)*(rnd()-.5)*1.6,my=(a[1]+b[1])/2+(ux)*(rnd()-.5)*1.6;
+  el('path',{d:`M${a[0].toFixed(1)} ${a[1].toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${b[0].toFixed(1)} ${b[1].toFixed(1)}`,class:cls+' draw',pathLength:1},g);
+  if(cls==='pl'){const o=.9;el('path',{d:`M${(a[0]+o).toFixed(1)} ${(a[1]-o*.6).toFixed(1)}L${(b[0]-o*.5).toFixed(1)} ${(b[1]+o).toFixed(1)}`,class:'pl2 draw',pathLength:1},g)}
+}
+function rect(x,y,w,h,g,cls){pl(x,y,x+w,y,g,cls);pl(x+w,y,x+w,y+h,g,cls);pl(x+w,y+h,x,y+h,g,cls);pl(x,y+h,x,y,g,cls)}
+function dimH(x1,x2,y,txt,ext1,g){ // horizontale Masslinie
+  el('path',{class:'dim',d:`M${x1} ${ext1}V${y+6}M${x2} ${ext1}V${y+6}M${x1-6} ${y}H${x2+6}M${x1-5} ${y+5}l10-10M${x2-5} ${y+5}l10-10`},g);
+  const t=el('text',{x:(x1+x2)/2,y:y-5,'text-anchor':'middle',class:'dt'},g);t.textContent=txt;
+}
+function dimV(y1,y2,x,txt,ext1,g,cls='dt',side=-1){
+  el('path',{class:'dim',d:`M${ext1} ${y1}H${x-6*side}M${ext1} ${y2}H${x-6*side}M${x} ${y1-6}V${y2+6}M${x-5} ${y1+5}l10-10M${x-5} ${y2+5}l10-10`},g);
+  const cx=x+side*6,cy=(y1+y2)/2;
+  const t=el('text',{x:cx,y:cy,'text-anchor':'middle',class:cls,transform:`rotate(-90 ${cx} ${cy})`},g);t.textContent=txt;
+}
+function render(){
+  seed=7+st.m.length*13+st.w+st.h;
+  sk.innerHTML='';
+  // Raster-Hilfslinien
+  const g=el('g',{});
+  const AW=236,AH=300,X0=62,Y0=34;
+  const sc=Math.min(AW/st.w,AH/st.h);
+  const W=st.w*sc,H=st.h*sc,x=X0+(AW-W)/2,y=Y0+(AH-H)/2+6;
+  el('path',{class:'dash',d:`M0 ${y+H}H380`},g);
+  const lab=el('text',{x:12,y:20,class:'lab'},g);lab.textContent='ANSICHT VORNE · MASSE IN CM';
+  // Korpus
+  rect(x,y,W,H,g);
+  const tot=st.m.reduce((s,k)=>s+WT[k],0)||1;
+  let cy=y;const segs=[];
+  st.m.forEach((k,i)=>{
+    const hh=H*WT[k]/tot;segs.push([cy,cy+hh,k,i]);
+    const gg=el('g',{},g);
+    if(i>0)pl(x,cy,x+W,cy,gg);
+    if(k==='tuer'){
+      const two=st.w>=70; const n=st.w>=200?3:(two?2:1);
+      for(let d=1;d<n;d++)pl(x+W*d/n,cy,x+W*d/n,cy+hh,gg);
+      for(let d=0;d<n;d++){const dx0=x+W*d/n,dx1=x+W*(d+1)/n;const hinge=(d%2===0);
+        // Öffnungssymbol (gestrichelt zum Griff)
+        const hx=hinge?dx0:dx1,gx=hinge?dx1:dx0;
+        el('path',{class:'dash',d:`M${hx} ${cy+2}L${gx} ${cy+hh/2}L${hx} ${cy+hh-2}`},gg);
+        const gx2=hinge?dx1-7:dx0+7; const gl=Math.min(22,hh*.3);
+        pl(gx2,cy+hh/2-gl/2,gx2,cy+hh/2+gl/2,gg,'pl',0);
+      }
+    }else if(k==='schub'){
+      rect(x+4,cy+3,W-8,hh-6,gg,'pl2');
+      const hw=Math.min(36,W*.3);pl(x+W/2-hw/2,cy+hh/2,x+W/2+hw/2,cy+hh/2,gg,'pl',0);
+    }else{
+      if(hh>26){const t=el('text',{x:x+W/2,y:cy+hh/2+4,'text-anchor':'middle',class:'lab'},gg);t.textContent=W>70?'offenes Fach':'Fach'}
+      el('path',{class:'dash',d:`M${x+6} ${cy+hh-5}H${x+W-6}`,opacity:.6},gg);
+    }
+    const hit=el('rect',{x:x,y:cy,width:W,height:hh,class:'hit'},gg);
+    hit.addEventListener('click',()=>{st.m.splice(i,1);render()});
+    const tt=el('title',{},hit);tt.textContent=NAME[k]+' – antippen zum Entfernen';
+    cy+=hh;
+  });
+  if(!st.m.length){const t=el('text',{x:x+W/2,y:y+H/2,'text-anchor':'middle',class:'lab'},g);t.textContent='leerer Korpus'}
+  // Sockel-Bodenlinie Schraffur
+  for(let i=0;i<10;i++){el('path',{class:'dash',d:`M${x-10+i*(W+20)/10} ${y+H+10}l8 -8`,'stroke-dasharray':'none',opacity:.5},g)}
+  // Bemassung
+  dimH(x,x+W,y+H+40,st.w+' cm',y+H+6,g);
+  dimV(y,y+H,x-26,st.h+' cm',x-4,g,'dt',-1);
+  // Kettenmass rechts
+  segs.forEach(([a,b,k])=>{
+    const cm=Math.round((b-a)/sc);
+    el('path',{class:'dim',d:`M${x+W+4} ${a}H${x+W+30}M${x+W+4} ${b}H${x+W+30}M${x+W+22} ${a}V${b}M${x+W+17} ${a+5}l10-10M${x+W+17} ${b+5}l10-10`,opacity:.85},g);
+    if(b-a>16){const t=el('text',{x:x+W+34,y:(a+b)/2+4,class:'ds'},g);t.textContent='≈'+cm}
+  });
+  document.getElementById('wo').textContent=st.w+' cm';
+  document.getElementById('ho').textContent=st.h+' cm';
+  document.getElementById('list').textContent=st.m.length?'Aufbau v. o.: '+st.m.map((k,i)=>(i+1)+'. '+NAME[k]).join(' · '):'Noch keine Elemente – tippen Sie oben auf «+».';
+  document.getElementById('send').href=mail();
+}
+function mail(){
+  const tot=st.m.reduce((s,k)=>s+WT[k],0)||1;
+  let b='Guten Tag Herr Neuenschwander\n\nIch habe auf Ihrer Webseite einen Schrank skizziert und würde mich über eine Rückmeldung freuen.\n\n';
+  b+='Breite: '+st.w+' cm\nHöhe: '+st.h+' cm\n\nAufbau von oben nach unten:\n';
+  b+=st.m.length?st.m.map((k,i)=>`${i+1}. ${NAME[k]} (ca. ${Math.round(st.h*WT[k]/tot)} cm)`).join('\n'):'(noch offen)';
+  b+='\n\nTiefe, Holz/Oberfläche und Standort:\n\n\nFreundliche Grüsse\n';
+  return 'mailto:schreinerei@neuenschwander-thun.ch?subject='+encodeURIComponent('Anfrage Schrank-Skizze '+st.w+' × '+st.h+' cm')+'&body='+encodeURIComponent(b);
+}
+const wi=document.getElementById('w'),hi=document.getElementById('h');
+wi.oninput=()=>{st.w=+wi.value;render()};hi.oninput=()=>{st.h=+hi.value;render()};
+document.querySelectorAll('.add button').forEach(b=>b.onclick=()=>{if(st.m.length<8){st.m.push(b.dataset.a);render()}});
+document.getElementById('undo').onclick=()=>{st.m.pop();render()};
+document.getElementById('clr').onclick=()=>{st.m=[];render()};
+render();
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1}):null;
+document.querySelectorAll('section h2, .parts, .frames, .kv, .tl, .cgrid').forEach(e=>{e.classList.add('rv');io?io.observe(e):e.classList.add('in')});
+</script>
+</body>
+</html>

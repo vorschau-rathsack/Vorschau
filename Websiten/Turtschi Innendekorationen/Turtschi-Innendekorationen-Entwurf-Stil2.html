@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turtschi Innendekorationen + Sattlerei – Entwurf «Mit Nadel und Faden»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Work+Sans:wght@400;700&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#141210; --black-2:#1e1b18; --cognac:#a65b2a; --cognac-d:#7b3f1b; --cognac-l:#c98250;
+  --garn:#f2c230; --cream:#f4e8d3; --muted:#b9a990;
+  --disp:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif; --sans:"Work Sans", system-ui, sans-serif; --mono:"DM Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--black)}
+body{background:var(--black);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.55;max-width:430px;margin:0 auto;overflow-x:hidden}
+.demo{background:var(--garn);color:var(--black);font-size:12px;line-height:1.4;padding:8px 16px;text-align:center;font-weight:700}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:2px dashed #3a332c}
+.logo{font-family:var(--disp);font-weight:900;font-size:30px;letter-spacing:.04em;line-height:.9}
+.logo small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--muted);font-weight:400;margin-top:4px}
+.callpill{font-family:var(--mono);font-size:13px;color:var(--black);background:var(--garn);text-decoration:none;padding:9px 12px;border-radius:4px;white-space:nowrap}
+main{position:relative}
+#thread{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:1;overflow:visible}
+.z{position:relative;z-index:2}
+.hero{padding:34px 18px 30px;position:relative}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--garn);text-transform:uppercase}
+h1{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:84px;line-height:.86;letter-spacing:.005em;margin:12px 0 18px}
+h1 span{display:block}
+h1 .y{color:var(--garn)}
+h1 .c{color:var(--cognac-l)}
+.hero p{max-width:30ch;color:#e3d5bd}
+.cta{display:flex;gap:10px;margin-top:22px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;border-radius:6px;padding:13px 16px;min-height:50px;flex:1;text-align:center}
+.btn.y{background:var(--garn);color:var(--black)}
+.btn.o{border:2px solid var(--cream);color:var(--cream)}
+.btn.k{background:var(--black);color:var(--garn)}
+.station{padding:46px 18px 10px;position:relative}
+.knot{width:46px;height:46px;border-radius:50%;background:var(--black);border:2px solid var(--garn);display:grid;place-items:center;font-family:var(--disp);font-weight:900;font-size:20px;color:var(--garn);position:relative;z-index:3;margin-bottom:14px}
+.station.r .knot{margin-left:auto}
+h2{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:50px;line-height:.92;margin-bottom:12px}
+h2 em{font-style:normal;color:var(--garn)}
+.leather{background:var(--cognac);color:#fff6e8;border-radius:10px;padding:20px 18px;position:relative;box-shadow:0 14px 30px -18px #000}
+.leather:before{content:"";position:absolute;inset:7px;border:2px dashed rgba(242,194,48,.75);border-radius:6px;pointer-events:none}
+.leather.dark{background:var(--black-2)}
+.leather.dark:before{border-color:rgba(166,91,42,.8)}
+.big100{font-family:var(--disp);font-weight:900;font-size:120px;line-height:.8;color:transparent;-webkit-text-stroke:2px var(--garn);letter-spacing:-.01em}
+.ph{border:2px dashed #5a4c3e;border-radius:8px;min-height:150px;display:grid;place-items:center;text-align:center;color:var(--muted);font-family:var(--mono);font-size:13px;padding:14px;margin-top:14px;background:repeating-linear-gradient(-45deg,transparent 0 12px,rgba(255,255,255,.03) 12px 24px)}
+.ph-i{font-family:var(--mono);font-size:.85em;background:rgba(242,194,48,.15);border:1px dashed var(--garn);border-radius:3px;padding:0 4px;color:var(--garn);white-space:nowrap}
+.patches{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.patch{background:var(--black-2);border-radius:8px;padding:14px 12px 13px;position:relative;min-height:96px}
+.patch:before{content:"";position:absolute;inset:5px;border:1.5px dashed #5a4c3e;border-radius:5px;pointer-events:none}
+.patch b{font-family:var(--disp);font-weight:700;font-size:23px;text-transform:uppercase;line-height:1;display:block;margin-bottom:4px}
+.patch span{font-size:13px;color:var(--muted);line-height:1.35;display:block}
+.patch.hl{background:var(--cognac)}
+.patch.hl:before{border-color:var(--garn)}
+.patch.hl span{color:#fde9c9}
+.patch.w{grid-column:1/-1}
+.nur{display:inline-block;transform:rotate(-4deg);background:var(--garn);color:var(--black);font-family:var(--disp);font-weight:900;font-size:22px;padding:2px 10px;margin-bottom:10px;text-transform:uppercase}
+.bagwrap{background:radial-gradient(90% 70% at 50% 40%, #2a241f, var(--black) 80%);border-radius:12px;margin:8px -6px 0}
+.bagwrap svg{display:block;width:100%;height:auto}
+.emboss{margin-top:14px}
+.emboss label{display:block;font-family:var(--mono);font-size:12px;color:var(--garn);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.emboss input{width:100%;font-family:var(--disp);font-weight:700;font-size:26px;letter-spacing:.06em;text-transform:uppercase;background:var(--black-2);color:var(--cream);border:2px solid var(--cognac);border-radius:6px;padding:9px 12px;outline:none}
+.emboss input:focus{border-color:var(--garn)}
+.sugg{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.sugg button{font-family:var(--mono);font-size:13px;background:transparent;color:var(--cream);border:1.5px dashed var(--muted);border-radius:4px;padding:7px 10px;cursor:pointer}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.quote{border-left:4px solid var(--garn);padding:4px 0 4px 14px;margin-top:16px}
+.quote p{font-family:var(--disp);font-weight:700;font-size:30px;line-height:1.02;text-transform:uppercase}
+.quote small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:14px;margin:6px 0 14px}
+td{padding:9px 0;border-bottom:1.5px dashed rgba(255,246,232,.35)}
+td:last-child{text-align:right;color:var(--garn)}
+.leather td:last-child{color:#fff}
+address{font-style:normal;margin-bottom:14px}
+.stack{display:grid;gap:10px}
+footer{margin-top:50px;padding:22px 18px 30px;border-top:2px dashed #3a332c;font-size:12px;color:var(--muted);font-family:var(--mono);line-height:1.6}
+/* PDF */
+html.pdf #needle{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Turtschi Innendekorationen + Sattlerei</div>
+<header>
+  <div class="logo">TURTSCHI<small>INNENDEKORATIONEN + SATTLEREI</small></div>
+  <a class="callpill" href="tel:+41336542141">☎ 033 654 21 41</a>
+</header>
+
+<main id="main">
+  <svg id="thread" aria-hidden="true">
+    <defs>
+      <mask id="reveal" maskUnits="userSpaceOnUse"><path id="maskPath" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/></mask>
+    </defs>
+    <g id="threadGroup" mask="url(#reveal)">
+      <path id="holes" fill="none" stroke="#000" stroke-opacity=".55" stroke-width="5" stroke-dasharray="12 8" stroke-dashoffset="-1" stroke-linecap="round" transform="translate(1.5 2)"/>
+      <path id="stitch" fill="none" stroke="#f2c230" stroke-width="3.2" stroke-dasharray="12 8" stroke-linecap="round"/>
+    </g>
+    <g id="needle"><path d="M-30 -1.6 L18 -0.6 L24 0 L18 0.6 L-30 1.6 Z" fill="#d8d4cc"/><ellipse cx="-24" cy="0" rx="4" ry="1" fill="#141210"/></g>
+  </svg>
+
+  <section class="hero z">
+    <div class="mono">Spiez · seit mehr als 100 Jahren</div>
+    <h1><span>Mit</span><span class="y">Nadel</span><span>und</span><span class="c">Faden.</span></h1>
+    <p>Innendekorationen und Sattlerei vom eidg. dipl. INSA-Meister – von Vorhängen und Polstern bis zur eigenen Feuerwehr-Tasche. Scrollen Sie: der Faden zeigt den Weg.</p>
+    <div class="cta"><a class="btn y" href="tel:+41336542141">Anrufen</a><a class="btn o" href="mailto:info@turtschi-spiez.ch">E-Mail</a></div>
+  </section>
+
+  <section class="station r z">
+    <div class="knot">01</div>
+    <div class="mono">Tradition</div>
+    <h2>Mehr als <em>100 Jahre</em> Handwerk</h2>
+    <div class="big100">100+</div>
+    <p style="margin-top:10px">Turtschi ist ein Familienbetrieb an der Thunstrasse in Spiez. Gegründet <span class="ph-i">[Gründungsjahr]</span> – seither wird hier genäht, gepolstert und mit Leder gearbeitet.</p>
+    <div class="ph">[Foto aus der Firmengeschichte]</div>
+  </section>
+
+  <section class="station z">
+    <div class="knot">02</div>
+    <div class="mono">Der Meister</div>
+    <h2>Jürg <em>Turtschi</em></h2>
+    <div class="leather">
+      <p style="font-family:var(--disp);font-weight:700;font-size:26px;line-height:1.05;text-transform:uppercase">Eidg. dipl. INSA-Meister Innendekorationen und Sattlerei</p>
+      <p style="margin-top:8px;font-size:15px">Inhaber und Ansprechpartner – Fachberatung gerne persönlich im Geschäft oder nach Online-Termin.</p>
+    </div>
+    <div class="ph">[Foto Jürg Turtschi in der Werkstatt]</div>
+  </section>
+
+  <section class="station r z">
+    <div class="knot">03</div>
+    <div class="mono">Leistungen</div>
+    <h2>Was wir <em>nähen</em> &amp; machen</h2>
+    <div class="patches">
+      <div class="patch"><b>Vorhänge</b><span>Stoffe, Beratung, Anfertigung</span></div>
+      <div class="patch"><b>Polsterei</b><span>Neu, stilgerecht, Renovation</span></div>
+      <div class="patch"><b>Polster&shy;material</b><span>Auch für eigene Projekte</span></div>
+      <div class="patch hl"><b>Sattlerei</b><span>Lederarbeit vom Meister</span></div>
+      <div class="patch"><b>Betten</b><span>Für erholsamen Schlaf</span></div>
+      <div class="patch"><b>Boden&shy;beläge</b><span>Passend zum Raum</span></div>
+      <div class="patch hl w"><b>Eigene Produkte &amp; Lederartikel</b><span>inkl. eigener Feuerwehr-Taschenlinie</span></div>
+      <div class="patch"><b>Fach&shy;beratung</b><span>Persönlich, auch per Online-Termin</span></div>
+      <div class="patch"><b>Forschung + Entwicklung</b><span>Ideen aus der Werkstatt</span></div>
+    </div>
+  </section>
+
+  <section class="station r z" id="taschen">
+    <div class="knot">04</div>
+    <div class="nur">Nur bei uns</div>
+    <h2>Feuerwehr-<em>Taschen</em></h2>
+    <p>Die eigene Taschenlinie aus der Turtschi-Sattlerei. Probieren Sie aus, wie Ihr Text als Prägung auf dem Lederanhänger aussehen könnte:</p>
+    <div class="bagwrap">
+      <svg viewBox="0 0 360 300" role="img" aria-label="Gezeichnete Feuerwehr-Tasche mit geprägtem Lederanhänger">
+        <defs>
+          <linearGradient id="bagG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8291c"/><stop offset="1" stop-color="#6e140c"/></linearGradient>
+          <linearGradient id="flapG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8d1f14"/><stop offset="1" stop-color="#6a130b"/></linearGradient>
+          <linearGradient id="tagG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cf8a54"/><stop offset=".55" stop-color="#b06630"/><stop offset="1" stop-color="#8a4a1f"/></linearGradient>
+          <linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2d64a"/><stop offset=".35" stop-color="#f2d64a"/><stop offset=".36" stop-color="#d9dcdf"/><stop offset=".64" stop-color="#b9bec4"/><stop offset=".65" stop-color="#f2d64a"/><stop offset="1" stop-color="#e2c43a"/></linearGradient>
+        </defs>
+        <ellipse cx="160" cy="276" rx="130" ry="9" fill="#000" opacity=".5"/>
+        <!-- Henkel -->
+        <path d="M78 104 C78 30 242 30 242 104" fill="none" stroke="#1a1714" stroke-width="16" stroke-linecap="round"/>
+        <path d="M78 104 C78 30 242 30 242 104" fill="none" stroke="#f2c230" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <!-- Korpus -->
+        <rect x="38" y="96" width="244" height="172" rx="16" fill="url(#bagG)"/>
+        <rect x="46" y="104" width="228" height="156" rx="11" fill="none" stroke="#f2c230" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <rect x="38" y="214" width="244" height="22" fill="url(#refl)"/>
+        <path d="M38 214H282M38 236H282" stroke="#f2c230" stroke-width="1.2" stroke-dasharray="5 4" opacity=".9"/>
+        <!-- Klappe -->
+        <path d="M38 112 Q38 96 54 96 L266 96 Q282 96 282 112 L282 160 Q282 182 260 182 L60 182 Q38 182 38 160 Z" fill="url(#flapG)"/>
+        <path d="M48 112 Q48 104 56 104 L264 104 Q272 104 272 112 L272 158 Q272 172 258 172 L62 172 Q48 172 48 158 Z" fill="none" stroke="#f2c230" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <!-- Verschluss -->
+        <rect x="146" y="164" width="28" height="34" rx="4" fill="#1a1714"/><rect x="152" y="172" width="16" height="16" rx="2" fill="none" stroke="#c9ccd0" stroke-width="3"/>
+        <!-- Ring + Anhänger -->
+        <circle cx="268" cy="110" r="9" fill="none" stroke="#c9ccd0" stroke-width="3.5"/>
+        <g id="tag" transform="translate(18 0) rotate(8 250 118)">
+          <path d="M250 118 L250 132" stroke="#5a2e12" stroke-width="5" stroke-linecap="round"/>
+          <path d="M196 132 L304 132 Q314 132 314 142 L314 214 Q314 224 304 224 L196 224 Q186 224 186 214 L186 142 Q186 132 196 132 Z" fill="url(#tagG)" stroke="#6b3412" stroke-width="1.5"/>
+          <rect x="193" y="139" width="114" height="78" rx="7" fill="none" stroke="#f2c230" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <text id="tagSmall" x="250" y="158" text-anchor="middle" font-family="DM Mono, monospace" font-size="7.5" letter-spacing="1.4" fill="#6b3412" opacity=".9">TURTSCHI · SPIEZ</text>
+          <g font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" text-anchor="middle">
+            <text class="tt" x="249.2" y="194.2" fill="#e8b07c" opacity=".75">IHR NAME</text>
+            <text class="tt" x="250.8" y="195.8" fill="#4a230c" opacity=".85">IHR NAME</text>
+            <text class="tt" x="250" y="195" fill="#9a5424">IHR NAME</text>
+          </g>
+          <line x1="204" y1="206" x2="296" y2="206" stroke="#6b3412" stroke-width=".8" opacity=".6"/>
+        </g>
+      </svg>
+    </div>
+    <div class="emboss">
+      <label for="embossIn">Ihr Text fürs Lederetikett</label>
+      <input id="embossIn" maxlength="14" value="IHR NAME" autocomplete="off" spellcheck="false">
+      <div class="sugg"><button data-t="ATEMSCHUTZ">ATEMSCHUTZ</button><button data-t="TRUPP 2">TRUPP 2</button><button data-t="M. MUSTER">M. MUSTER</button></div>
+      <a class="btn y" id="bagMail" href="mailto:info@turtschi-spiez.ch">Tasche mit dieser Prägung anfragen</a>
+      <p class="note">Personalisierung auf Anfrage – <span class="ph-i">[Möglichkeiten, Modelle und Preise]</span>. Die Zeichnung ist eine Illustration.</p>
+    </div>
+  </section>
+
+  <section class="station z">
+    <div class="knot">05</div>
+    <div class="mono">Aktuell</div>
+    <h2>Schmetterlings&shy;<em>wochen</em></h2>
+    <div class="leather dark">
+      <p>Unsere Aktion: <span class="ph-i">[Zeitraum, Angebot und Details]</span></p>
+    </div>
+    <div class="quote">
+      <p>Hervorragender Service – freundlich, schnell, präzise.</p>
+      <small>sinngemäss aus einer Kundenbewertung auf search.ch, 2024</small>
+    </div>
+  </section>
+
+  <section class="station r z" id="kontakt">
+    <div class="knot">06</div>
+    <div class="mono">Letzter Stich</div>
+    <h2>Kommen Sie <em>vorbei</em></h2>
+    <div class="leather">
+      <table>
+        <tr><td>Mo – Fr</td><td>07.00 – 12.00</td></tr>
+        <tr><td></td><td>13.00 – 17.00</td></tr>
+      </table>
+      <address><b>Turtschi Innendekorationen + Sattlerei</b><br>Thunstrasse 96, 3700 Spiez</address>
+      <div class="stack">
+        <a class="btn k" href="tel:+41336542141">☎ 033 654 21 41</a>
+        <a class="btn k" href="tel:+41796068606">Mobile 079 606 8 606</a>
+        <a class="btn k" href="mailto:info@turtschi-spiez.ch">info@turtschi-spiez.ch</a>
+        <a class="btn k" href="#" onclick="return false">Online-Termin <span class="ph-i">[Link]</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Turtschi Innendekorationen + Sattlerei. Alle Bilder sind Zeichnungen, keine Fotos.</footer>
+
+<script>
+(function(){
+  var main=document.getElementById("main"),svg=document.getElementById("thread"),stitch=document.getElementById("stitch"),holes=document.getElementById("holes"),mp=document.getElementById("maskPath"),needle=document.getElementById("needle"),grp=document.getElementById("threadGroup");
+  var L=0,isPdf=function(){return document.documentElement.classList.contains("pdf")};
+  function build(){
+    var mr=main.getBoundingClientRect(),H=main.scrollHeight,W=mr.width;
+    svg.setAttribute("height",H);svg.setAttribute("viewBox","0 0 "+W+" "+H);
+    var knots=[];
+    main.querySelectorAll(".knot").forEach(function(k){var r=k.getBoundingClientRect();knots.push([r.left-mr.left+r.width/2,r.top-mr.top+r.height/2])});
+    var G=function(x){return x>W/2?W-7:7};
+    var d="M"+(W-7)+" 6",cx=W-7,cy=6;
+    knots.forEach(function(b){
+      var gy=b[1]-64;
+      if(gy>cy)d+=" L"+cx+" "+gy;
+      d+=" C"+cx+" "+(gy+26)+" "+b[0]+" "+(b[1]-44)+" "+b[0]+" "+(b[1]-23);
+      d+=" L"+b[0]+" "+b[1];
+      var g=G(b[0]);d+=" Q"+g+" "+b[1]+" "+g+" "+(b[1]+30);
+      cx=g;cy=b[1]+30;
+    });
+    d+=" L"+cx+" "+(H-6);
+    [stitch,holes,mp].forEach(function(p){p.setAttribute("d",d)});
+    L=stitch.getTotalLength();mp.setAttribute("stroke-dasharray",L+" "+L);
+    if(isPdf()){grp.removeAttribute("mask")}
+    update();
+  }
+  function update(){
+    var p;
+    if(isPdf()){p=1}else{var r=main.getBoundingClientRect();p=(innerHeight*.62-r.top)/main.scrollHeight;p=Math.max(.02,Math.min(1,p))}
+    mp.setAttribute("stroke-dashoffset",L*(1-p));
+    var pt=stitch.getPointAtLength(L*p),pt2=stitch.getPointAtLength(Math.max(0,L*p-2));
+    var ang=Math.atan2(pt.y-pt2.y,pt.x-pt2.x)*180/Math.PI;
+    needle.setAttribute("transform","translate("+pt.x+" "+pt.y+") rotate("+ang+")");
+    needle.style.display=p>=1?"none":"";
+  }
+  addEventListener("scroll",update,{passive:true});addEventListener("resize",build);
+  addEventListener("load",build);document.fonts&&document.fonts.ready.then(function(){build();setText()});build();
+  window.__rebuild=function(){build();if(window.__setText)window.__setText()};
+
+  // Prägung
+  var inp=document.getElementById("embossIn"),tts=document.querySelectorAll(".tt"),mail=document.getElementById("bagMail");
+  function setText(){
+    var t=(inp.value||"").toUpperCase().trim()||" ";
+    tts.forEach(function(x){x.textContent=t;x.setAttribute("font-size",38)});
+    var w=0;try{w=tts[2].getComputedTextLength()}catch(e){}
+    var fs=w>98?Math.max(12,38*98/w):38;
+    tts.forEach(function(x){x.setAttribute("font-size",fs.toFixed(1))});
+    var body="Grüezi Herr Turtschi\n\nIch interessiere mich für eine Feuerwehr-Tasche aus Ihrer eigenen Linie mit geprägtem Lederanhänger.\n\nGewünschte Prägung: "+t+"\n\nBitte informieren Sie mich über Möglichkeiten und Preise.\n\nFreundliche Grüsse\n";
+    mail.href="mailto:info@turtschi-spiez.ch?subject="+encodeURIComponent("Anfrage Feuerwehr-Tasche mit Prägung")+"&body="+encodeURIComponent(body);
+  }
+  inp.addEventListener("input",setText);
+  document.querySelectorAll(".sugg button").forEach(function(b){b.addEventListener("click",function(){inp.value=b.dataset.t;setText()})});
+  setText();window.__setText=setText;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="de-CH" data-wood="eiche">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schreinerei Michael Neuenschwander – Entwurf «Jahrringe»</title>
+<meta name="description" content="Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Schreinerei Michael Neuenschwander, Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5ede0; --paper:#fbf7f0; --ink:#36261a; --soft:#6d5643;
+  --e:#e4c99b; --l:#c9a46c; --line:#94693c; --bark:#5a3c22; --accent:#8b4f1f; --glow:#f2b45a;
+  --hero:#d7b27a; --grain:#b98c55; --chip:#efe2cc;
+  --serif:"Young Serif", Georgia, serif; --text:"Lora", Georgia, serif;
+}
+html[data-wood="nussbaum"]{
+  --bg:#efe6dd; --paper:#f8f3ee; --ink:#2a1a12; --soft:#5f4637;
+  --e:#8a6447; --l:#5d3e2b; --line:#332117; --bark:#22150e; --accent:#6b3a22; --glow:#e7a35f;
+  --hero:#6f4b33; --grain:#4c3122; --chip:#e5d6c8;
+}
+html[data-wood="arve"]{
+  --bg:#f8eee4; --paper:#fdf8f2; --ink:#3d2318; --soft:#7a5543;
+  --e:#f1d6b8; --l:#dba57a; --line:#b46a45; --bark:#6e3b26; --accent:#a8502c; --glow:#ff9f6e;
+  --hero:#e8bb92; --grain:#c98458; --chip:#f3dfcc;
+}
+html[data-wood="fichte"]{
+  --bg:#f8f5ea; --paper:#fffdf6; --ink:#3a3020; --soft:#6e6247;
+  --e:#f6ead0; --l:#e2c98f; --line:#c4a45c; --bark:#7b6136; --accent:#8a6d1f; --glow:#f5c94a;
+  --hero:#efdcae; --grain:#d4b670; --chip:#f1e8cf;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);transition:background .6s}
+body{font-family:var(--text);color:var(--ink);background:var(--bg);font-size:17px;line-height:1.6;transition:background .6s,color .6s;-webkit-font-smoothing:antialiased}
+body *{transition:background-color .6s, color .6s, fill .6s, stroke .6s, border-color .6s}
+.wrap{max-width:430px;margin:0 auto;overflow:hidden;background:var(--bg)}
+.demo{font:12.5px/1.4 var(--text);background:var(--ink);color:var(--paper);padding:9px 16px;text-align:center}
+.demo b{font-weight:700}
+header.hero{position:relative;background:var(--hero);padding:28px 20px 30px;overflow:hidden}
+.grain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.grain path{fill:none;stroke:var(--grain);stroke-width:1.3;opacity:.55}
+.hero > *:not(.grain){position:relative}
+.brand{display:flex;align-items:center;gap:10px;font:14px/1.2 var(--serif);letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.brand svg{width:30px;height:30px}
+.kick{margin-top:26px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);opacity:.8}
+h1{font:400 37px/1.08 var(--serif);margin-top:8px;color:var(--ink)}
+h1 span{display:block;font-size:21px;margin-top:6px;opacity:.85}
+.motto{margin-top:16px;font-style:italic;font-size:19px;line-height:1.45;border-left:3px solid var(--accent);padding-left:12px}
+.motto small{display:block;font-style:normal;font-size:12.5px;letter-spacing:.06em;opacity:.75;margin-top:4px}
+.heroBtns{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:999px;font:700 16px/1 var(--text);text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent}
+.btn.fill{background:var(--ink);color:var(--paper)}
+.btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+section{padding:40px 20px}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h2{font:400 29px/1.15 var(--serif);margin:8px 0 12px}
+p.lead{color:var(--soft)}
+/* Stamm */
+.stump{position:relative;margin:22px -8px 0}
+.stump svg{width:100%;height:auto;display:block;overflow:visible}
+.band{cursor:pointer}
+.band path.fillp{transition:fill .6s, opacity .3s}
+.ringlbl{font:600 8.6px var(--text);letter-spacing:.08em;fill:var(--ink);pointer-events:none;text-transform:uppercase}
+html[data-wood="nussbaum"] .ringlbl{fill:#f6ebe0}
+.band.on path.fillp{fill:var(--glow)!important}
+html .ringlbl.on{fill:#2a160b}
+.band:focus{outline:none}.band:focus-visible path.fillp{stroke:var(--ink);stroke-width:2}
+.stump.has .band:not(.on) path.fillp{opacity:.78}
+.pith{font:400 15px var(--serif);fill:var(--paper)}
+.info{margin-top:18px;background:var(--paper);border-radius:18px;padding:18px 18px 20px;border:1px solid var(--l);min-height:136px}
+.info .n{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.info h3{font:400 25px/1.2 var(--serif);margin:4px 0 6px}
+.info p{color:var(--soft);font-size:16.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips button{font:15px/1 var(--text);color:var(--ink);background:var(--chip);border:1px solid var(--l);padding:10px 13px;border-radius:999px;cursor:pointer}
+.chips button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hint{font-size:14px;color:var(--soft);margin-top:10px;font-style:italic}
+/* Holzart */
+.woods{background:var(--paper)}
+.picker{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.picker button{background:none;border:0;cursor:pointer;font:15px/1.2 var(--text);color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 0}
+.picker svg{width:70px;height:70px;border-radius:50%;outline:3px solid transparent;outline-offset:3px;transition:outline-color .3s}
+.picker button.on svg{outline-color:var(--accent)}
+.picker button.on{font-weight:700}
+.wooddesc{margin-top:22px;padding:18px;border-radius:18px;background:var(--bg);border:1px solid var(--l)}
+.wooddesc h3{font:400 23px var(--serif)}
+.wooddesc .lat{font-style:italic;color:var(--soft);font-size:14.5px}
+.wooddesc ul{list-style:none;margin-top:10px}
+.wooddesc li{padding:7px 0 7px 22px;position:relative;border-top:1px dashed var(--l);font-size:16px}
+.wooddesc li::before{content:"";position:absolute;left:2px;top:15px;width:10px;height:10px;border-radius:50%;border:2px solid var(--line)}
+.note{font-size:13px;color:var(--soft);margin-top:12px}
+/* Referenzen */
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.ph{background:var(--paper);border:1.5px dashed var(--line);border-radius:16px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px;color:var(--soft);font-size:13.5px;line-height:1.3}
+.ph svg{width:52px;height:52px;margin-bottom:8px}
+.ph b{display:block;color:var(--ink);font:400 16px var(--serif);margin-bottom:3px}
+.ph.wide{grid-column:1/-1;aspect-ratio:16/10}
+/* Werkstatt */
+.shop{background:var(--hero);position:relative;overflow:hidden}
+.shop > *:not(.grain){position:relative}
+.facts{margin-top:16px;display:grid;gap:10px}
+.fact{background:var(--paper);border-radius:14px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.fact svg{flex:0 0 26px;width:26px;height:26px;fill:none;stroke:var(--accent);stroke-width:1.8;margin-top:2px}
+.fact b{display:block;font:400 18px var(--serif)}
+.fact span{color:var(--soft);font-size:15.5px}
+/* Zeiten */
+.times{margin-top:18px;background:var(--paper);border-radius:18px;padding:18px;border:1px solid var(--l)}
+.dayrow{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--l);padding:8px 0}
+.dayrow:last-child{border:0}
+.dayrow b{font:400 18px var(--serif)}
+.bar{position:relative;height:30px;margin:14px 0 6px;border-radius:8px;background:var(--bg);overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;background:var(--l);border-radius:6px}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--soft)}
+/* Kontakt */
+.contact{background:var(--ink);color:var(--paper)}
+.contact h2{color:var(--paper)}
+.contact .eyebrow{color:var(--glow)}
+.contact p{opacity:.85}
+.cbtns{display:grid;gap:12px;margin-top:22px}
+.cbtn{display:flex;align-items:center;gap:14px;background:var(--paper);color:var(--ink);text-decoration:none;border-radius:16px;padding:14px 16px}
+.cbtn .ic{width:44px;height:44px;border-radius:50%;background:var(--glow);display:flex;align-items:center;justify-content:center;flex:0 0 44px}
+.cbtn .ic svg{width:21px;height:21px;fill:none;stroke:var(--ink);stroke-width:2}
+.cbtn small{display:block;font-size:13px;color:var(--soft)}
+.cbtn b{font:400 19px var(--serif);word-break:break-word}
+address{font-style:normal;margin-top:22px;line-height:1.6;opacity:.9}
+footer{padding:22px 20px 96px;font-size:13px;color:var(--soft);text-align:center;background:var(--bg)}
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:20;display:flex;gap:8px;background:var(--ink);padding:6px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+.dock a{white-space:nowrap;color:var(--paper);text-decoration:none;font:700 15px var(--text);padding:11px 18px;border-radius:999px;display:flex;align-items:center;gap:7px}
+.dock a.p{background:var(--glow);color:#2a160b}
+.dock svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s, transform .8s}
+.reveal.in{opacity:1;transform:none}
+/* PDF */
+html.pdf .reveal{opacity:1;transform:none}
+html.pdf .dock{position:static;transform:none;margin:0 auto 26px;width:max-content;box-shadow:none}
+html.pdf footer{padding-bottom:22px}
+html.pdf body *{transition:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="demo"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite der Schreinerei Michael Neuenschwander</div>
+
+<header class="hero">
+  <svg class="grain" viewBox="0 0 430 560" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-10 40 C80 20 140 70 230 48 S360 20 440 44"/>
+    <path d="M-10 92 C70 80 150 118 240 100 S370 70 440 98"/>
+    <path d="M-10 150 C90 140 160 176 250 158 C320 144 380 130 440 154"/>
+    <path d="M-10 214 C60 204 120 236 210 226 S350 196 440 222"/>
+    <path d="M-10 286 C100 270 170 310 260 292 S380 268 440 290"/>
+    <path d="M-10 350 C70 342 150 372 230 360 C300 350 390 332 440 352"/>
+    <path d="M-10 420 C90 404 180 444 270 424 S390 404 440 420"/>
+    <path d="M-10 492 C80 482 140 512 230 500 S370 474 440 496"/>
+    <path d="M300 120 c22 -14 46 -4 50 14 c4 18 -22 30 -44 22 c-18 -6 -20 -26 -6 -36" />
+  </svg>
+  <div class="brand">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--bark)"/><circle cx="20" cy="20" r="14" fill="var(--l)"/><circle cx="21" cy="19" r="10" fill="none" stroke="var(--line)" stroke-width="1.2"/><circle cx="21" cy="19" r="6" fill="none" stroke="var(--line)" stroke-width="1.2"/><circle cx="21" cy="19" r="2" fill="var(--line)"/></svg>
+    Schreinerei Neuenschwander
+  </div>
+  <p class="kick">Mittlere Strasse 10 · Altstadt Thun</p>
+  <h1>Schreinerei Michael Neuenschwander<span>Werkstatt mitten in der Thuner Altstadt</span></h1>
+  <p class="motto">«Wir planen und realisieren Ihr Projekt von A bis Z.»<small>— unser Leitsatz</small></p>
+  <div class="heroBtns">
+    <a class="btn fill" href="tel:+41332226481"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>033 222 64 81</a>
+    <a class="btn" href="mailto:schreinerei@neuenschwander-thun.ch"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+  </div>
+</header>
+
+<section id="ringe">
+  <p class="eyebrow">Unsere Arbeit, Ring für Ring</p>
+  <h2>Vom Kern bis zur Rinde – von A bis Z</h2>
+  <p class="lead">Jeder Jahrring steht für einen Bereich unserer Schreinerei. Tippen Sie auf einen Ring.</p>
+  <div class="stump" id="stump">
+    <svg id="stumpSvg" viewBox="-205 -205 410 410" role="img" aria-label="Baumstamm-Querschnitt mit Leistungen auf den Jahrringen"></svg>
+  </div>
+  <div class="info" id="info" aria-live="polite">
+    <p class="n" id="infoN">Ring 4 von 12</p>
+    <h3 id="infoT">Küchen</h3>
+    <p id="infoP"></p>
+  </div>
+  <div class="chips" id="chips"></div>
+</section>
+
+<section class="woods" id="holz">
+  <p class="eyebrow">Holzart wählen</p>
+  <h2>Welches Holz passt zu Ihnen?</h2>
+  <p class="lead">Wählen Sie eine Holzart – die ganze Seite nimmt ihre Farbe an.</p>
+  <div class="picker" id="picker">
+    <button data-w="eiche" class="on" aria-pressed="true"><svg viewBox="0 0 70 70"><circle cx="35" cy="35" r="35" fill="#d7b27a"/><path d="M0 22 C20 16 40 28 70 20 M0 38 C24 32 44 44 70 36 M0 54 C20 48 46 60 70 52" stroke="#94693c" stroke-width="2" fill="none"/></svg>Eiche</button>
+    <button data-w="nussbaum" aria-pressed="false"><svg viewBox="0 0 70 70"><circle cx="35" cy="35" r="35" fill="#6f4b33"/><path d="M0 20 C24 30 44 12 70 22 M0 36 C20 44 50 28 70 40 M0 54 C24 60 44 46 70 56" stroke="#332117" stroke-width="2" fill="none"/></svg>Nussbaum</button>
+    <button data-w="arve" aria-pressed="false"><svg viewBox="0 0 70 70"><circle cx="35" cy="35" r="35" fill="#e8bb92"/><path d="M0 24 C20 18 40 30 70 22 M0 46 C24 40 44 52 70 44" stroke="#b46a45" stroke-width="2" fill="none"/><circle cx="24" cy="34" r="4.5" fill="#6e3b26"/><circle cx="50" cy="58" r="3.5" fill="#6e3b26"/></svg>Arve</button>
+    <button data-w="fichte" aria-pressed="false"><svg viewBox="0 0 70 70"><circle cx="35" cy="35" r="35" fill="#efdcae"/><path d="M0 18 C24 14 44 22 70 16 M0 32 C24 28 44 36 70 30 M0 46 C24 42 44 50 70 44 M0 60 C24 56 44 64 70 58" stroke="#c4a45c" stroke-width="2" fill="none"/></svg>Fichte</button>
+  </div>
+  <div class="wooddesc" id="wooddesc" aria-live="polite"></div>
+  <p class="note">Allgemeine Holzkunde zur Orientierung – welches Holz für Ihr Projekt passt, besprechen wir gerne persönlich.</p>
+</section>
+
+<section id="referenzen">
+  <p class="eyebrow">Referenzen</p>
+  <h2>Gebaut in Thun und Umgebung</h2>
+  <p class="lead">Hier erscheinen Ihre Referenzbilder, nach Bereichen geordnet.</p>
+  <div class="refs">
+    <div class="ph wide"><svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="27" cy="25" r="15" fill="none" stroke="var(--line)" stroke-width="1.5"/><circle cx="27" cy="25" r="7" fill="none" stroke="var(--line)" stroke-width="1.5"/></svg><b>Küchen</b>[Ihre Referenzfotos]</div>
+    <div class="ph"><svg viewBox="0 0 52 52"><rect x="12" y="6" width="28" height="40" rx="2" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="34" cy="27" r="2" fill="var(--line)"/></svg><b>Türen</b>[Ihre Referenzfotos]</div>
+    <div class="ph"><svg viewBox="0 0 52 52"><rect x="8" y="8" width="36" height="36" fill="none" stroke="var(--line)" stroke-width="2"/><path d="M26 8v36M8 26h36" stroke="var(--line)" stroke-width="2"/></svg><b>Fenster</b>[Ihre Referenzfotos]</div>
+    <div class="ph"><svg viewBox="0 0 52 52"><rect x="8" y="6" width="36" height="40" fill="none" stroke="var(--line)" stroke-width="2"/><path d="M26 6v40M8 22h36" stroke="var(--line)" stroke-width="2"/></svg><b>Schränke</b>[Ihre Referenzfotos]</div>
+    <div class="ph"><svg viewBox="0 0 52 52"><path d="M6 20h40M10 20v24M42 20v24M6 14h40" stroke="var(--line)" stroke-width="2" fill="none"/></svg><b>Möbel</b>[Ihre Referenzfotos]</div>
+  </div>
+</section>
+
+<section class="shop" id="werkstatt">
+  <svg class="grain" viewBox="0 0 430 600" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-10 60 C80 40 160 90 250 66 S370 40 440 62"/>
+    <path d="M-10 180 C90 166 170 204 260 186 S380 160 440 182"/>
+    <path d="M-10 320 C70 306 150 344 240 328 S370 300 440 324"/>
+    <path d="M-10 470 C90 456 170 494 260 476 S380 450 440 472"/>
+  </svg>
+  <p class="eyebrow" style="color:var(--ink)">Die Werkstatt</p>
+  <h2>Mitten in der Thuner Altstadt</h2>
+  <div class="ph wide" style="aspect-ratio:4/3;background:var(--paper)"><svg viewBox="0 0 52 52"><rect x="4" y="12" width="44" height="30" rx="4" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="26" cy="27" r="9" fill="none" stroke="var(--line)" stroke-width="2"/><rect x="18" y="7" width="14" height="6" fill="var(--line)"/></svg><b>Werkstatt</b>[Foto Ihrer Werkstatt]</div>
+  <div class="facts">
+    <div class="fact"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Mittlere Strasse 10</b><span>3600 Thun, in der Altstadt</span></div></div>
+    <div class="fact"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-4 3.4-6 6.5-6s5.7 2 6.5 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c2.6 0 4.6 1.6 5.4 5"/></svg><div><b>Kleines Team</b><span>Inhaber: Michael Neuenschwander</span></div></div>
+    <div class="fact"><svg viewBox="0 0 24 24"><path d="M12 3v6M12 9c-3 0-5 2-5 5a5 5 0 0 0 10 0c0-3-2-5-5-5z"/><path d="M5 20h14"/></svg><div><b>Schreinerei & Bauaustrocknung</b><span>Eine eher seltene Kombination – beides aus einer Hand.</span></div></div>
+  </div>
+</section>
+
+<section id="zeiten">
+  <p class="eyebrow">Öffnungszeiten</p>
+  <h2>Wann Sie uns erreichen</h2>
+  <div class="times">
+    <div class="dayrow"><b>Montag – Freitag</b><span>07:15 – 12:00</span></div>
+    <div class="dayrow"><span></span><span>13:15 – 17:15</span></div>
+    <div class="bar" aria-hidden="true"><i style="left:3.125%;width:39.58%"></i><i style="left:53.65%;width:41.67%"></i></div>
+    <div class="scale" aria-hidden="true"><span>07:00</span><span>12:00</span><span>18:00</span></div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
+  <p class="eyebrow">Kontakt</p>
+  <h2>Erzählen Sie uns von Ihrem Projekt</h2>
+  <p>Ob Küche, Schrank oder Reparatur – rufen Sie an oder schreiben Sie uns.</p>
+  <div class="cbtns">
+    <a class="cbtn" href="tel:+41332226481"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></span><span><small>Werkstatt</small><b>033 222 64 81</b></span></a>
+    <a class="cbtn" href="tel:+41792101490"><span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></span><span><small>Mobile</small><b>079 210 14 90</b></span></a>
+    <a class="cbtn" href="mailto:schreinerei@neuenschwander-thun.ch"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><small>E-Mail</small><b>schreinerei@neuenschwander-thun.ch</b></span></a>
+  </div>
+  <address>Schreinerei Michael Neuenschwander<br>Mittlere Strasse 10<br>3600 Thun</address>
+</section>
+
+<footer>Entwurf «Jahrringe» – Demo von Max Rathsack. Keine offizielle Webseite der Schreinerei Michael Neuenschwander. Alle Bildflächen sind Platzhalter.</footer>
+<nav class="dock" aria-label="Schnellkontakt">
+  <a class="p" href="tel:+41332226481"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+  <a href="mailto:schreinerei@neuenschwander-thun.ch"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>E-Mail</a>
+</nav>
+</div>
+
+<script>
+const S=[
+ ["Innenausbau","Wände, Decken und Einbauten aus Holz – damit Räume wohnlich und gut gegliedert werden."],
+ ["Türen","Türen für Wohnung, Haus und Geschäft – neu gebaut oder bestehende angepasst."],
+ ["Fenster","Fenster aus der Schreinerei, passend zum Haus und zu seiner Umgebung."],
+ ["Küchen","Küchen, geplant für Ihren Raum und für die Menschen, die darin kochen."],
+ ["Schränke","Einbauschränke und Schränke, die genau in Nische, Dachschräge oder Flur passen."],
+ ["Möbel","Tische, Regale und Einzelstücke – Möbel aus der eigenen Werkstatt."],
+ ["Garderoben","Garderoben für Eingang und Flur, mit Platz für das, was täglich gebraucht wird."],
+ ["Bodenbeläge","Holzböden und weitere Bodenbeläge – verlegt und an den Raum angepasst."],
+ ["Fahrzeugausbau","Möbel und Einbauten für Fahrzeuge – Holzhandwerk für unterwegs."],
+ ["Reparaturen","Reparaturen an Möbeln, Türen, Fenstern und Einbauten."],
+ ["Bauaustrocknung","Bauaustrocknung – für eine Schreinerei eher selten, hier gleich im selben Betrieb."],
+ ["Rundholzbau","Bauen mit Rundholz – vom Stamm zur Konstruktion."]
+];
+const NS="http://www.w3.org/2000/svg";
+const svg=document.getElementById('stumpSvg');
+function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e}
+// Unregelmässige Ringform (deterministisch)
+const ph=[[.7,2.1,1.3],[1.9,.4,2.8],[2.6,1.2,.3]];
+function rad(r,t){const g=r/190;return r+ g*(2.6*Math.sin(3*t+ph[0][0])+1.4*Math.sin(5*t+ph[1][1])+2.4*Math.sin(2*t+ph[2][2]))}
+function ox(r){return -6*(r/190)} function oy(r){return 4*(r/190)}
+function ringPath(r,start=0,dir=1){let d="";const N=120;for(let i=0;i<=N;i++){const t=start+dir*i/N*Math.PI*2;const R=rad(r,t);const x=(ox(r)+R*Math.cos(t)).toFixed(2),y=(oy(r)+R*Math.sin(t)).toFixed(2);d+=(i?"L":"M")+x+" "+y}return d+"Z"}
+// Rinde
+svg.appendChild(el('path',{d:ringPath(201),fill:'var(--bark)'}));
+const barkLines=el('g',{stroke:'var(--line)','stroke-width':1.2,fill:'none',opacity:.7});
+for(let i=0;i<40;i++){const t=i/40*Math.PI*2;const r1=rad(190,t),r2=rad(201,t)-1;barkLines.appendChild(el('path',{d:`M${(ox(190)+r1*Math.cos(t)).toFixed(1)} ${(oy(190)+r1*Math.sin(t)).toFixed(1)}L${(ox(201)+r2*Math.cos(t+.03)).toFixed(1)} ${(oy(201)+r2*Math.sin(t+.03)).toFixed(1)}`}))}
+svg.appendChild(barkLines);
+const R0=24, W=13.8;
+const bands=[];
+for(let i=S.length-1;i>=0;i--){
+  const rOut=R0+(i+1)*W;
+  const g=el('g',{class:'band','data-i':i,tabindex:0,role:'button','aria-label':S[i][0]});
+  g.appendChild(el('path',{class:'fillp',d:ringPath(rOut),fill:i%2?'var(--l)':'var(--e)'}));
+  g.appendChild(el('path',{d:ringPath(rOut),fill:'none',stroke:'var(--line)','stroke-width':1.6}));
+  svg.appendChild(g);bands[i]=g;
+}
+// Mark
+svg.appendChild(el('path',{d:ringPath(R0),fill:'var(--bark)'}));
+const pt=el('text',{x:ox(0)-1,y:oy(0)+5,'text-anchor':'middle',class:'pith'});pt.textContent='A';svg.appendChild(pt);
+// Risse (Trocknungsrisse)
+svg.appendChild(el('path',{d:'M60 -150 L48 -118 L52 -96 L41 -70',stroke:'var(--bark)','stroke-width':2.2,fill:'none','stroke-linecap':'round',opacity:.75}));
+svg.appendChild(el('path',{d:'M-150 120 L-122 98 L-110 88',stroke:'var(--bark)','stroke-width':2,fill:'none','stroke-linecap':'round',opacity:.75}));
+// Beschriftung auf Ringen
+const defs=el('defs',{});svg.appendChild(defs);
+const lbls=[];
+S.forEach((s,i)=>{
+  const rm=R0+(i+.5)*W-3.1;
+  const start=-Math.PI*0.5 - (s[0].length*5.6/(2*rm)) - (i%3)*0.9 + 0.6;
+  const p=el('path',{id:'rp'+i,d:ringPath(rm,start,1),fill:'none'});defs.appendChild(p);
+  const tx=el('text',{class:'ringlbl'});const tp=el('textPath',{href:'#rp'+i});tp.textContent=s[0];tx.appendChild(tp);svg.appendChild(tx);lbls[i]=tx;
+});
+const zt=el('text',{x:0,y:-191,'text-anchor':'middle',style:'font:400 13px var(--serif);fill:var(--paper)'});zt.textContent='Z';svg.appendChild(zt);
+// Chips
+const chips=document.getElementById('chips');
+S.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s[0];b.onclick=()=>pick(i);chips.appendChild(b)});
+function pick(i){
+  document.getElementById('stump').classList.add('has');
+  bands.forEach((b,j)=>b.classList.toggle('on',j===i));
+  lbls.forEach((l,j)=>l.classList.toggle('on',j===i));
+  [...chips.children].forEach((c,j)=>c.classList.toggle('on',j===i));
+  document.getElementById('infoN').textContent=`Ring ${i+1} von ${S.length}`+(i===0?' · nahe am Kern':i===S.length-1?' · ganz aussen':'');
+  document.getElementById('infoT').textContent=S[i][0];
+  document.getElementById('infoP').textContent=S[i][1];
+}
+bands.forEach((b,i)=>{b.addEventListener('click',()=>pick(i));b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(i)}})});
+pick(3);
+// Holzarten
+const WD={
+ eiche:["Eiche","Quercus","Hart, schwer und gut belastbar.","Ausgeprägte Maserung, im Schnitt oft mit feinen «Spiegeln».","Klassisch für Böden, Treppen, Tische und Möbel."],
+ nussbaum:["Nussbaum","Juglans","Dunkles, warmes Braun mit lebhafter Zeichnung.","Mittelschwer und gut zu bearbeiten.","Beliebt für edle Möbel und Furniere."],
+ arve:["Arve","Pinus cembra · in Österreich «Zirbe»","Alpenholz mit vielen dunklen Ästen.","Weich, hell-rötlich und mit typischem, harzigem Duft.","Traditionell für Stuben, Täfer und Schlafzimmer."],
+ fichte:["Fichte","Picea abies","Hell, fast weiss bis gelblich.","Leicht und weich, mit gerader Faser.","Eines der häufigsten Bauhölzer der Schweiz – für Konstruktion und Innenausbau."]
+};
+function wood(w){
+  document.documentElement.dataset.wood=w;
+  document.querySelectorAll('#picker button').forEach(b=>{const on=b.dataset.w===w;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+  const d=WD[w];
+  document.getElementById('wooddesc').innerHTML=`<h3>${d[0]}</h3><p class="lat">${d[1]}</p><ul><li>${d[2]}</li><li>${d[3]}</li><li>${d[4]}</li></ul>`;
+}
+document.querySelectorAll('#picker button').forEach(b=>b.onclick=()=>wood(b.dataset.w));
+wood('eiche');
+// Einblenden
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12}):null;
+document.querySelectorAll('section > h2, .info, .picker, .refs, .facts, .times, .cbtns').forEach(e=>{e.classList.add('reveal');io?io.observe(e):e.classList.add('in')});
+</script>
+</body>
+</html>
