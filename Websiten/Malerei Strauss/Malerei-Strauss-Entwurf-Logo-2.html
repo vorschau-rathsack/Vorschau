@@ -46,9 +46,17 @@ section{padding:54px 0;border-bottom:1px solid var(--hair)}
 .fanbox{position:relative;margin:18px -20px 0;padding:0 0 4px}
 .fanstage{position:relative;z-index:2}
 #fan{width:100%;height:auto;overflow:visible;touch-action:manipulation;position:relative}
-.paper{position:relative;z-index:1;width:min(240px,62vw);margin:0 auto 26px;background:transparent;border:0;padding:0;box-shadow:none}
+.paper{position:relative;z-index:1;width:min(240px,62vw);margin:30px auto 0;background:transparent;border:0;padding:0;box-shadow:none}
 .paper:before{display:none}
 .paper img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.lgwrap{position:relative}
+.lgwrap canvas{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;transition:opacity .45s ease}
+.lgwrap canvas.on{opacity:1}
+.paper.pop .lgwrap{animation:lgpop .5s ease}
+@keyframes lgpop{0%{transform:scale(1)}40%{transform:scale(1.035)}100%{transform:scale(1)}}
+.orig{all:unset;cursor:pointer;display:block;margin:8px auto 0;font:600 12px var(--f);color:var(--ink);border:1px solid var(--hair);border-radius:30px;padding:6px 12px}
+.orig[hidden]{display:none}
+html.pdf .orig{display:none}
 .paper small{display:block;text-align:center;font:600 11px var(--f);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:6px}
 .flogo{width:96px;margin:0 auto 14px}
 .flogo img{display:block;width:100%;height:auto}
@@ -154,11 +162,11 @@ html.pdf *,html.pdf *:before,html.pdf *:after{animation:none!important;transitio
 <main id="top">
 <section class="hero">
   <div class="w">
-    <div class="paper" data-logo><small>Thunstrasse 56 · Spiez</small></div>
     <div class="idx"><b>00</b> Malerei in dritter Generation</div>
     <h1>Jede Farbe<br>hat ihren<br>Platz<span class="r">.</span></h1>
     <p class="lead">Malerei Strauss aus Spiez – seit 1953. Fächern Sie unser Angebot auf und fragen Sie direkt per WhatsApp eine Offerte an.</p>
 
+    <div class="paper" data-logo><small>Thunstrasse 56 · Spiez</small><button type="button" class="orig" id="origBtn" hidden>↺ Originalfarben</button></div>
     <div class="fanbox" id="fanbox">
       <div class="fanstage">
       <svg id="fan" viewBox="-40 24 480 312" role="group" aria-label="Farbfächer mit allen Leistungen">
@@ -395,6 +403,7 @@ html.pdf *,html.pdf *:before,html.pdf *:after{animation:none!important;transitio
     document.getElementById('pName').textContent=s[0];
     document.getElementById('pText').textContent=s[1];
     for(var k=0;k<3;k++)chip[k].style.background=s[2][k];
+    if(window.__tintLogo)window.__tintLogo(s[2]);
     var wa=document.getElementById('pWa');wa.removeAttribute('aria-disabled');
     wa.href='https://wa.me/41798853737?text='+encodeURIComponent('Grüezi Herr Strauss, ich hätte gerne eine Offerte für: '+s[0]+'. ');
     document.querySelectorAll('#legend li[data-i]').forEach(function(li){li.classList.toggle('on',+li.dataset.i===i)});
@@ -439,10 +448,48 @@ html.pdf *,html.pdf *:before,html.pdf *:after{animation:none!important;transitio
     document.querySelectorAll('#hours tr').forEach(function(tr){if(tr.dataset.d.split(',').indexOf(String(d))>-1)tr.classList.add('today')});
   }catch(e){}
 
-  window.__pdfState=function(){setOpen(true);pick(9);setRoom('wohn',0);};
+  window.__pdfState=function(){setOpen(true);pick(6);setRoom('wohn',0);};
   function pdfCheck(){if(document.documentElement.classList.contains('pdf')&&!window.__pdfDone){window.__pdfDone=1;window.__pdfState();}}
   pdfCheck();
   new MutationObserver(pdfCheck).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+<script>
+(function(){
+  var paper=document.querySelector('.hero .paper'); if(!paper)return;
+  var img,W,H,src,cv,ctx,ready=false,pending=null,btn=document.getElementById('origBtn');
+  function init(){
+    img=paper.querySelector('img'); if(!img||!img.complete||!img.naturalWidth)return false;
+    W=img.naturalWidth;H=img.naturalHeight;
+    var c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');x.drawImage(img,0,0);src=x.getImageData(0,0,W,H).data;
+    cv=document.createElement('canvas');cv.width=W;cv.height=H;ctx=cv.getContext('2d');
+    var wrap=document.createElement('div');wrap.className='lgwrap';img.parentNode.insertBefore(wrap,img);wrap.appendChild(img);wrap.appendChild(cv);
+    ready=true;return true;
+  }
+  function hex(h){return[parseInt(h.substr(1,2),16),parseInt(h.substr(3,2),16),parseInt(h.substr(5,2),16)];}
+  function cl(v){return v<0?0:v>1?1:v;}
+  function paint(cols){
+    var Lc=hex(cols[0]),M=hex(cols[1]),D=hex(cols[2]);
+    var out=ctx.createImageData(W,H),o=out.data,n=src.length;
+    for(var i=0;i<n;i+=4){
+      var r=src[i],g=src[i+1],b=src[i+2];
+      var mx=r>g?(r>b?r:b):(g>b?g:b),mn=r<g?(r<b?r:b):(g<b?g:b);
+      var sat=(mx-mn)/255,lum=(.299*r+.587*g+.114*b)/255;
+      var w=cl((sat-.05)/.12);
+      var t,A,B;
+      if(lum<.55){t=cl((lum-.12)/.43);A=D;B=M;}else{t=cl((lum-.55)/.35);A=M;B=Lc;}
+      var tr=A[0]+(B[0]-A[0])*t,tg=A[1]+(B[1]-A[1])*t,tb=A[2]+(B[2]-A[2])*t;
+      o[i]=r+(tr-r)*w;o[i+1]=g+(tg-g)*w;o[i+2]=b+(tb-b)*w;o[i+3]=255;
+    }
+    ctx.putImageData(out,0,0);
+    cv.classList.add('on');paper.classList.remove('pop');void paper.offsetWidth;paper.classList.add('pop');
+    if(btn)btn.hidden=false;
+  }
+  window.__tintLogo=function(cols){
+    if(!ready&&!init()){pending=cols;var im=paper.querySelector('img');if(im)im.addEventListener('load',function(){if(init()&&pending)paint(pending);},{once:true});return;}
+    try{paint(cols);}catch(e){}
+  };
+  if(btn)btn.addEventListener('click',function(){if(cv)cv.classList.remove('on');btn.hidden=true;});
 })();
 </script>
 </body>
