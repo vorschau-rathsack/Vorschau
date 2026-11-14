@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geländer nach Mass – Winkler Metallbauer, Blumenstein</title>
+<meta name="description" content="Winkler Metallbauer in Blumenstein: Geländer und Balkone, Türen und Tore, Treppen und Handläufe, Vordächer, Fensterläden und Wintergärten.">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,700;1,400&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --zinc:#e9ecee; --zinc2:#cfd5d9; --zinc3:#8d979e; --ink:#1d2328; --ink2:#4b555c;
+  --yellow:#ffc20e; --yellow-soft:#fff3c4;
+  --sans:'Work Sans',system-ui,sans-serif; --mono:'DM Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#dfe3e6;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);font-size:16px;line-height:1.5}
+a{color:inherit}
+.sheet{max-width:500px;margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 0 1px var(--zinc2)}
+.demo{background:var(--ink);color:#fff;font:400 12px/1.4 var(--mono);padding:8px 16px;text-align:center;position:sticky;top:0;z-index:30}
+.demo b{color:var(--yellow);font-weight:400}
+h1,h2,h3{font-weight:700;letter-spacing:-.02em;line-height:1.02;hyphens:manual;-webkit-hyphens:manual}
+.mono{font-family:var(--mono)}
+.lbl{font:400 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--zinc2)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo b{display:block;white-space:nowrap;font-size:17px;letter-spacing:-.01em;line-height:1.1}
+.logo span{display:block;white-space:nowrap;font:400 10.5px/1.2 var(--mono);color:var(--ink2);letter-spacing:.08em}
+.hcall{font:400 12px/1 var(--mono);text-decoration:none;background:var(--yellow);padding:10px 12px;border-radius:2px;white-space:nowrap}
+
+.hero{padding:30px 20px 24px;background:
+  linear-gradient(var(--paper),rgba(255,255,255,0) 40%),
+  linear-gradient(90deg,var(--zinc) 1px,transparent 1px) 0 0/20px 20px,
+  linear-gradient(var(--zinc) 1px,transparent 1px) 0 0/20px 20px;border-bottom:1px solid var(--zinc2)}
+.hero h1{font-size:clamp(2.7rem,13vw,4rem);margin:12px 0 14px}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--yellow) 62%,var(--yellow) 92%,transparent 92%)}
+.hero p{color:var(--ink2);max-width:33ch}
+.dimrow{display:flex;align-items:center;gap:8px;margin-top:18px;font:400 11px var(--mono);color:var(--ink2)}
+.dimrow i{flex:1;height:1px;background:var(--ink2);position:relative}
+.dimrow i::before,.dimrow i::after{content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--ink2)}
+.dimrow i::before{left:0}.dimrow i::after{right:0}
+
+/* Konfigurator */
+.cfg{padding:26px 20px 8px}
+.cfg h2{font-size:clamp(1.8rem,8vw,2.3rem);margin:8px 0 6px}
+.drawing{margin-top:16px;border:1.5px solid var(--ink);background:#fff;position:relative}
+.drawing svg{display:block;width:100%;height:auto}
+.titleblock{display:grid;grid-template-columns:1fr auto;border-top:1.5px solid var(--ink);font:400 10.5px/1.35 var(--mono)}
+.titleblock div{padding:6px 8px}
+.titleblock div+div{border-left:1.5px solid var(--ink);background:var(--yellow);display:flex;align-items:center;font-size:11px}
+.note{font:400 11px/1.4 var(--mono);color:var(--ink2);margin-top:8px}
+.ctrl{margin-top:18px}
+.ctrl .lbl{display:flex;justify-content:space-between;margin-bottom:7px}
+.ctrl .lbl span{color:var(--ink);text-transform:none;letter-spacing:0}
+.seg{display:grid;gap:6px}
+.seg.c2{grid-template-columns:1fr 1fr}.seg.c3{grid-template-columns:1fr 1fr 1fr}.seg.c4{grid-template-columns:1fr 1fr}
+.seg button{font:400 14px/1.2 var(--sans);color:var(--ink);background:#fff;border:1.5px solid var(--zinc2);padding:11px 8px;border-radius:2px;cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center;text-align:center;min-height:46px}
+.seg button svg{flex:none}
+.seg button[aria-pressed="true"]{border-color:var(--ink);background:var(--yellow-soft);box-shadow:inset 0 -3px 0 var(--yellow);font-weight:700}
+.sw{width:16px;height:16px;border-radius:50%;border:1px solid var(--ink);flex:none}
+.summary{margin-top:18px;padding:10px 12px;background:var(--zinc);font:400 12px/1.5 var(--mono);border-left:3px solid var(--yellow)}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:16px;border-radius:2px}
+.cta i{display:inline-block;width:10px;height:10px;background:var(--yellow);transform:rotate(45deg)}
+
+section{padding:42px 20px 0}
+section>h2{font-size:clamp(1.8rem,8vw,2.3rem);margin:8px 0 16px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{border:1.5px solid var(--zinc2);padding:12px 12px 14px;position:relative;background:#fff}
+.tile .n{font:400 11px var(--mono);color:var(--ink2);position:absolute;right:10px;top:10px}
+.tile svg{width:64px;height:52px;display:block;margin-bottom:10px}
+.tile h3{font-size:15.5px;letter-spacing:-.01em;line-height:1.2}
+.tile p{font-size:12.5px;color:var(--ink2);margin-top:5px;line-height:1.4}
+.tile.wide{grid-column:1/-1}
+@media (max-width:400px){header{padding:14px 16px}.logo b{font-size:15px}.hcall{font-size:11px;padding:9px 8px}}
+.tile.feature{grid-column:1/-1;background:var(--yellow-soft);border-color:var(--ink)}
+.ln{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.ln .y{stroke:#e0a800;stroke-width:2.4}
+.ln .thin{stroke-width:.9;stroke:var(--zinc3)}
+
+.spec{border:1.5px solid var(--ink);font-size:14.5px}
+.spec .r{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--zinc2)}
+.spec .r:last-child{border-bottom:0}
+.spec .k{font:400 11px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);padding:12px 10px;background:var(--zinc);border-right:1px solid var(--zinc2)}
+.spec .v{padding:10px 12px}
+.spec .v b{display:block}
+
+.photo{border:1.5px dashed var(--zinc3);padding:14px;text-align:center}
+.photo svg{width:100%;height:auto;display:block}
+.photo p{font:400 13px var(--mono);margin-top:10px;background:var(--yellow-soft);display:inline-block;padding:3px 8px}
+
+.kgrid{display:grid;gap:10px}
+.kbtn{display:flex;align-items:center;gap:14px;padding:14px;border:1.5px solid var(--ink);text-decoration:none;background:#fff}
+.kbtn.main{background:var(--yellow)}
+.kbtn .ico{width:40px;height:40px;border:1.5px solid var(--ink);display:grid;place-items:center;flex:none;background:#fff}
+.kbtn small{display:block;font:400 11px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.kbtn b{font-size:18px;word-break:break-word}
+.kbtn b.sm{font-size:15px}
+.facts{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px}
+.facts div{background:var(--zinc);padding:12px}
+.facts .lbl{display:block;margin-bottom:4px}
+.ph{background:var(--yellow-soft);font:400 12px var(--mono);padding:0 3px}
+
+footer{margin-top:44px;padding:20px 20px 30px;background:var(--ink);color:#c9cfd3;font:400 11.5px/1.7 var(--mono)}
+footer b{color:#fff;font:700 14px var(--sans);display:block;margin-bottom:6px}
+
+.pdf .demo{position:static}
+.pdf .sheet{min-height:0}
+@media (min-width:520px){body{padding:24px 0}}
+.pdf body{padding:0}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="demo">Entwurf / Demo von Max Rathsack <b>–</b> keine offizielle Webseite von Winkler Metallbauer</div>
+
+<header>
+  <a class="logo" href="#top">
+    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x=".75" y=".75" width="32.5" height="32.5" fill="#ffc20e" stroke="#1d2328" stroke-width="1.5"/><path d="M6 10 H28 M8 10 V26 M14 10 V26 M20 10 V26 M26 10 V26 M5 26 H29" stroke="#1d2328" stroke-width="2" fill="none"/></svg>
+    <span><b>Winkler Metallbauer</b><span>METALLBAU · SCHLOSSEREI</span></span>
+  </a>
+  <a class="hcall" href="tel:+41333562153">033 356 21 53</a>
+</header>
+
+<main id="top">
+<div class="hero">
+  <p class="lbl">Blumenstein · seit 1979</p>
+  <h1>Geländer <em>nach&nbsp;Mass</em>.</h1>
+  <p>«Geländer sorgen für Sicherheit» – und prägen das Bild von Balkon, Treppe und Haus. Stellen Sie unten Ihr Beispiel zusammen.</p>
+  <div class="dimrow"><span>Balkon</span><i></i><span>Treppe</span><i></i><span>Terrasse</span></div>
+</div>
+
+<div class="cfg" id="konfigurator">
+  <p class="lbl">Pos. 01 — Konfigurator</p>
+  <h2>Ihr Geländer, skizziert.</h2>
+  <div class="drawing">
+    <svg id="draw" viewBox="0 0 400 300" role="img" aria-label="Strichzeichnung des gewählten Geländers"></svg>
+    <div class="titleblock"><div id="tbtext">Beispiel-Darstellung · Massstab frei</div><div>Winkler</div></div>
+  </div>
+  <p class="note">Beispiel-Darstellung – jedes Geländer wird nach Mass geplant.</p>
+
+  <div class="ctrl"><div class="lbl">Einbauort <span id="v-ort"></span></div>
+    <div class="seg c2" data-k="ort">
+      <button type="button" data-v="balkon"><svg width="22" height="16" viewBox="0 0 22 16"><path d="M1 3H21M3 3V13M8 3V13M14 3V13M19 3V13M0 13.5H22" stroke="#1d2328" stroke-width="1.5" fill="none"/></svg>Balkon</button>
+      <button type="button" data-v="treppe"><svg width="22" height="16" viewBox="0 0 22 16"><path d="M1 15H6V11H11V7H16V3H21M2 9L20 1" stroke="#1d2328" stroke-width="1.5" fill="none"/></svg>Treppe</button>
+    </div></div>
+  <div class="ctrl"><div class="lbl">Füllung <span id="v-fill"></span></div>
+    <div class="seg c4" data-k="fill">
+      <button type="button" data-v="staebe">Senkrechte Stäbe</button>
+      <button type="button" data-v="reling">Querstäbe / Reling</button>
+      <button type="button" data-v="lochblech">Lochblech</button>
+      <button type="button" data-v="glas">Glas</button>
+    </div></div>
+  <div class="ctrl"><div class="lbl">Handlauf <span id="v-hl"></span></div>
+    <div class="seg c2" data-k="hl">
+      <button type="button" data-v="rund"><svg width="16" height="16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="#1d2328" stroke-width="1.5"/></svg>Rund</button>
+      <button type="button" data-v="eckig"><svg width="16" height="16"><rect x="1.5" y="1.5" width="13" height="13" fill="none" stroke="#1d2328" stroke-width="1.5"/></svg>Eckig</button>
+    </div></div>
+  <div class="ctrl"><div class="lbl">Farbe <span id="v-col"></span></div>
+    <div class="seg c3" data-k="col">
+      <button type="button" data-v="verzinkt"><i class="sw" style="background:linear-gradient(135deg,#c9d0d4,#98a2a8 55%,#b9c1c6)"></i>Feuer&shy;verzinkt</button>
+      <button type="button" data-v="anthrazit"><i class="sw" style="background:#3a3f43"></i>Anthrazit</button>
+      <button type="button" data-v="weiss"><i class="sw" style="background:#f7f7f3"></i>Weiss</button>
+    </div></div>
+
+  <p class="summary" id="summary"></p>
+  <a class="cta" id="cta" href="mailto:info@winkler-metallbauer.ch"><i></i>Offerte anfragen</a>
+</div>
+
+<section id="leistungen">
+  <p class="lbl">Pos. 02 — Leistungen</p>
+  <h2>Alles aus Metall, rund ums Haus.</h2>
+  <div class="tiles">
+    <div class="tile feature"><span class="n">01</span>
+      <svg viewBox="0 0 64 52" aria-hidden="true"><g class="ln"><path d="M2 14 H62"/><path d="M4 14 V48 M60 14 V48"/><path d="M12 18 V48 M20 18 V48 M28 18 V48 M36 18 V48 M44 18 V48 M52 18 V48"/><path class="y" d="M2 10 H62"/><path class="thin" d="M0 49 H64"/></g></svg>
+      <h3>Geländer und Balkone</h3><p>«Geländer sorgen für Sicherheit» – für Balkone, Terrassen und Treppen, nach Mass.</p></div>
+    <div class="tile"><span class="n">02</span>
+      <svg viewBox="0 0 64 52" aria-hidden="true"><g class="ln"><path d="M4 50 V8 H30 V50 M34 50 V8 H60 V50"/><path d="M10 14 V44 M17 14 V44 M24 14 V44 M40 14 V44 M47 14 V44 M54 14 V44"/><path class="y" d="M27 28 H30 M34 28 H37"/><path class="thin" d="M0 50 H64"/></g></svg>
+      <h3>Türen und Tore</h3><p>Für Eingang, Garten und Einfahrt.</p></div>
+    <div class="tile"><span class="n">03</span>
+      <svg viewBox="0 0 64 52" aria-hidden="true"><g class="ln"><path d="M2 50 H14 V40 H26 V30 H38 V20 H50 V10 H62"/><path class="y" d="M6 30 L58 2"/><path class="thin" d="M10 28 V42 M30 17 V30 M50 6 V12"/></g></svg>
+      <h3>Treppen und Handläufe</h3><p>Treppen aus Metall, sichere Handläufe.</p></div>
+    <div class="tile"><span class="n">04</span>
+      <svg viewBox="0 0 64 52" aria-hidden="true"><g class="ln"><path d="M4 4 V50"/><path class="y" d="M4 10 L62 20"/><path d="M58 19 V50 M4 10 L18 24 M58 19 L46 28"/><path class="thin" d="M0 50 H64 M20 13 V15 M34 15 V17 M48 18 V20"/></g></svg>
+      <h3>Sitzplatz-Überdachungen und Vordächer</h3><p>Schutz für Sitzplatz und Eingang.</p></div>
+    <div class="tile"><span class="n">05</span>
+      <svg viewBox="0 0 64 52" aria-hidden="true"><g class="ln"><rect x="22" y="6" width="20" height="40" class="thin"/><rect x="4" y="6" width="16" height="40"/><rect x="44" y="6" width="16" height="40"/><path d="M7 12 H17 M7 18 H17 M7 24 H17 M7 30 H17 M7 36 H17 M7 42 H17 M47 12 H57 M47 18 H57 M47 24 H57 M47 30 H57 M47 36 H57 M47 42 H57"/><path class="y" d="M20 14 H22 M20 38 H22 M42 14 H44 M42 38 H44"/></g></svg>
+      <h3>Fensterläden</h3><p>Läden aus Metall für Ihre Fenster.</p></div>
+    <div class="tile wide"><span class="n">06</span>
+      <svg viewBox="0 0 64 52" aria-hidden="true"><g class="ln"><path d="M4 50 V22 L60 8 V50 Z"/><path d="M18 18.5 V50 M32 15 V50 M46 11.5 V50"/><path class="y" d="M4 22 L60 8"/><path class="thin" d="M0 50 H64"/></g></svg>
+      <h3>Wintergärten</h3><p>Konstruktionen für Ihren Wintergarten.</p></div>
+  </div>
+</section>
+
+<section id="betrieb">
+  <p class="lbl">Pos. 03 — Betrieb</p>
+  <h2>Vom Schlosser zum Metallbauer.</h2>
+  <div class="spec">
+    <div class="r"><div class="k">Gegründet</div><div class="v"><b>1979</b>als «Schlosserei Winkler», vom Vater von Fritz Winkler</div></div>
+    <div class="r"><div class="k">Übernahme</div><div class="v"><b>2001</b>durch Fritz Winkler</div></div>
+    <div class="r"><div class="k">Inhaber</div><div class="v"><b>Fritz Winkler</b>Lehre als Schlosser – heute Metallbauer</div></div>
+    <div class="r"><div class="k">Gebiet</div><div class="v"><b>Region Thun</b>und weit darüber hinaus</div></div>
+  </div>
+</section>
+
+<section id="arbeiten">
+  <p class="lbl">Pos. 04 — Ausgeführte Arbeiten</p>
+  <h2>Referenzen</h2>
+  <div class="photo">
+    <svg viewBox="0 0 360 150" aria-hidden="true">
+      <g fill="none" stroke="#8d979e" stroke-width="1.2">
+        <rect x="4" y="4" width="112" height="142"/><rect x="124" y="4" width="112" height="142"/><rect x="244" y="4" width="112" height="142"/>
+      </g>
+      <g fill="none" stroke="#1d2328" stroke-width="1.4">
+        <path d="M18 120 H102 M22 60 H98 M24 60 V120 M38 64 V120 M52 64 V120 M66 64 V120 M80 64 V120 M96 60 V120"/>
+        <path d="M138 130 H160 V112 H182 V94 H204 V76 H222 M142 98 L220 46"/>
+        <path d="M258 128 V60 H342 V128 M300 60 V128 M266 68 V120 M276 68 V120 M286 68 V120 M314 68 V120 M324 68 V120 M334 68 V120"/>
+      </g>
+      <path d="M22 56 H98 M140 94 L218 42 M258 56 H342" stroke="#ffc20e" stroke-width="3" fill="none"/>
+    </svg>
+    <p>[Hier Fotos Ihrer Arbeiten]</p>
+  </div>
+</section>
+
+<section id="kontakt">
+  <p class="lbl">Pos. 05 — Kontakt</p>
+  <h2>Masse nehmen? Anrufen.</h2>
+  <div class="kgrid">
+    <a class="kbtn main" href="tel:+41333562153"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="#1d2328"/></svg></span><span><small>Telefon</small><b>033 356 21 53</b></span></a>
+    <a class="kbtn" href="mailto:info@winkler-metallbauer.ch"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" fill="none" stroke="#1d2328" stroke-width="1.8"/><path d="M3 6l9 7 9-7" fill="none" stroke="#1d2328" stroke-width="1.8"/></svg></span><span><small>E-Mail</small><b class="sm">info@winkler-metallbauer.ch</b></span></a>
+  </div>
+  <div class="facts">
+    <div><span class="lbl">Adresse</span>Kirchenstrasse 23 <span class="ph">[Hausnummer bitte bestätigen]</span><br>3638 Blumenstein</div>
+    <div><span class="lbl">Öffnungszeiten</span>Mo – Fr<br><span class="mono">08:00 – 17:00</span></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <b>Impressum</b>
+  Winkler Metallbauer, Einzelunternehmen<br>
+  Inhaber: Fritz Winkler<br>
+  Kirchenstrasse 23 [Hausnummer bitte bestätigen]<br>3638 Blumenstein<br>
+  UID CHE-109.088.409
+</footer>
+</div>
+
+<script>
+(function(){
+  var S={ort:'balkon',fill:'staebe',hl:'rund',col:'verzinkt'};
+  var NAMES={balkon:'Balkon',treppe:'Treppe',staebe:'Senkrechte Stäbe',reling:'Querstäbe / Reling',lochblech:'Lochblech',glas:'Glas',rund:'Rund',eckig:'Eckig',verzinkt:'Feuerverzinkt',anthrazit:'Anthrazit',weiss:'Weiss'};
+  var COL={verzinkt:{f:'#aab3b8',hi:'#dfe5e8',lo:'#7f898f'},anthrazit:{f:'#3a3f43',hi:'#6a7177',lo:'#23272a'},weiss:{f:'#f7f7f3',hi:'#ffffff',lo:'#d6d6d0'}};
+  var svg=document.getElementById('draw'), INK='#1d2328';
+  function f(n){return Math.round(n*10)/10}
+  function line(x1,y1,x2,y2,st,w,extra){return '<line x1="'+f(x1)+'" y1="'+f(y1)+'" x2="'+f(x2)+'" y2="'+f(y2)+'" stroke="'+st+'" stroke-width="'+w+'"'+(extra||'')+'/>';}
+  // Stab als Doppelkontur: Umriss + Farbe
+  function bar(x1,y1,x2,y2,w,c,cap){ cap=cap||'butt';
+    return line(x1,y1,x2,y2,INK,w+1.6,' stroke-linecap="'+cap+'"')+line(x1,y1,x2,y2,c.f,w,' stroke-linecap="'+cap+'"');}
+  function draw(){
+    var c=COL[S.col], o='', stair=S.ort==='treppe';
+    // Geometrie: Fusslinie b(x), Handlauf h(x)
+    var x0=44, x1=356;
+    var b = stair ? function(x){return 266-(x-x0)*0.42} : function(){return 226};
+    var h = stair ? function(x){return b(x)-112} : function(){return 112};
+    o+='<defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#8d979e" stroke-width="1"/></pattern>'+
+       '<pattern id="holes" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="'+c.f+'"/><circle cx="4" cy="4" r="2.2" fill="'+(S.col==='anthrazit'?'#15181a':'#ffffff')+'" stroke="'+c.lo+'" stroke-width=".6"/></pattern></defs>';
+    // Raster
+    o+='<g stroke="#eef1f3" stroke-width="1">';
+    for(var gx=20;gx<400;gx+=20) o+=line(gx,0,gx,300,'#eef1f3',1);
+    for(var gy=20;gy<300;gy+=20) o+=line(0,gy,400,gy,'#eef1f3',1);
+    o+='</g>';
+    // Bauteil
+    if(stair){
+      var p='M20 268 ', sx=x0-14, sy=268, step=26;
+      var pts=[]; for(var i=0;i<12;i++){ var xx=x0+i*step; pts.push(xx); }
+      p='M14 '+(b(x0)+10)+' ';
+      for(var k=0;k<12;k++){ var xa=x0-10+k*step; var ya=b(xa)+10; p+='L'+f(xa)+' '+f(ya)+' L'+f(xa+step)+' '+f(ya)+' '; }
+      p+='L386 '+f(b(x0-10+12*step)+10)+' L386 290 L14 290 Z';
+      o+='<path d="'+p+'" fill="url(#hatch)" stroke="'+INK+'" stroke-width="1.6"/>';
+    } else {
+      o+='<rect x="14" y="228" width="372" height="18" fill="url(#hatch)" stroke="'+INK+'" stroke-width="1.6"/>';
+      o+='<path d="M14 246 V290 M14 228 V70" stroke="'+INK+'" stroke-width="1.6" fill="none"/>';
+      o+='<path d="M14 70 L0 70 M14 290 L0 290" stroke="#8d979e" stroke-width="1" fill="none"/>';
+    }
+    // Pfosten
+    var posts=[x0,148,252,x1], ti=8; // Abstand Füllung unter Handlauf
+    // Füllung zuerst
+    for(var j=0;j<posts.length-1;j++){
+      var a=posts[j]+7, z=posts[j+1]-7;
+      if(S.fill==='staebe'){
+        for(var x=a+6;x<z-2;x+=11.5) o+=bar(x,h(x)+ti+6,x,b(x)-8,2.6,c);
+      } else if(S.fill==='reling'){
+        var n=5; for(var r=1;r<=n;r++){ var t=r/(n+1);
+          var ya=h(a)+ti+(b(a)-8-h(a)-ti)*t, yz=h(z)+ti+(b(z)-8-h(z)-ti)*t; o+=bar(a,ya,z,yz,3.2,c,'butt'); }
+      } else if(S.fill==='lochblech'){
+        o+='<path d="M'+f(a+2)+' '+f(h(a+2)+ti+4)+' L'+f(z-2)+' '+f(h(z-2)+ti+4)+' L'+f(z-2)+' '+f(b(z-2)-10)+' L'+f(a+2)+' '+f(b(a+2)-10)+' Z" fill="url(#holes)" stroke="'+INK+'" stroke-width="1.4"/>';
+      } else {
+        var gp='M'+f(a+4)+' '+f(h(a+4)+ti+6)+' L'+f(z-4)+' '+f(h(z-4)+ti+6)+' L'+f(z-4)+' '+f(b(z-4)-10)+' L'+f(a+4)+' '+f(b(a+4)-10)+' Z';
+        o+='<path d="'+gp+'" fill="#d7ecf2" fill-opacity=".75" stroke="'+INK+'" stroke-width="1.2"/>';
+        var m=(a+z)/2; o+=line(m-24,b(m-24)-22,m-4,h(m-4)+ti+26,'#ffffff',4)+line(m-8,b(m-8)-30,m+6,h(m+6)+ti+34,'#ffffff',2);
+        [[a+4,.3],[a+4,.75],[z-4,.3],[z-4,.75]].forEach(function(q){ var yy=h(q[0])+ti+6+(b(q[0])-10-h(q[0])-ti-6)*q[1];
+          o+='<rect x="'+f(q[0]-4)+'" y="'+f(yy-5)+'" width="8" height="10" fill="'+c.f+'" stroke="'+INK+'" stroke-width="1"/>'; });
+      }
+      // Untergurt
+      if(S.fill!=='glas') o+=bar(a-3,b(a-3)-7,z+3,b(z+3)-7,3.4,c);
+    }
+    // Pfosten
+    function foot(px){ if(!stair) return b(px); var k=Math.floor((px-(x0-10))/26); return b(x0-10+k*26)+10; }
+    posts.forEach(function(px){ var fy=foot(px)-3.5; o+=bar(px,h(px)+2,px,fy,7,c); o+=line(px-2,h(px)+6,px-2,fy-4,c.hi,1.2);
+      o+='<rect x="'+(px-9)+'" y="'+f(fy)+'" width="18" height="3.5" fill="'+c.f+'" stroke="'+INK+'" stroke-width="1"/>'; });
+    // Handlauf
+    var hx0=x0-14, hx1=x1+14;
+    if(S.hl==='rund'){
+      o+=line(hx0,h(hx0),hx1,h(hx1),INK,11.5,' stroke-linecap="round"')+line(hx0,h(hx0),hx1,h(hx1),c.f,9,' stroke-linecap="round"')+line(hx0+2,h(hx0+2)-2.2,hx1-2,h(hx1-2)-2.2,c.hi,2,' stroke-linecap="round"');
+    } else {
+      o+=line(hx0,h(hx0),hx1,h(hx1),INK,12.5,' stroke-linecap="square"')+line(hx0,h(hx0),hx1,h(hx1),c.f,10,' stroke-linecap="square"')+line(hx0,h(hx0)-3.4,hx1,h(hx1)-3.4,c.hi,1.4)+line(hx0,h(hx0)+3.6,hx1,h(hx1)+3.6,c.lo,1.4);
+    }
+    // Detail-Kreis
+    var dX=stair?92:300, dY=stair?62:52;
+    var ax=stair?150:250, ay=h(ax);
+    o+='<path d="M'+ax+' '+f(ay-8)+' L'+(dX+(stair?22:-22))+' '+(dY+16)+'" stroke="'+INK+'" stroke-width=".9" stroke-dasharray="3 2" fill="none"/>';
+    o+='<circle cx="'+ax+'" cy="'+f(ay)+'" r="11" fill="none" stroke="'+INK+'" stroke-width="1"/>';
+    o+='<circle cx="'+dX+'" cy="'+dY+'" r="30" fill="#fff" stroke="'+INK+'" stroke-width="1.4"/>';
+    if(S.hl==='rund'){ o+='<circle cx="'+dX+'" cy="'+dY+'" r="15" fill="'+c.f+'" stroke="'+INK+'" stroke-width="1.6"/><circle cx="'+dX+'" cy="'+dY+'" r="12" fill="none" stroke="'+c.lo+'" stroke-width="1"/><path d="M'+(dX-6)+' '+(dY-9)+' a11 11 0 0 1 9 -1" stroke="'+c.hi+'" stroke-width="2" fill="none"/>'; }
+    else { o+='<rect x="'+(dX-14)+'" y="'+(dY-14)+'" width="28" height="28" fill="'+c.f+'" stroke="'+INK+'" stroke-width="1.6"/><rect x="'+(dX-11)+'" y="'+(dY-11)+'" width="22" height="22" fill="none" stroke="'+c.lo+'" stroke-width="1"/>'; }
+    o+='<text x="'+dX+'" y="'+(dY+44)+'" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="'+INK+'">DETAIL A · '+(S.hl==='rund'?'RUND':'ECKIG')+'</text>';
+    // Bemassung
+    var yB = stair? 280 : 270;
+    if(!stair){
+      o+='<g stroke="'+INK+'" stroke-width="1" fill="none">'+line(x0,yB-6,x0,yB+6,INK,1)+line(x1,yB-6,x1,yB+6,INK,1)+line(x0,yB,x1,yB,INK,1)+'</g>';
+      o+='<rect x="'+(200-46)+'" y="'+(yB-8)+'" width="92" height="15" fill="#ffc20e"/><text x="200" y="'+(yB+3)+'" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="'+INK+'">L = nach Mass</text>';
+      var vx=380; o+=line(vx,h(0),vx,226,INK,1)+line(vx-6,h(0),vx+6,h(0),INK,1)+line(vx-6,226,vx+6,226,INK,1);
+      o+='<g transform="translate('+(vx+1)+' 169) rotate(-90)"><rect x="-46" y="-8" width="92" height="15" fill="#ffc20e"/><text x="0" y="3" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="'+INK+'">H = nach Mass</text></g>';
+    } else {
+      var vx2=372; o+=line(vx2+6,h(x1),vx2+6,b(x1),INK,1)+line(vx2,h(x1),vx2+12,h(x1),INK,1)+line(vx2,b(x1),vx2+12,b(x1),INK,1);
+      o+='<g transform="translate('+(vx2+7)+' '+f((h(x1)+b(x1))/2)+') rotate(-90)"><rect x="-46" y="-8" width="92" height="15" fill="#ffc20e"/><text x="0" y="3" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="'+INK+'">H = nach Mass</text></g>';
+      o+='<rect x="236" y="250" width="132" height="15" fill="#ffc20e"/><text x="302" y="261" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="'+INK+'">Steigung = nach Mass</text>';
+    }
+    o+='<text x="'+(stair?20:24)+'" y="'+(stair?24:24)+'" font-family="DM Mono, monospace" font-size="10" fill="#4b555c">ANSICHT · '+NAMES[S.ort].toUpperCase()+'</text>';
+    svg.innerHTML=o;
+    // Texte
+    document.getElementById('v-ort').textContent=NAMES[S.ort];
+    document.getElementById('v-fill').textContent=NAMES[S.fill];
+    document.getElementById('v-hl').textContent=NAMES[S.hl];
+    document.getElementById('v-col').textContent=NAMES[S.col];
+    var sum=NAMES[S.ort]+' · '+NAMES[S.fill]+' · Handlauf '+NAMES[S.hl].toLowerCase()+' · '+NAMES[S.col];
+    document.getElementById('summary').textContent='Ihre Auswahl: '+sum;
+    document.getElementById('tbtext').textContent='Beispiel · '+NAMES[S.ort]+' · '+NAMES[S.fill];
+    var body='Guten Tag Herr Winkler\n\nich interessiere mich für ein Geländer und bitte um eine Offerte.\n\nMeine Beispiel-Auswahl:\n- Einbauort: '+NAMES[S.ort]+'\n- Füllung: '+NAMES[S.fill]+'\n- Handlauf: '+NAMES[S.hl]+'\n- Farbe: '+NAMES[S.col]+'\n\nUngefähre Länge / Ort: \n\nFreundliche Grüsse\n';
+    document.getElementById('cta').href='mailto:info@winkler-metallbauer.ch?subject='+encodeURIComponent('Offerte Geländer – '+NAMES[S.ort])+'&body='+encodeURIComponent(body);
+    document.querySelectorAll('.seg').forEach(function(g){ var k=g.dataset.k; g.querySelectorAll('button').forEach(function(bt){ bt.setAttribute('aria-pressed', bt.dataset.v===S[k]?'true':'false'); }); });
+  }
+  document.querySelectorAll('.seg').forEach(function(g){
+    g.addEventListener('click',function(e){ var bt=e.target.closest('button'); if(!bt) return; S[g.dataset.k]=bt.dataset.v; draw(); });
+  });
+  function pdfState(){ S={ort:'treppe',fill:'glas',hl:'rund',col:'anthrazit'}; draw(); }
+  draw();
+  if(document.documentElement.classList.contains('pdf')) pdfState();
+  new MutationObserver(function(){ if(document.documentElement.classList.contains('pdf')) pdfState(); }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Winkler Metallbauer – Metallbau &amp; Schlosserei Blumenstein</title>
+<meta name="description" content="Winkler Metallbauer, Metallbau und Schlosserei in Blumenstein: Türen und Tore, Geländer und Balkone, Vordächer, Treppen, Fensterläden und Wintergärten.">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@400;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#17191c; --bg2:#202327; --bg3:#2a2e33; --line:#3a4047;
+  --steel:#5f7a8f; --steel-lt:#9bb3c4; --glut:#ff6a1a; --glut-lt:#ffb04a;
+  --text:#ebe7df; --muted:#a3a8ad;
+  --cond:'Big Shoulders','Big Shoulders Display','Arial Narrow',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#0e0f11;-webkit-text-size-adjust:100%}
+body{font-family:var(--mono);color:var(--text);background:#0e0f11;line-height:1.55;font-size:15px}
+a{color:inherit}
+.page{max-width:480px;margin:0 auto;background:var(--bg);min-height:100vh;overflow:hidden;position:relative}
+.demo{background:var(--glut);color:#1a0d05;font:700 12px/1.4 var(--mono);padding:8px 16px;text-align:center;position:sticky;top:0;z-index:20}
+h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:.92;hyphens:manual;-webkit-hyphens:manual}
+.wrap{padding:0 20px}
+.tag{font:400 11px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--steel-lt)}
+.tag b{color:var(--glut);font-weight:700}
+
+/* Kopf */
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{flex:none}
+.brand strong{display:block;font:700 22px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
+.brand small{display:block;font:400 10px/1.3 var(--mono);letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.callbtn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--glut);color:var(--glut);text-decoration:none;font:700 12px/1 var(--mono);padding:9px 11px;border-radius:2px}
+
+/* Hero */
+.hero{padding:30px 20px 8px;position:relative}
+.hero h1{font-size:clamp(3.1rem,15.5vw,5.1rem);margin:14px 0 14px}
+.hero h1 span{display:block}
+.hero h1 .amp{color:var(--glut)}
+.hero p.lead{color:#cfd2d4;font-size:14.5px;max-width:34ch}
+.hero .beam{position:absolute;right:-30px;top:18px;opacity:.55;pointer-events:none}
+
+/* Schweiss-Modul */
+.weldbox{margin:26px 20px 0;border:1px solid var(--line);background:var(--bg2);padding:14px 14px 16px;position:relative}
+.weldhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.weldhead .pct{font:700 13px/1 var(--mono);color:var(--glut);min-width:4ch;text-align:right}
+.weld{position:relative;height:250px;background:#0b0c0d;border-radius:2px;user-select:none;-webkit-user-select:none;touch-action:pan-y;overflow:hidden}
+.plate{position:absolute;left:9px;right:9px;height:50%;overflow:hidden;transition:transform .9s cubic-bezier(.3,1.4,.5,1);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0) 30%,rgba(0,0,0,.18)),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,rgba(0,0,0,0) 1px 4px),
+    linear-gradient(100deg,#4a5560,#6f7f8c 38%,#55626e 62%,#7b8a95);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.plate.top{top:0;transform:translate(-7px,-11px) rotate(-.6deg)}
+.plate.low{bottom:0;transform:translate(9px,11px) rotate(.5deg)}
+.weld.done .plate{transform:none}
+.plate .full{position:absolute;left:0;right:0;height:250px;display:flex;align-items:center;justify-content:center}
+.plate.top .full{top:0}
+.plate.low .full{top:-125px}
+.stamp{font:700 clamp(3.1rem,15.5vw,4.4rem)/1 var(--cond);text-transform:uppercase;letter-spacing:.02em;color:#3c4650;
+  text-shadow:0 1px 0 rgba(255,255,255,.22),0 -1px 0 rgba(0,0,0,.45);white-space:nowrap;transition:color 1.2s}
+.whole{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;opacity:0;pointer-events:none;transition:opacity .5s .55s}
+.weld.done .whole{opacity:1}
+.weld.done .whole .stamp{animation:heat 3.4s .55s ease-out both}
+@keyframes heat{0%{color:#fff1c2;text-shadow:0 0 18px #ff8a2a,0 0 4px #ffd27a}35%{color:#ff7a22;text-shadow:0 0 14px rgba(255,106,26,.7)}100%{color:#272d33;text-shadow:0 2px 0 rgba(255,255,255,.25),0 -1px 0 rgba(0,0,0,.5)}}
+.bolt{position:absolute;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#c9d3da,#5d6a75 60%,#2b3238);box-shadow:0 1px 1px rgba(0,0,0,.6)}
+.bolt::after{content:"";position:absolute;left:2px;right:2px;top:5px;height:2px;background:#2b3238;transform:rotate(30deg)}
+.plate.top .bolt{top:12px}.plate.low .bolt{bottom:12px}
+.bolt.l{left:12px}.bolt.r{right:12px}
+.seamzone{position:absolute;left:0;right:0;top:50%;height:84px;margin-top:-42px;touch-action:none;cursor:crosshair;z-index:4}
+.bead{position:absolute;left:0;top:50%;width:100%;height:40px;margin-top:-20px;z-index:3;pointer-events:none;overflow:visible}
+.sparks{position:absolute;left:0;top:-30px;width:100%;height:calc(100% + 30px);z-index:5;pointer-events:none}
+.guide{position:absolute;left:0;right:0;top:50%;height:0;border-top:2px dashed rgba(255,176,74,.45);z-index:2;transition:opacity .4s}
+.weld.started .guide{opacity:0}
+.startdot{position:absolute;left:10px;top:50%;width:18px;height:18px;margin:-9px 0 0;border-radius:50%;background:var(--glut);z-index:6;pointer-events:none;box-shadow:0 0 0 0 rgba(255,106,26,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,106,26,.7)}100%{box-shadow:0 0 0 16px rgba(255,106,26,0)}}
+.weld.started .startdot{display:none}
+.hintlbl{position:absolute;left:36px;top:50%;transform:translateY(-50%);z-index:6;pointer-events:none;font:700 11px/1.2 var(--mono);letter-spacing:.06em;color:#ffd7a8;background:rgba(11,12,13,.82);padding:5px 7px;transition:opacity .3s}
+.weld.started .hintlbl{opacity:0}
+.static-sparks{display:none;position:absolute;left:0;top:50%;width:100%;height:120px;margin-top:-60px;z-index:5;pointer-events:none}
+.weldfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;font-size:12px;color:var(--muted)}
+.linkbtn{background:none;border:0;color:var(--steel-lt);font:400 12px var(--mono);text-decoration:underline;cursor:pointer;padding:4px 0}
+.unlock{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.unlock a{display:flex;flex-direction:column;gap:3px;padding:13px 12px;text-decoration:none;border:1.5px solid var(--line);color:var(--muted);
+  font:700 13px/1.2 var(--mono);transition:all .5s;pointer-events:none;opacity:.45;position:relative}
+.unlock a small{font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.unlock a::before{content:"⚿ gesperrt";position:absolute;right:8px;top:7px;font:400 10px var(--mono);color:var(--muted)}
+.weldbox.open .unlock a{pointer-events:auto;opacity:1;color:var(--text);border-color:var(--glut);background:linear-gradient(180deg,rgba(255,106,26,.16),rgba(255,106,26,.04))}
+.weldbox.open .unlock a::before{content:""}
+.weldbox.open .unlock a small{color:var(--glut-lt)}
+
+/* Abschnitte */
+section{padding:46px 0 0}
+.sechead{padding:0 20px;margin-bottom:18px}
+.sechead h2{font-size:clamp(2.3rem,11vw,3.4rem);margin-top:8px}
+.sechead p{color:var(--muted);font-size:13.5px;margin-top:10px;max-width:36ch}
+.list{border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:30px 54px 1fr;gap:12px;align-items:start;padding:18px 20px;border-bottom:1px solid var(--line)}
+.item .no{font:700 12px/1 var(--mono);color:var(--glut);padding-top:5px}
+.item h3{font-size:clamp(1.45rem,6.6vw,1.75rem);line-height:1;letter-spacing:.02em}
+.item p{font-size:13px;color:var(--muted);margin-top:6px}
+.item svg{width:54px;height:54px}
+.ic{fill:none;stroke:var(--steel-lt);stroke-width:2;stroke-linecap:square;stroke-linejoin:miter}
+.ic .hot{stroke:var(--glut)}
+
+.story{margin:0 20px;border:1px solid var(--line);background:var(--bg2)}
+.story .row{display:grid;grid-template-columns:86px 1fr;border-bottom:1px solid var(--line)}
+.story .row:last-child{border-bottom:0}
+.story .yr{font:700 30px/1 var(--cond);padding:16px 12px;border-right:1px solid var(--line);color:var(--steel-lt)}
+.story .row.now .yr{color:var(--glut)}
+.story .tx{padding:14px 14px;font-size:13px}
+.story .tx b{display:block;font:700 18px/1.1 var(--cond);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+
+.ref{margin:0 20px;position:relative;border:1px dashed #56606a;padding:18px;text-align:center;background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 10px,rgba(0,0,0,0) 10px 20px)}
+.ref svg{width:100%;height:auto;display:block}
+.ref .ph{font:700 13px/1.4 var(--mono);color:var(--glut-lt);margin-top:12px}
+
+.area{margin:0 20px;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}
+.area p{font-size:13.5px;color:#cfd2d4}
+.area strong{color:var(--glut)}
+
+.contact{margin:0 20px;background:var(--bg3);border-top:3px solid var(--glut);padding:20px 18px}
+.contact dl{display:grid;grid-template-columns:96px 1fr;gap:12px 10px;font-size:13.5px}
+.contact dt{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding-top:2px}
+.contact dd a{color:var(--text);text-decoration-color:var(--glut);text-underline-offset:3px}
+.ph-inline{color:var(--glut-lt);font-size:12px}
+.bigcall{display:block;margin-top:18px;background:var(--glut);color:#1a0d05;text-decoration:none;text-align:center;font:700 26px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase;padding:15px 10px}
+.bigmail{display:block;margin-top:10px;border:1.5px solid var(--steel-lt);color:var(--text);text-decoration:none;text-align:center;font:700 13px/1 var(--mono);padding:13px 10px}
+
+footer{margin-top:46px;padding:22px 20px 34px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);line-height:1.7}
+footer h4{font:700 16px/1 var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--text);margin-bottom:8px}
+
+/* Druckzustand */
+.pdf .demo{position:static}
+.pdf .plate{transition:none;transform:none}
+.pdf .stamp{animation:none;color:#353e47}
+.pdf .whole{opacity:1;transition:none}
+html.pdf .weld .whole .stamp{animation:none;color:#ff7a22;text-shadow:0 0 10px rgba(255,106,26,.55)}
+.pdf .startdot,.pdf .hintlbl,.pdf .guide,.pdf .sparks{display:none}
+.pdf .static-sparks{display:block}
+.pdf .unlock a{pointer-events:auto;opacity:1;color:var(--text);border-color:var(--glut);background:linear-gradient(180deg,rgba(255,106,26,.16),rgba(255,106,26,.04))}
+.pdf .unlock a::before{content:""}
+.pdf .unlock a small{color:var(--glut-lt)}
+.pdf .page{min-height:0}
+@media (prefers-reduced-motion:reduce){.plate{transition:none}.startdot{animation:none}}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Winkler Metallbauer</div>
+
+<header>
+  <a class="brand" href="#top" aria-label="Winkler Metallbauer">
+    <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+      <rect x="1" y="1" width="36" height="36" fill="none" stroke="#5f7a8f" stroke-width="2"/>
+      <path d="M7 10 L12 29 L19 15 L26 29 L31 10" fill="none" stroke="#ebe7df" stroke-width="3.2" stroke-linejoin="miter"/>
+      <circle cx="19" cy="15" r="2.2" fill="#ff6a1a"/>
+    </svg>
+    <span><strong>Winkler</strong><small>Metallbau · Schlosserei</small></span>
+  </a>
+  <a class="callbtn" href="tel:+41333562153" aria-label="Anrufen">
+    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg>
+    Anrufen
+  </a>
+</header>
+
+<main id="top">
+<div class="hero">
+  <svg class="beam" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
+    <g fill="none" stroke="#3d4650" stroke-width="2">
+      <path d="M20 20 H130 M20 34 H130 M75 34 V116 M20 116 H130 M20 130 H130"/>
+      <path d="M20 20 V34 M130 20 V34 M20 116 V130 M130 116 V130"/>
+      <path d="M69 34 V116 M81 34 V116" stroke-dasharray="3 5"/>
+    </g>
+    <circle cx="75" cy="75" r="3" fill="#ff6a1a"/>
+  </svg>
+  <p class="tag"><b>//</b> Blumenstein · Region Thun</p>
+  <h1><span>Metallbau</span><span class="amp">&amp;</span><span>Schlosserei</span></h1>
+  <p class="lead">Türen, Tore, Geländer, Treppen, Vordächer, Fensterläden und Wintergärten – aus Blumenstein, im Einsatz weit über die Region Thun hinaus.</p>
+</div>
+
+<div class="weldbox" id="weldbox">
+  <div class="weldhead">
+    <p class="tag"><b>01</b> — Schweissnaht ziehen</p>
+    <span class="pct" id="pct">0 %</span>
+  </div>
+  <div class="weld" id="weld">
+    <div class="plate top"><div class="full"><span class="stamp">seit 1979</span></div><i class="bolt l"></i><i class="bolt r"></i></div>
+    <div class="plate low"><div class="full"><span class="stamp">seit 1979</span></div><i class="bolt l"></i><i class="bolt r"></i></div>
+    <div class="guide"></div>
+    <div class="whole" aria-hidden="true"><span class="stamp">seit 1979</span></div>
+    <svg class="bead" id="bead" aria-hidden="true"></svg>
+    <svg class="static-sparks" id="staticSparks" aria-hidden="true"></svg>
+    <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+    <span class="startdot"></span>
+    <span class="hintlbl">Gedrückt halten &amp; ziehen →</span>
+    <div class="seamzone" id="seamzone" role="button" tabindex="0" aria-label="Schweissnaht ziehen – Enter schweisst automatisch"></div>
+  </div>
+  <div class="weldfoot">
+    <span id="weldmsg">Ziehen Sie entlang der Fuge.</span>
+    <button class="linkbtn" id="autoweld" type="button">automatisch schweissen</button>
+  </div>
+  <div class="unlock">
+    <a href="tel:+41333562153"><small>Telefon</small>033 356 21 53</a>
+    <a href="mailto:info@winkler-metallbauer.ch?subject=Anfrage%20Metallbau"><small>E-Mail</small>Anfrage senden</a>
+  </div>
+</div>
+
+<section id="leistungen">
+  <div class="sechead">
+    <p class="tag"><b>02</b> — Leistungen</p>
+    <h2>Was bei uns<br>entsteht</h2>
+  </div>
+  <div class="list">
+    <div class="item"><span class="no">01</span>
+      <svg viewBox="0 0 54 54" aria-hidden="true"><g class="ic"><path d="M6 48 V12 H48 V48"/><path d="M27 12 V48"/><path d="M12 18 V44 M17 18 V44 M22 18 V44 M32 18 V44 M37 18 V44 M42 18 V44"/><path class="hot" d="M24 31 h-3 M30 31 h3"/></g></svg>
+      <div><h3>Türen und Tore</h3><p>Eingangs-, Garten- und Einfahrtslösungen aus Metall.</p></div></div>
+    <div class="item"><span class="no">02</span>
+      <svg viewBox="0 0 54 54" aria-hidden="true"><g class="ic"><path d="M4 18 H50"/><path d="M6 18 V46 M48 18 V46"/><path d="M13 22 V46 M20 22 V46 M27 22 V46 M34 22 V46 M41 22 V46"/><path d="M2 46 H52" class="hot"/></g></svg>
+      <div><h3>Geländer und Balkone</h3><p>«Geländer sorgen für Sicherheit» – an Balkon, Terrasse und Treppe.</p></div></div>
+    <div class="item"><span class="no">03</span>
+      <svg viewBox="0 0 54 54" aria-hidden="true"><g class="ic"><path d="M4 10 V48"/><path d="M4 14 L50 22" class="hot"/><path d="M50 22 V48"/><path d="M4 14 L20 30 M50 22 L36 32"/><path d="M14 16 V18 M24 18 V20 M34 19 V21 M44 21 V23"/></g></svg>
+      <div><h3>Sitzplatz-Überdachungen und Vordächer</h3><p>Schutz für Sitzplatz, Eingang und Hauszugang.</p></div></div>
+    <div class="item"><span class="no">04</span>
+      <svg viewBox="0 0 54 54" aria-hidden="true"><g class="ic"><path d="M4 48 H14 V40 H22 V32 H30 V24 H38 V16 H50"/><path d="M8 34 L44 6" class="hot"/><path d="M12 31 V44 M26 20 V30 M40 9 V18"/></g></svg>
+      <div><h3>Treppen und Handläufe</h3><p>Treppen aus Metall und sichere Handläufe.</p></div></div>
+    <div class="item"><span class="no">05</span>
+      <svg viewBox="0 0 54 54" aria-hidden="true"><g class="ic"><rect x="8" y="6" width="17" height="42"/><rect x="29" y="6" width="17" height="42"/><path d="M11 12 H22 M11 18 H22 M11 24 H22 M11 30 H22 M11 36 H22 M11 42 H22 M32 12 H43 M32 18 H43 M32 24 H43 M32 30 H43 M32 36 H43 M32 42 H43"/><path d="M5 14 V18 M5 36 V40 M49 14 V18 M49 36 V40" class="hot"/></g></svg>
+      <div><h3>Fensterläden</h3><p>Läden aus Metall für Ihre Fenster.</p></div></div>
+    <div class="item"><span class="no">06</span>
+      <svg viewBox="0 0 54 54" aria-hidden="true"><g class="ic"><path d="M4 48 V24 L27 8 L50 24 V48 Z"/><path d="M19 13.5 V48 M35 13.5 V48 M4 34 H50"/><path d="M27 8 V48" class="hot"/></g></svg>
+      <div><h3>Wintergärten</h3><p>Konstruktionen für Ihren Wintergarten.</p></div></div>
+  </div>
+</section>
+
+<section id="betrieb">
+  <div class="sechead">
+    <p class="tag"><b>03</b> — Der Betrieb</p>
+    <h2>Zwei Generationen<br>am Amboss</h2>
+    <p>Fritz Winkler hat die Lehre als Schlosser gemacht – heute heisst der Beruf Metallbauer.</p>
+  </div>
+  <div class="story">
+    <div class="row"><div class="yr">1979</div><div class="tx"><b>Gründung</b>Der Vater gründet die «Schlosserei Winkler».</div></div>
+    <div class="row"><div class="yr">2001</div><div class="tx"><b>Übernahme</b>Fritz Winkler übernimmt den Betrieb.</div></div>
+    <div class="row now"><div class="yr">Heute</div><div class="tx"><b>Winkler Metallbauer</b>Metallbau &amp; Schlosserei an der Kirchenstrasse in Blumenstein.</div></div>
+  </div>
+</section>
+
+<section id="arbeiten">
+  <div class="sechead">
+    <p class="tag"><b>04</b> — Arbeiten</p>
+    <h2>Aus der Werkstatt</h2>
+  </div>
+  <div class="ref">
+    <svg viewBox="0 0 360 170" aria-hidden="true">
+      <g fill="none" stroke="#5f7a8f" stroke-width="1.6">
+        <rect x="8" y="10" width="164" height="150"/>
+        <rect x="188" y="10" width="164" height="70"/>
+        <rect x="188" y="90" width="164" height="70"/>
+      </g>
+      <g fill="none" stroke="#3a4047" stroke-width="1.2">
+        <path d="M8 10 L172 160 M172 10 L8 160 M188 10 L352 80 M352 10 L188 80 M188 90 L352 160 M352 90 L188 160"/>
+      </g>
+      <g fill="#ff6a1a"><circle cx="16" cy="18" r="2.5"/><circle cx="164" cy="18" r="2.5"/><circle cx="16" cy="152" r="2.5"/><circle cx="164" cy="152" r="2.5"/></g>
+    </svg>
+    <p class="ph">[Hier Fotos Ihrer Arbeiten]</p>
+  </div>
+</section>
+
+<section id="gebiet">
+  <div class="sechead">
+    <p class="tag"><b>05</b> — Einsatzgebiet</p>
+    <h2>Region Thun<br>und weiter</h2>
+  </div>
+  <div class="area">
+    <svg viewBox="0 0 120 120" aria-hidden="true">
+      <g fill="none" stroke-width="1.5">
+        <circle cx="60" cy="60" r="56" stroke="#3a4047" stroke-dasharray="2 5"/>
+        <circle cx="60" cy="60" r="38" stroke="#5f7a8f"/>
+        <circle cx="60" cy="60" r="20" stroke="#9bb3c4"/>
+        <path d="M60 2 V14 M60 106 V118 M2 60 H14 M106 60 H118" stroke="#5f7a8f"/>
+      </g>
+      <circle cx="60" cy="60" r="5" fill="#ff6a1a"/>
+      <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="#ebe7df" letter-spacing=".5">BLUMENSTEIN</text>
+    </svg>
+    <p>Von Blumenstein aus unterwegs – <strong>weit über die Region Thun hinaus</strong>.</p>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="sechead">
+    <p class="tag"><b>06</b> — Kontakt</p>
+    <h2>Anfragen &amp;<br>Besprechen</h2>
+  </div>
+  <div class="contact">
+    <dl>
+      <dt>Telefon</dt><dd><a href="tel:+41333562153">033 356 21 53</a></dd>
+      <dt>E-Mail</dt><dd><a href="mailto:info@winkler-metallbauer.ch">info@winkler-metallbauer.ch</a></dd>
+      <dt>Adresse</dt><dd>Winkler Metallbauer<br>Kirchenstrasse 23 <span class="ph-inline">[Hausnummer bitte bestätigen]</span><br>3638 Blumenstein</dd>
+      <dt>Geöffnet</dt><dd>Montag – Freitag<br>08:00 – 17:00</dd>
+    </dl>
+    <a class="bigcall" href="tel:+41333562153">033 356 21 53 anrufen</a>
+    <a class="bigmail" href="mailto:info@winkler-metallbauer.ch?subject=Anfrage%20Metallbau">E-Mail schreiben</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <h4>Impressum</h4>
+  Winkler Metallbauer (Einzelunternehmen)<br>
+  Inhaber: Fritz Winkler<br>
+  Kirchenstrasse 23 [Hausnummer bitte bestätigen], 3638 Blumenstein<br>
+  UID: CHE-109.088.409
+</footer>
+</div>
+
+<script>
+(function(){
+  var weld=document.getElementById('weld'), box=document.getElementById('weldbox'),
+      zone=document.getElementById('seamzone'), bead=document.getElementById('bead'),
+      cv=document.getElementById('sparks'), ctx=cv.getContext('2d'),
+      pctEl=document.getElementById('pct'), msg=document.getElementById('weldmsg'),
+      stat=document.getElementById('staticSparks');
+  var NS='http://www.w3.org/2000/svg', N=34, segs=[], W=0, H=0, dpr=1, parts=[], down=false, lastX=null, done=false, raf=null;
+  var KEY=[[0,[255,246,214]],[250,[255,190,90]],[800,[255,110,30]],[1700,[160,64,30]],[3200,[74,70,70]]];
+  function col(age){
+    if(age<=0) return KEY[0][1];
+    for(var i=1;i<KEY.length;i++){ if(age<KEY[i][0]){ var a=KEY[i-1],b=KEY[i],t=(age-a[0])/(b[0]-a[0]);
+      return [0,1,2].map(function(k){return Math.round(a[1][k]+(b[1][k]-a[1][k])*t)}); } }
+    return KEY[KEY.length-1][1];
+  }
+  function rgb(c){return 'rgb('+c[0]+','+c[1]+','+c[2]+')'}
+  function build(){
+    W=weld.clientWidth; H=weld.clientHeight;
+    bead.setAttribute('viewBox','0 0 '+W+' 40'); bead.innerHTML='';
+    var sw=W/N;
+    for(var i=0;i<N;i++){
+      var g=document.createElementNS(NS,'ellipse'), e=document.createElementNS(NS,'ellipse');
+      var cx=sw*i+sw/2;
+      g.setAttribute('cx',cx); g.setAttribute('cy',20); g.setAttribute('rx',sw*1.2); g.setAttribute('ry',16); g.setAttribute('fill','rgba(255,106,26,0)');
+      e.setAttribute('cx',cx); e.setAttribute('cy',20); e.setAttribute('rx',sw*.78); e.setAttribute('ry',8.5);
+      e.setAttribute('fill','transparent'); e.setAttribute('stroke','transparent'); e.setAttribute('stroke-width','1.2');
+      bead.appendChild(g); bead.appendChild(e);
+      segs[i]=segs[i]||{t:null}; segs[i].g=g; segs[i].e=e;
+    }
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    cv.width=W*dpr; cv.height=(H+30)*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    paint(performance.now());
+  }
+  function paint(now){
+    var hot=false;
+    segs.forEach(function(s){
+      if(s.t===null){ s.e.setAttribute('fill','transparent'); s.e.setAttribute('stroke','transparent'); s.g.setAttribute('fill','rgba(255,106,26,0)'); return; }
+      var age=now-s.t, c=col(age);
+      s.e.setAttribute('fill',rgb(c));
+      s.e.setAttribute('stroke',rgb(c.map(function(v){return Math.round(v*.62)})));
+      var glow=Math.max(0,1-age/1800);
+      s.g.setAttribute('fill','rgba(255,106,26,'+(glow*.45).toFixed(3)+')');
+      if(age<3300) hot=true;
+    });
+    return hot;
+  }
+  function spark(x,y,n){
+    for(var i=0;i<n;i++){
+      var a=-Math.PI/2+(Math.random()-.5)*2.6, v=2+Math.random()*5.5;
+      parts.push({x:x,y:y,vx:Math.cos(a)*v+(Math.random()-.5)*1.5,vy:Math.sin(a)*v,l:1,d:.012+Math.random()*.025});
+    }
+    if(parts.length>420) parts.splice(0,parts.length-420);
+  }
+  function loop(now){
+    var hot=paint(now);
+    ctx.clearRect(0,0,W,H+30);
+    ctx.globalCompositeOperation='lighter';
+    for(var i=parts.length-1;i>=0;i--){
+      var p=parts[i]; p.vy+=.22; p.vx*=.985; p.x+=p.vx; p.y+=p.vy; p.l-=p.d;
+      if(p.l<=0||p.y>H+40){parts.splice(i,1);continue;}
+      ctx.strokeStyle='rgba(255,'+Math.round(140+p.l*110)+','+Math.round(60+p.l*120)+','+p.l.toFixed(2)+')';
+      ctx.lineWidth=1.6; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p.x-p.vx*1.8,p.y-p.vy*1.8); ctx.stroke();
+    }
+    ctx.globalCompositeOperation='source-over';
+    if(down&&lastX!==null){ var gr=ctx.createRadialGradient(lastX,H/2+30,0,lastX,H/2+30,34);
+      gr.addColorStop(0,'rgba(255,250,220,.95)'); gr.addColorStop(.25,'rgba(255,160,60,.55)'); gr.addColorStop(1,'rgba(255,106,26,0)');
+      ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(lastX,H/2+30,34,0,7); ctx.fill(); }
+    if(hot||parts.length||down) raf=requestAnimationFrame(loop); else raf=null;
+  }
+  function kick(){ if(!raf) raf=requestAnimationFrame(loop); }
+  function mark(x0,x1,now){
+    var a=Math.min(x0,x1), b=Math.max(x0,x1), sw=W/N;
+    var i0=Math.max(0,Math.floor(a/sw)), i1=Math.min(N-1,Math.floor(b/sw));
+    for(var i=i0;i<=i1;i++){ if(segs[i].t===null) segs[i].t=now; }
+    update();
+  }
+  function count(){ return segs.filter(function(s){return s.t!==null}).length; }
+  function update(){
+    var c=count(), p=Math.round(c/N*100); pctEl.textContent=p+' %';
+    if(!done && c>=N-1) finish();
+  }
+  function finish(instant){
+    done=true; var now=performance.now();
+    segs.forEach(function(s,i){ if(s.t===null) s.t=instant? now-4000+i*60 : now; });
+    pctEl.textContent='100 %';
+    weld.classList.add('done'); box.classList.add('open');
+    msg.textContent='Verschweisst – Kontakt ist frei.';
+    spark(W-20,H/2+30,40); kick();
+  }
+  function pos(ev){ var r=weld.getBoundingClientRect(); return {x:ev.clientX-r.left,y:ev.clientY-r.top}; }
+  zone.addEventListener('pointerdown',function(ev){
+    if(done) return; ev.preventDefault(); down=true; weld.classList.add('started');
+    try{zone.setPointerCapture(ev.pointerId);}catch(e){}
+    var p=pos(ev); lastX=p.x; mark(p.x,p.x,performance.now()); spark(p.x,H/2+30,10); kick();
+  });
+  zone.addEventListener('pointermove',function(ev){
+    if(!down||done) return; var p=pos(ev);
+    if(Math.abs(p.y-H/2)<60){ mark(lastX,p.x,performance.now()); spark(p.x,H/2+30,Math.min(14,4+Math.abs(p.x-lastX)/3)); }
+    lastX=p.x; kick();
+  });
+  function up(){ down=false; lastX=null; }
+  zone.addEventListener('pointerup',up); zone.addEventListener('pointercancel',up);
+  function auto(){
+    if(done) return; weld.classList.add('started'); var i=0;
+    (function step(){ if(done) return; var x=(i+.5)*W/N; down=true; lastX=x; mark(x,x,performance.now()); spark(x,H/2+30,8); kick(); i++;
+      if(i<N) setTimeout(step,45); else { down=false; lastX=null; } })();
+  }
+  document.getElementById('autoweld').addEventListener('click',auto);
+  zone.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();auto();} });
+
+  function staticSparks(){
+    var w=W||weld.clientWidth, x=w*.95, y=60, s='';
+    stat.setAttribute('viewBox','0 0 '+w+' 120');
+    var rays=[[-150,46],[-128,38],[-110,52],[-96,30],[-80,44],[-62,36],[-45,48],[-30,26],[-118,22],[-70,24],[-20,34],[-160,30]];
+    rays.forEach(function(r,k){ var a=r[0]*Math.PI/180, l=r[1], d=10+(k%3)*4;
+      var x1=x+Math.cos(a)*d, y1=y+Math.sin(a)*d, x2=x+Math.cos(a)*(d+l), y2=y+Math.sin(a)*(d+l)+(l*l)/220;
+      s+='<path d="M'+x1.toFixed(1)+' '+y1.toFixed(1)+' Q'+((x1+x2)/2).toFixed(1)+' '+(Math.min(y1,y2)-4).toFixed(1)+' '+x2.toFixed(1)+' '+y2.toFixed(1)+'" stroke="'+(k%2?'#ffb04a':'#ff7a22')+'" stroke-width="'+(k%3?1.4:2)+'" stroke-linecap="round" fill="none" opacity="'+(0.55+(k%4)*.12)+'"/>';
+    });
+    [[x-26,y-30],[x+30,y-40],[x+8,y-52],[x-44,y-14],[x+44,y-12]].forEach(function(p){ s+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="1.8" fill="#ffd27a"/>'; });
+    s+='<circle cx="'+x+'" cy="'+y+'" r="13" fill="#ff8a2a" opacity=".35"/><circle cx="'+x+'" cy="'+y+'" r="5" fill="#fff1c2"/>';
+    stat.innerHTML=s;
+  }
+  function pdfState(){
+    W=weld.clientWidth; build();
+    var now=performance.now();
+    segs.forEach(function(s,i){ s.t = now - (3600 - Math.pow(i/(N-1),3)*3450); });
+    done=true; weld.classList.add('done','started'); box.classList.add('open'); pctEl.textContent='100 %';
+    msg.textContent='Verschweisst – Kontakt ist frei.';
+    paint(now); staticSparks();
+  }
+  build();
+  window.addEventListener('resize',function(){ build(); });
+  if(document.documentElement.classList.contains('pdf')) pdfState();
+  new MutationObserver(function(){ if(document.documentElement.classList.contains('pdf')) pdfState(); })
+    .observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+  window.weldAuto=auto;
+})();
+</script>
+</body>
+</html>

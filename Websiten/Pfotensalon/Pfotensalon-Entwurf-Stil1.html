@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virginia's Pfotensalon – Hundesalon in Gwatt (Thun)</title>
+<meta name="description" content="Virginia's Pfotensalon: Hundesalon und Hundecoiffeur in Gwatt bei Thun. Waschen, Scheren, Pflege – Termine nach Vereinbarung.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --aqua:#2fbfc4; --aqua-d:#1a8f95; --aqua-l:#dcf6f5; --aqua-xl:#f0fbfb;
+  --rosa:#ff8db6; --rosa-l:#ffe3ee; --rosa-d:#e0558a;
+  --ink:#1f4a50; --ink-s:#4b7277; --weiss:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--ink);background:var(--aqua-xl);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-weight:700;line-height:1.08;hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal}
+
+/* Hinweisbalken */
+.demo{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:9px 14px;line-height:1.35}
+.demo b{color:var(--rosa)}
+
+/* Kopf */
+header{padding:18px 0 8px}
+header .wrap{display:flex;align-items:center;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:19px;letter-spacing:-.2px}
+.logo svg{flex:none}
+.logo small{display:block;font-weight:400;font-size:12.5px;color:var(--ink-s);letter-spacing:.3px}
+
+/* Hero */
+.hero{padding:20px 0 0;position:relative}
+.hero h1{font-size:clamp(38px,11.5vw,64px);letter-spacing:-1.5px}
+.hero h1 span{color:var(--aqua-d);display:block}
+.hero h1 em{font-style:normal;color:var(--rosa-d)}
+.hero p.lead{margin:16px 0 22px;font-size:18px;color:var(--ink-s);max-width:30em}
+.pill{display:inline-block;background:var(--rosa-l);color:var(--rosa-d);font-weight:700;font-size:13px;border-radius:99px;padding:5px 13px;margin-bottom:14px;letter-spacing:.3px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:14px 22px;font-weight:700;font-size:16.5px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;transition:transform .15s}
+.btn:active{transform:scale(.96)}
+.btn.prim{background:var(--aqua);color:#fff;box-shadow:0 6px 0 var(--aqua-d)}
+.btn.sek{background:#fff;color:var(--ink);box-shadow:0 0 0 2px var(--aqua) inset}
+.btn.rosa{background:var(--rosa);color:#fff;box-shadow:0 6px 0 var(--rosa-d)}
+
+/* Wellen */
+.welle{display:block;width:100%;height:46px}
+
+/* Badezimmer-Szene */
+.bad{background:#fff;padding:34px 0 40px}
+.bad h2{font-size:clamp(28px,8vw,40px);letter-spacing:-.8px}
+.bad .intro{color:var(--ink-s);margin:10px 0 18px}
+.szene{position:relative;width:100%;aspect-ratio:400/312;border-radius:34px;background:var(--aqua-l);overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.szene>svg{position:absolute;inset:0;width:100%;height:100%}
+.blase{position:absolute;width:var(--g,62px);height:var(--g,62px);margin:calc(var(--g,62px)/-2) 0 0 calc(var(--g,62px)/-2);border-radius:50%;border:0;padding:0;cursor:pointer;background:
+ radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0 9%,rgba(255,255,255,0) 10%),
+ radial-gradient(circle at 70% 75%,rgba(255,141,182,.35) 0 18%,rgba(255,141,182,0) 40%),
+ radial-gradient(circle at 50% 50%,rgba(255,255,255,.15) 55%,rgba(47,191,196,.55) 72%,rgba(255,255,255,.9) 76%,rgba(47,191,196,.0) 78%);
+ animation:schweben var(--d,5s) ease-in-out infinite;animation-delay:var(--v,0s);-webkit-tap-highlight-color:transparent}
+.blase::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset -4px -6px 10px rgba(47,191,196,.25),inset 3px 3px 8px rgba(255,255,255,.7)}
+.blase:focus-visible{outline:3px solid var(--rosa-d);outline-offset:3px}
+.blase.weg{animation:platzen .28s ease-out forwards;pointer-events:none}
+@keyframes schweben{0%,100%{transform:translate(0,0) scale(1)}30%{transform:translate(5px,-9px) scale(1.04,.97)}65%{transform:translate(-4px,-4px) scale(.97,1.03)}}
+@keyframes platzen{0%{transform:scale(1);opacity:1}60%{transform:scale(1.35);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.spritzer{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--aqua);pointer-events:none;animation:spritz .55s ease-out forwards}
+.spritzer.r{background:var(--rosa)}
+@keyframes spritz{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+
+.fund{margin-top:18px;border-radius:26px;background:var(--rosa-l);padding:18px 20px;min-height:104px;display:flex;gap:14px;align-items:center}
+.fund .ico{flex:none;width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.fund h3{font-size:20px}
+.fund p{font-size:15.5px;color:var(--ink-s);margin-top:3px}
+.fund.neu{animation:hopp .4s ease-out}
+@keyframes hopp{0%{transform:scale(.94)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+.zaehler{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;flex-wrap:wrap}
+.zaehler b{font-size:17px}
+.punkte{display:flex;gap:6px;margin-top:6px}
+.punkte i{width:14px;height:14px;border-radius:50%;border:2px solid var(--aqua);display:block;transition:background .3s}
+.punkte i.an{background:var(--aqua)}
+#alle{padding:11px 18px;font-size:15px}
+
+.liste{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.liste li{border-radius:24px;padding:16px 15px 17px;background:var(--aqua-xl);border:2px dashed #b9e6e6;min-height:132px;position:relative;transition:background .3s,border-color .3s}
+.liste li .zu{color:#8fbcbf;font-size:14px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.liste li .zu span{width:34px;height:34px;border-radius:50%;border:2px solid #b9e6e6;display:grid;place-items:center;font-weight:700}
+.liste li .offen{display:none}
+.liste li.frei{background:#fff;border:2px solid var(--aqua);animation:hopp .4s ease-out}
+.liste li.frei .zu{display:none}
+.liste li.frei .offen{display:block}
+.liste h3{font-size:17.5px;margin:8px 0 4px;line-height:1.15}
+.liste p{font-size:14.5px;color:var(--ink-s);line-height:1.4}
+.liste li.breit{grid-column:1/-1;min-height:0}
+
+/* Virginia */
+.ueber{padding:46px 0 34px}
+.ueber h2,.termin h2,.kontakt h2{font-size:clamp(28px,8vw,40px);letter-spacing:-.8px}
+.portrait{display:flex;gap:18px;align-items:center;margin:20px 0}
+.portrait .rund{flex:none;width:118px;height:118px;border-radius:50%;background:var(--rosa-l);overflow:hidden;border:4px solid #fff;box-shadow:0 0 0 3px var(--rosa)}
+.portrait p{color:var(--ink-s);font-size:16px}
+.portrait b{color:var(--ink)}
+.weg-liste{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.weg-liste li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:22px;padding:14px 16px}
+.weg-liste .jahr{flex:none;min-width:64px;height:30px;border-radius:99px;background:var(--aqua-l);color:var(--aqua-d);font-weight:700;font-size:14px;display:grid;place-items:center;padding:0 10px}
+.weg-liste li.rosa .jahr{background:var(--rosa-l);color:var(--rosa-d)}
+.weg-liste p{font-size:15.5px;line-height:1.4}
+
+.stimme{margin:28px 0 0;background:var(--aqua);color:#fff;border-radius:34px;padding:26px 24px;position:relative;overflow:hidden}
+.stimme .note{font-size:46px;font-weight:700;line-height:1}
+.stimme .sterne{display:flex;gap:3px;margin:6px 0 12px}
+.stimme blockquote{font-size:20px;line-height:1.35;font-weight:700}
+.stimme small{display:block;margin-top:12px;opacity:.9;font-size:13.5px}
+.stimme svg.bg{position:absolute;right:-20px;top:-20px;opacity:.25}
+
+/* Termin */
+.termin{background:#fff;padding:40px 0}
+.karten{display:grid;gap:12px;margin-top:18px}
+.karte{border-radius:26px;padding:18px 20px;background:var(--aqua-xl)}
+.karte h3{font-size:18px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.karte p{color:var(--ink-s);font-size:15.5px}
+.platz{display:inline-block;background:#fff3c4;color:#6a5600;border:1.5px dashed #c9a800;border-radius:8px;padding:1px 7px;font-size:14px;font-weight:700}
+
+/* Kontakt */
+.kontakt{padding:42px 0 46px}
+.kontakt .box{background:#fff;border-radius:34px;padding:24px 22px;margin-top:18px}
+.kontakt dl{display:grid;gap:14px}
+.kontakt dt{font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--aqua-d);font-weight:700}
+.kontakt dd{font-size:18px}
+.kontakt dd a{text-decoration:none;border-bottom:2px solid var(--rosa)}
+.kontakt .btns{margin-top:22px}
+footer{background:var(--ink);color:#d6eeee;padding:28px 0 34px;font-size:14px}
+footer h3{font-size:15px;color:#fff;margin-bottom:6px}
+footer p{line-height:1.5}
+footer .klein{margin-top:14px;opacity:.75;font-size:12.5px}
+
+@media (min-width:760px){
+  body{font-size:18px}
+  .liste{grid-template-columns:1fr 1fr 1fr}
+}
+
+/* Druckzustand */
+html.pdf{scroll-behavior:auto}
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .blase{display:none}
+html.pdf .liste li .zu{display:none}
+html.pdf .liste li .offen{display:block}
+html.pdf .liste li{background:#fff;border:2px solid var(--aqua)}
+html.pdf #alle{display:none}
+html.pdf .spritzer{display:none}
+.pdf-spritz{display:none}
+html.pdf .pdf-spritz{display:inline}
+</style>
+</head>
+<body>
+
+<div class="demo">Entwurf / Demo von Max Rathsack – <b>keine offizielle Webseite</b> von Virginia's Pfotensalon</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Virginia's Pfotensalon">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+        <circle cx="23" cy="23" r="22" fill="#2fbfc4"/>
+        <ellipse cx="23" cy="28" rx="8.5" ry="7" fill="#fff"/>
+        <ellipse cx="14" cy="19" rx="3.6" ry="4.4" fill="#fff" transform="rotate(-18 14 19)"/>
+        <ellipse cx="20" cy="13.5" rx="3.6" ry="4.6" fill="#fff"/>
+        <ellipse cx="27" cy="13.5" rx="3.6" ry="4.6" fill="#fff"/>
+        <ellipse cx="33" cy="19" rx="3.6" ry="4.4" fill="#fff" transform="rotate(18 33 19)"/>
+        <circle cx="36" cy="9" r="4" fill="#ff8db6"/>
+        <circle cx="35" cy="7.8" r="1.2" fill="#fff"/>
+      </svg>
+      <span>Virginia's Pfotensalon<small>Hundesalon · Gwatt (Thun)</small></span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <span class="pill">Hundesalon &amp; Hundecoiffeur in Gwatt</span>
+    <h1><span>Rein in den</span> Schaum, raus <em>mit Glanz.</em></h1>
+    <p class="lead">Virginia Gafner wäscht, kämmt und schert Ihren Hund – nach Ihrem Wunsch oder nach Rassenstandard. Auch Katzen und Kleintiere sind willkommen.</p>
+    <div class="btns">
+      <a class="btn prim" href="tel:+41797617511">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="#fff"/></svg>
+        079 761 75 11</a>
+      <a class="btn sek" href="mailto:virginia.ge@gmx.ch?subject=Terminanfrage%20Pfotensalon">E-Mail schreiben</a>
+    </div>
+  </div>
+  <svg class="welle" viewBox="0 0 430 46" preserveAspectRatio="none" aria-hidden="true" style="margin-top:34px"><path d="M0 26 C50 6 90 6 140 22 S240 44 290 26 S380 4 430 20 V46 H0Z" fill="#fff"/><circle cx="70" cy="14" r="5" fill="#fff"/><circle cx="352" cy="9" r="3.5" fill="#fff"/></svg>
+</section>
+
+<section class="bad" id="leistungen">
+  <div class="wrap">
+    <h2>Was steckt im Schaum?</h2>
+    <p class="intro">Tippen Sie auf die Seifenblasen über der Wanne – jede Blase verrät eine Leistung des Pfotensalons.</p>
+
+    <div class="szene" id="szene">
+      <svg viewBox="0 0 400 312" aria-hidden="true">
+        <!-- Kacheln -->
+        <g stroke="#c3ecec" stroke-width="2">
+          <path d="M0 60H400M0 120H400M0 180H400"/>
+          <path d="M66 0V215M133 0V215M200 0V215M266 0V215M333 0V215"/>
+        </g>
+        <!-- Boden -->
+        <path d="M0 262 H400 V340 H0Z" fill="#ffe3ee"/>
+        <path d="M0 262 H400" stroke="#ffc4da" stroke-width="3"/>
+        <!-- Duschkopf -->
+        <path d="M352 0 V38 Q352 52 338 52 H326" fill="none" stroke="#1a8f95" stroke-width="6" stroke-linecap="round"/>
+        <path d="M300 46 h32 a6 6 0 0 1 6 6 v4 h-44 v-4 a6 6 0 0 1 6 -6z" fill="#2fbfc4" stroke="#1f4a50" stroke-width="3"/>
+        <g fill="#2fbfc4"><circle cx="304" cy="66" r="2.5"/><circle cx="316" cy="70" r="2.5"/><circle cx="328" cy="66" r="2.5"/><circle cx="310" cy="78" r="2"/><circle cx="322" cy="80" r="2"/></g>
+
+        <!-- Ohr hinten / Kopf Hund -->
+        <g id="hund">
+          <!-- Ohren -->
+          <path d="M150 112 C128 108 116 132 122 162 C126 182 144 188 154 176 C164 160 166 128 150 112Z" fill="#e8b48a" stroke="#1f4a50" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M250 112 C272 108 284 132 278 162 C274 182 256 188 246 176 C236 160 234 128 250 112Z" fill="#e8b48a" stroke="#1f4a50" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- Kopf (flauschig) -->
+          <path d="M200 86 C226 84 252 98 256 126 C262 132 262 146 256 152 C258 176 236 196 200 196 C164 196 142 176 144 152 C138 146 138 132 144 126 C148 98 174 84 200 86Z" fill="#fff6ea" stroke="#1f4a50" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- Fleck -->
+          <path d="M214 98 C232 98 246 110 246 126 C236 130 222 124 214 112Z" fill="#f3cfaa"/>
+          <!-- Augen geschlossen, glücklich -->
+          <path d="M168 138 q10 -10 20 0" fill="none" stroke="#1f4a50" stroke-width="4" stroke-linecap="round"/>
+          <path d="M212 138 q10 -10 20 0" fill="none" stroke="#1f4a50" stroke-width="4" stroke-linecap="round"/>
+          <!-- Wangen -->
+          <ellipse cx="166" cy="158" rx="9" ry="5.5" fill="#ff8db6" opacity=".55"/>
+          <ellipse cx="234" cy="158" rx="9" ry="5.5" fill="#ff8db6" opacity=".55"/>
+          <!-- Schnauze -->
+          <ellipse cx="200" cy="164" rx="24" ry="17" fill="#fff" stroke="#1f4a50" stroke-width="3"/>
+          <path d="M190 154 q10 -6 20 0 q-2 9 -10 10 q-8 -1 -10 -10z" fill="#1f4a50"/>
+          <path d="M200 164 v5 M188 170 q12 10 24 0" fill="none" stroke="#1f4a50" stroke-width="3" stroke-linecap="round"/>
+          <path d="M195 174 q5 10 10 0z" fill="#ff8db6" stroke="#1f4a50" stroke-width="2"/>
+          <!-- Schaumhaube -->
+          <g fill="#fff" stroke="#9fdede" stroke-width="2.5">
+            <circle cx="176" cy="88" r="15"/><circle cx="198" cy="78" r="19"/><circle cx="222" cy="88" r="15"/><circle cx="206" cy="62" r="11"/>
+          </g>
+          <circle cx="193" cy="72" r="4" fill="#dcf6f5"/>
+        </g>
+
+        <!-- Wanne -->
+        <path d="M58 206 H342 C342 252 312 280 268 280 H132 C88 280 58 252 58 206Z" fill="#fff" stroke="#1f4a50" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M78 228 C92 262 118 270 140 270" fill="none" stroke="#dcf6f5" stroke-width="7" stroke-linecap="round"/>
+        <rect x="46" y="196" width="308" height="18" rx="9" fill="#ff8db6" stroke="#1f4a50" stroke-width="4"/>
+        <!-- Füsse -->
+        <path d="M110 276 q-6 18 -16 22 h22 q4 -10 6 -22z" fill="#ff8db6" stroke="#1f4a50" stroke-width="3.5" stroke-linejoin="round"/>
+        <path d="M290 276 q6 18 16 22 h-22 q-4 -10 -6 -22z" fill="#ff8db6" stroke="#1f4a50" stroke-width="3.5" stroke-linejoin="round"/>
+        <!-- Pfoten auf dem Rand -->
+        <g fill="#fff6ea" stroke="#1f4a50" stroke-width="3.5">
+          <ellipse cx="150" cy="196" rx="17" ry="11"/>
+          <ellipse cx="250" cy="196" rx="17" ry="11"/>
+        </g>
+        <path d="M144 200 v-5 M152 201 v-6 M244 200 v-5 M252 201 v-6" stroke="#1f4a50" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Schaum über den Rand -->
+        <g fill="#fff" stroke="#9fdede" stroke-width="2.5">
+          <circle cx="76" cy="192" r="15"/><circle cx="98" cy="184" r="17"/><circle cx="118" cy="190" r="12"/>
+          <circle cx="282" cy="188" r="13"/><circle cx="304" cy="182" r="17"/><circle cx="326" cy="191" r="14"/>
+          <circle cx="200" cy="200" r="9"/><circle cx="182" cy="203" r="7"/><circle cx="218" cy="203" r="7"/>
+        </g>
+        <!-- Badeente (rosa) -->
+        <g transform="translate(318 152)">
+          <path d="M-18 22 C-22 6 -8 -2 4 4 C6 -10 22 -12 26 0 C34 0 34 6 28 8 C34 18 26 30 6 30 C-8 30 -16 28 -18 22Z" fill="#ff8db6" stroke="#1f4a50" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="17" cy="0" r="2.6" fill="#1f4a50"/>
+          <path d="M-6 16 q8 8 18 0" fill="none" stroke="#1f4a50" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+        <!-- Deko-Bläschen -->
+        <g fill="none" stroke="#7fd3d6" stroke-width="2"><circle cx="40" cy="150" r="6"/><circle cx="360" cy="120" r="5"/><circle cx="260" cy="40" r="4"/><circle cx="120" cy="40" r="5"/></g>
+      <g class="pdf-spritz"><circle cx="68" cy="62" r="3.2" fill="#ff8db6"/><circle cx="67" cy="77" r="2.6" fill="#2fbfc4"/><circle cx="52" cy="88" r="2.0" fill="#2fbfc4"/><circle cx="41" cy="73" r="3.2" fill="#ff8db6"/><circle cx="31" cy="62" r="2.6" fill="#2fbfc4"/><circle cx="34" cy="44" r="2.0" fill="#2fbfc4"/><circle cx="52" cy="46" r="3.2" fill="#ff8db6"/><circle cx="67" cy="47" r="2.6" fill="#2fbfc4"/><circle cx="139" cy="45" r="3.2" fill="#ff8db6"/><circle cx="134" cy="59" r="2.6" fill="#2fbfc4"/><circle cx="116" cy="65" r="2.0" fill="#2fbfc4"/><circle cx="110" cy="47" r="3.2" fill="#ff8db6"/><circle cx="104" cy="34" r="2.6" fill="#2fbfc4"/><circle cx="112" cy="17" r="2.0" fill="#2fbfc4"/><circle cx="129" cy="25" r="3.2" fill="#ff8db6"/><circle cx="143" cy="30" r="2.6" fill="#2fbfc4"/><circle cx="293" cy="43" r="3.2" fill="#ff8db6"/><circle cx="284" cy="55" r="2.6" fill="#2fbfc4"/><circle cx="265" cy="55" r="2.0" fill="#2fbfc4"/><circle cx="264" cy="37" r="3.2" fill="#ff8db6"/><circle cx="263" cy="22" r="2.6" fill="#2fbfc4"/><circle cx="275" cy="8" r="2.0" fill="#2fbfc4"/><circle cx="289" cy="21" r="3.2" fill="#ff8db6"/><circle cx="301" cy="30" r="2.6" fill="#2fbfc4"/><circle cx="366" cy="110" r="3.2" fill="#ff8db6"/><circle cx="354" cy="118" r="2.6" fill="#2fbfc4"/><circle cx="336" cy="113" r="2.0" fill="#2fbfc4"/><circle cx="340" cy="95" r="3.2" fill="#ff8db6"/><circle cx="343" cy="81" r="2.6" fill="#2fbfc4"/><circle cx="359" cy="71" r="2.0" fill="#2fbfc4"/><circle cx="369" cy="87" r="3.2" fill="#ff8db6"/><circle cx="377" cy="99" r="2.6" fill="#2fbfc4"/><circle cx="46" cy="152" r="3.2" fill="#ff8db6"/><circle cx="32" cy="156" r="2.6" fill="#2fbfc4"/><circle cx="16" cy="146" r="2.0" fill="#2fbfc4"/><circle cx="25" cy="131" r="3.2" fill="#ff8db6"/><circle cx="32" cy="117" r="2.6" fill="#2fbfc4"/><circle cx="50" cy="113" r="2.0" fill="#2fbfc4"/><circle cx="55" cy="131" r="3.2" fill="#ff8db6"/><circle cx="59" cy="145" r="2.6" fill="#2fbfc4"/><circle cx="201" cy="44" r="3.2" fill="#ff8db6"/><circle cx="186" cy="44" r="2.6" fill="#2fbfc4"/><circle cx="174" cy="30" r="2.0" fill="#2fbfc4"/><circle cx="188" cy="18" r="3.2" fill="#ff8db6"/><circle cx="199" cy="7" r="2.6" fill="#2fbfc4"/><circle cx="217" cy="8" r="2.0" fill="#2fbfc4"/><circle cx="216" cy="27" r="3.2" fill="#ff8db6"/><circle cx="216" cy="42" r="2.6" fill="#2fbfc4"/><circle cx="352" cy="194" r="3.2" fill="#ff8db6"/><circle cx="338" cy="189" r="2.6" fill="#2fbfc4"/><circle cx="331" cy="172" r="2.0" fill="#2fbfc4"/><circle cx="348" cy="164" r="3.2" fill="#ff8db6"/><circle cx="361" cy="158" r="2.6" fill="#2fbfc4"/><circle cx="378" cy="164" r="2.0" fill="#2fbfc4"/><circle cx="372" cy="182" r="3.2" fill="#ff8db6"/><circle cx="367" cy="196" r="2.6" fill="#2fbfc4"/></g>
+      </svg>
+      <!-- Seifenblasen (Buttons) -->
+      <button class="blase" data-i="0" style="left:13%;top:20%;--g:66px;--d:5.2s" aria-label="Seifenblase 1 platzen lassen"></button>
+      <button class="blase" data-i="1" style="left:31%;top:13%;--g:58px;--d:4.6s;--v:-1s" aria-label="Seifenblase 2 platzen lassen"></button>
+      <button class="blase" data-i="2" style="left:70%;top:11%;--g:62px;--d:5.6s;--v:-2s" aria-label="Seifenblase 3 platzen lassen"></button>
+      <button class="blase" data-i="3" style="left:89%;top:31%;--g:56px;--d:4.9s;--v:-.5s" aria-label="Seifenblase 4 platzen lassen"></button>
+      <button class="blase" data-i="4" style="left:10%;top:44%;--g:54px;--d:6s;--v:-3s" aria-label="Seifenblase 5 platzen lassen"></button>
+      <button class="blase" data-i="5" style="left:50%;top:9%;--g:46px;--d:4.2s;--v:-1.6s" aria-label="Seifenblase 6 platzen lassen"></button>
+      <button class="blase" data-i="6" style="left:89%;top:57%;--g:50px;--d:5.4s;--v:-2.4s" aria-label="Seifenblase 7 platzen lassen"></button>
+    </div>
+
+    <div class="fund" id="fund" aria-live="polite">
+      <div class="ico" id="fundIco">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="13" fill="none" stroke="#2fbfc4" stroke-width="3"/><circle cx="12" cy="12" r="3" fill="#ff8db6"/></svg>
+      </div>
+      <div><h3 id="fundT">Noch alles voller Schaum</h3><p id="fundP">Tippen Sie auf eine Blase, um die erste Leistung zu entdecken.</p></div>
+    </div>
+
+    <div class="zaehler">
+      <div><b id="zahl">0 von 7 Leistungen entdeckt</b><div class="punkte" id="punkte"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <button class="btn sek" id="alle" type="button">Alle zeigen</button>
+    </div>
+
+    <ul class="liste" id="liste">
+      <li><div class="zu"><span>1</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 20h28v4a10 10 0 0 1-10 10h-8A10 10 0 0 1 6 24z" fill="#dcf6f5" stroke="#1f4a50" stroke-width="2.5"/><circle cx="14" cy="14" r="5" fill="#fff" stroke="#2fbfc4" stroke-width="2.5"/><circle cx="24" cy="10" r="4" fill="#fff" stroke="#ff8db6" stroke-width="2.5"/></svg>
+        <h3>Waschen &amp; Kämmen</h3><p>Ein gründliches Bad und sorgfältiges Auskämmen – für ein sauberes, gepflegtes Fell.</p></div></li>
+      <li><div class="zu"><span>2</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="11" cy="29" r="6" fill="none" stroke="#1f4a50" stroke-width="2.5"/><circle cx="25" cy="31" r="6" fill="none" stroke="#1f4a50" stroke-width="2.5"/><path d="M15 25 L32 6 M21 26 L12 6" stroke="#2fbfc4" stroke-width="3.5" stroke-linecap="round"/></svg>
+        <h3>Scheren</h3><p>Nach Ihrem Wunsch oder nach Rassenstandard.</p></div></li>
+      <li><div class="zu"><span>3</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="26" rx="8" ry="7" fill="#ff8db6" stroke="#1f4a50" stroke-width="2.5"/><circle cx="10" cy="16" r="3.6" fill="#ff8db6" stroke="#1f4a50" stroke-width="2"/><circle cx="16" cy="10" r="3.6" fill="#ff8db6" stroke="#1f4a50" stroke-width="2"/><circle cx="24" cy="10" r="3.6" fill="#ff8db6" stroke="#1f4a50" stroke-width="2"/><circle cx="30" cy="16" r="3.6" fill="#ff8db6" stroke="#1f4a50" stroke-width="2"/></svg>
+        <h3>Krallen- &amp; Pfotenpflege</h3><p>Krallen und Pfoten werden mitgepflegt.</p></div></li>
+      <li><div class="zu"><span>4</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M14 6 C4 8 4 26 10 32 C14 36 20 32 20 26 C20 18 24 16 24 12 C24 7 19 5 14 6Z" fill="#e8b48a" stroke="#1f4a50" stroke-width="2.5"/><path d="M30 12 q4 4 0 8 M33 9 q7 7 0 14" fill="none" stroke="#2fbfc4" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Ohrenpflege</h3><p>Die Ohren werden kontrolliert und gereinigt.</p></div></li>
+      <li><div class="zu"><span>5</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M10 8 C14 4 18 8 20 8 C22 8 26 4 30 8 C34 12 32 20 30 24 C28 30 28 36 25 36 C22 36 22 26 20 26 C18 26 18 36 15 36 C12 36 12 30 10 24 C8 20 6 12 10 8Z" fill="#fff" stroke="#1f4a50" stroke-width="2.5"/><path d="M27 6 l2 -3 l2 3" stroke="#ff8db6" stroke-width="2" fill="none"/></svg>
+        <h3>Zahnpflege</h3><p>Weiterbildung 2016: Emmipet-Zahnsteinentfernung ohne Narkose.</p></div></li>
+      <li><div class="zu"><span>6</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 26 V18 L10 12 H26 L32 18 H36 V26Z" fill="#2fbfc4" stroke="#1f4a50" stroke-width="2.5" stroke-linejoin="round"/><circle cx="12" cy="27" r="4" fill="#fff" stroke="#1f4a50" stroke-width="2.5"/><circle cx="28" cy="27" r="4" fill="#fff" stroke="#1f4a50" stroke-width="2.5"/><path d="M13 13 v5 h10 v-5" fill="#dcf6f5"/></svg>
+        <h3>Abhol- &amp; Bringservice</h3><p>Auf Wunsch wird Ihr Tier zu Hause abgeholt und wieder zurückgebracht.</p></div></li>
+      <li class="breit"><div class="zu"><span>7</span>Blase noch zu</div><div class="offen">
+        <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 34 V16 L5 6 L13 12 H27 L35 6 L32 16 V34Z" fill="#ffe3ee" stroke="#1f4a50" stroke-width="2.5" stroke-linejoin="round"/><circle cx="15" cy="21" r="2" fill="#1f4a50"/><circle cx="25" cy="21" r="2" fill="#1f4a50"/><path d="M18 26 h4 l-2 2z" fill="#ff8db6"/></svg>
+        <h3>Auch Katzen &amp; Kleintiere</h3><p>Nicht nur Hunde: Im Pfotensalon werden auch Katzen und Kleintiere gepflegt.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="ueber" id="virginia">
+  <div class="wrap">
+    <h2>Die Frau hinter dem Schaum</h2>
+    <div class="portrait">
+      <div class="rund">
+        <!-- Platz für ein späteres Foto: gezeichnete Kamm-&-Schere-Illustration -->
+        <svg width="110" height="110" viewBox="0 0 110 110" aria-label="Illustration: Kamm und Schere">
+          <rect width="110" height="110" fill="#ffe3ee"/>
+          <circle cx="55" cy="58" r="34" fill="#fff"/>
+          <rect x="30" y="34" width="50" height="12" rx="4" fill="#2fbfc4" stroke="#1f4a50" stroke-width="2.5"/>
+          <path d="M34 46v14M40 46v14M46 46v14M52 46v14M58 46v14M64 46v14M70 46v14M76 46v14" stroke="#1f4a50" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="44" cy="80" r="6" fill="none" stroke="#1f4a50" stroke-width="2.5"/>
+          <circle cx="62" cy="82" r="6" fill="none" stroke="#1f4a50" stroke-width="2.5"/>
+          <path d="M48 76 L72 62 M58 78 L46 64" stroke="#ff8db6" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p><b>Virginia Gafner</b> ist seit Februar 2016 Inhaberin des Pfotensalons – gelernte Tierpflegerin und diplomierte Hundecoiffeuse mit Meisterprüfung.</p>
+    </div>
+    <ul class="weg-liste">
+      <li><span class="jahr">ab 2005</span><p>Lehre als Tierpflegerin im Tierheim (3 Jahre)</p></li>
+      <li><span class="jahr">2 Jahre</span><p>Zusatzausbildung mit Diplom als Hundecoiffeuse</p></li>
+      <li><span class="jahr">Meister</span><p>Meisterprüfung, danach mehrere Jahre Betriebsleitung</p></li>
+      <li class="rosa"><span class="jahr">2014</span><p>Weiterbildung: Kerryblue-Terrier-Workshop</p></li>
+      <li class="rosa"><span class="jahr">2016</span><p>Weiterbildung: Emmipet – Zahnsteinentfernung ohne Narkose</p></li>
+      <li><span class="jahr">Feb. 2016</span><p>Inhaberin von Virginia's Pfotensalon</p></li>
+    </ul>
+
+    <div class="stimme">
+      <svg class="bg" width="140" height="140" viewBox="0 0 140 140" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="4"><circle cx="70" cy="70" r="50"/><circle cx="40" cy="120" r="14"/><circle cx="120" cy="30" r="10"/></g></svg>
+      <div class="note">4.8 <span style="font-size:20px">von 5</span></div>
+      <div class="sterne" aria-label="4.8 von 5 Sternen">
+        <svg width="110" height="20" viewBox="0 0 110 20" aria-hidden="true"><g fill="#fff"><path id="st" d="M10 1l2.7 5.6 6.1.9-4.4 4.3 1 6.1L10 15l-5.4 2.9 1-6.1L1.2 7.5l6.1-.9z"/><use href="#st" x="22"/><use href="#st" x="44"/><use href="#st" x="66"/></g><path d="M98 1l2.7 5.6 6.1.9-4.4 4.3 1 6.1L98 15l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="#fff" opacity=".55"/></svg>
+      </div>
+      <blockquote>«sehr freundlich, kompetent und arbeitet mit Herzblut und professionell»</blockquote>
+      <small>Kundenstimme · 13 Bewertungen auf local.ch</small>
+    </div>
+  </div>
+</section>
+
+<svg class="welle" viewBox="0 0 430 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C60 2 110 4 160 20 S260 42 320 24 S400 8 430 18 V46 H0Z" fill="#fff"/></svg>
+<section class="termin" id="termine">
+  <div class="wrap">
+    <h2>Termin? Einfach anfragen.</h2>
+    <div class="karten">
+      <div class="karte"><h3>
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="2" y="4" width="18" height="16" rx="5" fill="none" stroke="#2fbfc4" stroke-width="2.5"/><path d="M7 2v4M15 2v4M2 10h18" stroke="#2fbfc4" stroke-width="2.5"/></svg>
+        Nach Vereinbarung</h3><p>Termine gibt es ausschliesslich nach individueller Absprache – per Telefon oder E-Mail.</p></div>
+      <div class="karte"><h3>
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#2fbfc4" stroke-width="2.5"/><path d="M11 6v5l3 3" stroke="#2fbfc4" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+        Öffnungszeiten</h3><p><span class="platz">[Öffnungszeiten bitte ergänzen]</span></p></div>
+      <div class="karte"><h3>
+        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M3 11 L11 3 H19 V11 L11 19Z" fill="none" stroke="#ff8db6" stroke-width="2.5" stroke-linejoin="round"/><circle cx="15" cy="7" r="1.8" fill="#ff8db6"/></svg>
+        Preise</h3><p><span class="platz">[Preise auf Anfrage / bitte ergänzen]</span></p></div>
+    </div>
+  </div>
+</section>
+<svg class="welle" viewBox="0 0 430 46" preserveAspectRatio="none" aria-hidden="true" style="transform:scaleY(-1)"><path d="M0 20 C60 2 110 4 160 20 S260 42 320 24 S400 8 430 18 V46 H0Z" fill="#fff"/></svg>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <h2>Ab in die Wanne!</h2>
+    <div class="box">
+      <dl>
+        <div><dt>Adresse</dt><dd>Virginia's Pfotensalon<br>Gwattstrasse 93a<br>3645 Gwatt (Thun)</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+41797617511">079 761 75 11</a></dd></div>
+        <div><dt>E-Mail</dt><dd><a href="mailto:virginia.ge@gmx.ch">virginia.ge@gmx.ch</a></dd></div>
+      </dl>
+      <div class="btns">
+        <a class="btn rosa" href="tel:+41797617511">Jetzt anrufen</a>
+        <a class="btn sek" href="mailto:virginia.ge@gmx.ch?subject=Terminanfrage%20Pfotensalon&amp;body=Guten%20Tag%20Frau%20Gafner%0D%0A%0D%0AIch%20m%C3%B6chte%20gerne%20einen%20Termin%20vereinbaren.%0D%0ATierart%20und%20Rasse%3A%20%0D%0AGew%C3%BCnschte%20Pflege%3A%20%0D%0A%0D%0AFreundliche%20Gr%C3%BCsse">Termin per E-Mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>Impressum</h3>
+    <p>Virginia's Pfotensalon · Inhaberin Virginia Gafner<br>Gwattstrasse 93a, 3645 Gwatt (Thun)<br>079 761 75 11 · virginia.ge@gmx.ch</p>
+    <p class="klein">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Virginia's Pfotensalon. Alle Illustrationen sind Platzhalter für eigene Fotos.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var daten=[
+    ['Waschen & Kämmen','Ein gründliches Bad und sorgfältiges Auskämmen – für ein sauberes, gepflegtes Fell.'],
+    ['Scheren','Nach Ihrem Wunsch oder nach Rassenstandard.'],
+    ['Krallen- & Pfotenpflege','Krallen und Pfoten werden mitgepflegt.'],
+    ['Ohrenpflege','Die Ohren werden kontrolliert und gereinigt.'],
+    ['Zahnpflege','Weiterbildung 2016: Emmipet-Zahnsteinentfernung ohne Narkose.'],
+    ['Abhol- & Bringservice','Auf Wunsch wird Ihr Tier zu Hause abgeholt und wieder zurückgebracht.'],
+    ['Auch Katzen & Kleintiere','Nicht nur Hunde: Im Pfotensalon werden auch Katzen und Kleintiere gepflegt.']
+  ];
+  var szene=document.getElementById('szene');
+  var karten=document.querySelectorAll('#liste li');
+  var punkte=document.querySelectorAll('#punkte i');
+  var fund=document.getElementById('fund');
+  var fundT=document.getElementById('fundT'), fundP=document.getElementById('fundP'), fundIco=document.getElementById('fundIco');
+  var zahl=document.getElementById('zahl');
+  var alle=document.getElementById('alle');
+  var offen={};
+
+  function zaehlen(){
+    var n=Object.keys(offen).length;
+    zahl.textContent=n+' von 7 Leistungen entdeckt';
+    if(n===7){alle.style.display='none';}
+  }
+  function freigeben(i,still){
+    if(offen[i])return;
+    offen[i]=true;
+    karten[i].classList.add('frei');
+    punkte[i].classList.add('an');
+    if(!still){
+      fundT.textContent=daten[i][0];
+      fundP.textContent=daten[i][1];
+      var svg=karten[i].querySelector('.offen svg');
+      fundIco.innerHTML=svg?svg.outerHTML:'';
+      fund.classList.remove('neu');void fund.offsetWidth;fund.classList.add('neu');
+    }
+    zaehlen();
+    if(Object.keys(offen).length===7&&!still){
+      fundP.textContent=daten[i][1]+' – Bravo, alle 7 Leistungen entdeckt!';
+    }
+  }
+  function spritzen(x,y){
+    for(var k=0;k<10;k++){
+      var s=document.createElement('span');
+      s.className='spritzer'+(k%3===0?' r':'');
+      var w=k/10*Math.PI*2+Math.random()*.4, r=30+Math.random()*26;
+      s.style.left=x+'px';s.style.top=y+'px';
+      s.style.setProperty('--x',Math.cos(w)*r+'px');
+      s.style.setProperty('--y',Math.sin(w)*r+'px');
+      szene.appendChild(s);
+      setTimeout(function(el){return function(){el.remove();};}(s),600);
+    }
+  }
+  szene.querySelectorAll('.blase').forEach(function(b){
+    b.addEventListener('click',function(){
+      var r=b.getBoundingClientRect(), sr=szene.getBoundingClientRect();
+      spritzen(r.left-sr.left+r.width/2,r.top-sr.top+r.height/2);
+      b.classList.add('weg');
+      setTimeout(function(){b.style.visibility='hidden';},300);
+      freigeben(+b.dataset.i);
+    });
+  });
+  alle.addEventListener('click',function(){
+    szene.querySelectorAll('.blase').forEach(function(b){b.classList.add('weg');b.style.visibility='hidden';});
+    for(var i=0;i<7;i++)freigeben(i,true);
+    fundT.textContent='Alle 7 Leistungen entdeckt';
+    fundP.textContent='Waschen, Scheren, Krallen-, Ohren- und Zahnpflege, Abhol- und Bringservice – auch für Katzen und Kleintiere.';
+  });
+  // Druckzustand: alles sichtbar
+  window.pdfZustand=function(){alle.click();};
+})();
+</script>
+</body>
+</html>

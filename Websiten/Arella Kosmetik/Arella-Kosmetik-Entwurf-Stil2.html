@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arella Kosmetik – Fünfhundertelf</title>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--nacht:#0b1230;--nacht2:#131c42;--nacht3:#1c2756;--champ:#e9d6a6;--champ-d:#bfa36a;--hell:#f3ecdc;--blass:#9aa3c4}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--nacht)}
+body{background:var(--nacht);color:var(--hell);font-family:'Instrument Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.demo{background:var(--champ);color:var(--nacht);font-size:12.5px;line-height:1.4;text-align:center;padding:8px 14px}
+.col{max-width:560px;margin:0 auto}
+.pad{padding:0 24px}
+.top{display:flex;justify-content:space-between;align-items:baseline;padding:20px 24px 0}
+.brand{font-family:'Gloock',serif;font-size:21px;letter-spacing:.02em;text-decoration:none}
+.brand span{color:var(--champ)}
+.top a.t{font-size:13px;color:var(--champ);text-decoration:none;letter-spacing:.06em}
+.intro{padding:30px 24px 8px}
+.eyebrow{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--champ-d)}
+h1{font-family:'Gloock',serif;font-weight:400;font-size:clamp(40px,12.4vw,68px);line-height:1;margin:12px 0 12px;letter-spacing:-.01em;hyphens:none}
+h1 .n{display:block;color:var(--champ);font-size:1.9em;line-height:.9;letter-spacing:-.03em}
+.intro p{color:var(--blass);max-width:28em}
+/* Himmel */
+.skywrap{position:relative;margin-top:18px}
+#sky{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none}
+.s{fill:#8c97c2;opacity:.42;transition:opacity .5s,fill .5s,r .5s}
+.s.on{fill:#fbefc9;opacity:1}
+.cl line{stroke:#e9d6a6;stroke-width:.7;opacity:.75;stroke-linecap:round}
+.hud{position:absolute;left:24px;right:24px;top:14px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
+.count{font-family:'Gloock',serif;font-size:44px;line-height:1;color:var(--champ);font-variant-numeric:tabular-nums}
+.count small{font-size:16px;color:var(--blass);margin-left:4px}
+.tip{font-size:12px;color:var(--blass);text-align:right;max-width:150px;line-height:1.35;padding-top:4px}
+.done{position:absolute;left:24px;right:24px;top:34%;padding:14px 8px 12px;border-radius:20px;background:rgba(9,14,40,.62);text-align:center;pointer-events:none;opacity:0;transform:translateY(10px);transition:opacity 1s,transform 1s}
+.done.show{opacity:1;transform:none}
+.done .big{font-family:'Gloock',serif;font-size:clamp(25px,7.2vw,38px);line-height:1.1;color:#fff;text-shadow:0 0 24px rgba(11,18,48,.95),0 0 8px rgba(11,18,48,.9)}
+.done .sub{font-size:13px;color:var(--champ);letter-spacing:.08em;text-shadow:0 0 10px #0b1230}
+.skybar{display:flex;gap:10px;padding:14px 24px 0}
+.skybar button{flex:1;font:600 13px 'Instrument Sans',sans-serif;letter-spacing:.06em;padding:12px 10px;border-radius:40px;cursor:pointer;border:1px solid var(--champ-d);background:transparent;color:var(--champ)}
+.skybar button.fill{background:var(--champ);color:var(--nacht);border-color:var(--champ)}
+/* Leistungen */
+section{padding:56px 24px 0}
+h2{font-family:'Gloock',serif;font-weight:400;font-size:clamp(32px,9.4vw,48px);line-height:1.05;margin:10px 0 6px;hyphens:none}
+h2 i{font-style:normal;color:var(--champ)}
+.sub2{color:var(--blass);font-size:14.5px}
+.group{margin-top:30px}
+.group h3{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--champ-d);font-weight:600;padding-bottom:10px;border-bottom:1px solid rgba(233,214,166,.35)}
+.row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;padding:16px 0 14px;border-bottom:1px solid rgba(154,163,196,.18)}
+.row .nm{font-size:17px;line-height:1.25}
+.row .nm small{display:block;color:var(--blass);font-size:12.5px;margin-top:3px}
+.row .pr{font-family:'Gloock',serif;font-size:30px;line-height:1;color:var(--champ);text-align:right;white-space:nowrap}
+.row .pr span{font-family:'Instrument Sans',sans-serif;font-size:11px;letter-spacing:.14em;color:var(--blass);margin-right:4px;vertical-align:middle}
+.row .pr.txt{font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--champ-d)}
+.ph{color:#f2c27b;font-size:12px}
+.row .pr span.ph{letter-spacing:0;color:#f2c27b;font-size:12px;margin:0}
+/* Inhaberin */
+.owner{margin-top:24px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center}
+.owner svg{width:96px;height:120px}
+.owner b{font-family:'Gloock',serif;font-weight:400;font-size:26px;display:block;line-height:1.1}
+.owner p{color:var(--blass);font-size:14px;margin-top:4px}
+/* Nummern */
+.nums{margin-top:26px;display:grid;gap:0}
+.num{display:grid;grid-template-columns:76px 1fr;gap:12px;padding:18px 0;border-top:1px solid rgba(154,163,196,.18)}
+.num .d{font-family:'Gloock',serif;font-size:42px;line-height:1;color:var(--champ)}
+.num b{font-weight:600;display:block}
+.num p{color:var(--blass);font-size:14px}
+.hours{margin-top:24px}
+.hours .h{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(154,163,196,.18)}
+.hours .h span:first-child{color:var(--blass);font-size:14px}
+.hours .h span:last-child{font-family:'Gloock',serif;font-size:24px}
+.contact{margin-top:24px}
+.bigtel{display:block;font-family:'Gloock',serif;font-size:clamp(34px,10.4vw,52px);line-height:1.05;color:var(--champ);text-decoration:none}
+.contact a.m{display:inline-block;margin-top:12px;font-size:16px;color:var(--hell);text-decoration:none;border-bottom:1px solid var(--champ-d)}
+.contact p{color:var(--blass);margin-top:14px}
+footer{margin-top:60px;border-top:1px solid rgba(233,214,166,.3);padding:28px 24px 44px;font-size:13px;color:var(--blass);line-height:1.7}
+footer b{color:var(--hell);font-weight:600}
+.fade{opacity:0;transform:translateY(18px);transition:opacity .9s,transform .9s}
+.fade.in{opacity:1;transform:none}
+html.pdf .fade{opacity:1!important;transform:none!important;transition:none}
+html.pdf .done{transition:none}
+html.pdf .s{transition:none}
+html.pdf .skybar{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Arella Kosmetik GmbH</div>
+<div class="col">
+<div class="top"><a class="brand" href="#">Arella <span>Kosmetik</span></a><a class="t" href="tel:+41336543136">033 654 31 36</a></div>
+
+<div class="intro">
+  <div class="eyebrow">Kosmetikstudio in Spiez</div>
+  <h1><span class="n">511</span>Fünfhundertelf Bewertungen. Im Schnitt 5.0.</h1>
+  <p>So oft wurde Arella Kosmetik auf local.ch / search.ch bewertet. Tippen oder ziehen Sie über den Nachthimmel und lassen Sie die Sterne aufleuchten.</p>
+</div>
+
+<div class="skywrap">
+  <svg id="sky" viewBox="0 0 430 520" aria-label="Nachthimmel über dem Thunersee bei Spiez mit 511 Sternen">
+    <defs>
+      <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070c24"/><stop offset=".55" stop-color="#16214d"/><stop offset="1" stop-color="#3a4784"/></linearGradient>
+      <linearGradient id="see" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2552"/><stop offset="1" stop-color="#0a1130"/></linearGradient>
+      <radialGradient id="dunst" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3a4680" stop-opacity=".55"/><stop offset="1" stop-color="#3a4680" stop-opacity="0"/></radialGradient>
+    </defs>
+    <rect width="430" height="380" fill="url(#himmel)"/>
+    <ellipse cx="300" cy="300" rx="220" ry="90" fill="url(#dunst)"/>
+    <g id="cl" class="cl"></g>
+    <g id="stars"></g>
+    <!-- Berge: hinten -->
+    <path d="M0 330 L40 312 L78 322 L120 298 L160 314 L196 300 L230 318 L250 312 L300 250 L330 282 L346 276 L372 302 L404 296 L430 310 V380 H0Z" fill="#1a234f"/>
+    <path d="M300 250 L330 282 L346 276 L372 302 L404 296 L430 310 V380 H300Z" fill="#141c44"/>
+    <path d="M300 250 L292 262 L298 262 L288 276" stroke="#4a5796" stroke-width="1" fill="none"/>
+    <!-- Hügel vorne rechts -->
+    <path d="M190 380 C230 352 290 344 340 352 C380 358 410 352 430 346 V380Z" fill="#0f1637"/>
+    <!-- See -->
+    <rect y="372" width="430" height="148" fill="url(#see)"/>
+    <g stroke="#e9d6a6" stroke-linecap="round" opacity=".55">
+      <path d="M118 392 V400 M118 406 V410" stroke-width="1.4"/>
+      <path d="M150 394 V401 M150 407 V409" stroke-width="1.2"/>
+      <path d="M78 396 V402" stroke-width="1.2"/>
+      <path d="M196 396 V400" stroke-width="1"/>
+    </g>
+    <g stroke="#6f7cb5" stroke-width=".8" stroke-linecap="round" opacity=".6">
+      <path d="M40 430 H74 M210 418 H262 M300 444 H352 M120 466 H164 M250 486 H296 M30 492 H58 M360 410 H398"/>
+    </g>
+    <!-- Spiez: Landzunge mit Schloss und Kirche -->
+    <path d="M0 362 C30 356 60 360 82 364 C120 370 170 372 236 380 C250 382 252 388 240 390 L0 392Z" fill="#070b20"/>
+    <!-- Bäume -->
+    <g fill="#070b20">
+      <circle cx="18" cy="352" r="14"/><circle cx="36" cy="346" r="12"/><circle cx="194" cy="366" r="11"/><circle cx="212" cy="370" r="9"/>
+    </g>
+    <!-- Kirche -->
+    <g fill="#070b20">
+      <path d="M48 364 V346 L70 334 L92 346 V364Z"/>
+      <rect x="58" y="314" width="13" height="40"/>
+      <path d="M56 316 L64.5 294 L73 316Z"/>
+      <path d="M92 364 V352 A8 8 0 0 1 100 344 V364Z"/>
+    </g>
+    <!-- Schloss -->
+    <g fill="#070b20">
+      <rect x="112" y="314" width="28" height="56"/>
+      <path d="M109 316 L126 270 L143 316Z"/>
+      <rect x="140" y="336" width="48" height="36"/>
+      <path d="M137 338 L150 322 L178 322 L191 338Z"/>
+      <rect x="96" y="344" width="18" height="26"/>
+      <path d="M94 346 L105 334 L116 346Z"/>
+    </g>
+    <g fill="#e9d6a6">
+      <rect x="117" y="326" width="2.2" height="3.4"/><rect x="132" y="326" width="2.2" height="3.4"/>
+      <rect x="150" y="346" width="2.6" height="3.6"/><rect x="164" y="346" width="2.6" height="3.6"/><rect x="176" y="356" width="2.6" height="3.6"/>
+      <rect x="63" y="330" width="2" height="4"/><rect x="78" y="352" width="2.2" height="3.2"/>
+    </g>
+  </svg>
+  <div class="hud"><div class="count"><span id="cnt">0</span><small>/ 511</small></div><div class="tip" id="tip">Tippen oder ziehen Sie über den Himmel</div></div>
+  <div class="done" id="done"><div class="big">5.0 – 511 Bewertungen<br>auf local.ch</div><div class="sub">Durchschnitt 5.0 von 5 · local.ch / search.ch</div></div>
+</div>
+<div class="skybar"><button type="button" id="reset">Himmel zurücksetzen</button><button type="button" class="fill" id="all">Alle 511 zeigen</button></div>
+
+<section class="fade" id="leistungen">
+  <div class="eyebrow">Leistungen &amp; Preise</div>
+  <h2>Ihre <i>Behandlungen</i></h2>
+  <p class="sub2">Preise in CHF gemäss aktueller Preisliste.</p>
+
+  <div class="group">
+    <h3>Gesicht</h3>
+    <div class="row"><div class="nm">Reinigung<small>1,5 Std.</small></div><div class="pr">112</div></div>
+    <div class="row"><div class="nm">Gesichtspflege mit Massage<small>2 Std.</small></div><div class="pr">148</div></div>
+    <div class="row"><div class="nm">Spezial Gesichtspflege</div><div class="pr">183</div></div>
+    <div class="row"><div class="nm">Kurze Gesichtspflege</div><div class="pr">100</div></div>
+    <div class="row"><div class="nm">OXYmizer</div><div class="pr">140</div></div>
+    <div class="row"><div class="nm">Aquabration mit Massage</div><div class="pr">183</div></div>
+    <div class="row"><div class="nm">Dermaneedling<small>nicht im Sommer</small></div><div class="pr">180</div></div>
+    <div class="row"><div class="nm">Fruchtsäurebehandlung<small>je nach Variante</small></div><div class="pr txt">auf Anfrage</div></div>
+    <div class="row"><div class="nm">Coldplasma<small>zu jeder Gesichtspflege dazubuchbar</small></div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+  </div>
+
+  <div class="group">
+    <h3>Wimpern &amp; Brauen</h3>
+    <div class="row"><div class="nm">Wimpernlifting</div><div class="pr">105</div></div>
+    <div class="row"><div class="nm">Brauen formen</div><div class="pr"><span>AB</span>29</div></div>
+    <div class="row"><div class="nm">Microblading</div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+  </div>
+
+  <div class="group">
+    <h3>Weitere Leistungen</h3>
+    <div class="row"><div class="nm">Permanent Make-up</div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+    <div class="row"><div class="nm">Make-up &amp; Hochzeits-Make-up</div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+    <div class="row"><div class="nm">Warmwachs-Haarentfernung</div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+    <div class="row"><div class="nm">Maniküre</div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+    <div class="row"><div class="nm">Pediküre</div><div class="pr txt"><span class="ph">[Preis bitte ergänzen]</span></div></div>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="eyebrow">Das Studio</div>
+  <h2>Saskia <i>Bigler</i></h2>
+  <div class="owner">
+    <svg viewBox="0 0 96 120" fill="none" aria-label="Platzhalter für ein Porträtfoto">
+      <rect x=".5" y=".5" width="95" height="119" rx="48" stroke="#bfa36a"/>
+      <circle cx="48" cy="48" r="16" stroke="#e9d6a6" stroke-width="1.1"/>
+      <path d="M20 112 C22 86 34 76 48 76 C62 76 74 86 76 112" stroke="#e9d6a6" stroke-width="1.1"/>
+      <path d="M72 20 l1.5 3.5 3.5 1.5 -3.5 1.5 -1.5 3.5 -1.5 -3.5 -3.5 -1.5 3.5 -1.5Z" fill="#e9d6a6"/>
+    </svg>
+    <div><b>Kosmetikerin FA</b><p>Inhaberin und Geschäftsführerin der Arella Kosmetik GmbH an der Seestrasse 2 in Spiez.</p><p style="font-size:12px;margin-top:8px">Zeichnung – Platz für ein eigenes Foto</p></div>
+  </div>
+  <div class="nums">
+    <div class="num"><div class="d">01</div><div><b>Ohne Tierversuche</b><p>Die verwendeten Produkte sind ohne Tierversuche hergestellt.</p></div></div>
+    <div class="num"><div class="d">02</div><div><b>Hygiene jährlich kontrolliert</b><p>Das Studio wird jedes Jahr einer Hygienekontrolle unterzogen.</p></div></div>
+    <div class="num"><div class="d">03</div><div><b>Bezahlen, wie Sie möchten</b><p>Bar, mit PostCard oder Debitkarte.</p></div></div>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="eyebrow">Öffnungszeiten</div>
+  <div class="hours">
+    <div class="h"><span>Dienstag – Freitag</span><span>08:00 – 18:30</span></div>
+    <div class="h"><span>Samstag</span><span>08:00 – 13:00</span></div>
+    <div class="h"><span>Montag, Sonntag</span><span>geschlossen</span></div>
+  </div>
+  <p class="ph" style="margin-top:12px">[Öffnungszeiten bitte bestätigen]</p>
+</section>
+
+<section class="fade" id="kontakt">
+  <div class="eyebrow">Termin &amp; Kontakt</div>
+  <div class="contact">
+    <a class="bigtel" href="tel:+41336543136">033 654 31 36</a>
+    <a class="m" href="mailto:arella.kosmetik@bluewin.ch?subject=Terminanfrage">arella.kosmetik@bluewin.ch</a>
+    <p>Arella Kosmetik GmbH<br>Seestrasse 2, 3700 Spiez</p>
+  </div>
+</section>
+</div>
+<footer><div class="col"><b>Impressum</b><br>Arella Kosmetik GmbH · Seestrasse 2 · 3700 Spiez<br>Geschäftsführerin: Saskia Bigler<br>UID: CHE-196.733.469</div></footer>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg', sky=document.getElementById('sky'), g=document.getElementById('stars'), cl=document.getElementById('cl');
+  let seed=511; const rnd=()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};
+  const stars=[];
+  for(let i=0;i<511;i++){
+    const x=6+rnd()*418, y=6+Math.pow(rnd(),1.15)*236, r=(.55+rnd()*1.05).toFixed(2);
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));c.setAttribute('r',r);c.setAttribute('class','s');
+    g.appendChild(c); stars.push({x,y,r:+r,el:c,on:false});
+  }
+  let lit=0,shown=0,last=null;
+  const cnt=document.getElementById('cnt'),done=document.getElementById('done'),tip=document.getElementById('tip');
+  function light(s){ if(s.on)return; s.on=true; s.el.classList.add('on'); s.el.style.r=(s.r*1.7).toFixed(2); lit++; }
+  function line(a,b){ const l=document.createElementNS(NS,'line'); l.setAttribute('x1',a.x.toFixed(1));l.setAttribute('y1',a.y.toFixed(1));l.setAttribute('x2',b.x.toFixed(1));l.setAttribute('y2',b.y.toFixed(1)); cl.appendChild(l); }
+  let raf=null;
+  function tick(){ if(shown<lit){ shown+=Math.max(1,Math.ceil((lit-shown)/6)); if(shown>lit)shown=lit; cnt.textContent=shown; raf=requestAnimationFrame(tick);} else {cnt.textContent=lit;raf=null;}
+    if(lit>=511){done.classList.add('show');tip.textContent='Der Himmel ist voll';} }
+  function render(){ if(!raf) raf=requestAnimationFrame(tick); }
+  function pt(e){ const r=sky.getBoundingClientRect(); return {x:(e.clientX-r.left)*430/r.width, y:(e.clientY-r.top)*520/r.height}; }
+  function brush(p){
+    if(p.y>262) return;
+    let near=null,nd=1e9;
+    stars.forEach(s=>{ const d=Math.hypot(s.x-p.x,s.y-p.y); if(d<30) light(s); if(d<nd){nd=d;near=s;} });
+    if(near&&nd<40){
+      if(last&&near!==last){ const d=Math.hypot(near.x-last.x,near.y-last.y); if(d>14&&d<90){ line(last,near); last=near;} else if(d>=90){ last=near; } }
+      else if(!last) last=near;
+    }
+    render();
+  }
+  let down=false;
+  sky.addEventListener('pointerdown',e=>{down=true;last=null;try{sky.setPointerCapture(e.pointerId)}catch(_){ } brush(pt(e));});
+  sky.addEventListener('pointermove',e=>{ if(down) brush(pt(e)); });
+  ['pointerup','pointercancel','pointerleave'].forEach(t=>sky.addEventListener(t,()=>{down=false;}));
+  function constellations(){
+    // ein paar Sternbilder durch Nächste-Nachbarn-Wege
+    [[60,60],[200,120],[340,70],[120,200],[330,190]].forEach(([sx,sy])=>{
+      let cur=stars.reduce((a,s)=>Math.hypot(s.x-sx,s.y-sy)<Math.hypot(a.x-sx,a.y-sy)?s:a);
+      const used=new Set([cur]);
+      for(let k=0;k<6;k++){
+        let best=null,bd=1e9; stars.forEach(s=>{ if(used.has(s))return; const d=Math.hypot(s.x-cur.x,s.y-cur.y); if(d>16&&d<bd&&s.r>.95){bd=d;best=s;} });
+        if(!best||bd>70)break; line(cur,best); used.add(best); cur=best;
+      }
+    });
+  }
+  window.lightAll=function(instant){
+    const rest=stars.filter(s=>!s.on);
+    if(instant){ rest.forEach(light); if(!cl.childNodes.length) constellations(); shown=lit; cnt.textContent=lit; done.classList.add('show'); tip.textContent='Der Himmel ist voll'; return; }
+    rest.sort((a,b)=>a.x-b.x); let i=0;
+    (function step(){ for(let k=0;k<14&&i<rest.length;k++,i++) light(rest[i]); render(); if(i<rest.length) requestAnimationFrame(step); else if(cl.childNodes.length<4) constellations(); })();
+  };
+  document.getElementById('all').addEventListener('click',()=>lightAll(false));
+  document.getElementById('reset').addEventListener('click',()=>{ stars.forEach(s=>{s.on=false;s.el.classList.remove('on');s.el.style.r='';}); cl.innerHTML=''; lit=0;shown=0;cnt.textContent='0'; done.classList.remove('show'); tip.textContent='Tippen oder ziehen Sie über den Himmel'; });
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
