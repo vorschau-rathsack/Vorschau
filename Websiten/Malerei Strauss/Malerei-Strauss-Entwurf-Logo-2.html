@@ -46,9 +46,9 @@ section{padding:54px 0;border-bottom:1px solid var(--hair)}
 .fanbox{position:relative;margin:18px -20px 0;padding:0 0 4px}
 .fanstage{position:relative;z-index:2}
 #fan{width:100%;height:auto;overflow:visible;touch-action:manipulation;position:relative}
-.paper{position:relative;z-index:1;width:252px;margin:-38px auto 0;background:#fff;border:1px solid var(--hair);border-radius:6px;padding:30px 19px 14px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 18px 34px -16px rgba(74,79,196,.35)}
-.paper:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;border-radius:6px 6px 0 0;background:linear-gradient(90deg,#d6408f,#4a4fc4)}
-.paper img{display:block;width:100%;height:auto}
+.paper{position:relative;z-index:1;width:252px;margin:-38px auto 0;background:transparent;border:0;padding:30px 19px 14px;box-shadow:none}
+.paper:before{display:none}
+.paper img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
 .paper small{display:block;text-align:center;font:600 11px var(--f);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-top:6px}
 .flogo{width:96px;margin:0 auto 14px}
 .flogo img{display:block;width:100%;height:auto}
@@ -346,18 +346,18 @@ html.pdf *,html.pdf *:before,html.pdf *:after{animation:none!important;transitio
   var NS='http://www.w3.org/2000/svg';
   // Leistungen – jede mit eigener Farbfamilie (hell → dunkel)
   var S=[
-    ['Innen- & Aussenanstriche','Wände, Decken und Aussenflächen – sauber vorbereitet und gestrichen.',['#f6c9c3','#ec8a7f','#e2231a']],
-    ['Fassadenrenovationen','Damit Ihr Haus wieder frisch aussieht und gut geschützt ist.',['#f7dcc2','#eea76a','#d9752b']],
-    ['Spritzarbeiten','Gleichmässige Oberflächen, gespritzt statt gerollt.',['#f8e9b8','#efcf63','#d9a91d']],
-    ['Tapezierarbeiten','Tapeten fachgerecht entfernen und neu anbringen.',['#e7eec0','#c5d36c','#97a831']],
-    ['Gipserarbeiten & Ausbesserungen','Risse, Löcher und Schäden ausbessern – bevor gestrichen wird.',['#e9ece6','#c7ccc2','#9aa197']],
-    ['Graffiti-Entfernung','Schmierereien entfernen und die Fläche wieder herstellen.',['#cfe8d6','#7cc193','#2f8f55']],
-    ['Parkplatz- & Bodenmarkierung','Klare Linien für Parkplätze, Böden und Flächen.',['#c8e7e5','#6cc0bb','#1f8c87']],
-    ['Dekorative Spezialtechniken','Besondere Oberflächen und Effekte für Wand und Raum.',['#cfdff1','#7ea6d6','#2f64b0']],
-    ['Entsorgungen & Reinigungen','Wir räumen auf und hinterlassen die Baustelle sauber.',['#d9d3ee','#9b8ed0','#5a46a8']],
-    ['Farbberatung','Die richtige Farbe finden – gemeinsam mit Ihnen.',['#efd3e6','#d68cbd','#a8448a']],
-    ['Holz- und Wetterschutz','Schutz für Holz und Flächen, die dem Wetter ausgesetzt sind.',['#e6d6c6','#b88f6a','#7a5236']],
-    ['Lackarbeiten','Türen, Fenster, Geländer und mehr – sauber lackiert.',['#dcdcda','#8c8c88','#2a2a28']]
+    ['Innen- & Aussenanstriche','Wände, Decken und Aussenflächen – sauber vorbereitet und gestrichen.',['#e3e3e8','#8d8f9e','#1b1b22']],
+    ['Fassadenrenovationen','Damit Ihr Haus wieder frisch aussieht und gut geschützt ist.',['#f1e0cc','#c99a66','#8a5a2e']],
+    ['Spritzarbeiten','Gleichmässige Oberflächen, gespritzt statt gerollt.',['#fde6c8','#f6be72','#f0a03a']],
+    ['Tapezierarbeiten','Tapeten fachgerecht entfernen und neu anbringen.',['#d9edf8','#8ec5ea','#3d8fd0']],
+    ['Gipserarbeiten & Ausbesserungen','Risse, Löcher und Schäden ausbessern – bevor gestrichen wird.',['#d8e5f8','#7fa6e6','#3a66c8']],
+    ['Graffiti-Entfernung','Schmierereien entfernen und die Fläche wieder herstellen.',['#d7dbf2','#6d78d0','#2f3a9e']],
+    ['Parkplatz- & Bodenmarkierung','Klare Linien für Parkplätze, Böden und Flächen.',['#dcdcf6','#8f93e6','#4a4fc4']],
+    ['Dekorative Spezialtechniken','Besondere Oberflächen und Effekte für Wand und Raum.',['#e2d6f3','#a98ce0','#7350c4']],
+    ['Entsorgungen & Reinigungen','Wir räumen auf und hinterlassen die Baustelle sauber.',['#ecd3ef','#c98ad6','#9b4fb8']],
+    ['Farbberatung','Die richtige Farbe finden – gemeinsam mit Ihnen.',['#f1c9e2','#cf5aa3','#a8287a']],
+    ['Holz- und Wetterschutz','Schutz für Holz und Flächen, die dem Wetter ausgesetzt sind.',['#fbe0ec','#f4a6c8','#e5689f']],
+    ['Lackarbeiten','Türen, Fenster, Geländer und mehr – sauber lackiert.',['#f8d2e5','#e57ab3','#d6408f']]
   ];
   var N=S.length,SPREAD=120,L=262,BW=46;
   var g=document.getElementById('blades'),box=document.getElementById('fanbox'),open=false,sel=-1,blades=[];
@@ -439,7 +439,7 @@ html.pdf *,html.pdf *:before,html.pdf *:after{animation:none!important;transitio
     document.querySelectorAll('#hours tr').forEach(function(tr){if(tr.dataset.d.split(',').indexOf(String(d))>-1)tr.classList.add('today')});
   }catch(e){}
 
-  window.__pdfState=function(){setOpen(true);pick(1);setRoom('wohn',0);};
+  window.__pdfState=function(){setOpen(true);pick(9);setRoom('wohn',0);};
   function pdfCheck(){if(document.documentElement.classList.contains('pdf')&&!window.__pdfDone){window.__pdfDone=1;window.__pdfState();}}
   pdfCheck();
   new MutationObserver(pdfCheck).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
