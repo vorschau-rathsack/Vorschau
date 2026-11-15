@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dsBoot – Drei Seen (Entwurf «Seenkarte & Rettungsringe»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#fff4e8;--peach:#ffd9bf;--coral:#ff7a59;--teal:#0e7c86;--lake:#7cc9cf;--deep:#12343b;--sand:#f6e3c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Work Sans',system-ui,sans-serif;background:var(--sky);color:var(--deep);max-width:430px;margin:0 auto}
+.demo{background:var(--deep);color:var(--sky);font-size:12px;text-align:center;padding:7px 10px}
+header{padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Young Serif',serif;font-size:24px}.logo span{color:var(--coral)}
+header a{font-weight:700;color:var(--teal);text-decoration:none;font-size:14px;border-bottom:2px solid var(--coral)}
+.hero{position:relative;padding:8px 20px 0}
+h1{font-family:'Young Serif',serif;font-weight:400;font-size:clamp(42px,13vw,58px);line-height:1.02}
+h1 em{font-style:normal;color:var(--coral)}
+.hero p{margin:14px 0 0;font-size:17px;line-height:1.5}
+.sunset{display:block;width:100%;margin-top:6px}
+section{padding:34px 20px}
+h2{font-family:'Young Serif',serif;font-weight:400;font-size:clamp(32px,10vw,42px);line-height:1.05;margin-bottom:10px}
+h2 em{font-style:normal;color:var(--teal)}
+.lead{line-height:1.55;margin-bottom:16px}
+/* Karte */
+.mapwrap{background:#fff;border-radius:26px;padding:12px;box-shadow:0 10px 30px rgba(18,52,59,.12)}
+.map{display:block;width:100%}
+.place{cursor:pointer}
+.place circle{transition:r .2s}
+.place.on circle{fill:var(--coral)}
+.picks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.picks button{border:0;background:var(--sand);color:var(--deep);border-radius:30px;padding:10px 14px;font:600 14px 'Work Sans';cursor:pointer}
+.picks button.on{background:var(--coral);color:#fff}
+.result{margin-top:14px;background:var(--deep);color:var(--sky);border-radius:18px;padding:16px;line-height:1.5}
+.result b{font-family:'Young Serif';font-weight:400;font-size:22px;display:block;color:var(--peach)}
+.btn{display:block;text-align:center;margin-top:14px;background:var(--coral);color:#fff;font-weight:700;text-decoration:none;border-radius:40px;padding:16px;font-size:17px}
+/* Angebote */
+.cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.card{flex:0 0 80%;scroll-snap-align:start;background:#fff;border-radius:22px;padding:20px;border-top:8px solid var(--teal)}
+.card:nth-child(2){border-color:var(--coral)}.card:nth-child(3){border-color:var(--lake)}
+.card h3{font-family:'Young Serif';font-weight:400;font-size:26px}
+.card .p{font-weight:700;color:var(--teal);margin:6px 0 10px;font-size:18px}
+.card p{line-height:1.45;font-size:15px}
+/* Rettungsringe */
+.rings{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ring{perspective:600px;cursor:pointer;aspect-ratio:1}
+.ring .in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.ring.on .in{transform:rotateY(180deg)}
+.ring .f,.ring .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:22%}
+.ring .f{background:radial-gradient(circle,var(--sky) 0 36%,transparent 37%),conic-gradient(var(--coral) 0 25%,#fff 0 50%,var(--coral) 0 75%,#fff 0);font:700 13px 'Work Sans';color:var(--deep)}
+.ring .f span{background:var(--sky);border-radius:8px;padding:2px}
+.ring .b{background:var(--teal);color:#fff;transform:rotateY(180deg);font-size:13px;line-height:1.35;padding:16%}
+.ph{border:2px dashed var(--coral);border-radius:16px;padding:12px;font-size:14px;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:12px 0;border-bottom:1px solid var(--peach)}
+td:last-child{text-align:right;font-weight:700}
+.boat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.boat div{background:#fff;border-radius:16px;padding:14px}
+.boat b{font-family:'Young Serif';font-weight:400;font-size:28px;color:var(--teal);display:block}
+footer{background:var(--deep);color:var(--sky);padding:28px 20px 40px;line-height:1.7;font-size:15px}
+footer a{color:var(--peach)}
+html.pdf .cards{flex-direction:column;overflow:visible}html.pdf .card{flex:auto}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von dsBoot</div>
+<header><div class="logo">ds<span>Boot</span></div><a href="#karte">Abholort wählen</a></header>
+
+<div class="hero">
+<h1>Drei Seen. <em>Ein Boot.</em> Dein Abend.</h1>
+<p>Vom Hafen Sugiez aufs Wasser – wir holen euch im ganzen 3-Seen-Gebiet ab. Wakesurf, Wakeboard, Wakefoil oder einfach geniessen.</p>
+<svg class="sunset" viewBox="0 0 430 180" aria-hidden="true">
+ <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff4e8"/><stop offset="1" stop-color="#ffd9bf"/></linearGradient></defs>
+ <rect width="430" height="180" fill="url(#g)"/>
+ <circle cx="215" cy="104" r="48" fill="#ff7a59"/>
+ <path d="M0 96 L60 70 L110 88 L170 60 L240 86 L300 66 L360 84 L430 72 V110 H0Z" fill="#e8b79c" opacity=".7"/>
+ <rect y="104" width="430" height="76" fill="#7cc9cf"/>
+ <g stroke="#fff4e8" stroke-width="3" stroke-linecap="round" opacity=".8"><line x1="170" y1="118" x2="260" y2="118"/><line x1="185" y1="130" x2="245" y2="130"/><line x1="200" y1="142" x2="230" y2="142"/></g>
+ <g transform="translate(70 128)"><path d="M0 12 L84 12 L98 2 L14 2 Z" fill="#12343b"/><rect x="30" y="-8" width="30" height="10" rx="3" fill="#12343b"/></g>
+ <path d="M168 140 Q140 128 110 138" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>
+</div>
+
+<section id="karte">
+<h2>Wo dürfen wir euch <em>abholen?</em></h2>
+<p class="lead">Ort antippen – das Boot zeigt euch den Weg über Broyekanal und Zihlkanal.</p>
+<div class="mapwrap">
+<svg class="map" viewBox="0 0 400 330" id="map">
+ <rect width="400" height="330" rx="18" fill="#f6efe2"/>
+ <ellipse cx="155" cy="220" rx="125" ry="38" transform="rotate(-38 155 220)" fill="#7cc9cf"/>
+ <ellipse cx="320" cy="85" rx="60" ry="16" transform="rotate(-35 320 85)" fill="#7cc9cf"/>
+ <ellipse cx="310" cy="250" rx="44" ry="20" transform="rotate(-40 310 250)" fill="#7cc9cf"/>
+ <path d="M298 238 Q265 205 240 168" stroke="#7cc9cf" stroke-width="6" fill="none"/>
+ <path d="M253 143 L271 119" stroke="#7cc9cf" stroke-width="6" fill="none"/>
+ <text x="95" y="250" font-family="Young Serif" font-size="13" fill="#0e7c86" transform="rotate(-38 95 250)">Neuenburgersee</text>
+ <text x="300" y="72" font-family="Young Serif" font-size="11" fill="#0e7c86" transform="rotate(-35 300 72)">Bielersee</text>
+ <text x="300" y="290" font-family="Young Serif" font-size="11" fill="#0e7c86">Murtensee</text>
+ <path id="route" d="" fill="none" stroke="#ff7a59" stroke-width="3" stroke-dasharray="6 5"/>
+ <g id="pins"></g>
+ <g id="boatIcon"><path d="M-10 3 L8 3 L12 -1 L-8 -1 Z" fill="#12343b"/><circle r="15" fill="none" stroke="#ff7a59" stroke-width="2" opacity=".5"/></g>
+</svg>
+<div class="picks" id="picks"></div>
+</div>
+<div class="result" id="res"></div>
+<a class="btn" id="ask" href="#">Abholung anfragen</a>
+</section>
+
+<section>
+<h2>Was darf's <em>sein?</em></h2>
+<div class="cards">
+ <div class="card"><h3>Einzelsession</h3><div class="p">CHF 70.– / 15 Min.</div><p>Wakesurf, Wakeboard oder Wakefoil. Danach CHF 4.50 pro Minute, Mengenpakete machen's günstiger.</p></div>
+ <div class="card"><h3>Gruppensession</h3><div class="p">1 h CHF 250.– · 5 h CHF 800.–</div><p>Das Boot exklusiv für euch – Captain, Boot und Benzin inklusive.</p></div>
+ <div class="card"><h3>Boat Charter</h3><div class="p">1 h CHF 200.–</div><p>Ohne Wakesession, je weitere 30 Min. CHF 90.–. Bis 8 Personen. Teamevents auf Anfrage.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Gut zu <em>wissen</em></h2>
+<p class="lead">Rettungsring antippen – er dreht sich um.</p>
+<div class="rings">
+ <div class="ring"><div class="in"><div class="f"><span>Wer darf mit?</span></div><div class="b">Ab 18 Jahren – in Begleitung schon ab 10.</div></div></div>
+ <div class="ring"><div class="in"><div class="f"><span>Was ist dabei?</span></div><div class="b">Captain, Benzin, Coach für Anfänger, Rettungsmaterial &amp; Wasser.</div></div></div>
+ <div class="ring"><div class="in"><div class="f"><span>Wie viele an Bord?</span></div><div class="b">Bis 15 Personen, beim Charter bis 8.</div></div></div>
+ <div class="ring"><div class="in"><div class="f"><span>Wo parkieren?</span></div><div class="b">Parking Protection civile, nahe Hafen Sugiez.</div></div></div>
+ <div class="ring"><div class="in"><div class="f"><span>Wann ist Saison?</span></div><div class="b">April bis Oktober.</div></div></div>
+ <div class="ring"><div class="in"><div class="f"><span>Und bei Regen?</span></div><div class="b">Platzhalter: eure Wetter- und Storno&shy;regeln.</div></div></div>
+</div>
+</section>
+
+<section>
+<h2>Unser <em>Boot</em></h2>
+<div class="boat">
+ <div><b>Supra</b>SV450</div>
+ <div><b>7.30 m</b>mit Plattform</div>
+ <div><b>15</b>Personen max.</div>
+ <div><b>V8</b>Indmar Ford Raptor 400, 6.2 L</div>
+</div>
+<div class="ph">📸 Platzhalter: eure Sonnenuntergangs-Fotos vom Murtensee.</div>
+</section>
+
+<section>
+<h2>Wann wir <em>draussen</em> sind</h2>
+<table>
+<tr><td>Mo – Do</td><td>17:00 – 21:00</td></tr>
+<tr><td>Freitag</td><td>14:00 – 21:00</td></tr>
+<tr><td>Sa &amp; So</td><td>10:00 – 21:00</td></tr>
+</table>
+<p class="lead" style="margin-top:12px;font-size:14px">Gruppen, Charter und Teamevents auch ausserhalb auf Anfrage.</p>
+</section>
+
+<footer>
+<b>dsBoot</b> · denksport AG<br>
+Hafen Sugiez (Port des Cygnes), Murtensee<br>
+<a href="tel:+41767747772">076 774 77 72</a> · <a href="tel:+41797348418">079 734 84 18</a><br>
+<a href="mailto:letsgo@denk-sport.ch">letsgo@denk-sport.ch</a>
+</footer>
+
+<script>
+const S=[290,228];
+const P={
+ 'Sugiez':{xy:[290,228],r:'M290 228',t:'Unser Heimathafen – hier legen wir ab.'},
+ 'Murten':{xy:[338,240],r:'M290 228 L298 238 Q320 244 338 240',t:'Über den Murtensee zum Städtli.'},
+ 'Neuchâtel':{xy:[171,159],r:'M290 228 Q265 205 240 168 Q205 160 171 159',t:'Durch den Broyekanal auf den Neuenburgersee.'},
+ 'Estavayer':{xy:[154,264],r:'M290 228 Q265 205 240 168 Q190 215 154 264',t:'Broyekanal und quer über den Neuenburgersee.'},
+ 'La Neuveville':{xy:[291,88],r:'M290 228 Q265 205 240 168 L253 143 L271 119 Q280 100 291 88',t:'Broyekanal, Neuenburgersee und Zihlkanal.'},
+ 'Erlach':{xy:[307,110],r:'M290 228 Q265 205 240 168 L253 143 L271 119 Q290 112 307 110',t:'Über den Zihlkanal auf den Bielersee.'},
+ 'Biel':{xy:[366,52],r:'M290 228 Q265 205 240 168 L253 143 L271 119 Q320 85 366 52',t:'Einmal quer durchs ganze 3-Seen-Gebiet.'}};
+const $=id=>document.getElementById(id);let raf;
+Object.entries(P).forEach(([k,v])=>{
+ $('pins').insertAdjacentHTML('beforeend',`<g class="place" data-k="${k}"><circle cx="${v.xy[0]}" cy="${v.xy[1]}" r="6" fill="#12343b" stroke="#fff" stroke-width="2"/><text x="${v.xy[0]+9}" y="${v.xy[1]-7}" font-family="Work Sans" font-size="11" font-weight="700" fill="#12343b">${k}</text></g>`);
+ const b=document.createElement('button');b.textContent=k;b.dataset.k=k;b.onclick=()=>pick(k);$('picks').appendChild(b);
+});
+document.querySelectorAll('.place').forEach(g=>g.onclick=()=>pick(g.dataset.k));
+function pick(k){
+ const v=P[k];
+ document.querySelectorAll('.place,.picks button').forEach(e=>e.classList.toggle('on',e.dataset.k===k));
+ const r=$('route');r.setAttribute('d',v.r);
+ const L=r.getTotalLength();cancelAnimationFrame(raf);let t0=null;
+ const step=ts=>{if(!t0)t0=ts;const p=Math.min(1,(ts-t0)/1600);const pt=L?r.getPointAtLength(p*L):{x:S[0],y:S[1]};$('boatIcon').setAttribute('transform',`translate(${pt.x} ${pt.y})`);if(p<1)raf=requestAnimationFrame(step)};
+ raf=requestAnimationFrame(step);
+ $('res').innerHTML=`<b>${k}</b>${v.t} Abholzeit und Details klären wir gerne mit euch.`;
+ $('ask').href='mailto:letsgo@denk-sport.ch?subject='+encodeURIComponent('Abholung in '+k)+'&body='+encodeURIComponent(`Hallo dsBoot\n\nKönnt ihr uns in ${k} abholen?\nWunschdatum: \nPersonen: \nWakesession oder Charter: \n\nFreundliche Grüsse`);
+}
+document.querySelectorAll('.ring').forEach(r=>r.onclick=()=>r.classList.toggle('on'));
+pick('Erlach');
+</script>
+</body>
+</html>

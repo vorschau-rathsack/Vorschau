@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dsBoot – Logbuch (Entwurf «Crew & Flaggen»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f3ead7;--paper2:#e9dcc0;--ink:#13294b;--red:#c23b22;--line:#c9b68f;--gold:#b98a2e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lora',Georgia,serif;background:var(--paper);color:var(--ink);max-width:430px;margin:0 auto}
+.demo{background:var(--ink);color:var(--paper);font:12px 'IBM Plex Mono',monospace;text-align:center;padding:7px 10px}
+.flags{display:flex;justify-content:center;gap:6px;padding:20px 10px 6px;position:relative}
+.flags:before{content:"";position:absolute;left:12px;right:12px;top:22px;border-top:2px solid var(--ink)}
+.flag{width:52px;cursor:pointer;position:relative;transform-origin:top center;animation:wave 3s ease-in-out infinite}
+.flag:nth-child(2n){animation-delay:.4s}.flag:nth-child(3n){animation-delay:.8s}
+@keyframes wave{50%{transform:rotate(3deg)}}
+.flag svg{display:block;width:52px;height:46px;margin-top:4px;border:1px solid rgba(0,0,0,.15)}
+.flag span{display:block;text-align:center;font:700 18px 'IBM Plex Mono';opacity:0;transition:opacity .3s}
+.flag.show span{opacity:1}
+.fhint{text-align:center;font:12px 'IBM Plex Mono';color:#6b5a3a;margin-bottom:6px}
+.hero{padding:14px 20px 26px;text-align:center;border-bottom:2px solid var(--ink)}
+.hero small{font:700 12px 'IBM Plex Mono';letter-spacing:3px;color:var(--red)}
+h1{font-size:clamp(40px,12vw,54px);line-height:1.02;margin:8px 0 12px}
+h1 i{color:var(--red)}
+.hero p{font-size:17px;line-height:1.5}
+section{padding:34px 20px;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(30px,9vw,38px);margin-bottom:6px}
+.kicker{font:700 12px 'IBM Plex Mono';letter-spacing:2px;color:var(--red);text-transform:uppercase}
+.lead{line-height:1.55;margin:8px 0 18px}
+/* Crew-Planer */
+.planner{background:#fffaf0;border:2px solid var(--ink);border-radius:6px;padding:18px;box-shadow:6px 6px 0 var(--ink)}
+.row{margin-bottom:16px}
+.row>b{display:block;font:700 13px 'IBM Plex Mono';text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.crew{display:flex;flex-wrap:wrap;gap:4px;min-height:34px}
+.crew svg{width:22px;height:30px}
+.count{display:flex;align-items:center;gap:12px;margin-top:10px}
+.count button{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);font:700 22px 'IBM Plex Mono';color:var(--ink);cursor:pointer}
+.count output{font:700 26px 'IBM Plex Mono';min-width:120px;text-align:center}
+.seg{display:flex;border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+.seg button{flex:1;padding:11px 4px;border:0;background:transparent;font:600 14px 'Lora';color:var(--ink);cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--paper)}
+.hours{display:flex;gap:6px}
+.hours button{flex:1;padding:11px 0;border:2px solid var(--ink);border-radius:6px;background:transparent;font:700 15px 'IBM Plex Mono';color:var(--ink);cursor:pointer}
+.hours button.on{background:var(--red);border-color:var(--red);color:#fff}
+.entry{background:repeating-linear-gradient(transparent 0 29px,#d8c9a8 29px 30px);border-left:3px solid var(--red);padding:4px 0 4px 14px;margin-top:6px;font-family:'Nothing You Could Do',cursive;font-size:21px;line-height:30px;color:#1d3a8a;min-height:120px}
+.entry .pr{color:var(--red)}
+.btn{display:block;text-align:center;margin-top:16px;padding:15px;background:var(--red);color:#fff;font:700 16px 'IBM Plex Mono';text-decoration:none;border-radius:6px}
+.btn.alt{background:var(--ink)}
+/* Logbuch-Tabellen */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{font:700 11px 'IBM Plex Mono';text-transform:uppercase;letter-spacing:1px;text-align:left;border-bottom:2px solid var(--ink);padding:6px 0}
+td{padding:11px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+td:last-child{text-align:right;font-family:'IBM Plex Mono';font-weight:700;white-space:nowrap}
+.spec{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:16px}
+.spec b{font-family:'IBM Plex Mono'}
+.boat{display:block;width:100%;margin:6px 0 14px}
+.ph{border:2px dashed var(--gold);padding:12px;font-size:14px;color:#6b5a3a;margin-top:14px;border-radius:6px}
+.note{font-size:14px;color:#5a4a2e;line-height:1.5;margin-top:10px}
+.stamp{display:inline-block;border:3px double var(--red);color:var(--red);font:700 13px 'IBM Plex Mono';padding:6px 10px;transform:rotate(-4deg);margin-top:14px}
+footer{padding:28px 20px 40px;background:var(--ink);color:var(--paper);font:14px/1.7 'IBM Plex Mono'}
+footer a{color:#f3c86b}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von dsBoot</div>
+
+<div class="flags" id="flags"></div>
+<p class="fhint">Flaggen antippen – was steht da im Signal-Alphabet?</p>
+
+<div class="hero">
+<small>LOGBUCH · HAFEN SUGIEZ · MURTENSEE</small>
+<h1>Zwei Wasser&shy;verrückte <i>&amp; ein Boot</i></h1>
+<p>Was am Murtensee als Zufall begann, wurde zur Leidenschaft: Wakesurf, Wakeboard, Wakefoil und entspannte Bootsfahrten im 3-Seen-Gebiet.</p>
+<div class="stamp">SAISON APRIL – OKTOBER</div>
+</div>
+
+<section>
+<span class="kicker">Crew-Planer</span>
+<h2>Wer kommt an Bord?</h2>
+<p class="lead">Crew zusammenstellen, Fahrt wählen – der passende Eintrag schreibt sich ins Logbuch.</p>
+<div class="planner">
+ <div class="row"><b>Crew</b>
+  <div class="crew" id="crew"></div>
+  <div class="count"><button id="minus" aria-label="weniger">–</button><output id="n">4 Personen</output><button id="plus" aria-label="mehr">+</button></div>
+ </div>
+ <div class="row"><b>Fahrt</b>
+  <div class="seg"><button class="on" data-m="wake">Mit Wakesession</button><button data-m="charter">Nur Bootsfahrt</button></div>
+ </div>
+ <div class="row"><b>Dauer</b>
+  <div class="hours" id="hours"></div>
+ </div>
+ <b style="font:700 13px 'IBM Plex Mono';text-transform:uppercase">Logbuch-Eintrag</b>
+ <div class="entry" id="entry"></div>
+ <a class="btn" id="mail" href="#">Eintrag als Anfrage senden</a>
+</div>
+</section>
+
+<section>
+<span class="kicker">Preisliste</span>
+<h2>Fahrten &amp; Tarife</h2>
+<table>
+<tr><th>Fahrt</th><th style="text-align:right">CHF</th></tr>
+<tr><td>Einzelsession (Wakesurf, Wakeboard, Wakefoil)<br><small>erste 15 Minuten</small></td><td>70.–</td></tr>
+<tr><td>jede weitere Minute</td><td>4.50</td></tr>
+<tr><td>Gruppensession – Boot exklusiv, 1 Stunde</td><td>250.–</td></tr>
+<tr><td>Gruppensession – 5 Stunden</td><td>800.–</td></tr>
+<tr><td>Boat Charter ohne Wakesession, 1 Stunde</td><td>200.–</td></tr>
+<tr><td>Charter, je weitere 30 Minuten</td><td>90.–</td></tr>
+</table>
+<p class="note">Mengenpakete «Easy», «Performance», «Power» und «Super Hero Surfer» senken den Minutenpreis – Abrechnung am Saisonende. Teamevents &amp; Specials auf Anfrage.</p>
+</section>
+
+<section>
+<span class="kicker">An Bord inbegriffen</span>
+<h2>Was ihr nicht mitbringen müsst</h2>
+<table>
+<tr><td>Captain</td><td>✓</td></tr>
+<tr><td>Benzin</td><td>✓</td></tr>
+<tr><td>Surf-Coach für Anfänger</td><td>✓</td></tr>
+<tr><td>Rettungsmaterial &amp; Sicherheitsausrüstung</td><td>✓</td></tr>
+<tr><td>Wasser</td><td>✓</td></tr>
+<tr><td>Abholung im ganzen 3-Seen-Gebiet</td><td>auf Anfrage</td></tr>
+</table>
+</section>
+
+<section>
+<span class="kicker">Schiffspapiere</span>
+<h2>Supra SV450</h2>
+<svg class="boat" viewBox="0 0 390 110" aria-hidden="true">
+ <path d="M20 70 L300 70 L360 40 L70 40 Z" fill="none" stroke="#13294b" stroke-width="3"/>
+ <path d="M120 40 L140 18 L230 18 L250 40" fill="none" stroke="#13294b" stroke-width="3"/>
+ <path d="M185 18 L185 4 L260 4" stroke="#c23b22" stroke-width="3" fill="none"/>
+ <path d="M0 82 Q40 74 80 82 T160 82 T240 82 T320 82 T390 82" fill="none" stroke="#13294b" stroke-width="2"/>
+ <line x1="20" y1="96" x2="360" y2="96" stroke="#c23b22" stroke-dasharray="3 3"/>
+ <text x="150" y="108" font-family="IBM Plex Mono" font-size="11" fill="#c23b22">7.30 m mit Plattform</text>
+</svg>
+<div class="spec"><span>Länge (mit Plattform)</span><b>7.30 m</b></div>
+<div class="spec"><span>Breite</span><b>2.59 m</b></div>
+<div class="spec"><span>Personen</span><b>max. 15</b></div>
+<div class="spec"><span>Motor</span><b>Indmar Ford Raptor 400</b></div>
+<div class="spec"><span>Hubraum</span><b>6.2 L V8</b></div>
+<div class="ph">📸 Platzhalter für eure eigenen Fotos vom Boot.</div>
+</section>
+
+<section>
+<span class="kicker">Wachplan</span>
+<h2>Wann wir rausfahren</h2>
+<table>
+<tr><td>Montag – Donnerstag</td><td>17:00 – 21:00</td></tr>
+<tr><td>Freitag</td><td>14:00 – 21:00</td></tr>
+<tr><td>Samstag &amp; Sonntag</td><td>10:00 – 21:00</td></tr>
+</table>
+<p class="note">Gruppensessions, Charter und Teamevents auch ausserhalb auf Anfrage. Mindestalter 18 Jahre, in Begleitung ab 10 Jahren.</p>
+</section>
+
+<footer>
+dsBoot · denksport AG<br>
+Hafen Sugiez (Port des Cygnes), Murtensee<br>
+Parkplatz: Parking Protection civile<br>
+<a href="tel:+41767747772">076 774 77 72</a> · <a href="tel:+41797348418">079 734 84 18</a><br>
+<a href="mailto:letsgo@denk-sport.ch">letsgo@denk-sport.ch</a>
+</footer>
+
+<script>
+const F={
+D:'<rect width="60" height="54" fill="#f2c500"/><rect y="15" width="60" height="24" fill="#1d3a8a"/>',
+S:'<rect width="60" height="54" fill="#fff"/><rect x="18" y="15" width="24" height="24" fill="#1d3a8a"/>',
+B:'<path d="M0 0H60L44 27L60 54H0Z" fill="#c23b22"/>',
+O:'<path d="M0 0H60V54Z" fill="#f2c500"/><path d="M0 0V54H60Z" fill="#c23b22"/>',
+T:'<rect width="20" height="54" fill="#c23b22"/><rect x="20" width="20" height="54" fill="#fff"/><rect x="40" width="20" height="54" fill="#1d3a8a"/>'};
+const flags=document.getElementById('flags');
+'DSBOOT'.split('').forEach(l=>{const d=document.createElement('div');d.className='flag';d.innerHTML=`<svg viewBox="0 0 60 54" preserveAspectRatio="none">${F[l]}</svg><span>${l}</span>`;d.onclick=()=>d.classList.toggle('show');flags.appendChild(d)});
+let n=4,mode='wake',h=1;
+const $=id=>document.getElementById(id);
+const hb=$('hours');[1,2,3,4,5].forEach(x=>{const b=document.createElement('button');b.textContent=x+' h';b.onclick=()=>{h=x;draw()};hb.appendChild(b)});
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.seg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');mode=b.dataset.m;draw()});
+$('plus').onclick=()=>{if(n<15)n++;draw()};$('minus').onclick=()=>{if(n>1)n--;draw()};
+const person=c=>`<svg viewBox="0 0 22 30"><circle cx="11" cy="7" r="5" fill="${c}"/><path d="M3 29 Q3 14 11 14 Q19 14 19 29Z" fill="${c}"/></svg>`;
+function draw(){
+ $('crew').innerHTML=Array.from({length:n},(_,i)=>person(i===0?'#c23b22':'#13294b')).join('');
+ $('n').textContent=n+(n===1?' Person':' Personen');
+ [...hb.children].forEach((b,i)=>b.classList.toggle('on',i+1===h));
+ let txt,pr;
+ if(mode==='wake'){
+  txt=`Gruppensession, ${h} h, Boot exklusiv für ${n}`;
+  pr=h===1?'CHF 250.–':h===5?'CHF 800.–':'laut Preisliste (zwischen CHF 250.– und 800.–)';
+ }else{
+  txt=`Boat Charter ohne Wakesession, ${h} h, ${n} an Bord`;
+  pr=n>8?'max. 8 Personen beim Charter – grössere Gruppe bitte anfragen':'CHF '+(200+(h-1)*180)+'.–';
+ }
+ $('entry').innerHTML=`Kurs: Murtensee ab Sugiez<br>${txt}<br>Captain, Benzin &amp; Wasser an Bord ✓<br><span class="pr">${pr}</span>`;
+ $('mail').href='mailto:letsgo@denk-sport.ch?subject='+encodeURIComponent('Anfrage '+(mode==='wake'?'Gruppensession':'Boat Charter'))+'&body='+encodeURIComponent(`Hallo dsBoot\n\nWir möchten anfragen: ${txt}.\nWunschdatum: \n\nFreundliche Grüsse`);
+}
+draw();
+</script>
+</body>
+</html>

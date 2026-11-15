@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dsBoot – Wake am Murtensee (Entwurf «Wake-Baukasten»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#06142b;--deep:#0b2a4f;--lime:#d4ff3a;--aqua:#3fd6e0;--white:#f4f8ff;--muted:#9fb3cf}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--navy);color:var(--white);max-width:430px;margin:0 auto;overflow-x:hidden}
+.demo{background:var(--lime);color:var(--navy);font-size:12px;text-align:center;padding:7px 12px;font-weight:600}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;position:sticky;top:0;background:rgba(6,20,43,.92);backdrop-filter:blur(6px);z-index:5}
+.logo{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:26px;letter-spacing:.5px}
+.logo b{color:var(--lime)}
+header a{color:var(--navy);background:var(--lime);border-radius:30px;padding:8px 14px;font-weight:700;font-size:14px;text-decoration:none}
+h1,h2{font-family:'Big Shoulders Display',sans-serif;font-weight:900;text-transform:uppercase;line-height:.92}
+h1{font-size:clamp(52px,17vw,78px);padding:26px 18px 0}
+h1 span{color:var(--lime);display:block}
+.hero p{padding:14px 18px 0;color:var(--muted);font-size:17px;line-height:1.45}
+.hero svg{display:block;width:100%;margin-top:10px}
+.wake{transition:transform .4s ease}
+section{padding:34px 18px}
+h2{font-size:clamp(38px,12vw,52px);margin-bottom:14px}
+h2 em{font-style:normal;color:var(--aqua)}
+.lead{color:var(--muted);line-height:1.5;margin-bottom:18px}
+/* Baukasten */
+.builder{background:var(--deep);border-radius:22px;padding:18px;border:1px solid #1d4677}
+.chips{display:flex;gap:8px;margin-bottom:14px}
+.chip{flex:1;border:2px solid #2b5a8f;background:transparent;color:var(--white);border-radius:14px;padding:10px 4px;font:600 14px 'Outfit',sans-serif;cursor:pointer}
+.chip.on{background:var(--lime);border-color:var(--lime);color:var(--navy)}
+.stage{background:linear-gradient(#0f3a66,#0a2748);border-radius:16px;overflow:hidden}
+.stage svg{display:block;width:100%}
+label.r{display:flex;justify-content:space-between;margin:16px 0 6px;font-weight:600}
+input[type=range]{width:100%;accent-color:var(--lime);height:28px}
+.total{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;border-top:1px dashed #2b5a8f;padding-top:14px}
+.total big{font-family:"Big Shoulders Display";white-space:nowrap;font-size:44px;color:var(--lime)}
+.small{font-size:13px;color:var(--muted);line-height:1.45;margin-top:8px}
+.btn{display:block;text-align:center;background:var(--lime);color:var(--navy);font-weight:700;border-radius:16px;padding:16px;margin-top:16px;text-decoration:none;font-size:17px}
+.btn.ghost{background:transparent;color:var(--white);border:2px solid var(--white)}
+/* Angebot */
+.offer{border-radius:20px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden}
+.offer:nth-of-type(1){background:var(--lime);color:var(--navy)}
+.offer:nth-of-type(2){background:var(--aqua);color:var(--navy)}
+.offer:nth-of-type(3){background:#fff;color:var(--navy)}
+.offer h3{font-family:'Big Shoulders Display';font-size:34px;text-transform:uppercase}
+.offer .p{font-family:'Big Shoulders Display';font-size:24px;margin:6px 0}
+.offer p{line-height:1.45;font-size:15px}
+.incl{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.incl div{background:var(--deep);border-radius:14px;padding:14px;font-weight:600;font-size:15px}
+.incl div i{display:block;font-style:normal;font-size:22px;margin-bottom:4px}
+/* Boot */
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#1d4677;border-radius:18px;overflow:hidden}
+.specs div{background:var(--navy);padding:16px}
+.specs b{display:block;font-family:'Big Shoulders Display';font-size:40px;color:var(--lime)}
+.specs span{color:var(--muted);font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:12px 0;border-bottom:1px solid #1d4677}
+td:last-child{text-align:right;font-weight:700}
+.ph{border:2px dashed #3a6aa0;border-radius:14px;padding:12px;color:var(--muted);font-size:13px;margin-top:14px}
+footer{padding:30px 18px 90px;color:var(--muted);font-size:14px;line-height:1.6;border-top:1px solid #1d4677}
+.bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:8px;padding:10px 12px;background:rgba(6,20,43,.95);z-index:6}
+.bar a{flex:1;text-align:center;padding:13px;border-radius:14px;font-weight:700;text-decoration:none;color:var(--navy);background:var(--lime)}
+.bar a+a{background:var(--aqua)}
+html.pdf header,html.pdf .bar{position:static}
+html.pdf .bar{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von dsBoot</div>
+<header><div class="logo">ds<b>Boot</b></div><a href="#bauen">Session bauen</a></header>
+
+<div class="hero">
+<h1>Surf die Welle <span>am Murtensee</span></h1>
+<p>Wakesurf, Wakeboard &amp; Wakefoil ab dem Hafen Sugiez – mit Captain, Coach und einem Boot, das richtig Welle macht.</p>
+<svg viewBox="0 0 430 210" aria-hidden="true">
+ <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06142b"/><stop offset="1" stop-color="#123c6b"/></linearGradient></defs>
+ <rect width="430" height="210" fill="url(#sky)"/>
+ <circle cx="340" cy="60" r="34" fill="#d4ff3a" opacity=".9"/>
+ <path d="M0 120 Q60 100 120 118 T250 112 T430 116 V210 H0Z" fill="#0f4a7e"/>
+ <g class="wake" id="heroWake"><path d="M150 132 Q210 70 290 130" fill="none" stroke="#3fd6e0" stroke-width="10" stroke-linecap="round"/><path d="M160 136 Q215 92 282 134" fill="none" stroke="#f4f8ff" stroke-width="3" opacity=".7"/></g>
+ <g transform="translate(250 118)"><path d="M0 14 L110 14 L128 2 L18 2 Z" fill="#f4f8ff"/><rect x="40" y="-10" width="40" height="12" rx="3" fill="#d4ff3a"/><path d="M60 -10 L60 -26 L88 -26" stroke="#f4f8ff" stroke-width="3" fill="none"/></g>
+ <g transform="translate(205 92) rotate(-12)"><rect x="-22" y="30" width="44" height="7" rx="3.5" fill="#d4ff3a"/><circle cx="0" cy="-2" r="7" fill="#f4f8ff"/><path d="M0 5 L0 22 M0 10 L-12 18 M0 10 L12 4 M0 22 L-8 31 M0 22 L8 31" stroke="#f4f8ff" stroke-width="4" stroke-linecap="round"/></g>
+ <path d="M0 150 Q80 140 160 150 T430 146 V210 H0Z" fill="#0a2748"/>
+</svg>
+</div>
+
+<section id="bauen">
+<h2>Bau deine <em>Session</em></h2>
+<p class="lead">Sportart wählen, Minuten schieben – die Welle wächst mit und der Preis rechnet sich live.</p>
+<div class="builder">
+ <div class="chips">
+  <button class="chip on" data-s="Wakesurf">Wakesurf</button>
+  <button class="chip" data-s="Wakeboard">Wakeboard</button>
+  <button class="chip" data-s="Wakefoil">Wakefoil</button>
+ </div>
+ <div class="stage">
+ <svg viewBox="0 0 400 170" id="stage">
+  <rect width="400" height="170" fill="none"/>
+  <path d="M0 100 Q100 92 200 100 T400 98 V170 H0Z" fill="#0d3c6a"/>
+  <g id="wave"><path id="wavePath" d="M60 108 Q150 60 250 106" fill="none" stroke="#3fd6e0" stroke-width="9" stroke-linecap="round"/></g>
+  <g transform="translate(250 92)"><path d="M0 14 L110 14 L128 2 L18 2 Z" fill="#f4f8ff"/><rect x="40" y="-10" width="40" height="12" rx="3" fill="#d4ff3a"/></g>
+  <line id="rope" x1="250" y1="98" x2="120" y2="80" stroke="#f4f8ff" stroke-width="1.5" stroke-dasharray="4 3" opacity="0"/>
+  <g id="rider" transform="translate(120 66)">
+   <rect id="board" x="-22" y="30" width="44" height="7" rx="3.5" fill="#d4ff3a"/>
+   <g id="foil" opacity="0"><line x1="0" y1="37" x2="0" y2="56" stroke="#d4ff3a" stroke-width="3"/><path d="M-14 56 L14 56" stroke="#d4ff3a" stroke-width="4" stroke-linecap="round"/></g>
+   <circle cx="0" cy="-2" r="7" fill="#f4f8ff"/>
+   <path d="M0 5 L0 22 M0 10 L-12 18 M0 10 L12 4 M0 22 L-8 31 M0 22 L8 31" stroke="#f4f8ff" stroke-width="4" stroke-linecap="round" fill="none"/>
+  </g>
+  <path d="M0 122 Q100 114 200 122 T400 120 V170 H0Z" fill="#0a2748"/>
+  <text x="14" y="26" fill="#d4ff3a" font-family="Big Shoulders Display" font-size="24" font-weight="900" id="stLabel">WAKESURF</text>
+  <text x="14" y="46" fill="#9fb3cf" font-family="Outfit" font-size="13" id="stHint">ohne Leine – du surfst die Welle frei</text>
+ </svg>
+ </div>
+ <label class="r"><span>Minuten auf dem Wasser</span><span id="minOut">30 Min.</span></label>
+ <input type="range" id="min" min="15" max="120" step="5" value="30">
+ <div class="total"><span>Richtpreis Einzelsession</span><big id="price">CHF 137.50</big></div>
+ <p class="small">15 Minuten CHF 70.–, jede weitere Minute CHF 4.50. Mit den Mengenpaketen («Easy», «Performance», «Power», «Super Hero Surfer») wird der Minutenpreis günstiger – Abrechnung am Saisonende.</p>
+ <a class="btn" id="wa" href="#">Diese Session per WhatsApp anfragen</a>
+</div>
+</section>
+
+<section>
+<h2>Das <em>Angebot</em></h2>
+<div class="offer"><h3>Einzelsession</h3><div class="p">ab CHF 70.– / 15 Min.</div><p>Wakesurf, Wakeboard oder Wakefoil – Anfänger bekommen einen Surf-Coach dazu.</p></div>
+<div class="offer"><h3>Gruppensession</h3><div class="p">1 h CHF 250.– · 5 h CHF 800.–</div><p>Das Boot exklusiv für eure Gruppe – Captain, Boot und Benzin inklusive.</p></div>
+<div class="offer"><h3>Boat Charter</h3><div class="p">1 h CHF 200.– · +CHF 90.– / 30 Min.</div><p>Ohne Wakesession, einfach geniessen. Bis 8 Personen. Teamevents &amp; Specials auf Anfrage.</p></div>
+</section>
+
+<section>
+<h2>Immer <em>dabei</em></h2>
+<div class="incl">
+ <div><i>🧢</i>Captain</div><div><i>⛽</i>Benzin</div>
+ <div><i>🏄</i>Surf-Coach für Anfänger</div><div><i>🛟</i>Rettungs- &amp; Sicherheitsmaterial</div>
+ <div><i>💧</i>Wasser</div><div><i>📍</i>Abholung im 3-Seen-Gebiet</div>
+</div>
+</section>
+
+<section>
+<h2>Das <em>Boot</em></h2>
+<p class="lead">Supra SV450 – gebaut für Wellen.</p>
+<div class="specs">
+ <div><b>7.30 m</b><span>Länge mit Plattform</span></div>
+ <div><b>2.59 m</b><span>Breite</span></div>
+ <div><b>15</b><span>Personen maximal</span></div>
+ <div><b>6.2 L V8</b><span>Indmar Ford Raptor 400</span></div>
+</div>
+<div class="ph">📸 Platzhalter: Hier kommen eure eigenen Fotos und Videos vom Boot und den Sessions hin.</div>
+</section>
+
+<section>
+<h2>Wann <em>raus?</em></h2>
+<p class="lead">Saison April bis Oktober</p>
+<table>
+<tr><td>Montag – Donnerstag</td><td>17:00 – 21:00</td></tr>
+<tr><td>Freitag</td><td>14:00 – 21:00</td></tr>
+<tr><td>Samstag &amp; Sonntag</td><td>10:00 – 21:00</td></tr>
+</table>
+<p class="small">Gruppensessions, Charter und Teamevents auch ausserhalb dieser Zeiten auf Anfrage.</p>
+<a class="btn ghost" href="mailto:letsgo@denk-sport.ch">letsgo@denk-sport.ch</a>
+</section>
+
+<footer>
+<b>dsBoot</b> · denksport AG<br>
+Hafen Sugiez (Port des Cygnes), Murtensee<br>
+076 774 77 72 · 079 734 84 18<br>
+letsgo@denk-sport.ch
+</footer>
+<div class="bar"><a href="tel:+41767747772">Anrufen</a><a href="https://wa.me/41767747772">WhatsApp</a></div>
+
+<script>
+const hints={Wakesurf:'ohne Leine – du surfst die Welle frei',Wakeboard:'an der Leine über die Welle springen',Wakefoil:'über dem Wasser schweben – fast lautlos'};
+let sport='Wakesurf';
+const $=id=>document.getElementById(id);
+function fmt(n){return 'CHF '+n.toFixed(2)}
+function upd(){
+ const m=+$('min').value;
+ const p=70+Math.max(0,m-15)*4.5;
+ $('minOut').textContent=m+' Min.';
+ $('price').textContent=fmt(p);
+ const h=60-Math.min(40,(m-15)*0.4);
+ $('wavePath').setAttribute('d',`M60 108 Q150 ${h} 250 106`);
+ $('wavePath').setAttribute('stroke-width',6+(m-15)/12);
+ $('rider').setAttribute('transform',`translate(120 ${h+8}) rotate(-10)`);
+ $('rope').setAttribute('opacity',sport==='Wakeboard'?1:0);
+ $('rope').setAttribute('y2',h+20);
+ $('foil').setAttribute('opacity',sport==='Wakefoil'?1:0);
+ $('stLabel').textContent=sport.toUpperCase();
+ $('stHint').textContent=hints[sport];
+ $('wa').href='https://wa.me/41767747772?text='+encodeURIComponent(`Hallo dsBoot! Ich möchte eine ${sport}-Session von ca. ${m} Minuten anfragen.`);
+}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');sport=c.dataset.s;upd()});
+$('min').oninput=upd;upd();
+addEventListener('scroll',()=>{$('heroWake').style.transform=`translateY(${Math.min(20,scrollY/15)}px) scaleY(${1+Math.min(.4,scrollY/800)})`});
+</script>
+</body>
+</html>
