@@ -58,6 +58,7 @@ td:last-child{text-align:right;font-weight:700}
 .boat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .boat div{background:#fff;border-radius:16px;padding:14px}
 .boat b{font-family:'Young Serif';font-weight:400;font-size:28px;color:var(--teal);display:block}
+.tarif{margin-top:14px;background:#fff;border-radius:18px;padding:16px;border:2px solid var(--peach)}.tarif b{font-family:'Young Serif';font-weight:400;font-size:20px;display:block;margin-bottom:6px}.tarif div{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--peach);font-size:15px}.tarif div span:last-child{font-weight:700;text-align:right;color:var(--teal)}.tarif small{display:block;margin-top:8px;font-size:13px;color:#4c6a70}
 footer{background:var(--deep);color:var(--sky);padding:28px 20px 40px;line-height:1.7;font-size:15px}
 footer a{color:var(--peach)}
 html.pdf .cards{flex-direction:column;overflow:visible}html.pdf .card{flex:auto}
@@ -102,6 +103,7 @@ html.pdf .cards{flex-direction:column;overflow:visible}html.pdf .card{flex:auto}
 </svg>
 <div class="picks" id="picks"></div>
 </div>
+<div class="tarif"><b>Abholtarif</b><div><span>Sugiez</span><span>Hauptstandort – ohne Anfahrt</span></div><div><span>Alle anderen Orte</span><span>Anfahrt nach Fahrzeit ab Sugiez</span></div><small>Bevorzugt ist der Murtensee. Alle Preise exkl. MWST.</small></div>
 <div class="result" id="res"></div>
 <a class="btn" id="ask" href="#">Abholung anfragen</a>
 </section>
@@ -113,6 +115,7 @@ html.pdf .cards{flex-direction:column;overflow:visible}html.pdf .card{flex:auto}
  <div class="card"><h3>Gruppensession</h3><div class="p">1 h CHF 250.– · 5 h CHF 800.–</div><p>Das Boot exklusiv für euch – Captain, Boot und Benzin inklusive.</p></div>
  <div class="card"><h3>Boat Charter</h3><div class="p">1 h CHF 200.–</div><p>Ohne Wakesession, je weitere 30 Min. CHF 90.–. Bis 8 Personen. Teamevents auf Anfrage.</p></div>
 </div>
+<p style="font-size:13px;margin-top:10px;color:#4c6a70">Alle Preise exkl. MWST.</p>
 </section>
 
 <section>
@@ -179,7 +182,7 @@ function pick(k){
  const L=r.getTotalLength();cancelAnimationFrame(raf);let t0=null;
  const step=ts=>{if(!t0)t0=ts;const p=Math.min(1,(ts-t0)/1600);const pt=L?r.getPointAtLength(p*L):{x:S[0],y:S[1]};$('boatIcon').setAttribute('transform',`translate(${pt.x} ${pt.y})`);if(p<1)raf=requestAnimationFrame(step)};
  raf=requestAnimationFrame(step);
- $('res').innerHTML=`<b>${k}</b>${v.t} Abholzeit und Details klären wir gerne mit euch.`;
+ $('res').innerHTML=k==='Sugiez'?`<b>Sugiez – Hauptstandort</b>${v.t} Hier fällt keine Anfahrt an.`:`<b>${k}</b>${v.t}<br><span style="color:#ffd9bf;font-weight:700">Abholtarif: Die Fahrzeit von Sugiez nach ${k} wird nach Zeit verrechnet.</span> Abholzeit und genauen Preis klären wir gerne mit euch.`;
  $('ask').href='mailto:letsgo@denk-sport.ch?subject='+encodeURIComponent('Abholung in '+k)+'&body='+encodeURIComponent(`Hallo dsBoot\n\nKönnt ihr uns in ${k} abholen?\nWunschdatum: \nPersonen: \nWakesession oder Charter: \n\nFreundliche Grüsse`);
 }
 document.querySelectorAll('.ring').forEach(r=>r.onclick=()=>r.classList.toggle('on'));
