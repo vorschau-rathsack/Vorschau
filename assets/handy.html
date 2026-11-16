@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Entwurf – Handy-Ansicht</title><style>
+html,body{margin:0;height:100%;background:radial-gradient(circle at 30% 20%,#2b3442,#11151c);font-family:system-ui,-apple-system,sans-serif;color:#e8edf3}
+.w{min-height:100%;display:flex;align-items:center;justify-content:center;gap:56px;padding:30px;box-sizing:border-box}
+.txt{max-width:300px}.txt h1{font-size:28px;margin:0 0 12px;line-height:1.15}.txt p{color:#aab5c3;line-height:1.5;margin:0 0 10px}
+.ph{width:430px;height:min(880px,calc(100vh - 60px));border:14px solid #0b0d11;border-radius:52px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 2px #3a4250;background:#000;position:relative;flex:none}
+iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+@media(max-width:900px){.txt{display:none}}
+</style></head><body><div class="w">
+<div class="txt"><h1>So sehen Ihre Kunden die Seite auf dem Handy</h1><p>Scrollen und antippen wie auf dem Smartphone – alle Elemente sind bedienbar.</p><p>Am schönsten direkt auf Ihrem Handy: einfach denselben Link dort öffnen.</p><p><a id="back" href="javascript:history.back()" style="color:#9fd0ff">← Zurück zur Übersicht</a></p></div>
+<div class="ph"><iframe id="f" title="Handy-Ansicht"></iframe></div></div>
+<script>
+var u=new URLSearchParams(location.search).get('u')||'';
+if(/^\/[A-Za-z0-9_%\-\/. ]*\.html$/.test(u)&&u.indexOf('..')<0&&u.indexOf('/Websiten/')>=0){document.getElementById('f').src=u+'?frame=1';document.title=decodeURIComponent(u.split('/').pop()).replace('.html','')+' – Handy-Ansicht';document.getElementById('back').href=u.replace(/[^\/]*$/,'');}
+</script></body></html>
