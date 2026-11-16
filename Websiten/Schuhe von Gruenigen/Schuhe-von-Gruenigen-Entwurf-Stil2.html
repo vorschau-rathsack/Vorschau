@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schuhe von Grünigen – vom Märitstand bis zur Werkstatt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --senf:#e3a52c;
+  --senf-hell:#f7d88f;
+  --petrol:#14606a;
+  --petrol-tief:#0d3f46;
+  --papier:#fff7e6;
+  --kraft:#c99a62;
+  --kraft-dunkel:#9c6f3e;
+  --tinte:#1a2f33;
+  --grau:#5b6a6b;
+  --tomate:#d9533b;
+}
+@page{margin:0}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papier);color:var(--tinte);font:400 17px/1.6 "Nunito",system-ui,sans-serif;overflow-x:hidden}
+a{color:var(--petrol)}
+.demo{background:var(--tinte);color:#fff7e6;font-size:12.5px;line-height:1.4;text-align:center;padding:7px 14px}
+.spalte{max-width:600px;margin:0 auto;padding:0 18px}
+h1,h2,h3,.hand{font-family:"Kalam",cursive;font-weight:700;line-height:1.1;margin:0;hyphens:manual;overflow-wrap:normal}
+
+/* Vordach */
+.vordach{display:block;width:100%;height:auto}
+.kopf{background:var(--petrol);color:#fff;text-align:center;padding:0 0 34px;position:relative}
+.kopf .schild{display:inline-block;background:var(--papier);color:var(--petrol-tief);border-radius:14px;padding:18px 22px 14px;transform:rotate(-1.5deg);box-shadow:0 6px 0 var(--petrol-tief);margin:6px 16px 0;max-width:calc(100% - 32px)}
+.kopf .schild h1{font-size:clamp(36px,11vw,60px);color:var(--petrol-tief)}
+.kopf .schild h1 span{color:var(--tomate)}
+.kopf .schild p{margin:4px 0 0;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;color:var(--kraft-dunkel)}
+.kopf p.unter{font-size:18px;max-width:28em;margin:24px auto 18px;padding:0 18px;color:#e9f4f2}
+.knoepfe{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:0 18px}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:999px;font-weight:800;font-size:16.5px;text-decoration:none;border:3px solid var(--tinte);box-shadow:0 4px 0 var(--tinte);transition:transform .12s, box-shadow .12s}
+.knopf:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinte)}
+.knopf.senf{background:var(--senf);color:var(--tinte)}
+.knopf.hell{background:var(--papier);color:var(--tinte)}
+.knopf.petrol{background:var(--petrol);color:#fff}
+
+/* Wimpel */
+.wimpel{display:block;width:100%;height:34px}
+
+section{padding:42px 0}
+section h2{font-size:clamp(32px,9vw,48px);color:var(--petrol-tief)}
+.kicker{font-family:"Kalam",cursive;font-size:20px;color:var(--tomate);transform:rotate(-2deg);display:inline-block}
+section p.lead{color:var(--grau);margin:10px 0 18px}
+
+/* Schachtel */
+.schachtel-buehne{position:relative;background:#fff;border:3px solid var(--tinte);border-radius:22px;box-shadow:6px 6px 0 var(--senf);padding:6px 6px 10px;margin-top:6px}
+.schachtel-buehne svg{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+#deckel{transform-box:fill-box;transform-origin:50% 50%;cursor:grab;transition:transform .55s cubic-bezier(.3,1.4,.5,1)}
+#deckel.zieht{transition:none;cursor:grabbing}
+.offen #deckel{transform:translate(-8px,-128px) rotate(-6deg)}
+.inhalt{transition:transform .6s cubic-bezier(.3,1.5,.5,1), opacity .3s}
+.inhalt{transform:translateY(70px);opacity:0}
+.inhalt.raus{transform:none;opacity:1}
+.pfeil-hinweis{transition:opacity .3s}
+.offen .pfeil-hinweis{opacity:0}
+.schachtel-steuer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 10px 0}
+.schachtel-steuer .status{font-family:"Kalam",cursive;font-size:19px;color:var(--grau)}
+.schachtel-steuer button{font:800 15px "Nunito",sans-serif;background:var(--senf);border:3px solid var(--tinte);border-radius:999px;padding:9px 16px;box-shadow:0 3px 0 var(--tinte);cursor:pointer;color:var(--tinte)}
+.schachtel-steuer button:disabled{opacity:.45;cursor:default}
+
+.zettel-liste{display:grid;gap:16px;margin-top:22px}
+.zettel{display:none;background:#fff;border:3px solid var(--tinte);border-radius:16px;padding:18px 18px 16px;position:relative}
+.zettel.da{display:block;animation:hops .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes hops{from{transform:translateY(-24px) rotate(-3deg);opacity:0}to{transform:none;opacity:1}}
+.zettel:nth-child(1){box-shadow:5px 5px 0 var(--senf)}
+.zettel:nth-child(2){box-shadow:5px 5px 0 var(--petrol)}
+.zettel:nth-child(3){box-shadow:5px 5px 0 var(--tomate)}
+.zettel .nr{position:absolute;top:-16px;right:16px;background:var(--tinte);color:#fff;font:700 15px "Kalam",cursive;border-radius:999px;padding:2px 12px}
+.zettel h3{font-size:30px;color:var(--petrol-tief)}
+.zettel ul{margin:10px 0 0;padding:0;list-style:none}
+.zettel li{padding:6px 0 6px 30px;position:relative;border-bottom:2px dotted #e8dcc2}
+.zettel li:last-child{border-bottom:0}
+.zettel li::before{content:"";position:absolute;left:4px;top:13px;width:14px;height:14px;border-radius:50%;background:var(--senf);border:2px solid var(--tinte)}
+.zettel p{margin:8px 0 0}
+.zettel .klein{font-size:14px;color:var(--grau)}
+.kontakt-zeilen a{font-weight:800;text-decoration:none}
+
+/* Marktstand */
+.markt{background:var(--senf-hell);position:relative}
+.markt svg.stand{display:block;width:100%;height:auto;margin-top:6px}
+.tafel{background:var(--petrol-tief);color:#f3efe2;border-radius:14px;border:10px solid var(--kraft-dunkel);padding:18px 18px 20px;margin-top:-8px;position:relative;box-shadow:0 8px 0 rgba(0,0,0,.12)}
+.tafel h3{font-size:30px;color:#fff}
+.tafel p{margin:6px 0 12px;color:#cfe1dd}
+.platz{border:2.5px dashed currentColor;border-radius:12px;padding:14px;text-align:center;font-weight:800;opacity:.9}
+.tafel .platz{color:var(--senf-hell)}
+
+/* Kontakt */
+.kontakt h2{margin-bottom:8px}
+.anhaenger{background:#fff;border:3px solid var(--tinte);border-radius:18px;padding:22px 18px 18px;position:relative;margin-top:18px;box-shadow:6px 6px 0 var(--petrol)}
+.anhaenger h3{font-size:30px;color:var(--petrol-tief)}
+.anhaenger .wer{color:var(--grau);margin:0 0 12px}
+.anhaenger dl{margin:0;display:grid;grid-template-columns:84px 1fr;gap:8px 10px}
+.anhaenger dt{font-family:"Kalam",cursive;font-weight:700;color:var(--tomate);font-size:18px;line-height:1.5}
+.anhaenger dd{margin:0}
+.anhaenger dd a{font-weight:800;text-decoration:none}
+.anhaenger .knoepfe{justify-content:stretch;padding:0;margin-top:18px}
+.anhaenger .knoepfe .knopf{flex:1 1 140px}
+.platz.dunkel{color:var(--grau)}
+.foto{margin-top:20px;aspect-ratio:16/9;display:grid;place-items:center;background:#fff}
+
+footer{background:var(--tinte);color:#cfe1dd;text-align:center;font-size:13px;padding:26px 18px 34px}
+footer b{font-family:"Kalam",cursive;font-size:22px;color:#fff;display:block}
+
+.auf{opacity:0;transform:translateY(20px) rotate(-1deg);transition:opacity .6s, transform .6s}
+.auf.in{opacity:1;transform:none}
+
+@media (min-width:760px){
+  .spalte{max-width:720px}
+  .kopf .schild{padding:22px 40px 16px}
+}
+
+/* PDF */
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .auf{opacity:1;transform:none}
+html.pdf .zettel{display:block}
+html.pdf .schachtel-steuer{display:none}
+html.pdf .inhalt{transform:none;opacity:1}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Schuhe von Grünigen</div>
+
+<header class="kopf">
+  <!-- gestreiftes Vordach -->
+  <svg class="vordach" viewBox="0 0 430 92" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="430" height="60" fill="#fff7e6"/>
+    <g fill="#e3a52c">
+      <rect x="0" width="43" height="60"/><rect x="86" width="43" height="60"/><rect x="172" width="43" height="60"/><rect x="258" width="43" height="60"/><rect x="344" width="43" height="60"/>
+    </g>
+    <!-- Bogenkante -->
+    <path d="M0 60 q21.5 30 43 0 z" fill="#e3a52c"/><path d="M43 60 q21.5 30 43 0 z" fill="#fff7e6"/>
+    <path d="M86 60 q21.5 30 43 0 z" fill="#e3a52c"/><path d="M129 60 q21.5 30 43 0 z" fill="#fff7e6"/>
+    <path d="M172 60 q21.5 30 43 0 z" fill="#e3a52c"/><path d="M215 60 q21.5 30 43 0 z" fill="#fff7e6"/>
+    <path d="M258 60 q21.5 30 43 0 z" fill="#e3a52c"/><path d="M301 60 q21.5 30 43 0 z" fill="#fff7e6"/>
+    <path d="M344 60 q21.5 30 43 0 z" fill="#e3a52c"/><path d="M387 60 q21.5 30 43 0 z" fill="#fff7e6"/>
+    <path d="M0 60 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0 q21.5 30 43 0" fill="none" stroke="#1a2f33" stroke-width="3"/>
+    <rect width="430" height="6" fill="#1a2f33"/>
+  </svg>
+
+  <div class="schild">
+    <h1>Schuhe von <span>Grünigen</span></h1>
+    <p>Schuhmacherei · Spiez</p>
+  </div>
+  <p class="unter">Schuh kaputt? Tasche gerissen? Christian von Grünigen flickt Schuhe und Ledertaschen – und hat Ledermappen und Ledergurte. In Spiez und am Märit.</p>
+  <div class="knoepfe">
+    <a class="knopf senf" href="tel:+41336509401"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg> 033 650 94 01</a>
+    <a class="knopf hell" href="#schachtel">Schachtel öffnen</a>
+  </div>
+</header>
+
+<svg class="wimpel" viewBox="0 0 430 34" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 4 Q215 24 430 4" fill="none" stroke="#1a2f33" stroke-width="2"/>
+  <path d="M14 6 l14 1 l-7 18z" fill="#d9533b"/><path d="M50 9 l14 1.5 l-8 18z" fill="#e3a52c"/><path d="M88 12 l14 1 l-7 18z" fill="#14606a"/>
+  <path d="M126 13 l14 .5 l-7 18z" fill="#d9533b"/><path d="M164 14 l14 0 l-7 18z" fill="#e3a52c"/><path d="M202 14.5 l14 0 l-7 18z" fill="#14606a"/>
+  <path d="M240 14 l14 0 l-7 18z" fill="#d9533b"/><path d="M278 13.5 l14 -.5 l-7 18z" fill="#e3a52c"/><path d="M316 12 l14 -1 l-7 18z" fill="#14606a"/>
+  <path d="M354 10 l14 -1.5 l-7 18z" fill="#d9533b"/><path d="M392 7 l14 -1 l-7 18z" fill="#e3a52c"/>
+</svg>
+
+<!-- Schuhschachtel -->
+<section id="schachtel">
+  <div class="spalte">
+    <span class="kicker">Zum Ausprobieren:</span>
+    <h2>Was steckt in der Schachtel?</h2>
+    <p class="lead">Ziehen Sie den Deckel nach oben – oder tippen Sie einfach drauf. Dann packen Sie Stück für Stück aus.</p>
+
+    <div class="schachtel-buehne auf" id="buehne">
+      <svg id="schachtelSvg" viewBox="0 0 360 320" aria-label="Schuhschachtel zum Öffnen" role="img">
+        <!-- Schatten -->
+        <ellipse cx="190" cy="300" rx="150" ry="12" fill="#1a2f33" opacity=".12"/>
+        <!-- Rückwand innen -->
+        <path d="M58 178 L104 148 L332 148 L286 178 Z" fill="#7d5730"/>
+        <!-- Seidenpapier -->
+        <path d="M66 176 L96 152 L120 168 L150 150 L176 170 L206 150 L232 168 L262 150 L288 166 L322 152 L284 178 Z" fill="#fdf1f0" stroke="#e5c9c4" stroke-width="1.5"/>
+
+        <!-- Inhalt 3: Visitenkarte/Telefon -->
+        <g class="inhalt" id="inhalt3">
+          <rect x="226" y="84" width="74" height="86" rx="10" fill="#14606a" stroke="#1a2f33" stroke-width="3" transform="rotate(10 263 127)"/>
+          <g transform="rotate(10 263 127)">
+            <rect x="236" y="94" width="54" height="40" rx="4" fill="#fff7e6"/>
+            <path d="M246 108 c3 8 9 14 17 17 l4-4 c1-1 2-1 3 0 l5 3 c1 1 1 2 0 3 l-3 3 c-14 0-28-14-28-28 l3-3 c1-1 2-1 3 0 l3 5 c1 1 1 2 0 3z" fill="#d9533b"/>
+            <circle cx="263" cy="152" r="6" fill="#e3a52c" stroke="#1a2f33" stroke-width="2"/>
+          </g>
+        </g>
+        <!-- Inhalt 2: Tasche + Gurt -->
+        <g class="inhalt" id="inhalt2">
+         <g transform="translate(-16,-22)">
+          <path d="M150 104 c0 -22 40 -22 40 0" fill="none" stroke="#1a2f33" stroke-width="5"/>
+          <rect x="130" y="102" width="80" height="66" rx="10" fill="#b5713b" stroke="#1a2f33" stroke-width="3"/>
+          <path d="M130 124 h80" stroke="#1a2f33" stroke-width="2.5"/>
+          <rect x="163" y="118" width="14" height="14" rx="3" fill="#e3a52c" stroke="#1a2f33" stroke-width="2"/>
+          <path d="M136 160 h68" stroke="#fff7e6" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <!-- Gurt -->
+          <path d="M98 170 C96 130 110 110 122 108" fill="none" stroke="#5a3a24" stroke-width="10" stroke-linecap="round"/>
+          <rect x="114" y="98" width="18" height="20" rx="3" fill="none" stroke="#e3a52c" stroke-width="4" transform="rotate(20 123 108)"/>
+         </g>
+        </g>
+        <!-- Inhalt 1: Schuh -->
+        <g class="inhalt" id="inhalt1">
+          <path d="M84 166 C84 132 96 108 112 102 L140 100 C142 118 156 128 182 132 L230 140 C252 146 262 156 262 168 Z" fill="#d9533b" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M80 166 L266 166 L266 176 L80 176 Z" fill="#1a2f33"/>
+          <path d="M120 112 l20 10 M118 122 l22 8 M118 132 l24 4" stroke="#fff7e6" stroke-width="3" stroke-linecap="round"/>
+          <path d="M84 158 L262 158" stroke="#fff7e6" stroke-width="1.5" stroke-dasharray="4 3"/>
+        </g>
+
+        <!-- Vorderwand + Seite -->
+        <path d="M286 178 L332 148 L332 252 L286 284 Z" fill="#9c6f3e" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M58 178 L286 178 L286 284 L58 284 Z" fill="#c99a62" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Etikett vorne -->
+        <rect x="104" y="204" width="136" height="56" rx="6" fill="#fff7e6" stroke="#1a2f33" stroke-width="2.5"/>
+        <text x="172" y="228" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="18" fill="#14606a">von Grünigen</text>
+        <text x="172" y="249" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="10.5" letter-spacing="2" fill="#9c6f3e">SCHUHMACHEREI</text>
+
+        <!-- Deckel -->
+        <g id="deckel" role="button" tabindex="0" aria-label="Deckel öffnen">
+          <g>
+            <path d="M48 166 L100 132 L344 132 L294 166 Z" fill="#e3a52c" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M48 166 L294 166 L294 190 L48 190 Z" fill="#d18f17" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M294 166 L344 132 L344 156 L294 190 Z" fill="#b97a0c" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+            <!-- Streifen auf dem Deckel -->
+            <path d="M110 166 L156 132 M170 166 L216 132 M230 166 L276 132" stroke="#fff7e6" stroke-width="10" opacity=".85"/>
+            <path d="M74 190 V166 M100 190 V166 M126 190 V166" stroke="none"/>
+            <path d="M48 166 L100 132 L344 132 L294 166 Z" fill="none" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+          </g>
+        </g>
+        <!-- Hinweis-Pfeil -->
+        <g class="pfeil-hinweis">
+          <path d="M196 116 C196 92 200 76 206 60" fill="none" stroke="#d9533b" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 7"/>
+          <path d="M196 64 L207 54 L214 68" fill="none" stroke="#d9533b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="226" y="74" font-family="Kalam, cursive" font-weight="700" font-size="20" fill="#d9533b">hochziehen!</text>
+        </g>
+      </svg>
+      <div class="schachtel-steuer">
+        <span class="status" id="status">Noch zu …</span>
+        <button type="button" id="weiter">Deckel auf</button>
+      </div>
+    </div>
+
+    <div class="zettel-liste" aria-live="polite">
+      <article class="zettel" id="zettel1">
+        <span class="nr">1 / 3</span>
+        <h3>Schuhreparaturen</h3>
+        <p>Die Schuhmacherei von Grünigen repariert Schuhe. Typische Fälle, bei denen sich ein Anruf lohnt – z.B.:</p>
+        <ul>
+          <li>Absatz abgelaufen</li>
+          <li>Sohle durch oder lose</li>
+          <li>Naht aufgegangen</li>
+          <li>Reissverschluss oder Schnalle kaputt</li>
+        </ul>
+        <p class="klein">Fragen Sie an, ob sich Ihr Schuh retten lässt – der Schuhmacher schaut ihn sich an.</p>
+      </article>
+      <article class="zettel" id="zettel2">
+        <span class="nr">2 / 3</span>
+        <h3>Taschen &amp; Gurte</h3>
+        <ul>
+          <li><b>Ledertaschen</b> – werden ebenfalls repariert</li>
+          <li><b>Ledermappen</b> – im Angebot</li>
+          <li><b>Ledergurte</b> – im Angebot</li>
+        </ul>
+        <p class="klein">Fragen Sie nach, was gerade da ist – oder schauen Sie am Märitstand vorbei.</p>
+      </article>
+      <article class="zettel" id="zettel3">
+        <span class="nr">3 / 3</span>
+        <h3>Kontakt</h3>
+        <div class="kontakt-zeilen">
+          <p>Bürgstrasse 58, 3700 Spiez</p>
+          <p>Telefon <a href="tel:+41336509401">033 650 94 01</a><br>Natel <a href="tel:+41774761214">077 476 12 14</a></p>
+          <p><a href="mailto:vongruenigen@hispeed.ch">vongruenigen@hispeed.ch</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Marktstand -->
+<section class="markt" id="markt">
+  <div class="spalte">
+    <span class="kicker">Auch unterwegs</span>
+    <h2>Am Spiezmärit &amp; an Märkten</h2>
+    <p class="lead" style="color:#4d4a3a">Christian von Grünigen ist mit seinem Stand am Spiezmärit und an weiteren Märkten und Anlässen anzutreffen. Gleich vorbeibringen, was geflickt werden soll.</p>
+
+    <svg class="stand auf" viewBox="0 0 400 230" aria-hidden="true">
+      <!-- Pfosten -->
+      <rect x="30" y="60" width="10" height="168" fill="#9c6f3e" stroke="#1a2f33" stroke-width="2.5"/>
+      <rect x="360" y="60" width="10" height="168" fill="#9c6f3e" stroke="#1a2f33" stroke-width="2.5"/>
+      <!-- Dach, petrol/weiss -->
+      <path d="M14 70 L46 16 L354 16 L386 70 Z" fill="#fff7e6" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+      <g fill="#14606a">
+        <path d="M14 70 L46 16 L80 16 L52 70 Z"/><path d="M90 70 L114 16 L148 16 L128 70 Z"/><path d="M166 70 L182 16 L216 16 L204 70 Z"/><path d="M242 70 L250 16 L284 16 L280 70 Z"/><path d="M318 70 L318 16 L352 16 L356 70 Z"/>
+      </g>
+      <path d="M14 70 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 q19 22 38 0 z" fill="#14606a" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M14 70 L46 16 L354 16 L386 70 Z" fill="none" stroke="#1a2f33" stroke-width="3" stroke-linejoin="round"/>
+      <!-- Schild -->
+      <rect x="140" y="98" width="120" height="30" rx="6" fill="#e3a52c" stroke="#1a2f33" stroke-width="2.5"/>
+      <text x="200" y="119" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#1a2f33">Schuhmacherei</text>
+      <path d="M160 98 L170 88 M240 98 L230 88" stroke="#1a2f33" stroke-width="2"/>
+      <!-- Tisch -->
+      <rect x="22" y="176" width="356" height="14" rx="3" fill="#c99a62" stroke="#1a2f33" stroke-width="2.5"/>
+      <path d="M30 190 h340 v38 h-340z" fill="#d9533b" stroke="#1a2f33" stroke-width="2.5"/>
+      <path d="M30 190 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 q14 12 28 0 l4 0" fill="#fff7e6" opacity=".35"/>
+      <!-- Auslage: Schuhpaar -->
+      <path d="M48 176 C48 160 54 150 62 148 L74 148 C75 156 82 160 94 162 L108 165 C114 167 116 172 116 176 Z" fill="#5a3a24" stroke="#1a2f33" stroke-width="2"/>
+      <path d="M70 176 C70 162 76 154 84 152 L96 152 C97 158 104 162 114 164 L128 167 C134 169 136 172 136 176 Z" fill="#7a4a28" stroke="#1a2f33" stroke-width="2"/>
+      <!-- Gurte aufgerollt -->
+      <circle cx="176" cy="164" r="12" fill="none" stroke="#5a3a24" stroke-width="7"/>
+      <circle cx="176" cy="164" r="3" fill="#e3a52c"/>
+      <circle cx="206" cy="166" r="10" fill="none" stroke="#9c6f3e" stroke-width="6"/>
+      <!-- Mappe -->
+      <rect x="236" y="146" width="56" height="30" rx="4" fill="#b5713b" stroke="#1a2f33" stroke-width="2"/>
+      <path d="M236 156 C254 162 274 162 292 156" fill="none" stroke="#1a2f33" stroke-width="2"/>
+      <rect x="259" y="155" width="10" height="8" rx="2" fill="#e3a52c" stroke="#1a2f33" stroke-width="1.5"/>
+      <!-- Tasche -->
+      <path d="M318 146 c0 -14 26 -14 26 0" fill="none" stroke="#1a2f33" stroke-width="3"/>
+      <rect x="308" y="144" width="46" height="32" rx="6" fill="#14606a" stroke="#1a2f33" stroke-width="2"/>
+      <!-- Werkzeug hängt -->
+      <path d="M70 70 v26" stroke="#1a2f33" stroke-width="1.5"/>
+      <rect x="62" y="96" width="16" height="7" rx="2" fill="#5b6a6b"/><rect x="68" y="100" width="4" height="22" rx="2" fill="#9c6f3e"/>
+      <path d="M330 70 v20" stroke="#1a2f33" stroke-width="1.5"/>
+      <path d="M322 90 h16 l-4 18 h-8z" fill="#e3a52c" stroke="#1a2f33" stroke-width="1.5"/>
+    </svg>
+
+    <div class="tafel auf">
+      <h3>Wo ist der Stand als Nächstes?</h3>
+      <p>Die aktuellen Märkte und Anlässe:</p>
+      <div class="platz">[Nächste Markttermine]</div>
+    </div>
+  </div>
+</section>
+
+<!-- Kontakt -->
+<section class="kontakt" id="kontakt">
+  <div class="spalte">
+    <span class="kicker">Vorbeikommen</span>
+    <h2>In der Werkstatt in Spiez</h2>
+    <div class="anhaenger auf">
+      <h3>Schuhe von Grünigen</h3>
+      <p class="wer">Christian von Grünigen, Schuhmacher</p>
+      <dl>
+        <dt>Adresse</dt><dd>Bürgstrasse 58<br>3700 Spiez</dd>
+        <dt>Telefon</dt><dd><a href="tel:+41336509401">033 650 94 01</a></dd>
+        <dt>Natel</dt><dd><a href="tel:+41774761214">077 476 12 14</a></dd>
+        <dt>E-Mail</dt><dd><a href="mailto:vongruenigen@hispeed.ch">vongruenigen@hispeed.ch</a></dd>
+        <dt>Offen</dt><dd><div class="platz dunkel" style="padding:8px;text-align:left">[Öffnungszeiten – bitte ergänzen]</div></dd>
+      </dl>
+      <div class="knoepfe">
+        <a class="knopf petrol" href="tel:+41336509401">Anrufen</a>
+        <a class="knopf senf" href="tel:+41774761214">Natel</a>
+        <a class="knopf hell" href="mailto:vongruenigen@hispeed.ch?subject=Anfrage">E-Mail</a>
+      </div>
+    </div>
+    <div class="platz dunkel foto auf">[Ihr Foto vom Märitstand]</div>
+  </div>
+</section>
+
+<footer>
+  <b>Schuhe von Grünigen</b>
+  Bürgstrasse 58 · 3700 Spiez<br>Entwurf von Max Rathsack
+</footer>
+
+<script>
+(function(){
+  var buehne=document.getElementById('buehne');
+  var svg=document.getElementById('schachtelSvg');
+  var deckel=document.getElementById('deckel');
+  var knopf=document.getElementById('weiter');
+  var status=document.getElementById('status');
+  var schritt=0; // 0 zu, 1..3 ausgepackt
+  var texte=['Noch zu …','Schuhreparaturen','Taschen & Gurte','Alles ausgepackt!'];
+
+  function zeige(n){
+    schritt=n;
+    buehne.classList.toggle('offen',n>0);
+    for(var i=1;i<=3;i++){
+      document.getElementById('inhalt'+i).classList.toggle('raus',i<=n);
+      document.getElementById('zettel'+i).classList.toggle('da',i<=n);
+    }
+    status.textContent=texte[n];
+    if(n===0){knopf.textContent='Deckel auf';}
+    else if(n<3){knopf.textContent='Weiter auspacken ('+(n+1)+'/3)';}
+    else {knopf.textContent='Wieder einpacken';}
+    if(n>0){
+      var z=document.getElementById('zettel'+n);
+      if(z && n>1 && z.getBoundingClientRect().top>innerHeight-80) z.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  }
+  knopf.addEventListener('click',function(){zeige(schritt<3?schritt+1:0)});
+
+  // Deckel ziehen
+  var start=null, dy=0, gezogen=false;
+  function svgY(e){var r=svg.getBoundingClientRect();return (e.clientY-r.top)*(320/r.height)}
+  deckel.addEventListener('pointerdown',function(e){
+    if(schritt>0) return;
+    start=svgY(e);dy=0;gezogen=false;deckel.classList.add('zieht');
+    deckel.setPointerCapture(e.pointerId);
+  });
+  deckel.addEventListener('pointermove',function(e){
+    if(start===null) return;
+    dy=Math.min(0,svgY(e)-start);
+    if(dy<-4) gezogen=true;
+    deckel.style.transform='translate('+(-dy*0.25)+'px,'+dy+'px) rotate('+(-dy*0.08)+'deg)';
+  });
+  function los(){
+    if(start===null) return;
+    start=null;deckel.classList.remove('zieht');deckel.style.transform='';
+    if(!gezogen || dy<-30) zeige(1); // Tippen oder genug gezogen
+  }
+  deckel.addEventListener('pointerup',los);
+  deckel.addEventListener('pointercancel',function(){start=null;deckel.classList.remove('zieht');deckel.style.transform='';});
+  deckel.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();if(schritt===0)zeige(1)}});
+  // Tippen in die offene Schachtel = weiter auspacken
+  svg.addEventListener('click',function(e){if(schritt>0 && schritt<3 && !deckel.contains(e.target)) zeige(schritt+1)});
+
+  if(document.documentElement.classList.contains('pdf')) zeige(3);
+  window.__allesZeigen=function(){zeige(3)};
+
+  var els=document.querySelectorAll('.auf');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  } else els.forEach(function(e){e.classList.add('in')});
+})();
+</script>
+</body>
+</html>

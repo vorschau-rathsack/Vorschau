@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>René Streit – Mosaik</title>
+<meta name="description" content="Entwurf: René Streit, keramische Wand- und Bodenbeläge, Uetendorf">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kalk:#f7f5f0;
+  --kalk2:#eeeae1;
+  --fuge:#dcd6ca;
+  --tuerkis:#35b5b0;
+  --lagune:#1e8291;
+  --sand:#dcc49b;
+  --tiefblau:#1c3768;
+  --tinte:#1b2733;
+  --grau:#5d6872;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--kalk);color:var(--tinte);font-family:"Instrument Sans",system-ui,sans-serif;font-size:16.5px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+.hinweis{background:var(--tiefblau);color:#e8eef7;font-size:12px;text-align:center;padding:7px 14px;letter-spacing:.01em}
+
+/* Kopf */
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 6px}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke svg{flex:none}
+.marke b{display:block;font-weight:700;font-size:17px;letter-spacing:-.01em;line-height:1.1}
+.marke small{display:block;font-size:12px;color:var(--grau);line-height:1.2}
+.ruf{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;text-decoration:none;color:var(--kalk);background:var(--lagune);padding:9px 14px;border-radius:999px;white-space:nowrap}
+
+/* Hero */
+.hero{padding:26px 0 10px}
+.kicker{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--lagune)}
+h1{font-size:clamp(34px,10.4vw,52px);line-height:1.02;letter-spacing:-.03em;font-weight:600;margin:12px 0 16px}
+h1 em{font-style:italic;font-weight:400;color:var(--lagune)}
+.lead{font-size:17.5px;color:#34424f;max-width:30em}
+.knoepfe{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15.5px/1 "Instrument Sans",sans-serif;padding:15px 20px;border-radius:12px;text-decoration:none;border:0;cursor:pointer}
+.btn.voll{background:var(--tiefblau);color:#fff}
+.btn.rand{background:transparent;color:var(--tiefblau);box-shadow:inset 0 0 0 1.5px var(--tiefblau)}
+.heroband{margin:30px 0 0;display:block;width:100%;height:auto}
+
+/* Abschnitte */
+section{padding:52px 0 8px}
+h2{font-size:clamp(27px,7.6vw,38px);line-height:1.08;letter-spacing:-.025em;font-weight:600;margin:10px 0 12px}
+h2 em{font-style:italic;font-weight:400;color:var(--lagune)}
+.nr{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--grau)}
+.nr i{width:10px;height:10px;border-radius:2px;display:inline-block}
+p.text{color:#34424f;max-width:32em}
+
+/* Mosaik-Werkbank */
+.werkbank{margin-top:22px;background:#fff;border-radius:20px;padding:18px;box-shadow:0 1px 0 var(--fuge),0 12px 30px -18px rgba(28,55,104,.35)}
+.raster{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;background:var(--fuge);padding:6px;border-radius:10px;touch-action:none;user-select:none;-webkit-user-select:none}
+.stein{aspect-ratio:1;border:0;border-radius:3px;background:var(--kalk);cursor:pointer;position:relative;transition:background-color .35s ease,transform .2s ease;-webkit-tap-highlight-color:transparent}
+.stein::after{content:"";position:absolute;left:14%;top:12%;width:34%;height:22%;border-radius:40%;background:rgba(255,255,255,.0);transition:background .3s}
+.stein.glas::after{background:rgba(255,255,255,.38)}
+.stein:nth-child(3n){border-radius:2px 4px 3px 2px}
+.stein:nth-child(5n+1){border-radius:4px 2px 3px 4px}
+.stein.pop{transform:scale(.86)}
+.palette{display:flex;gap:10px;align-items:center;margin:16px 0 4px;flex-wrap:wrap}
+.farbe{width:44px;height:44px;border-radius:10px;border:0;cursor:pointer;position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.farbe.aktiv{outline:3px solid var(--tinte);outline-offset:3px}
+.farbe span{position:absolute;left:0;right:0;top:100%;margin-top:7px;font-size:10.5px;color:var(--grau);text-align:center;white-space:nowrap}
+.palette-labels{height:18px}
+.zaehler{font-size:13px;color:var(--grau);margin:18px 0 12px}
+.zaehler b{color:var(--tinte)}
+.werk-knoepfe{display:flex;gap:10px;flex-wrap:wrap}
+.werk-knoepfe .btn{flex:1 1 150px;padding:14px 12px}
+.btn.tuerkis{background:var(--tuerkis);color:#06282b}
+.btn.leise{background:var(--kalk2);color:var(--tinte)}
+.notiz{font-size:13.5px;color:var(--grau);margin-top:14px}
+
+/* Materialien */
+.materialien{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.mat{background:#fff;border-radius:16px;padding:16px 14px 14px;border:1px solid var(--kalk2)}
+.mat svg{display:block;margin-bottom:12px}
+.mat b{display:block;font-size:16px;line-height:1.2;font-weight:600}
+.mat small{display:block;font-size:13px;color:var(--grau);margin-top:4px;line-height:1.35}
+.mat.breit{grid-column:1/-1;display:flex;gap:14px;align-items:center}
+.mat.breit svg{margin:0;flex:none}
+
+/* Versprechen */
+.versprechen{margin-top:20px;display:grid;gap:12px}
+.vs{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start;padding:16px 0;border-top:1px solid var(--fuge)}
+.vs:last-child{border-bottom:1px solid var(--fuge)}
+.vs b{display:block;font-size:18px;font-weight:600;line-height:1.25}
+.vs p{font-size:15px;color:#41505d;margin-top:3px}
+
+/* Projekte */
+.galerie{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.platz{border:2px dashed #b9b2a3;border-radius:14px;min-height:130px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;color:#7a7365;font-size:13.5px;background:repeating-linear-gradient(45deg,transparent 0 14px,rgba(220,214,202,.35) 14px 15px)}
+.platz.gross{grid-column:1/-1;min-height:180px}
+.platz.zeile{min-height:0;padding:16px;justify-content:flex-start;text-align:left}
+
+/* Kundenstamm/Lieferanten */
+.zweier{display:grid;gap:12px;margin-top:18px}
+.karte{background:#fff;border-radius:16px;padding:18px;border:1px solid var(--kalk2)}
+.karte h3{font-size:17px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+
+/* Gebiet */
+.orte{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.ort{display:inline-flex;align-items:center;gap:8px;padding:10px 14px 10px 10px;background:#fff;border-radius:10px;font-weight:500;border:1px solid var(--kalk2)}
+.ort i{width:14px;height:14px;border-radius:3px;display:block}
+.ort.haupt{background:var(--tiefblau);color:#fff;border-color:var(--tiefblau)}
+
+/* Kontakt */
+.kontakt{margin-top:56px;background:var(--tiefblau);color:#eaf0f8;padding:40px 0 34px;position:relative;overflow:hidden}
+.kontakt h2{color:#fff}
+.kontakt h2 em{color:var(--tuerkis)}
+.kontakt .text{color:#c9d5e6}
+.kz{display:grid;gap:10px;margin-top:22px}
+.kz a.btn{width:100%;justify-content:space-between;padding:18px 18px}
+.kz .btn.hell{background:#fff;color:var(--tiefblau)}
+.kz .btn.glas{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.adresse{margin-top:22px;font-size:15px;line-height:1.6;color:#dce5f1}
+.kontakt .platz{border-color:rgba(255,255,255,.35);color:#c9d5e6;background:none;min-height:0;padding:14px;margin-top:16px;font-size:13.5px}
+.kontakt-band{display:block;width:100%;height:auto;margin-top:30px}
+footer{background:var(--tiefblau);color:#9fb0c8;font-size:12.5px;padding:0 0 28px}
+footer .wrap{border-top:1px solid rgba(255,255,255,.14);padding-top:16px}
+
+/* Einblenden */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.da{opacity:1;transform:none}
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .rv{opacity:1;transform:none}
+@page{margin:0}
+@media (min-width:700px){
+  body{font-size:17px}
+  .materialien{grid-template-columns:1fr 1fr 1fr}
+  .mat.breit{grid-column:span 3}
+}
+</style>
+</head>
+<body>
+<div class="hinweis">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von René Streit, keramische Wand- und Bodenbeläge</div>
+
+<div class="wrap">
+<header>
+  <a class="marke" href="#oben" aria-label="René Streit">
+    <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+      <rect x="1" y="1" width="11" height="11" rx="2" fill="#35b5b0"/>
+      <rect x="13.5" y="1" width="11" height="11" rx="2" fill="#dcc49b"/>
+      <rect x="26" y="1" width="11" height="11" rx="2" fill="#1e8291"/>
+      <rect x="1" y="13.5" width="11" height="11" rx="2" fill="#1c3768"/>
+      <rect x="13.5" y="13.5" width="11" height="11" rx="2" fill="#35b5b0"/>
+      <rect x="26" y="13.5" width="11" height="11" rx="2" fill="#dcc49b"/>
+      <rect x="1" y="26" width="11" height="11" rx="2" fill="#dcc49b"/>
+      <rect x="13.5" y="26" width="11" height="11" rx="2" fill="#1e8291"/>
+      <rect x="26" y="26" width="11" height="11" rx="2" fill="#1c3768"/>
+      <rect x="3" y="3" width="4" height="2.4" rx="1.2" fill="#fff" opacity=".5"/>
+      <rect x="15.5" y="15.5" width="4" height="2.4" rx="1.2" fill="#fff" opacity=".5"/>
+    </svg>
+    <span><b>René Streit</b><small>Wand- und Bodenbeläge</small></span>
+  </a>
+  <a class="ruf" href="tel:+41794329821">
+    <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.8l3 3.2-1.8 2.6c1.2 2.6 3 4.4 5.6 5.6l2.6-1.8 3.2 3-1.6 3.6c-.4.8-1.3 1.2-2.2 1C8.8 18.6 5.4 15.2 3.9 8.6c-.2-.9.2-1.8 1-2.2z" fill="currentColor"/></svg>
+    Anrufen
+  </a>
+</header>
+
+<main id="oben">
+<div class="hero">
+  <div class="kicker">Plattenleger · Uetendorf</div>
+  <h1>Stein für Stein <em>präzise</em> verlegt.</h1>
+  <p class="lead">René Streit verlegt keramische Wand- und Bodenbeläge, Naturstein und Mosaik – in Thun und Umgebung, auch in Wimmis, Münsingen und Bern.</p>
+  <div class="knoepfe">
+    <a class="btn voll" href="tel:+41794329821">079 432 98 21 anrufen</a>
+    <a class="btn rand" href="mailto:info@keramik-streit.ch">E-Mail schreiben</a>
+  </div>
+</div>
+</div>
+
+<!-- Glasmosaik-Welle, von Hand gesetzt -->
+<svg class="heroband" viewBox="0 0 430 120" aria-hidden="true">
+  <rect width="430" height="120" fill="#eeeae1"/>
+  <g>
+    <rect x="2" y="70" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="24" y="66" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="46" y="60" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="68" y="52" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="90" y="44" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="112" y="38" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="134" y="34" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="156" y="33" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="178" y="35" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="200" y="40" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="222" y="47" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="244" y="55" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="266" y="62" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="288" y="66" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="310" y="66" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="332" y="62" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="354" y="55" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="376" y="47" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="398" y="40" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="420" y="34" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+  </g>
+  <g opacity=".85">
+    <rect x="2" y="92" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="24" y="88" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="46" y="82" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="68" y="74" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="90" y="66" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="112" y="60" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="134" y="56" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="156" y="55" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="178" y="57" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="200" y="62" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="222" y="69" width="20" height="20" rx="2.5" fill="#1e8291"/>
+    <rect x="244" y="77" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="266" y="84" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="288" y="88" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="310" y="88" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="332" y="84" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="354" y="77" width="20" height="20" rx="2.5" fill="#35b5b0"/>
+    <rect x="376" y="69" width="20" height="20" rx="2.5" fill="#dcc49b"/>
+    <rect x="398" y="62" width="20" height="20" rx="2.5" fill="#1c3768"/>
+    <rect x="420" y="56" width="20" height="20" rx="2.5" fill="#1e8291"/>
+  </g>
+  <g fill="#fff" opacity=".45">
+    <rect x="137" y="37" width="7" height="3.5" rx="1.7"/>
+    <rect x="159" y="36" width="7" height="3.5" rx="1.7"/>
+    <rect x="93" y="47" width="7" height="3.5" rx="1.7"/>
+    <rect x="313" y="69" width="7" height="3.5" rx="1.7"/>
+    <rect x="357" y="58" width="7" height="3.5" rx="1.7"/>
+    <rect x="49" y="85" width="7" height="3.5" rx="1.7"/>
+    <rect x="269" y="87" width="7" height="3.5" rx="1.7"/>
+  </g>
+  <g fill="#f7f5f0">
+    <rect x="8" y="16" width="12" height="12" rx="2"/>
+    <rect x="26" y="22" width="9" height="9" rx="2"/>
+    <rect x="62" y="12" width="10" height="10" rx="2"/>
+    <rect x="252" y="14" width="12" height="12" rx="2"/>
+    <rect x="300" y="24" width="9" height="9" rx="2"/>
+    <rect x="340" y="10" width="11" height="11" rx="2"/>
+  </g>
+</svg>
+
+<div class="wrap">
+
+<section id="werkbank">
+  <div class="nr rv"><i style="background:var(--tuerkis)"></i>Ausprobieren</div>
+  <h2 class="rv">Legen Sie Ihr <em>eigenes</em> Mosaik.</h2>
+  <p class="text rv">Farbe wählen, Steinchen antippen – oder mit dem Finger darüberziehen. So entsteht Feld für Feld ein Muster, wie es auch an der Wand entsteht: mit Geduld und System.</p>
+
+  <div class="werkbank rv">
+    <div class="raster" id="raster" aria-label="Mosaik-Raster 8 mal 8"></div>
+    <div class="palette" id="palette" role="radiogroup" aria-label="Farbe">
+      <button class="farbe aktiv" data-f="1" style="background:#35b5b0" aria-label="Türkis"><span>Türkis</span></button>
+      <button class="farbe" data-f="2" style="background:#1e8291" aria-label="Lagune"><span>Lagune</span></button>
+      <button class="farbe" data-f="3" style="background:#dcc49b" aria-label="Sand"><span>Sand</span></button>
+      <button class="farbe" data-f="4" style="background:#1c3768" aria-label="Tiefblau"><span>Tiefblau</span></button>
+      <button class="farbe" data-f="0" style="background:#f7f5f0" aria-label="Kalkweiss"><span>Kalkweiss</span></button>
+    </div>
+    <div class="palette-labels"></div>
+    <div class="zaehler" id="zaehler"><b>0</b> von 64 Steinchen gesetzt</div>
+    <div class="werk-knoepfe">
+      <button class="btn tuerkis" id="vorschlag" type="button">Muster vorschlagen</button>
+      <button class="btn leise" id="neu" type="button">Neu beginnen</button>
+    </div>
+    <p class="notiz" id="musterName">Tipp: «Muster vorschlagen» mehrmals drücken.</p>
+  </div>
+</section>
+
+<section id="materialien">
+  <div class="nr rv"><i style="background:var(--lagune)"></i>Materialien</div>
+  <h2 class="rv">Womit René Streit arbeitet</h2>
+  <p class="text rv">Für Wand und Boden – vom kleinen Mosaikfeld bis zur grossen Fläche.</p>
+  <div class="materialien">
+    <div class="mat rv">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><rect x="3" y="3" width="40" height="40" rx="4" fill="#dcc49b"/><path d="M9 11 Q14 8 20 10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/><rect x="3" y="3" width="40" height="40" rx="4" fill="none" stroke="#1b2733" stroke-width="1.3"/></svg>
+      <b>Keramik</b><small>Wand- und Bodenplatten</small>
+    </div>
+    <div class="mat rv">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><path d="M5 9 L38 4 L43 36 L9 42 Z" fill="#cfd6d6" stroke="#1b2733" stroke-width="1.3" stroke-linejoin="round"/><path d="M10 14 C18 18 22 13 30 20 S38 26 40 25 M12 30 C18 27 24 33 33 30" stroke="#7d8a8f" stroke-width="1.2" fill="none"/></svg>
+      <b>Naturstein</b><small>jede Platte ein Unikat</small>
+    </div>
+    <div class="mat rv">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><rect x="3" y="3" width="40" height="40" rx="4" fill="#eeeae1" stroke="#1b2733" stroke-width="1.3"/><circle cx="12" cy="12" r="2.4" fill="#1e8291"/><circle cx="25" cy="10" r="1.6" fill="#1b2733"/><circle cx="34" cy="16" r="2.8" fill="#dcc49b"/><circle cx="17" cy="23" r="1.8" fill="#dcc49b"/><circle cx="29" cy="27" r="2.2" fill="#1e8291"/><circle cx="11" cy="33" r="2.8" fill="#dcc49b"/><circle cx="22" cy="35" r="1.5" fill="#1b2733"/><circle cx="36" cy="35" r="1.8" fill="#35b5b0"/></svg>
+      <b>Kunststein</b><small>robust und vielseitig</small>
+    </div>
+    <div class="mat rv">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><g stroke="#1b2733" stroke-width="1"><rect x="3" y="3" width="9" height="9" rx="1.5" fill="#dcc49b"/><rect x="13.5" y="3" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="24" y="3" width="9" height="9" rx="1.5" fill="#dcc49b"/><rect x="34.5" y="3" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="3" y="13.5" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="13.5" y="13.5" width="9" height="9" rx="1.5" fill="#5d6872"/><rect x="24" y="13.5" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="34.5" y="13.5" width="9" height="9" rx="1.5" fill="#dcc49b"/><rect x="3" y="24" width="9" height="9" rx="1.5" fill="#dcc49b"/><rect x="13.5" y="24" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="24" y="24" width="9" height="9" rx="1.5" fill="#5d6872"/><rect x="34.5" y="24" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="3" y="34.5" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="13.5" y="34.5" width="9" height="9" rx="1.5" fill="#dcc49b"/><rect x="24" y="34.5" width="9" height="9" rx="1.5" fill="#f7f5f0"/><rect x="34.5" y="34.5" width="9" height="9" rx="1.5" fill="#dcc49b"/></g></svg>
+      <b>Mosaik</b><small>kleine Formate, grosse Wirkung</small>
+    </div>
+    <div class="mat rv">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><rect x="3" y="3" width="19" height="19" rx="3" fill="#35b5b0"/><rect x="24" y="3" width="19" height="19" rx="3" fill="#1e8291"/><rect x="3" y="24" width="19" height="19" rx="3" fill="#1c3768"/><rect x="24" y="24" width="19" height="19" rx="3" fill="#35b5b0"/><g fill="#fff" opacity=".55"><rect x="6" y="6" width="8" height="3.5" rx="1.7"/><rect x="27" y="6" width="8" height="3.5" rx="1.7"/><rect x="6" y="27" width="8" height="3.5" rx="1.7"/><rect x="27" y="27" width="8" height="3.5" rx="1.7"/></g></svg>
+      <b>Glasmosaik</b><small>Farbe mit Tiefe und Glanz</small>
+    </div>
+    <div class="mat rv">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><g stroke="#1b2733" stroke-width="1.1" stroke-linejoin="round"><path d="M3 4h17v8H3z" fill="#dcc49b"/><path d="M21 4h22v8H21z" fill="#c9b48c"/><path d="M3 13h10v8H3z" fill="#bfa77c"/><path d="M14 13h18v8H14z" fill="#dcc49b"/><path d="M33 13h10v8H33z" fill="#e6d6b8"/><path d="M3 22h22v8H3z" fill="#e6d6b8"/><path d="M26 22h17v8H26z" fill="#bfa77c"/><path d="M3 31h13v8H3z" fill="#c9b48c"/><path d="M17 31h26v8H17z" fill="#dcc49b"/></g></svg>
+      <b>Natursteinverblender</b><small>Wände mit Struktur</small>
+    </div>
+    <div class="mat breit rv">
+      <svg width="64" height="46" viewBox="0 0 64 46" aria-hidden="true"><rect x="2" y="4" width="26" height="38" rx="3" fill="#eeeae1" stroke="#1b2733" stroke-width="1.3"/><rect x="36" y="4" width="26" height="38" rx="3" fill="#eeeae1" stroke="#1b2733" stroke-width="1.3"/><path d="M32 4 C29 12 35 18 32 24 S29 36 32 42" stroke="#1e8291" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+      <span><b>Abdichtungsfugen</b><small>elastische Fugen an Ecken, Anschlüssen und im Nassbereich</small></span>
+    </div>
+  </div>
+</section>
+
+<section id="versprechen">
+  <div class="nr rv"><i style="background:var(--sand)"></i>Arbeitsweise</div>
+  <h2 class="rv">Drei Dinge, auf die es <em>ankommt</em></h2>
+  <div class="versprechen">
+    <div class="vs rv">
+      <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect x="4" y="4" width="22" height="22" rx="3" fill="#35b5b0"/><rect x="30" y="4" width="22" height="22" rx="3" fill="#35b5b0"/><rect x="4" y="30" width="22" height="22" rx="3" fill="#35b5b0"/><rect x="30" y="30" width="22" height="22" rx="3" fill="#35b5b0"/><path d="M28 0v56M0 28h56" stroke="#1c3768" stroke-width="1" stroke-dasharray="2 2"/></svg>
+      <div><b>Präzises Verlegen</b><p>Gerade Fugen, saubere Anschlüsse, ein ruhiges Gesamtbild.</p></div>
+    </div>
+    <div class="vs rv">
+      <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect x="6" y="10" width="16" height="16" rx="3" fill="#dcc49b"/><rect x="24" y="10" width="16" height="16" rx="3" fill="#1e8291"/><rect x="6" y="28" width="16" height="16" rx="3" fill="#1c3768"/><path d="M33 38 a8 8 0 1 0 0.1 0" fill="none" stroke="#1b2733" stroke-width="2.4"/><path d="M42 47 l7 7" stroke="#1b2733" stroke-width="3" stroke-linecap="round"/></svg>
+      <div><b>Fachkundige Beratung</b><p>Welches Material passt zum Raum und zur Nutzung? Das klärt René Streit gemeinsam mit Ihnen.</p></div>
+    </div>
+    <div class="vs rv">
+      <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect x="4" y="4" width="48" height="48" rx="6" fill="#eeeae1"/><path d="M15 29 l9 9 l17 -20" fill="none" stroke="#1e8291" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>Zuverlässige Ausführung</b><p>Vom ersten Gespräch bis zur letzten Fuge.</p></div>
+    </div>
+  </div>
+  <p class="text rv" style="margin-top:18px">René Streit bildet sich laufend zu neuen Trends und Produkten weiter – damit Sie auch bei neuen Materialien gut beraten sind.</p>
+</section>
+
+<section id="projekte">
+  <div class="nr rv"><i style="background:var(--tiefblau)"></i>Projekte</div>
+  <h2 class="rv">Ausgeführte Arbeiten</h2>
+  <div class="galerie">
+    <div class="platz gross rv">[Ihre Projektfotos]<br>z.&nbsp;B. Bad mit Glasmosaik</div>
+    <div class="platz rv">[Ihre Projektfotos]</div>
+    <div class="platz rv">[Ihre Projektfotos]</div>
+    <div class="platz rv">[Ihre Projektfotos]</div>
+    <div class="platz rv">[Ihre Projektfotos]</div>
+  </div>
+</section>
+
+<section id="referenzen">
+  <div class="nr rv"><i style="background:var(--tuerkis)"></i>Referenzen</div>
+  <h2 class="rv">Kundenstamm &amp; Lieferanten</h2>
+  <div class="zweier">
+    <div class="karte rv">
+      <h3><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="#35b5b0"/></svg>Kundenstamm</h3>
+      <div class="platz zeile">[Referenzen / Kundenstimmen – bitte ergänzen]</div>
+    </div>
+    <div class="karte rv">
+      <h3><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="#dcc49b"/></svg>Lieferanten</h3>
+      <div class="platz zeile">[Lieferanten – bitte ergänzen]</div>
+    </div>
+    <div class="karte rv">
+      <h3><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="#1e8291"/></svg>Preise</h3>
+      <div class="platz zeile">[Preise / Offerten – bitte ergänzen]</div>
+    </div>
+  </div>
+</section>
+
+<section id="gebiet">
+  <div class="nr rv"><i style="background:var(--lagune)"></i>Einsatzgebiet</div>
+  <h2 class="rv">Unterwegs in Thun und <em>Umgebung</em></h2>
+  <p class="text rv">Ausgangspunkt ist Uetendorf – von hier aus in die ganze Region.</p>
+  <div class="orte rv">
+    <span class="ort haupt"><i style="background:#35b5b0"></i>Uetendorf</span>
+    <span class="ort"><i style="background:#1e8291"></i>Thun</span>
+    <span class="ort"><i style="background:#dcc49b"></i>Wimmis</span>
+    <span class="ort"><i style="background:#1c3768"></i>Münsingen</span>
+    <span class="ort"><i style="background:#35b5b0"></i>Bern</span>
+  </div>
+</section>
+</div>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <div class="nr" style="color:#9fb0c8"><i style="background:var(--tuerkis)"></i>Kontakt</div>
+    <h2>Ihr Projekt <em>besprechen</em></h2>
+    <p class="text">Rufen Sie an oder schreiben Sie kurz, worum es geht – Raum, Fläche, Wunschmaterial.</p>
+    <div class="kz">
+      <a class="btn hell" href="tel:+41794329821"><span>079 432 98 21</span><span>Anrufen →</span></a>
+      <a class="btn glas" href="mailto:info@keramik-streit.ch?subject=Anfrage%20Platten"><span>info@keramik-streit.ch</span><span>→</span></a>
+    </div>
+    <p class="adresse"><b style="color:#fff">René Streit</b><br>keramische Wand- und Bodenbeläge<br>Hombergweg 10<br>3661 Uetendorf</p>
+    <div class="platz">[Bürozeiten – bitte ergänzen]</div>
+  </div>
+  <svg class="kontakt-band" viewBox="0 0 430 34" aria-hidden="true">
+    <g>
+      <rect x="2" y="4" width="26" height="26" rx="3" fill="#35b5b0"/><rect x="31" y="4" width="26" height="26" rx="3" fill="#1e8291"/><rect x="60" y="4" width="26" height="26" rx="3" fill="#dcc49b"/><rect x="89" y="4" width="26" height="26" rx="3" fill="#35b5b0"/><rect x="118" y="4" width="26" height="26" rx="3" fill="#f7f5f0" opacity=".2"/><rect x="147" y="4" width="26" height="26" rx="3" fill="#1e8291"/><rect x="176" y="4" width="26" height="26" rx="3" fill="#35b5b0"/><rect x="205" y="4" width="26" height="26" rx="3" fill="#dcc49b"/><rect x="234" y="4" width="26" height="26" rx="3" fill="#1e8291"/><rect x="263" y="4" width="26" height="26" rx="3" fill="#f7f5f0" opacity=".2"/><rect x="292" y="4" width="26" height="26" rx="3" fill="#35b5b0"/><rect x="321" y="4" width="26" height="26" rx="3" fill="#dcc49b"/><rect x="350" y="4" width="26" height="26" rx="3" fill="#1e8291"/><rect x="379" y="4" width="26" height="26" rx="3" fill="#35b5b0"/><rect x="408" y="4" width="26" height="26" rx="3" fill="#dcc49b"/>
+    </g>
+  </svg>
+</section>
+<footer><div class="wrap">René Streit · keramische Wand- und Bodenbeläge · Hombergweg 10, 3661 Uetendorf<br>Entwurf von Max Rathsack</div></footer>
+</main>
+
+<script>
+(function(){
+  var FARBEN=['#f7f5f0','#35b5b0','#1e8291','#dcc49b','#1c3768'];
+  var raster=document.getElementById('raster');
+  var zaehler=document.getElementById('zaehler');
+  var name=document.getElementById('musterName');
+  var feld=[]; var aktiv=1; var malt=false; var musterNr=0;
+
+  for(var i=0;i<64;i++){
+    var b=document.createElement('button');
+    b.className='stein'; b.type='button'; b.dataset.i=i;
+    b.setAttribute('aria-label','Steinchen '+(i+1));
+    raster.appendChild(b); feld.push(0);
+  }
+  var steine=raster.children;
+
+  function setze(i,f,verz){
+    feld[i]=f; var s=steine[i];
+    s.style.transitionDelay=(verz||0)+'ms';
+    s.style.backgroundColor=FARBEN[f];
+    s.classList.toggle('glas',f!==0);
+  }
+  function zaehle(){
+    var n=feld.filter(function(f){return f!==0}).length;
+    zaehler.innerHTML='<b>'+n+'</b> von 64 Steinchen gesetzt';
+  }
+  function tippe(el){
+    if(!el||!el.classList||!el.classList.contains('stein'))return;
+    var i=+el.dataset.i; if(feld[i]===aktiv)return;
+    setze(i,aktiv,0); zaehle();
+    el.classList.add('pop'); setTimeout(function(){el.classList.remove('pop')},140);
+  }
+  raster.addEventListener('pointerdown',function(e){
+    malt=true; tippe(e.target);
+    if(raster.releasePointerCapture) try{raster.releasePointerCapture(e.pointerId)}catch(x){}
+    e.preventDefault();
+  });
+  raster.addEventListener('pointermove',function(e){
+    if(!malt)return;
+    tippe(document.elementFromPoint(e.clientX,e.clientY));
+  });
+  window.addEventListener('pointerup',function(){malt=false});
+  window.addEventListener('pointercancel',function(){malt=false});
+
+  document.getElementById('palette').addEventListener('click',function(e){
+    var b=e.target.closest('.farbe'); if(!b)return;
+    aktiv=+b.dataset.f;
+    [].forEach.call(this.children,function(c){c.classList.toggle('aktiv',c===b)});
+  });
+
+  /* Muster – jedes eine kleine Regel, wie ein Plattenleger sie anreisst */
+  var MUSTER=[
+    {n:'Rosette',f:function(x,y){var d=Math.abs(x-3.5)+Math.abs(y-3.5);return d<1.5?4:d<2.5?1:d<3.5?3:d<4.5?2:d<5.5?1:d<6.5?0:3;}},
+    {n:'Welle',f:function(x,y){var w=Math.round(2.4+1.7*Math.sin((x+.5)/8*Math.PI*2));return y===w?4:Math.abs(y-w)===1?2:y>w?1:0;}},
+    {n:'Bordüre',f:function(x,y){var r=Math.min(x,y,7-x,7-y);return r===0?((x+y)%2?2:3):r===1?0:r===2?((x+y)%2?1:4):1;}},
+    {n:'Diagonale',f:function(x,y){var d=(x+y)%4;return d===0?4:d===1?1:d===2?3:0;}}
+  ];
+  function vorschlag(nr){
+    var m=MUSTER[nr%MUSTER.length];
+    for(var y=0;y<8;y++)for(var x=0;x<8;x++){
+      var d=Math.abs(x-3.5)+Math.abs(y-3.5);
+      setze(y*8+x,m.f(x,y),Math.round(d*45));
+    }
+    zaehle(); name.textContent='Muster «'+m.n+'» – jetzt eigene Steinchen darüberlegen.';
+  }
+  document.getElementById('vorschlag').addEventListener('click',function(){vorschlag(musterNr++)});
+  document.getElementById('neu').addEventListener('click',function(){
+    for(var i=0;i<64;i++)setze(i,0,(i%8+Math.floor(i/8))*18);
+    zaehle(); name.textContent='Leeres Raster – viel Spass beim Legen.';
+  });
+
+  /* PDF-Zustand: fertiges Muster */
+  function pdfCheck(){ if(document.documentElement.classList.contains('pdf')){ vorschlag(0); } }
+  new MutationObserver(pdfCheck).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+  pdfCheck();
+
+  /* Einblenden */
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('da');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('da')});
+})();
+</script>
+</body>
+</html>
