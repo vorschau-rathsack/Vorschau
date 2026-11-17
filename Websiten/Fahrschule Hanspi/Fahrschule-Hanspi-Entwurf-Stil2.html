@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fahrschule Hanspi – Kostenrechner (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f4;--teal:#0f7c74;--tealL:#dff1ee;--ink:#17201f;--mut:#5f6b69;--line:#e1e5e0;--acc:#ff7a45}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);max-width:430px;margin:0 auto}
+.demo{background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:7px 10px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:#fff;border-bottom:1px solid var(--line)}
+.logo{font-weight:700;font-size:20px}.logo b{color:var(--teal)}
+header a{background:var(--teal);color:#fff;text-decoration:none;border-radius:10px;padding:9px 13px;font-weight:700;font-size:14px}
+.hero{padding:30px 18px 26px}
+.kick{font-size:13px;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase}
+h1{font-size:40px;line-height:1.02;margin-top:10px;letter-spacing:-1px}
+.hero p{color:var(--mut);margin-top:12px;line-height:1.55}
+section{padding:26px 18px}
+h2{font-size:26px;letter-spacing:-.5px;margin-bottom:6px}
+.lead{color:var(--mut);line-height:1.5;margin-bottom:16px}
+.calc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}
+.row{margin-bottom:18px}
+.rl{display:flex;justify-content:space-between;font-weight:700;margin-bottom:8px}
+.rl output{color:var(--teal);font-size:22px}
+input[type=range]{width:100%;accent-color:var(--teal)}
+.seg{display:flex;background:var(--bg);border-radius:12px;padding:4px}
+.seg button{flex:1;border:0;background:none;padding:10px;border-radius:9px;font:700 15px 'Space Grotesk';color:var(--mut);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.opt{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.opt span small{display:block;color:var(--mut);font-size:13px}
+.sw{width:46px;height:28px;border-radius:20px;background:var(--line);position:relative;transition:.2s;flex:0 0 46px}
+.sw:after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.opt.on .sw{background:var(--teal)}.opt.on .sw:after{left:21px}
+.total{background:var(--ink);color:#fff;border-radius:20px;padding:20px;margin-top:14px}
+.total small{color:#a9b8b5;font-size:13px}
+.total .sum{font-size:44px;font-weight:700;letter-spacing:-1px;margin:4px 0 10px}
+.lines div{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;border-top:1px solid #2c3837;color:#d5dedc}
+.save{display:inline-block;margin-top:10px;background:var(--acc);color:#fff;font-weight:700;border-radius:8px;padding:5px 10px;font-size:13px}
+.total a{display:block;text-align:center;margin-top:14px;background:#25d366;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:13px}
+.fine{font-size:12px;color:var(--mut);margin-top:10px;line-height:1.5}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+td{padding:13px 14px;border-bottom:1px solid var(--line);font-size:15px}
+td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.grp td{background:var(--tealL);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);text-align:left}
+.about{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center}
+.ph{height:130px;border-radius:16px;background:repeating-linear-gradient(-45deg,#e8ecea,#e8ecea 10px,#f1f3f1 10px,#f1f3f1 20px);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut);text-align:center}
+.about p{color:var(--mut);line-height:1.5;font-size:15px}.about b{color:var(--ink)}
+.pill{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.pill span{border:1.5px solid var(--teal);color:var(--teal);border-radius:20px;padding:6px 12px;font-weight:700;font-size:13px}
+.rv{border-left:3px solid var(--teal);padding:4px 0 4px 14px;margin-bottom:14px}
+.rv p{font-size:17px}.rv small{color:var(--mut)}
+.k{line-height:1.8}.k a{color:var(--teal);font-weight:700;text-decoration:none}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:22px 18px 30px}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Fahrschule Hanspi</div>
+<header><div class="logo">Fahrschule <b>Hanspi</b></div><a href="https://wa.me/41798176724">WhatsApp</a></header>
+<div class="hero">
+<div class="kick">Steffisburg · Region Thun</div>
+<h1>Kompetent.<br>Ruhig.<br>Geduldig.</h1>
+<p>Fahrstunden mit Hanspi Jaun, Fahrlehrer HF – und vorher schon wissen, womit du ungefähr rechnen kannst.</p>
+</div>
+
+<section>
+<h2>Kostenrechner</h2>
+<p class="lead">Schieber bewegen – der Rechner nimmt automatisch die günstigste Abo-Kombination.</p>
+<div class="calc">
+<div class="row"><div class="rl"><span>Fahrstunden</span><output id="no">15</output></div><input type="range" id="n" min="1" max="40" value="15"></div>
+<div class="row"><div class="seg" id="seg"><button class="on" data-g="m">Handschaltung</button><button data-g="a">Automat</button></div></div>
+<div class="opt on" data-p="120" data-l="Nothelferkurs"><span>Nothelferkurs<small>CHF 120</small></span><i class="sw"></i></div>
+<div class="opt on" data-p="240" data-l="Verkehrskunde (VKU)"><span>Verkehrskunde VKU<small>CHF 240 inkl. Lehrmittel</small></span><i class="sw"></i></div>
+<div class="opt" data-p="50" data-l="Theoriekurs"><span>Theoriekurs<small>CHF 50</small></span><i class="sw"></i></div>
+</div>
+<div class="total">
+<small>Geschätzt bei Hanspi</small>
+<div class="sum" id="sum">CHF 0</div>
+<div class="lines" id="lines"></div>
+<span class="save" id="save"></span>
+<a id="wa" href="#">So anfragen</a>
+</div>
+<p class="fine">Richtwerte gemäss Fahrlehrer-Verzeichnis – wie viele Stunden du brauchst, ist individuell. Prüfungsgebühren des Strassenverkehrsamts sind nicht enthalten.</p>
+</section>
+
+<section>
+<h2>Preise</h2>
+<table>
+<tr class="grp"><td colspan="2">Fahrstunden (50–60 Min.)</td></tr>
+<tr><td>Auto, Handschaltung</td><td>CHF 90</td></tr>
+<tr><td>Auto im 5er-Abo</td><td>CHF 88</td></tr>
+<tr><td>Auto im 10er-Abo</td><td>CHF 85</td></tr>
+<tr><td>Auto, Automat</td><td>CHF 95</td></tr>
+<tr><td>Anhänger (Kat. BE)</td><td>CHF 115</td></tr>
+<tr class="grp"><td colspan="2">Kurse</td></tr>
+<tr><td>Nothelferkurs</td><td>CHF 120</td></tr>
+<tr><td>Verkehrskunde VKU</td><td>CHF 240</td></tr>
+<tr><td>Theoriekurs</td><td>CHF 50</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Über Hanspi</h2>
+<div class="about"><div class="ph">Ihr Foto<br>mit dem<br>Fahrschulauto</div><p><b>Hanspi Jaun</b> ist Fahrlehrer HF mit eidg. Fachausweis. Ihm ist wichtig, dass sich seine Fahrschüler sicher und gut instruiert fühlen – und dass jede Stunde Spass macht.</p></div>
+<div class="pill"><span>Thun</span><span>Steffisburg</span><span>Heimberg</span><span>Uetendorf</span></div>
+</section>
+
+<section>
+<h2>Stimmen</h2>
+<div class="rv"><p>«Immer ruhig, gut strukturierte Lektionen und preislich sehr gut!»</p><small>Superfahrlehrer.ch</small></div>
+<div class="rv"><p>«Ich kann seine Fahrschule jedem wärmstens empfehlen!»</p><small>local.ch · 5.0 von 5</small></div>
+</section>
+
+<section>
+<h2>Kontakt</h2>
+<p class="k">Alte Bernstrasse 189, 3613 Steffisburg<br><a href="tel:+41798176724">079 817 67 24</a> · <a href="tel:+41334375747">033 437 57 47</a><br><a href="mailto:info@fahrschule-hanspi.ch">info@fahrschule-hanspi.ch</a></p>
+</section>
+<footer>Entwurf von Max Rathsack · Texte, Farben und Bilder werden ganz nach Ihren Wünschen angepasst.</footer>
+<script>
+let mode='m';const n=document.getElementById('n');
+document.getElementById('seg').onclick=e=>{const b=e.target.closest('button');if(!b)return;mode=b.dataset.g;document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));calc();};
+document.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{o.classList.toggle('on');calc();});
+n.oninput=calc;
+const f=x=>'CHF '+x.toLocaleString('de-CH');
+function calc(){const k=+n.value;document.getElementById('no').textContent=k;let L=[],tot=0,save=0;
+if(mode=='m'){const t=Math.floor(k/10),r1=k%10,fv=Math.floor(r1/5),e=r1%5;
+if(t)L.push([t+'× 10er-Abo ('+t*10+' Std.)',t*850]);if(fv)L.push([fv+'× 5er-Abo ('+fv*5+' Std.)',fv*440]);if(e)L.push([e+' Einzelstunde'+(e>1?'n':''),e*90]);save=k*90-(t*850+fv*440+e*90);}
+else L.push([k+' Std. Automat',k*95]);
+document.querySelectorAll('.opt.on').forEach(o=>L.push([o.dataset.l,+o.dataset.p]));
+tot=L.reduce((a,b)=>a+b[1],0);document.getElementById('sum').textContent=f(tot);
+document.getElementById('lines').innerHTML=L.map(l=>`<div><span>${l[0]}</span><span>${f(l[1])}</span></div>`).join('');
+const s=document.getElementById('save');s.style.display=save>0?'inline-block':'none';s.textContent='Abo-Vorteil: '+f(save);
+const msg='Grüezi Hanspi, ich interessiere mich für ca. '+k+' Fahrstunden ('+(mode=='m'?'Handschaltung':'Automat')+')'+([...document.querySelectorAll('.opt.on')].length?' plus '+[...document.querySelectorAll('.opt.on')].map(o=>o.dataset.l).join(', '):'')+'. Wann hätten Sie Zeit?';
+document.getElementById('wa').href='https://wa.me/41798176724?text='+encodeURIComponent(msg);}
+calc();
+</script>
+</body></html>

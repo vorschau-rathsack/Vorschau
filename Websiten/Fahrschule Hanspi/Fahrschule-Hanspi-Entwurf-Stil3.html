@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fahrschule Hanspi – Kreuzung (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--asph:#22252b;--asph2:#2d3139;--yel:#ffcc1f;--txt:#f1f2f4;--mut:#9aa1ad;--red:#e5402f;--grn:#2fd06b;--blue:#2a6fd6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--asph);color:var(--txt);max-width:430px;margin:0 auto}
+.demo{background:var(--yel);color:#111;font-size:12px;text-align:center;padding:7px 10px;font-weight:600}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px}
+.logo{font-family:'Bebas Neue';font-size:28px;letter-spacing:1px}.logo b{color:var(--yel);font-weight:400}
+header a{color:#111;background:var(--yel);text-decoration:none;font-weight:800;font-size:14px;border-radius:8px;padding:9px 12px}
+.hero{display:grid;grid-template-columns:1fr 92px;gap:14px;align-items:center;padding:16px 18px 30px}
+h1{font-family:'Bebas Neue';font-weight:400;font-size:64px;line-height:.9}
+h1 span{color:var(--grn);transition:color .4s}
+.hero p{color:var(--mut);margin-top:12px;line-height:1.5}
+.light{background:#111;border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:10px;cursor:pointer;box-shadow:0 0 0 4px #3a3f48}
+.light i{width:72px;height:72px;border-radius:50%;background:#333;transition:.35s}
+.light i.r.on{background:var(--red);box-shadow:0 0 26px var(--red)}
+.light i.y.on{background:var(--yel);box-shadow:0 0 26px var(--yel)}
+.light i.g.on{background:var(--grn);box-shadow:0 0 26px var(--grn)}
+.tap{font-size:11px;color:var(--mut);text-align:center;margin-top:6px}
+.lane{height:14px;background:repeating-linear-gradient(90deg,var(--yel) 0 40px,transparent 40px 70px);opacity:.85}
+section{padding:30px 18px}
+h2{font-family:'Bebas Neue';font-weight:400;font-size:40px;line-height:1;margin-bottom:8px}
+.lead{color:var(--mut);line-height:1.5;margin-bottom:18px}
+.quiz{background:var(--asph2);border-radius:18px;padding:18px}
+.qn{font-size:12px;color:var(--yel);font-weight:800;letter-spacing:2px}
+.qq{font-size:19px;font-weight:800;margin:8px 0 14px;line-height:1.3}
+.sign{display:block;margin:0 auto 14px;width:90px}
+.ans{display:grid;gap:8px}
+.ans button{text-align:left;background:#3a3f48;border:2px solid transparent;color:var(--txt);border-radius:12px;padding:13px;font:600 15px 'Inter';cursor:pointer}
+.ans button.ok{border-color:var(--grn);background:#1f3a2b}.ans button.no{border-color:var(--red);background:#40221f}
+.fb{min-height:22px;margin-top:12px;font-size:14px;color:var(--mut)}
+.nxt{display:none;margin-top:10px;width:100%;background:var(--yel);color:#111;border:0;border-radius:12px;padding:13px;font:800 15px 'Inter';cursor:pointer}
+.score{text-align:center;padding:10px 0}
+.score b{font-family:'Bebas Neue';font-size:70px;color:var(--yel);font-weight:400;display:block;line-height:1}
+.score a{display:block;margin-top:14px;background:#25d366;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:14px}
+.signs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sg{background:var(--asph2);border-radius:16px;padding:16px 12px;text-align:center}
+.sg svg{width:58px;height:58px;display:block;margin:0 auto 10px}
+.sg b{display:block;font-size:15px}.sg span{color:var(--yel);font-weight:800;font-size:14px}
+.hp{display:flex;gap:14px;align-items:center;background:var(--asph2);border-radius:18px;padding:16px}
+.ph{flex:0 0 86px;height:86px;border-radius:14px;border:2px dashed var(--yel);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut);text-align:center}
+.hp p{line-height:1.5;color:var(--mut);font-size:15px}.hp b{color:var(--txt)}
+.rv{border:2px solid #3a3f48;border-radius:16px;padding:16px;margin-bottom:10px}
+.rv p{font-size:17px;font-weight:600}.rv small{color:var(--mut);display:block;margin-top:6px}
+.k{line-height:1.9}.k a{color:var(--yel);font-weight:800;text-decoration:none}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:24px 18px}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Fahrschule Hanspi</div>
+<header><div class="logo">Fahrschule <b>Hanspi</b></div><a href="tel:+41798176724">Anrufen</a></header>
+<div class="hero">
+<div><h1>Grün für<br>deinen<br><span id="go">Ausweis.</span></h1><p>Fahrstunden in Steffisburg und der Region Thun – mit Hanspi Jaun, Fahrlehrer HF.</p></div>
+<div><div class="light" id="light"><i class="r"></i><i class="y"></i><i class="g on"></i></div><div class="tap">antippen</div></div>
+</div>
+<div class="lane"></div>
+
+<section>
+<h2>Bist du bereit?</h2>
+<p class="lead">Drei kurze Fragen aus der Theorie – zum Aufwärmen.</p>
+<div class="quiz" id="quiz"></div>
+</section>
+
+<section>
+<h2>Angebot</h2>
+<div class="signs">
+<div class="sg"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" fill="#2a6fd6"/><path d="M14 36h32l-4-10H18z" fill="#fff"/><circle cx="20" cy="38" r="4" fill="#fff"/><circle cx="40" cy="38" r="4" fill="#fff"/></svg><b>Auto</b><span>CHF 90 · Abo ab 85</span></div>
+<div class="sg"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" fill="#2a6fd6"/><text x="30" y="39" text-anchor="middle" font-family="Inter" font-weight="800" font-size="24" fill="#fff">A</text></svg><b>Automat</b><span>CHF 95</span></div>
+<div class="sg"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="28" fill="#2a6fd6"/><path d="M8 34h22l-3-8H11zM34 28h18v8H34z" fill="#fff"/><path d="M30 33h4" stroke="#fff" stroke-width="2"/><circle cx="15" cy="36" r="3" fill="#fff"/><circle cx="43" cy="38" r="3" fill="#fff"/></svg><b>Anhänger BE</b><span>CHF 115</span></div>
+<div class="sg"><svg viewBox="0 0 60 60"><rect x="4" y="4" width="52" height="52" rx="8" fill="#fff"/><path d="M24 14h12v10h10v12H36v10H24V36H14V24h10z" fill="#e5402f"/></svg><b>Nothelferkurs</b><span>CHF 120</span></div>
+<div class="sg"><svg viewBox="0 0 60 60"><path d="M30 4l27 50H3z" fill="#fff" stroke="#e5402f" stroke-width="5" stroke-linejoin="round"/><circle cx="30" cy="38" r="9" fill="none" stroke="#111" stroke-width="3"/><circle cx="30" cy="38" r="3" fill="#111"/></svg><b>Verkehrskunde</b><span>CHF 240</span></div>
+<div class="sg"><svg viewBox="0 0 60 60"><rect x="4" y="4" width="52" height="52" rx="8" fill="#2a6fd6"/><path d="M16 16h28v28H16z" fill="none" stroke="#fff" stroke-width="3"/><path d="M22 26h16M22 32h16M22 38h10" stroke="#fff" stroke-width="3"/></svg><b>Theoriekurs</b><span>CHF 50</span></div>
+</div>
+</section>
+
+<section>
+<h2>Dein Fahrlehrer</h2>
+<div class="hp"><div class="ph">Ihr Foto</div><p><b>Hanspi Jaun</b> – kompetent, ruhig, geduldig. Er bietet eine auf dich zugeschnittene Ausbildung an und freut sich auf deinen Anruf oder deine Nachricht.</p></div>
+</section>
+
+<section>
+<div class="rv"><p>«Super Fahrlehrer, geduldig und lustig.»</p><small>Superfahrlehrer.ch</small></div>
+<div class="rv"><p>«Ich kann seine Fahrschule jedem wärmstens empfehlen!»</p><small>local.ch · 5.0 von 5</small></div>
+</section>
+
+<section>
+<h2>Kontakt</h2>
+<p class="k">Alte Bernstrasse 189, 3613 Steffisburg<br><a href="tel:+41798176724">079 817 67 24</a> · <a href="https://wa.me/41798176724">WhatsApp</a><br><a href="mailto:info@fahrschule-hanspi.ch">info@fahrschule-hanspi.ch</a></p>
+</section>
+<footer>Entwurf von Max Rathsack · Preise gemäss Fahrlehrer-Verzeichnis, bitte bestätigen.</footer>
+<script>
+const L=document.getElementById('light'),go=document.getElementById('go');let st=2;
+L.onclick=()=>{st=(st+1)%3;const c=['r','y','g'];L.querySelectorAll('i').forEach(i=>i.classList.toggle('on',i.classList.contains(c[st])));go.style.color=['#e5402f','#ffcc1f','#2fd06b'][st];};
+const Q=[
+{q:'Wie schnell darfst du innerorts generell fahren?',a:['30 km/h','50 km/h','60 km/h'],r:1,e:'Richtig: 50 km/h – sofern nichts anderes signalisiert ist.'},
+{q:'Was bedeutet dieses Signal?',s:'<svg class="sign" viewBox="0 0 90 90"><circle cx="45" cy="45" r="42" fill="#2a6fd6" stroke="#fff" stroke-width="4"/><path d="M45 70V30M30 44l15-16 15 16" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>',a:['Einbahnstrasse','Vorgeschriebene Fahrtrichtung geradeaus','Autobahn beginnt'],r:1,e:'Genau: Blaue runde Signale schreiben etwas vor – hier geradeaus.'},
+{q:'Und auf der Autobahn? Höchstgeschwindigkeit generell:',a:['100 km/h','120 km/h','130 km/h'],r:1,e:'Stimmt: 120 km/h auf Schweizer Autobahnen.'}];
+let i=0,pts=0;const qz=document.getElementById('quiz');
+function show(){if(i>=Q.length){qz.innerHTML=`<div class="score"><b>${pts}/3</b>${pts==3?'Perfekt – Zeit für die Praxis!':'Gut gemacht – den Rest üben wir zusammen!'}<a href="https://wa.me/41798176724?text=${encodeURIComponent('Grüezi Hanspi, ich möchte gerne mit den Fahrstunden starten. Wann hätten Sie Zeit?')}">Erste Fahrstunde anfragen</a></div>`;return;}
+const q=Q[i];qz.innerHTML=`<div class="qn">FRAGE ${i+1} / 3</div><div class="qq">${q.q}</div>${q.s||''}<div class="ans">${q.a.map((x,j)=>`<button data-j="${j}">${x}</button>`).join('')}</div><div class="fb"></div><button class="nxt">Weiter</button>`;
+qz.querySelectorAll('.ans button').forEach(b=>b.onclick=()=>{if(qz.dataset.done)return;qz.dataset.done=1;const j=+b.dataset.j;
+b.classList.add(j==q.r?'ok':'no');qz.querySelectorAll('.ans button')[q.r].classList.add('ok');if(j==q.r)pts++;
+qz.querySelector('.fb').textContent=q.e;qz.querySelector('.nxt').style.display='block';});
+qz.querySelector('.nxt').onclick=()=>{delete qz.dataset.done;i++;show();};}
+show();
+</script>
+</body></html>

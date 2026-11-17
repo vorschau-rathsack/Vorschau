@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fahrschule Hanspi – Der Weg zum Ausweis (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#eaf4fb;--blue:#1f5fa8;--ink:#14243a;--mut:#5d6b7c;--green:#2f9e57;--road:#3b4250;--yel:#ffd23f;--line:#d7e3ee}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo',system-ui,sans-serif;background:#fff;color:var(--ink);max-width:430px;margin:0 auto;padding-bottom:76px}
+.demo{background:var(--ink);color:#fff;font-size:12px;text-align:center;padding:7px 10px}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Archivo Black';font-size:19px}
+.L{width:36px;height:36px;background:var(--blue);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:22px;border:3px solid #fff;outline:2px solid var(--blue)}
+.hero{background:var(--sky);padding:26px 18px 30px}
+h1{font-family:'Archivo Black';font-size:38px;line-height:1.05}
+h1 span{color:var(--blue)}
+.hero p{color:var(--mut);margin-top:12px;line-height:1.55;font-size:16px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.tags span{background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 11px;font-size:13px;font-weight:600}
+section{padding:30px 18px}
+h2{font-family:'Archivo Black';font-size:27px;line-height:1.1;margin-bottom:6px}
+.lead{color:var(--mut);line-height:1.5;margin-bottom:16px}
+.prog{height:10px;background:var(--line);border-radius:10px;overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;width:0;background:var(--green);transition:width .5s}
+.pl{font-size:13px;color:var(--mut);margin-bottom:14px}
+.route{position:relative;padding-left:62px}
+.route:before{content:'';position:absolute;left:22px;top:6px;bottom:6px;width:16px;background:var(--road);border-radius:8px}
+.route:after{content:'';position:absolute;left:29px;top:14px;bottom:14px;border-left:2px dashed var(--yel)}
+.car{position:absolute;left:14px;top:0;width:32px;z-index:3;transition:top .6s cubic-bezier(.4,1.4,.6,1)}
+.st{position:relative;background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 14px 14px 16px;margin-bottom:14px;cursor:pointer;transition:.25s}
+.st:before{content:attr(data-n);position:absolute;left:-52px;top:14px;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid var(--road);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;z-index:2}
+.st b{font-size:17px;display:block}
+.st small{color:var(--mut);font-size:14px;line-height:1.45;display:block;margin-top:4px}
+.st .price{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--blue);background:var(--sky);padding:4px 9px;border-radius:8px}
+.st.done{border-color:var(--green);background:#f1faf4}
+.st.done:before{content:'✓';background:var(--green);border-color:var(--green);color:#fff}
+.next{background:var(--ink);color:#fff;border-radius:18px;padding:18px;margin-top:6px}
+.next small{color:#9fb3c8;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+.next b{display:block;font-size:20px;margin:6px 0 12px}
+.next a{display:block;text-align:center;background:#25d366;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:13px}
+.me{display:flex;gap:14px;align-items:center}
+.ph{flex:0 0 96px;height:96px;border-radius:50%;background:var(--sky);border:2px dashed var(--blue);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut);text-align:center}
+.me p{line-height:1.5;color:var(--mut)}
+.me b{color:var(--ink)}
+.trio{display:flex;gap:8px;margin-top:16px}
+.trio span{flex:1;text-align:center;background:var(--sky);border-radius:12px;padding:12px 4px;font-weight:700;font-size:14px}
+.rev{background:var(--sky);border-radius:16px;padding:16px;margin-bottom:10px}
+.rev p{font-size:17px;line-height:1.4}
+.rev small{color:var(--mut);display:block;margin-top:6px}
+.k{line-height:1.8}.k a{color:var(--blue);font-weight:700;text-decoration:none}
+.area{margin-top:10px;color:var(--mut);font-size:14px}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:22px 18px}
+.bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid var(--line)}
+.bar a{flex:1;text-align:center;text-decoration:none;font-weight:700;border-radius:12px;padding:13px;font-size:15px}
+.b1{background:var(--ink);color:#fff}.b2{background:#25d366;color:#fff}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Fahrschule Hanspi</div>
+<header><div class="logo"><span class="L">L</span>Fahrschule Hanspi</div></header>
+<div class="hero">
+<h1>Dein Weg zum <span>Ausweis.</span></h1>
+<p>Mit Hanspi Jaun, Fahrlehrer HF, in Steffisburg und der Region Thun. Kompetent – ruhig – geduldig.</p>
+<div class="tags"><span>Auto</span><span>Automat</span><span>Anhänger BE</span><span>Nothelfer</span><span>VKU</span></div>
+</div>
+
+<section>
+<h2>Wo stehst du gerade?</h2>
+<p class="lead">Tippe an, was du schon geschafft hast – das Auto fährt mit und zeigt dir den nächsten Schritt.</p>
+<div class="prog"><i id="bar"></i></div><div class="pl" id="pl">0 von 6 Etappen</div>
+<div class="route" id="route">
+<svg class="car" id="car" viewBox="0 0 32 52"><rect x="3" y="4" width="26" height="44" rx="9" fill="#1f5fa8"/><rect x="7" y="12" width="18" height="10" rx="3" fill="#cfe3f5"/><rect x="7" y="32" width="18" height="8" rx="3" fill="#cfe3f5"/><rect x="0" y="10" width="4" height="9" rx="2" fill="#14243a"/><rect x="28" y="10" width="4" height="9" rx="2" fill="#14243a"/><rect x="0" y="33" width="4" height="9" rx="2" fill="#14243a"/><rect x="28" y="33" width="4" height="9" rx="2" fill="#14243a"/></svg>
+<div class="st" data-n="1"><b>Nothelferkurs</b><small>Pflicht vor dem Gesuch um den Lernfahrausweis.</small><span class="price">bei Hanspi: CHF 120</span></div>
+<div class="st" data-n="2"><b>Theorieprüfung</b><small>Verkehrsregeln und Signale – gut vorbereitet antreten.</small><span class="price">Theoriekurs: CHF 50</span></div>
+<div class="st" data-n="3"><b>Lernfahrausweis</b><small>Ab jetzt darfst du üben – Zeit für die erste Fahrstunde.</small></div>
+<div class="st" data-n="4"><b>Verkehrskunde (VKU)</b><small>Sehen, erkennen, reagieren – im Kurs mit anderen Lernfahrenden.</small><span class="price">CHF 240 inkl. Lehrmittel</span></div>
+<div class="st" data-n="5"><b>Fahrstunden</b><small>Schritt für Schritt sicher werden – in deinem Tempo.</small><span class="price">ab CHF 85 im 10er-Abo</span></div>
+<div class="st" data-n="6"><b>Praktische Prüfung</b><small>Ruhig und vorbereitet zur Prüfung – und dann: Ausweis!</small></div>
+</div>
+<div class="next"><small>Dein nächster Schritt</small><b id="nx">Nothelferkurs</b><a id="wa" href="#">Hanspi per WhatsApp fragen</a></div>
+</section>
+
+<section style="background:var(--sky)">
+<h2>Dein Fahrlehrer</h2>
+<div class="me"><div class="ph">Platz für<br>dein Foto</div><p><b>Hanspi Jaun</b>, Fahrlehrer HF mit eidg. Fachausweis. Seine Freude am Unterrichten und am Strassenverkehr hat er zum Beruf gemacht – jede Fahrstunde soll Spass machen.</p></div>
+<div class="trio"><span>kompetent</span><span>ruhig</span><span>geduldig</span></div>
+</section>
+
+<section>
+<h2>Das sagen Fahrschüler</h2>
+<div class="rev"><p>«Ich kann seine Fahrschule jedem wärmstens empfehlen!»</p><small>local.ch · 5.0 von 5 Sternen</small></div>
+<div class="rev"><p>«Super Fahrlehrer, geduldig und lustig.»</p><small>Superfahrlehrer.ch</small></div>
+</section>
+
+<section>
+<h2>Kontakt</h2>
+<p class="k">Alte Bernstrasse 189, 3613 Steffisburg<br><a href="tel:+41798176724">079 817 67 24</a><br><a href="mailto:info@fahrschule-hanspi.ch">info@fahrschule-hanspi.ch</a></p>
+<p class="area">Unterwegs in Thun, Steffisburg, Heimberg und Uetendorf.</p>
+</section>
+<footer>Entwurf von Max Rathsack · Preise gemäss Fahrlehrer-Verzeichnis, bitte bestätigen. Texte, Farben und Bilder werden ganz nach Ihren Wünschen angepasst.</footer>
+<div class="bar"><a class="b1" href="tel:+41798176724">Anrufen</a><a class="b2" href="https://wa.me/41798176724">WhatsApp</a></div>
+<script>
+const st=[...document.querySelectorAll('.st')],car=document.getElementById('car');
+function upd(){let n=0;for(const s of st){if(s.classList.contains('done'))n++;else break;}
+const all=st.filter(s=>s.classList.contains('done')).length;
+document.getElementById('bar').style.width=(all/6*100)+'%';document.getElementById('pl').textContent=all+' von 6 Etappen';
+const t=st[Math.min(n,5)];car.style.top=(t.offsetTop+ (n>5?t.offsetHeight-40:4))+'px';
+const name=n>5?'Geschafft – herzliche Gratulation!':t.querySelector('b').textContent;document.getElementById('nx').textContent=name;
+const msg=n>5?'Grüezi Hanspi, ich habe meinen Ausweis – merci!':'Grüezi Hanspi, mein nächster Schritt ist: '+name+'. Können Sie mir weiterhelfen?';
+document.getElementById('wa').href='https://wa.me/41798176724?text='+encodeURIComponent(msg);}
+st.forEach(s=>s.onclick=()=>{s.classList.toggle('done');upd();});
+window.addEventListener('load',upd);upd();
+</script>
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coiffure Esprit – Spiegel (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fbf6ef;--sand:#efe3d3;--terra:#b8623f;--ink:#33261d;--muted:#7a6758;--line:#e4d6c4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--cream);color:var(--ink);max-width:430px;margin:0 auto;padding-bottom:78px}
+.demo{background:var(--ink);color:var(--sand);font-size:12px;text-align:center;padding:7px 10px;line-height:1.4}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.logo{font-family:'Fraunces',serif;font-size:23px;letter-spacing:.5px}
+.logo small{display:block;font-family:'Manrope';font-size:11px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase}
+.open{font-size:12px;font-weight:700;padding:6px 10px;border-radius:20px;background:#e3efe2;color:#2f6b3a}
+.open.zu{background:#f3e1dc;color:#9a3d2a}
+.hero{padding:6px 20px 30px;text-align:center}
+.mirror{width:230px;margin:6px auto 0;display:block}
+.sheen{animation:sheen 5s ease-in-out infinite}
+@keyframes sheen{0%,100%{transform:translateX(-120px)}50%{transform:translateX(120px)}}
+h1{font-family:'Fraunces',serif;font-weight:400;font-size:38px;line-height:1.08;margin-top:14px}
+h1 em{color:var(--terra)}
+.hero p{color:var(--muted);margin-top:12px;line-height:1.55;font-size:16px}
+.stars{margin-top:16px;display:inline-flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:30px;padding:8px 14px;font-size:14px}
+.stars b{color:var(--terra)}
+section{padding:30px 20px;border-top:1px solid var(--line)}
+h2{font-family:'Fraunces',serif;font-weight:400;font-size:28px;margin-bottom:6px}
+.lead{color:var(--muted);line-height:1.5;margin-bottom:18px}
+.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.step h3{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--cream);border-radius:24px;padding:9px 14px;font:600 14px 'Manrope';color:var(--ink);cursor:pointer}
+.chip.on{background:var(--terra);border-color:var(--terra);color:#fff}
+.chip:disabled{opacity:.35;cursor:not-allowed}
+.days{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.day{border:1.5px solid var(--line);background:var(--cream);border-radius:12px;padding:8px 0;text-align:center;cursor:pointer;font:600 14px 'Manrope';color:var(--ink)}
+.day small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:2px}
+.day.on{background:var(--ink);color:#fff;border-color:var(--ink)}.day.on small{color:var(--sand)}
+.mo{position:relative}.mo:after{content:'auch Mo!';position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--terra);color:#fff;font-size:9px;padding:2px 5px;border-radius:6px;white-space:nowrap}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.card{background:var(--ink);color:var(--cream);border-radius:18px;padding:18px;margin-top:6px}
+.card p{line-height:1.55;font-size:15px;min-height:46px}
+.btns{display:flex;gap:8px;margin-top:14px}
+.btn{flex:1;text-align:center;text-decoration:none;font-weight:700;border-radius:14px;padding:13px 8px;font-size:15px}
+.wa{background:#25d366;color:#fff}.mail{background:var(--cream);color:var(--ink)}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.p{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center}
+.ph{width:86px;height:86px;border-radius:50%;margin:0 auto 10px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-family:'Fraunces';font-size:30px;color:var(--terra);border:2px dashed #d8c3a8}
+.p b{display:block}.p span{font-size:13px;color:var(--muted)}
+.ph-note{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+ul.svc{list-style:none}
+ul.svc li{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px dashed var(--line);font-size:16px}
+ul.svc li span{color:var(--muted);font-size:13px}
+.quote{font-family:'Fraunces',serif;font-size:22px;line-height:1.35;margin:10px 0}
+.src{color:var(--muted);font-size:13px}
+.hours div{display:flex;justify-content:space-between;padding:9px 12px;border-radius:10px}
+.hours .today{background:var(--sand);font-weight:700}
+.addr{margin-top:16px;line-height:1.6}
+.addr a{color:var(--terra);font-weight:700;text-decoration:none}
+footer{text-align:center;font-size:12.5px;color:var(--muted);padding:24px 20px}
+.bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:8px;padding:10px 12px;background:rgba(251,246,239,.96);border-top:1px solid var(--line)}
+.bar a{flex:1;text-align:center;text-decoration:none;font-weight:700;border-radius:14px;padding:13px;font-size:15px}
+.bar .c1{background:var(--ink);color:#fff}.bar .c2{background:var(--terra);color:#fff}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Coiffure Esprit</div>
+<header><div class="logo">Coiffure Esprit<small>Thun · seit 2006</small></div><span class="open" id="open">…</span></header>
+<div class="hero">
+<svg class="mirror" viewBox="0 0 230 300" aria-hidden="true">
+<defs><clipPath id="m"><ellipse cx="115" cy="140" rx="86" ry="118"/></clipPath>
+<linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6ece0"/><stop offset="1" stop-color="#e7d5c0"/></linearGradient></defs>
+<ellipse cx="115" cy="140" rx="100" ry="132" fill="none" stroke="#c9a77f" stroke-width="10"/>
+<ellipse cx="115" cy="140" rx="86" ry="118" fill="url(#g)"/>
+<g clip-path="url(#m)">
+<path d="M80 230c0-42 16-64 35-64s35 22 35 64z" fill="#d9c0a3"/>
+<path d="M88 118c-6-34 12-54 27-54s34 12 29 52c-4 28-6 58 8 78-20-6-28-26-28-40-6 16-30 22-42 18 10-14 10-34 6-54z" fill="#8a5a3c"/>
+<ellipse cx="115" cy="118" rx="20" ry="25" fill="#ecd5bd"/>
+<rect class="sheen" x="40" y="-20" width="26" height="340" fill="#fff" opacity=".35" transform="rotate(18 115 140)"/>
+</g>
+<rect x="105" y="272" width="20" height="22" rx="4" fill="#c9a77f"/>
+</svg>
+<h1>Sich im Spiegel <em>wiederfinden.</em></h1>
+<p>Damen-, Herren- und Kindercoiffeur an der Uttigenstrasse 9 in Thun – mit Zeit für Ihre Wünsche und Ihren Stil.</p>
+<div class="stars"><b>★★★★★</b> 4.8 von 5 · local.ch</div>
+</div>
+
+<section>
+<h2>Ihr Termin-Wunsch</h2>
+<p class="lead">In drei Schritten zusammenstellen – Michaela oder Cornelia melden sich mit einem passenden Termin.</p>
+<div class="step"><h3>1 · Für wen?</h3><div class="chips" data-g="wer"><button class="chip">Damen</button><button class="chip">Herren</button><button class="chip">Kind</button></div></div>
+<div class="step"><h3>2 · Was darf es sein?</h3><div class="chips" data-g="was" data-multi="1">
+<button class="chip">Schneiden</button><button class="chip">Waschen, Schneiden, Föhnen</button><button class="chip">Coloration</button><button class="chip">Balayage</button><button class="chip">Dauerwelle</button><button class="chip">Fest- / Brautfrisur</button><button class="chip">Wimpern & Brauen färben</button><button class="chip">Nails</button></div></div>
+<div class="step"><h3>3 · Wann passt es?</h3>
+<div class="days" id="days"></div>
+<div class="chips" data-g="zeit" style="margin-top:12px"><button class="chip" id="vm">Vormittag</button><button class="chip" id="nm">Nachmittag</button></div>
+<p class="note" id="dnote">Mittwoch und Samstag bis 14 Uhr geöffnet.</p></div>
+<div class="card"><p id="sum">Wählen Sie oben aus – Ihre Anfrage erscheint hier.</p>
+<div class="btns"><a class="btn wa" id="wa" href="#">WhatsApp</a><a class="btn mail" id="ml" href="#">E-Mail</a></div></div>
+</section>
+
+<section>
+<h2>Zwei Inhaberinnen, ein Salon</h2>
+<p class="lead">Seit 2006 führen Michaela Bühler und Cornelia Graf Coiffure Esprit – mit viel Freude und regelmässiger Weiterbildung an der La Biosthetique Academie.</p>
+<div class="team"><div class="p"><div class="ph">M</div><b>Michaela Bühler</b><span>Inhaberin</span></div><div class="p"><div class="ph">C</div><b>Cornelia Graf</b><span>Inhaberin</span></div></div>
+<p class="ph-note">Platzhalter – hier kommen Ihre eigenen Fotos hin.</p>
+</section>
+
+<section>
+<h2>Angebot</h2>
+<ul class="svc">
+<li>Haarschnitt Damen, Herren, Kinder <span>Schnitt</span></li>
+<li>Waschen, Schneiden, Föhnen <span>Klassiker</span></li>
+<li>Coloration & Balayage <span>Farbe</span></li>
+<li>Dauerwelle <span>Form</span></li>
+<li>Braut- und Festfrisuren <span>Anlass</span></li>
+<li>Hochzeits-Make-up <span>Anlass</span></li>
+<li>Wimpern & Brauen färben <span>Details</span></li>
+<li>Naildesign <span>Hände</span></li>
+</ul>
+<p class="note">Preise ergänzen wir mit Ihrer aktuellen Preisliste.</p>
+</section>
+
+<section>
+<h2>Das sagen Kundinnen & Kunden</h2>
+<p class="quote">«… schneidet immer top, und man kann bequem Online reservieren.»</p>
+<p class="src">Bewertung auf local.ch · Schnitt 4.8 von 5 Sternen</p>
+</section>
+
+<section>
+<h2>Öffnungszeiten</h2>
+<div class="hours" id="hours"></div>
+<p class="addr">Uttigenstrasse 9, 3600 Thun<br>Parkplätze vorhanden · nahe ÖV<br><a href="tel:+41792237171">079 223 71 71</a> · <a href="mailto:info@coiffure-esprit.ch">info@coiffure-esprit.ch</a></p>
+</section>
+<footer>Entwurf von Max Rathsack · Farben, Texte und Bilder werden ganz nach Ihren Wünschen angepasst.</footer>
+<div class="bar"><a class="c1" href="tel:+41792237171">Anrufen</a><a class="c2" href="#days">Termin-Wunsch</a></div>
+<script>
+const H=[["Montag","08:00–18:00",8,18],["Dienstag","08:00–18:00",8,18],["Mittwoch","08:00–14:00",8,14],["Donnerstag","08:00–18:00",8,18],["Freitag","08:00–18:00",8,18],["Samstag","08:00–14:00",8,14],["Sonntag","geschlossen",0,0]];
+const now=new Date(),wd=(now.getDay()+6)%7,h=now.getHours()+now.getMinutes()/60,t=H[wd];
+const o=document.getElementById('open');if(h>=t[2]&&h<t[3]){o.textContent='Jetzt offen';}else{o.textContent='Geschlossen';o.classList.add('zu');}
+document.getElementById('hours').innerHTML=H.map((x,i)=>`<div class="${i==wd?'today':''}"><span>${x[0]}</span><span>${x[1]}</span></div>`).join('');
+const sel={wer:[],was:[],zeit:[],tag:''};
+document.querySelectorAll('.chips').forEach(g=>{g.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b||b.disabled)return;const k=g.dataset.g;
+if(g.dataset.multi){b.classList.toggle('on');}else{g.querySelectorAll('.chip').forEach(c=>c!==b&&c.classList.remove('on'));b.classList.toggle('on');}
+sel[k]=[...g.querySelectorAll('.chip.on')].map(c=>c.textContent);upd();});});
+const d=document.getElementById('days');["Mo","Di","Mi","Do","Fr","Sa"].forEach((x,i)=>{const b=document.createElement('button');b.className='day'+(i==0?' mo':'');b.innerHTML=x+'<small>'+(i==2||i==5?'bis 14':'bis 18')+'</small>';
+b.onclick=()=>{d.querySelectorAll('.day').forEach(y=>y.classList.remove('on'));b.classList.add('on');sel.tag=H[i][0];const nm=document.getElementById('nm');nm.disabled=(i==2||i==5);if(nm.disabled){nm.classList.remove('on');sel.zeit=sel.zeit.filter(z=>z!='Nachmittag');}upd();};d.appendChild(b);});
+function upd(){const w=sel.wer[0]||'',ws=sel.was.join(', ');let s='Grüezi, ich hätte gerne einen Termin';if(w)s+=' ('+w+')';if(ws)s+=' für: '+ws;if(sel.tag)s+=' – am liebsten '+sel.tag+(sel.zeit[0]?' '+sel.zeit[0]:'');s+='.';
+document.getElementById('sum').textContent=(w||ws||sel.tag)?s:'Wählen Sie oben aus – Ihre Anfrage erscheint hier.';
+document.getElementById('wa').href='https://wa.me/41792237171?text='+encodeURIComponent(s);
+document.getElementById('ml').href='mailto:info@coiffure-esprit.ch?subject='+encodeURIComponent('Termin-Wunsch')+'&body='+encodeURIComponent(s);}
+upd();
+</script>
+</body></html>
