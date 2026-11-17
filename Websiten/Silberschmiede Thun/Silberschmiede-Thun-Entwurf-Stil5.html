@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Silberschmiede Thun – Kollektion (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#14181d;--slate:#1d232a;--pearl:#ecebe7;--line:#2e3640;--muted:#9aa3ad;--gold:#c7a76a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Work Sans',system-ui,sans-serif;font-weight:400;background:var(--night);color:var(--pearl);max-width:430px;margin:0 auto}
+.demo{background:#0b0e11;color:var(--muted);font-size:11px;text-align:center;padding:7px 10px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px}
+.logo{font-family:'Arsenal SC',serif;font-size:19px;letter-spacing:3px}
+header a{font-size:11px;letter-spacing:2px;color:var(--gold);text-decoration:none;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:2px}
+.hero{position:relative;margin:0 0 6px;aspect-ratio:4/5;background:radial-gradient(ellipse at 50% 40%,#2a323b,#14181d 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px 24px}
+.hero svg{position:absolute;top:16%;left:50%;transform:translateX(-50%);width:62%}
+h1{font-family:'Arsenal SC',serif;font-weight:400;font-size:clamp(32px,10vw,42px);line-height:1.15;letter-spacing:1px;position:relative}
+.hero p{color:var(--muted);margin-top:10px;line-height:1.7;font-weight:300;position:relative}
+.ph{font-size:10px;letter-spacing:2px;color:#5d6873;text-transform:uppercase;position:absolute;top:14px;right:16px}
+section{padding:44px 24px}
+.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+h2{font-family:'Arsenal SC',serif;font-weight:400;font-size:clamp(26px,8vw,32px);margin:10px 0 20px;letter-spacing:.5px}
+.tabs{display:flex;gap:18px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:22px}
+.tabs button{background:none;border:0;color:var(--muted);font:400 13px 'Work Sans';letter-spacing:1.5px;text-transform:uppercase;padding:0 0 12px;white-space:nowrap;cursor:pointer;border-bottom:1px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--pearl);border-color:var(--gold)}
+.pane{display:none}.pane.on{display:block;animation:f .6s}
+@keyframes f{from{opacity:0}to{opacity:1}}
+.pane .img{aspect-ratio:1;background:linear-gradient(150deg,#232a32,#1a1f25);display:flex;align-items:flex-end;padding:14px;font-size:10px;letter-spacing:2px;color:#5d6873;text-transform:uppercase;margin-bottom:16px}
+.pane p{color:var(--muted);line-height:1.8;font-weight:300}
+.book{background:var(--slate);border:1px solid var(--line);padding:22px}
+.book b{display:block;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin:16px 0 10px}
+.book b:first-child{margin-top:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{background:none;border:1px solid var(--line);color:var(--pearl);padding:10px 14px;font:400 14px 'Work Sans';cursor:pointer}
+.opts button.on{border-color:var(--gold);color:var(--gold)}
+.cta{display:block;text-align:center;background:var(--gold);color:var(--night);padding:16px;margin-top:22px;text-decoration:none;font-size:12px;letter-spacing:3px;text-transform:uppercase;font-weight:600}
+.small{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.6;font-weight:300}
+.quote{border-left:1px solid var(--gold);padding-left:18px;font-family:'Arsenal SC';font-size:20px;line-height:1.5}
+.quote span{display:block;font-family:'Work Sans';font-size:12px;color:var(--muted);letter-spacing:1.5px;margin-top:10px;text-transform:uppercase}
+footer{padding:36px 24px 46px;border-top:1px solid var(--line);font-size:13px;line-height:2;color:var(--muted);font-weight:300}
+footer a{color:var(--pearl);text-decoration:none}
+html.pdf .pane{display:block!important;margin-bottom:24px}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Silberschmiede Thun</div>
+<header><div class="logo">Silberschmiede Thun</div><a href="#termin">Termin</a></header>
+
+<div class="hero">
+<span class="ph">Platzhalter Bild</span>
+<svg viewBox="0 0 200 200" aria-hidden="true">
+ <defs><radialGradient id="g" cx="40%" cy="30%"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#b8bec5"/><stop offset="1" stop-color="#5b636c"/></radialGradient></defs>
+ <ellipse cx="100" cy="110" rx="70" ry="22" fill="none" stroke="url(#g)" stroke-width="9"/>
+ <ellipse cx="100" cy="96" rx="58" ry="18" fill="none" stroke="#c7a76a" stroke-width="7" opacity=".9"/>
+</svg>
+<h1>Handgeschmiedet<br>in Thun</h1>
+<p>Schmuck aus Silber und Gold – Einzelstücke, Partnerringe und Wunschanfertigungen.</p>
+</div>
+
+<section>
+<div class="eyebrow">Kollektion</div>
+<h2>Unser Schmuck</h2>
+<div class="tabs" id="tabs">
+ <button class="on" data-p="a">Schmuck</button><button data-p="b">Partnerringe</button><button data-p="c">Wunschanfertigung</button><button data-p="d">Umarbeitung</button>
+</div>
+<div class="pane on" id="a"><div class="img">Platzhalter – Schmuck</div><p>Handgeschmiedete Stücke aus Silber und Gold, inspiriert von der Natur – jedes ein Einzelstück.</p></div>
+<div class="pane" id="b"><div class="img">Platzhalter – Partnerringe</div><p>Zwei Ringe, die zusammengehören. Gemeinsam entworfen, von Hand gefertigt.</p></div>
+<div class="pane" id="c"><div class="img">Platzhalter – Wunschanfertigung</div><p>Ihre Idee, unser Handwerk – mit Perlen und Edelsteinen aus vertrauenswürdiger Herkunft.</p></div>
+<div class="pane" id="d"><div class="img">Platzhalter – Umarbeitung</div><p>Aus Altgold und eigenen Edelsteinen entsteht ein neues Schmuckstück mit Geschichte.</p></div>
+</section>
+
+<section>
+<div class="quote">Ein Mutter-Tochter-Atelier mitten in der Thuner Altstadt.<span>Yvonne Schediwy &amp; Sara Lehmann · Platzhalter für Ihr eigenes Zitat</span></div>
+</section>
+
+<section id="termin">
+<div class="eyebrow">Beratung</div>
+<h2>Termin anfragen</h2>
+<div class="book">
+ <b>Anliegen</b>
+ <div class="opts" data-k="a"><button class="on">Partnerringe</button><button>Wunschanfertigung</button><button>Umarbeitung</button><button>Schmuck ansehen</button></div>
+ <b>Bevorzugte Zeit</b>
+ <div class="opts" data-k="z"><button class="on">Vormittag</button><button>Nachmittag</button><button>Samstag</button></div>
+ <a class="cta" id="mail" href="#">Anfrage senden</a>
+ <p class="small">Wir melden uns persönlich mit einem Terminvorschlag.</p>
+</div>
+</section>
+
+<footer>Silberschmiede Thun<br>Obere Hauptgasse 66 · 3600 Thun<br><a href="tel:+41332215544">033 221 55 44</a> · <a href="mailto:info@silberschmiede-thun.ch">info@silberschmiede-thun.ch</a><br>Ökogold &amp; recyceltes Silber</footer>
+<script>
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===b.dataset.p))});
+const sel={};function upd(){document.querySelectorAll('.opts').forEach(o=>sel[o.dataset.k]=o.querySelector('.on').textContent);
+ document.getElementById('mail').href='mailto:info@silberschmiede-thun.ch?subject='+encodeURIComponent('Terminanfrage: '+sel.a)+'&body='+encodeURIComponent(`Grüezi\n\nIch interessiere mich für: ${sel.a}.\nBevorzugte Zeit: ${sel.z}.\n\nFreundliche Grüsse`)}
+document.querySelectorAll('.opts').forEach(o=>o.querySelectorAll('button').forEach(b=>b.onclick=()=>{o.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');upd()}));upd();
+</script></body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Silberschmiede Thun – Atelier (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#f8f5ef;--ink:#1c1b19;--line:#d9d3c8;--muted:#7a746b;--silver:#a7acb1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Instrument Sans',system-ui,sans-serif;font-weight:400;background:var(--ivory);color:var(--ink);max-width:430px;margin:0 auto;letter-spacing:.1px}
+.demo{background:var(--ink);color:var(--ivory);font-size:11px;text-align:center;padding:7px 10px;letter-spacing:.5px}
+header{text-align:center;padding:30px 20px 22px;border-bottom:1px solid var(--line)}
+.logo{font-family:'Libre Baskerville',serif;font-size:15px;letter-spacing:6px;text-transform:uppercase}
+.sub{font-size:10px;letter-spacing:4px;color:var(--muted);margin-top:8px;text-transform:uppercase}
+nav{display:flex;justify-content:center;gap:22px;padding:14px 0;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;border-bottom:1px solid var(--line)}
+nav a{color:var(--ink);text-decoration:none}
+.hero{padding:56px 28px 40px;text-align:center}
+.hero svg{width:190px;height:190px;display:block;margin:0 auto 34px}
+h1{font-family:'Libre Baskerville',serif;font-weight:400;font-size:clamp(28px,8.5vw,36px);line-height:1.3}
+h1 em{font-style:italic;color:var(--muted)}
+.hero p{margin-top:18px;color:var(--muted);line-height:1.75;font-size:15px}
+.rule{width:40px;height:1px;background:var(--ink);margin:30px auto}
+section{padding:46px 28px;border-top:1px solid var(--line)}
+.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);text-align:center}
+h2{font-family:'Libre Baskerville',serif;font-weight:400;font-size:clamp(24px,7vw,30px);text-align:center;margin:12px 0 26px;line-height:1.3}
+.svc{border-top:1px solid var(--line)}
+.svc details{border-bottom:1px solid var(--line)}
+.svc summary{list-style:none;padding:20px 0;display:flex;justify-content:space-between;font-family:'Libre Baskerville';font-size:18px;cursor:pointer}
+.svc summary::-webkit-details-marker{display:none}
+.svc summary:after{content:'+';font-family:'Instrument Sans';color:var(--muted);transition:transform .3s}
+.svc details[open] summary:after{transform:rotate(45deg)}
+.svc p{padding:0 0 20px;color:var(--muted);line-height:1.75;font-size:15px}
+.frame{aspect-ratio:4/5;background:linear-gradient(160deg,#ece7de,#e2dbcf);display:flex;align-items:flex-end;padding:16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair .frame{aspect-ratio:3/4}
+.duo{display:grid;gap:26px;text-align:center}
+.duo b{font-family:'Libre Baskerville';font-weight:400;font-size:20px;display:block;margin-bottom:6px}
+.duo span{color:var(--muted);line-height:1.7;font-size:15px}
+.mat{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.mat div{padding:20px 16px;text-align:center}
+.mat div+div{border-left:1px solid var(--line)}
+.mat b{font-family:'Libre Baskerville';font-weight:400;font-size:17px;display:block}
+.mat span{font-size:12px;color:var(--muted);letter-spacing:1px}
+.cta{display:block;text-align:center;border:1px solid var(--ink);padding:16px;margin-top:28px;color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:3px;text-transform:uppercase}
+.cta.dark{background:var(--ink);color:var(--ivory)}
+.note{text-align:center;color:var(--muted);font-size:13px;line-height:1.7;margin-top:18px}
+footer{padding:40px 28px 50px;text-align:center;font-size:13px;line-height:2;color:var(--muted);border-top:1px solid var(--line)}
+footer .logo{color:var(--ink);margin-bottom:10px}
+footer a{color:var(--ink);text-decoration:none}
+.fade{opacity:0;transform:translateY(14px);transition:opacity 1.2s,transform 1.2s}
+.fade.in,html.pdf .fade{opacity:1;transform:none}html.pdf .fade{transition:none}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Silberschmiede Thun</div>
+<header><div class="logo">Silberschmiede Thun</div><div class="sub">Atelier · Obere Hauptgasse 66</div></header>
+<nav><a href="#schmuck">Schmuck</a><a href="#atelier">Atelier</a><a href="#termin">Termin</a></nav>
+
+<div class="hero">
+<svg viewBox="0 0 200 200" aria-hidden="true">
+ <defs><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f959b"/><stop offset=".45" stop-color="#eef0f2"/><stop offset="1" stop-color="#7d8389"/></linearGradient></defs>
+ <circle cx="100" cy="100" r="62" fill="none" stroke="url(#s)" stroke-width="13"/>
+ <circle cx="100" cy="100" r="62" fill="none" stroke="#fff" stroke-width="1" opacity=".6"/>
+ <circle cx="100" cy="36" r="6" fill="#f4f1ea" stroke="#c9c2b6"/>
+</svg>
+<h1>Schmuck, so individuell<br>wie <em>der Mensch,</em><br>der ihn trägt.</h1>
+<p>Von Hand geschmiedet aus Silber und Gold, inspiriert von der Natur. Im Atelier in der Thuner Altstadt.</p>
+<div class="rule"></div>
+<a class="cta dark" href="#termin">Beratung vereinbaren</a>
+</div>
+
+<section id="schmuck" class="fade">
+<div class="eyebrow">Unser Handwerk</div>
+<h2>Was im Atelier entsteht</h2>
+<div class="svc">
+ <details open><summary>Schmuck aus Silber &amp; Gold</summary><p>Handgeschmiedete Einzelstücke – Ringe, Anhänger, Ohrschmuck. Jedes Stück trägt die Spuren seiner Entstehung.</p></details>
+ <details><summary>Partnerringe</summary><p>Zwei Ringe, gemeinsam mit Ihnen entworfen. In Ruhe, im persönlichen Gespräch.</p></details>
+ <details><summary>Wunschanfertigungen</summary><p>Ihre Idee, umgesetzt in unserem Handwerk. Mit Perlen und Edelsteinen aus vertrauenswürdiger Herkunft.</p></details>
+ <details><summary>Umarbeitungen</summary><p>Altgold und eigene Edelsteine erhalten eine neue Form – und behalten ihre Geschichte.</p></details>
+</div>
+</section>
+
+<section class="fade">
+<div class="frame">Platzhalter – Ihr Schmuckfoto</div>
+<div class="pair"><div class="frame">Platzhalter</div><div class="frame">Platzhalter</div></div>
+<p class="note">Hier erscheinen Ihre eigenen Fotos – ruhig inszeniert, mit viel Raum.</p>
+</section>
+
+<section id="atelier" class="fade">
+<div class="eyebrow">Mutter &amp; Tochter</div>
+<h2>Zwei Generationen,<br>ein Atelier</h2>
+<div class="duo">
+ <div><b>Yvonne Schediwy</b><span>Silberschmiedin. Ihr Handwerk hat sie in Brasilien weiterentwickelt.</span></div>
+ <div><b>Sara Lehmann</b><span>Silberschmiedin mit Ausbildung in Gemmologie.</span></div>
+</div>
+</section>
+
+<section class="fade">
+<div class="eyebrow">Verantwortung</div>
+<h2>Unsere Materialien</h2>
+<div class="mat"><div><b>Ökogold</b><span>verantwortungsvoll</span></div><div><b>Recyceltes Silber</b><span>wiederverwertet</span></div></div>
+<p class="note">Bei Edelsteinen und Perlen achten wir auf eine vertrauenswürdige Herkunft.</p>
+</section>
+
+<section id="termin" class="fade">
+<div class="eyebrow">Persönliche Beratung</div>
+<h2>Am Anfang steht<br>ein Gespräch</h2>
+<p class="note" style="margin-top:0">Wir besprechen Design, Materialien und Möglichkeiten – in Ruhe und ohne Verpflichtung.</p>
+<a class="cta dark" href="mailto:info@silberschmiede-thun.ch?subject=Beratungsgespr%C3%A4ch">Termin anfragen</a>
+<a class="cta" href="tel:+41332215544">033 221 55 44</a>
+</section>
+
+<footer><div class="logo">Silberschmiede Thun</div>Obere Hauptgasse 66 · 3600 Thun<br><a href="mailto:info@silberschmiede-thun.ch">info@silberschmiede-thun.ch</a><br>Öffnungszeiten: Platzhalter</footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script></body></html>
