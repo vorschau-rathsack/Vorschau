@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stecknadel Thun Schneiderei – Entwurf «Nadelkissen»</title>
+<meta name="description" content="Entwurf einer Webseite für Stecknadel Thun Schneiderei im Bälliz, Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tomate:#d63f2a;
+  --tomate-dunkel:#a92a19;
+  --rose:#f6d3cb;
+  --rose-hell:#fbe9e4;
+  --garn:#2c4a8c;
+  --garn-dunkel:#1d3266;
+  --elfenbein:#fcf7ec;
+  --braun:#3b2420;
+  --braun-weich:#6e5550;
+  --blatt:#5d7f3c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--elfenbein);color:var(--braun);font:400 17px/1.6 "Karla", system-ui, sans-serif}
+h1,h2,h3{font-family:"DM Serif Display", Georgia, serif;font-weight:400;margin:0}
+a{color:inherit}
+svg{display:block}
+.innen{max-width:520px;margin:0 auto;padding:0 18px}
+
+.demo{background:var(--garn-dunkel);color:#fff;text-align:center;font-size:12.5px;line-height:1.4;padding:8px 14px}
+
+/* Kopf */
+.kopf{text-align:center;padding:26px 18px 0}
+.kopf .ort{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tomate);background:var(--rose-hell);border-radius:999px;padding:5px 14px}
+.kopf h1{font-size:clamp(3rem, 15.5vw, 5.4rem);line-height:.95;margin:16px 0 0;color:var(--braun)}
+.kopf h1 em{display:block;font-style:italic;color:var(--tomate);font-size:.44em;line-height:1.2;margin-top:4px}
+.kopf p{margin:14px auto 0;max-width:30ch;color:var(--braun-weich)}
+
+/* Kissen */
+.kissen-buehne{position:relative;margin:8px auto 0;max-width:470px}
+.kissen-svg{width:100%;height:auto;overflow:visible;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.nadel{cursor:pointer}
+.nadel .zug{transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+.nadel.gezogen .zug{transform:translateY(-58px)}
+.nadel:focus{outline:none}
+.nadel:focus-visible .kopf-kreis{stroke:var(--braun);stroke-width:3}
+.faehnchen{opacity:0;transition:opacity .3s ease .25s;pointer-events:none}
+.faehnchen.sichtbar{opacity:1}
+.tipp{text-align:center;font-size:15px;color:var(--braun-weich);margin:0 0 6px;display:flex;align-items:center;justify-content:center;gap:8px}
+.tipp svg{width:20px;height:20px}
+
+.erklaerung{background:#fff;border-radius:22px;padding:24px 22px;margin:6px 0 0;box-shadow:0 1px 0 rgba(59,36,32,.08), 0 12px 30px -18px rgba(169,42,25,.45);position:relative;min-height:190px}
+.erklaerung .punkt{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:middle;margin-right:8px;background:var(--tomate)}
+.erklaerung .klein{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--braun-weich)}
+.erklaerung h3{font-size:clamp(1.9rem, 8.6vw, 2.6rem);line-height:1.08;margin:10px 0 10px}
+.erklaerung p{margin:0;color:var(--braun-weich)}
+.erklaerung .woertlich{font-family:"DM Serif Display", serif;font-style:italic;color:var(--tomate-dunkel);font-size:19px;margin-bottom:8px}
+.erklaerung ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:14px 0 0;padding:0}
+.erklaerung li{background:var(--rose-hell);color:var(--tomate-dunkel);font-weight:700;font-size:14px;border-radius:8px;padding:5px 11px}
+.leer h3{color:var(--braun-weich)}
+
+.knopfzeile{display:flex;gap:10px;justify-content:center;margin:16px 0 0;flex-wrap:wrap}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 20px;border-radius:14px;font:700 16px "Karla", sans-serif;text-decoration:none;border:0;cursor:pointer}
+.knopf svg{width:18px;height:18px}
+.knopf-rot{background:var(--tomate);color:#fff}
+.knopf-blau{background:var(--garn);color:#fff}
+.knopf-rand{background:transparent;color:var(--garn);box-shadow:inset 0 0 0 2px var(--garn)}
+
+.abschnitt{padding-top:58px;padding-bottom:58px}
+.marke{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tomate);margin:0 0 8px}
+.abschnitt h2{font-size:clamp(2.1rem, 10vw, 3rem);line-height:1.04;margin:0 0 14px}
+.abschnitt h2 i{color:var(--tomate)}
+.abschnitt .einl{color:var(--braun-weich);margin:0 0 22px}
+
+/* Leistungsliste */
+.liste{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.liste li{display:flex;gap:12px;align-items:flex-start;background:var(--rose-hell);border-radius:14px;padding:12px 14px;line-height:1.4}
+.liste li svg{flex:none;width:18px;height:30px;margin-top:-4px}
+.liste li small{display:block;color:var(--braun-weich);font-size:14px}
+.hinweis-platz{border:2px dashed var(--tomate);color:var(--tomate-dunkel);border-radius:14px;padding:12px 14px;margin-top:16px;font-size:14.5px;line-height:1.4;background:#fff}
+
+/* Zackenschere-Kante */
+.zacke{position:relative;background:var(--rose);margin-top:14px}
+.zacke .kante{position:absolute;left:0;width:100%;height:12px;display:block}
+.zacke .kante.oben{top:-11px}
+.zacke .kante.unten{bottom:-11px}
+
+.express{padding-top:52px;padding-bottom:54px}
+.express-gitter{display:grid;grid-template-columns:1fr 104px;gap:14px;align-items:center}
+.express h2{font-size:clamp(2.4rem, 12vw, 3.6rem);line-height:.98;color:var(--tomate-dunkel)}
+.express .stempel{display:inline-block;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;background:var(--tomate);color:#fff;padding:5px 12px;border-radius:6px;transform:rotate(-2deg);margin-bottom:14px}
+.express p{margin:14px 0 0;font-size:18px}
+.express p strong{font-weight:700}
+.spule{width:104px;height:auto;overflow:hidden}
+
+/* ppp */
+.ppp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:26px 0 0;padding:0;list-style:none;text-align:center}
+.ppp svg{width:100%;max-width:92px;height:auto;margin:0 auto}
+.ppp b{display:block;font-family:"DM Serif Display", serif;font-weight:400;font-size:clamp(1.15rem, 5.6vw, 1.55rem);line-height:1.1;margin-top:8px}
+.ppp-formel{font-family:"DM Serif Display", serif;font-size:clamp(1.1rem, 5.4vw, 1.5rem);text-align:center;margin:22px 0 0;color:var(--garn)}
+
+/* Zeiten */
+.zeitkarte{background:#fff;border-radius:22px;padding:8px 20px;box-shadow:0 1px 0 rgba(59,36,32,.08)}
+.zeile{display:flex;align-items:baseline;gap:8px;padding:14px 0;border-bottom:1.5px dotted rgba(59,36,32,.3)}
+.zeile:last-child{border-bottom:0}
+.zeile span:first-child{font-weight:700}
+.zeile span:last-child{margin-left:auto;font-variant-numeric:tabular-nums;white-space:nowrap}
+.zeile.zu span:last-child{color:var(--tomate)}
+
+/* Bewertung */
+.bewertung{display:flex;gap:16px;align-items:center;background:var(--garn);color:#fff;border-radius:22px;padding:22px 20px}
+.bewertung .zahl{font-family:"DM Serif Display", serif;font-size:58px;line-height:1}
+.bewertung .zahl small{font-size:22px;opacity:.7}
+.bewertung p{margin:0;line-height:1.35}
+.bewertung .sterne{color:#ffd166;letter-spacing:2px;font-size:20px}
+
+/* Kontakt */
+.kontakt{background:var(--rose-hell)}
+.adresse{font-style:normal;font-family:"DM Serif Display", serif;font-size:clamp(1.6rem, 7.6vw, 2.1rem);line-height:1.15;margin:0 0 20px}
+.kontakt .knopf{width:100%;justify-content:space-between;margin-top:10px}
+.kontakt .knopf span{font-weight:400;opacity:.9}
+.inhaber{margin:22px 0 0;color:var(--braun-weich);font-size:15px}
+.platz-inline{border:1.5px dashed var(--tomate);color:var(--tomate-dunkel);border-radius:6px;padding:0 6px;white-space:nowrap}
+
+footer{background:var(--garn-dunkel);color:rgba(255,255,255,.85);font-size:13.5px;line-height:1.6;padding:30px 0 110px}
+footer p{margin:0 0 6px}
+footer strong{color:#fff}
+
+/* schwebende Knöpfe */
+.schweben{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;z-index:30}
+.schweben a{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 20px -6px rgba(59,36,32,.5)}
+.schweben a svg{width:24px;height:24px}
+.schweben .tel{background:var(--tomate);color:#fff}
+.schweben .mail{background:#fff;color:var(--garn);width:52px;height:52px;margin-left:4px}
+
+/* PDF */
+html.pdf .schweben{display:none}
+html.pdf footer{padding-bottom:30px}
+html.pdf .faehnchen.sichtbar{opacity:1;transition:none}
+html.pdf .nadel .zug{transition:none}
+</style>
+</head>
+<body>
+
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Stecknadel Thun Schneiderei</div>
+
+<header class="kopf">
+  <span class="ort">Bälliz 53 · Thun</span>
+  <h1>Stecknadel<em>Thun Schneiderei</em></h1>
+  <p>Änderungsschneiderei, Neuanfertigungen nach Mass und Nähatelier für Heimtextilien.</p>
+</header>
+
+<main>
+  <section class="innen" aria-labelledby="kissen-titel" style="padding-top:18px">
+    <h2 id="kissen-titel" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Leistungen am Nadelkissen</h2>
+    <p class="tipp"><svg viewBox="0 0 24 24" fill="none" stroke="#d63f2a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 11V5a2 2 0 0 1 4 0v6m0-2a2 2 0 0 1 4 0v3m-8-1.5a2 2 0 0 0-4 .5c0 3 1 5 3 7s3 3 6 3 5-2 5-5v-3"/></svg>Tippen Sie auf eine Nadel</p>
+
+    <div class="kissen-buehne">
+      <svg class="kissen-svg" id="kissen" viewBox="0 14 440 386" role="group" aria-label="Nadelkissen mit sieben Stecknadeln – jede Nadel steht für eine Leistung">
+        <defs>
+          <radialGradient id="kopfglanz" cx=".35" cy=".3" r=".75">
+            <stop offset="0" stop-color="#fff" stop-opacity=".75"/>
+            <stop offset=".35" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="tomatenglanz" cx=".32" cy=".25" r=".7">
+            <stop offset="0" stop-color="#f07a5f"/>
+            <stop offset=".55" stop-color="#d63f2a"/>
+            <stop offset="1" stop-color="#b3301d"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Schatten -->
+        <ellipse cx="220" cy="384" rx="150" ry="11" fill="#f0c4b9"/>
+
+        <!-- Nadeln (hinter dem Kissen, damit sie darin stecken) -->
+        <g id="nadeln"></g>
+
+        <!-- Erdbeere an der Kordel -->
+        <path d="M352 318 C 372 330, 384 338, 392 352" fill="none" stroke="#5d7f3c" stroke-width="2"/>
+        <g transform="translate(392 352)">
+          <path d="M-14 4 C -16 18, -6 32, 0 36 C 6 32, 16 18, 14 4 C 8 -2, -8 -2, -14 4 Z" fill="#c8331f"/>
+          <path d="M-12 2 L -6 -6 L 0 0 L 6 -6 L 12 2 L 0 6 Z" fill="#5d7f3c"/>
+          <g fill="#f6d3cb"><circle cx="-6" cy="12" r="1.3"/><circle cx="4" cy="11" r="1.3"/><circle cx="-1" cy="19" r="1.3"/><circle cx="7" cy="20" r="1.3"/><circle cx="-7" cy="22" r="1.3"/><circle cx="1" cy="28" r="1.3"/></g>
+        </g>
+
+        <!-- Tomaten-Körper -->
+        <ellipse cx="220" cy="300" rx="140" ry="88" fill="url(#tomatenglanz)"/>
+        <g fill="none" stroke="#a92a19" stroke-width="2.2" stroke-linecap="round" opacity=".75">
+          <path d="M220 214 C 150 222, 104 270, 112 352"/>
+          <path d="M220 214 C 176 230, 158 300, 172 382"/>
+          <path d="M220 214 C 218 260, 218 330, 220 388"/>
+          <path d="M220 214 C 264 230, 282 300, 268 382"/>
+          <path d="M220 214 C 290 222, 336 270, 328 352"/>
+        </g>
+        <ellipse cx="160" cy="262" rx="34" ry="14" fill="#fff" opacity=".18" transform="rotate(-22 160 262)"/>
+
+        <!-- Kelch -->
+        <g fill="#5d7f3c" stroke="#47652c" stroke-width="1.2" stroke-linejoin="round">
+          <path d="M220 210 C 200 200, 180 202, 166 210 C 184 214, 202 216, 220 216 Z"/>
+          <path d="M220 210 C 240 200, 260 202, 274 210 C 256 214, 238 216, 220 216 Z"/>
+          <path d="M220 212 C 212 222, 196 232, 182 236 C 194 224, 206 214, 220 210 Z"/>
+          <path d="M220 212 C 228 222, 244 232, 258 236 C 246 224, 234 214, 220 210 Z"/>
+          <path d="M220 210 C 216 198, 210 190, 200 186 C 212 194, 218 202, 222 212 Z"/>
+          <path d="M220 210 C 226 198, 234 192, 244 190 C 232 198, 226 204, 222 212 Z"/>
+        </g>
+        <path d="M218 210 C 216 202, 218 194, 224 188" fill="none" stroke="#47652c" stroke-width="4" stroke-linecap="round"/>
+
+        <!-- Fähnchen (oberste Ebene) -->
+        <g id="faehnchen"></g>
+      </svg>
+    </div>
+
+    <div class="erklaerung leer" id="erklaerung" aria-live="polite">
+      <span class="klein">Leistung</span>
+      <h3>Welche Nadel ziehen Sie?</h3>
+      <p>Jede Stecknadel steht für eine Arbeit aus unserem Atelier.</p>
+    </div>
+
+    <div class="knopfzeile">
+      <button class="knopf knopf-rand" id="zurueck" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.5-5.8M4 4v4h4"/></svg>
+        Alle zurückstecken
+      </button>
+    </div>
+  </section>
+
+  <section class="abschnitt innen" id="leistungen" aria-labelledby="l-titel">
+    <p class="marke">Unser Atelier</p>
+    <h2 id="l-titel">Was in der Stecknadel <i>genäht</i> wird</h2>
+    <p class="einl">Änderungen – «ob aus Textil, Leder oder Pelz».</p>
+    <ul class="liste">
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#2c4a8c"/></svg><span>Änderungsschneiderei</span></li>
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#f0b429"/></svg><span>Hosen kürzen<small>einfach · normal · mit Umschlag · mit Bund</small></span></li>
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#e5679a"/></svg><span>Reissverschlüsse reparieren</span></li>
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#2a9d8f"/></svg><span>Futter, Taschen und Schlitze einsetzen</span></li>
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#7b5ea7"/></svg><span>Fehlende Knöpfe ersetzen</span></li>
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#d63f2a"/></svg><span>Neuanfertigungen nach Mass</span></li>
+      <li><svg viewBox="0 0 18 30" aria-hidden="true"><line x1="9" y1="10" x2="9" y2="30" stroke="#9aa3ad" stroke-width="2"/><circle cx="9" cy="8" r="7" fill="#5d7f3c"/></svg><span>Nähatelier für Heimtextilien</span></li>
+    </ul>
+    <div class="hinweis-platz">Preise auf Anfrage / [Platzhalter Preisliste]</div>
+  </section>
+
+  <section class="zacke" id="express" aria-labelledby="e-titel">
+    <svg class="kante oben" aria-hidden="true" preserveAspectRatio="none"><path fill="#f6d3cb"/></svg>
+    <svg class="kante unten" aria-hidden="true" preserveAspectRatio="none"><path fill="#f6d3cb"/></svg>
+    <div class="innen express">
+      <div class="express-gitter">
+        <div>
+          <span class="stempel">Express</span>
+          <h2 id="e-titel">In 24 Stunden</h2>
+        </div>
+        <svg class="spule" viewBox="0 0 104 130" aria-hidden="true">
+          <rect x="12" y="6" width="80" height="14" rx="4" fill="#c99b6b"/>
+          <rect x="12" y="110" width="80" height="14" rx="4" fill="#c99b6b"/>
+          <rect x="22" y="20" width="60" height="90" fill="#2c4a8c"/>
+          <g stroke="#4a6bb0" stroke-width="2.2">
+            <path d="M22 30 L82 34M22 40 L82 44M22 50 L82 54M22 60 L82 64M22 70 L82 74M22 80 L82 84M22 90 L82 94M22 100 L82 104"/>
+          </g>
+          <path d="M82 60 C 96 64, 100 80, 94 96 C 90 108, 98 122, 104 128" fill="none" stroke="#2c4a8c" stroke-width="2"/>
+          <ellipse cx="52" cy="13" rx="8" ry="3" fill="#8e6a44"/>
+        </svg>
+      </div>
+      <p><strong>Express-Schneiderei:</strong> Auf Wunsch erledigen wir Änderungen innerhalb von 24&nbsp;Stunden.</p>
+      <div class="knopfzeile" style="justify-content:flex-start">
+        <a class="knopf knopf-rot" href="tel:+41763412262">Express anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt innen" id="philosophie" aria-labelledby="p-titel">
+    <p class="marke">Philosophie</p>
+    <h2 id="p-titel">Drei Nadeln, <i>ein Versprechen</i></h2>
+    <ul class="ppp">
+      <li>
+        <svg viewBox="0 0 92 120" aria-hidden="true"><line x1="46" y1="50" x2="46" y2="118" stroke="#9aa3ad" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="38" r="34" fill="#d63f2a"/><circle cx="46" cy="38" r="34" fill="url(#kopfglanz)"/><text x="46" y="52" text-anchor="middle" font-family="DM Serif Display, serif" font-size="40" fill="#fff">p</text></svg>
+        <b>perfekt</b>
+      </li>
+      <li>
+        <svg viewBox="0 0 92 120" aria-hidden="true"><line x1="46" y1="50" x2="46" y2="118" stroke="#9aa3ad" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="38" r="34" fill="#2c4a8c"/><circle cx="46" cy="38" r="34" fill="url(#kopfglanz)"/><text x="46" y="52" text-anchor="middle" font-family="DM Serif Display, serif" font-size="40" fill="#fff">p</text></svg>
+        <b>prompt</b>
+      </li>
+      <li>
+        <svg viewBox="0 0 92 120" aria-hidden="true"><line x1="46" y1="50" x2="46" y2="118" stroke="#9aa3ad" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="38" r="34" fill="#f0b429"/><circle cx="46" cy="38" r="34" fill="url(#kopfglanz)"/><text x="46" y="52" text-anchor="middle" font-family="DM Serif Display, serif" font-size="40" fill="#3b2420">p</text></svg>
+        <b>preiswert</b>
+      </li>
+    </ul>
+    <p class="ppp-formel">p-p-p =<br><span style="white-space:nowrap">perfekt – prompt – preiswert</span></p>
+  </section>
+
+  <section class="abschnitt innen" id="zeiten" aria-labelledby="z-titel" style="padding-top:10px">
+    <p class="marke">Öffnungszeiten</p>
+    <h2 id="z-titel">Wann wir <i>da sind</i></h2>
+    <div class="zeitkarte">
+      <div class="zeile"><span>Montag – Freitag</span><span>09.00 – 18.30</span></div>
+      <div class="zeile"><span>Samstag</span><span>09.00 – 17.00</span></div>
+      <div class="zeile zu"><span>Sonntag</span><span>geschlossen</span></div>
+    </div>
+  </section>
+
+  <section class="abschnitt innen" id="bewertungen" aria-labelledby="b-titel" style="padding-top:10px">
+    <p class="marke">Bewertungen</p>
+    <h2 id="b-titel">Gerne <i>empfohlen</i></h2>
+    <div class="bewertung">
+      <div class="zahl">5<small>/5</small></div>
+      <div>
+        <div class="sterne" aria-label="5 von 5 Sternen">★★★★★</div>
+        <p>Cylex / Yably<br>17 Bewertungen</p>
+      </div>
+    </div>
+    <div class="hinweis-platz">[Platzhalter: Google-Bewertung – Note und Anzahl einsetzen]</div>
+  </section>
+
+  <section class="abschnitt kontakt" id="kontakt" aria-labelledby="k-titel">
+    <div class="innen">
+      <p class="marke">Kontakt &amp; Anfahrt</p>
+      <h2 id="k-titel">Besuchen Sie uns <i>im Bälliz</i></h2>
+      <address class="adresse">Bälliz 53<br>3600 Thun</address>
+      <a class="knopf knopf-rot" href="tel:+41763412262">Anrufen <span>076 341 22 62</span></a>
+      <a class="knopf knopf-blau" href="tel:+41332295236">Anrufen <span>033 229 52 36</span></a>
+      <a class="knopf knopf-rand" href="mailto:s.schneiderei@hotmail.com">E-Mail <span>s.schneiderei@hotmail.com</span></a>
+      <a class="knopf knopf-rand" href="https://www.google.com/maps/search/?api=1&amp;query=Stecknadel+Schneiderei+B%C3%A4lliz+53+3600+Thun" target="_blank" rel="noopener">Route planen <span>Google Maps ↗</span></a>
+      <p class="inhaber">Inhaber: Safar Chodayari Askestan · im Bälliz seit <span class="platz-inline">[Platzhalter: seit wann?]</span></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="innen">
+    <p><strong>Stecknadel Thun Schneiderei</strong><br>Bälliz 53, 3600 Thun</p>
+    <p>Stecknadel, S. Chodayari Askestan · Einzelunternehmen · UID CHE-419.883.597</p>
+    <p>Entwurf / Demo von Max Rathsack – keine offizielle Webseite.</p>
+  </div>
+</footer>
+
+<div class="schweben">
+  <a class="mail" href="mailto:s.schneiderei@hotmail.com" aria-label="E-Mail schreiben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+  <a class="tel" href="tel:+41763412262" aria-label="Anrufen 076 341 22 62"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></a>
+</div>
+
+<script>
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+  var LANG = 78, ZUG = 58;
+  // x-Position auf der Kissenkante, Winkel, Kopffarbe, Leistung
+  var nadeln = [
+    {x:106, w:-44, farbe:'#f0b429', name:'Hosen kürzen',
+     text:'Hosen kürzen wir in verschiedenen Varianten:', varianten:['einfach','normal','mit Umschlag','mit Bund']},
+    {x:142, w:-30, farbe:'#e5679a', name:'Reissverschluss',
+     titel:'Reissverschlüsse', text:'Klemmt er oder ist er kaputt? Reissverschlüsse werden repariert.'},
+    {x:180, w:-15, farbe:'#2a9d8f', name:'Futter & Taschen',
+     titel:'Futter, Taschen & Schlitze', text:'Wir setzen Futter, Taschen und Schlitze ein.'},
+    {x:220, w:0,   farbe:'#2c4a8c', name:'Leder & Pelz',
+     woertlich:'«ob aus Textil, Leder oder Pelz»', text:'Änderungen auch an Leder und Pelz – nicht nur an Textilien.'},
+    {x:260, w:15,  farbe:'#7b5ea7', name:'Knöpfe',
+     text:'Fehlende Knöpfe werden ersetzt.'},
+    {x:298, w:30,  farbe:'#fcf7ec', rand:'#3b2420', name:'Heimtextilien',
+     woertlich:'«Nähatelier für Heimtextilien»', text:'Auch Textilien für Ihr Zuhause nähen wir im Atelier.'},
+    {x:334, w:44,  farbe:'#5d7f3c', name:'Nach Mass',
+     titel:'Neuanfertigung nach Mass', woertlich:'«Neuanfertigungen nach Mass»', text:'Neben Änderungen fertigen wir auch neu – nach Ihren Massen.'}
+  ];
+  var gruppe = document.getElementById('nadeln');
+  var fahnen = document.getElementById('faehnchen');
+  var erkl = document.getElementById('erklaerung');
+  var aktiv = -1;
+
+  function el(n, a, p){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+
+  function kante(x){ // obere Kante der Tomate (Ellipse cx220 cy300 rx140 ry88)
+    var dx = (x - 220) / 140;
+    return 300 - 88 * Math.sqrt(Math.max(0, 1 - dx * dx)) + 4;
+  }
+
+  nadeln.forEach(function(n, i){
+    n.y = kante(n.x);
+    var rad = n.w * Math.PI / 180;
+    var g = el('g', {'class':'nadel', transform:'rotate(' + n.w + ' ' + n.x + ' ' + n.y + ')', tabindex:0, role:'button',
+                     'aria-label':'Nadel ziehen: ' + n.name}, gruppe);
+    var zug = el('g', {'class':'zug'}, g);
+    // Schaft (reicht ins Kissen hinein und wird davon verdeckt)
+    el('line', {x1:n.x, y1:n.y + 70, x2:n.x, y2:n.y - LANG, stroke:'#9aa3ad', 'stroke-width':3, 'stroke-linecap':'round'}, zug);
+    el('line', {x1:n.x - .8, y1:n.y + 70, x2:n.x - .8, y2:n.y - LANG, stroke:'#dfe4ea', 'stroke-width':1}, zug);
+    el('circle', {'class':'kopf-kreis', cx:n.x, cy:n.y - LANG - 9, r:12, fill:n.farbe, stroke:n.rand || 'none', 'stroke-width':n.rand ? 1.5 : 0}, zug);
+    el('circle', {cx:n.x, cy:n.y - LANG - 9, r:12, fill:'url(#kopfglanz)'}, zug);
+    // grosszügige Tippfläche
+    el('line', {x1:n.x, y1:n.y - 8, x2:n.x, y2:n.y - LANG - 18, stroke:'transparent', 'stroke-width':30, 'stroke-linecap':'round'}, zug);
+
+    // Kopfposition nach dem Ziehen (für Fähnchen)
+    var d = LANG + 9 + ZUG;
+    n.kx = n.x + Math.sin(rad) * d;
+    n.ky = n.y - Math.cos(rad) * d;
+    n.g = g;
+
+    g.addEventListener('click', function(){ ziehe(i); });
+    g.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); ziehe(i); } });
+  });
+
+  // Fähnchen bauen (nach Font-Laden, damit die Breite stimmt)
+  function baueFahnen(){
+    fahnen.innerHTML = '';
+    nadeln.forEach(function(n, i){
+      var f = el('g', {'class':'faehnchen'}, fahnen);
+      var t = el('text', {x:0, y:0, 'font-family':'Karla, sans-serif', 'font-weight':700, 'font-size':17, fill:'#fff'}, f);
+      t.textContent = n.name;
+      var b = t.getComputedTextLength() + 24;
+      var fx = Math.max(4, Math.min(436 - b, n.kx - b / 2));
+      var fy = n.ky - 12 - 40;
+      // Fähnchen mit Schwalbenschwanz, kleine Spitze zeigt auf den Nadelkopf
+      var px = Math.max(fx + 10, Math.min(fx + b - 10, n.kx));
+      var d = 'M' + fx + ' ' + fy + ' H ' + (fx + b) + ' l -7 15 l 7 15 H ' + (px + 7) + ' l -7 8 l -7 -8 H ' + fx + ' Z';
+      var flag = el('path', {d:d, fill:'#3b2420'}, f);
+      f.insertBefore(flag, t);
+      t.setAttribute('x', fx + 11);
+      t.setAttribute('y', fy + 21);
+      n.f = f;
+      if (n.g.classList.contains('gezogen') && i === aktiv) f.classList.add('sichtbar');
+    });
+  }
+
+  function ziehe(i){
+    var n = nadeln[i];
+    n.g.classList.add('gezogen');
+    n.g.setAttribute('aria-pressed', 'true');
+    aktiv = i;
+    nadeln.forEach(function(m, j){ if (m.f) m.f.classList.toggle('sichtbar', j === i); });
+    // aktive Nadel nach vorne holen
+    gruppe.appendChild(n.g);
+    var html = '<span class="klein"><span class="punkt" style="background:' + n.farbe + (n.rand ? ';box-shadow:inset 0 0 0 1.5px ' + n.rand : '') + '"></span>Nadel ' + (i + 1) + ' von ' + nadeln.length + '</span>' +
+               '<h3>' + (n.titel || n.name) + '</h3>';
+    if (n.woertlich) html += '<p class="woertlich">' + n.woertlich + '</p>';
+    html += '<p>' + n.text + '</p>';
+    if (n.varianten) html += '<ul>' + n.varianten.map(function(v){ return '<li>' + v + '</li>'; }).join('') + '</ul>';
+    erkl.className = 'erklaerung';
+    erkl.innerHTML = html;
+  }
+
+  document.getElementById('zurueck').addEventListener('click', function(){
+    nadeln.forEach(function(n){ n.g.classList.remove('gezogen'); n.g.setAttribute('aria-pressed', 'false'); if (n.f) n.f.classList.remove('sichtbar'); });
+    aktiv = -1;
+    erkl.className = 'erklaerung leer';
+    erkl.innerHTML = '<span class="klein">Leistung</span><h3>Welche Nadel ziehen Sie?</h3><p>Jede Stecknadel steht für eine Arbeit aus unserem Atelier.</p>';
+  });
+
+  // Zackenschere-Kanten als Vektor (Zahnbreite 18px)
+  function zacken(){
+    document.querySelectorAll('.zacke .kante').forEach(function(k){
+      var w = Math.ceil(k.getBoundingClientRect().width), oben = k.classList.contains('oben'), d = 'M0 ' + (oben ? 12 : 0);
+      for (var x = 0; x < w; x += 18) d += oben ? ' L' + (x + 9) + ' 0 L' + (x + 18) + ' 12' : ' L' + (x + 9) + ' 12 L' + (x + 18) + ' 0';
+      d += oben ? ' V13 H0 Z' : ' V-1 H0 Z';
+      k.setAttribute('viewBox', '0 0 ' + w + ' 12');
+      k.querySelector('path').setAttribute('d', d);
+    });
+  }
+  zacken();
+  window.addEventListener('resize', zacken);
+  baueFahnen();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(baueFahnen);
+  window.stecknadelZiehe = ziehe; // für den PDF-Druck
+})();
+</script>
+</body>
+</html>

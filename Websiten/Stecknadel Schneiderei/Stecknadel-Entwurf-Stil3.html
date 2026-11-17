@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stecknadel Thun Schneiderei – Entwurf «Saumlinie»</title>
+<meta name="description" content="Entwurf: Änderungsschneiderei Stecknadel im Bälliz 53, Thun – Hosen kürzen und Express-Änderungen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --indigo:#18244a;
+  --indigo-2:#203161;
+  --indigo-3:#2b4180;
+  --denim:#5f7fc4;
+  --kreide:#f1eee6;
+  --kreide-2:#c9cbd6;
+  --signal:#ff5e1a;
+  --signal-dunkel:#d94a0d;
+  --gross:"Space Grotesk", "Arial Narrow", system-ui, sans-serif;
+  --text:"IBM Plex Sans", system-ui, sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:70px}
+body{margin:0;background:var(--indigo);color:var(--kreide);font:400 16.5px/1.6 var(--text)}
+a{color:inherit}
+svg{display:block}
+.rahmen{max-width:560px;margin:0 auto;padding:0 16px}
+
+.entwurf{background:var(--kreide);color:var(--indigo);font-size:12.5px;line-height:1.4;padding:8px 14px;text-align:center;font-weight:500}
+
+/* Kopfleiste */
+.leiste{position:sticky;top:0;z-index:40;background:rgba(24,36,74,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid rgba(241,238,230,.12)}
+.leiste .rahmen{display:flex;align-items:center;gap:10px;height:60px}
+.logo{font:700 17px var(--gross);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;margin-right:auto;display:flex;align-items:center;gap:8px}
+.logo i{display:block;width:10px;height:10px;border-radius:50%;background:var(--signal)}
+.ikon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;text-decoration:none;border:1.5px solid rgba(241,238,230,.35)}
+.ikon.tel{background:var(--signal);border-color:var(--signal);color:#fff}
+.ikon svg{width:20px;height:20px}
+
+/* Hero */
+.hero{padding-top:40px;padding-bottom:48px;position:relative}
+.etikett{font:500 12.5px var(--gross);letter-spacing:.18em;text-transform:uppercase;color:var(--denim);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.etikett::before{content:"";width:26px;height:2px;background:var(--signal)}
+.hero h1{font:700 clamp(2.9rem, 15vw, 5.4rem)/.9 var(--gross);letter-spacing:-.035em;margin:0;text-transform:uppercase}
+.hero h1 span{display:block;font-weight:500;font-size:.36em;letter-spacing:.02em;line-height:1.2;margin-top:.5em;color:var(--kreide-2);text-transform:none}
+.hero .satz{font-size:18px;margin:22px 0 0;max-width:30ch}
+.hero .satz b{color:var(--signal);font-weight:600}
+.reihe{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.taste{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 20px;border-radius:12px;font:600 16px var(--text);text-decoration:none;border:1.5px solid rgba(241,238,230,.45);background:transparent;color:var(--kreide);cursor:pointer}
+.taste svg{width:18px;height:18px}
+.taste.voll{background:var(--signal);border-color:var(--signal);color:#fff}
+.taste.hell{background:var(--kreide);border-color:var(--kreide);color:var(--indigo)}
+.saumstrich{margin-top:36px;height:14px;width:100%}
+
+/* Abschnitte */
+.block{padding:56px 0;border-top:1px solid rgba(241,238,230,.12)}
+.kopfzeile{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+.kopfzeile .zahl{font:500 13px var(--gross);color:var(--signal);letter-spacing:.08em}
+.kopfzeile .was{font:500 12.5px var(--gross);letter-spacing:.16em;text-transform:uppercase;color:var(--denim)}
+h2{font:700 clamp(2rem, 9.6vw, 3rem)/1.02 var(--gross);letter-spacing:-.025em;margin:0 0 14px}
+.block p.lead{color:var(--kreide-2);margin:0 0 22px;max-width:36ch}
+
+/* Saum-Werkstatt */
+.werkbank{background:var(--indigo-2);border:1px solid rgba(241,238,230,.12);border-radius:20px;padding:16px 12px 18px;position:relative}
+.anzeige{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;padding:2px 6px 8px}
+.anzeige .wert{font:700 clamp(2.3rem, 12vw, 3.2rem)/1 var(--gross);color:var(--signal);letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.anzeige .wert small{font-size:.45em;font-weight:500;margin-left:2px}
+.anzeige .art{font:500 13px var(--gross);text-align:right;color:var(--kreide-2);letter-spacing:.04em;line-height:1.3}
+.anzeige .art b{display:block;color:var(--kreide);font-size:15px}
+.hose-svg{width:100%;max-width:340px;margin:0 auto;height:auto;-webkit-user-select:none;user-select:none}
+#griff{cursor:ns-resize;touch-action:none}
+#griff:focus{outline:none}
+#griff:focus-visible circle.ring{stroke:#fff;stroke-width:3}
+.feinsteuer{display:flex;gap:8px;justify-content:center;margin:4px 0 14px}
+.feinsteuer button{flex:1;max-width:150px;min-height:46px;border-radius:10px;border:1.5px solid rgba(241,238,230,.3);background:transparent;color:var(--kreide);font:500 15px var(--gross);cursor:pointer}
+.varianten{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0;padding:0;border:0}
+.varianten legend{font:500 12.5px var(--gross);letter-spacing:.16em;text-transform:uppercase;color:var(--denim);margin-bottom:8px;padding:0}
+.varianten button{min-height:48px;border-radius:10px;border:1.5px solid rgba(241,238,230,.3);background:var(--indigo);color:var(--kreide);font:500 15.5px var(--gross);cursor:pointer;padding:0 8px}
+.varianten button[aria-pressed="true"]{background:var(--kreide);color:var(--indigo);border-color:var(--kreide);font-weight:700}
+.zieh-hinweis{font-size:13.5px;color:var(--kreide-2);text-align:center;margin:10px 0 0}
+.preis-platz{border:2px dashed var(--signal);color:#ffb08c;border-radius:12px;padding:12px 14px;margin-top:16px;font-size:14.5px;line-height:1.4}
+
+/* Express */
+.express{background:var(--signal);color:#fff;border-top:0;padding:52px 0 56px}
+.express .kopfzeile .zahl{color:var(--indigo)}
+.express .kopfzeile .was{color:rgba(255,255,255,.85)}
+.express h2{font-size:clamp(2.4rem, 12.4vw, 3.8rem);line-height:.96;margin-bottom:6px}
+.express .unter{font:500 clamp(1.15rem, 5.4vw, 1.45rem)/1.3 var(--gross);margin:16px 0 0;max-width:22ch}
+.uhr-knopf{display:block;width:min(300px, 82vw);margin:28px auto 0;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.uhr-knopf svg{width:100%;height:auto}
+#zeiger{transform-origin:150px 150px;transform-box:view-box}
+#zeiger.dreht{animation:tag 2.6s cubic-bezier(.55,.05,.25,1) 1}
+@keyframes tag{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.uhr-text{text-align:center;font:500 14px var(--gross);letter-spacing:.06em;margin:12px 0 0;min-height:1.6em}
+.express .taste{margin-top:22px;width:100%}
+
+/* Leistungen */
+.raster{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:rgba(241,238,230,.14);border:1px solid rgba(241,238,230,.14);border-radius:16px;overflow:hidden}
+.raster li{background:var(--indigo);padding:16px 16px 18px;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.raster svg{width:34px;height:34px}
+.raster b{display:block;font:700 17.5px/1.25 var(--gross);letter-spacing:-.01em}
+.raster span{color:var(--kreide-2);font-size:14.5px;line-height:1.45}
+
+/* Philosophie */
+.ppp{margin:6px 0 0;padding:0;list-style:none}
+.ppp li{font:700 clamp(2.7rem, 15vw, 4.6rem)/1 var(--gross);letter-spacing:-.04em;text-transform:uppercase;padding:6px 0;color:transparent;-webkit-text-stroke:1.5px var(--kreide)}
+.ppp li::first-letter{color:var(--signal);-webkit-text-stroke:0}
+.ppp li:nth-child(2){padding-left:8%}
+.ppp li:nth-child(3){padding-left:16%}
+.ppp-fuss{font:500 15px var(--gross);color:var(--kreide-2);margin:14px 0 0}
+
+/* Zeiten */
+.wochenplan{margin:0;padding:0;list-style:none}
+.wochenplan li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;padding:6px 0}
+.wochenplan .tag{font:700 14px var(--gross);letter-spacing:.04em}
+.balken{position:relative;height:30px;border-radius:7px;background:rgba(241,238,230,.07)}
+.balken i{position:absolute;top:0;bottom:0;background:var(--kreide);border-radius:7px}
+.balken em{position:absolute;top:0;bottom:0;display:flex;align-items:center;font:500 13px var(--gross);font-style:normal;color:var(--indigo);padding-left:10px;white-space:nowrap}
+.balken.zu em{color:var(--kreide-2);font-style:italic}
+.skala{display:grid;grid-template-columns:34px 1fr;gap:10px;font:500 11.5px var(--gross);color:var(--denim)}
+.skala div{position:relative;height:16px}
+.skala div span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.zeiten-text{margin:18px 0 0;color:var(--kreide-2);font-size:15px}
+
+/* Bewertung */
+.note{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.note b{font:700 clamp(3.4rem, 18vw, 5rem)/1 var(--gross);letter-spacing:-.04em}
+.note span{font:500 16px var(--gross);color:var(--kreide-2)}
+.sterne{display:flex;gap:6px;margin:8px 0 6px}
+.sterne svg{width:24px;height:24px}
+
+/* Kontakt */
+.adresse{font:700 clamp(1.7rem, 8.4vw, 2.4rem)/1.1 var(--gross);font-style:normal;letter-spacing:-.02em;margin:0 0 22px}
+.stapel{display:grid;gap:10px}
+.stapel .taste{justify-content:space-between;width:100%}
+.stapel .taste span{font-weight:400;opacity:.85;font-size:15px}
+
+footer{border-top:1px solid rgba(241,238,230,.12);padding:28px 0 40px;font-size:13.5px;color:var(--kreide-2);line-height:1.6}
+footer p{margin:0 0 6px}
+
+html.pdf .leiste{position:static;-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--indigo)}
+</style>
+</head>
+<body>
+
+<div class="entwurf">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Stecknadel Thun Schneiderei</div>
+
+<header class="leiste">
+  <div class="rahmen">
+    <a class="logo" href="#start"><i aria-hidden="true"></i>Stecknadel</a>
+    <a class="ikon" href="mailto:s.schneiderei@hotmail.com" aria-label="E-Mail schreiben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    <a class="ikon tel" href="tel:+41763412262" aria-label="Anrufen 076 341 22 62"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></a>
+  </div>
+</header>
+
+<main id="start">
+  <section class="hero rahmen">
+    <p class="etikett">Bälliz 53 · 3600 Thun</p>
+    <h1>Stecknadel<span>Thun Schneiderei</span></h1>
+    <p class="satz">Änderungsschneiderei für Textil, Leder und Pelz – <b>auf Wunsch in 24&nbsp;Stunden.</b></p>
+    <div class="reihe">
+      <a class="taste voll" href="tel:+41763412262"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>076 341 22 62</a>
+      <a class="taste" href="#saum">Hose kürzen?</a>
+    </div>
+    <svg class="saumstrich" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="0" y1="7" x2="400" y2="7" stroke="#f1eee6" stroke-width="2.5" stroke-dasharray="14 9" stroke-linecap="round" opacity=".8"/>
+    </svg>
+  </section>
+
+  <!-- 01 Saum -->
+  <section class="block" id="saum" aria-labelledby="saum-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">01</span><span class="was">Hosen kürzen</span></div>
+      <h2 id="saum-titel">Wie viel kürzer?</h2>
+      <p class="lead">Ziehen Sie den orangen Griff nach oben – die Kreidelinie zeigt den neuen Saum. Darunter wählen Sie die Variante.</p>
+
+      <div class="werkbank">
+        <div class="anzeige" aria-live="polite">
+          <div class="wert" id="wert">− 0,0<small> cm</small></div>
+          <div class="art">Variante<b id="art-name">normal</b></div>
+        </div>
+
+        <svg class="hose-svg" id="hose" viewBox="0 0 300 540" aria-label="Gezeichnete Jeans – der Saum lässt sich verschieben">
+          <defs>
+            <linearGradient id="denim" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#3b5aa6"/>
+              <stop offset=".5" stop-color="#4b6cbc"/>
+              <stop offset="1" stop-color="#34529a"/>
+            </linearGradient>
+          </defs>
+          <!-- alte Länge (Geist) -->
+          <path id="geist" fill="none" stroke="#f1eee6" stroke-width="1.4" stroke-dasharray="3 5" opacity=".55"/>
+          <text id="geist-text" x="150" y="532" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" fill="#c9cbd6" letter-spacing="1">ALTE LÄNGE</text>
+
+          <!-- Hose -->
+          <path id="hose-form" fill="url(#denim)" stroke="#1a2a58" stroke-width="2" stroke-linejoin="round"/>
+          <!-- Bund -->
+          <rect x="70" y="30" width="160" height="22" fill="#4a6bbb" stroke="#1a2a58" stroke-width="2"/>
+          <g fill="none" stroke="#ff9a52" stroke-width="1.3" stroke-dasharray="4 3">
+            <path d="M72 35 H228 M72 47 H228"/>
+            <!-- Hosenschlitz -->
+            <path d="M138 52 V132 Q138 150 152 154"/>
+            <!-- Taschen -->
+            <path d="M78 58 Q104 66 112 52"/>
+            <path d="M222 58 Q196 66 188 52"/>
+            <path d="M200 62 h18 v14 h-18 z"/>
+          </g>
+          <line x1="150" y1="52" x2="150" y2="186" stroke="#1a2a58" stroke-width="1.6"/>
+          <g fill="#c9a24a"><circle cx="150" cy="41" r="4.5"/><circle cx="112" cy="54" r="2.2"/><circle cx="188" cy="54" r="2.2"/></g>
+          <g fill="#4a6bbb" stroke="#1a2a58" stroke-width="1.5"><rect x="86" y="27" width="7" height="28" rx="1"/><rect x="207" y="27" width="7" height="28" rx="1"/></g>
+          <!-- Nahtlinien an den Beinen -->
+          <path id="naehte" fill="none" stroke="#ff9a52" stroke-width="1.2" stroke-dasharray="4 3" opacity=".9"/>
+          <!-- Saum je nach Variante -->
+          <g id="saum-zeichnung"></g>
+
+          <!-- Kreidelinie + Griff -->
+          <g id="kreide">
+            <line id="kreide-linie" x1="28" x2="258" stroke="#f1eee6" stroke-width="2.6" stroke-dasharray="10 6" stroke-linecap="round"/>
+            <g id="schere" fill="none" stroke="#f1eee6" stroke-width="1.8">
+              <circle cx="-8" cy="-5" r="4.5"/><circle cx="-8" cy="5" r="4.5"/>
+              <path d="M-4 -3 L10 4 M-4 3 L10 -4"/>
+            </g>
+          </g>
+          <g id="griff" tabindex="0" role="slider" aria-label="Saum verschieben" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0" aria-valuetext="0 cm kürzer">
+            <rect id="griff-flaeche" x="236" y="0" width="64" height="70" fill="transparent"/>
+            <circle class="ring" id="griff-kreis" cx="272" r="20" fill="#ff5e1a" stroke="#18244a" stroke-width="2"/>
+            <path id="griff-pfeile" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+
+        <div class="feinsteuer">
+          <button type="button" id="kuerzer">▲ kürzer</button>
+          <button type="button" id="laenger">▼ länger</button>
+        </div>
+
+        <fieldset class="varianten" id="varianten">
+          <legend>Varianten</legend>
+          <button type="button" data-v="einfach" aria-pressed="false">einfach</button>
+          <button type="button" data-v="normal" aria-pressed="true">normal</button>
+          <button type="button" data-v="umschlag" aria-pressed="false">mit Umschlag</button>
+          <button type="button" data-v="bund" aria-pressed="false">mit Bund</button>
+        </fieldset>
+        <p class="zieh-hinweis">Illustration – das genaue Mass besprechen wir mit Ihnen im Atelier.</p>
+      </div>
+      <div class="preis-platz">Preise auf Anfrage / [Platzhalter Preisliste]</div>
+    </div>
+  </section>
+
+  <!-- 02 Express -->
+  <section class="block express" id="express" aria-labelledby="express-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">02</span><span class="was">Express-Schneiderei</span></div>
+      <h2 id="express-titel">Auf Wunsch innerhalb von 24&nbsp;Stunden</h2>
+      <p class="unter">Änderungen im Express – wenn Sie es morgen schon brauchen.</p>
+
+      <button class="uhr-knopf" id="uhr" type="button" aria-label="Uhr antippen: der Zeiger dreht einmal 24 Stunden">
+        <svg viewBox="0 0 300 300" aria-hidden="true">
+          <circle cx="150" cy="150" r="140" fill="#18244a"/>
+          <circle cx="150" cy="150" r="124" fill="none" stroke="#f1eee6" stroke-width="1" opacity=".25"/>
+          <g id="ziffernblatt"></g>
+          <g id="zeiger">
+            <line x1="150" y1="166" x2="150" y2="76" stroke="#ff5e1a" stroke-width="6" stroke-linecap="round"/><circle cx="150" cy="76" r="5" fill="#ff5e1a"/>
+            <circle cx="150" cy="150" r="11" fill="#ff5e1a"/>
+            <circle cx="150" cy="150" r="4" fill="#18244a"/>
+          </g>
+          <text x="150" y="208" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="30" fill="#f1eee6" letter-spacing="-1">24 h</text>
+        </svg>
+      </button>
+      <p class="uhr-text" id="uhr-text">Antippen – ein Tag im Zeitraffer</p>
+
+      <a class="taste hell" href="tel:+41763412262">Express anfragen · 076 341 22 62</a>
+    </div>
+  </section>
+
+  <!-- 03 Leistungen -->
+  <section class="block" id="leistungen" aria-labelledby="l-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">03</span><span class="was">Leistungen</span></div>
+      <h2 id="l-titel">Ob aus Textil, Leder oder Pelz</h2>
+      <p class="lead">Änderungsschneiderei, Neuanfertigungen nach Mass und Nähatelier für Heimtextilien.</p>
+      <ul class="raster">
+        <li>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#f1eee6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 3h10v28H12z"/><path d="M12 8h-3M12 13h-3M12 18h-3M22 8h3M22 13h3M22 18h3" stroke="#ff5e1a"/><path d="M17 20v8"/><circle cx="17" cy="20" r="2.4" fill="#ff5e1a" stroke="none"/></svg>
+          <div><b>Reissverschlüsse</b><span>reparieren</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#f1eee6" stroke-width="1.6" aria-hidden="true"><circle cx="17" cy="17" r="12"/><circle cx="17" cy="17" r="8" stroke-dasharray="2 2"/><g fill="#ff5e1a" stroke="none"><circle cx="14" cy="14" r="1.8"/><circle cx="20" cy="14" r="1.8"/><circle cx="14" cy="20" r="1.8"/><circle cx="20" cy="20" r="1.8"/></g></svg>
+          <div><b>Knöpfe</b><span>fehlende Knöpfe ersetzen</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#f1eee6" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h22v26H6z"/><path d="M10 12h14v12H10z" stroke="#ff5e1a"/><path d="M10 15h14" stroke="#ff5e1a" stroke-dasharray="2 2"/></svg>
+          <div><b>Futter, Taschen, Schlitze</b><span>einsetzen</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#f1eee6" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M5 9c4-4 8-4 12 0s8 4 12 0v18c-4 4-8 4-12 0s-8-4-12 0z"/><path d="M9 14c3 2 5 2 8 0M17 22c3 2 5 2 8 0" stroke="#ff5e1a"/></svg>
+          <div><b>Leder &amp; Pelz</b><span>Änderungen nicht nur an Textil</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#f1eee6" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 5h26"/><path d="M8 5v24c3-2 5-2 7 0V5M26 5v24c-3-2-5-2-7 0V5"/><path d="M8 10h7M19 10h7" stroke="#ff5e1a" stroke-dasharray="2 2"/></svg>
+          <div><b>Heimtextilien</b><span>Nähatelier für Heimtextilien</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#f1eee6" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l-7 5 3 6 3-2v17h12V13l3 2 3-6-7-5c-1 3-3 4-5 4s-4-1-5-4z"/><path d="M17 8v22" stroke="#ff5e1a" stroke-dasharray="2 2"/></svg>
+          <div><b>Nach Mass</b><span>Neuanfertigungen nach Mass</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 04 Philosophie -->
+  <section class="block" id="philosophie" aria-labelledby="p-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">04</span><span class="was" id="p-titel">Philosophie · p-p-p</span></div>
+      <ul class="ppp">
+        <li>perfekt</li>
+        <li>prompt</li>
+        <li>preiswert</li>
+      </ul>
+      <p class="ppp-fuss">p-p-p = perfekt – prompt – preiswert</p>
+    </div>
+  </section>
+
+  <!-- 05 Zeiten -->
+  <section class="block" id="zeiten" aria-labelledby="z-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">05</span><span class="was">Öffnungszeiten</span></div>
+      <h2 id="z-titel">Sechs Tage offen</h2>
+      <ul class="wochenplan" id="wochenplan">
+        <li><span class="tag">Mo</span><div class="balken"><i style="left:21.43%;width:68.57%"></i><em style="left:21.43%">09.00 – 18.30</em></div></li>
+        <li><span class="tag">Di</span><div class="balken"><i style="left:21.43%;width:68.57%"></i><em style="left:21.43%">09.00 – 18.30</em></div></li>
+        <li><span class="tag">Mi</span><div class="balken"><i style="left:21.43%;width:68.57%"></i><em style="left:21.43%">09.00 – 18.30</em></div></li>
+        <li><span class="tag">Do</span><div class="balken"><i style="left:21.43%;width:68.57%"></i><em style="left:21.43%">09.00 – 18.30</em></div></li>
+        <li><span class="tag">Fr</span><div class="balken"><i style="left:21.43%;width:68.57%"></i><em style="left:21.43%">09.00 – 18.30</em></div></li>
+        <li><span class="tag">Sa</span><div class="balken"><i style="left:21.43%;width:57.14%"></i><em style="left:21.43%">09.00 – 17.00</em></div></li>
+        <li><span class="tag">So</span><div class="balken zu"><em>geschlossen</em></div></li>
+      </ul>
+      <div class="skala" aria-hidden="true"><span></span><div><span style="left:0">06</span><span style="left:21.43%">09</span><span style="left:50%">13</span><span style="left:78.57%">17</span><span style="left:100%;transform:translateX(-100%)">20 h</span></div></div>
+      <p class="zeiten-text">Montag bis Freitag 09.00–18.30, Samstag 09.00–17.00, Sonntag geschlossen.</p>
+    </div>
+  </section>
+
+  <!-- 06 Bewertungen -->
+  <section class="block" id="bewertungen" aria-labelledby="b-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">06</span><span class="was">Bewertungen</span></div>
+      <h2 id="b-titel" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Bewertungen</h2>
+      <div class="note"><b>5/5</b><span>Cylex / Yably · 17 Bewertungen</span></div>
+      <div class="sterne" aria-label="5 von 5 Sternen">
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#ff5e1a"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#ff5e1a"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#ff5e1a"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#ff5e1a"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" fill="#ff5e1a"/></svg>
+      </div>
+      <div class="preis-platz">[Platzhalter: Google-Bewertung – Note und Anzahl einsetzen]</div>
+    </div>
+  </section>
+
+  <!-- 07 Kontakt -->
+  <section class="block" id="kontakt" aria-labelledby="k-titel">
+    <div class="rahmen">
+      <div class="kopfzeile"><span class="zahl">07</span><span class="was">Kontakt &amp; Anfahrt</span></div>
+      <h2 id="k-titel" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Kontakt</h2>
+      <address class="adresse">Stecknadel<br>Bälliz 53<br>3600 Thun</address>
+      <div class="stapel">
+        <a class="taste voll" href="tel:+41763412262">Anrufen <span>076 341 22 62</span></a>
+        <a class="taste" href="tel:+41332295236">Anrufen <span>033 229 52 36</span></a>
+        <a class="taste" href="mailto:s.schneiderei@hotmail.com">E-Mail <span>s.schneiderei@hotmail.com</span></a>
+        <a class="taste hell" href="https://www.google.com/maps/search/?api=1&amp;query=Stecknadel+Schneiderei+B%C3%A4lliz+53+3600+Thun" target="_blank" rel="noopener">Google Maps <span>Route ↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="rahmen">
+    <p>Stecknadel Thun Schneiderei · Bälliz 53 · 3600 Thun</p>
+    <p>Stecknadel, S. Chodayari Askestan · Einzelunternehmen · Inhaber Safar Chodayari Askestan · UID CHE-419.883.597</p>
+    <p>Entwurf / Demo von Max Rathsack – keine offizielle Webseite.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- Hose & Saum ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  var LANG = 500;            // ursprünglicher Saum (y)
+  var MIN = 360;             // kürzester Saum
+  var PX_CM = 10;            // 10 Einheiten = 1 cm
+  var saum = LANG, variante = 'normal';
+  var namen = {einfach:'einfach', normal:'normal', umschlag:'mit Umschlag', bund:'mit Bund'};
+
+  var $ = function(id){ return document.getElementById(id); };
+  var svg = $('hose');
+
+  // Kanten der Hosenbeine als Funktion der Höhe
+  function aL(y){ return 62 + 20 * (y - 150) / 350; }   // aussen links
+  function iL(y){ return 150 - 10 * (y - 186) / 314; }  // innen links
+  function aR(y){ return 300 - aL(y); }
+  function iR(y){ return 300 - iL(y); }
+  function f(n){ return n.toFixed(1); }
+
+  function form(h){
+    return 'M70 52 H230 L238 150 L' + f(aR(h)) + ' ' + h + ' L' + f(iR(h)) + ' ' + h +
+           ' L150 186 L' + f(iL(h)) + ' ' + h + ' L' + f(aL(h)) + ' ' + h + ' L62 150 Z';
+  }
+
+  function el(n, a, p){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+
+  function zeichneSaum(h){
+    var g = $('saum-zeichnung'); g.innerHTML = '';
+    var beine = [[aL, iL], [iR, aR]];
+    beine.forEach(function(b){
+      var l = b[0], r = b[1];
+      if (variante === 'einfach'){
+        el('path', {d:'M' + f(l(h - 7)) + ' ' + (h - 7) + ' L' + f(r(h - 7)) + ' ' + (h - 7), stroke:'#ff9a52', 'stroke-width':1.3, 'stroke-dasharray':'4 3'}, g);
+      } else if (variante === 'normal'){
+        el('path', {d:'M' + f(l(h - 14)) + ' ' + (h - 14) + ' L' + f(r(h - 14)) + ' ' + (h - 14) + ' L' + f(r(h)) + ' ' + h + ' L' + f(l(h)) + ' ' + h + ' Z', fill:'#34529a', stroke:'#1a2a58', 'stroke-width':1.5}, g);
+        el('path', {d:'M' + f(l(h - 10)) + ' ' + (h - 10) + ' L' + f(r(h - 10)) + ' ' + (h - 10) + ' M' + f(l(h - 5)) + ' ' + (h - 5) + ' L' + f(r(h - 5)) + ' ' + (h - 5), stroke:'#ff9a52', 'stroke-width':1.2, 'stroke-dasharray':'4 3'}, g);
+      } else if (variante === 'umschlag'){
+        var o = h - 30;
+        el('path', {d:'M' + f(l(o) - 4) + ' ' + o + ' L' + f(r(o) + 4) + ' ' + o + ' L' + f(r(h) + 4) + ' ' + h + ' L' + f(l(h) - 4) + ' ' + h + ' Z', fill:'#7d98d6', stroke:'#1a2a58', 'stroke-width':1.6}, g);
+        el('path', {d:'M' + f(l(o) - 2) + ' ' + (o + 4) + ' L' + f(r(o) + 2) + ' ' + (o + 4), stroke:'#1a2a58', 'stroke-width':1, opacity:.5}, g);
+      } else if (variante === 'bund'){
+        var t = h - 20, mitte = (l(h) + r(h)) / 2, halb = (r(h) - l(h)) / 2 - 5;
+        el('path', {d:'M' + f(mitte - halb) + ' ' + t + ' L' + f(mitte + halb) + ' ' + t + ' L' + f(mitte + halb) + ' ' + h + ' L' + f(mitte - halb) + ' ' + h + ' Z', fill:'#2c447f', stroke:'#1a2a58', 'stroke-width':1.6}, g);
+        var rippen = '';
+        for (var x = mitte - halb + 4; x < mitte + halb - 1; x += 4) rippen += 'M' + f(x) + ' ' + (t + 2) + ' V' + (h - 2);
+        el('path', {d:rippen, stroke:'#5f7fc4', 'stroke-width':1}, g);
+        // Raffung über dem Bund
+        el('path', {d:'M' + f(l(t)) + ' ' + t + ' Q ' + f(l(t) + 4) + ' ' + (t - 6) + ' ' + f(mitte - halb) + ' ' + t +
+                      ' M' + f(r(t)) + ' ' + t + ' Q ' + f(r(t) - 4) + ' ' + (t - 6) + ' ' + f(mitte + halb) + ' ' + t, fill:'none', stroke:'#1a2a58', 'stroke-width':1.3}, g);
+      }
+    });
+  }
+
+  function bundForm(h){
+    // bei «mit Bund» läuft das Bein unten in den schmaleren Bund
+    if (variante !== 'bund') return form(h);
+    var t = h - 20;
+    var l1 = (aL(h) + iL(h)) / 2 - ((iL(h) - aL(h)) / 2 - 5), r1 = (aL(h) + iL(h)) / 2 + ((iL(h) - aL(h)) / 2 - 5);
+    var l2 = (iR(h) + aR(h)) / 2 - ((aR(h) - iR(h)) / 2 - 5), r2 = (iR(h) + aR(h)) / 2 + ((aR(h) - iR(h)) / 2 - 5);
+    return 'M70 52 H230 L238 150 L' + f(aR(t)) + ' ' + t + ' L' + f(r2) + ' ' + t + ' L' + f(l2) + ' ' + t + ' L' + f(iR(t)) + ' ' + t +
+           ' L150 186 L' + f(iL(t)) + ' ' + t + ' L' + f(r1) + ' ' + t + ' L' + f(l1) + ' ' + t + ' L' + f(aL(t)) + ' ' + t + ' L62 150 Z';
+  }
+
+  function setze(h){
+    saum = Math.max(MIN, Math.min(LANG, Math.round(h / 5) * 5));
+    $('hose-form').setAttribute('d', bundForm(saum));
+    var s = saum - (variante === 'bund' ? 20 : 0);
+    $('naehte').setAttribute('d',
+      'M' + f(aL(160) + 5) + ' 160 L' + f(aL(s) + 5) + ' ' + s + ' M' + f(aR(160) - 5) + ' 160 L' + f(aR(s) - 5) + ' ' + s);
+    // Geist der alten Länge
+    var gd = saum < LANG
+      ? 'M' + f(aL(saum)) + ' ' + saum + ' L' + f(aL(LANG)) + ' ' + LANG + ' L' + f(iL(LANG)) + ' ' + LANG + ' L' + f(iL(saum)) + ' ' + saum +
+        ' M' + f(iR(saum)) + ' ' + saum + ' L' + f(iR(LANG)) + ' ' + LANG + ' L' + f(aR(LANG)) + ' ' + LANG + ' L' + f(aR(saum)) + ' ' + saum
+      : '';
+    $('geist').setAttribute('d', gd);
+    $('geist-text').style.display = saum <= LANG - 25 ? '' : 'none';
+    zeichneSaum(saum);
+    $('kreide-linie').setAttribute('y1', saum); $('kreide-linie').setAttribute('y2', saum);
+    $('schere').setAttribute('transform', 'translate(24 ' + saum + ')');
+    $('griff-kreis').setAttribute('cy', saum);
+    $('griff-flaeche').setAttribute('y', saum - 35);
+    $('griff-pfeile').setAttribute('d', 'M265 ' + (saum - 3) + ' l7 -7 l7 7 M265 ' + (saum + 3) + ' l7 7 l7 -7');
+    var cm = (LANG - saum) / PX_CM;
+    var txt = cm.toFixed(1).replace('.', ',');
+    $('wert').innerHTML = '− ' + txt + '<small> cm</small>';
+    var gr = $('griff');
+    gr.setAttribute('aria-valuenow', cm);
+    gr.setAttribute('aria-valuetext', txt + ' cm kürzer');
+  }
+
+  function yAusEvent(e){
+    var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse()).y;
+  }
+  var zieht = false;
+  $('griff').addEventListener('pointerdown', function(e){
+    zieht = true; this.setPointerCapture(e.pointerId); e.preventDefault();
+  });
+  $('griff').addEventListener('pointermove', function(e){ if (zieht) setze(yAusEvent(e)); });
+  $('griff').addEventListener('pointerup', function(){ zieht = false; });
+  $('griff').addEventListener('pointercancel', function(){ zieht = false; });
+  $('griff').addEventListener('keydown', function(e){
+    if (e.key === 'ArrowUp'){ e.preventDefault(); setze(saum - 5); }
+    if (e.key === 'ArrowDown'){ e.preventDefault(); setze(saum + 5); }
+  });
+  $('kuerzer').addEventListener('click', function(){ setze(saum - 10); });
+  $('laenger').addEventListener('click', function(){ setze(saum + 10); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('#varianten button'), function(b){
+    b.addEventListener('click', function(){
+      variante = b.getAttribute('data-v');
+      document.querySelectorAll('#varianten button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      $('art-name').textContent = namen[variante];
+      setze(saum);
+    });
+  });
+
+  setze(LANG);
+  window.stecknadelSaum = function(h, v){
+    var b = document.querySelector('#varianten button[data-v="' + v + '"]');
+    if (b) b.click();
+    setze(h);
+  };
+
+  /* ---------- 24-Stunden-Uhr ---------- */
+  var blatt = $('ziffernblatt');
+  for (var i = 0; i < 24; i++){
+    var w = i * 15 * Math.PI / 180, lang = (i % 6 === 0) ? 18 : 9;
+    var r1 = 124, r2 = r1 - lang;
+    el('line', {x1:f(150 + Math.sin(w) * r1), y1:f(150 - Math.cos(w) * r1), x2:f(150 + Math.sin(w) * r2), y2:f(150 - Math.cos(w) * r2),
+                stroke:'#f1eee6', 'stroke-width': i % 6 === 0 ? 3 : 1.6, 'stroke-linecap':'round'}, blatt);
+    if (i % 6 === 0){
+      var t = el('text', {x:f(150 + Math.sin(w) * 92), y:f(150 - Math.cos(w) * 92 + 6), 'text-anchor':'middle',
+                'font-family':'Space Grotesk, sans-serif', 'font-weight':500, 'font-size':17, fill:'#f1eee6'}, blatt);
+      t.textContent = i === 0 ? '24' : i;
+    }
+  }
+  var zeiger = $('zeiger'), uhrText = $('uhr-text'), laeuft = false;
+  $('uhr').addEventListener('click', function(){
+    if (laeuft) return;
+    laeuft = true;
+    zeiger.classList.remove('dreht'); void zeiger.getBoundingClientRect();
+    zeiger.classList.add('dreht');
+    uhrText.textContent = 'Abgabe … 24 Stunden später';
+  });
+  zeiger.addEventListener('animationend', function(){
+    laeuft = false;
+    zeiger.classList.remove('dreht');
+    uhrText.textContent = 'Fertig – auf Wunsch innerhalb von 24 Stunden.';
+  });
+})();
+</script>
+</body>
+</html>

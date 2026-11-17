@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velo-Zehr GmbH – Entwurf Luft drin</title>
+<meta name="description" content="Demo-Entwurf von Max Rathsack für die Velo-Zehr GmbH, Lerchenfeldstrasse 64, Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --see:#1269a8;
+  --see-tief:#0b4a7a;
+  --see-hell:#d6ecf8;
+  --minze:#8ee3c6;
+  --minze-hell:#dff7ee;
+  --minze-tief:#2f9f7d;
+  --weiss:#ffffff;
+  --nacht:#0d2d44;
+  --rund:"Fredoka","Nunito",system-ui,sans-serif;
+  --text:"Nunito",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--weiss);color:var(--nacht);font-family:var(--text);font-size:17px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+button{font-family:inherit}
+.demo{background:var(--minze);color:var(--nacht);font-weight:700;font-size:12.5px;text-align:center;padding:7px 14px;line-height:1.35}
+
+/* Hero mit See und Bergen */
+.oben{background:var(--see);color:var(--weiss);position:relative;overflow:hidden}
+.leiste{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 0}
+.wort{font-family:var(--rund);font-weight:700;font-size:23px;text-decoration:none;letter-spacing:.01em}
+.wort span{color:var(--minze)}
+.leiste a.mini{font-family:var(--rund);font-weight:600;font-size:15px;text-decoration:none;background:rgba(255,255,255,.16);padding:8px 14px;border-radius:999px;white-space:nowrap}
+.hero{padding:22px 18px 0;max-width:560px;margin:0 auto;position:relative;z-index:1}
+.hero h1{font-family:var(--rund);font-weight:700;font-size:clamp(2.9rem,15vw,4.6rem);line-height:.95;margin:0;letter-spacing:-.01em}
+.hero h1 small{display:block;font-size:.42em;font-weight:600;color:var(--minze);letter-spacing:0;line-height:1.15;margin-top:8px}
+.hero p{font-size:clamp(1.05rem,4.6vw,1.2rem);margin:14px 0 0;max-width:28ch}
+
+.klingel-platz{display:flex;align-items:center;gap:14px;margin:18px 0 0}
+#klingel{background:none;border:0;padding:0;cursor:pointer;width:140px;height:140px;flex:none;-webkit-tap-highlight-color:transparent;border-radius:50%}
+#klingel svg{width:100%;height:100%;overflow:visible}
+#klingel:focus-visible{outline:3px dashed var(--minze);outline-offset:4px}
+#glocke{transform-origin:66px 40px;transform-box:view-box}
+#klingel.ring #glocke{animation:wackel .7s cubic-bezier(.3,1.6,.5,1)}
+#klingel.ring #daumen{animation:daumen .25s ease 2}
+#klingel.ring .welle{animation:welle .8s ease-out}
+.welle{opacity:0;transform-origin:66px 66px;transform-box:view-box}
+@keyframes wackel{0%{transform:rotate(0)}15%{transform:rotate(-13deg)}35%{transform:rotate(11deg)}55%{transform:rotate(-7deg)}75%{transform:rotate(4deg)}100%{transform:rotate(0)}}
+@keyframes daumen{50%{transform:translateX(-10px)}}
+@keyframes welle{0%{opacity:.9;transform:scale(.8)}100%{opacity:0;transform:scale(1.35)}}
+.klingel-platz p{margin:0;font-family:var(--rund);font-weight:600;font-size:18px;line-height:1.25}
+.klingel-platz p span{display:block;font-family:var(--text);font-weight:600;font-size:14px;color:var(--see-hell);margin-top:4px}
+
+.knoepfe{display:grid;gap:10px;margin:22px 0 0}
+.pille{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:999px;padding:10px 20px;font-family:var(--rund);font-weight:600;font-size:19px;text-decoration:none;border:0}
+.pille svg{width:22px;height:22px;flex:none}
+.pille.minze{background:var(--minze);color:var(--nacht)}
+.pille.weiss{background:var(--weiss);color:var(--see-tief)}
+.pille.see{background:var(--see);color:var(--weiss)}
+.pille.rand{background:transparent;color:var(--see-tief);box-shadow:inset 0 0 0 3px var(--see)}
+.pille:active{transform:scale(.98)}
+.see-svg{display:block;width:100%;height:auto;margin:26px 0 -1px}
+
+/* Abschnitte */
+.ab{padding:46px 18px;max-width:560px;margin:0 auto}
+h2{font-family:var(--rund);font-weight:700;font-size:clamp(2.1rem,10vw,3rem);line-height:1.02;margin:0 0 10px;color:var(--see-tief)}
+.vor{font-family:var(--rund);font-weight:600;font-size:15px;color:var(--minze-tief);margin:0 0 4px;letter-spacing:.04em}
+.ab > p.einl{margin:0 0 6px}
+
+/* Pumpe */
+.werkbank{background:var(--see-hell);border-radius:34px;padding:16px 14px 18px;margin-top:16px}
+#pumpbild{display:block;width:100%;height:auto}
+#pumpknopf{cursor:pointer;outline:none}
+#pumpknopf:focus-visible .griff{stroke:var(--minze-tief);stroke-width:4}
+#griff{transition:transform .14s ease}
+#pumpknopf.drueck #griff{transform:translateY(46px)}
+.puff{opacity:0}
+.puff.los{animation:puff .6s ease-out}
+@keyframes puff{0%{opacity:.9;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(14px,-22px) scale(1.4)}}
+.anzeige{display:flex;align-items:center;gap:12px;margin:8px 4px 0}
+.fuell{flex:1;height:18px;border-radius:9px;background:var(--weiss);box-shadow:inset 0 0 0 2px #b7d7ea;overflow:hidden}
+.fuell span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--minze),var(--minze-tief));border-radius:9px;transition:width .35s ease}
+.druck{font-family:var(--rund);font-weight:700;font-size:20px;min-width:72px;text-align:right;font-variant-numeric:tabular-nums;color:var(--see-tief)}
+.pumpaktion{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}
+.pumpaktion .pille{min-height:58px;font-size:20px}
+.ablassen{border:0;background:transparent;color:var(--see-tief);font-weight:700;font-size:15px;padding:0 10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:58px}
+.bereit{display:none;font-family:var(--rund);font-weight:700;font-size:clamp(1.5rem,7vw,1.9rem);text-align:center;color:var(--minze-tief);margin:14px 0 0}
+.werkbank.voll .bereit{display:block;animation:hops .6s cubic-bezier(.3,1.7,.5,1)}
+@keyframes hops{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+.karte-hervor{display:none;background:var(--weiss);border-radius:28px;padding:20px 18px;margin-top:14px;box-shadow:0 12px 30px rgba(13,45,68,.18),0 0 0 3px var(--minze)}
+.werkbank.voll .karte-hervor{display:block;animation:springen .7s cubic-bezier(.25,1.8,.45,1)}
+@keyframes springen{0%{transform:translateY(30px) scale(.85);opacity:0}100%{transform:none;opacity:1}}
+.karte-hervor h3{font-family:var(--rund);font-weight:700;font-size:23px;margin:0 0 8px;color:var(--see-tief)}
+.karte-hervor ul{list-style:none;margin:0 0 14px;padding:0;font-size:15.5px}
+.karte-hervor li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:2px dotted var(--see-hell)}
+.karte-hervor li b{font-weight:800}
+.karte-hervor li span{text-align:right}
+.karte-hervor .knoepfe{margin-top:4px}
+
+/* Ventilkappen */
+.kappen{display:grid;gap:12px;margin-top:20px}
+.kappe{background:var(--minze-hell);border-radius:999px 999px 999px 999px;transition:border-radius .3s}
+.kappe.offen{border-radius:46px 46px 30px 30px}
+.kappe > button{display:flex;align-items:center;gap:14px;width:100%;background:none;border:0;padding:8px 18px 8px 8px;cursor:pointer;text-align:left;color:var(--nacht);min-height:84px;border-radius:999px}
+.kappe > button:focus-visible{outline:3px solid var(--see);outline-offset:2px}
+.kappe svg.k{width:70px;height:70px;flex:none;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.kappe.offen svg.k{transform:rotate(-120deg)}
+.kappe .titel{font-family:var(--rund);font-weight:600;font-size:21px;line-height:1.15;flex:1}
+.kappe .titel small{display:block;font-family:var(--text);font-weight:600;font-size:13.5px;color:var(--minze-tief)}
+.kappe .plus{width:30px;height:30px;flex:none;border-radius:50%;background:var(--weiss);display:grid;place-items:center;font-weight:800;font-size:20px;color:var(--see);transition:transform .3s}
+.kappe.offen .plus{transform:rotate(45deg)}
+.inhalt{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.kappe.offen .inhalt{grid-template-rows:1fr}
+.inhalt > div{overflow:hidden}
+.inhalt p{margin:0;padding:0 22px 20px 92px;font-size:16px}
+.platz{display:inline-block;border:2px dashed var(--see);border-radius:14px;padding:6px 12px;font-size:14.5px;color:var(--see-tief);margin-top:8px;background:rgba(255,255,255,.6)}
+
+/* Marken */
+.marken{background:var(--minze-hell)}
+.blasen{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.blasen span{font-family:var(--rund);font-weight:600;font-size:20px;background:var(--weiss);color:var(--see-tief);padding:8px 18px;border-radius:999px;box-shadow:0 3px 0 #bfe9d9;white-space:nowrap}
+.blasen.antrieb span{background:var(--see);color:var(--weiss);box-shadow:0 3px 0 var(--see-tief)}
+.marken h3{font-family:var(--rund);font-weight:600;font-size:17px;margin:22px 0 0;color:var(--minze-tief)}
+.marken h3:first-of-type{margin-top:14px}
+.marken p.klein{margin:10px 0 0;font-size:15px}
+
+/* Geschichte */
+#route{display:block;width:100%;height:auto;margin-top:12px}
+.gesch{display:grid;gap:10px;margin-top:-6px}
+.gesch div{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:center}
+.gesch b{font-family:var(--rund);font-weight:700;font-size:22px;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:var(--see);color:var(--weiss)}
+.gesch div:nth-child(2) b{background:var(--minze);color:var(--nacht)}
+.gesch p{margin:0;font-size:16px}
+
+/* Öffnungszeiten */
+.zeiten{background:var(--see);color:var(--weiss);border-radius:34px;padding:24px 18px;margin-top:16px}
+.zeiten h2{color:var(--weiss)}
+.zeiten .vor{color:var(--minze)}
+.tage{list-style:none;margin:10px 0 0;padding:0}
+.tage li{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;padding:9px 0;border-top:2px solid rgba(255,255,255,.14)}
+.tage li:first-child{border-top:0}
+.tage .tg{font-family:var(--rund);font-weight:700;font-size:18px;background:var(--weiss);color:var(--see-tief);border-radius:999px;text-align:center;padding:4px 0}
+.tage li.zu .tg{background:transparent;color:var(--see-hell);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.tage li.zu span:last-child{color:var(--see-hell)}
+.tage span:last-child{font-variant-numeric:tabular-nums}
+
+/* Bewertungen */
+.bew{display:grid;gap:12px;margin-top:16px}
+.bew .stern{display:flex;align-items:center;gap:16px;background:var(--see-hell);border-radius:30px;padding:18px 20px}
+.bew .zahl{font-family:var(--rund);font-weight:700;font-size:clamp(3rem,15vw,3.8rem);line-height:1;color:var(--see-tief)}
+.bew .stern p{margin:0;font-size:15.5px}
+.bew .stern .s{color:#e8a91a;font-size:20px;letter-spacing:2px;display:block}
+.bew .platz{display:block;margin:0;padding:16px 18px;font-size:15.5px;border-radius:30px}
+
+/* Kontakt */
+.kontakt{background:var(--see-tief);color:var(--weiss)}
+.kontakt h2{color:var(--weiss)}
+.kontakt .vor{color:var(--minze)}
+.kontakt address{font-style:normal;font-family:var(--rund);font-weight:500;font-size:clamp(1.35rem,6.4vw,1.7rem);line-height:1.3;margin:8px 0 18px}
+.kontakt .pille.rand{color:var(--weiss);box-shadow:inset 0 0 0 3px var(--minze)}
+.kontakt .notiz{margin:16px 0 0;font-size:15px;color:var(--see-hell)}
+
+footer{background:var(--nacht);color:var(--see-hell);padding:24px 18px 110px;font-size:14px;text-align:center}
+footer p{margin:0 0 4px}
+
+/* schwebende Kapsel */
+.kapsel{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:6px;background:var(--nacht);padding:6px;border-radius:999px;z-index:40;box-shadow:0 8px 24px rgba(13,45,68,.35)}
+.kapsel a{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:999px;font-family:var(--rund);font-weight:600;font-size:17px;text-decoration:none;white-space:nowrap}
+.kapsel a svg{width:19px;height:19px}
+.kapsel a.t{background:var(--minze);color:var(--nacht)}
+.kapsel a.m{color:var(--weiss)}
+
+/* PDF-Druck */
+html.pdf .kapsel{display:none}
+html.pdf footer{padding-bottom:28px}
+html.pdf .inhalt{grid-template-rows:1fr;transition:none}
+html.pdf .kappe{border-radius:46px 46px 30px 30px}
+html.pdf .kappe .plus{display:none}
+html.pdf .karte-hervor{display:block;animation:none}
+html.pdf .pumpaktion{display:none}
+html.pdf *{animation:none!important;transition:none!important}
+</style>
+</head>
+<body>
+<div class="demo" role="note">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Velo-Zehr GmbH</div>
+
+<div class="oben">
+  <div class="leiste">
+    <a class="wort" href="#start">velo<span>·</span>zehr</a>
+    <a class="mini" href="#kontakt">Kontakt</a>
+  </div>
+  <header class="hero" id="start">
+    <h1>Velo-Zehr <small>Ihre Velowerkstatt in Thun</small></h1>
+    <p>Velos, Elektrovelos, Mofas und Roller – reparieren, verkaufen, wieder fahrbereit machen.</p>
+
+    <div class="klingel-platz">
+      <button id="klingel" type="button" aria-label="Veloklingel antippen – klingelt">
+        <svg viewBox="0 0 132 132" aria-hidden="true">
+          <circle class="welle" cx="66" cy="66" r="58" fill="none" stroke="#8ee3c6" stroke-width="4"/>
+          <!-- Lenker-Klemme -->
+          <rect x="12" y="98" width="108" height="16" rx="8" fill="#0b4a7a"/>
+          <rect x="54" y="84" width="24" height="22" rx="5" fill="#d6ecf8"/>
+          <!-- Daumenhebel -->
+          <g id="daumen"><path d="M86 92 L112 84 Q118 83 117 89 L114 94 Q112 97 108 97 L88 99 Z" fill="#8ee3c6" stroke="#0d2d44" stroke-width="2.5" stroke-linejoin="round"/></g>
+          <!-- Glocke -->
+          <g id="glocke">
+            <path d="M14 84 Q16 42 66 38 Q116 42 118 84 Z" fill="#ffffff" stroke="#0d2d44" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M24 70 Q40 52 66 50 Q92 52 108 70" fill="none" stroke="#8ee3c6" stroke-width="5" stroke-linecap="round"/>
+            <path d="M28 64 Q36 50 56 46" fill="none" stroke="#d6ecf8" stroke-width="6" stroke-linecap="round"/>
+            <rect x="10" y="80" width="112" height="9" rx="4.5" fill="#d6ecf8" stroke="#0d2d44" stroke-width="3"/>
+            <circle cx="66" cy="37" r="6" fill="#1269a8" stroke="#0d2d44" stroke-width="3"/>
+            <text x="66" y="77" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="13" fill="#1269a8" letter-spacing="1">ZEHR</text>
+          </g>
+        </svg>
+      </button>
+      <p>Antippen und klingeln!<span>Mit Ton – Lautsprecher an.</span></p>
+    </div>
+
+    <div class="knoepfe">
+      <a class="pille minze" href="tel:+41332221040"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>033&nbsp;222&nbsp;10&nbsp;40</a>
+      <a class="pille weiss" href="mailto:velozehr@bluewin.ch"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M5 8l7 5 7-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>velozehr@bluewin.ch</a>
+    </div>
+  </header>
+  <svg class="see-svg" viewBox="0 0 430 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 L70 40 L120 58 L196 6 L262 60 L320 34 L430 66 V120 H0 Z" fill="#0b4a7a" opacity=".55"/>
+    <path d="M196 6 L176 20 L188 22 L196 14 L206 24 L214 18 Z" fill="#ffffff" opacity=".85"/>
+    <path d="M0 78 Q36 68 72 78 T144 78 T216 78 T288 78 T360 78 T432 78 V120 H0 Z" fill="#8ee3c6"/>
+    <path d="M0 92 Q36 82 72 92 T144 92 T216 92 T288 92 T360 92 T432 92 V120 H0 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<main>
+<section class="ab" id="luft" aria-labelledby="h-luft">
+  <p class="vor">Mitmachen</p>
+  <h2 id="h-luft">Luft drin?</h2>
+  <p class="einl">Der Reifen ist platt. Tippen Sie auf die Pumpe, bis er prall ist – dann geht’s los.</p>
+  <div class="werkbank" id="werkbank">
+    <svg id="pumpbild" viewBox="0 0 400 290" role="img" aria-label="Velorad mit plattem Reifen und Standpumpe">
+      <path d="M8 262 H392" stroke="#b7d7ea" stroke-width="4" stroke-linecap="round"/>
+      <path id="schlauch" fill="none" stroke="#0d2d44" stroke-width="5" stroke-linecap="round"/>
+      <g id="rad">
+        <g id="speichen" stroke="#8aa9bf" stroke-width="1.6"></g>
+        <circle id="felge" r="80" fill="none" stroke="#c4d6e3" stroke-width="7"/>
+        <circle id="nabe" r="11" fill="#1269a8"/>
+        <path id="reifen" fill="none" stroke="#24435a" stroke-width="22" stroke-linejoin="round"/>
+        <path id="profil" fill="none" stroke="#3b5e78" stroke-width="3" stroke-dasharray="3 9" stroke-linejoin="round"/>
+        <rect id="ventil" width="8" height="16" rx="2" fill="#8ee3c6" stroke="#0d2d44" stroke-width="2"/>
+      </g>
+      <g class="puffs">
+        <circle class="puff" id="puff1" r="7" fill="#ffffff"/>
+        <circle class="puff" id="puff2" r="5" fill="#ffffff"/>
+      </g>
+      <g id="pumpknopf" tabindex="0" role="button" aria-label="Pumpen">
+        <rect x="282" y="40" width="110" height="230" fill="transparent"/>
+        <rect x="300" y="250" width="72" height="12" rx="6" fill="#0b4a7a"/>
+        <rect x="320" y="118" width="32" height="136" rx="12" fill="#1269a8" stroke="#0d2d44" stroke-width="3"/>
+        <rect x="326" y="128" width="6" height="110" rx="3" fill="#ffffff" opacity=".45"/>
+        <g id="griff">
+          <rect x="333" y="66" width="6" height="58" fill="#8aa9bf"/>
+          <rect class="griff" x="296" y="54" width="80" height="18" rx="9" fill="#8ee3c6" stroke="#0d2d44" stroke-width="3"/>
+        </g>
+        <text x="336" y="200" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="15" fill="#ffffff" transform="rotate(-90 336 200)">TIPP!</text>
+      </g>
+    </svg>
+    <div class="anzeige">
+      <div class="fuell" role="progressbar" aria-label="Luft im Reifen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="fuellbalken"><span id="fuellstand"></span></div>
+      <span class="druck" id="druck">0,0 bar</span>
+    </div>
+    <div class="pumpaktion">
+      <button type="button" class="pille see" id="pumpen">Pumpen</button>
+      <button type="button" class="ablassen" id="ablassen">Luft raus</button>
+    </div>
+    <p class="bereit" id="bereit" aria-live="polite">Bereit für die Strasse!</p>
+    <div class="karte-hervor" id="karte">
+      <h3>Und jetzt: vorbeikommen</h3>
+      <ul>
+        <li><b>Di–Fr</b><span>8:00–12:00 · 13:30–18:30</span></li>
+        <li><b>Sa</b><span>8:00–12:00 · 13:30–16:00</span></li>
+        <li><b>Mo, So</b><span>geschlossen</span></li>
+        <li><b>Adresse</b><span>Lerchenfeldstrasse&nbsp;64, 3603&nbsp;Thun</span></li>
+      </ul>
+      <div class="knoepfe">
+        <a class="pille see" href="tel:+41332221040">Anrufen: 033&nbsp;222&nbsp;10&nbsp;40</a>
+        <a class="pille rand" href="mailto:velozehr@bluewin.ch">E-Mail schreiben</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ab" id="leistungen" aria-labelledby="h-leist" style="padding-top:8px">
+  <p class="vor">Aufschrauben</p>
+  <h2 id="h-leist">Unsere Leistungen</h2>
+  <p class="einl">Jede Ventilkappe hat etwas drin – einfach antippen.</p>
+  <div class="kappen">
+    <div class="kappe">
+      <button type="button" aria-expanded="false" aria-controls="k1">
+        <svg class="k" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="31" fill="#1269a8"/><circle cx="35" cy="35" r="31" fill="none" stroke="#0b4a7a" stroke-width="6" stroke-dasharray="3 3.5"/><circle cx="35" cy="35" r="22" fill="#d6ecf8"/><path d="M26 44 L38 32 M38 32 a6 6 0 1 0 4 -8 l-3 3 1 3 3 1 3 -3 a6 6 0 0 1 -8 4" fill="none" stroke="#0b4a7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="titel">Reparatur<small>Velo · Mofa · Roller · Rasenmäher</small></span><span class="plus" aria-hidden="true">+</span>
+      </button>
+      <div class="inhalt" id="k1"><div><p>Ob Velo, Mofa, Roller oder Rasenmäher: Ihren Lieblingsroller oder Ihr Lieblingstöffli reparieren wir gerne.<br><span class="platz">Preise auf Anfrage</span></p></div></div>
+    </div>
+    <div class="kappe">
+      <button type="button" aria-expanded="false" aria-controls="k2">
+        <svg class="k" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="31" fill="#8ee3c6"/><circle cx="35" cy="35" r="31" fill="none" stroke="#2f9f7d" stroke-width="6" stroke-dasharray="3 3.5"/><circle cx="35" cy="35" r="22" fill="#ffffff"/><path d="M37 21 L27 37 H35 L32 49 L43 32 H35 Z" fill="#2f9f7d"/></svg>
+        <span class="titel">Elektrovelos<small>Verkauf &amp; Reparatur</small></span><span class="plus" aria-hidden="true">+</span>
+      </button>
+      <div class="inhalt" id="k2"><div><p>E-Velos von Cresta, Wheeler und BIXS – mit Antrieben von Bosch, Yamaha und Shimano. Auch die Reparatur von Elektrovelos übernehmen wir.</p></div></div>
+    </div>
+    <div class="kappe">
+      <button type="button" aria-expanded="false" aria-controls="k3">
+        <svg class="k" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="31" fill="#0d2d44"/><circle cx="35" cy="35" r="31" fill="none" stroke="#1269a8" stroke-width="6" stroke-dasharray="3 3.5"/><circle cx="35" cy="35" r="22" fill="#d6ecf8"/><g fill="none" stroke="#0d2d44" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="25" cy="40" r="5"/><circle cx="46" cy="40" r="5"/><path d="M25 40 L31 32 H40 L46 40 M40 32 L38 25 H43"/></g></svg>
+        <span class="titel">Mofa &amp; Roller<small>Pony GTX, Pony Cross …</small></span><span class="plus" aria-hidden="true">+</span>
+      </button>
+      <div class="inhalt" id="k3"><div><p>Mofas und Roller verschiedenster Marken, zum Beispiel Pony GTX und Pony Cross – Verkauf und Reparatur.</p></div></div>
+    </div>
+    <div class="kappe">
+      <button type="button" aria-expanded="false" aria-controls="k4">
+        <svg class="k" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="31" fill="#ffffff" stroke="#b7d7ea" stroke-width="2"/><circle cx="35" cy="35" r="31" fill="none" stroke="#8ee3c6" stroke-width="6" stroke-dasharray="3 3.5"/><circle cx="35" cy="35" r="22" fill="#1269a8"/><path d="M24 33 L32 25 H45 V38 L37 46 Z" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linejoin="round"/><circle cx="39" cy="31" r="2.4" fill="#ffffff"/></svg>
+        <span class="titel">Occasionen &amp; Lagervelos<small>Gebraucht und ab Lager</small></span><span class="plus" aria-hidden="true">+</span>
+      </button>
+      <div class="inhalt" id="k4"><div><p>Occasionen und Lagervelos – fragen Sie nach, was gerade im Laden steht.<br><span class="platz">[Platzhalter: aktuelle Angebote]</span></p></div></div>
+    </div>
+    <div class="kappe">
+      <button type="button" aria-expanded="false" aria-controls="k5">
+        <svg class="k" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="31" fill="#2f9f7d"/><circle cx="35" cy="35" r="31" fill="none" stroke="#0b4a7a" stroke-width="6" stroke-dasharray="3 3.5"/><circle cx="35" cy="35" r="22" fill="#dff7ee"/><path d="M22 42 Q22 25 36 25 Q48 25 48 38 V42 Z" fill="none" stroke="#0b4a7a" stroke-width="2.8" stroke-linejoin="round"/><path d="M31 27 L33 36 M40 26 L40 36" stroke="#0b4a7a" stroke-width="2.4"/></svg>
+        <span class="titel">Velohelme<small>Im Laden</small></span><span class="plus" aria-hidden="true">+</span>
+      </button>
+      <div class="inhalt" id="k5"><div><p>Velohelme gibt es bei uns im Laden.<br><span class="platz">[Platzhalter: Helm-Marken]</span></p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="marken" aria-labelledby="h-marken">
+  <div class="ab">
+    <p class="vor">Im Sortiment</p>
+    <h2 id="h-marken">Marken</h2>
+    <h3>Velos &amp; Elektrovelos</h3>
+    <div class="blasen"><span>Cresta</span><span>Wheeler</span><span>BIXS</span></div>
+    <h3>Antriebe</h3>
+    <div class="blasen antrieb"><span>Bosch</span><span>Yamaha</span><span>Shimano</span></div>
+    <h3>Mofas &amp; Roller</h3>
+    <div class="blasen"><span>Pony GTX</span><span>Pony Cross</span></div>
+    <p class="klein">… und viele weitere Marken. Dazu Occasionen, Lagervelos und Velohelme.</p>
+  </div>
+</section>
+
+<section class="ab" id="geschichte" aria-labelledby="h-gesch">
+  <p class="vor">Seit 2001 unterwegs</p>
+  <h2 id="h-gesch">Unsere Geschichte</h2>
+  <svg id="route" viewBox="0 0 400 70" aria-hidden="true">
+    <path d="M20 50 C80 0 140 70 200 30 S320 0 380 40" fill="none" stroke="#8ee3c6" stroke-width="6" stroke-linecap="round" stroke-dasharray="1 12"/>
+    <circle cx="20" cy="50" r="9" fill="#1269a8"/>
+    <circle cx="380" cy="40" r="9" fill="#2f9f7d"/>
+  </svg>
+  <div class="gesch">
+    <div><b>2001</b><p>Ernst Zehr gründet die Werkstatt «Velo&nbsp;Zehr».</p></div>
+    <div><b>2025</b><p>Roger Spring übernimmt als Geschäftsführer – weiter geht’s als <span style="white-space:nowrap">Velo-Zehr GmbH</span>.</p></div>
+  </div>
+</section>
+
+<section class="ab" id="zeiten" aria-labelledby="h-zeiten" style="padding-top:0">
+  <div class="zeiten">
+    <p class="vor">Öffnungszeiten</p>
+    <h2 id="h-zeiten">Wann wir da sind</h2>
+    <ul class="tage">
+      <li class="zu"><span class="tg">Mo</span><span>geschlossen</span></li>
+      <li><span class="tg">Di</span><span>8:00–12:00 · 13:30–18:30</span></li>
+      <li><span class="tg">Mi</span><span>8:00–12:00 · 13:30–18:30</span></li>
+      <li><span class="tg">Do</span><span>8:00–12:00 · 13:30–18:30</span></li>
+      <li><span class="tg">Fr</span><span>8:00–12:00 · 13:30–18:30</span></li>
+      <li><span class="tg">Sa</span><span>8:00–12:00 · 13:30–16:00</span></li>
+      <li class="zu"><span class="tg">So</span><span>geschlossen</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="ab" id="bewertungen" aria-labelledby="h-bew" style="padding-top:0">
+  <p class="vor">Bewertungen</p>
+  <h2 id="h-bew">Volle Punktzahl</h2>
+  <div class="bew">
+    <div class="stern"><span class="zahl">5,0</span><p><span class="s" aria-label="5 von 5 Sternen">★★★★★</span>auf local.ch / search.ch<br>aus 3 Bewertungen</p></div>
+    <p class="platz">[Platzhalter: Google-Bewertung]</p>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt" aria-labelledby="h-kon">
+  <div class="ab">
+    <p class="vor">Kontakt &amp; Anfahrt</p>
+    <h2 id="h-kon">Hier sind wir</h2>
+    <address>Velo-Zehr GmbH<br>Lerchenfeldstrasse 64<br>3603 Thun</address>
+    <div class="knoepfe">
+      <a class="pille minze" href="tel:+41332221040">Anrufen: 033&nbsp;222&nbsp;10&nbsp;40</a>
+      <a class="pille weiss" href="mailto:velozehr@bluewin.ch">velozehr@bluewin.ch</a>
+      <a class="pille rand" href="https://www.google.com/maps/search/?api=1&amp;query=Lerchenfeldstrasse+64+3603+Thun" target="_blank" rel="noopener">Route in Google Maps</a>
+    </div>
+    <p class="notiz">Preise auf Anfrage.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><strong>Velo-Zehr GmbH</strong> · Lerchenfeldstrasse&nbsp;64 · 3603&nbsp;Thun</p>
+  <p>Geschäftsführer: Roger Spring · UID CHE-390.520.143</p>
+  <p style="margin-top:10px;font-size:12.5px">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Velo-Zehr GmbH.</p>
+</footer>
+
+<nav class="kapsel" aria-label="Schnellkontakt">
+  <a class="t" href="tel:+41332221040"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>Anrufen</a>
+  <a class="m" href="mailto:velozehr@bluewin.ch"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M5 8l7 5 7-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>E-Mail</a>
+</nav>
+
+<script>
+/* Klingel: Ton mit WebAudio, zwei Anschläge */
+(function(){
+  var knopf = document.getElementById("klingel"), ctx = null;
+  function schlag(t){
+    [[2093, .32], [3140, .14], [4950, .06]].forEach(function(teil){
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = "sine"; o.frequency.value = teil[0];
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(teil[1], t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+      o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 1.15);
+    });
+  }
+  knopf.addEventListener("click", function(){
+    try {
+      if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === "suspended") ctx.resume();
+      var t = ctx.currentTime + 0.01; schlag(t); schlag(t + 0.17);
+    } catch (e) {}
+    knopf.classList.remove("ring"); void knopf.getBoundingClientRect(); knopf.classList.add("ring");
+  });
+  knopf.addEventListener("animationend", function(e){ if (e.animationName === "wackel") knopf.classList.remove("ring"); });
+})();
+
+/* Reifen und Pumpe */
+(function(){
+  var NS = "http://www.w3.org/2000/svg";
+  var CX = 140, BODEN = 262, RM = 104; // Mittellinie des Reifens
+  var reifen = document.getElementById("reifen"), profil = document.getElementById("profil");
+  var felge = document.getElementById("felge"), nabe = document.getElementById("nabe"), sp = document.getElementById("speichen");
+  var ventil = document.getElementById("ventil"), schlauch = document.getElementById("schlauch");
+  var wb = document.getElementById("werkbank"), fuell = document.getElementById("fuellstand"), balken = document.getElementById("fuellbalken");
+  var druck = document.getElementById("druck"), pk = document.getElementById("pumpknopf");
+  var p1 = document.getElementById("puff1"), p2 = document.getElementById("puff2");
+  var luft = 0, angezeigt = 0, laeuft = null;
+
+  for (var i = 0; i < 16; i++) {
+    var l = document.createElementNS(NS, "line"); l.setAttribute("data-w", i * 22.5); sp.appendChild(l);
+  }
+
+  function zeichne(f){
+    // f: 0 = platt, 1 = prall
+    var cy = BODEN - 11 - RM + (1 - f) * 22;     // Rad sinkt, wenn Luft fehlt
+    var grenze = BODEN - 11;                      // Mittellinie darf nicht unter den Boden
+    var d = "";
+    for (var k = 0; k <= 96; k++) {
+      var a = k / 96 * Math.PI * 2, x = CX + RM * Math.cos(a), y = cy + RM * Math.sin(a);
+      if (y > grenze) { var zu = y - grenze; y = grenze; x += Math.sign(Math.cos(a)) * zu * 0.9; }
+      d += (k ? " L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
+    }
+    reifen.setAttribute("d", d + " Z"); profil.setAttribute("d", d + " Z");
+    felge.setAttribute("cx", CX); felge.setAttribute("cy", cy);
+    nabe.setAttribute("cx", CX); nabe.setAttribute("cy", cy);
+    sp.querySelectorAll("line").forEach(function(l){
+      var w = +l.getAttribute("data-w") * Math.PI / 180;
+      l.setAttribute("x1", CX + 9 * Math.cos(w)); l.setAttribute("y1", cy + 9 * Math.sin(w));
+      l.setAttribute("x2", CX + 78 * Math.cos(w + .25)); l.setAttribute("y2", cy + 78 * Math.sin(w + .25));
+    });
+    // Ventil bei ca. 40° unten rechts an der Felge
+    var va = 40 * Math.PI / 180, vx = CX + 86 * Math.cos(va), vy = cy + 86 * Math.sin(va);
+    ventil.setAttribute("x", vx - 4); ventil.setAttribute("y", vy - 8);
+    ventil.setAttribute("transform", "rotate(-50 " + vx + " " + vy + ")");
+    schlauch.setAttribute("d", "M336 250 C330 288 " + (vx + 70) + " " + (vy + 50) + " " + (vx + 6) + " " + (vy - 4));
+    p1.setAttribute("cx", vx + 12); p1.setAttribute("cy", vy - 12);
+    p2.setAttribute("cx", vx + 22); p2.setAttribute("cy", vy - 4);
+    // Profil wird gleichmässiger, je praller der Reifen
+    reifen.setAttribute("stroke", f >= 1 ? "#1f3b51" : "#2a4a62");
+  }
+
+  function animiere(ziel){
+    var start = angezeigt, t0 = null;
+    if (laeuft) cancelAnimationFrame(laeuft);
+    function s(ts){
+      if (!t0) t0 = ts;
+      var t = Math.min(1, (ts - t0) / 380), e = 1 - Math.pow(1 - t, 2);
+      angezeigt = start + (ziel - start) * e; zeichne(angezeigt);
+      if (t < 1) laeuft = requestAnimationFrame(s); else laeuft = null;
+    }
+    laeuft = requestAnimationFrame(s);
+  }
+
+  function setze(neu, sofort){
+    luft = Math.max(0, Math.min(1, neu));
+    fuell.style.width = (luft * 100) + "%";
+    balken.setAttribute("aria-valuenow", Math.round(luft * 100));
+    druck.textContent = (luft * 4).toFixed(1).replace(".", ",") + " bar";
+    if (sofort) { angezeigt = luft; zeichne(luft); } else animiere(luft);
+    wb.classList.toggle("voll", luft >= 1);
+  }
+
+  function pumpe(){
+    pk.classList.add("drueck"); setTimeout(function(){ pk.classList.remove("drueck"); }, 160);
+    if (luft >= 1) return;
+    [p1, p2].forEach(function(p){ p.classList.remove("los"); void p.getBoundingClientRect(); p.classList.add("los"); });
+    setze(luft + 0.125);
+  }
+
+  pk.addEventListener("click", pumpe);
+  pk.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pumpe(); } });
+  document.getElementById("pumpen").addEventListener("click", pumpe);
+  document.getElementById("ablassen").addEventListener("click", function(){ setze(0); });
+
+  setze(0, true);
+  window.veloLuft = function(f){ setze(f, true); }; // für den PDF-Druck
+})();
+
+/* Ventilkappen auf- und zuschrauben */
+document.querySelectorAll(".kappe > button").forEach(function(b){
+  b.addEventListener("click", function(){
+    var k = b.parentNode, offen = !k.classList.contains("offen");
+    k.classList.toggle("offen", offen); b.setAttribute("aria-expanded", offen);
+  });
+});
+</script>
+</body>
+</html>
