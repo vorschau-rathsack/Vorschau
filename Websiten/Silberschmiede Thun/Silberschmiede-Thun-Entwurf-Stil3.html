@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Silberschmiede Thun – Natur als Vorbild (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Bricolage+Grotesque:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1ea;--ink:#1f2a24;--acc:#5e7f5a;--soft:#dfe6d8;--muted:#5d6a62}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Bricolage Grotesque',system-ui,sans-serif;background:var(--bg);color:var(--ink);max-width:430px;margin:0 auto;transition:background .8s}
+.demo{background:var(--ink);color:#eef1ea;font-size:12px;text-align:center;padding:7px 10px}
+header{padding:16px 20px;font-family:'Crimson Pro',serif;font-size:22px;font-weight:700}
+h1,h2{font-family:'Crimson Pro',serif;line-height:1.02}
+h1{font-size:clamp(46px,14vw,62px);padding:10px 20px 0;font-weight:400}
+h1 b{color:var(--acc);transition:color .8s}
+.lead{padding:12px 20px 0;line-height:1.55;color:var(--muted)}
+.land{display:flex;gap:8px;padding:18px 20px 0}
+.land button{flex:1;border:0;border-radius:14px;padding:12px 4px;background:var(--soft);font:600 14px 'Bricolage Grotesque';color:var(--ink);cursor:pointer}
+.land button.on{background:var(--acc);color:#fff}
+.scene{margin:14px 20px 0;border-radius:24px;overflow:hidden}
+.scene svg{display:block;width:100%}
+.quote{padding:14px 20px 0;font-family:'Crimson Pro';font-size:21px;font-style:italic;color:var(--acc);transition:color .8s}
+section{padding:36px 20px}
+h2{font-size:clamp(32px,10vw,42px);margin-bottom:12px;font-weight:400}
+.melt{background:#fff;border-radius:22px;padding:16px;text-align:center}
+.melt svg{width:100%;display:block}
+.btn{display:inline-block;margin-top:12px;padding:14px 22px;border-radius:40px;background:var(--acc);color:#fff;font-weight:600;border:0;font-size:16px;cursor:pointer;text-decoration:none;transition:background .8s}
+.list div{padding:13px 0;border-bottom:1px solid var(--soft);display:flex;gap:12px;line-height:1.45}
+.list i{font-style:normal;color:var(--acc);font-family:'Crimson Pro';font-size:22px;line-height:1}
+.ph{border:1px dashed var(--acc);border-radius:14px;padding:12px;color:var(--muted);font-size:13px;margin-top:12px}
+footer{padding:28px 20px 40px;background:var(--ink);color:#eef1ea;font-size:14px;line-height:1.7}
+footer a{color:#cfe0c8}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Silberschmiede Thun</div>
+<header>Silberschmiede Thun</header>
+<h1>Schmuck, der nach <b id="word">Wiese</b> aussieht.</h1>
+<p class="lead">Unsere Schmuckstücke erinnern an eine weiche Wiese, einen schroffen Hang oder einen wilden Fluss. Wählen Sie Ihre Landschaft:</p>
+<div class="land"><button class="on" data-l="wiese">Wiese</button><button data-l="fels">Fels</button><button data-l="fluss">Fluss</button></div>
+<div class="scene"><svg viewBox="0 0 390 230" id="scene"></svg></div>
+<p class="quote" id="q"></p>
+
+<section>
+<h2>Aus Alt wird Neu</h2>
+<p class="lead" style="padding:0 0 14px">Ihr Altgold oder eigene Edelsteine – wir schmelzen und schmieden daraus etwas Neues. Probieren Sie es:</p>
+<div class="melt">
+<svg viewBox="0 0 340 170" id="mv">
+ <g id="old"><circle cx="170" cy="80" r="40" fill="none" stroke="#c9a347" stroke-width="12"/><rect x="155" y="28" width="30" height="16" rx="3" fill="#c9a347"/></g>
+ <g id="drop" opacity="0"><path d="M170 60 C190 90 195 110 170 125 C145 110 150 90 170 60Z" fill="#e8c35a"/></g>
+ <g id="new" opacity="0"><path d="M120 85 C140 45 200 45 220 85 C200 125 140 125 120 85Z" fill="none" stroke="#e2bd55" stroke-width="10"/><circle cx="170" cy="48" r="8" fill="#5e7f5a"/></g>
+ <rect x="110" y="140" width="120" height="12" rx="6" fill="#e6e1d6"/>
+</svg>
+<button class="btn" id="go">Einschmelzen &amp; neu schmieden</button>
+</div>
+</section>
+
+<section>
+<h2>Bei uns</h2>
+<div class="list">
+ <div><i>✦</i>Schmuck aus Silber und Gold, von Hand geschmiedet</div>
+ <div><i>✦</i>Partnerringe und Wunschanfertigungen</div>
+ <div><i>✦</i>Perlen und Edelsteine aus vertrauenswürdiger Herkunft</div>
+ <div><i>✦</i>Ökogold und recyceltes Silber</div>
+ <div><i>✦</i>Ein Mutter-Tochter-Betrieb: Yvonne Schediwy &amp; Sara Lehmann</div>
+</div>
+<div class="ph">📸 Platzhalter: Ihre Schmuckstücke vor Thuner Landschaften fotografiert.</div>
+<a class="btn" href="mailto:info@silberschmiede-thun.ch?subject=Anfrage">Gespräch vereinbaren</a>
+</section>
+
+<footer>Silberschmiede Thun<br>Obere Hauptgasse 66, 3600 Thun<br><a href="tel:+41332215544">033 221 55 44</a> · <a href="mailto:info@silberschmiede-thun.ch">info@silberschmiede-thun.ch</a></footer>
+<script>
+const L={
+wiese:{bg:'#eef1ea',acc:'#5e7f5a',w:'Wiese',q:'Weich wie eine Sommerwiese – fein strukturiert, sanft gewölbt.',
+ s:`<rect width="390" height="230" fill="#dbe8cf"/><circle cx="320" cy="50" r="26" fill="#f6e3a4"/><path d="M0 150 Q100 110 200 140 T390 130 V230 H0Z" fill="#9cbf7f"/><path d="M0 185 Q120 160 240 182 T390 175 V230 H0Z" fill="#7aa363"/>${Array.from({length:40},(_,i)=>`<line x1="${i*10+3}" y1="230" x2="${i*10+6}" y2="${200-(i%5)*6}" stroke="#5e7f5a" stroke-width="2"/>`).join('')}<circle cx="195" cy="120" r="34" fill="none" stroke="#e8ecef" stroke-width="10"/>`},
+fels:{bg:'#ecebe8',acc:'#6b6460',w:'Fels',q:'Schroff wie ein Berghang – kantig, ehrlich, mit Charakter.',
+ s:`<rect width="390" height="230" fill="#d9dde3"/><path d="M0 190 L70 90 L120 140 L190 40 L260 130 L310 80 L390 160 V230 H0Z" fill="#8a837e"/><path d="M190 40 L215 75 L200 72 L180 60Z" fill="#fff"/><path d="M0 230 L80 170 L160 210 L250 160 L390 220 V230Z" fill="#6b6460"/><path d="M165 120 l30 -18 l32 16 l-6 34 l-34 12 l-26 -20Z" fill="none" stroke="#e8ecef" stroke-width="9"/>`},
+fluss:{bg:'#e8f0f2',acc:'#2f6f8a',w:'Fluss',q:'Wild wie die Aare – fliessende Linien, die nie stillstehen.',
+ s:`<rect width="390" height="230" fill="#cfe3ea"/><path d="M0 120 Q60 90 120 120 T240 120 T390 115 V230 H0Z" fill="#7fb4c8"/><path d="M0 160 Q70 130 140 160 T280 160 T390 150" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/><path d="M0 195 Q80 170 160 195 T320 192" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/><path d="M150 110 Q175 80 200 110 T250 110" fill="none" stroke="#e8ecef" stroke-width="10" stroke-linecap="round"/>`}};
+const $=id=>document.getElementById(id);
+function set(k){const v=L[k];document.body.style.background=v.bg;document.documentElement.style.setProperty('--acc',v.acc);$('word').textContent=v.w;$('q').textContent=v.q;$('scene').innerHTML=v.s;document.querySelectorAll('.land button').forEach(b=>b.classList.toggle('on',b.dataset.l===k))}
+document.querySelectorAll('.land button').forEach(b=>b.onclick=()=>set(b.dataset.l));set('wiese');
+$('go').onclick=()=>{const o=$('old'),d=$('drop'),n=$('new');n.setAttribute('opacity',0);o.style.transition=d.style.transition=n.style.transition='opacity .8s';o.setAttribute('opacity',1);
+ setTimeout(()=>{o.setAttribute('opacity',0);d.setAttribute('opacity',1)},100);setTimeout(()=>{d.setAttribute('opacity',0);n.setAttribute('opacity',1);$('go').textContent='Nochmals schmieden'},1300)};
+</script></body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Silberschmiede Thun – Am Amboss (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--coal:#141414;--iron:#232323;--silver:#d9dde1;--glow:#ff9a3c;--muted:#9aa0a6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--coal);color:var(--silver);max-width:430px;margin:0 auto}
+.demo{background:#2e2e2e;color:#cfcfcf;font-size:12px;text-align:center;padding:7px 10px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.logo{font-family:'Italiana',serif;font-size:22px;letter-spacing:2px}
+header a{color:var(--glow);text-decoration:none;font-size:14px;font-weight:600}
+h1,h2{font-family:'Italiana',serif;font-weight:400;line-height:1.02}
+h1{font-size:clamp(48px,15vw,66px);padding:16px 20px 0}
+h1 i{font-style:normal;color:var(--glow)}
+.lead{color:var(--muted);line-height:1.55;padding:14px 20px 0;font-size:16px}
+section{padding:36px 20px}
+h2{font-size:clamp(36px,11vw,46px);margin-bottom:10px}
+.anvil{background:radial-gradient(circle at 50% 40%,#2c2c2c,#111);border-radius:24px;margin:22px 20px 0;padding:10px 10px 18px;text-align:center;user-select:none;cursor:pointer;border:1px solid #2a2a2a}
+.anvil svg{width:100%;display:block}
+.hint{font-size:13px;color:var(--muted)}
+.count{font-family:'Italiana';font-size:28px;color:var(--glow);margin-top:4px}
+.spark{animation:sp .5s ease-out forwards}
+@keyframes sp{to{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.duo{display:grid;gap:14px}
+.card{border:1px solid #333;border-radius:18px;padding:18px;background:var(--iron)}
+.card h3{font-family:'Italiana';font-weight:400;font-size:26px;margin-bottom:6px;color:#fff}
+.card p{color:var(--muted);line-height:1.5;font-size:15px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.who div{border-top:2px solid var(--glow);padding-top:10px}
+.who b{font-family:'Italiana';font-size:24px;font-weight:400;display:block;color:#fff}
+.who span{color:var(--muted);font-size:14px;line-height:1.45}
+.no{font-size:14px;color:var(--muted);line-height:1.5;margin-top:14px;border-left:2px solid #444;padding-left:12px}
+.ph{border:1px dashed #555;border-radius:14px;padding:12px;color:var(--muted);font-size:13px;margin-top:14px}
+.btn{display:block;text-align:center;margin-top:18px;padding:16px;border-radius:40px;background:var(--glow);color:#1a1006;font-weight:700;text-decoration:none}
+footer{padding:28px 20px 40px;border-top:1px solid #2a2a2a;color:var(--muted);font-size:14px;line-height:1.7}
+footer a{color:var(--silver)}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Silberschmiede Thun</div>
+<header><div class="logo">SILBERSCHMIEDE THUN</div><a href="#gespraech">Beratung</a></header>
+<h1>Von Hand <i>geschmiedet.</i></h1>
+<p class="lead">Schmuck aus Silber und Gold – so individuell wie die Menschen, die ihn tragen. Mitten in der Thuner Altstadt.</p>
+
+<div class="anvil" id="anvil">
+<svg viewBox="0 0 380 230" id="as">
+ <ellipse cx="190" cy="120" rx="78" ry="78" fill="none" stroke="#c9ced3" stroke-width="22" id="ring"/>
+ <ellipse cx="190" cy="120" rx="78" ry="78" fill="none" stroke="#fff" stroke-width="3" opacity=".35"/>
+ <g id="marks"></g>
+ <path d="M60 205 H320 L300 190 H80Z" fill="#3a3a3a"/><rect x="120" y="205" width="140" height="20" fill="#2e2e2e"/>
+ <g id="hammer" transform="translate(255 20) rotate(25)"><rect x="0" y="0" width="56" height="26" rx="4" fill="#8d9399"/><rect x="24" y="26" width="8" height="70" rx="3" fill="#7a5a3a"/></g>
+ <g id="sparks"></g>
+</svg>
+<p class="hint">Tippen Sie auf den Ring – jeder Schlag hinterlässt seine Spur.</p>
+<div class="count" id="cnt">0 Hammerschläge</div>
+</div>
+
+<section>
+<h2>Was entsteht</h2>
+<div class="duo">
+ <div class="card"><h3>Schmuck aus Silber &amp; Gold</h3><p>Handgeschmiedete Einzelstücke, inspiriert von der Natur.</p></div>
+ <div class="card"><h3>Partnerringe</h3><p>Zwei Ringe, die zusammengehören – gemeinsam entworfen.</p></div>
+ <div class="card"><h3>Wunschanfertigungen</h3><p>Ihre Idee, unser Handwerk. Mit Perlen und Edelsteinen aus vertrauenswürdiger Herkunft.</p></div>
+ <div class="card"><h3>Umarbeitungen</h3><p>Altgold und eigene Edelsteine bekommen ein neues Leben.</p></div>
+</div>
+<p class="no">Wir arbeiten mit Ökogold und recyceltem Silber.</p>
+</section>
+
+<section>
+<h2>Mutter &amp; Tochter</h2>
+<div class="who">
+ <div><b>Yvonne Schediwy</b><span>Silberschmiedin – ihr Handwerk hat sie in Brasilien weiterentwickelt.</span></div>
+ <div><b>Sara Lehmann</b><span>Silberschmiedin mit Ausbildung in Gemmologie.</span></div>
+</div>
+<div class="ph">📸 Platzhalter: Ihr Foto aus der Werkstatt an der Oberen Hauptgasse.</div>
+</section>
+
+<section id="gespraech">
+<h2>Am Anfang steht ein Gespräch</h2>
+<p class="lead" style="padding:0">Gemeinsam besprechen wir Design, Materialien und was möglich ist – dann beginnt das Schmieden.</p>
+<a class="btn" href="mailto:info@silberschmiede-thun.ch?subject=Beratungsgespr%C3%A4ch">Beratung anfragen</a>
+<p class="no">Hinweis: Kein Ankauf von Silber oder Silberbesteck, keine Schnupper- oder Lehrstellen.</p>
+</section>
+
+<footer>Silberschmiede Thun · Yvonne Schediwy<br>Obere Hauptgasse 66, 3600 Thun<br><a href="tel:+41332215544">033 221 55 44</a> · <a href="mailto:info@silberschmiede-thun.ch">info@silberschmiede-thun.ch</a><br>Öffnungszeiten: Platzhalter</footer>
+<script>
+let n=0;const $=id=>document.getElementById(id);
+$('anvil').onclick=e=>{
+ n++;$('cnt').textContent=n+(n===1?' Hammerschlag':' Hammerschläge')+(n>=12?' – fertig geschmiedet ✦':'');
+ const a=Math.random()*Math.PI*2,r=78;const x=190+Math.cos(a)*r,y=120+Math.sin(a)*r;
+ $('marks').insertAdjacentHTML('beforeend',`<ellipse cx="${x}" cy="${y}" rx="${4+Math.random()*3}" ry="${2+Math.random()*2}" fill="#fff" opacity="${.35+Math.random()*.4}" transform="rotate(${a*57} ${x} ${y})"/>`);
+ for(let i=0;i<6;i++){const g=document.createElementNS('http://www.w3.org/2000/svg','circle');g.setAttribute('cx',x);g.setAttribute('cy',y);g.setAttribute('r',2);g.setAttribute('fill','#ff9a3c');g.classList.add('spark');g.style.setProperty('--dx',(Math.random()*60-30)+'px');g.style.setProperty('--dy',(-Math.random()*50)+'px');$('sparks').appendChild(g);setTimeout(()=>g.remove(),600)}
+ const h=$('hammer');h.setAttribute('transform',`translate(${x-28} ${y-70}) rotate(-10)`);setTimeout(()=>h.setAttribute('transform','translate(255 20) rotate(25)'),180);
+ if(n>=12)$('ring').setAttribute('stroke','#eef1f4');
+};
+</script></body></html>

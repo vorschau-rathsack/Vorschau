@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Silberschmiede Thun – Partnerring-Werkbank (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f1ea;--ink:#2a2622;--rose:#b4846c;--line:#e2d8cc;--muted:#7b7066}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);max-width:430px;margin:0 auto}
+.demo{background:var(--ink);color:var(--paper);font-size:12px;text-align:center;padding:7px 10px}
+header{padding:18px 20px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line)}
+.logo{font-family:'Gloock',serif;font-size:21px}
+header small{color:var(--muted);font-size:12px;letter-spacing:2px}
+h1,h2{font-family:'Gloock',serif;font-weight:400;line-height:1.05}
+h1{font-size:clamp(40px,12vw,54px);padding:26px 20px 0}
+h1 em{color:var(--rose);font-style:normal}
+.lead{padding:12px 20px 0;color:var(--muted);line-height:1.55}
+section{padding:34px 20px}
+h2{font-size:clamp(30px,9vw,38px);margin-bottom:12px}
+.bench{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px}
+.bench svg{width:100%;display:block;background:radial-gradient(circle at 50% 45%,#fff,#efe8df);border-radius:16px}
+.opt{margin-top:14px}
+.opt b{display:block;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.row{display:flex;gap:7px;flex-wrap:wrap}
+.row button{border:1px solid var(--line);background:var(--paper);border-radius:30px;padding:9px 13px;font:600 14px 'Instrument Sans';color:var(--ink);cursor:pointer}
+.row button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ini{display:flex;gap:8px}.ini input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:11px;font:600 16px 'Instrument Sans';text-align:center;text-transform:uppercase;background:var(--paper)}
+.sum{margin-top:14px;padding:14px;border-radius:14px;background:var(--paper);font-size:15px;line-height:1.5}
+.btn{display:block;text-align:center;margin-top:14px;padding:15px;border-radius:40px;background:var(--rose);color:#fff;font-weight:700;text-decoration:none}
+.steps{counter-reset:s}
+.steps div{counter-increment:s;padding:14px 0 14px 46px;border-bottom:1px solid var(--line);position:relative;line-height:1.5}
+.steps div:before{content:counter(s);position:absolute;left:0;top:12px;width:32px;height:32px;border-radius:50%;border:1px solid var(--rose);color:var(--rose);display:grid;place-items:center;font-family:'Gloock'}
+.small{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+.ph{border:1px dashed var(--rose);border-radius:14px;padding:12px;color:var(--muted);font-size:13px;margin-top:12px}
+footer{padding:28px 20px 40px;background:var(--ink);color:var(--paper);font-size:14px;line-height:1.7}
+footer a{color:#e8c7b5}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Silberschmiede Thun</div>
+<header><div class="logo">Silberschmiede Thun</div><small>OBERE HAUPTGASSE 66</small></header>
+<h1>Zwei Ringe. <em>Eine Geschichte.</em></h1>
+<p class="lead">Partnerringe, von Hand geschmiedet – von Mutter und Tochter, Yvonne Schediwy und Sara Lehmann.</p>
+
+<section>
+<h2>Ihre Werkbank</h2>
+<p class="lead" style="padding:0 0 14px">Material, Oberfläche und Stein wählen, Initialen eingeben – Ihre Idee nimmt Form an.</p>
+<div class="bench">
+<svg viewBox="0 0 360 220" id="sv">
+ <defs>
+  <linearGradient id="silber" x1="0" x2="1"><stop offset="0" stop-color="#9aa1a8"/><stop offset=".5" stop-color="#f2f4f6"/><stop offset="1" stop-color="#8e959c"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#a7782e"/><stop offset=".5" stop-color="#f5d78b"/><stop offset="1" stop-color="#9c6e28"/></linearGradient>
+  <linearGradient id="rose" x1="0" x2="1"><stop offset="0" stop-color="#a5694f"/><stop offset=".5" stop-color="#f3c4ae"/><stop offset="1" stop-color="#97604a"/></linearGradient>
+  <pattern id="hammered" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="3" fill="#fff" opacity=".35"/></pattern>
+  <pattern id="matt" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#000" opacity=".08"/><circle cx="1" cy="1" r=".6" fill="#fff" opacity=".3"/></pattern>
+ </defs>
+ <g id="r1" transform="translate(130 112)"></g>
+ <g id="r2" transform="translate(232 112)"></g>
+</svg>
+<div class="opt"><b>Material</b><div class="row" data-k="m"><button class="on" data-v="silber">Recyceltes Silber</button><button data-v="gold">Ökogold gelb</button><button data-v="rose">Ökogold rosé</button></div></div>
+<div class="opt"><b>Oberfläche</b><div class="row" data-k="o"><button class="on" data-v="poliert">Poliert</button><button data-v="hammered">Gehämmert</button><button data-v="matt">Matt</button></div></div>
+<div class="opt"><b>Stein</b><div class="row" data-k="s"><button class="on" data-v="kein">Ohne</button><button data-v="perle">Perle</button><button data-v="stein">Edelstein</button></div></div>
+<div class="opt"><b>Initialen</b><div class="ini"><input id="i1" maxlength="2" value="A"><input id="i2" maxlength="2" value="M"></div></div>
+<div class="sum" id="sum"></div>
+<a class="btn" id="send" href="#">Diese Idee mit uns besprechen</a>
+<p class="small">Die Werkbank zeigt eine Skizze – den echten Ring entwerfen wir gemeinsam im Gespräch.</p>
+</div>
+</section>
+
+<section>
+<h2>So entsteht Ihr Ring</h2>
+<div class="steps">
+ <div>Gespräch über Design, Materialien und Möglichkeiten.</div>
+ <div>Auswahl von Edelsteinen und Perlen aus vertrauenswürdiger Herkunft.</div>
+ <div>Schmieden von Hand in der Werkstatt in Thun.</div>
+</div>
+<p class="small">Auch Ihr Altgold oder eigene Edelsteine können wir zu etwas Neuem umarbeiten.</p>
+<div class="ph">📸 Platzhalter: Fotos Ihrer Partnerringe.</div>
+</section>
+
+<footer>Silberschmiede Thun<br>Obere Hauptgasse 66, 3600 Thun<br><a href="tel:+41332215544">033 221 55 44</a> · <a href="mailto:info@silberschmiede-thun.ch">info@silberschmiede-thun.ch</a></footer>
+<script>
+const st={m:'silber',o:'poliert',s:'kein'};const $=id=>document.getElementById(id);
+const names={silber:'recyceltes Silber',gold:'Ökogold gelb',rose:'Ökogold rosé',poliert:'poliert',hammered:'gehämmert',matt:'matt',kein:'ohne Stein',perle:'mit Perle',stein:'mit Edelstein'};
+function ring(ini,big){const rr=big?46:40,w=big?16:13;let s=`<circle r="${rr}" fill="none" stroke="url(#${st.m})" stroke-width="${w}"/>`;
+ if(st.o!=='poliert')s+=`<circle r="${rr}" fill="none" stroke="url(#${st.o})" stroke-width="${w}"/>`;
+ s+=`<circle r="${rr-w/2+1}" fill="none" stroke="#000" stroke-opacity=".12" stroke-width="2"/>`;
+ if(st.s==='perle')s+=`<circle cy="${-rr-6}" r="9" fill="#fbf8f2" stroke="#d8cfc2"/><circle cx="-3" cy="${-rr-9}" r="3" fill="#fff"/>`;
+ if(st.s==='stein')s+=`<path d="M0 ${-rr-16} L9 ${-rr-6} L0 ${-rr+3} L-9 ${-rr-6}Z" fill="#3a7ca5" stroke="#1f4e6b"/>`;
+ s+=`<text y="${rr+30}" text-anchor="middle" font-family="Gloock" font-size="15" fill="#7b7066">${ini||'–'}</text>`;return s}
+function draw(){$('r1').innerHTML=ring($('i1').value.toUpperCase(),true);$('r2').innerHTML=ring($('i2').value.toUpperCase(),false);
+ const t=`Partnerringe aus ${names[st.m]}, ${names[st.o]}, ${names[st.s]} – Initialen ${$('i1').value.toUpperCase()||'–'} & ${$('i2').value.toUpperCase()||'–'}`;
+ $('sum').textContent=t;$('send').href='mailto:info@silberschmiede-thun.ch?subject='+encodeURIComponent('Partnerringe – Beratung')+'&body='+encodeURIComponent('Grüezi\n\nWir interessieren uns für: '+t+'.\nKönnen wir einen Termin für ein Gespräch vereinbaren?\n\nFreundliche Grüsse')}
+document.querySelectorAll('.row').forEach(r=>r.querySelectorAll('button').forEach(b=>b.onclick=()=>{r.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');st[r.dataset.k]=b.dataset.v;draw()}));
+$('i1').oninput=$('i2').oninput=draw;draw();
+</script></body></html>

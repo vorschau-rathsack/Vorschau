@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feuz – Tortenatelier (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@500;700&family=Nothing+You+Could+Do&family=Poiret+One&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#f7d7dc;--mint:#d6efe4;--cream:#fff7f0;--choc:#4a2c2a;--berry:#c2365a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Smooch Sans',system-ui,sans-serif;font-size:19px;background:var(--cream);color:var(--choc);max-width:430px;margin:0 auto}
+.demo{background:var(--choc);color:var(--cream);font-size:13px;text-align:center;padding:7px 10px}
+header{text-align:center;padding:18px 20px 6px}
+.logo{font-family:'Poiret One',cursive;font-size:30px;letter-spacing:4px}
+header small{display:block;font-size:15px;letter-spacing:3px;color:var(--berry)}
+h1,h2{font-family:'Poiret One',cursive;font-weight:400;line-height:1.05;text-align:center}
+h1{font-size:clamp(40px,12vw,54px);padding:14px 20px 0}
+.lead{text-align:center;padding:10px 24px 0;line-height:1.35}
+section{padding:30px 18px}
+h2{font-size:clamp(32px,10vw,42px);margin-bottom:12px}
+.stand{background:linear-gradient(var(--pink),var(--mint));border-radius:28px;padding:10px}
+.stand svg{display:block;width:100%}
+.grp{margin-top:12px}
+.grp b{display:block;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--berry);margin-bottom:6px}
+.row{display:flex;gap:7px;flex-wrap:wrap}
+.row button{border:2px solid var(--choc);background:var(--cream);border-radius:30px;padding:7px 14px;font:700 17px 'Smooch Sans';color:var(--choc);cursor:pointer}
+.row button.on{background:var(--choc);color:var(--cream)}
+input{width:100%;border:2px solid var(--choc);border-radius:14px;padding:11px;font:700 18px 'Smooch Sans';background:#fff}
+.btn{display:block;text-align:center;margin-top:14px;padding:14px;border-radius:40px;background:var(--berry);color:#fff;font-weight:700;text-decoration:none;font-size:20px}
+.note{font-size:16px;text-align:center;margin-top:8px;opacity:.75}
+.cards{display:grid;gap:10px}
+.cards div{background:#fff;border-radius:20px;padding:14px 16px;border-left:6px solid var(--berry)}
+.ph{border:2px dashed var(--berry);border-radius:16px;padding:12px;font-size:16px;margin-top:12px;text-align:center}
+footer{background:var(--choc);color:var(--cream);padding:26px 20px 40px;line-height:1.5;text-align:center}
+footer a{color:var(--pink)}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Bäckerei-Konditorei Feuz</div>
+<header><div class="logo">FEUZ</div><small>EIGENE KONDITOREI · BÖNIGEN</small></header>
+<h1>Deine Torte, von Hand gemacht.</h1>
+<p class="lead">Geburtstag, Hochzeit oder einfach so – stell sie hier zusammen, wir backen sie in unserer eigenen Konditorei.</p>
+
+<section>
+<h2>Tortenatelier</h2>
+<div class="stand"><svg viewBox="0 0 360 260" id="cake"></svg></div>
+<div class="grp"><b>Stockwerke</b><div class="row" data-k="t"><button class="on" data-v="1">1</button><button data-v="2">2</button><button data-v="3">3</button></div></div>
+<div class="grp"><b>Glasur</b><div class="row" data-k="c"><button class="on" data-v="#fbe3e8">Rosa</button><button data-v="#7a4a3a">Schoggi</button><button data-v="#fffaf2">Vanille</button><button data-v="#dff3e9">Pistazie</button></div></div>
+<div class="grp"><b>Deko</b><div class="row" data-k="d"><button class="on" data-v="beeren">Beeren</button><button data-v="kerzen">Kerzen</button><button data-v="blumen">Blüten</button></div></div>
+<div class="grp"><b>Schriftzug</b><input id="txt" maxlength="22" value="Alles Gute Lena"></div>
+<a class="btn" id="ask" href="#">Torte anfragen</a>
+<p class="note">Beispiel zum Ausprobieren – Sorten und Preise ergänzen wir mit eurem echten Angebot.</p>
+</section>
+
+<section>
+<h2>Aus der Backstube</h2>
+<div class="cards">
+ <div>🎂 Torten &amp; Feingebäck aus der eigenen Konditorei</div>
+ <div>🥐 Brot und Gebäck, frisch gebacken</div>
+ <div>☕ Café &amp; Bistro mit Frühstück – 12 Plätze drinnen, 8 auf der Terrasse</div>
+ <div>🛍️ Abholservice &amp; Take-away</div>
+</div>
+<div class="ph">📸 Platzhalter: eure schönsten Torten.</div>
+</section>
+
+<footer>Bäckerei-Konditorei Feuz · Bernhard Feuz<br>Hauptstrasse 58, 3806 Bönigen<br><a href="tel:+41338224256">033 822 42 56</a> · <a href="mailto:info@baeckerei-feuz.ch">info@baeckerei-feuz.ch</a><br>Sonntag Ruhetag</footer>
+<script>
+const st={t:'1',c:'#fbe3e8',d:'beeren'};const $=id=>document.getElementById(id);
+function deco(cx,y,w){if(st.d==='beeren')return Array.from({length:5},(_,i)=>`<circle cx="${cx-w/2+15+i*(w-30)/4}" cy="${y-6}" r="7" fill="#c2365a"/>`).join('');
+ if(st.d==='kerzen')return Array.from({length:4},(_,i)=>{const x=cx-w/2+20+i*(w-40)/3;return `<rect x="${x-3}" y="${y-28}" width="6" height="26" fill="#9ad0f5"/><path d="M${x} ${y-40} q5 7 0 11 q-5 -4 0 -11Z" fill="#f2b84b"/>`}).join('');
+ return Array.from({length:5},(_,i)=>{const x=cx-w/2+15+i*(w-30)/4;return `<g transform="translate(${x} ${y-8})">${[0,72,144,216,288].map(a=>`<ellipse rx="4" ry="7" fill="#fff" transform="rotate(${a}) translate(0 -6)"/>`).join('')}<circle r="3" fill="#f2b84b"/></g>`}).join('')}
+function draw(){const n=+st.t;let s='<rect width="360" height="260" fill="none"/><ellipse cx="180" cy="236" rx="140" ry="14" fill="#fff" opacity=".8"/><rect x="170" y="222" width="20" height="14" fill="#fff"/>';
+ let y=222;const ws=[220,170,120];for(let i=0;i<n;i++){const w=ws[i],h=52;y-=h;s+=`<rect x="${180-w/2}" y="${y}" width="${w}" height="${h}" rx="10" fill="${st.c}" stroke="#4a2c2a" stroke-opacity=".15"/><path d="M${180-w/2} ${y+12} ${Array.from({length:8},(_,j)=>`q${w/16} 12 ${w/8} 0`).join(' ')}" fill="none" stroke="#fff" stroke-width="5" opacity=".8"/>`}
+ s+=deco(180,y,ws[n-1]);
+ s+=`<text x="180" y="${222-26}" text-anchor="middle" font-family="Nothing You Could Do" font-size="16" fill="${st.c==='#7a4a3a'?'#fff':'#c2365a'}">${$('txt').value.replace(/</g,'')}</text>`;
+ $('cake').innerHTML=s;
+ $('ask').href='mailto:info@baeckerei-feuz.ch?subject='+encodeURIComponent('Tortenanfrage')+'&body='+encodeURIComponent(`Grüezi\n\nIch hätte gerne eine Torte: ${n} Stockwerk(e), Glasur ${document.querySelector('[data-k=c] .on').textContent}, Deko ${st.d}, Schriftzug «${$('txt').value}».\nDatum: \nPersonen: \n\nFreundliche Grüsse`)}
+document.querySelectorAll('.row').forEach(r=>r.querySelectorAll('button').forEach(b=>b.onclick=()=>{r.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');st[r.dataset.k]=b.dataset.v;draw()}));
+$('txt').oninput=draw;draw();
+</script></body></html>

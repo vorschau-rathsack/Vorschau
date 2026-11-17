@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feuz Bönigen – Zmorge am See (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--lake:#2f6f86;--sky:#e7f1f4;--sun:#f2b84b;--ink:#1d2b33;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--sky);color:var(--ink);max-width:430px;margin:0 auto}
+.demo{background:var(--ink);color:var(--sky);font-size:12px;text-align:center;padding:7px 10px}
+header{padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Instrument Serif',serif;font-size:26px}
+header span{font-size:13px;color:var(--lake)}
+h1,h2{font-family:'Instrument Serif',serif;font-weight:400;line-height:1.02}
+h1{font-size:clamp(46px,14vw,62px);padding:4px 20px 0}
+h1 i{color:var(--lake)}
+.lead{padding:12px 20px 0;line-height:1.55}
+.scene{display:block;width:100%;margin-top:12px}
+section{padding:32px 20px}
+h2{font-size:clamp(34px,10vw,44px);margin-bottom:10px}
+.plate{background:var(--card);border-radius:26px;padding:14px;box-shadow:0 10px 30px rgba(29,43,51,.08)}
+.plate svg{width:100%;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips button{border:1px solid #cfe0e6;background:var(--sky);border-radius:30px;padding:10px 14px;font:600 14px 'Outfit';color:var(--ink);cursor:pointer}
+.chips button.on{background:var(--lake);border-color:var(--lake);color:#fff}
+.note{font-size:13px;color:#5b6f78;margin-top:10px;line-height:1.5}
+.btn{display:block;text-align:center;margin-top:14px;padding:15px;border-radius:40px;background:var(--sun);color:var(--ink);font-weight:700;text-decoration:none}
+.seats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seats div{background:var(--card);border-radius:18px;padding:16px}
+.seats b{font-family:'Instrument Serif';font-size:40px;font-weight:400;color:var(--lake);display:block}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tags span{background:#fff;border-radius:20px;padding:6px 12px;font-size:13px}
+.ph{border:1px dashed var(--lake);border-radius:14px;padding:12px;font-size:13px;margin-top:14px;color:#5b6f78}
+footer{background:var(--lake);color:#fff;padding:26px 20px 40px;line-height:1.7;font-size:15px}
+footer a{color:#fff}
+.steam{animation:st 3s ease-in-out infinite}
+@keyframes st{0%{opacity:0;transform:translateY(6px)}50%{opacity:.8}100%{opacity:0;transform:translateY(-14px)}}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Bäckerei-Konditorei Feuz</div>
+<header><div class="logo">Feuz</div><span>Bäckerei · Konditorei · Café</span></header>
+<h1>Zmorge, <i>gleich beim See.</i></h1>
+<p class="lead">Frisch gebacken in Bönigen – drinnen oder auf der Terrasse, zum Hiersein oder zum Mitnehmen.</p>
+<svg class="scene" viewBox="0 0 430 170" aria-hidden="true">
+ <rect width="430" height="170" fill="#e7f1f4"/>
+ <path d="M0 95 L70 40 L120 75 L190 20 L250 70 L320 35 L430 85 V120 H0Z" fill="#b9cfd8"/>
+ <path d="M190 20 L210 38 L196 36Z" fill="#fff"/>
+ <rect y="110" width="430" height="60" fill="#2f6f86"/>
+ <g stroke="#e7f1f4" stroke-width="2" opacity=".6"><line x1="40" y1="128" x2="110" y2="128"/><line x1="250" y1="140" x2="340" y2="140"/></g>
+ <g transform="translate(300 96)"><rect x="0" y="10" width="40" height="34" rx="6" fill="#fff"/><path d="M40 18 q14 6 0 16" stroke="#fff" stroke-width="5" fill="none"/><rect x="4" y="12" width="32" height="10" fill="#7a4a2a"/>
+  <path class="steam" d="M12 2 q-6 -10 2 -18" stroke="#fff" stroke-width="3" fill="none"/><path class="steam" style="animation-delay:1s" d="M26 2 q-6 -10 2 -18" stroke="#fff" stroke-width="3" fill="none"/></g>
+</svg>
+
+<section>
+<h2>Stell dir dein Zmorge zusammen</h2>
+<p class="lead" style="padding:0 0 12px">Tippe an, was auf deinen Teller soll – der Teller füllt sich.</p>
+<div class="plate">
+<svg viewBox="0 0 360 220" id="pl">
+ <ellipse cx="180" cy="120" rx="150" ry="84" fill="#f6f6f2"/><ellipse cx="180" cy="120" rx="118" ry="62" fill="#fff" stroke="#ececE6"/>
+ <g id="food"></g>
+</svg>
+<div class="chips" id="chips"></div>
+<p class="note" id="sum">Dein Teller ist noch leer.</p>
+<p class="note">Beispiel-Auswahl – wird durch euer echtes Zmorge-Angebot ersetzt.</p>
+<a class="btn" href="tel:+41338224256">Anrufen &amp; vorbeikommen</a>
+</div>
+</section>
+
+<section>
+<h2>Platz für dich</h2>
+<div class="seats"><div><b>12</b>Plätze drinnen</div><div><b>8</b>auf der Terrasse</div></div>
+<div class="tags"><span>Frühstück</span><span>Take-away</span><span>Selbstbedienung</span><span>Abholservice</span><span>Vegetarisch</span><span>Gratis-WLAN</span><span>Parkplätze</span><span>Velo-Abstellplatz</span><span>Twint</span></div>
+<div class="ph">📸 Platzhalter: Fotos von Terrasse, Theke und Zmorge.</div>
+<p class="lead" style="padding:14px 0 0">Sonntag Ruhetag · Öffnungszeiten: Platzhalter</p>
+</section>
+
+<footer><b>Bäckerei-Konditorei Feuz</b> · Bernhard Feuz<br>Hauptstrasse 58, 3806 Bönigen<br><a href="tel:+41338224256">033 822 42 56</a> · <a href="mailto:info@baeckerei-feuz.ch">info@baeckerei-feuz.ch</a></footer>
+<script>
+const F={'Kaffee':'<g transform="translate(250 70)"><ellipse cx="22" cy="34" rx="30" ry="12" fill="#e9e9e3"/><rect x="4" y="8" width="36" height="26" rx="8" fill="#fff" stroke="#ddd"/><ellipse cx="22" cy="10" rx="17" ry="5" fill="#6b3d22"/></g>',
+'Gipfeli':'<path d="M90 120 Q130 70 170 120 Q130 108 90 120Z" fill="#d9954d"/>',
+'Zopf':'<path d="M170 150 q10-16 20 0 q10-16 20 0 q10-16 20 0" stroke="#d38b45" stroke-width="12" fill="none" stroke-linecap="round"/>',
+'Konfi':'<g transform="translate(110 140)"><rect width="34" height="30" rx="6" fill="#c8432b"/><rect y="-6" width="34" height="9" rx="3" fill="#f3d9a4"/></g>',
+'Butter':'<rect x="205" y="100" width="38" height="20" rx="4" fill="#f7e27a"/>',
+'Ei':'<g transform="translate(150 80)"><ellipse rx="16" ry="12" fill="#fff" stroke="#eee"/><circle r="6" fill="#f2b84b"/></g>'};
+const on=new Set();const $=id=>document.getElementById(id);
+Object.keys(F).forEach(k=>{const b=document.createElement('button');b.textContent=k;b.onclick=()=>{on.has(k)?on.delete(k):on.add(k);b.classList.toggle('on');draw()};$('chips').appendChild(b)});
+['Kaffee','Gipfeli','Konfi','Butter'].forEach(k=>{on.add(k);[...document.querySelectorAll('#chips button')].find(b=>b.textContent===k).classList.add('on')});
+function draw(){$('food').innerHTML=[...on].map(k=>F[k]).join('');$('sum').textContent=on.size?'Auf deinem Teller: '+[...on].join(', ')+'.':'Dein Teller ist noch leer.'}
+draw();</script></body></html>
