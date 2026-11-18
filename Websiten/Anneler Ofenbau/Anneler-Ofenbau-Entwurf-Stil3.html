@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anneler Ofenbau – Was heizt bei Ihnen? (Entwurf)</title>
+<meta name="description" content="Entwurf von Max Rathsack: Heizlösungen mit Holz, Pellets und Schnitzeln, Kochherde und Cheminées aus Spiez.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --salbei:#8fa68e;
+  --salbei-hell:#dfe7dc;
+  --salbei-tief:#4f6a52;
+  --sand:#efe6d6;
+  --sand-tief:#d9cbb1;
+  --kreide:#faf8f3;
+  --graphit:#2f3233;
+  --graphit-weich:#5b5f60;
+  --akzent:#c8693f;
+  --g1:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --g2:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#e7e1d4;-webkit-text-size-adjust:100%}
+body{margin:0 auto;max-width:480px;background:var(--kreide);color:var(--graphit);font-family:var(--g2);font-size:17px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:var(--g1);font-weight:700;margin:0;line-height:1.02;letter-spacing:-.02em;overflow-wrap:break-word;hyphens:manual}
+p{margin:0 0 1em}
+a{color:inherit}
+.demo{background:var(--graphit);color:var(--sand);font-size:13px;text-align:center;padding:8px 16px;line-height:1.35}
+
+.kopf{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--g1);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.marke em{font-style:normal;color:var(--salbei-tief);font-weight:500}
+.kreis{width:40px;height:40px;border-radius:50%;background:var(--salbei);display:grid;place-items:center;text-decoration:none}
+
+.hero{padding:18px 20px 8px}
+.etikett{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--salbei-tief);background:var(--salbei-hell);padding:5px 10px;border-radius:99px}
+.hero h1{font-size:clamp(46px,13.6vw,64px);margin:16px 0 14px}
+.hero h1 span{color:var(--salbei-tief)}
+.hero p{font-size:18.5px;color:var(--graphit-weich);max-width:31ch}
+
+/* Drehknopf */
+.regler{margin:8px 12px 0;background:var(--sand);border-radius:28px;padding:18px 8px 22px}
+.regler .titel{display:flex;justify-content:space-between;align-items:baseline;padding:0 12px}
+.regler .titel b{font-family:var(--g1);font-size:15px;letter-spacing:.04em;text-transform:uppercase}
+.regler .titel span{font-size:13px;color:var(--graphit-weich)}
+#zifferblatt{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+#knopf{cursor:grab}
+#knopf:active{cursor:grabbing}
+#drehteil{transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+#zifferblatt.zieht #drehteil{transition:none}
+.marke-txt{font-family:var(--g1);font-weight:500;font-size:15px;fill:var(--graphit-weich);cursor:pointer;transition:fill .2s}
+.marke-txt.aktiv{fill:var(--graphit);font-weight:700}
+.raste{stroke:var(--graphit-weich);stroke-width:3;stroke-linecap:round}
+.raste.aktiv{stroke:var(--akzent)}
+.anleitung{text-align:center;font-size:14px;color:var(--graphit-weich);margin:0 0 4px}
+
+.buehne{margin:14px 12px 0;background:var(--salbei-hell);border-radius:28px;overflow:hidden}
+.buehne svg{display:block;width:100%;height:auto}
+.motiv{opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s}
+.motiv.an{opacity:1;transform:none}
+.erklaerung{padding:4px 20px 22px;min-height:200px}
+.erklaerung h3{font-size:30px;margin:6px 0 8px}
+.erklaerung p{margin:0;color:var(--graphit)}
+.erklaerung .klein{display:block;margin-top:10px;font-size:14px;color:var(--salbei-tief);font-weight:600}
+.alle-arten{display:none}
+
+section{padding:48px 20px}
+h2{font-size:clamp(34px,10vw,46px);margin:12px 0 14px}
+
+/* Leistungen */
+.liste{list-style:none;margin:8px 0 0;padding:0;border-top:1.5px solid var(--graphit)}
+.liste li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--sand-tief)}
+.liste .nr{font-family:var(--g1);font-size:14px;color:var(--salbei-tief);font-weight:700;padding-top:3px}
+.liste h3{font-size:21px;letter-spacing:-.01em;margin-bottom:3px}
+.liste p{margin:0;color:var(--graphit-weich);font-size:16px}
+
+/* Kachelofen-Karte */
+.karte{position:relative;background:var(--graphit);color:var(--sand);border-radius:28px;padding:26px 22px;margin:0 12px}
+.karte h2{padding-right:96px}
+.karte h2{color:#fff}
+.karte .etikett{background:#44494a;color:var(--salbei-hell)}
+.karte svg{position:absolute;top:24px;right:20px;width:84px;height:auto}
+
+/* Kamin mit Rauch */
+.dach{position:relative;padding:20px 0 0;background:linear-gradient(var(--kreide) 0,var(--kreide) 40%,var(--salbei-hell) 100%)}
+.dach .text{padding:0 20px}
+.dach svg{display:block;width:100%;height:auto;margin-top:-10px}
+.wolke{transform-box:fill-box;transform-origin:center}
+
+/* Familie */
+.zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.zwei div{background:var(--sand);border-radius:20px;padding:16px}
+.zwei b{display:block;font-family:var(--g1);font-size:28px;color:var(--salbei-tief)}
+.zwei span{font-size:15px}
+
+/* Platzhalter */
+.fotos{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:10px;margin-top:4px}
+.foto{border-radius:20px;border:2px dashed var(--salbei);background:var(--salbei-hell);display:grid;place-items:center;text-align:center;padding:12px;color:var(--salbei-tief);font-size:14px;min-height:130px}
+.foto.hoch{grid-row:1/3;min-height:280px}
+.foto b{display:block;font-family:var(--g1);font-size:19px;color:var(--graphit)}
+.stimmen{margin-top:22px;border-radius:20px;border:2px dashed var(--sand-tief);padding:24px 18px;text-align:center;color:var(--graphit-weich)}
+.stimmen b{color:var(--graphit)}
+
+/* Kontakt */
+.kontakt{background:var(--salbei);color:#17201a;border-radius:28px 28px 0 0;margin-top:10px}
+.kontakt h2{color:#17201a}
+.knoepfe{display:grid;gap:10px;margin:20px 0}
+.knopf{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:99px;text-decoration:none;font-weight:600;font-size:17px}
+.knopf.dunkel{background:var(--graphit);color:#fff}
+.knopf.hell{background:var(--kreide);color:var(--graphit)}
+.zeiten{background:rgba(255,255,255,.35);border-radius:20px;padding:16px 18px}
+.zeiten h3{font-size:18px;margin-bottom:6px}
+.zeiten p{margin:0}
+footer{background:var(--graphit);color:#c9cccb;padding:28px 20px 40px;font-size:15px}
+footer b{color:#fff;font-family:var(--g1);font-size:18px}
+footer .kl{margin-top:16px;font-size:13px;color:#9a9e9e}
+.hero-knoepfe{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 6px}
+.hero-knoepfe .knopf{font-size:16px}
+.knopf.salbei{background:var(--salbei-hell);color:var(--salbei-tief)}
+
+/* PDF-Zustand */
+html.pdf .anleitung{display:none}
+html.pdf .alle-arten{display:block;margin:16px 12px 0}
+html.pdf .alle-arten ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+html.pdf .alle-arten li{background:var(--sand);border-radius:16px;padding:12px 16px;font-size:15px}
+html.pdf .alle-arten b{font-family:var(--g1)}
+html.pdf .motiv{transition:none}
+html.pdf #drehteil{transition:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Anneler Ofenbau</div>
+
+<header class="kopf">
+  <a class="marke" href="#oben">
+    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="#2f3233"/><path d="M15 6v9" stroke="#c8693f" stroke-width="3" stroke-linecap="round"/><circle cx="15" cy="15" r="8" fill="none" stroke="#8fa68e" stroke-width="2"/></svg>
+    <span>Anneler <em>Ofenbau</em></span>
+  </a>
+  <a class="kreis" href="tel:0336547334" aria-label="Anneler Ofenbau anrufen">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#17201a" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+  </a>
+</header>
+
+<main id="oben">
+<section class="hero" style="padding-top:12px;padding-bottom:8px">
+  <span class="etikett">Spiez · Familienbetrieb</span>
+  <h1>Was heizt bei <span>Ihnen?</span></h1>
+  <p>Holz, Pellets oder Schnitzel, Kochherd oder Cheminée: Anneler Ofenbau berät, plant und baut die Heizlösung, die zu Ihrem Haus passt.</p>
+  <div class="hero-knoepfe">
+    <a class="knopf dunkel" href="tel:0336547334">Anrufen</a>
+    <a class="knopf salbei" href="mailto:info@anneler-ofenbau-spiez.ch?subject=Anfrage%20Heizl%C3%B6sung">E-Mail</a>
+  </div>
+</section>
+
+<div class="regler" id="regler">
+  <div class="titel"><b>Luftschieber</b><span>drehen oder antippen</span></div>
+  <svg id="zifferblatt" viewBox="0 0 360 300" role="group" aria-label="Drehknopf: Brennstoff oder Gerät wählen">
+    <defs>
+      <radialGradient id="knopfV" cx="40%" cy="35%" r="70%">
+        <stop offset="0" stop-color="#55595a"/><stop offset="1" stop-color="#232526"/>
+      </radialGradient>
+    </defs>
+    <!-- Skala -->
+    <circle cx="180" cy="168" r="104" fill="#e6dac4"/>
+    <circle cx="180" cy="168" r="104" fill="none" stroke="#d2c3a6" stroke-width="2"/>
+    <path id="bogen" d="M82 204A104 104 0 1 1 278 204" fill="none" stroke="#8fa68e" stroke-width="5" stroke-linecap="round" opacity=".35"/>
+    <g id="rasten"></g>
+    <g id="beschriftung"></g>
+    <!-- Knopf -->
+    <g id="knopf" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-valuetext="Holz">
+      <circle cx="180" cy="172" r="80" fill="#000" opacity=".12"/>
+      <g id="drehteil" style="transform-origin:180px 168px">
+        <circle cx="180" cy="168" r="78" fill="url(#knopfV)"/>
+        <!-- Griffmulden -->
+        <g fill="#3a3d3e">
+          <circle cx="180" cy="168" r="62" fill="none" stroke="#3a3d3e" stroke-width="2"/>
+        </g>
+        <path d="M168 100h24v104h-24z" rx="12" fill="#3f4344"/>
+        <rect x="166" y="98" width="28" height="140" rx="14" fill="#4a4e4f"/>
+        <rect x="172" y="104" width="16" height="32" rx="8" fill="#c8693f"/>
+        <circle cx="180" cy="168" r="10" fill="#2a2c2d" stroke="#5b5f60"/>
+        <!-- Schieber-Schlitze -->
+        <g stroke="#2a2c2d" stroke-width="3" stroke-linecap="round">
+          <path d="M132 150v36M146 142v52M214 142v52M228 150v36"/>
+        </g>
+      </g>
+    </g>
+  </svg>
+  <p class="anleitung">Knopf mit dem Finger drehen – oder auf einen Begriff tippen.</p>
+</div>
+
+<div class="buehne" aria-live="polite">
+  <svg viewBox="0 0 340 210" aria-hidden="true">
+    <rect x="0" y="176" width="340" height="34" fill="#c9d6c6"/>
+    <!-- Holz: Scheiterbeige -->
+    <g class="motiv" data-k="0">
+      <g stroke="#6e4a2c" stroke-width="2">
+        <rect x="70" y="40" width="200" height="138" fill="#b58a5e" rx="4"/>
+      </g>
+      <g fill="#d8b384" stroke="#6e4a2c" stroke-width="2">
+        <circle cx="92" cy="160" r="17"/><circle cx="128" cy="162" r="16"/><circle cx="162" cy="159" r="18"/><circle cx="198" cy="162" r="16"/><circle cx="232" cy="160" r="17"/><circle cx="256" cy="164" r="12"/>
+        <circle cx="104" cy="128" r="16"/><circle cx="140" cy="127" r="17"/><circle cx="176" cy="126" r="16"/><circle cx="212" cy="128" r="17"/><circle cx="246" cy="130" r="14"/>
+        <circle cx="88" cy="96" r="14"/><circle cx="120" cy="94" r="17"/><circle cx="156" cy="93" r="16"/><circle cx="192" cy="94" r="17"/><circle cx="228" cy="96" r="16"/><circle cx="256" cy="98" r="11"/>
+        <circle cx="104" cy="62" r="16"/><circle cx="140" cy="60" r="17"/><circle cx="176" cy="61" r="16"/><circle cx="212" cy="62" r="16"/><circle cx="244" cy="64" r="15"/>
+      </g>
+      <g fill="none" stroke="#a07448" stroke-width="1.4">
+        <circle cx="92" cy="160" r="7"/><circle cx="162" cy="159" r="8"/><circle cx="232" cy="160" r="7"/><circle cx="140" cy="127" r="7"/><circle cx="212" cy="128" r="7"/>
+        <circle cx="120" cy="94" r="7"/><circle cx="192" cy="94" r="7"/><circle cx="140" cy="60" r="7"/><circle cx="212" cy="62" r="6"/>
+      </g>
+      <path d="M60 36l20-20h180l20 20z" fill="#4f6a52"/>
+      <path d="M128 162l14 -14M198 162l-12-10M176 126l10-12" stroke="#6e4a2c" stroke-width="1.4"/>
+    </g>
+    <!-- Pellets -->
+    <g class="motiv" data-k="1">
+      <path d="M40 178c20-60 70-96 130-96s110 36 130 96z" fill="#b99a6b"/>
+      <g id="pelletHaufen" fill="#cfae7a" stroke="#86683f" stroke-width="1.2"></g>
+      <g transform="translate(232 54)">
+        <path d="M0 0h70l6 120H-6z" fill="#f3efe6" stroke="#5b5f60" stroke-width="2"/>
+        <path d="M6 0l4-8h50l4 8" fill="#d9cbb1" stroke="#5b5f60" stroke-width="2"/>
+        <text x="35" y="58" text-anchor="middle" font-family="Bricolage Grotesque, Arial, sans-serif" font-weight="700" font-size="15" fill="#4f6a52">PELLETS</text>
+        <path d="M18 72h34" stroke="#8fa68e" stroke-width="3" stroke-linecap="round"/>
+      </g>
+    </g>
+    <!-- Schnitzel -->
+    <g class="motiv" data-k="2">
+      <path d="M22 178c30-70 80-110 140-110s110 40 150 110z" fill="#c49a62"/>
+      <g id="schnitzelHaufen" stroke="#7b5730" stroke-width="1"></g>
+      <g transform="translate(250 30) rotate(18)">
+        <rect x="-4" y="0" width="8" height="100" rx="4" fill="#7b5730"/>
+        <path d="M-14 -10h28v12h-28z" fill="#5b5f60" rx="3"/>
+        <path d="M-22 100h44l-6 46h-32z" fill="#7e8485" stroke="#2f3233" stroke-width="2"/>
+      </g>
+    </g>
+    <!-- Kochherd -->
+    <g class="motiv" data-k="3">
+      <rect x="226" y="6" width="16" height="48" fill="#5b5f60"/>
+      <rect x="70" y="54" width="200" height="12" rx="3" fill="#2f3233"/>
+      <rect x="76" y="66" width="188" height="110" rx="6" fill="#f3efe6" stroke="#2f3233" stroke-width="3"/>
+      <g fill="none" stroke="#2f3233" stroke-width="2"><circle cx="120" cy="60" r="0"/></g>
+      <rect x="90" y="82" width="62" height="54" rx="5" fill="#2f3233"/>
+      <rect x="98" y="92" width="46" height="34" rx="3" fill="#c8693f"/>
+      <path d="M108 124c-2-10 6-12 6-22 6 8 10 12 6 22zM122 124c0-6 4-8 5-14 4 6 6 8 3 14z" fill="#f6c46a"/>
+      <rect x="166" y="82" width="84" height="54" rx="5" fill="none" stroke="#2f3233" stroke-width="3"/>
+      <path d="M178 94h60" stroke="#2f3233" stroke-width="5" stroke-linecap="round"/>
+      <rect x="90" y="146" width="160" height="18" rx="4" fill="#d9cbb1"/>
+      <path d="M86 176v6M254 176v6" stroke="#2f3233" stroke-width="5"/>
+      <!-- Pfanne & Topf -->
+      <path d="M100 54c0-16 12-22 30-22s30 6 30 22z" fill="#4f6a52"/>
+      <rect x="96" y="28" width="68" height="6" rx="3" fill="#2f3233"/>
+      <path d="M190 52h46" stroke="#2f3233" stroke-width="4" stroke-linecap="round"/>
+      <path d="M118 22c-6-6 6-10 0-16M134 22c-6-6 6-10 0-16M150 22c-6-6 6-10 0-16" stroke="#8fa68e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- Cheminée -->
+    <g class="motiv" data-k="4">
+      <rect x="140" y="0" width="60" height="44" fill="#5b5f60"/>
+      <rect x="78" y="44" width="184" height="132" rx="4" fill="#f3efe6" stroke="#2f3233" stroke-width="3"/>
+      <rect x="102" y="70" width="136" height="90" rx="3" fill="#2f3233"/>
+      <path d="M118 158c-6-26 10-34 16-58 8 20 22 30 14 58z" fill="#c8693f"/>
+      <path d="M150 158c-10-34 12-50 24-82 8 30 28 46 18 82z" fill="#e2884a"/>
+      <path d="M190 158c-4-22 10-30 14-48 8 18 18 28 10 48z" fill="#c8693f"/>
+      <path d="M160 158c-4-18 6-28 12-42 6 16 14 24 8 42z" fill="#f6c46a"/>
+      <rect x="118" y="152" width="104" height="10" rx="5" fill="#7b5730"/>
+      <path d="M64 176h212" stroke="#2f3233" stroke-width="5" stroke-linecap="round"/>
+      <path d="M244 176v-36h28v36" fill="#b58a5e"/><path d="M244 140h28M244 152h28M244 164h28" stroke="#6e4a2c" stroke-width="1.5"/>
+    </g>
+  </svg>
+  <div class="erklaerung">
+    <h3 id="artTitel">Holz</h3>
+    <p id="artText">Der Klassiker: Scheiter im Kachelofen oder in der Holzheizung. Anneler Ofenbau berät Sie, plant die passende Anlage und baut sie ein.</p>
+    <span class="klein" id="artKlein">Holzheizungen · Kachelöfen</span>
+  </div>
+</div>
+
+<div class="alle-arten" aria-hidden="true">
+  <ul>
+    <li><b>Holz</b> – Holzheizungen und Kachelöfen für Scheiter.</li>
+    <li><b>Pellets</b> – Pelletheizungen: Beratung, Planung, Einbau.</li>
+    <li><b>Schnitzel</b> – Schnitzelheizungen: Beratung, Planung, Einbau.</li>
+    <li><b>Kochherd</b> – Handel und Einbau von Kochherden.</li>
+    <li><b>Cheminée</b> – Cheminéebau, dazu Kaminbau und Kaminsanierung.</li>
+  </ul>
+</div>
+
+<section id="leistungen">
+  <span class="etikett">Leistungen</span>
+  <h2>Alles rund ums Feuer</h2>
+  <ul class="liste">
+    <li><span class="nr">01</span><div><h3>Ofenbau &amp; Kachelöfen</h3><p>Schwerpunkt des Betriebs – inklusive Restaurierung antiker Kachelöfen.</p></div></li>
+    <li><span class="nr">02</span><div><h3>Cheminéebau</h3><p>Cheminées, abgestimmt auf Raum und Architektur.</p></div></li>
+    <li><span class="nr">03</span><div><h3>Kaminbau &amp; Kamin&shy;sanierung</h3><p>Neue Kamine bauen, bestehende sanieren.</p></div></li>
+    <li><span class="nr">04</span><div><h3>Holz-, Pellet- &amp; Schnitzel&shy;heizungen</h3><p>Beratung, Planung und Einbau.</p></div></li>
+    <li><span class="nr">05</span><div><h3>Heizöfen &amp; Kochherde</h3><p>Handel und Einbau.</p></div></li>
+    <li><span class="nr">06</span><div><h3>Platten &amp; Naturstein</h3><p>Keramische Plattenbeläge und Natursteinarbeiten.</p></div></li>
+  </ul>
+</section>
+
+<div class="karte">
+  <svg viewBox="0 0 120 150" aria-hidden="true">
+    <rect x="20" y="10" width="80" height="12" rx="3" fill="#8fa68e"/>
+    <rect x="26" y="22" width="68" height="104" fill="#efe6d6"/>
+    <path d="M26 48h68M26 74h68M26 100h68M49 22v104M71 22v104" stroke="#2f3233" stroke-width="2"/>
+    <rect x="20" y="126" width="80" height="10" rx="3" fill="#8fa68e"/>
+    <path d="M26 136v10M94 136v10" stroke="#8fa68e" stroke-width="5"/>
+  </svg>
+  <span class="etikett">Schwerpunkt</span>
+  <h2>Der Kachelofen</h2>
+  <p>Kachelöfen sind das Herzstück von Anneler Ofenbau. Neben neuen Öfen restauriert der Betrieb auch antike Kachelöfen – in Zusammenarbeit mit der Denkmalpflege.</p>
+  <p style="margin:0">Massgeschneidert heisst: Wir schauen uns Ihr Haus an, bevor geplant wird. Preise auf Anfrage.</p>
+</div>
+
+<section class="dach" id="dach" style="padding:48px 0 0">
+  <div class="text">
+    <span class="etikett">Kaminbau</span>
+    <h2>Damit es richtig zieht</h2>
+    <p>Jede Feuerstelle braucht einen guten Kamin. Anneler Ofenbau baut neue Kamine und saniert bestehende – damit der Rauch dorthin geht, wo er hingehört.</p>
+  </div>
+  <svg viewBox="0 -70 430 400" aria-hidden="true">
+    <g id="rauch" fill="#c9d0c6" opacity=".9">
+      <g class="wolke"><circle cx="300" cy="150" r="18"/><circle cx="287" cy="156" r="13"/><circle cx="313" cy="155" r="11"/></g>
+      <g class="wolke"><circle cx="300" cy="150" r="20"/><circle cx="286" cy="157" r="14"/><circle cx="314" cy="156" r="12"/></g>
+      <g class="wolke"><circle cx="300" cy="150" r="16"/><circle cx="289" cy="156" r="11"/><circle cx="311" cy="155" r="10"/></g>
+      <g class="wolke"><circle cx="300" cy="150" r="22"/><circle cx="285" cy="158" r="15"/><circle cx="315" cy="157" r="13"/></g>
+      <g class="wolke"><circle cx="300" cy="150" r="18"/><circle cx="287" cy="156" r="13"/><circle cx="313" cy="155" r="11"/></g>
+      <g class="wolke"><circle cx="300" cy="150" r="20"/><circle cx="286" cy="157" r="14"/><circle cx="314" cy="156" r="12"/></g>
+      <g class="wolke"><circle cx="300" cy="150" r="17"/><circle cx="288" cy="156" r="12"/><circle cx="312" cy="155" r="10"/></g>
+    </g>
+    <!-- Dach -->
+    <path d="M-10 330L215 210l225 120z" fill="#2f3233"/>
+    <path d="M-10 330L215 210l225 120" fill="none" stroke="#8fa68e" stroke-width="8" stroke-linejoin="round"/>
+    <g stroke="#454949" stroke-width="2"><path d="M60 300l40-22M110 315l50-28M300 260l60 34M250 280l40 22"/></g>
+    <!-- Kamin -->
+    <path d="M278 176h44v100l-44-23z" fill="#d9cbb1"/>
+    <g stroke="#b9a785" stroke-width="2"><path d="M278 190h44M278 204h44M278 218h44M278 232h44M278 246h44M300 176v14M290 190v14M310 204v14M300 218v14M290 232v14M312 246v14"/></g>
+    <rect x="272" y="166" width="56" height="12" rx="2" fill="#5b5f60"/>
+  </svg>
+</section>
+
+<section>
+  <span class="etikett">Familienbetrieb</span>
+  <h2>Zweite Generation</h2>
+  <p>Markus Anneler führt den Betrieb, den er von seinem Vater übernommen hat. Persönlich, direkt, aus Spiez.</p>
+  <div class="zwei">
+    <div><b>1.</b><span>Generation: aufgebaut vom Vater</span></div>
+    <div><b>2.</b><span>Generation: weitergeführt von Markus Anneler</span></div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <span class="etikett">Referenzen</span>
+  <h2>Eingebaut &amp; eingeheizt</h2>
+  <div class="fotos">
+    <div class="foto hoch"><span><b>Hier kommen Ihre Fotos</b>z.&nbsp;B. ein Kachelofen im Wohnraum</span></div>
+    <div class="foto"><span><b>Foto</b>Kochherd</span></div>
+    <div class="foto"><span><b>Foto</b>Kamin</span></div>
+  </div>
+  <div class="stimmen"><b>[Platz für Ihre Kundenstimmen]</b><br>Hier stehen später echte Rückmeldungen von Kundinnen und Kunden.</div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <span class="etikett" style="background:rgba(255,255,255,.4);color:#17201a">Kontakt</span>
+  <h2>Sagen Sie uns, was bei Ihnen heizen soll.</h2>
+  <div class="knoepfe">
+    <a class="knopf dunkel" href="tel:0336547334">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+      033 654 73 34</a>
+    <a class="knopf hell" href="mailto:info@anneler-ofenbau-spiez.ch?subject=Anfrage%20Heizl%C3%B6sung">info@anneler-ofenbau-spiez.ch</a>
+  </div>
+  <div class="zeiten">
+    <h3>Bürozeiten</h3>
+    <p>Montag bis Freitag<br>08:00–12:00 und 13:00–18:00</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <b>Markus Anneler Ofenbau</b><br>
+  Inhaber Markus Anneler · Dürrenbühlweg 9 · 3700 Spiez<br>
+  Tel. <a href="tel:0336547334">033 654 73 34</a> · <a href="mailto:info@anneler-ofenbau-spiez.ch">info@anneler-ofenbau-spiez.ch</a><br>
+  Büro Mo–Fr 08:00–12:00 / 13:00–18:00<br>
+  Firmennummer CHE-104.881.429
+  <p class="kl">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Anneler Ofenbau.</p>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  var CX=180,CY=168;
+  var arten=[
+    {n:'Holz',w:-110,t:'Der Klassiker: Scheiter im Kachelofen oder in der Holzheizung. Anneler Ofenbau berät Sie, plant die passende Anlage und baut sie ein.',k:'Holzheizungen · Kachelöfen'},
+    {n:'Pellets',w:-55,t:'Kleine Presslinge aus Holz, die sich gut lagern lassen. Für eine Pelletheizung übernimmt Anneler Ofenbau Beratung, Planung und Einbau.',k:'Pelletheizungen'},
+    {n:'Schnitzel',w:0,t:'Gehacktes Holz, oft für grössere Häuser und Höfe gefragt. Auch Schnitzelheizungen plant und baut Anneler Ofenbau ein.',k:'Schnitzelheizungen'},
+    {n:'Kochherd',w:55,t:'Kochen und heizen in einem: Anneler Ofenbau verkauft Kochherde und baut sie bei Ihnen ein – passend zur Küche.',k:'Handel & Einbau von Kochherden'},
+    {n:'Cheminée',w:110,t:'Das Feuer, das man sieht. Cheminéebau, dazu der passende Kamin – neu gebaut oder saniert.',k:'Cheminéebau · Kaminbau'}
+  ];
+  var rasten=document.getElementById('rasten'),beschr=document.getElementById('beschriftung'),
+      dreh=document.getElementById('drehteil'),knopf=document.getElementById('knopf'),blatt=document.getElementById('zifferblatt'),
+      motive=document.querySelectorAll('.motiv'),titel=document.getElementById('artTitel'),text=document.getElementById('artText'),klein=document.getElementById('artKlein');
+  var labels=[],ticks=[];
+  arten.forEach(function(a,i){
+    var r=a.w*Math.PI/180;
+    var x1=CX+108*Math.sin(r),y1=CY-108*Math.cos(r),x2=CX+118*Math.sin(r),y2=CY-118*Math.cos(r);
+    var t=el('line',{x1:x1,y1:y1,x2:x2,y2:y2,'class':'raste'});rasten.appendChild(t);ticks.push(t);
+    var lx=CX+138*Math.sin(r),ly=CY-138*Math.cos(r)+5;
+    var hit=el('circle',{cx:lx,cy:ly-5,r:26,fill:'transparent',style:'cursor:pointer'});
+    var tx=el('text',{x:lx,y:ly,'text-anchor':'middle','class':'marke-txt'});tx.textContent=a.n;
+    [hit,tx].forEach(function(z){z.addEventListener('pointerup',function(e){if(!gezogen){e.stopPropagation();waehle(i,true);}});});
+    beschr.appendChild(hit);beschr.appendChild(tx);labels.push(tx);
+  });
+  var aktuell=-1,winkel=-110;
+  function setzeWinkel(w){winkel=w;dreh.style.transform='rotate('+w+'deg)';}
+  function zeige(i){
+    if(i===aktuell)return;aktuell=i;
+    labels.forEach(function(l,j){l.classList.toggle('aktiv',j===i)});
+    ticks.forEach(function(l,j){l.classList.toggle('aktiv',j===i)});
+    motive.forEach(function(m){m.classList.toggle('an',+m.dataset.k===i)});
+    titel.textContent=arten[i].n;text.textContent=arten[i].t;klein.textContent=arten[i].k;
+    knopf.setAttribute('aria-valuenow',i);knopf.setAttribute('aria-valuetext',arten[i].n);
+    if(navigator.vibrate&&gezogen){try{navigator.vibrate(8)}catch(_){}}
+  }
+  function naechste(w){var b=0,d=999;arten.forEach(function(a,i){var x=Math.abs(a.w-w);if(x<d){d=x;b=i;}});return b;}
+  function waehle(i){setzeWinkel(arten[i].w);zeige(i);}
+  function punktWinkel(e){
+    var pt=blatt.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;
+    var p=pt.matrixTransform(blatt.getScreenCTM().inverse());
+    return Math.atan2(p.x-CX,-(p.y-CY))*180/Math.PI;
+  }
+  var ziehen=false,gezogen=false,startP=0,startW=0;
+  knopf.addEventListener('pointerdown',function(e){
+    ziehen=true;gezogen=false;startP=punktWinkel(e);startW=winkel;blatt.classList.add('zieht');
+    try{knopf.setPointerCapture(e.pointerId)}catch(_){}
+    e.preventDefault();
+  });
+  knopf.addEventListener('pointermove',function(e){
+    if(!ziehen)return;
+    var d=punktWinkel(e)-startP;if(d>180)d-=360;if(d<-180)d+=360;
+    if(Math.abs(d)>4)gezogen=true;
+    var w=Math.max(-125,Math.min(125,startW+d));
+    setzeWinkel(w);zeige(naechste(w));
+  });
+  function los(){
+    if(!ziehen)return;ziehen=false;blatt.classList.remove('zieht');
+    if(!gezogen){waehle((aktuell+1)%arten.length);}else{waehle(naechste(winkel));}
+    setTimeout(function(){gezogen=false},0);
+  }
+  knopf.addEventListener('pointerup',los);knopf.addEventListener('pointercancel',los);
+  knopf.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowUp'){e.preventDefault();waehle(Math.min(4,aktuell+1));}
+    if(e.key==='ArrowLeft'||e.key==='ArrowDown'){e.preventDefault();waehle(Math.max(0,aktuell-1));}
+  });
+  window.annelerWaehle=waehle;
+
+  // Pellets und Schnitzel: Haufen mit fester Zufallsfolge
+  var s=7;function zz(){s=(s*9301+49297)%233280;return s/233280;}
+  var ph=document.getElementById('pelletHaufen');
+  for(var i=0;i<70;i++){
+    var x=60+zz()*220,top=178-Math.max(0,96-Math.pow((x-170)/110,2)*96)+6,y=top+zz()*(178-top-4);
+    ph.appendChild(el('rect',{x:x-6,y:y-2.5,width:12,height:5,rx:2.5,transform:'rotate('+(zz()*180).toFixed(0)+' '+x.toFixed(1)+' '+y.toFixed(1)+')'}));
+  }
+  var sh=document.getElementById('schnitzelHaufen'),farben=['#e3c08a','#d2a66c','#b98a50','#edd2a2'];
+  for(i=0;i<80;i++){
+    var x2=44+zz()*250,top2=178-Math.max(0,110-Math.pow((x2-165)/125,2)*110)+6,y2=top2+zz()*(178-top2-4),w=6+zz()*8,h=3+zz()*4,a=zz()*180;
+    sh.appendChild(el('path',{d:'M'+(-w/2)+' '+(-h/2)+'l'+w+' '+(h*0.3)+'l'+(-w*0.2)+' '+h+'l'+(-w*0.8)+' '+(-h*0.4)+'z',fill:farben[i%4],transform:'translate('+x2.toFixed(1)+' '+y2.toFixed(1)+') rotate('+a.toFixed(0)+')'}));
+  }
+  waehle(0);
+
+  // Rauch beim Scrollen
+  var dach=document.getElementById('dach'),wolken=[].slice.call(document.querySelectorAll('#rauch .wolke'));
+  function rauch(){
+    var r=dach.getBoundingClientRect(),vh=window.innerHeight||800;
+    var p=(vh-r.top)/(vh+r.height);
+    if(document.documentElement.classList.contains('pdf'))p=0.35;
+    p=Math.max(0,Math.min(1,p));
+    wolken.forEach(function(w,i){
+      var t=((p*2.4)+i/wolken.length)%1;
+      var dx=Math.sin(t*3+i)*14-t*60,dy=-t*150;
+      var sc=0.5+t*1.6,op=Math.sin(Math.PI*Math.min(1,t*1.05))*.95;
+      w.setAttribute('transform','translate('+dx.toFixed(1)+' '+dy.toFixed(1)+') scale('+sc.toFixed(2)+')');
+      w.style.opacity=op.toFixed(2);
+    });
+  }
+  window.addEventListener('scroll',rauch,{passive:true});window.addEventListener('resize',rauch);
+  new MutationObserver(rauch).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+  rauch();
+})();
+</script>
+</body>
+</html>

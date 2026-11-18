@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anneler Ofenbau – Glut &amp; Wärme (Entwurf)</title>
+<meta name="description" content="Entwurf von Max Rathsack: Ofenbau, Cheminéebau und Kaminbau aus Spiez.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800;900&family=Work+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --russ:#141110;
+  --anthrazit:#1f1b19;
+  --schiefer:#2b2522;
+  --asche:#8d817a;
+  --rauch:#d9cfc7;
+  --glut:#ff6a1a;
+  --glut-hell:#ffb347;
+  --funke:#ffe08a;
+  --kohle:#7a2a0c;
+  --display:"Big Shoulders Display","Big Shoulders",Impact,"Arial Narrow",sans-serif;
+  --text:"Work Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#0b0908;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--text);color:var(--rauch);background:var(--russ);line-height:1.55;font-size:17px;
+  max-width:480px;margin-inline:auto;overflow-x:hidden;box-shadow:0 0 80px rgba(0,0,0,.6)}
+h1,h2,h3{font-family:var(--display);line-height:.95;margin:0;letter-spacing:.01em;overflow-wrap:break-word;hyphens:manual}
+p{margin:0 0 1em}
+a{color:inherit}
+.demo{background:var(--glut-hell);color:#1a0d05;font-size:13px;font-weight:600;text-align:center;padding:8px 16px;line-height:1.35}
+
+/* Kopf */
+.kopf{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 18px;background:rgba(20,17,16,.92);backdrop-filter:blur(6px);border-bottom:1px solid #3a302b}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke b{font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+.marke small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--asche)}
+.mini-ruf{display:inline-flex;align-items:center;gap:6px;background:var(--glut);color:#1a0d05;text-decoration:none;font-weight:600;
+  padding:8px 12px;border-radius:999px;font-size:14px;white-space:nowrap}
+
+/* Hero */
+.hero{position:relative;padding:34px 18px 40px;overflow:hidden;
+  background:radial-gradient(120% 70% at 50% 110%,rgba(255,106,26,.38),transparent 60%),var(--russ)}
+.hero .ort{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--glut-hell);font-weight:600}
+.hero h1{font-size:clamp(58px,19vw,92px);font-weight:900;text-transform:uppercase;margin:12px 0 18px}
+.hero h1 span{display:block;color:var(--glut);text-shadow:0 0 28px rgba(255,106,26,.55)}
+.hero p.lead{font-size:18px;max-width:30ch}
+.knoepfe{display:grid;gap:10px;margin-top:22px}
+.knopf{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:12px;font-weight:600;text-decoration:none;font-size:17px}
+.knopf.voll{background:var(--glut);color:#1a0d05;box-shadow:0 6px 24px -6px rgba(255,106,26,.7)}
+.knopf.rand{border:2px solid var(--glut);color:var(--glut-hell)}
+.funken{position:absolute;inset:0;pointer-events:none}
+.funken i{position:absolute;bottom:-6px;width:4px;height:4px;border-radius:50%;background:var(--funke);box-shadow:0 0 8px var(--glut);opacity:0;animation:steig 6s linear infinite}
+@keyframes steig{0%{transform:translate(0,0);opacity:0}10%{opacity:1}100%{transform:translate(var(--dx,20px),-420px);opacity:0}}
+
+/* Abschnitte */
+section{padding:46px 18px}
+.kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--glut);font-weight:600;margin-bottom:10px;display:block}
+h2{font-size:clamp(40px,12vw,58px);font-weight:800;text-transform:uppercase;margin-bottom:16px}
+
+/* Blasebalg-Bühne */
+.feuerplatz{background:linear-gradient(#1a1614,#110e0d);border-top:1px solid #33292400;padding-top:40px}
+.buehne{position:relative;margin:8px -6px 0}
+.buehne svg{display:block;width:100%;height:auto}
+.flamme{transform-box:fill-box;transform-origin:50% 100%;animation:flacker 1.1s ease-in-out infinite alternate}
+.flamme.b{animation-duration:.8s;animation-delay:-.3s}
+.flamme.c{animation-duration:1.3s;animation-delay:-.6s}
+@keyframes flacker{0%{transform:scale(1,1) skewX(0)}50%{transform:scale(.94,1.06) skewX(3deg)}100%{transform:scale(1.04,.95) skewX(-3deg)}}
+#glutLicht{transition:opacity .3s}
+.balg-wrap{display:flex;flex-direction:column;align-items:center;margin-top:-6px}
+.balg{width:220px;height:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-tap-highlight-color:transparent;outline:none}
+.balg:focus-visible{filter:drop-shadow(0 0 6px var(--glut))}
+.balg #oberbrett{transform-origin:40px 70px;transform-box:view-box;transition:transform .18s}
+.balg.pump #oberbrett{transform:rotate(9deg)}
+.balg #leder{transform-origin:40px 70px;transform-box:view-box;transition:transform .18s}
+.balg.pump #leder{transform:scaleY(.55)}
+.hinweis-balg{font-size:15px;color:var(--glut-hell);text-align:center;margin:6px 0 0;font-weight:600}
+.thermo{height:10px;border-radius:99px;background:#2d2522;overflow:hidden;margin:16px 0 6px}
+.thermo i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--kohle),var(--glut),var(--funke));transition:width .15s}
+.stufen-text{font-size:13px;color:var(--asche);display:flex;justify-content:space-between}
+.leistungen{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.leistungen li{border:1px solid #3a302b;border-left:4px solid #3a302b;border-radius:10px;padding:14px 14px 12px;background:#1b1715;
+  opacity:.28;filter:grayscale(1);transition:opacity .5s,filter .5s,border-color .5s,transform .5s;transform:translateX(-4px)}
+.leistungen li.an{opacity:1;filter:none;border-left-color:var(--glut);transform:none}
+.leistungen h3{font-size:26px;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:4px}
+.leistungen li.an h3{color:var(--glut-hell)}
+.leistungen p{margin:0;font-size:15.5px}
+.leistungen .stufe{font-family:var(--display);font-size:14px;letter-spacing:.14em;color:var(--asche);text-transform:uppercase}
+
+/* Wärmekurve */
+.kurve{background:var(--anthrazit)}
+.kurve svg{width:100%;height:auto;display:block;margin:10px 0 8px}
+.kurve .linie{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.6s ease-out}
+.kurve.sichtbar .linie{stroke-dashoffset:0}
+.kurve .linie.zwei{transition-delay:.6s;transition-duration:3.4s}
+.legende{display:grid;gap:8px;font-size:15px}
+.legende span{display:flex;gap:10px;align-items:center}
+.legende i{width:26px;height:4px;border-radius:2px;flex:none}
+
+/* Restaurierung */
+.alt{background:radial-gradient(90% 60% at 0% 0%,rgba(255,106,26,.15),transparent 70%),var(--russ)}
+.alt .rahmen{border:1px solid #3a302b;border-radius:14px;padding:18px;display:grid;grid-template-columns:72px 1fr;gap:16px;align-items:start;margin-top:12px}
+
+/* Ablauf */
+.ablauf ol{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:0}
+.ablauf li{counter-increment:s;position:relative;padding:0 0 22px 58px}
+.ablauf li::before{content:counter(s);position:absolute;left:0;top:-4px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--display);font-weight:900;font-size:24px;background:var(--glut);color:#1a0d05}
+.ablauf li::after{content:"";position:absolute;left:20px;top:42px;bottom:2px;width:2px;background:repeating-linear-gradient(var(--glut) 0 6px,transparent 6px 12px)}
+.ablauf li:last-child::after{display:none}
+.ablauf h3{font-size:26px;text-transform:uppercase;color:#fff;margin-bottom:4px}
+
+/* Platzhalter */
+.fotos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.foto{aspect-ratio:4/5;border:2px dashed #5b4a40;border-radius:12px;display:grid;place-items:center;text-align:center;padding:10px;color:var(--asche);font-size:14px;background:#1a1614}
+.foto:first-child{grid-column:1/-1;aspect-ratio:16/10}
+.foto b{display:block;color:var(--glut-hell);font-family:var(--display);font-size:22px;text-transform:uppercase;letter-spacing:.04em}
+.stimmen{border:2px dashed #5b4a40;border-radius:12px;padding:28px 16px;text-align:center;color:var(--asche);font-size:16px}
+.stimmen b{color:var(--rauch)}
+
+/* Kontakt */
+.kontakt{background:linear-gradient(180deg,var(--russ),#2a1206 140%)}
+.kontakt .karte{background:#1b1715;border:1px solid #3a302b;border-radius:14px;padding:18px;margin-top:16px}
+.zeiten{width:100%;border-collapse:collapse;font-size:16px}
+.zeiten td{padding:6px 0;border-bottom:1px solid #2f2724;vertical-align:top}
+.zeiten td:last-child{text-align:right}
+footer{padding:28px 18px 40px;font-size:14px;color:var(--asche);background:#0d0b0a;border-top:3px solid var(--glut)}
+footer b{color:var(--rauch)}
+footer .kl{font-size:12px;margin-top:16px;opacity:.85}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.da{opacity:1;transform:none}
+
+/* PDF-Zustand */
+html.pdf .kopf{position:static}
+html.pdf .reveal{opacity:1;transform:none;transition:none}
+html.pdf .leistungen li{opacity:1;filter:none;border-left-color:var(--glut);transform:none;transition:none}
+html.pdf .leistungen li h3{color:var(--glut-hell)}
+html.pdf .kurve .linie{stroke-dashoffset:0;transition:none}
+html.pdf .funken,html.pdf .hinweis-balg{display:none}
+html.pdf .flamme{animation:none}
+html.pdf body{box-shadow:none}
+@media (prefers-reduced-motion:reduce){.flamme,.funken i{animation:none}}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Anneler Ofenbau</div>
+
+<header class="kopf">
+  <a class="marke" href="#top" aria-label="Anneler Ofenbau">
+    <svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true">
+      <path d="M17 2c3 7 11 11 11 22a11 11 0 0 1-22 0c0-6 3-9 5-12 0 4 2 6 4 6-2-6 0-11 2-16z" fill="#ff6a1a"/>
+      <path d="M17 18c2 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-7 1 2 2 3 3 3-1-3-1-5 0-8z" fill="#ffe08a"/>
+    </svg>
+    <span><b>Anneler</b><small>Ofenbau · Spiez</small></span>
+  </a>
+  <a class="mini-ruf" href="tel:0336547334">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+    Anrufen</a>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="funken" aria-hidden="true">
+    <i style="left:12%;animation-delay:0s;--dx:30px"></i><i style="left:28%;animation-delay:1.4s;--dx:-20px"></i>
+    <i style="left:46%;animation-delay:2.7s;--dx:40px"></i><i style="left:63%;animation-delay:.7s;--dx:-35px"></i>
+    <i style="left:79%;animation-delay:3.6s;--dx:18px"></i><i style="left:90%;animation-delay:2s;--dx:-28px"></i>
+  </div>
+  <span class="ort">Dürrenbühlweg 9 · 3700 Spiez</span>
+  <h1>Feuer,<span>das bleibt.</span></h1>
+  <p class="lead">Kachelöfen, Cheminées und Kamine – gebaut, saniert und restauriert vom Familienbetrieb Anneler, heute in zweiter Generation.</p>
+  <div class="knoepfe">
+    <a class="knopf voll" href="tel:0336547334">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+      033 654 73 34 anrufen</a>
+    <a class="knopf rand" href="mailto:info@anneler-ofenbau-spiez.ch?subject=Anfrage%20Ofenbau">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M3 6h18v12H3z M3 6l9 7 9-7"/></svg>
+      E-Mail schreiben</a>
+  </div>
+</section>
+
+<section class="feuerplatz" id="leistungen">
+  <span class="kicker">Leistungen · zum Ausprobieren</span>
+  <h2>Fachen Sie die Glut&nbsp;an</h2>
+  <p>Halten Sie den Blasebalg gedrückt. Mit jeder Stufe wächst das Feuer – und zeigt, was Anneler Ofenbau für Sie macht.</p>
+
+  <div class="buehne" aria-hidden="true">
+    <svg viewBox="0 0 400 330">
+      <defs>
+        <radialGradient id="licht" cx="50%" cy="80%" r="60%">
+          <stop offset="0" stop-color="#ff8a2a" stop-opacity=".85"/>
+          <stop offset=".5" stop-color="#ff5a10" stop-opacity=".25"/>
+          <stop offset="1" stop-color="#ff5a10" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="fl1" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#ff4a00"/><stop offset=".6" stop-color="#ff8a1a"/><stop offset="1" stop-color="#ffcf5a" stop-opacity=".2"/>
+        </linearGradient>
+        <linearGradient id="fl2" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#ffb347"/><stop offset=".7" stop-color="#ffe08a"/><stop offset="1" stop-color="#fff6d0" stop-opacity=".1"/>
+        </linearGradient>
+        <linearGradient id="holz" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#6b3a1d"/><stop offset="1" stop-color="#2e170a"/>
+        </linearGradient>
+        <clipPath id="brennraum"><path d="M120 280V170q80-58 160 0v110z"/></clipPath>
+      </defs>
+      <!-- Rauchfang / Haube -->
+      <path d="M150 0h100v40l40 52H110l40-52z" fill="#2b2522" stroke="#3d332e" stroke-width="2"/>
+      <path d="M160 6h80M160 18h80M160 30h80" stroke="#3a302b" stroke-width="2"/>
+      <!-- Sims -->
+      <rect x="70" y="92" width="260" height="18" rx="3" fill="#4a3d36"/>
+      <rect x="62" y="88" width="276" height="8" rx="3" fill="#5c4c43"/>
+      <!-- Steinumrandung -->
+      <g fill="#352c28" stroke="#1a1513" stroke-width="3">
+        <rect x="82" y="110" width="44" height="34" rx="4"/><rect x="82" y="144" width="38" height="34" rx="4"/>
+        <rect x="82" y="178" width="44" height="34" rx="4"/><rect x="82" y="212" width="38" height="34" rx="4"/>
+        <rect x="82" y="246" width="44" height="34" rx="4"/>
+        <rect x="274" y="110" width="44" height="34" rx="4"/><rect x="280" y="144" width="38" height="34" rx="4"/>
+        <rect x="274" y="178" width="44" height="34" rx="4"/><rect x="280" y="212" width="38" height="34" rx="4"/>
+        <rect x="274" y="246" width="44" height="34" rx="4"/>
+        <rect x="126" y="110" width="50" height="26" rx="4"/><rect x="176" y="110" width="48" height="26" rx="4"/><rect x="224" y="110" width="50" height="26" rx="4"/>
+      </g>
+      <!-- Brennraum -->
+      <path d="M120 280V170q80-58 160 0v110z" fill="#0a0706"/>
+      <g clip-path="url(#brennraum)">
+        <rect id="glutLicht" x="100" y="120" width="200" height="170" fill="url(#licht)" opacity=".25"/>
+        <!-- Rückwand-Schamotte -->
+        <g stroke="#1d1411" stroke-width="2" fill="none" opacity=".9">
+          <path d="M120 200h160M120 230h160M120 260h160M160 170v30M220 170v30M190 200v30M250 200v30M150 230v30M210 230v30M270 230v30"/>
+        </g>
+        <g id="flammen">
+          <path class="flamme" d="M150 268c-8-30 6-46 10-70 10 20 20 30 14 70z" fill="url(#fl1)"/>
+          <path class="flamme b" d="M168 268c-14-44 10-72 30-112 6 34 34 58 24 112z" fill="url(#fl1)"/>
+          <path class="flamme c" d="M212 268c-6-34 14-50 22-82 10 26 26 46 14 82z" fill="url(#fl1)"/>
+          <path class="flamme" d="M182 268c-6-26 6-42 16-64 6 22 20 38 12 64z" fill="url(#fl2)"/>
+          <path class="flamme c" d="M224 268c-4-18 4-28 10-42 6 16 12 26 6 42z" fill="url(#fl2)"/>
+        </g>
+      </g>
+      <!-- Holzscheite -->
+      <g>
+        <rect x="140" y="262" width="120" height="16" rx="8" fill="url(#holz)" transform="rotate(-6 200 270)"/>
+        <rect x="146" y="266" width="112" height="15" rx="7.5" fill="url(#holz)" transform="rotate(7 200 272)"/>
+        <ellipse cx="146" cy="275" rx="6" ry="7.5" fill="#c08850" stroke="#5a3218"/>
+        <circle cx="146" cy="275" r="2.5" fill="none" stroke="#5a3218"/>
+        <ellipse id="glutA" cx="200" cy="277" rx="40" ry="5" fill="#ff6a1a" opacity=".5"/>
+      </g>
+      <!-- Feuerbock / Boden -->
+      <rect x="70" y="280" width="260" height="14" rx="2" fill="#4a3d36"/>
+      <rect x="56" y="294" width="288" height="12" rx="2" fill="#2b2522"/>
+      <!-- Funken -->
+      <g id="funkenSvg" fill="#ffe08a" opacity="0">
+        <circle cx="190" cy="150" r="2"/><circle cx="214" cy="132" r="1.6"/><circle cx="176" cy="122" r="1.4"/><circle cx="232" cy="160" r="1.8"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="balg-wrap">
+    <svg class="balg" id="balg" viewBox="0 0 240 140" role="button" tabindex="0" aria-label="Blasebalg gedrückt halten, um das Feuer anzufachen">
+      <!-- Düse zeigt nach oben zum Feuer -->
+      <path d="M196 64l36-30 6 6-34 32z" fill="#8a7b70" stroke="#3a302b" stroke-width="2"/>
+      <circle cx="236" cy="36" r="4" fill="#5c4c43"/>
+      <!-- Unterbrett -->
+      <path d="M40 70c0-26 60-40 120-34 30 3 44 16 44 34s-14 31-44 34c-60 6-120-8-120-34z" fill="#5a3218" stroke="#2e170a" stroke-width="3" transform="translate(0 16)"/>
+      <!-- Leder -->
+      <g id="leder">
+        <path d="M44 74c40-12 110-14 156-4v20c-46 10-116 8-156-4z" fill="#3a1d0e" stroke="#1c0d05" stroke-width="2"/>
+        <path d="M60 74l8 12M84 70l8 14M110 68l8 16M136 68l8 16M162 69l8 15M186 70l6 13" stroke="#1c0d05" stroke-width="2"/>
+      </g>
+      <!-- Oberbrett mit Griff -->
+      <g id="oberbrett">
+        <path d="M40 70c0-26 60-40 120-34 30 3 44 16 44 34s-14 31-44 34c-60 6-120-8-120-34z" fill="#8b4f26" stroke="#2e170a" stroke-width="3" transform="translate(0 -8)"/>
+        <path d="M70 54c30-12 80-14 112-4" stroke="#b06a35" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M2 58h44" stroke="#2e170a" stroke-width="12" stroke-linecap="round"/>
+        <path d="M2 58h44" stroke="#8b4f26" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="130" cy="62" r="9" fill="#ffb347" stroke="#7a2a0c" stroke-width="2"/>
+        <path d="M126 62l3 3 6-7" stroke="#7a2a0c" stroke-width="2" fill="none"/>
+      </g>
+    </svg>
+    <p class="hinweis-balg" id="balgHinweis">▲ Blasebalg gedrückt halten</p>
+  </div>
+
+  <div class="thermo" aria-hidden="true"><i id="thermo"></i></div>
+  <div class="stufen-text"><span>Glut</span><span id="stufeInfo">Stufe 0 von 6</span><span>Volles Feuer</span></div>
+
+  <ul class="leistungen" id="leistListe" aria-live="polite">
+    <li data-s="1"><span class="stufe">Stufe 1</span><h3>Kachelöfen</h3><p>Der Schwerpunkt des Betriebs: Kachelöfen planen und bauen – bis hin zur Restaurierung antiker Öfen.</p></li>
+    <li data-s="2"><span class="stufe">Stufe 2</span><h3>Cheminée&shy;bau</h3><p>Das offene Feuer im Wohnzimmer – sauber eingebaut und auf Ihren Raum abgestimmt.</p></li>
+    <li data-s="3"><span class="stufe">Stufe 3</span><h3>Kaminbau &amp; Kamin&shy;sanierung</h3><p>Neue Kamine und die Sanierung bestehender Kamine, damit der Rauch zuverlässig abzieht.</p></li>
+    <li data-s="4"><span class="stufe">Stufe 4</span><h3>Holz, Pellets, Schnitzel</h3><p>Holz-, Pellet- und Schnitzelheizungen – Beratung, Planung und Einbau aus einer Hand.</p></li>
+    <li data-s="5"><span class="stufe">Stufe 5</span><h3>Heizöfen &amp; Kochherde</h3><p>Handel und Einbau von Heizöfen und Kochherden – passend zu Küche und Wohnraum.</p></li>
+    <li data-s="6"><span class="stufe">Stufe 6</span><h3>Platten &amp; Naturstein</h3><p>Keramische Plattenbeläge und Natursteinarbeiten – rund um den Ofen und darüber hinaus.</p></li>
+  </ul>
+</section>
+
+<section class="kurve" id="kurve">
+  <span class="kicker">Warum ein Kachelofen?</span>
+  <h2>Wärme mit langem Atem</h2>
+  <p>Ein Feuer heizt schnell auf – und ist ebenso schnell vorbei. Ein Kachelofen speichert die Wärme in seiner Masse und gibt sie lange und sanft an den Raum ab.</p>
+  <svg viewBox="0 0 400 230" role="img" aria-label="Qualitative Skizze: offenes Feuer gibt kurz viel Wärme ab, der Kachelofen gibt die Wärme lange und gleichmässig ab.">
+    <path d="M40 16v176h344" fill="none" stroke="#6f625b" stroke-width="2"/>
+    <path d="M378 186l8 6-8 6M34 22l6-8 6 8" fill="none" stroke="#6f625b" stroke-width="2"/>
+    <text x="0" y="0" transform="translate(28 120) rotate(-90)" text-anchor="middle" fill="#8d817a" font-size="13" font-family="Work Sans, sans-serif">Wärmeabgabe</text>
+    <text x="384" y="214" fill="#8d817a" font-size="13" text-anchor="end" font-family="Work Sans, sans-serif">Zeit →</text>
+    <path d="M40 192C70 192 72 40 92 40S120 176 160 186S220 192 380 192" class="linie" pathLength="1" stroke="#8d817a" stroke-width="3" stroke-dasharray="1"/>
+    <path d="M40 192C80 190 100 104 150 98S260 104 300 132S360 178 380 182" class="linie zwei" pathLength="1" stroke="#ff6a1a" stroke-width="5"/>
+    <g font-family="Big Shoulders Display, Impact, sans-serif" font-weight="800" font-size="17" letter-spacing=".05em">
+      <text x="104" y="38" fill="#d9cfc7">OFFENES FEUER</text>
+      <text x="168" y="88" fill="#ffb347">KACHELOFEN</text>
+    </g>
+    <g fill="#ffe08a"><circle cx="40" cy="192" r="4"/></g>
+    <text x="44" y="210" fill="#8d817a" font-size="12" font-family="Work Sans, sans-serif">Feuer an</text>
+  </svg>
+  <div class="legende">
+    <span><i style="background:#ff6a1a"></i>Kachelofen: speichert und strahlt lange sanft ab</span>
+    <span><i style="background:#8d817a"></i>Offenes Feuer: rasch warm, rasch wieder kühl</span>
+  </div>
+  <p style="font-size:13px;color:var(--asche);margin-top:12px">Schematische Darstellung ohne Messwerte.</p>
+</section>
+
+<section class="alt reveal">
+  <span class="kicker">Schwerpunkt</span>
+  <h2>Alte Kachel&shy;öfen, neues Leben</h2>
+  <p>Steht bei Ihnen ein antiker Kachelofen? Anneler Ofenbau restauriert solche Öfen – in Zusammenarbeit mit der Denkmalpflege, damit erhalten bleibt, was erhaltenswert ist.</p>
+  <div class="rahmen">
+    <svg viewBox="0 0 72 96" width="72" aria-hidden="true">
+      <rect x="6" y="84" width="60" height="10" rx="2" fill="#4a3d36"/>
+      <rect x="10" y="14" width="52" height="70" rx="3" fill="#2b2522" stroke="#ff6a1a" stroke-width="2"/>
+      <path d="M10 31h52M10 48h52M10 65h52M27 14v70M45 14v70" stroke="#ff6a1a" stroke-width="1.5"/>
+      <rect x="6" y="6" width="60" height="9" rx="2" fill="#4a3d36"/>
+      <path d="M30 70h12v14H30z" fill="#ff6a1a"/>
+    </svg>
+    <div>
+      <h3 style="font-size:26px;text-transform:uppercase;color:#fff;margin-bottom:6px">Familienbetrieb</h3>
+      <p style="margin:0">Markus Anneler hat den Betrieb von seinem Vater übernommen und führt ihn in zweiter Generation weiter.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ablauf reveal">
+  <span class="kicker">So gehen wir vor</span>
+  <h2>Mass&shy;geschneidert</h2>
+  <ol>
+    <li><h3>Beratung</h3><p>Wir hören zu: Raum, Gewohnheiten, Brennstoff – was soll Ihr Ofen leisten?</p></li>
+    <li><h3>Planung</h3><p>Wir planen die Heizlösung, die zu Ihrem Haus passt – vom Kachelofen bis zur Schnitzelheizung.</p></li>
+    <li><h3>Einbau</h3><p>Ofenbau, Kamin, Platten und Naturstein aus einer Hand. Preise auf Anfrage.</p></li>
+  </ol>
+</section>
+
+<section class="reveal">
+  <span class="kicker">Galerie</span>
+  <h2>Aus der Werkstatt</h2>
+  <div class="fotos">
+    <div class="foto"><span><b>Hier kommen Ihre Fotos</b>z.&nbsp;B. ein fertiger Kachelofen</span></div>
+    <div class="foto"><span><b>Ihr Foto</b>Cheminée</span></div>
+    <div class="foto"><span><b>Ihr Foto</b>Restaurierung</span></div>
+  </div>
+</section>
+
+<section class="reveal" style="padding-top:10px">
+  <span class="kicker">Kundenstimmen</span>
+  <div class="stimmen"><b>[Platz für Ihre Kundenstimmen]</b><br>Hier können später echte Rückmeldungen Ihrer Kundschaft stehen.</div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <span class="kicker">Kontakt</span>
+  <h2>Reden wir über Ihr Feuer</h2>
+  <div class="knoepfe">
+    <a class="knopf voll" href="tel:0336547334">033 654 73 34 anrufen</a>
+    <a class="knopf rand" href="mailto:info@anneler-ofenbau-spiez.ch?subject=Anfrage%20Ofenbau">info@anneler-ofenbau-spiez.ch</a>
+  </div>
+  <div class="karte">
+    <h3 style="font-size:24px;text-transform:uppercase;margin-bottom:8px">Bürozeiten</h3>
+    <table class="zeiten">
+      <tr><td>Montag – Freitag</td><td>08:00 – 12:00<br>13:00 – 18:00</td></tr>
+          </table>
+  </div>
+</section>
+</main>
+
+<footer>
+  <b>Markus Anneler Ofenbau</b><br>
+  Inhaber Markus Anneler<br>
+  Dürrenbühlweg 9, 3700 Spiez<br>
+  Tel. <a href="tel:0336547334">033 654 73 34</a><br>
+  <a href="mailto:info@anneler-ofenbau-spiez.ch">info@anneler-ofenbau-spiez.ch</a><br>
+  Büro: Mo–Fr 08:00–12:00 und 13:00–18:00<br>
+  Firmennummer CHE-104.881.429
+  <p class="kl">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Anneler Ofenbau.</p>
+</footer>
+
+<script>
+(function(){
+  var balg=document.getElementById('balg'),flammen=document.getElementById('flammen'),licht=document.getElementById('glutLicht'),
+      glutA=document.getElementById('glutA'),funken=document.getElementById('funkenSvg'),thermo=document.getElementById('thermo'),
+      info=document.getElementById('stufeInfo'),hinweis=document.getElementById('balgHinweis'),
+      items=[].slice.call(document.querySelectorAll('#leistListe li'));
+  var hitze=0,maxStufe=0,druck=false,last=null,pdf=document.documentElement.classList.contains('pdf');
+  function zeichne(){
+    var h=hitze/100;
+    var s=0.25+h*0.95;
+    flammen.setAttribute('transform','translate(200 268) scale('+(0.6+h*0.5).toFixed(3)+' '+s.toFixed(3)+') translate(-200 -268)');
+    flammen.style.opacity=(0.35+h*0.65).toFixed(2);
+    licht.setAttribute('opacity',(0.2+h*0.8).toFixed(2));
+    glutA.setAttribute('opacity',(0.4+h*0.6).toFixed(2));
+    funken.setAttribute('opacity',h>0.5?((h-0.5)*2).toFixed(2):'0');
+    thermo.style.width=(hitze)+'%';
+    var stufe=Math.min(6,Math.floor(hitze/16));
+    if(stufe>maxStufe){maxStufe=stufe;var neu=items[maxStufe-1];if(neu&&maxStufe<6){hinweis.textContent='Stufe '+maxStufe+': '+neu.querySelector('h3').textContent.replace(/\u00ad/g,'')+' – weiter halten!';}}
+    items.forEach(function(li){li.classList.toggle('an',+li.dataset.s<=maxStufe)});
+    info.textContent='Stufe '+maxStufe+' von 6';
+    if(maxStufe>=6){hinweis.textContent='Volles Feuer – alle Leistungen entfacht!';}
+  }
+  function tick(t){
+    if(document.documentElement.classList.contains('pdf')){hitze=100;maxStufe=6;}
+    if(last==null)last=t;
+    var dt=Math.min(.1,(t-last)/1000);last=t;
+    if(druck){hitze=Math.min(100,hitze+22*dt);}else{hitze=Math.max(maxStufe*10,hitze-6*dt);}
+    zeichne();
+    requestAnimationFrame(tick);
+  }
+  function an(e){druck=true;balg.classList.add('pump');if(e&&e.pointerId!=null&&balg.setPointerCapture){try{balg.setPointerCapture(e.pointerId)}catch(_){}}if(e&&e.cancelable)e.preventDefault();}
+  function aus(){druck=false;balg.classList.remove('pump');}
+  // Pumpbewegung während des Haltens
+  setInterval(function(){if(druck){balg.classList.toggle('pump');}},260);
+  balg.addEventListener('pointerdown',an);
+  balg.addEventListener('pointerup',aus);
+  balg.addEventListener('pointercancel',aus);
+  balg.addEventListener('lostpointercapture',aus);
+  balg.addEventListener('contextmenu',function(e){e.preventDefault()});
+  balg.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();an();}});
+  balg.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter'){aus();}});
+  window.annelerVoll=function(){hitze=100;maxStufe=6;zeichne();};
+  if(pdf){window.annelerVoll();}
+  zeichne();
+  requestAnimationFrame(tick);
+
+  // Reveal & Kurve
+  var ziele=[].slice.call(document.querySelectorAll('.reveal')).concat([document.getElementById('kurve')]);
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.id==='kurve'?'sichtbar':'da');io.unobserve(e.target);}})},{threshold:.2});
+    ziele.forEach(function(z){io.observe(z)});
+  }else{ziele.forEach(function(z){z.classList.add('da','sichtbar')});}
+})();
+</script>
+</body>
+</html>

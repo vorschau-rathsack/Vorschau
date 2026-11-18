@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rahmen Atelier Liechti – Entwurf Passepartout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --weiss:#f8f6f1;
+  --leinen:#ebe5d8;
+  --leinen2:#ddd5c4;
+  --graphit:#2c2c2a;
+  --grau:#6c6a64;
+  --linie:#cfc8b8;
+  --ocker:#9d7a45;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e4e0d6;-webkit-text-size-adjust:100%}
+body{
+  max-width:430px;margin:0 auto;background:var(--weiss);color:var(--graphit);
+  font-family:"Hanken Grotesk",system-ui,sans-serif;font-weight:400;font-size:1rem;line-height:1.6;
+  overflow-x:hidden;box-shadow:0 0 0 1px #d8d2c4,0 30px 80px rgba(60,50,30,.12);
+}
+a{color:inherit}
+.band{font-size:.75rem;line-height:1.4;text-align:center;padding:.55rem 1rem;background:var(--graphit);color:#ece8df;letter-spacing:.02em}
+
+.kopf{display:flex;justify-content:space-between;align-items:baseline;padding:1.2rem 1.3rem;border-bottom:1px solid var(--linie)}
+.kopf .wort{font-family:"Newsreader",serif;font-size:1.15rem;letter-spacing:.01em}
+.kopf .wort b{font-weight:400;font-style:italic}
+.kopf a{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--graphit);padding-bottom:1px}
+
+/* ---- Held: das Passepartout ---- */
+.passe{
+  margin:1.3rem;background:var(--leinen);padding:2.1rem 1.6rem 1.6rem;
+  box-shadow:0 1px 0 #fff inset,0 18px 40px -22px rgba(60,50,30,.35);
+}
+.fenster{
+  background:var(--weiss);padding:2.2rem 1.3rem 2rem;position:relative;
+  /* Schrägschnitt des Passepartouts */
+  box-shadow:
+    inset 3px 3px 0 #ffffff,
+    inset -3px -3px 0 #c9c0ad,
+    inset 4px 4px 0 #e4ddd0;
+}
+.fenster .oben{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--grau);margin-bottom:1.1rem}
+h1{font-family:"Newsreader",serif;font-weight:300;font-size:clamp(2.15rem,10.4vw,2.9rem);line-height:1.02;letter-spacing:-.015em}
+h1 span{display:block;white-space:nowrap}
+h1 .trenn{font-family:"Hanken Grotesk",sans-serif;font-weight:300;color:var(--ocker);font-size:.55em;margin:.35rem 0 .3rem;letter-spacing:0}
+h1 i{font-weight:300}
+.schild{
+  margin:1.4rem auto 0;width:max-content;max-width:100%;background:var(--weiss);
+  padding:.8rem 1rem;font-size:.82rem;line-height:1.45;border:1px solid var(--linie);
+}
+.schild strong{font-weight:600;display:block}
+.schild span{color:var(--grau)}
+
+.intro{padding:.6rem 1.3rem 2.2rem}
+.intro p{font-family:"Newsreader",serif;font-size:1.28rem;line-height:1.45;font-weight:300}
+.knoepfe{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.4rem}
+.knopf{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;min-height:52px;
+  font-size:.86rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--graphit);
+}
+.knopf.voll{background:var(--graphit);color:var(--weiss)}
+.knopf svg{width:17px;height:17px}
+
+/* ---- Abschnitte ---- */
+section{padding:2.6rem 1.3rem;border-top:1px solid var(--linie)}
+.nr{display:flex;gap:.8rem;align-items:baseline;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grau);margin-bottom:.9rem}
+.nr b{font-weight:500;color:var(--graphit)}
+h2{font-family:"Newsreader",serif;font-weight:300;font-size:clamp(1.75rem,8vw,2.3rem);line-height:1.1;letter-spacing:-.01em;margin-bottom:.8rem;text-wrap:balance}
+h2 i{color:var(--ocker)}
+p.text{color:#4a4844;max-width:34ch}
+
+/* ---- Probierstation ---- */
+.station{background:linear-gradient(#f1eee7,#f8f6f1)}
+.wand{
+  margin:1.4rem -1.3rem 0;padding:1.4rem 1rem 1.2rem;
+  background:radial-gradient(90% 70% at 50% 35%,#fbfaf6,#ece8df);
+  border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);
+}
+.wand svg{display:block;width:100%;height:auto}
+.etikett{margin:1rem auto 0;width:max-content;max-width:100%;background:#fff;border:1px solid var(--linie);padding:.55rem .85rem;font-size:.8rem;line-height:1.45}
+.etikett b{font-weight:600}
+.etikett span{color:var(--grau)}
+.steuer{margin-top:1.6rem}
+.steuer h3{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--grau);margin-bottom:.7rem}
+.profile{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
+.profile button{
+  background:#fff;border:1px solid var(--linie);padding:.5rem .2rem .45rem;cursor:pointer;
+  font:500 .72rem/1.2 "Hanken Grotesk",sans-serif;color:var(--graphit);display:flex;flex-direction:column;align-items:center;gap:.35rem;
+  transition:border-color .2s,box-shadow .2s;min-height:96px;
+}
+.profile button svg{width:100%;max-width:70px;height:46px}
+.profile button[aria-pressed="true"]{border-color:var(--graphit);box-shadow:inset 0 0 0 1px var(--graphit)}
+.profile button small{display:block;font-weight:400;color:var(--grau);font-size:.68rem}
+.regler{margin-top:1.5rem}
+.regler label{display:flex;justify-content:space-between;align-items:baseline}
+.regler output{font-family:"Newsreader",serif;font-size:1.25rem}
+input[type=range]{width:100%;margin-top:.4rem;-webkit-appearance:none;appearance:none;background:none;height:34px;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,var(--graphit) var(--p,60%),var(--linie) var(--p,60%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-12px;background:var(--leinen);border:1px solid var(--graphit);box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #c9c0ad}
+input[type=range]::-moz-range-track{height:2px;background:var(--linie)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:0;background:var(--leinen);border:1px solid var(--graphit)}
+.oberflaeche{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--graphit);margin-top:.2rem}
+.oberflaeche button{background:none;border:0;padding:.85rem;font:500 .82rem "Hanken Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;color:var(--graphit)}
+.oberflaeche button[aria-pressed="true"]{background:var(--graphit);color:var(--weiss)}
+.beratung{margin-top:1.6rem;display:flex;gap:.9rem;align-items:flex-start;padding:1rem;background:var(--leinen);font-family:"Newsreader",serif;font-size:1.12rem;line-height:1.4}
+.beratung svg{flex:none;width:34px;height:34px}
+
+/* ---- Werkstatt ---- */
+.saege{width:100%;height:auto;margin:1rem 0 .4rem}
+.bild-unterschrift{font-size:.78rem;color:var(--grau);border-top:1px solid var(--linie);padding-top:.5rem}
+
+/* ---- Leistungen ---- */
+.liste{list-style:none;margin-top:.6rem}
+.liste li{display:grid;grid-template-columns:1fr auto;gap:.2rem 1rem;padding:1.1rem 0;border-bottom:1px solid var(--linie)}
+.liste h3{font-family:"Newsreader",serif;font-weight:400;font-size:1.35rem;line-height:1.2}
+.liste p{grid-column:1/3;color:#5a5853;font-size:.95rem}
+.liste .tag{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grau);align-self:center}
+.liste li.leer h3,.liste li.leer p{color:#9a958a;font-style:italic}
+.preis{margin-top:1.1rem;font-size:.9rem;letter-spacing:.06em}
+.preis b{font-weight:600}
+
+/* ---- Hängung ---- */
+.reihe{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.3rem;align-items:start}
+.platzbild{background:#fff;padding:14px;box-shadow:0 0 0 5px #3a3836,0 12px 22px -12px rgba(0,0,0,.4)}
+.platzbild div{aspect-ratio:4/5;background:var(--leinen);border:1px dashed #aaa293;display:flex;align-items:center;justify-content:center;text-align:center;padding:.7rem;font-family:"Newsreader",serif;font-style:italic;font-size:.95rem;color:#7a7568}
+.platzbild.quer{grid-column:1/3;margin:.4rem 12% 0}
+.platzbild.quer div{aspect-ratio:16/10}
+
+/* ---- Stimmen ---- */
+.sterne{display:flex;gap:.35rem;margin:.6rem 0}
+.sterne svg{width:24px;height:24px}
+.stimmen{margin-top:1.1rem;padding:1.2rem;border:1px dashed #aaa293;color:#8a8579;font-style:italic;text-align:center;font-family:"Newsreader",serif;font-size:1.05rem}
+
+/* ---- Kontakt ---- */
+.adresse{display:grid;gap:1.1rem;margin-top:.8rem}
+.adresse dt{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grau)}
+.adresse dd{font-family:"Newsreader",serif;font-size:1.22rem;line-height:1.35}
+.adresse .platz{color:#8a8579;font-style:italic;border-bottom:1px dashed #aaa293}
+.knoepfe.drei{grid-template-columns:1fr 1fr}
+.knoepfe.drei .knopf:last-child{grid-column:1/3}
+
+footer{padding:2rem 1.3rem 2.4rem;background:var(--graphit);color:#d8d4ca;font-size:.82rem}
+footer .wort{font-family:"Newsreader",serif;font-size:1.3rem;color:#fff;margin-bottom:.3rem}
+footer .demo{margin-top:1.2rem;color:#a29e94;font-size:.75rem}
+
+.auf{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.auf.sichtbar{opacity:1;transform:none}
+html.pdf .auf{opacity:1;transform:none;transition:none}
+@media (prefers-reduced-motion:reduce){.auf{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="band">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Rahmen Atelier Liechti</div>
+
+<header class="kopf">
+  <div class="wort">Rahmen Atelier <b>Liechti</b></div>
+  <a href="#kontakt">Kontakt</a>
+</header>
+
+<div class="passe">
+  <div class="fenster">
+    <div class="oben">Seestrasse 14 · Thun</div>
+    <h1>
+      <span>Einrahmungen</span>
+      <span class="trenn">|</span>
+      <span>Vergoldungen</span>
+      <span><i>nach Mass</i></span>
+    </h1>
+  </div>
+  <div class="schild">
+    <strong>Rahmen Atelier Liechti</strong>
+    <span>Inhaber Rolf Liechti<br>Seit über 20 Jahren an der Seestrasse in Thun</span>
+  </div>
+</div>
+
+<div class="intro">
+  <p>Ein Bild wird erst mit dem richtigen Rahmen ganz. Individuelle Rahmen- und Vergoldungsarbeiten – und eine persönliche Beratung, die sich Zeit nimmt.</p>
+  <div class="knoepfe">
+    <a class="knopf voll" href="tel:0332221644"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Anrufen</a>
+    <a class="knopf" href="mailto:rolf@rahmenliechti.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>E-Mail</a>
+  </div>
+</div>
+
+<!-- ============ PROBIERSTATION ============ -->
+<section class="station" id="probieren">
+  <div class="nr"><b>01</b> Rahmen-Probierstation</div>
+  <h2>Probieren Sie einen Rahmen <i>an</i></h2>
+  <p class="text">Ein Blick über den Thunersee zum Niesen – gerahmt nach Ihrer Wahl. Profil, Passepartout und Oberfläche lassen sich live verändern.</p>
+
+  <div class="wand">
+    <svg id="probe" viewBox="0 0 470 400" role="img" aria-label="Gerahmte Zeichnung: Thunersee mit Niesen">
+      <defs>
+        <!-- Profilverläufe: immer von der Aussenkante zur Innenkante -->
+        <linearGradient id="g-holz" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a381e"/><stop offset=".25" stop-color="#93653a"/><stop offset=".55" stop-color="#b9864f"/><stop offset=".8" stop-color="#8a5a32"/><stop offset="1" stop-color="#4e2f18"/>
+        </linearGradient>
+        <linearGradient id="g-gold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#6e4f18"/><stop offset=".12" stop-color="#d9b45a"/><stop offset=".26" stop-color="#fff0b8"/><stop offset=".42" stop-color="#b8862e"/><stop offset=".6" stop-color="#5f4313"/><stop offset=".78" stop-color="#e2c070"/><stop offset=".9" stop-color="#a07a2c"/><stop offset="1" stop-color="#5a4012"/>
+        </linearGradient>
+        <linearGradient id="g-barock" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#4c3510"/><stop offset=".1" stop-color="#c99a3f"/><stop offset=".2" stop-color="#f4dc90"/><stop offset=".32" stop-color="#8f6522"/><stop offset=".46" stop-color="#e8c878"/><stop offset=".58" stop-color="#5e4314"/><stop offset=".72" stop-color="#d4ad58"/><stop offset=".86" stop-color="#f6e2a2"/><stop offset="1" stop-color="#6a4b16"/>
+        </linearGradient>
+        <linearGradient id="g-alu" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7c7f84"/><stop offset=".3" stop-color="#eceef0"/><stop offset=".55" stop-color="#b3b6ba"/><stop offset=".8" stop-color="#f6f7f8"/><stop offset="1" stop-color="#6f7277"/>
+        </linearGradient>
+        <linearGradient id="glas" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/>
+          <stop offset=".36" stop-color="#fff" stop-opacity=".55"/><stop offset=".44" stop-color="#fff" stop-opacity=".12"/>
+          <stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="matt" x="0" y="0" width="1" height="1">
+          <feComponentTransfer>
+            <feFuncR type="linear" slope=".55" intercept=".17"/>
+            <feFuncG type="linear" slope=".55" intercept=".15"/>
+            <feFuncB type="linear" slope=".55" intercept=".12"/>
+          </feComponentTransfer>
+        </filter>
+        <filter id="schatten" x="-20%" y="-20%" width="140%" height="150%">
+          <feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#3a2f1c" flood-opacity=".32"/>
+        </filter>
+
+        <!-- Die Zeichnung: Thunersee mit Niesen (240 x 170) -->
+        <g id="zeichnung" fill="none" stroke="#3b3a36" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="240" height="170" fill="#fbf8f0" stroke="none"/>
+          <circle cx="58" cy="40" r="11" stroke-width=".9"/>
+          <path d="M150 34 C146 40 141 47 136 55 C128 68 118 80 104 92 C92 102 76 110 56 116" stroke-width="1.4"/>
+          <path d="M150 34 C156 44 164 55 176 68 C188 80 204 92 234 104" stroke-width="1.4"/>
+          <path d="M150 34 C147 52 142 70 134 92 M150 34 C155 50 160 66 170 84" stroke-width=".7" opacity=".7"/>
+          <path d="M142 46 l-6 10 M158 48 l6 9 M128 72 l-7 8 M174 72 l7 8" stroke-width=".6" opacity=".6"/>
+          <path d="M6 112 C18 100 30 96 42 104 C48 98 56 100 62 112" stroke-width="1"/>
+          <path d="M198 96 C206 88 216 86 226 92 C230 88 236 90 240 92" stroke-width=".9"/>
+          <path d="M0 118 H240" stroke-width="1.1"/>
+          <path d="M16 128 H58 M84 126 H140 M164 129 H214 M30 138 H96 M118 137 H170 M190 140 H230 M6 148 H44 M72 147 H122 M150 150 H200" stroke-width=".6" opacity=".7"/>
+          <path d="M80 133 L80 116 L90 131 Z" stroke-width=".9"/>
+          <path d="M74 133 H92 L89 136 H77 Z" stroke-width=".9"/>
+          <path d="M0 166 C30 156 48 158 70 166" stroke-width="1"/>
+          <path d="M18 160 V146 M22 159 V142 M26 160 V148 M30 161 V144 M14 161 V150" stroke-width=".7"/>
+          <path d="M96 26 c6-4 14-4 18 0 c4-3 10-2 12 2 M186 18 c5-3 11-3 14 0" stroke-width=".7" opacity=".7"/>
+          <path d="M196 140 l6 -3 6 3" stroke-width=".7"/>
+        </g>
+      </defs>
+      <g id="gerahmt" filter="url(#schatten)"></g>
+    </svg>
+    <div class="etikett" id="etikett"><b>Gold, breit</b> · <span>Passepartout 4.5 cm · Glanz</span></div>
+  </div>
+
+  <div class="steuer">
+    <h3>1 · Rahmenprofil (Querschnitt)</h3>
+    <div class="profile" role="group" aria-label="Rahmenprofil wählen">
+      <button type="button" data-profil="holz" aria-pressed="false">
+        <svg viewBox="0 0 70 46"><path d="M18 40 V14 H40 V22 H52 V40 Z" fill="#a8774a" stroke="#3b2a1c" stroke-width="1"/><path d="M22 18 C30 20 34 26 36 38 M26 16 C34 22 44 28 48 38" stroke="#6e4a2a" stroke-width=".6" fill="none"/><path d="M40 22 V40" stroke="#3b2a1c" stroke-width=".5" stroke-dasharray="2 2"/></svg>
+        Holz<small>schmal</small>
+      </button>
+      <button type="button" data-profil="gold" aria-pressed="true">
+        <svg viewBox="0 0 70 46"><path d="M4 40 V16 C10 16 12 8 20 8 H50 C50 16 44 20 44 26 H60 V40 Z" fill="#d6b25e" stroke="#5a4012" stroke-width="1"/><path d="M20 8 C22 18 30 22 44 26" stroke="#fff3c4" stroke-width="1.2" fill="none"/><path d="M44 26 V40" stroke="#5a4012" stroke-width=".5" stroke-dasharray="2 2"/></svg>
+        Gold<small>breit</small>
+      </button>
+      <button type="button" data-profil="barock" aria-pressed="false">
+        <svg viewBox="0 0 70 46"><path d="M2 40 V20 C4 12 10 10 14 14 C16 6 24 3 28 9 C32 3 40 5 40 13 C46 12 50 16 49 22 C52 22 54 24 54 28 H66 V40 Z" fill="#c99a3f" stroke="#4c3510" stroke-width="1"/><circle cx="21" cy="18" r="3" fill="#f4dc90" stroke="#4c3510" stroke-width=".7"/><circle cx="34" cy="17" r="2.4" fill="#f4dc90" stroke="#4c3510" stroke-width=".7"/><path d="M8 26 C14 22 20 26 26 22 C32 26 40 22 46 26" stroke="#4c3510" stroke-width=".6" fill="none"/><path d="M54 28 V40" stroke="#4c3510" stroke-width=".5" stroke-dasharray="2 2"/></svg>
+        Barock<small>verziert</small>
+      </button>
+      <button type="button" data-profil="alu" aria-pressed="false">
+        <svg viewBox="0 0 70 46"><path d="M26 40 V10 H31 V34 H46 V40 Z" fill="#c4c7cb" stroke="#4b4e53" stroke-width="1"/><path d="M28 12 V36" stroke="#fff" stroke-width=".8"/></svg>
+        Alu-Leiste<small>schlicht</small>
+      </button>
+    </div>
+
+    <div class="regler">
+      <label for="mat"><h3 style="margin:0">2 · Passepartout-Breite</h3><output id="matwert">4.5 cm</output></label>
+      <input type="range" id="mat" min="0" max="60" step="5" value="45">
+    </div>
+
+    <div style="margin-top:1.3rem">
+      <h3>3 · Oberfläche</h3>
+      <div class="oberflaeche" role="group" aria-label="Oberfläche">
+        <button type="button" data-ober="glanz" aria-pressed="true">Glanz</button>
+        <button type="button" data-ober="matt" aria-pressed="false">Matt</button>
+      </div>
+    </div>
+
+    <div class="beratung">
+      <svg viewBox="0 0 34 34" fill="none" stroke="#2c2c2a" stroke-width="1.1"><rect x="3" y="3" width="28" height="28"/><rect x="9" y="9" width="16" height="16"/><path d="M3 3l6 6 M31 3l-6 6 M3 31l6-6 M31 31l-6-6"/></svg>
+      <div>Beratung im Atelier – jedes Bild ist anders.<br><small style="font-family:'Hanken Grotesk',sans-serif;font-size:.82rem;color:#6c6a64">Bringen Sie Ihr Bild an die Seestrasse 14 – gemeinsam finden wir den passenden Rahmen.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WERKSTATT ============ -->
+<section class="auf">
+  <div class="nr"><b>02</b> Werkstatt</div>
+  <h2>Vier Leisten, vier&nbsp;Ecken</h2>
+  <p class="text">Jeder Rahmen wird nach Mass gefertigt – passend zu Ihrem Bild, nicht umgekehrt.</p>
+  <!-- Gehrungslade mit Säge, von oben gesehen -->
+  <svg class="saege" viewBox="0 0 390 230" aria-hidden="true" fill="none" stroke="#2c2c2a" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="22" y="58" width="346" height="116" fill="#ebe5d8" stroke-width="1.1"/>
+    <rect x="22" y="58" width="346" height="18" fill="#ddd5c4" stroke-width="1"/>
+    <rect x="22" y="156" width="346" height="18" fill="#ddd5c4" stroke-width="1"/>
+    <!-- Leiste, geschnitten -->
+    <path d="M22 82 H162 L226 150 H22 Z" fill="#f8f6f1" stroke-width="1.2"/>
+    <path d="M172 82 H368 V150 H236 Z" fill="#f8f6f1" stroke-width="1.2"/>
+    <path d="M22 92 H171 M22 102 H180 M22 136 H213 M181 92 H368 M190 102 H368 M223 136 H368" stroke-width=".55"/>
+    <path d="M22 119 H197 M207 119 H368" stroke-width=".55" stroke-dasharray="2 3"/>
+    <!-- Säge auf 45 Grad -->
+    <g transform="rotate(45 199 116)">
+      <rect x="86" y="113" width="226" height="6" fill="#fff" stroke-width="1"/>
+      <rect x="96" y="108" width="216" height="5" fill="#2c2c2a" stroke="none"/>
+      <path d="M86 116 H312" stroke-width=".4" stroke-dasharray="1 2"/>
+      <path d="M58 104 h22 a6 6 0 0 1 6 6 v12 a6 6 0 0 1 -6 6 h-22 a10 10 0 0 1 -10 -10 v-4 a10 10 0 0 1 10 -10 z" fill="#ebe5d8" stroke-width="1.2"/>
+      <path d="M60 112 h16 v8 h-16 z" stroke-width=".8"/>
+    </g>
+    <!-- Winkel -->
+    <path d="M262 116 A63 63 0 0 1 243.5 160.5" stroke="#9d7a45" stroke-width="1"/>
+    <path d="M199 116 H270" stroke="#9d7a45" stroke-width=".7" stroke-dasharray="3 3"/>
+    <text x="266" y="150" font-family="Hanken Grotesk, sans-serif" font-size="13" fill="#9d7a45" stroke="none" letter-spacing="1">45°</text>
+  </svg>
+  <div class="bild-unterschrift">Abb. – Gehrungslade und Säge, von oben: Jede Rahmenecke wird auf 45° geschnitten.</div>
+</section>
+
+<!-- ============ LEISTUNGEN ============ -->
+<section class="auf">
+  <div class="nr"><b>03</b> Angebot</div>
+  <h2>Einrahmungen | Vergoldungen <i>nach&nbsp;Mass</i></h2>
+  <ul class="liste">
+    <li><h3>Einrahmungen</h3><span class="tag">Individuell</span><p>Individuelle Rahmenarbeiten für Ihre Bilder – abgestimmt auf das Werk.</p></li>
+    <li><h3>Vergoldungen</h3><span class="tag">Nach Mass</span><p>Vergoldungsarbeiten im Handwerk mit Blattgold.</p></li>
+    <li><h3>Beratung</h3><span class="tag">Persönlich</span><p>Im Atelier an der Seestrasse in Thun – mit Zeit für jedes Stück.</p></li>
+    <li class="leer"><h3>[weitere Leistungen ergänzen]</h3><span class="tag">Platzhalter</span><p>Hier können weitere Angebote des Ateliers stehen.</p></li>
+  </ul>
+  <p class="preis"><b>Preise auf Anfrage</b> – jedes Bild ist anders.</p>
+</section>
+
+<!-- ============ ARBEITEN ============ -->
+<section class="auf">
+  <div class="nr"><b>04</b> Arbeiten</div>
+  <h2>Aus dem Atelier</h2>
+  <div class="reihe">
+    <div class="platzbild"><div>Hier kommen Fotos Ihrer Arbeiten</div></div>
+    <div class="platzbild"><div>Foto: Detail einer Vergoldung</div></div>
+    <div class="platzbild quer"><div>Foto: Blick ins Atelier</div></div>
+  </div>
+</section>
+
+<!-- ============ BEWERTUNGEN ============ -->
+<section class="auf">
+  <div class="nr"><b>05</b> Bewertungen</div>
+  <h2>5 von 5 Sternen</h2>
+  <div class="sterne" aria-label="5 von 5 Sternen">
+    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.5 6.8L12 17.3l-6 3.5 1.5-6.8-5.2-4.6 6.9-.6z" fill="#2c2c2a"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.5 6.8L12 17.3l-6 3.5 1.5-6.8-5.2-4.6 6.9-.6z" fill="#2c2c2a"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.5 6.8L12 17.3l-6 3.5 1.5-6.8-5.2-4.6 6.9-.6z" fill="#2c2c2a"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.5 6.8L12 17.3l-6 3.5 1.5-6.8-5.2-4.6 6.9-.6z" fill="#2c2c2a"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M12 2.5l2.8 6.3 6.9.6-5.2 4.6 1.5 6.8L12 17.3l-6 3.5 1.5-6.8-5.2-4.6 6.9-.6z" fill="#2c2c2a"/></svg>
+  </div>
+  <p class="text">5 von 5 Sternen auf search.ch und local.ch.</p>
+  <div class="stimmen">[Platz für Kundenstimmen]</div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="auf" id="kontakt">
+  <div class="nr"><b>06</b> Besuch</div>
+  <h2>An der Seestrasse in&nbsp;Thun</h2>
+  <dl class="adresse">
+    <div><dt>Atelier</dt><dd>Rahmen Atelier Liechti<br>Seestrasse 14, 3600 Thun</dd></div>
+    <div><dt>Inhaber</dt><dd>Rolf Liechti</dd></div>
+    <div><dt>Öffnungszeiten</dt><dd><span class="platz">[Öffnungszeiten ergänzen]</span></dd></div>
+    <div><dt>Telefon · E-Mail</dt><dd><a href="tel:0332221644">033 222 16 44</a><br><a href="mailto:rolf@rahmenliechti.ch">rolf@rahmenliechti.ch</a></dd></div>
+  </dl>
+  <div class="knoepfe drei">
+    <a class="knopf voll" href="tel:0332221644">Anrufen</a>
+    <a class="knopf" href="mailto:rolf@rahmenliechti.ch">E-Mail</a>
+    <a class="knopf" href="https://www.google.com/maps/search/?api=1&query=Seestrasse+14+3600+Thun" target="_blank" rel="noopener">Weg zur Seestrasse 14</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wort">Rahmen Atelier Liechti</div>
+  Einrahmungen | Vergoldungen nach Mass<br>Seestrasse 14 · 3600 Thun · 033 222 16 44
+  <div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Rahmen Atelier Liechti</div>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var ziel=document.getElementById('gerahmt');
+  var BW=240,BH=170,CX=235,CY=200;
+  var PROFILE={
+    holz:  {name:'Holz, schmal', breite:14, verlauf:'g-holz'},
+    gold:  {name:'Gold, breit',  breite:32, verlauf:'g-gold'},
+    barock:{name:'Barock',       breite:44, verlauf:'g-barock'},
+    alu:   {name:'Alu-Leiste',   breite:7,  verlauf:'g-alu'}
+  };
+  var zustand={profil:'gold',mat:45,ober:'glanz'};
+
+  function el(tag,attr,eltern){var e=document.createElementNS(NS,tag);for(var k in attr)e.setAttribute(k,attr[k]);if(eltern)eltern.appendChild(e);return e}
+
+  // eine Rahmenleiste als Trapez (Gehrung), Verlauf von aussen nach innen
+  function leiste(g,punkte,richtung,verlauf,dunkel){
+    var id='v-'+richtung;
+    var lg=el('linearGradient',{id:id,href:'#'+verlauf},defs);
+    var r={oben:[0,0,0,1],unten:[0,1,0,0],links:[0,0,1,0],rechts:[1,0,0,0]}[richtung];
+    lg.setAttribute('x1',r[0]);lg.setAttribute('y1',r[1]);lg.setAttribute('x2',r[2]);lg.setAttribute('y2',r[3]);
+    el('polygon',{points:punkte,fill:'url(#'+id+')'},g);
+    if(dunkel) el('polygon',{points:punkte,fill:'#000',opacity:dunkel},g);
+  }
+  var defs=document.querySelector('#probe defs');
+
+  function zeichnen(){
+    [].slice.call(defs.querySelectorAll('[id^="v-"]')).forEach(function(n){n.remove()});
+    while(ziel.firstChild) ziel.removeChild(ziel.firstChild);
+    var p=PROFILE[zustand.profil], f=p.breite, m=zustand.mat;
+    var iw=BW+2*m, ih=BH+2*m;               // Innenmass (Passepartout aussen)
+    var x0=CX-iw/2-f, y0=CY-ih/2-f, x1=CX+iw/2+f, y1=CY+ih/2+f;
+    var ix0=x0+f, iy0=y0+f, ix1=x1-f, iy1=y1-f;
+
+    // Passepartout
+    if(m>0){
+      el('rect',{x:ix0,y:iy0,width:iw,height:ih,fill:'#f3efe6'},ziel);
+      var bx0=CX-BW/2, by0=CY-BH/2, bx1=CX+BW/2, by1=CY+BH/2, s=3.2;
+      // Schrägschnitt: oben/links hell, unten/rechts im Schatten
+      el('polygon',{points:[bx0-s,by0-s,bx1+s,by0-s,bx1,by0,bx0,by0].join(' '),fill:'#fffdf8'},ziel);
+      el('polygon',{points:[bx0-s,by0-s,bx0,by0,bx0,by1,bx0-s,by1+s].join(' '),fill:'#fbf7ee'},ziel);
+      el('polygon',{points:[bx1+s,by0-s,bx1+s,by1+s,bx1,by1,bx1,by0].join(' '),fill:'#d9d1c0'},ziel);
+      el('polygon',{points:[bx0-s,by1+s,bx0,by1,bx1,by1,bx1+s,by1+s].join(' '),fill:'#cfc6b3'},ziel);
+    }
+    el('use',{href:'#zeichnung',x:CX-BW/2,y:CY-BH/2},ziel);
+
+    // Rahmen
+    var g=el('g',{'class':'rahmen'},ziel);
+    if(zustand.ober==='matt') g.setAttribute('filter','url(#matt)');
+    leiste(g,[x0,y0,x1,y0,ix1,iy0,ix0,iy0].join(' '),'oben',p.verlauf,0);
+    leiste(g,[x0,y0,ix0,iy0,ix0,iy1,x0,y1].join(' '),'links',p.verlauf,.06);
+    leiste(g,[x1,y0,x1,y1,ix1,iy1,ix1,iy0].join(' '),'rechts',p.verlauf,.2);
+    leiste(g,[x0,y1,ix0,iy1,ix1,iy1,x1,y1].join(' '),'unten',p.verlauf,.24);
+    // Gehrungsfugen
+    var fuge={stroke:'rgba(0,0,0,.28)','stroke-width':.7};
+    [[x0,y0,ix0,iy0],[x1,y0,ix1,iy0],[x0,y1,ix0,iy1],[x1,y1,ix1,iy1]].forEach(function(l){el('line',Object.assign({x1:l[0],y1:l[1],x2:l[2],y2:l[3]},fuge),g)});
+
+    if(zustand.profil==='holz'){
+      // Maserung entlang der Leisten
+      var mas={fill:'none',stroke:'rgba(60,30,10,.35)','stroke-width':.6};
+      [4,8,11].forEach(function(d,i){
+        el('path',Object.assign({d:'M'+(x0+d+6)+' '+(y0+d)+' C'+(CX-40)+' '+(y0+d+1.5)+' '+(CX+30)+' '+(y0+d-1.5)+' '+(x1-d-6)+' '+(y0+d)},mas),g);
+        el('path',Object.assign({d:'M'+(x0+d+6)+' '+(y1-d)+' C'+(CX-30)+' '+(y1-d-1.5)+' '+(CX+50)+' '+(y1-d+1.5)+' '+(x1-d-6)+' '+(y1-d)},mas),g);
+        el('path',Object.assign({d:'M'+(x0+d)+' '+(y0+d+6)+' C'+(x0+d+1.5)+' '+(CY-30)+' '+(x0+d-1.5)+' '+(CY+40)+' '+(x0+d)+' '+(y1-d-6)},mas),g);
+        el('path',Object.assign({d:'M'+(x1-d)+' '+(y0+d+6)+' C'+(x1-d-1.5)+' '+(CY-40)+' '+(x1-d+1.5)+' '+(CY+30)+' '+(x1-d)+' '+(y1-d-6)},mas),g);
+      });
+    }
+    if(zustand.profil==='barock'){
+      // Perlstab und Blattfries
+      var d=f*.36, perl={fill:'none',stroke:'#fff3c8','stroke-width':3.4,'stroke-linecap':'round','stroke-dasharray':'0 7',opacity:.9};
+      el('rect',Object.assign({x:x0+d,y:y0+d,width:(x1-x0)-2*d,height:(y1-y0)-2*d},perl),g);
+      var e2=f*.72;
+      el('rect',{x:x0+e2,y:y0+e2,width:(x1-x0)-2*e2,height:(y1-y0)-2*e2,fill:'none',stroke:'rgba(70,45,10,.55)','stroke-width':2,'stroke-dasharray':'6 3 1 3'},g);
+      [[x0,y0,1,1],[x1,y0,-1,1],[x0,y1,1,-1],[x1,y1,-1,-1]].forEach(function(c){
+        var cx=c[0]+c[2]*f*.5, cy=c[1]+c[3]*f*.5;
+        el('circle',{cx:cx,cy:cy,r:f*.33,fill:'#e9c873',stroke:'#5e4314','stroke-width':1},g);
+        el('circle',{cx:cx,cy:cy,r:f*.13,fill:'#fff0b8',stroke:'#5e4314','stroke-width':.8},g);
+        for(var a=0;a<8;a++){var w=a*Math.PI/4;el('line',{x1:cx+Math.cos(w)*f*.16,y1:cy+Math.sin(w)*f*.16,x2:cx+Math.cos(w)*f*.3,y2:cy+Math.sin(w)*f*.3,stroke:'#5e4314','stroke-width':.8},g)}
+      });
+    }
+    if(zustand.profil==='gold'){
+      el('rect',{x:ix0-2,y:iy0-2,width:iw+4,height:ih+4,fill:'none',stroke:'#4b3510','stroke-width':1.2},g);
+    }
+    // Glas-Reflex nur bei Glanz
+    if(zustand.ober==='glanz'){
+      el('rect',{x:ix0,y:iy0,width:iw,height:ih,fill:'url(#glas)','pointer-events':'none'},ziel);
+    }
+    var etikett=document.getElementById('etikett');
+    etikett.innerHTML='<b>'+p.name+'</b> · <span>'+(m>0?'Passepartout '+(m/10).toFixed(1)+' cm':'ohne Passepartout')+' · '+(zustand.ober==='glanz'?'Glanz':'Matt')+'</span>';
+  }
+
+  var knoepfe=[].slice.call(document.querySelectorAll('[data-profil]'));
+  knoepfe.forEach(function(k){k.addEventListener('click',function(){
+    zustand.profil=k.dataset.profil;
+    knoepfe.forEach(function(x){x.setAttribute('aria-pressed',x===k)});
+    zeichnen();
+  })});
+  var regler=document.getElementById('mat'), wert=document.getElementById('matwert');
+  function regel(){
+    zustand.mat=+regler.value;
+    wert.textContent=zustand.mat>0?(zustand.mat/10).toFixed(1)+' cm':'ohne';
+    regler.style.setProperty('--p',(regler.value/60*100)+'%');
+    zeichnen();
+  }
+  regler.addEventListener('input',regel);
+  var ober=[].slice.call(document.querySelectorAll('[data-ober]'));
+  ober.forEach(function(k){k.addEventListener('click',function(){
+    zustand.ober=k.dataset.ober;ober.forEach(function(x){x.setAttribute('aria-pressed',x===k)});zeichnen();
+  })});
+  regel();
+
+  // PDF: gutes Beispiel einstellen
+  function pdf(){
+    zustand={profil:'gold',mat:45,ober:'glanz'};regler.value=45;
+    knoepfe.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.profil==='gold')});
+    ober.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.ober==='glanz')});
+    regel();
+  }
+  new MutationObserver(function(){if(document.documentElement.classList.contains('pdf'))pdf()}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+
+  var els=document.querySelectorAll('.auf');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('sichtbar');io.unobserve(e.target)}})},{threshold:.1});
+    els.forEach(function(e){io.observe(e)});
+  } else els.forEach(function(e){e.classList.add('sichtbar')});
+})();
+</script>
+</body>
+</html>
