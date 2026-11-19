@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Mexicano Tattoo Studio – Von Mexiko-Stadt nach Thun</title>
+<meta name="description" content="Entwurf: Die Geschichte von Gabo und El Mexicano Tattoo Studio – von Mexiko-Stadt nach Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#0D1834;
+    --azul-2:#14244B;
+    --azul-3:#1D3363;
+    --naranja:#F28A1E;
+    --naranja-cl:#FFB65C;
+    --cobre:#C27A45;
+    --cobre-cl:#E3A877;
+    --arena:#F7EBDB;
+    --gris:#A9B2C8;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--azul);color:var(--arena);font:400 17px/1.6 "Karla",system-ui,sans-serif;overflow-x:hidden;padding-bottom:86px}
+  a{color:inherit}
+  h1,h2,h3{font-family:"Abril Fatface",Georgia,serif;font-weight:400;margin:0;line-height:1.04}
+
+  .entwurf{background:var(--cobre);color:#1B0F06;font-size:13px;line-height:1.4;padding:8px 16px;text-align:center}
+  .entwurf strong{font-weight:700}
+
+  .ancho{max-width:580px;margin:0 auto;padding-left:16px;padding-right:16px}
+
+  /* ---------- Kopf ---------- */
+  .portada{position:relative;overflow:hidden;padding-top:26px;background:linear-gradient(180deg,#091129 0%,var(--azul) 60%)}
+  .clave{display:flex;align-items:center;gap:10px;font-weight:700;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cobre-cl)}
+  .clave::before{content:"";width:28px;height:2px;background:var(--cobre-cl)}
+  .portada h1{font-size:clamp(2.3rem,11.6vw,4.2rem);margin:14px 0 0}
+  .portada h1 .de{display:block;font-size:.5em;color:var(--naranja-cl);margin:0 0 .15em}
+  .portada h1 .a{display:block;color:var(--naranja)}
+  .portada p.leer{margin:16px 0 0;color:#DCD3C6;max-width:30em}
+  .paisaje{display:block;width:100%;height:auto;margin-top:16px}
+  .cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding-top:18px}
+  .boton{display:flex;align-items:center;justify-content:center;gap:9px;min-height:54px;border-radius:999px;text-decoration:none;font:700 16px/1.1 "Karla",sans-serif;padding:10px 14px;border:2px solid transparent;cursor:pointer}
+  .boton.lleno{background:var(--naranja);color:#1B0F06}
+  .boton.linea{border-color:var(--cobre-cl);color:var(--arena);background:transparent}
+  .boton svg{flex:none}
+  .valor{margin:18px 0 0;padding:14px 16px;border-radius:14px;background:var(--azul-2);border:1px solid rgba(227,168,119,.35);font-size:15px}
+  .valor b{font-family:"Abril Fatface",serif;font-weight:400;font-size:24px;color:var(--naranja-cl);margin-right:6px}
+  .ph{background:rgba(255,182,92,.16);color:#FFD7A3;border:1px dashed rgba(255,182,92,.6);border-radius:4px;padding:0 4px}
+
+  section{padding-top:52px}
+  .num{display:inline-block;font:700 12px/1 "Karla",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--cobre-cl);border-bottom:2px solid var(--cobre);padding-bottom:6px;margin-bottom:14px}
+  section h2{font-size:clamp(2rem,9.6vw,3.2rem)}
+  section h2 em{font-style:normal;color:var(--naranja)}
+  section p{margin:12px 0 0}
+
+  /* ---------- Route ---------- */
+  .mapa{margin:18px 0 0;border-radius:20px;background:radial-gradient(120% 80% at 70% 10%,var(--azul-3) 0%,var(--azul-2) 55%,#0F1D40 100%);border:1px solid rgba(227,168,119,.25);overflow:hidden}
+  .mapa svg{display:block;width:100%;height:auto}
+  .parada{cursor:pointer;outline:none}
+  .parada .halo{fill:var(--naranja);opacity:0;transition:opacity .3s}
+  .parada .punto{fill:var(--azul);stroke:var(--cobre-cl);stroke-width:3;transition:fill .3s,stroke .3s}
+  .parada.activa .halo{opacity:.28}
+  .parada.activa .punto,.parada.hecha .punto{fill:var(--naranja);stroke:var(--naranja-cl)}
+  .parada:focus-visible .punto{stroke:#fff;stroke-width:4}
+  .parada text{fill:var(--arena);font:700 13px "Karla",sans-serif}
+  #ruta-viva{transition:stroke-dashoffset 1s cubic-bezier(.5,0,.2,1)}
+  .ficha{margin:12px 0 0;padding:18px 18px 16px;border-radius:18px;background:var(--arena);color:#1A1430;min-height:150px}
+  .ficha .cuando{font:700 12px/1 "Karla",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9A5527}
+  .ficha h3{font-size:clamp(1.5rem,7vw,2rem);margin:8px 0 6px;color:var(--azul)}
+  .ficha p{margin:0}
+  .ficha.cambia{animation:ficha .45s ease}
+  @keyframes ficha{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .pasos{display:flex;justify-content:space-between;align-items:center;margin:10px 0 0;gap:10px}
+  .pasos button{font:700 14px "Karla",sans-serif;background:transparent;color:var(--arena);border:1.5px solid rgba(247,235,219,.4);border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer}
+  .pasos span{font-size:13px;color:var(--gris)}
+  .todas{display:none}
+
+  /* ---------- Lupe ---------- */
+  .lupa-caja{margin:18px 0 0;border-radius:20px;overflow:hidden;background:#24180F;border:1px solid rgba(227,168,119,.3);position:relative}
+  .lupa-caja svg{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+  .lupa-caja.agarra svg{cursor:grabbing}
+  .leyenda{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--gris);margin:10px 2px 0}
+  .leyenda span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+  .leyenda .viejo::before{background:#7C8CA0}
+  .leyenda .nuevo::before{background:var(--naranja)}
+  .nota-cover{margin:14px 0 0;padding:14px 16px;border-left:4px solid var(--naranja);background:var(--azul-2);border-radius:0 12px 12px 0;font-size:15.5px}
+
+  /* ---------- Angebot ---------- */
+  .ofertas{display:grid;gap:12px;margin:18px 0 0}
+  .of{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:center;padding:16px;border-radius:16px;background:var(--azul-2);border:1px solid rgba(169,178,200,.18)}
+  .of h3{font-size:22px;color:var(--naranja-cl)}
+  .of p{margin:2px 0 0;font-size:15.5px;color:#D9D2C7}
+
+  /* ---------- Kontakt ---------- */
+  .tarjeta{margin:18px 0 0;padding:20px 18px;border-radius:20px;background:linear-gradient(160deg,var(--cobre) 0%,#8E5128 100%);color:#1B0F06}
+  .tarjeta h3{font-size:26px;color:#1B0F06;margin-bottom:8px}
+  .tarjeta p{margin:6px 0 0}
+  .tarjeta a{font-weight:700;text-decoration:none;border-bottom:1.5px solid rgba(27,15,6,.4)}
+  .tarjeta .boton{margin-top:14px;border-bottom:0}
+  .horas{margin:12px 0 0;padding:14px 16px;border-radius:14px;border:1px dashed rgba(247,235,219,.35);font-size:15px}
+
+  footer{margin-top:56px;padding:26px 16px 30px;background:#070D20;color:var(--gris);font-size:14px;text-align:center}
+  footer .marca{font-family:"Abril Fatface",serif;font-size:26px;color:var(--arena);display:block;margin-bottom:8px}
+  footer .redes{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:14px 0}
+  footer .redes a{padding:7px 14px;border-radius:999px;border:1px solid rgba(169,178,200,.35);text-decoration:none;color:var(--arena)}
+  footer small{display:block;font-size:12.5px;margin-top:14px;line-height:1.5}
+
+  .dock{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:40;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border-radius:999px;background:rgba(13,24,52,.92);backdrop-filter:blur(8px);border:1px solid rgba(227,168,119,.4);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .dock .boton{min-height:46px;font-size:15px}
+
+  @media (prefers-reduced-motion:reduce){
+    #ruta-viva{transition:none}
+    .ficha.cambia{animation:none}
+  }
+
+  /* ---------- PDF ---------- */
+  html.pdf body{padding-bottom:0}
+  html.pdf .dock{position:static;margin:0 16px 24px;box-shadow:none;backdrop-filter:none}
+  html.pdf #ruta-viva{transition:none}
+  html.pdf .ficha,html.pdf .pasos{display:none}
+  html.pdf .todas{display:grid;gap:10px;margin:12px 0 0}
+  html.pdf .todas div{padding:14px 16px;border-radius:14px;background:var(--arena);color:#1A1430}
+  html.pdf .todas b{display:block;font:400 20px/1.2 "Abril Fatface",serif;color:var(--azul)}
+  html.pdf .todas span{font-size:15px}
+</style>
+</head>
+<body>
+<div class="entwurf" role="note"><strong>Entwurf / Demo von Max Rathsack</strong> – keine offizielle Webseite von El Mexicano Tattoo Studio</div>
+
+<header class="portada">
+  <div class="ancho">
+    <span class="clave">El Mexicano Tattoo Studio</span>
+    <h1><span class="de">Von</span>Mexiko-Stadt <span class="a">nach Thun</span></h1>
+    <p class="leer">Gabo – Gabriel de Jesus Govea Trejo – tätowiert seit 1999. Sein Weg führte aus einer Galerie in Mexiko-Stadt über Cirque du Soleil und internationale Conventions an die Steffisburgstrasse 4 in Thun.</p>
+  </div>
+  <svg class="paisaje" viewBox="0 0 430 190" role="img" aria-label="Gezeichnete Landschaft: links der Vulkan Popocatépetl bei Mexiko-Stadt, rechts der Niesen am Thunersee, verbunden durch einen gepunkteten Bogen.">
+    <defs>
+      <linearGradient id="g-sol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB65C"/><stop offset="1" stop-color="#F28A1E"/></linearGradient>
+    </defs>
+    <circle cx="215" cy="118" r="38" fill="url(#g-sol)" opacity=".95"/>
+    <g fill="none" stroke="#FFB65C" stroke-width="2" stroke-linecap="round" opacity=".5">
+      <path d="M215 64v-12M179 80l-8-8M251 80l8-8M163 112h-12M267 112h12"/>
+    </g>
+    <path d="M40 132C110 20 320 20 392 120" fill="none" stroke="#E3A877" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <!-- Popocatépetl -->
+    <path d="M-10 190L48 120C56 112 66 112 74 120L150 190Z" fill="#1D3363"/>
+    <path d="M48 120C56 112 66 112 74 120L82 128C74 126 70 132 62 128C56 132 50 126 42 128Z" fill="#F7EBDB" opacity=".85"/>
+    <path d="M56 112c-4-10 2-16-2-26M64 110c4-8-2-14 2-22" fill="none" stroke="#A9B2C8" stroke-width="1.6" stroke-linecap="round" opacity=".6"/>
+    <!-- Niesen -->
+    <path d="M280 190L380 92L470 190Z" fill="#1D3363"/>
+    <path d="M380 92L366 106C372 104 376 110 382 106C388 110 392 104 396 108Z" fill="#F7EBDB" opacity=".85"/>
+    <!-- See / Ebene -->
+    <path d="M0 176C70 168 150 182 215 174S350 166 430 176V190H0Z" fill="#0D1834"/>
+    <g fill="none" stroke="#C27A45" stroke-width="1.4" stroke-linecap="round" opacity=".7">
+      <path d="M300 182h30M346 184h20M90 184h26"/>
+    </g>
+    <circle cx="40" cy="132" r="5" fill="#F28A1E"/><circle cx="392" cy="120" r="5" fill="#F28A1E"/>
+    <text x="12" y="158" fill="#F7EBDB" font-family="Karla, sans-serif" font-size="11" font-weight="700" letter-spacing="1">CDMX</text>
+    <text x="388" y="150" fill="#F7EBDB" font-family="Karla, sans-serif" font-size="11" font-weight="700" letter-spacing="1" text-anchor="end">THUN</text>
+  </svg>
+  <div class="ancho">
+    <div class="cta">
+      <a class="boton lleno" href="tel:+41332211140">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.2a1.4 1.4 0 0 1-.1 1.9L7.6 10a12 12 0 0 0 6.4 6.4l1.4-1.5a1.4 1.4 0 0 1 1.9-.1l3.2 2.6a1.4 1.4 0 0 1 .2 2l-1.3 1.6a3 3 0 0 1-3 1A17 17 0 0 1 2 7.6a3 3 0 0 1 1-3l1.6-1.3a1.4 1.4 0 0 1 2 .2Z" fill="currentColor"/></svg>
+        Anrufen</a>
+      <a class="boton linea" href="https://wa.me/41798400807">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        WhatsApp</a>
+    </div>
+    <p class="valor"><b>4.8 ★</b> über 100 Bewertungen <span class="ph">[Quelle/Zahl bitte bestätigen]</span><br>Kundinnen und Kunden loben vor allem die Cover-ups – und dass sich Gabo Zeit nimmt.</p>
+  </div>
+</header>
+
+<main>
+  <section class="ancho" aria-labelledby="h-ruta">
+    <span class="num">Kapitel 1 · Der Weg</span>
+    <h2 id="h-ruta">Vier Stationen, <em>ein Handwerk</em></h2>
+    <p>Tippe auf die Punkte der Route.</p>
+    <div class="mapa">
+      <svg id="mapa" viewBox="0 0 400 300" role="group" aria-label="Route von Mexiko-Stadt nach Thun mit vier Stationen">
+        <g fill="none" stroke="#A9B2C8" stroke-width=".8" opacity=".18">
+          <path d="M0 60H400M0 120H400M0 180H400M0 240H400M80 0V300M160 0V300M240 0V300M320 0V300"/>
+        </g>
+        <!-- angedeutete Küsten, frei gezeichnet -->
+        <path d="M0 196C20 186 30 200 44 210C58 222 70 232 88 236C98 250 92 268 100 300H0Z" fill="#1D3363" opacity=".9"/>
+        <path d="M400 38C380 40 366 52 352 50C338 60 324 58 314 72C304 90 318 104 310 120C320 130 340 128 352 140C368 146 386 140 400 150Z" fill="#1D3363" opacity=".9"/>
+        <text x="220" y="226" fill="#A9B2C8" opacity=".5" font-family="Karla, sans-serif" font-size="11" letter-spacing="4" text-anchor="middle">ATLANTIK</text>
+        <path id="ruta" d="M62 238C92 220 104 200 112 176C122 140 150 116 196 108C246 100 276 128 300 112C318 100 326 90 340 92" fill="none" stroke="#E3A877" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round" opacity=".55"/>
+        <path id="ruta-viva" d="M62 238C92 220 104 200 112 176C122 140 150 116 196 108C246 100 276 128 300 112C318 100 326 90 340 92" fill="none" stroke="#F28A1E" stroke-width="3.5" stroke-linecap="round"/>
+        <g id="paradas"></g>
+      </svg>
+    </div>
+    <div class="ficha" id="ficha" aria-live="polite">
+      <span class="cuando" id="f-cuando"></span>
+      <h3 id="f-titulo"></h3>
+      <p id="f-texto"></p>
+    </div>
+    <div class="pasos">
+      <button type="button" id="atras" aria-label="Vorherige Station">← zurück</button>
+      <span id="f-pos">1 / 4</span>
+      <button type="button" id="adelante" aria-label="Nächste Station">weiter →</button>
+    </div>
+    <div class="todas" id="todas"></div>
+  </section>
+
+  <section class="ancho" aria-labelledby="h-lupa">
+    <span class="num">Kapitel 2 · Cover-ups</span>
+    <h2 id="h-lupa">Was darunter war, <em>bleibt darunter</em></h2>
+    <p>Links liegt ein altes, verblasstes Tattoo. Zieh die Lupe darüber – darin siehst du, wie ein neues, deckendes Motiv die alte Linie verschwinden lässt.</p>
+    <div class="lupa-caja" id="lupa-caja">
+      <svg id="lupa-svg" viewBox="0 0 360 290" role="img" aria-label="Zeichnung eines verblassten alten Tattoos. Eine verschiebbare Lupe zeigt darin das neue Cover-up-Motiv, eine dunkle Ringelblume.">
+        <defs>
+          <radialGradient id="g-piel" cx=".45" cy=".4" r=".8"><stop offset="0" stop-color="#E7C9A6"/><stop offset="1" stop-color="#C9A07A"/></radialGradient>
+          <filter id="verwischt" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.4"/></filter>
+          <clipPath id="clip-lupa"><circle id="lupa-clip" cx="232" cy="150" r="66"/></clipPath>
+          <g id="petalo-ext"><path d="M0-52C-16-62-18-86 0-100C18-86 16-62 0-52Z"/></g>
+          <g id="petalo-med"><path d="M0-34C-13-42-14-62 0-72C14-62 13-42 0-34Z"/></g>
+          <g id="petalo-int"><path d="M0-16C-9-22-10-36 0-44C10-36 9-22 0-16Z"/></g>
+        </defs>
+        <!-- Haut mit altem Tattoo -->
+        <rect width="360" height="290" fill="url(#g-piel)"/>
+        <g filter="url(#verwischt)" opacity=".62" fill="none" stroke="#5F7489" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M180 214C134 182 104 154 104 118C104 92 122 76 144 76C160 76 172 86 180 100C188 86 200 76 216 76C238 76 256 92 256 118C256 154 226 182 180 214Z"/>
+          <path d="M126 68L236 202" stroke-width="3"/>
+          <path d="M118 60l14 4-4 10z" fill="#5F7489"/>
+          <path d="M84 132C110 124 130 140 180 134S250 120 276 130L268 152C244 144 220 160 180 156S112 152 92 156Z"/>
+          <path d="M84 132L66 142L84 150M276 130L294 138L276 150" />
+          <path d="M120 144h8M140 144h22M172 144h14M196 142h20M226 140h12" stroke-width="2.4" opacity=".8"/>
+          <path d="M70 70l4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z" stroke-width="2"/>
+          <path d="M286 200l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z" stroke-width="2"/>
+        </g>
+        <!-- neues Motiv, nur in der Lupe sichtbar -->
+        <g clip-path="url(#clip-lupa)">
+          <rect width="360" height="290" fill="url(#g-piel)"/>
+          <g transform="translate(180 146)">
+            <g fill="#17110D">
+              <path d="M-70 40C-120 40-150 10-160-20C-128-26-96-10-70 40Z"/>
+              <path d="M70 40C120 40 150 10 160-20C128-26 96-10 70 40Z"/>
+              <path d="M-40 70C-80 96-120 92-140 74C-110 56-74 56-40 70Z"/>
+              <path d="M40 70C80 96 120 92 140 74C110 56 74 56 40 70Z"/>
+            </g>
+            <g fill="none" stroke="#F28A1E" stroke-width="1.6" opacity=".9">
+              <path d="M-74 36C-104 22-128 4-148-16M74 36C104 22 128 4 148-16M-44 70C-80 78-110 78-132 74M44 70C80 78 110 78 132 74"/>
+            </g>
+            <g fill="#17110D" stroke="#17110D" stroke-width="2">
+              <use href="#petalo-ext"/><use href="#petalo-ext" transform="rotate(24)"/><use href="#petalo-ext" transform="rotate(48)"/><use href="#petalo-ext" transform="rotate(72)"/><use href="#petalo-ext" transform="rotate(96)"/><use href="#petalo-ext" transform="rotate(120)"/><use href="#petalo-ext" transform="rotate(144)"/><use href="#petalo-ext" transform="rotate(168)"/><use href="#petalo-ext" transform="rotate(192)"/><use href="#petalo-ext" transform="rotate(216)"/><use href="#petalo-ext" transform="rotate(240)"/><use href="#petalo-ext" transform="rotate(264)"/><use href="#petalo-ext" transform="rotate(288)"/><use href="#petalo-ext" transform="rotate(312)"/><use href="#petalo-ext" transform="rotate(336)"/>
+              <circle r="62"/>
+            </g>
+            <g fill="#C9500E" stroke="#17110D" stroke-width="2.4">
+              <use href="#petalo-med" transform="rotate(12)"/><use href="#petalo-med" transform="rotate(42)"/><use href="#petalo-med" transform="rotate(72)"/><use href="#petalo-med" transform="rotate(102)"/><use href="#petalo-med" transform="rotate(132)"/><use href="#petalo-med" transform="rotate(162)"/><use href="#petalo-med" transform="rotate(192)"/><use href="#petalo-med" transform="rotate(222)"/><use href="#petalo-med" transform="rotate(252)"/><use href="#petalo-med" transform="rotate(282)"/><use href="#petalo-med" transform="rotate(312)"/><use href="#petalo-med" transform="rotate(342)"/>
+            </g>
+            <g fill="#F7A23A" stroke="#17110D" stroke-width="2">
+              <use href="#petalo-int"/><use href="#petalo-int" transform="rotate(36)"/><use href="#petalo-int" transform="rotate(72)"/><use href="#petalo-int" transform="rotate(108)"/><use href="#petalo-int" transform="rotate(144)"/><use href="#petalo-int" transform="rotate(180)"/><use href="#petalo-int" transform="rotate(216)"/><use href="#petalo-int" transform="rotate(252)"/><use href="#petalo-int" transform="rotate(288)"/><use href="#petalo-int" transform="rotate(324)"/>
+            </g>
+            <circle r="15" fill="#17110D"/>
+            <g fill="#FFB65C"><circle cx="0" cy="-6" r="2.2"/><circle cx="6" cy="3" r="2.2"/><circle cx="-6" cy="3" r="2.2"/><circle r="1.6"/></g>
+            <g fill="none" stroke="#E3A877" stroke-width="1.2" opacity=".75">
+              <circle r="84" stroke-dasharray="1 7" stroke-linecap="round" stroke-width="2.4"/>
+            </g>
+          </g>
+        </g>
+        <!-- Lupenrahmen -->
+        <g id="lupa-marco" transform="translate(232 150)" pointer-events="none">
+          <line x1="47" y1="47" x2="82" y2="82" stroke="#5A3418" stroke-width="16" stroke-linecap="round"/>
+          <line x1="47" y1="47" x2="80" y2="80" stroke="#C27A45" stroke-width="10" stroke-linecap="round"/>
+          <circle r="66" fill="none" stroke="#7A4824" stroke-width="10"/>
+          <circle r="66" fill="none" stroke="#E3A877" stroke-width="5"/>
+          <path d="M-44-34A56 56 0 0 1-14-54" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+        </g>
+        <text id="lupa-hint" x="16" y="276" fill="#4A2A14" font-family="Karla, sans-serif" font-size="12.5" font-weight="700">↔ Lupe ziehen</text>
+      </svg>
+    </div>
+    <div class="leyenda"><span class="viejo">aussen: altes Tattoo (Skizze)</span><span class="nuevo">in der Lupe: Cover-up</span></div>
+    <p class="nota-cover">Jedes Cover-up ist anders: Wie gross das neue Motiv sein muss und was über einem alten Tattoo möglich ist, schaut Gabo sich zuerst an. Schick ein Foto per WhatsApp. Preis nach Motiv und Grösse.</p>
+  </section>
+
+  <section class="ancho" aria-labelledby="h-of">
+    <span class="num">Kapitel 3 · Im Studio</span>
+    <h2 id="h-of">An der <em>Steffisburgstrasse</em></h2>
+    <div class="ofertas">
+      <div class="of">
+        <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="#1D3363"/><path d="M17 39L35 21M32 18l6 6M20 36l-4 4" stroke="#FFB65C" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+        <div><h3>Tattoos</h3><p>Motive nach deinen Ideen, gemeinsam mit Gabo entwickelt.</p></div>
+      </div>
+      <div class="of">
+        <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="#1D3363"/><circle cx="24" cy="24" r="11" fill="none" stroke="#FFB65C" stroke-width="3"/><path d="M32 32l9 9" stroke="#C27A45" stroke-width="5" stroke-linecap="round"/></svg>
+        <div><h3>Cover-ups</h3><p>Alte Tattoos mit einem neuen Motiv überdecken.</p></div>
+      </div>
+      <div class="of">
+        <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="#1D3363"/><path d="M19 19l6-3h6l6 3 6 4-3 6-4-2v15H20V27l-4 2-3-6Z" fill="none" stroke="#FFB65C" stroke-width="2.4" stroke-linejoin="round"/></svg>
+        <div><h3>Zubehör &amp; Kleider</h3><p>Gibt es ebenfalls im Studio. Sortiment: <span class="ph">[bitte ergänzen]</span></p></div>
+      </div>
+    </div>
+    <p style="color:var(--gris);font-size:15px">Preis nach Motiv und Grösse – Anfrage per WhatsApp oder E-Mail.</p>
+  </section>
+
+  <section class="ancho" aria-labelledby="h-con">
+    <span class="num">Kapitel 4 · Besuch</span>
+    <h2 id="h-con">Komm <em>vorbei</em></h2>
+    <div class="tarjeta">
+      <h3>El Mexicano Tattoo Studio</h3>
+      <p>Steffisburgstrasse 4, 3600 Thun</p>
+      <p>Studio: <a href="tel:+41332211140">033 221 11 40</a></p>
+      <p>Mobile / WhatsApp: <a href="https://wa.me/41798400807">079 840 08 07</a></p>
+      <p>E-Mail: <a href="mailto:gabotattoo@yahoo.com.mx">gabotattoo@yahoo.com.mx</a></p>
+      <a class="boton lleno" href="https://wa.me/41798400807" style="background:#0D1834;color:#F7EBDB">Termin per WhatsApp anfragen</a>
+    </div>
+    <p class="horas">Öffnungszeiten: <span class="ph">[Öffnungszeiten – bitte bestätigen]</span></p>
+  </section>
+</main>
+
+<footer>
+  <span class="marca">El Mexicano</span>
+  Tattoos · Cover-ups · Zubehör &amp; Kleider<br>Steffisburgstrasse 4, 3600 Thun
+  <div class="redes">
+    <a href="https://www.instagram.com/gabo.elmexicano/">Instagram @gabo.elmexicano</a>
+    <a href="https://www.youtube.com/@gabotattoo">YouTube @gabotattoo</a>
+  </div>
+  <small>Govea Trejo El mexicano Tattoo Studio · Einzelunternehmen · CHE-115.634.036<br>Entwurf / Demo von Max Rathsack – keine offizielle Webseite.</small>
+</footer>
+
+<div class="dock">
+  <a class="boton lleno" href="tel:+41332211140">Anrufen</a>
+  <a class="boton linea" href="https://wa.me/41798400807">WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  /* ---------- Route ---------- */
+  var STATIONEN = [
+    {f:.0, label:'1999', cuando:'1999 · Mexiko-Stadt', titel:'Die ersten Tattoos', text:'Gabo beginnt zu tätowieren – in einer Galerie in Mexiko-Stadt.', dx:-6, dy:-16, anchor:'start'},
+    {f:.30, label:'Cirque', cuando:'Mexiko', titel:'Cirque du Soleil', text:'Als Tätowierer ist er bei mehreren Engagements des Cirque du Soleil in Mexiko dabei.', dx:14, dy:4, anchor:'start'},
+    {f:.62, label:'Conventions', cuando:'Europa & Lateinamerika', titel:'Festivals & Conventions', text:'Als Maler und Künstler nimmt Gabo an Festivals und Tattoo-Conventions in Europa und Lateinamerika teil.', dx:0, dy:-18, anchor:'middle'},
+    {f:1, label:"2010 Thun", cuando:'seit 2010 · Thun', titel:'Ein eigenes Studio', text:'Seit 2010 hat Gabo sein eigenes Studio an der Steffisburgstrasse 4 in Thun.', dx:-4, dy:-18, anchor:'middle'}
+  ];
+  var NS='http://www.w3.org/2000/svg';
+  var ruta=document.getElementById('ruta-viva');
+  var L=ruta.getTotalLength();
+  ruta.style.strokeDasharray=L; ruta.style.strokeDashoffset=L;
+  var cont=document.getElementById('paradas');
+  var nodos=[];
+  STATIONEN.forEach(function(s,i){
+    var p=ruta.getPointAtLength(L*s.f);
+    var g=document.createElementNS(NS,'g');
+    g.setAttribute('class','parada'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+    g.setAttribute('aria-label','Station '+(i+1)+': '+s.titel);
+    g.innerHTML='<circle class="halo" cx="'+p.x+'" cy="'+p.y+'" r="20"/>'+
+      '<circle cx="'+p.x+'" cy="'+p.y+'" r="22" fill="transparent"/>'+
+      '<circle class="punto" cx="'+p.x+'" cy="'+p.y+'" r="9"/>'+
+      '<text x="'+(p.x+s.dx)+'" y="'+(p.y+s.dy)+'" text-anchor="'+s.anchor+'">'+s.label+'</text>';
+    g.addEventListener('click',function(){ zeige(i); });
+    g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); zeige(i);} });
+    cont.appendChild(g); nodos.push(g);
+  });
+  var aktuell=0;
+  var ficha=document.getElementById('ficha');
+  function zeige(i){
+    aktuell=i;
+    var s=STATIONEN[i];
+    ruta.style.strokeDashoffset = L*(1-s.f);
+    nodos.forEach(function(n,k){ n.classList.toggle('activa',k===i); n.classList.toggle('hecha',k<i); });
+    document.getElementById('f-cuando').textContent=s.cuando;
+    document.getElementById('f-titulo').textContent=s.titel;
+    document.getElementById('f-texto').textContent=s.text;
+    document.getElementById('f-pos').textContent=(i+1)+' / '+STATIONEN.length;
+    ficha.classList.remove('cambia'); void ficha.offsetWidth; ficha.classList.add('cambia');
+  }
+  document.getElementById('atras').addEventListener('click',function(){ zeige((aktuell+STATIONEN.length-1)%STATIONEN.length); });
+  document.getElementById('adelante').addEventListener('click',function(){ zeige((aktuell+1)%STATIONEN.length); });
+  // Liste aller Stationen (für Druck/PDF)
+  document.getElementById('todas').innerHTML = STATIONEN.map(function(s){ return '<div><b>'+s.titel+'</b><span>'+s.cuando+' – '+s.text+'</span></div>'; }).join('');
+  zeige(0);
+
+  /* ---------- Lupe ---------- */
+  var svg=document.getElementById('lupa-svg');
+  var caja=document.getElementById('lupa-caja');
+  var clipC=document.getElementById('lupa-clip');
+  var marco=document.getElementById('lupa-marco');
+  var hint=document.getElementById('lupa-hint');
+  var R=66, pos={x:232,y:150};
+  function setze(x,y){
+    pos.x=Math.max(R*0.4,Math.min(360-R*0.4,x)); pos.y=Math.max(R*0.4,Math.min(290-R*0.4,y));
+    clipC.setAttribute('cx',pos.x); clipC.setAttribute('cy',pos.y);
+    marco.setAttribute('transform','translate('+pos.x+' '+pos.y+')');
+  }
+  function punkt(e){ var p=svg.createSVGPoint(); p.x=e.clientX; p.y=e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); }
+  var greif=null;
+  svg.addEventListener('pointerdown',function(e){
+    var p=punkt(e);
+    var nah=Math.hypot(p.x-pos.x,p.y-pos.y)<R+10;
+    greif = nah ? {dx:pos.x-p.x, dy:pos.y-p.y} : {dx:0,dy:0};
+    if(!nah) setze(p.x,p.y);
+    caja.classList.add('agarra'); hint.style.display='none';
+    try{ svg.setPointerCapture(e.pointerId); }catch(_){}
+    e.preventDefault();
+  });
+  svg.addEventListener('pointermove',function(e){ if(!greif) return; var p=punkt(e); setze(p.x+greif.dx,p.y+greif.dy); });
+  function los(){ greif=null; caja.classList.remove('agarra'); }
+  svg.addEventListener('pointerup',los); svg.addEventListener('pointercancel',los);
+  svg.setAttribute('tabindex','0');
+  svg.addEventListener('keydown',function(e){
+    var m={ArrowLeft:[-12,0],ArrowRight:[12,0],ArrowUp:[0,-12],ArrowDown:[0,12]}[e.key];
+    if(m){ e.preventDefault(); setze(pos.x+m[0],pos.y+m[1]); }
+  });
+
+  /* ---------- PDF-Zustand ---------- */
+  window.pdfZustand=function(){
+    ruta.style.strokeDashoffset=0;
+    nodos.forEach(function(n){ n.classList.add('hecha'); n.classList.remove('activa'); });
+    setze(204,142); hint.style.display='none';
+  };
+})();
+</script>
+</body>
+</html>

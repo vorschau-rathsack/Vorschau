@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Mexicano Tattoo Studio – Papel Picado</title>
+<meta name="description" content="Entwurf: El Mexicano Tattoo Studio in Thun – Tattoos, Cover-ups, Zubehör und Kleider bei Gabo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#FBF3E4;
+    --crema-2:#F4E6CC;
+    --magenta:#D2216D;
+    --magenta-dk:#9E1450;
+    --turquesa:#0B9C9C;
+    --turquesa-dk:#07676B;
+    --cempasuchil:#F5A300;
+    --tinta:#2B1630;
+    --suave:#6B5560;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--crema);color:var(--tinta);font:400 17px/1.55 "Work Sans",system-ui,sans-serif;overflow-x:hidden;padding-bottom:84px}
+  a{color:inherit}
+  h1,h2,h3{font-family:"Bungee",Impact,sans-serif;font-weight:400;line-height:1.02;margin:0;letter-spacing:.01em}
+
+  .demo{background:var(--tinta);color:#fff;font-size:13px;line-height:1.35;text-align:center;padding:8px 16px}
+  .demo b{color:var(--cempasuchil);font-weight:700}
+
+  /* ---------- Girlande ---------- */
+  .guirnalda{position:relative;padding:6px 6px 0;background:
+     radial-gradient(120% 70% at 50% 0%, #fff7e8 0%, var(--crema) 70%)}
+  .cuerda{position:absolute;left:0;right:0;top:4px;width:100%;height:40px;pointer-events:none}
+  .banderas{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 4px;max-width:520px;margin:0 auto}
+  .bandera{appearance:none;border:0;background:none;padding:0;margin:0;cursor:pointer;font:inherit;color:inherit;display:block;width:100%;
+    -webkit-tap-highlight-color:transparent}
+  .bandera:nth-child(1){margin-top:14px}
+  .bandera:nth-child(2){margin-top:22px}
+  .bandera:nth-child(3){margin-top:22px}
+  .bandera:nth-child(4){margin-top:14px}
+  .bandera:focus-visible{outline:3px solid var(--turquesa);outline-offset:4px;border-radius:4px}
+  .viento{transform-origin:50% 0;animation:aleteo 3.4s ease-in-out infinite alternate}
+  .bandera:nth-child(2) .viento{animation-delay:-1.1s;animation-duration:3.9s}
+  .bandera:nth-child(3) .viento{animation-delay:-2.2s;animation-duration:3.1s}
+  .bandera:nth-child(4) .viento{animation-delay:-.6s;animation-duration:3.6s}
+  @keyframes aleteo{
+    0%{transform:rotate(-2.6deg) skewX(1.5deg)}
+    50%{transform:rotate(1.2deg) skewX(-1deg)}
+    100%{transform:rotate(3deg) skewX(-2deg)}
+  }
+  .giro{position:relative;aspect-ratio:100/128;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.3,1.4,.5,1);transform:perspective(560px) rotateY(0)}
+  .bandera.vuelta .giro{transform:perspective(560px) rotateY(180deg)}
+  .cara{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .cara svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 2px rgba(43,22,48,.18))}
+  .reverso{transform:rotateY(180deg)}
+  .reverso span{position:absolute;left:6%;right:6%;top:14%;bottom:20%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    font:400 clamp(11px,3.1vw,15px)/1.08 "Bungee",Impact,sans-serif;color:#fff;gap:6px}
+  .reverso span small{font:700 10px/1.2 "Work Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+  .reverso.amarillo span{color:var(--tinta)}
+  .pista{text-align:center;font-size:14px;color:var(--suave);margin:14px 16px 0}
+  .pista svg{vertical-align:-5px;margin-right:4px}
+
+  /* ---------- Kopf ---------- */
+  .cabeza{padding:22px 16px 8px;text-align:center;max-width:560px;margin:0 auto}
+  .ort{display:inline-block;font:700 12px/1 "Work Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--turquesa-dk);border:2px solid var(--turquesa);border-radius:99px;padding:7px 12px 6px}
+  .cabeza h1{font-size:clamp(2.5rem,13.4vw,4.4rem);margin:14px 0 4px;color:var(--magenta);text-shadow:3px 3px 0 var(--cempasuchil)}
+  .cabeza h1 span{display:block}
+  .cabeza h1 .peq{font-size:.42em;color:var(--turquesa-dk);text-shadow:none;letter-spacing:.06em;margin-top:6px}
+  .cabeza p.lead{font-size:18px;margin:14px auto 0;max-width:30em}
+  .botones{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 0}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;border-radius:14px;text-decoration:none;font:700 16px/1.1 "Work Sans",sans-serif;padding:10px 12px;border:0}
+  .btn svg{flex:none}
+  .btn-llamar{background:var(--magenta);color:#fff;box-shadow:0 4px 0 var(--magenta-dk)}
+  .btn-wa{background:var(--turquesa);color:#fff;box-shadow:0 4px 0 var(--turquesa-dk)}
+  .btn:active{transform:translateY(2px);box-shadow:none}
+  .estrellas{margin:20px auto 0;background:#fff;border-radius:16px;padding:14px 16px;border:2px dashed var(--cempasuchil);font-size:15px;max-width:30em}
+  .estrellas strong{font:400 20px/1.2 "Bungee",sans-serif;color:var(--magenta)}
+  .ph{background:#FFF0B8;color:#5A4300;border-radius:4px;padding:0 4px;font-size:.92em;white-space:normal}
+
+  /* ---------- Bühne ---------- */
+  .escenario{padding:18px 16px 8px;max-width:560px;margin:0 auto;scroll-margin-top:12px}
+  .vacio{border:2px dashed #E3CFA8;border-radius:18px;padding:18px;text-align:center;color:var(--suave);font-size:15px}
+  .panel{display:none;border-radius:20px;padding:22px 18px 20px;position:relative;overflow:hidden;color:#fff}
+  .panel.visible{display:block;animation:entra .55s cubic-bezier(.2,1.2,.4,1)}
+  @keyframes entra{from{opacity:0;transform:translateY(-14px) scale(.98)}to{opacity:1;transform:none}}
+  .panel h2{font-size:clamp(1.6rem,8vw,2.4rem);margin:4px 0 12px;position:relative}
+  .panel p{margin:0 0 12px;position:relative}
+  .panel .eti{font:700 12px/1 "Work Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.85;position:relative}
+  .p-cover{background:var(--magenta)}
+  .p-camino{background:var(--turquesa-dk)}
+  .p-tienda{background:var(--cempasuchil);color:var(--tinta)}
+  .p-contacto{background:var(--tinta)}
+  .panel .orla{position:absolute;right:-28px;top:-28px;width:130px;height:130px;opacity:.16}
+  .linea{list-style:none;margin:6px 0 0;padding:0;position:relative}
+  .linea li{padding:10px 0;border-top:1px dashed rgba(255,255,255,.4)}
+  .linea li b{display:block;font:400 16px/1.3 "Bungee",sans-serif;color:var(--cempasuchil);margin-bottom:2px}
+  .precio{background:rgba(255,255,255,.16);border-radius:12px;padding:10px 12px;font-size:15px}
+  .p-tienda .precio{background:rgba(43,22,48,.1)}
+  .panel a.btn{margin-top:6px}
+  .datos{display:grid;gap:8px;position:relative;font-size:16px}
+  .datos a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+
+  /* ---------- Angebot ---------- */
+  .oferta{padding:26px 16px 10px;max-width:560px;margin:0 auto}
+  .oferta>h2{font-size:clamp(1.7rem,8.6vw,2.6rem);color:var(--turquesa-dk);text-align:center;margin-bottom:16px}
+  .tarjeta{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start;background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;border-left:8px solid var(--c)}
+  .tarjeta h3{font-size:19px;color:var(--c);margin-bottom:4px}
+  .tarjeta p{margin:0;font-size:16px}
+  .nota{text-align:center;font-size:15px;color:var(--suave);margin:8px 0 0}
+
+  .horario{margin:18px 16px 0;padding:18px;border-radius:18px;background:var(--crema-2);text-align:center;max-width:528px}
+  @media(min-width:560px){.horario{margin:18px auto 0}}
+  .horario h2{font-size:22px;color:var(--magenta);margin-bottom:8px}
+
+  .pie{margin-top:34px;background:var(--tinta);color:#F3E6EE;padding:0 16px 26px;font-size:15px}
+  .pie-borde{display:block;width:calc(100% + 32px);margin:0 -16px 18px;height:22px}
+  .pie h2{font-size:clamp(1.4rem,7vw,2rem);color:var(--cempasuchil);margin-bottom:10px}
+  .pie address{font-style:normal;margin-bottom:12px}
+  .pie a{color:#fff}
+  .pie .redes{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .pie .redes a{border:1.5px solid rgba(255,255,255,.45);border-radius:99px;padding:6px 12px;text-decoration:none;font-size:14px}
+  .pie .legal{font-size:12.5px;opacity:.75;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;margin-top:16px}
+
+  .fija{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(251,243,228,.94);backdrop-filter:blur(6px);border-top:3px solid var(--magenta)}
+  .fija .btn{min-height:48px;font-size:15px}
+
+  @media (prefers-reduced-motion:reduce){
+    .viento{animation:none}
+    .giro{transition:none}
+    .panel.visible{animation:none}
+  }
+
+  /* ---------- PDF-Zustand ---------- */
+  html.pdf body{padding-bottom:0}
+  html.pdf .viento{animation:none;transform:none}
+  html.pdf .giro{transition:none}
+  html.pdf .giro,html.pdf .bandera.vuelta .giro{transform:none;transform-style:flat}
+  html.pdf .reverso{display:none;transform:none}
+  html.pdf .bandera.vuelta .reverso{display:block}
+  html.pdf .bandera.vuelta .frente{display:none}
+  html.pdf .panel{display:block;animation:none;margin-bottom:14px}
+  html.pdf .vacio,html.pdf .pista{display:none}
+  html.pdf .fija{position:static;border-top:0;background:transparent;padding:12px 16px 24px;backdrop-filter:none}
+  html.pdf .cara svg{filter:none}
+</style>
+</head>
+<body>
+<div class="demo" role="note"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite von El Mexicano Tattoo Studio</div>
+
+<header class="guirnalda">
+  <svg class="cuerda" viewBox="0 0 430 40" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-4 6 Q 108 30 215 30 T 434 6" fill="none" stroke="#2B1630" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <nav class="banderas" aria-label="Fähnchen zum Umdrehen">
+
+    <!-- Fähnchen 1: Ringelblume -->
+    <button class="bandera" type="button" data-panel="p-cover" aria-pressed="false" aria-controls="p-cover">
+      <div class="viento"><div class="giro">
+        <div class="cara frente">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <defs>
+              <mask id="m-flor" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="128">
+                <rect width="100" height="128" fill="#fff"/>
+                <g fill="#000" transform="translate(50 60)">
+                  <circle r="6.5"/>
+                  <g id="petalo"><ellipse cx="0" cy="-17" rx="4.2" ry="8.5"/></g>
+                  <use href="#petalo" transform="rotate(36)"/><use href="#petalo" transform="rotate(72)"/>
+                  <use href="#petalo" transform="rotate(108)"/><use href="#petalo" transform="rotate(144)"/>
+                  <use href="#petalo" transform="rotate(180)"/><use href="#petalo" transform="rotate(216)"/>
+                  <use href="#petalo" transform="rotate(252)"/><use href="#petalo" transform="rotate(288)"/>
+                  <use href="#petalo" transform="rotate(324)"/>
+                  <circle cx="0" cy="-33" r="2.2"/><circle cx="0" cy="33" r="2.2"/>
+                  <circle cx="-33" cy="0" r="2.2"/><circle cx="33" cy="0" r="2.2"/>
+                </g>
+                <g fill="#000">
+                  <path d="M10 22 l4 -5 l4 5 l-4 5z M24 22 l4 -5 l4 5 l-4 5z M68 22 l4 -5 l4 5 l-4 5z M82 22 l4 -5 l4 5 l-4 5z"/>
+                  <path d="M10 98 l4 -5 l4 5 l-4 5z M24 98 l4 -5 l4 5 l-4 5z M68 98 l4 -5 l4 5 l-4 5z M82 98 l4 -5 l4 5 l-4 5z"/>
+                  <circle cx="50" cy="22" r="2.6"/><circle cx="50" cy="98" r="2.6"/>
+                  <circle cx="10" cy="60" r="2.4"/><circle cx="90" cy="60" r="2.4"/>
+                </g>
+              </mask>
+            </defs>
+            <rect x="0" y="0" width="100" height="9" fill="#9E1450"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#D2216D" mask="url(#m-flor)"/>
+          </svg>
+        </div>
+        <div class="cara reverso">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <rect x="0" y="0" width="100" height="9" fill="#07676B"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#0B9C9C"/>
+          </svg>
+          <span>Cover-<br>ups<small>altes überdecken</small></span>
+        </div>
+      </div></div>
+    </button>
+
+    <!-- Fähnchen 2: Schwalbe -->
+    <button class="bandera" type="button" data-panel="p-camino" aria-pressed="false" aria-controls="p-camino">
+      <div class="viento"><div class="giro">
+        <div class="cara frente">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <defs>
+              <mask id="m-golondrina" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="128">
+                <rect width="100" height="128" fill="#fff"/>
+                <g fill="#000">
+                  <circle cx="24" cy="52" r="7"/>
+                  <path d="M17 50L9 53L17 55Z"/>
+                  <path d="M24 45C40 44 56 50 68 58L66 64C52 64 36 62 24 59Z"/>
+                  <path d="M64 56L93 50L75 61L94 72L63 64Z"/>
+                  <path d="M33 48C43 36 58 24 82 17C71 30 63 42 55 52Z"/>
+                  <path d="M38 58C46 68 54 78 66 90C63 77 59 67 53 60Z"/>
+                  <circle cx="16" cy="20" r="2.4"/><circle cx="28" cy="16" r="2"/><circle cx="72" cy="16" r="2"/><circle cx="84" cy="20" r="2.4"/>
+                  <circle cx="14" cy="76" r="2"/><circle cx="86" cy="76" r="2"/>
+                  <path d="M20 104h60v3H20z"/>
+                  <path d="M30 98l3-4 3 4-3 4zM47 98l3-4 3 4-3 4zM64 98l3-4 3 4-3 4z"/>
+                </g>
+              </mask>
+            </defs>
+            <rect x="0" y="0" width="100" height="9" fill="#07676B"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#0B9C9C" mask="url(#m-golondrina)"/>
+          </svg>
+        </div>
+        <div class="cara reverso">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <rect x="0" y="0" width="100" height="9" fill="#9E1450"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#D2216D"/>
+          </svg>
+          <span>Gabos<br>Weg<small>seit 1999</small></span>
+        </div>
+      </div></div>
+    </button>
+
+    <!-- Fähnchen 3: Sonne -->
+    <button class="bandera" type="button" data-panel="p-tienda" aria-pressed="false" aria-controls="p-tienda">
+      <div class="viento"><div class="giro">
+        <div class="cara frente">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <defs>
+              <mask id="m-sol" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="128">
+                <rect width="100" height="128" fill="#fff"/>
+                <g fill="#000" transform="translate(50 58)">
+                  <path d="M0-12L3.5-3.5 12 0 3.5 3.5 0 12-3.5 3.5-12 0-3.5-3.5Z"/>
+                  <g id="rayo"><path d="M-3-17L0-30 3-17Z"/></g>
+                  <use href="#rayo" transform="rotate(45)"/><use href="#rayo" transform="rotate(90)"/>
+                  <use href="#rayo" transform="rotate(135)"/><use href="#rayo" transform="rotate(180)"/>
+                  <use href="#rayo" transform="rotate(225)"/><use href="#rayo" transform="rotate(270)"/>
+                  <use href="#rayo" transform="rotate(315)"/>
+                </g>
+                <g fill="#000">
+                  <path d="M8 18l6 7 6-7 6 7 6-7 6 7 6-7 6 7 6-7 6 7 6-7 6 7 6-7 0 3-6 7-6-7-6 7-6-7-6 7-6-7-6 7-6-7-6 7-6-7-6 7-6-7z"/>
+                  <path d="M8 96l6 7 6-7 6 7 6-7 6 7 6-7 6 7 6-7 6 7 6-7 6 7 6-7 0 3-6 7-6-7-6 7-6-7-6 7-6-7-6 7-6-7-6 7-6-7-6 7-6-7z"/>
+                  <circle cx="14" cy="58" r="3"/><circle cx="86" cy="58" r="3"/>
+                  <circle cx="20" cy="40" r="1.8"/><circle cx="80" cy="40" r="1.8"/><circle cx="20" cy="76" r="1.8"/><circle cx="80" cy="76" r="1.8"/>
+                </g>
+              </mask>
+            </defs>
+            <rect x="0" y="0" width="100" height="9" fill="#C27F00"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#F5A300" mask="url(#m-sol)"/>
+          </svg>
+        </div>
+        <div class="cara reverso">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <rect x="0" y="0" width="100" height="9" fill="#5B2C61"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#2B1630"/>
+          </svg>
+          <span>Zubehör<br>&amp; Kleider<small>im Studio</small></span>
+        </div>
+      </div></div>
+    </button>
+
+    <!-- Fähnchen 4: Herz -->
+    <button class="bandera" type="button" data-panel="p-contacto" aria-pressed="false" aria-controls="p-contacto">
+      <div class="viento"><div class="giro">
+        <div class="cara frente">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <defs>
+              <mask id="m-corazon" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="128">
+                <rect width="100" height="128" fill="#fff"/>
+                <g fill="#000">
+                  <path d="M50 82C34 70 24 60 24 49c0-8 6-13 13-13 6 0 10 3 13 8 3-5 7-8 13-8 7 0 13 5 13 13 0 11-10 21-26 33Z"/>
+                  <ellipse cx="22" cy="28" rx="3.4" ry="8" transform="rotate(-40 22 28)"/>
+                  <ellipse cx="78" cy="28" rx="3.4" ry="8" transform="rotate(40 78 28)"/>
+                  <ellipse cx="22" cy="92" rx="3.4" ry="8" transform="rotate(40 22 92)"/>
+                  <ellipse cx="78" cy="92" rx="3.4" ry="8" transform="rotate(-40 78 92)"/>
+                  <circle cx="50" cy="22" r="3"/><circle cx="40" cy="20" r="1.8"/><circle cx="60" cy="20" r="1.8"/>
+                  <circle cx="50" cy="98" r="3"/><circle cx="40" cy="100" r="1.8"/><circle cx="60" cy="100" r="1.8"/>
+                </g>
+              </mask>
+            </defs>
+            <rect x="0" y="0" width="100" height="9" fill="#9E1450"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#D2216D" mask="url(#m-corazon)"/>
+            <path d="M50 74c-9-7-15-13-15-20 0-4 3-7 7-7 3 0 6 2 8 5 2-3 5-5 8-5 4 0 7 3 7 7 0 7-6 13-15 20Z" fill="#F5A300"/>
+          </svg>
+        </div>
+        <div class="cara reverso">
+          <svg viewBox="0 0 100 128" aria-hidden="true">
+            <rect x="0" y="0" width="100" height="9" fill="#C27F00"/>
+            <path d="M0 9H100V112L93.75 124L87.5 112L81.25 124L75 112L68.75 124L62.5 112L56.25 124L50 112L43.75 124L37.5 112L31.25 124L25 112L18.75 124L12.5 112L6.25 124L0 112Z" fill="#F5A300"/>
+          </svg>
+          <span>Kon-<br>takt<small>Thun</small></span>
+        </div>
+      </div></div>
+    </button>
+  </nav>
+  <p class="pista">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5a2 2 0 1 1 4 0v5l4.4.9a2 2 0 0 1 1.6 2.3l-.9 5A3 3 0 0 1 15.2 21H11a3 3 0 0 1-2.4-1.2L5.3 15.4a1.6 1.6 0 0 1 2.3-2.2L9 14.5" fill="none" stroke="#D2216D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Fähnchen antippen – auf der Rückseite wartet etwas.
+  </p>
+</header>
+
+<main>
+  <section class="cabeza" aria-labelledby="titel">
+    <span class="ort">Tattoo Studio · Thun · seit 2010</span>
+    <h1 id="titel"><span>El</span><span>Mexicano</span><span class="peq">Tattoo Studio</span></h1>
+    <p class="lead">Hier tätowiert Gabo – Gabriel de Jesus Govea Trejo. Angefangen hat er 1999 in Mexiko-Stadt, seit 2010 hat er sein eigenes Studio an der Steffisburgstrasse in Thun.</p>
+    <div class="botones">
+      <a class="btn btn-llamar" href="tel:+41332211140">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.2a1.4 1.4 0 0 1-.1 1.9L7.6 10a12 12 0 0 0 6.4 6.4l1.4-1.5a1.4 1.4 0 0 1 1.9-.1l3.2 2.6a1.4 1.4 0 0 1 .2 2l-1.3 1.6a3 3 0 0 1-3 1A17 17 0 0 1 2 7.6a3 3 0 0 1 1-3l1.6-1.3a1.4 1.4 0 0 1 2 .2Z" fill="currentColor"/></svg>
+        033 221 11 40</a>
+      <a class="btn btn-wa" href="https://wa.me/41798400807">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.6 7.6c.3-.4.7-.4 1-.3l1 2.2c.1.3 0 .6-.2.8l-.6.7a7 7 0 0 0 3.2 3.1l.7-.7c.2-.2.5-.3.8-.1l2.1 1c.2.3.2.8-.2 1.2-1.1 1.2-2.7 1-4.8-.2a10 10 0 0 1-3.6-3.8c-.7-1.5-.8-2.9.6-3.9Z" fill="currentColor"/></svg>
+        WhatsApp</a>
+    </div>
+    <div class="estrellas">
+      <strong>4.8 ★</strong> · über 100 Bewertungen <span class="ph">[Quelle/Zahl bitte bestätigen]</span><br>
+      Besonders gelobt werden die Cover-ups – und dass sich Gabo Zeit nimmt.
+    </div>
+  </section>
+
+  <section class="escenario" id="escenario" aria-live="polite">
+    <div class="vacio" id="vacio">Noch kein Fähnchen umgedreht. Tippe oben auf eines – der Inhalt erscheint hier.</div>
+
+    <article class="panel p-cover" id="p-cover" aria-labelledby="h-cover">
+      <svg class="orla" viewBox="0 0 100 100" aria-hidden="true"><g fill="#fff" transform="translate(50 50)"><circle r="12"/><ellipse cy="-30" rx="9" ry="16"/><ellipse cy="30" rx="9" ry="16"/><ellipse cx="-30" rx="16" ry="9"/><ellipse cx="30" rx="16" ry="9"/></g></svg>
+      <span class="eti">Fähnchen 1</span>
+      <h2 id="h-cover">Cover-ups</h2>
+      <p>Ein altes Tattoo, das nicht mehr passt oder verblasst ist, muss nicht so bleiben. Gabo überdeckt alte Tattoos mit einem neuen Motiv – genau das heben viele Kundinnen und Kunden in ihren Bewertungen hervor.</p>
+      <p>Am besten schickst du ein Foto deines alten Tattoos per WhatsApp. Dann besprecht ihr in Ruhe, welches Motiv darüber passt.</p>
+      <p class="precio">Preis nach Motiv und Grösse – Anfrage per WhatsApp oder E-Mail.</p>
+      <a class="btn btn-wa" href="https://wa.me/41798400807" style="background:#fff;color:#9E1450;box-shadow:0 4px 0 rgba(0,0,0,.2)">Foto per WhatsApp schicken</a>
+    </article>
+
+    <article class="panel p-camino" id="p-camino" aria-labelledby="h-camino">
+      <svg class="orla" viewBox="0 0 100 100" aria-hidden="true"><g fill="#fff"><circle cx="24" cy="52" r="7"/><path d="M24 45C40 44 56 50 68 58L66 64C52 64 36 62 24 59ZM64 56L93 50L75 61L94 72L63 64ZM33 48C43 36 58 24 82 17C71 30 63 42 55 52ZM38 58C46 68 54 78 66 90C63 77 59 67 53 60Z"/></g></svg>
+      <span class="eti">Fähnchen 2</span>
+      <h2 id="h-camino">Gabos Weg</h2>
+      <ol class="linea">
+        <li><b>1999</b><span>Erste Tattoos – in einer Galerie in Mexiko-Stadt.</span></li>
+        <li><b>Cirque du Soleil</b><span>Tätowierer bei mehreren Engagements des Cirque du Soleil in Mexiko.</span></li>
+        <li><b>Unterwegs</b><span>Als Maler und Künstler an Festivals und Tattoo-Conventions in Europa und Lateinamerika.</span></li>
+        <li><b>2010</b><span>Eigenes Studio in Thun, an der Steffisburgstrasse 4.</span></li>
+      </ol>
+    </article>
+
+    <article class="panel p-tienda" id="p-tienda" aria-labelledby="h-tienda">
+      <svg class="orla" viewBox="0 0 100 100" aria-hidden="true" style="opacity:.22"><path fill="#2B1630" d="M30 22l12-8h16l12 8 16 10-8 16-10-4v42H30V44l-10 4-8-16Z"/></svg>
+      <span class="eti">Fähnchen 3</span>
+      <h2 id="h-tienda">Zubehör &amp; Kleider</h2>
+      <p>Im Studio gibt es nicht nur Tattoos: Gabo führt auch Zubehör und Kleider.</p>
+      <p>Was gerade da ist, siehst du am besten direkt im Studio – oder frag kurz per WhatsApp nach.</p>
+      <p class="precio">Sortiment und Preise: <span class="ph">[bitte ergänzen]</span></p>
+    </article>
+
+    <article class="panel p-contacto" id="p-contacto" aria-labelledby="h-contacto">
+      <svg class="orla" viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 86C26 68 12 54 12 38c0-12 9-20 20-20 8 0 14 4 18 11 4-7 10-11 18-11 11 0 20 8 20 20 0 16-14 30-38 48Z"/></svg>
+      <span class="eti">Fähnchen 4</span>
+      <h2 id="h-contacto">Kontakt</h2>
+      <div class="datos">
+        <span>Steffisburgstrasse 4, 3600 Thun</span>
+        <span>Studio: <a href="tel:+41332211140">033 221 11 40</a></span>
+        <span>Mobile / WhatsApp: <a href="tel:+41798400807">079 840 08 07</a></span>
+        <span>E-Mail: <a href="mailto:gabotattoo@yahoo.com.mx">gabotattoo@yahoo.com.mx</a></span>
+        <span>Öffnungszeiten: <span class="ph">[Öffnungszeiten – bitte bestätigen]</span></span>
+      </div>
+      <p></p>
+      <a class="btn btn-llamar" href="tel:+41332211140" style="background:var(--cempasuchil);color:var(--tinta);box-shadow:0 4px 0 #C27F00">Jetzt anrufen</a>
+    </article>
+  </section>
+
+  <section class="oferta" aria-labelledby="h-oferta">
+    <h2 id="h-oferta">Im Studio</h2>
+    <div class="tarjeta" style="--c:var(--magenta)">
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FCE3EE"/><path d="M20 44l18-18m-4-4l8 8m-10 2l-6 6" stroke="#D2216D" stroke-width="3.2" stroke-linecap="round" fill="none"/><circle cx="44" cy="20" r="4" fill="#F5A300"/></svg>
+      <div><h3>Tattoos</h3><p>Dein Motiv, mit Gabo besprochen und gezeichnet.</p></div>
+    </div>
+    <div class="tarjeta" style="--c:var(--turquesa-dk)">
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#D6F1F0"/><path d="M18 40c6-10 10-14 14-14s8 4 14 14" stroke="#9AB" stroke-width="3" stroke-dasharray="3 4" fill="none" stroke-linecap="round"/><g transform="translate(32 32)" fill="#0B9C9C"><circle r="5"/><ellipse cy="-11" rx="4" ry="7"/><ellipse cy="11" rx="4" ry="7"/><ellipse cx="-11" rx="7" ry="4"/><ellipse cx="11" rx="7" ry="4"/></g></svg>
+      <div><h3>Cover-ups</h3><p>Alte Tattoos mit einem neuen Motiv überdecken.</p></div>
+    </div>
+    <div class="tarjeta" style="--c:#B57800">
+      <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFEFC7"/><path d="M22 20l7-4h6l7 4 8 5-4 8-5-2v19H23V31l-5 2-4-8Z" fill="#F5A300"/></svg>
+      <div><h3>Zubehör &amp; Kleider</h3><p>Gibt es direkt im Studio.</p></div>
+    </div>
+    <p class="nota">Preis nach Motiv und Grösse – Anfrage per WhatsApp oder E-Mail.</p>
+  </section>
+
+  <section class="horario" aria-labelledby="h-horario">
+    <h2 id="h-horario">Öffnungszeiten</h2>
+    <p style="margin:0"><span class="ph">[Öffnungszeiten – bitte bestätigen]</span><br>Termine am besten vorher per Telefon oder WhatsApp abmachen.</p>
+  </section>
+</main>
+
+<footer class="pie">
+  <svg class="pie-borde" viewBox="0 0 430 22" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="430" height="22" fill="#FBF3E4"/>
+    <path d="M0 0V8L13.4 22L26.9 8L40.3 22L53.8 8L67.2 22L80.6 8L94.1 22L107.5 8L120.9 22L134.4 8L147.8 22L161.3 8L174.7 22L188.1 8L201.6 22L215 8L228.4 22L241.9 8L255.3 22L268.8 8L282.2 22L295.6 8L309.1 22L322.5 8L335.9 22L349.4 8L362.8 22L376.3 8L389.7 22L403.1 8L416.6 22L430 8V22H0Z" fill="#2B1630"/>
+  </svg>
+  <h2>El Mexicano Tattoo Studio</h2>
+  <address>
+    Steffisburgstrasse 4, 3600 Thun<br>
+    Studio <a href="tel:+41332211140">033 221 11 40</a> · Mobile <a href="tel:+41798400807">079 840 08 07</a><br>
+    <a href="mailto:gabotattoo@yahoo.com.mx">gabotattoo@yahoo.com.mx</a>
+  </address>
+  <div class="redes">
+    <a href="https://www.instagram.com/gabo.elmexicano/">Instagram @gabo.elmexicano</a>
+    <a href="https://www.youtube.com/@gabotattoo">YouTube @gabotattoo</a>
+  </div>
+  <p class="legal">Govea Trejo El mexicano Tattoo Studio · Einzelunternehmen · CHE-115.634.036<br>Entwurf / Demo von Max Rathsack – keine offizielle Webseite.</p>
+</footer>
+
+<div class="fija">
+  <a class="btn btn-llamar" href="tel:+41332211140">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.2a1.4 1.4 0 0 1-.1 1.9L7.6 10a12 12 0 0 0 6.4 6.4l1.4-1.5a1.4 1.4 0 0 1 1.9-.1l3.2 2.6a1.4 1.4 0 0 1 .2 2l-1.3 1.6a3 3 0 0 1-3 1A17 17 0 0 1 2 7.6a3 3 0 0 1 1-3l1.6-1.3a1.4 1.4 0 0 1 2 .2Z" fill="currentColor"/></svg>
+    Anrufen</a>
+  <a class="btn btn-wa" href="https://wa.me/41798400807">
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var banderas = Array.prototype.slice.call(document.querySelectorAll('.bandera'));
+  var vacio = document.getElementById('vacio');
+  var escenario = document.getElementById('escenario');
+
+  function zeigen(btn){
+    var aktiv = btn.classList.contains('vuelta');
+    banderas.forEach(function(b){
+      b.classList.remove('vuelta');
+      b.setAttribute('aria-pressed','false');
+      document.getElementById(b.dataset.panel).classList.remove('visible');
+    });
+    if (aktiv){ vacio.style.display=''; return; }
+    btn.classList.add('vuelta');
+    btn.setAttribute('aria-pressed','true');
+    vacio.style.display='none';
+    var panel = document.getElementById(btn.dataset.panel);
+    panel.classList.add('visible');
+    var r = escenario.getBoundingClientRect();
+    if (r.top > window.innerHeight * 0.7 || r.top < 0){
+      setTimeout(function(){ escenario.scrollIntoView({behavior:'smooth', block:'start'}); }, 350);
+    }
+  }
+  banderas.forEach(function(b){ b.addEventListener('click', function(){ zeigen(b); }); });
+
+  // Zustand für den PDF-Druck: zwei Fähnchen umgedreht, alle Inhalte sichtbar
+  window.pdfZustand = function(){
+    banderas[0].classList.add('vuelta');
+    banderas[2].classList.add('vuelta');
+  };
+})();
+</script>
+</body>
+</html>

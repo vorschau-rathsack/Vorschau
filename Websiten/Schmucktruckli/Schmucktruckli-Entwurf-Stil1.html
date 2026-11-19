@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schmucktruckli – Werk offen</title>
+<meta name="description" content="Entwurf: Uhrmacher-Werkstatt Schmucktruckli, Marcel Sterchi, Thunstrasse 11, Steffisburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#f5f0e3;
+  --paper:#fbf8f1;
+  --brass:#a07a33;
+  --brass-l:#d6bb7a;
+  --brass-xl:#efe1b8;
+  --blue:#1f3c96;
+  --blue-d:#13265e;
+  --ink:#1b1c23;
+  --mute:#5a564c;
+  --line:#d9ceb3;
+  --ruby:#a8243a;
+  --serif:"Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:clip}
+img,svg{max-width:100%}
+a{color:var(--blue)}
+.demo{background:var(--blue-d);color:var(--brass-xl);font-size:12.5px;line-height:1.35;text-align:center;padding:7px 16px;letter-spacing:.01em}
+.wrap{max-width:430px;margin:0 auto;padding:0 20px}
+@media (min-width:760px){.wrap{max-width:720px}}
+
+/* Kopf */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0 14px;border-bottom:1px solid var(--line)}
+.mark{font-family:var(--serif);font-size:21px;line-height:1.1;color:var(--ink);text-decoration:none}
+.mark small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-top:3px}
+.top a.tel-mini{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;border:1px solid var(--blue);border-radius:99px;padding:6px 12px;white-space:nowrap}
+
+/* Hero */
+.hero{padding:30px 0 10px;position:relative}
+.kicker{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:600;margin:0 0 8px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,20vw,7.4rem);line-height:.9;letter-spacing:-.02em;margin:0 0 18px;color:var(--ink)}
+h1 em{color:var(--blue);font-style:italic}
+.lead{font-size:18px;max-width:30em;margin:0 0 22px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 16px/1 var(--sans);padding:16px 20px;border-radius:4px;text-decoration:none;border:1.5px solid var(--blue);min-height:52px}
+.btn.call{background:var(--blue);color:#fff;flex:1 1 100%}
+.btn.call svg{flex:none}
+.btn.ghost{color:var(--blue);background:transparent;flex:1 1 100%}
+.watch-front{display:block;width:min(100%,330px);margin:26px auto 0}
+.cap{font-size:12px;color:var(--mute);text-align:center;letter-spacing:.04em;margin:6px 0 0}
+
+/* Abschnitte */
+section{padding:46px 0 10px}
+.sec-no{font:500 12px/1 var(--sans);letter-spacing:.2em;color:var(--brass);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sec-no::after{content:"";flex:1;height:1px;background:var(--line)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,9.5vw,3.2rem);line-height:1.05;margin:0 0 14px;letter-spacing:-.01em}
+h2 em{color:var(--blue)}
+p{margin:0 0 14px}
+
+/* Gehäuseboden */
+.caseback{position:relative;width:min(100%,340px);aspect-ratio:1/1;margin:26px auto 0;perspective:900px}
+.movement{position:absolute;inset:0;width:100%;height:100%}
+.lid{position:absolute;inset:0;border:0;padding:0;margin:0;background:none;cursor:pointer;transform-origin:2% 50%;transform-style:preserve-3d;transition:transform 1.5s cubic-bezier(.3,.05,.2,1);-webkit-tap-highlight-color:transparent;border-radius:50%}
+.lid .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.lid .face svg{width:100%;height:100%;display:block}
+.lid .inner{transform:rotateY(180deg)}
+.lid:focus-visible{outline:3px solid var(--blue);outline-offset:6px}
+.opened .lid{transform:rotateY(-104deg);pointer-events:none}
+.tap-hint{text-align:center;font-size:14px;color:var(--blue);font-weight:600;margin:14px 0 0;transition:opacity .4s}
+.tap-hint.gone{opacity:0}
+.pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.9}}
+
+/* drehende Teile */
+.spin{transform-box:view-box;animation:spin linear infinite;animation-play-state:paused}
+.spin.rev{animation-name:spinr}
+.opened .spin{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinr{to{transform:rotate(-360deg)}}
+.balance{transform-box:view-box;transform-origin:236px 232px;animation:osc .62s ease-in-out infinite alternate;animation-play-state:paused}
+.opened .balance{animation-play-state:running}
+@keyframes osc{from{transform:rotate(-150deg)}to{transform:rotate(150deg)}}
+
+/* Markierungen */
+.mk{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2px solid #fff;background:var(--blue);color:#fff;font:600 15px/1 var(--sans);display:grid;place-items:center;cursor:pointer;opacity:0;transform:scale(.4);transition:opacity .4s, transform .4s, background .3s;box-shadow:0 2px 6px rgba(19,38,94,.35);padding:0;pointer-events:none}
+.ready .mk{pointer-events:auto}
+.ready .mk{opacity:1;transform:scale(1)}
+.mk.on{background:var(--brass);transform:scale(1.18)}
+.mk.on::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1.5px solid var(--brass);animation:ring 1.6s ease-out infinite}
+@keyframes ring{from{opacity:1;transform:scale(.8)}to{opacity:0;transform:scale(1.5)}}
+
+.steps{margin:22px 0 0;background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--blue);padding:18px 18px 16px;position:relative}
+.steps .pre{color:var(--mute);font-size:15px;margin:0}
+.step{display:none}
+.step.on{display:block;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.step .n{font:500 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+.step h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1;margin:6px 0 10px}
+.step p{font-size:16px;margin:0 0 6px}
+.steps.ready{min-height:300px}
+.step-nav{display:none;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.ready .step-nav{display:flex}
+.dots{display:flex;gap:6px}
+.dots i{width:22px;height:3px;background:var(--line);display:block}
+.dots i.on{background:var(--blue)}
+.next{font:600 15px/1 var(--sans);background:var(--blue);color:#fff;border:0;border-radius:4px;padding:13px 18px;cursor:pointer;min-height:46px}
+.note{font-size:13px;color:var(--mute);margin-top:10px}
+
+/* Leistungen */
+.spec{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--ink)}
+.spec li{display:grid;grid-template-columns:44px 1fr;gap:4px 10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.spec .no{font:500 13px/1.6 var(--sans);color:var(--brass);letter-spacing:.08em}
+.spec h3{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.2;margin:0 0 4px}
+.spec p{margin:0;font-size:15.5px;color:#34322c}
+.offer{margin-top:16px;font-size:15px;background:var(--brass-xl);padding:12px 14px;border-left:3px solid var(--brass)}
+
+/* ABC */
+.abc{display:grid;gap:14px;margin-top:10px}
+.abc>div{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start}
+.abc svg{width:64px;height:64px}
+.abc dt{font-family:var(--serif);font-size:20px;margin:0 0 2px}
+.abc dd{margin:0;font-size:15.5px;color:#34322c}
+
+/* Marken */
+.brands{display:grid;grid-template-columns:1fr;gap:0;margin-top:10px;border-top:1px solid var(--line)}
+.brands span{font-family:var(--serif);font-size:clamp(1.5rem,7.5vw,2.2rem);padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.brands small{font:500 11px/1 var(--sans);letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
+
+/* Person */
+.person{background:var(--blue-d);color:var(--brass-xl);margin-top:46px;padding:44px 0 40px}
+.person h2{color:#fff}
+.person h2 em{color:var(--brass-l)}
+.person .sec-no{color:var(--brass-l)}
+.person .sec-no::after{background:rgba(214,187,122,.35)}
+.press{border:1px solid rgba(214,187,122,.45);padding:16px;margin-top:18px}
+.press b{display:block;font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.3;color:#fff;margin:6px 0 8px}
+.press .src{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-l)}
+
+/* Kontakt */
+.ph{display:block;border:1.5px dashed var(--brass);background:#fffaf0;color:#7a5a1c;padding:14px;font-size:15px;font-weight:500;margin:10px 0}
+.contact dl{margin:0;display:grid;gap:12px}
+.contact dt{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);font-weight:600}
+.contact dd{margin:2px 0 0;font-size:17px}
+footer{margin-top:40px;border-top:1px solid var(--line);padding:22px 0 100px;font-size:13px;color:var(--mute)}
+footer p{margin:0 0 6px}
+
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(245,240,227,.94);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dock a{width:100%;max-width:400px}
+
+@media (min-width:760px){
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+  .btn.call,.btn.ghost{flex:0 1 auto}
+}
+
+/* PDF: alles im Endzustand */
+html.pdf .dock{position:static;display:none}
+html.pdf footer{padding-bottom:30px}
+html.pdf .lid{display:none}
+html.pdf .tap-hint{display:none}
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .mk{opacity:1;transform:none}
+html.pdf .mk.on{background:var(--blue)}
+html.pdf .mk.on::after{display:none}
+html.pdf .step{display:block;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+html.pdf .steps .pre,html.pdf .step-nav{display:none!important}
+html.pdf .steps{min-height:0}
+@media (prefers-reduced-motion:reduce){
+  .spin,.balance{animation:none}
+  .lid{transition-duration:.3s}
+}
+</style>
+</head>
+<body>
+<div class="demo" role="note">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Schmucktruckli</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#">Schmucktruckli<small>Uhren &amp; Schmuck</small></a>
+    <a class="tel-mini" href="tel:+41334379261">Anrufen</a>
+  </header>
+
+  <div class="hero">
+   <div class="hero-grid">
+    <div>
+      <p class="kicker">Uhrmacher-Rhabilleur · Steffisburg</p>
+      <h1>Werk<br><em>offen.</em></h1>
+      <p class="lead">Marcel Sterchi öffnet, reinigt und repariert Armbanduhren und Grossuhren – in der eigenen Werkstatt an der Thunstrasse 11.</p>
+      <div class="btns">
+        <a class="btn call" href="tel:+41334379261"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>033 437 92 61 anrufen</a>
+        <a class="btn ghost" href="#werk">Das Werk ansehen ↓</a>
+      </div>
+    </div>
+    <div>
+    <!-- Armbanduhr, von Hand gezeichnet -->
+    <svg class="watch-front" viewBox="0 0 300 400" role="img" aria-label="Gezeichnete Armbanduhr mit laufendem Sekundenzeiger">
+      <defs>
+        <radialGradient id="dialG" cx="45%" cy="40%" r="70%"><stop offset="0" stop-color="#fffdf6"/><stop offset="1" stop-color="#efe6cf"/></radialGradient>
+        <linearGradient id="caseG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecd9a3"/><stop offset=".45" stop-color="#b48a3d"/><stop offset="1" stop-color="#7d5c22"/></linearGradient>
+        <linearGradient id="strapG" x1="0" x2="1"><stop offset="0" stop-color="#13265e"/><stop offset=".5" stop-color="#22397f"/><stop offset="1" stop-color="#13265e"/></linearGradient>
+      </defs>
+      <!-- Band -->
+      <path d="M104 0h92l-6 96h-80z" fill="url(#strapG)"/>
+      <path d="M110 304h80l6 96h-92z" fill="url(#strapG)"/>
+      <g stroke="#d6bb7a" stroke-width="1" stroke-dasharray="4 4" fill="none" opacity=".7"><path d="M112 0l4 92M188 0l-4 92M116 308l-4 92M184 308l4 92"/></g>
+      <g fill="#13265e" opacity=".55"><rect x="140" y="345" width="20" height="8" rx="4"/><rect x="140" y="370" width="20" height="8" rx="4"/></g>
+      <!-- Hörner -->
+      <path d="M96 118l10-36h22l-6 34zM204 118l-10-36h-22l6 34zM96 282l10 36h22l-6-34zM204 282l-10 36h-22l6-34z" fill="url(#caseG)"/>
+      <!-- Krone -->
+      <rect x="252" y="186" width="20" height="28" rx="4" fill="url(#caseG)"/>
+      <g stroke="#7d5c22" stroke-width="1.2"><path d="M256 188v24M260 188v24M264 188v24M268 188v24"/></g>
+      <!-- Gehäuse -->
+      <circle cx="150" cy="200" r="108" fill="url(#caseG)"/>
+      <circle cx="150" cy="200" r="99" fill="#f1e5c4" stroke="#8a6626" stroke-width="1.5"/>
+      <circle cx="150" cy="200" r="94" fill="url(#dialG)"/>
+      <!-- Minuterie -->
+      <g id="ticks" stroke="#1b1c23"></g>
+      <!-- Zahlen -->
+      <g font-family="Libre Caslon Text, Georgia, serif" font-size="22" fill="#1b1c23" text-anchor="middle">
+        <text x="150" y="137">12</text><text x="212" y="208">3</text><text x="150" y="278">6</text><text x="88" y="208">9</text>
+      </g>
+      <text x="150" y="160" font-family="IBM Plex Sans, Arial, sans-serif" font-size="8" letter-spacing="2.5" fill="#a07a33" text-anchor="middle">STEFFISBURG</text>
+      <!-- Zeiger, gebläut -->
+      <g id="hH"><path d="M150 206 L146 200 L150 150 L154 200 Z" fill="#1f3c96"/><circle cx="150" cy="166" r="5" fill="none" stroke="#1f3c96" stroke-width="2.4"/></g>
+      <g id="hM"><path d="M150 208 L147 200 L150 118 L153 200 Z" fill="#1f3c96"/></g>
+      <g id="hS"><path d="M150 226 L150 112" stroke="#1f3c96" stroke-width="1.4"/><circle cx="150" cy="222" r="3.4" fill="#1f3c96"/></g>
+      <circle cx="150" cy="200" r="4" fill="#13265e"/><circle cx="150" cy="200" r="1.4" fill="#d6bb7a"/>
+      <!-- Glas-Reflex -->
+      <path d="M86 160a70 70 0 0 1 60-52" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".45"/>
+    </svg>
+    <p class="cap">Gezeichnet, nicht fotografiert – der Sekundenzeiger läuft.</p>
+    </div>
+   </div>
+  </div>
+
+  <section id="werk">
+    <div class="sec-no">01 · Der Blick hinein</div>
+    <h2>Was hinter dem <em>Gehäuseboden</em> passiert.</h2>
+    <p>Eine mechanische Uhr ist ein kleines Kraftwerk aus Rädern, Federn und Steinen. Tippen Sie auf den Deckel, um ihn zu öffnen.</p>
+
+    <div class="caseback" id="caseback">
+      <svg class="movement" viewBox="0 0 340 340" aria-hidden="true">
+        <defs>
+          <radialGradient id="plateG" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#e9d6a1"/><stop offset="1" stop-color="#b8924a"/></radialGradient>
+          <linearGradient id="bridgeG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4e6bd"/><stop offset="1" stop-color="#c7a45c"/></linearGradient>
+          <pattern id="perl" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="9" fill="none" stroke="#a9853f" stroke-width=".7" opacity=".55"/></pattern>
+        </defs>
+        <!-- Gehäusering -->
+        <circle cx="170" cy="170" r="168" fill="#8a6626"/>
+        <circle cx="170" cy="170" r="160" fill="#c9a659"/>
+        <circle cx="170" cy="170" r="150" fill="url(#plateG)"/>
+        <circle cx="170" cy="170" r="150" fill="url(#perl)"/>
+        <!-- Federhaus mit Sperrrad -->
+        <g class="spin rev" style="transform-origin:112px 112px;animation-duration:60s">
+          <path id="barrel"/>
+          <circle cx="112" cy="112" r="40" fill="#b8924a"/>
+          <circle cx="112" cy="112" r="34" fill="none" stroke="#8a6626" stroke-width="1"/>
+        </g>
+        <!-- Räderwerk -->
+        <g class="spin" style="transform-origin:170px 170px;animation-duration:24s"><path id="wCenter"/><g stroke="#9c7834" stroke-width="5"><path d="M170 140v60M140 170h60"/></g></g>
+        <g class="spin rev" style="transform-origin:206px 120px;animation-duration:8s"><path id="wThird"/><g stroke="#9c7834" stroke-width="3.5"><path d="M206 101v38M187 120h38"/></g></g>
+        <g class="spin" style="transform-origin:250px 160px;animation-duration:3.4s"><path id="wFourth"/><g stroke="#9c7834" stroke-width="3"><path d="M250 145v30M235 160h30"/></g></g>
+        <g class="spin rev" style="transform-origin:212px 196px;animation-duration:1.6s"><path id="wEscape"/></g>
+        <!-- Brücken -->
+        <path d="M60 196 C70 150 120 160 150 130 C176 106 214 86 250 98 C268 104 274 124 262 136 C236 160 210 150 190 170 C168 192 150 220 112 230 C84 238 56 226 60 196Z" fill="url(#bridgeG)" stroke="#8a6626" stroke-width="1.2" opacity=".96"/>
+        <path d="M74 202 C84 172 122 176 150 152 C176 128 212 108 246 114" fill="none" stroke="#fff" stroke-width="1" opacity=".5"/>
+        <!-- Unruhkloben -->
+        <path d="M296 286 C270 300 240 276 236 232 C232 196 260 186 286 200 Z" fill="url(#bridgeG)" stroke="#8a6626" stroke-width="1.2" opacity=".35"/>
+        <!-- Unruh -->
+        <g class="balance">
+          <circle cx="236" cy="232" r="46" fill="none" stroke="#b38c3e" stroke-width="7"/>
+          <circle cx="236" cy="232" r="46" fill="none" stroke="#efdca8" stroke-width="1.4"/>
+          <g stroke="#b38c3e" stroke-width="5"><path d="M236 186v92M190 232h92"/></g>
+          <g fill="#e2c985"><circle cx="236" cy="186" r="3.5"/><circle cx="236" cy="278" r="3.5"/><circle cx="190" cy="232" r="3.5"/><circle cx="282" cy="232" r="3.5"/></g>
+          <path d="M236 232 m3 0 a3 3 0 1 1 -6 0 a7 7 0 1 1 13 0 a11 11 0 1 1 -21 0 a15 15 0 1 1 29 0 a19 19 0 1 1 -37 0 a23 23 0 1 1 45 0" fill="none" stroke="#1f3c96" stroke-width="1.1"/>
+        </g>
+        <!-- Unruhbrücke -->
+        <path d="M236 232 L300 170 L314 186 L248 244Z" fill="url(#bridgeG)" stroke="#8a6626" stroke-width="1.2"/>
+        <circle cx="236" cy="232" r="9" fill="url(#bridgeG)" stroke="#8a6626" stroke-width="1"/>
+        <circle cx="236" cy="232" r="4" fill="#a8243a"/>
+        <!-- Rücker -->
+        <path d="M236 232 L276 252" stroke="#1f3c96" stroke-width="2.4" stroke-linecap="round"/>
+        <!-- Steine -->
+        <g fill="#a8243a" stroke="#f4e6bd" stroke-width="1.6">
+          <circle cx="170" cy="170" r="5"/><circle cx="206" cy="120" r="4.4"/><circle cx="250" cy="160" r="4"/><circle cx="212" cy="196" r="3.6"/><circle cx="112" cy="112" r="5.4"/>
+        </g>
+        <!-- Schrauben, gebläut -->
+        <g id="screws"></g>
+        <!-- Krone/Aufzugwelle -->
+        <rect x="0" y="162" width="22" height="16" fill="#8a6626"/>
+        <text x="170" y="306" font-family="IBM Plex Sans, Arial, sans-serif" font-size="8.5" letter-spacing="2.4" fill="#6c4f1b" text-anchor="middle">GEZEICHNETES UHRWERK</text>
+      </svg>
+
+      <button class="lid" id="lid" type="button" aria-label="Gehäuseboden öffnen">
+        <span class="face outer">
+          <svg viewBox="0 0 340 340" aria-hidden="true">
+            <defs>
+              <radialGradient id="lidG" cx="38%" cy="32%" r="80%"><stop offset="0" stop-color="#f6e9c3"/><stop offset=".55" stop-color="#c39f55"/><stop offset="1" stop-color="#7d5c22"/></radialGradient>
+              <path id="ringPath" d="M170 170 m-118 0 a118 118 0 1 1 236 0 a118 118 0 1 1 -236 0"/>
+            </defs>
+            <circle cx="170" cy="170" r="168" fill="#7d5c22"/>
+            <circle cx="170" cy="170" r="162" fill="url(#lidG)"/>
+            <g fill="none" stroke="#7d5c22" stroke-width=".8" opacity=".55">
+              <circle cx="170" cy="170" r="140"/><circle cx="170" cy="170" r="96"/><circle cx="170" cy="170" r="92"/>
+            </g>
+            <text font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" letter-spacing="3.1" fill="#5f4517" textLength="735" lengthAdjust="spacing"><textPath href="#ringPath" startOffset="0" textLength="735" lengthAdjust="spacing">SCHMUCKTRUCKLI · UHREN &amp; SCHMUCK · THUNSTRASSE 11 · 3612 STEFFISBURG ·</textPath></text>
+            <!-- Kerben zum Öffnen -->
+            <g fill="#5f4517"><rect x="164" y="6" width="12" height="10" rx="2"/><rect x="164" y="324" width="12" height="10" rx="2"/><rect x="6" y="164" width="10" height="12" rx="2"/><rect x="324" y="164" width="10" height="12" rx="2"/></g>
+            <circle class="pulse" cx="170" cy="170" r="74" fill="none" stroke="#1f3c96" stroke-width="3"/>
+            <text x="170" y="164" font-family="Libre Caslon Text, Georgia, serif" font-size="22" fill="#13265e" text-anchor="middle">Hier tippen</text>
+            <text x="170" y="188" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11" letter-spacing="2" fill="#13265e" text-anchor="middle">DECKEL ÖFFNEN</text>
+          </svg>
+        </span>
+        <span class="face inner">
+          <svg viewBox="0 0 340 340" aria-hidden="true">
+            <circle cx="170" cy="170" r="168" fill="#7d5c22"/>
+            <circle cx="170" cy="170" r="160" fill="#d9bf7f"/>
+            <g fill="none" stroke="#a07a33" stroke-width=".7" opacity=".6"><circle cx="170" cy="170" r="130"/><circle cx="170" cy="170" r="100"/><circle cx="170" cy="170" r="70"/><circle cx="170" cy="170" r="40"/></g>
+          </svg>
+        </span>
+      </button>
+
+      <!-- Markierungen (Position in % der Werkfläche) -->
+      <button class="mk" data-i="0" style="left:23%;top:58%" aria-label="Schritt 1: Zerlegen">1</button>
+      <button class="mk" data-i="1" style="left:60.6%;top:35.3%" aria-label="Schritt 2: Reinigen">2</button>
+      <button class="mk" data-i="2" style="left:50%;top:50%" aria-label="Schritt 3: Ölen">3</button>
+      <button class="mk" data-i="3" style="left:81%;top:74%" aria-label="Schritt 4: Regulieren">4</button>
+    </div>
+    <p class="tap-hint" id="hint">↑ Auf den Gehäuseboden tippen</p>
+
+    <div class="steps" id="steps" aria-live="polite">
+      <p class="pre" id="pre">So läuft eine Revision im Allgemeinen ab – vier Schritte, die Sie nach dem Öffnen an den nummerierten Punkten am Werk verfolgen können.</p>
+      <div class="step" data-i="0">
+        <span class="n">Schritt 1 von 4</span>
+        <h3>Zerlegen</h3>
+        <p>Zuerst wird die Zugfeder entspannt. Dann kommt das Werk aus dem Gehäuse und wird Teil für Teil zerlegt: Brücken, Räder, Unruh. Jedes Teil wird dabei angeschaut – Abnutzung zeigt sich oft erst unter der Lupe.</p>
+      </div>
+      <div class="step" data-i="1">
+        <span class="n">Schritt 2 von 4</span>
+        <h3>Reinigen</h3>
+        <p>Mit den Jahren verharzt das Öl und Staub setzt sich fest. Die Einzelteile werden gründlich gereinigt und getrocknet, bevor etwas wieder zusammenkommt.</p>
+      </div>
+      <div class="step" data-i="2">
+        <span class="n">Schritt 3 von 4</span>
+        <h3>Ölen</h3>
+        <p>Beim Zusammensetzen erhalten die Lagersteine – die kleinen roten Punkte – winzige Mengen Öl. Genau dort, wo sich Zapfen drehen, entscheidet ein Tropfen über einen ruhigen Lauf.</p>
+      </div>
+      <div class="step" data-i="3">
+        <span class="n">Schritt 4 von 4</span>
+        <h3>Regulieren</h3>
+        <p>Die Unruh ist das schwingende Herz der Uhr. Mit dem Rücker wird ihr Takt eingestellt, damit die Uhr möglichst genau geht. Erst dann schliesst sich der Deckel wieder.</p>
+      </div>
+      <div class="step-nav">
+        <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+        <button class="next" id="next" type="button">weiter →</button>
+      </div>
+    </div>
+    <p class="note">Allgemeine Erklärung einer Uhren-Revision. Was Ihre Uhr konkret braucht, zeigt sich in der Werkstatt – Kostenvoranschlag auf Anfrage.</p>
+  </section>
+
+  <section id="leistungen">
+    <div class="sec-no">02 · Werkstatt</div>
+    <h2>Leistungen</h2>
+    <ul class="spec">
+      <li><span class="no">01</span><div><h3>Armbanduhren</h3><p>Reparaturen in der eigenen Werkstatt – mechanisch oder mit Batterie.</p></div></li>
+      <li><span class="no">02</span><div><h3>Grossuhren</h3><p>Pendulen, Standuhren und Wanduhren – Reparatur in der eigenen Werkstatt.</p></div></li>
+      <li><span class="no">03</span><div><h3>Abholdienst für Grossuhren</h3><p>Grosse Uhren müssen nicht selbst transportiert werden – rufen Sie an, um die Abholung abzusprechen.</p></div></li>
+      <li><span class="no">04</span><div><h3>Batterie-Schnellservice</h3><p>Batteriewechsel für Quarzuhren, rasch erledigt.</p></div></li>
+      <li><span class="no">05</span><div><h3>Trauringe &amp; Partnerringe</h3><p>Ringe für den gemeinsamen Weg.</p></div></li>
+      <li><span class="no">06</span><div><h3>Gold- und Silberschmuck</h3><p>Schmuck in Gold und Silber.</p></div></li>
+    </ul>
+    <p class="offer">Preise hängen vom Zustand der Uhr ab: <strong>Kostenvoranschlag auf Anfrage.</strong></p>
+  </section>
+
+  <section>
+    <div class="sec-no">03 · Kleines Uhrwerk-ABC</div>
+    <h2>Drei Wörter, die man <em>kennen darf.</em></h2>
+    <dl class="abc">
+      <div>
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="22" y="18" width="20" height="28" rx="5" fill="#d6bb7a" stroke="#7d5c22"/><path d="M26 20v24M30 20v24M34 20v24M38 20v24" stroke="#7d5c22"/><rect x="28" y="46" width="8" height="14" fill="#a07a33"/></svg>
+        <div><dt>Krone</dt><dd>Das kleine Rad aussen am Gehäuse. Damit wird die Uhr aufgezogen und die Zeit gestellt.</dd></div>
+      </div>
+      <div>
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 32 m2 0 a2 2 0 1 1 -4 0 a6 6 0 1 1 10 0 a10 10 0 1 1 -18 0 a14 14 0 1 1 26 0 a18 18 0 1 1 -34 0 a22 22 0 1 1 42 0" fill="none" stroke="#1f3c96" stroke-width="2"/></svg>
+        <div><dt>Zugfeder</dt><dd>Eine aufgerollte Stahlfeder im Federhaus. Sie speichert die Kraft, die das Werk antreibt.</dd></div>
+      </div>
+      <div>
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="none" stroke="#a07a33" stroke-width="4"/><path d="M32 8v48M8 32h48" stroke="#a07a33" stroke-width="3"/><circle cx="32" cy="32" r="4" fill="#a8243a"/></svg>
+        <div><dt>Unruh</dt><dd>Das Rad, das hin und her schwingt. Sie gibt den Takt vor – sozusagen das Pendel der Armbanduhr.</dd></div>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-no">04 · Im Laden</div>
+    <h2>Marken</h2>
+    <p>Neben der Werkstatt führt Schmucktruckli Uhren dieser Marken:</p>
+    <div class="brands">
+      <span>Certina <small>Uhren</small></span>
+      <span>Mondaine <small>Uhren</small></span>
+      <span>Boccia Titanium <small>Uhren</small></span>
+    </div>
+  </section>
+</div>
+
+<div class="person">
+  <div class="wrap">
+    <div class="sec-no">05 · Der Uhrmacher</div>
+    <h2>Marcel Sterchi, <em>Uhrmacher-Rhabilleur.</em></h2>
+    <p>Ein Rhabilleur ist der Uhrmacher, der repariert: Er öffnet, findet den Fehler und bringt das Werk wieder zum Laufen. Marcel Sterchi führt Schmucktruckli seit 2017 an der Thunstrasse 11 in der «Ziegelei» in Steffisburg.</p>
+    <div class="press">
+      <span class="src">Berner Zeitung</span>
+      <b>«Uhrmacher in Steffisburg: ‹Der Friedhof› ist sein Ersatzteillager»</b>
+      <p style="margin:0;font-size:15.5px">Wie die Berner Zeitung berichtete, bewahrt er eine Kiste mit alten Uhren auf, aus der er Ersatzteile holt – und seine Kundschaft kommt bis aus dem Aaretal und aus Interlaken, weil es kaum noch Uhrmacher gibt.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="contact" id="kontakt">
+    <div class="sec-no">06 · Kontakt</div>
+    <h2>Uhr vorbeibringen oder <em>anrufen.</em></h2>
+    <a class="btn call" href="tel:+41334379261" style="width:100%;margin:6px 0 20px"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>033 437 92 61</a>
+    <dl>
+      <div><dt>Adresse</dt><dd>Schmucktruckli – Uhren &amp; Schmuck<br>Thunstrasse 11 («Ziegelei»)<br>3612 Steffisburg</dd></div>
+      <div><dt>E-Mail</dt><dd><a href="mailto:info@sterchi-uhren.ch">info@sterchi-uhren.ch</a></dd></div>
+      <div><dt>Öffnungszeiten</dt><dd><span class="ph">[Öffnungszeiten – bitte bestätigen]</span></dd></div>
+      <div><dt>Bewertungen</dt><dd><span class="ph">[Google-Bewertungen – hier einfügen]</span></dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <p><strong>Schmucktruckli – Uhren &amp; Schmuck</strong> · Marcel Sterchi, Schmucktruckli · Einzelunternehmen · CHE-267.837.759</p>
+    <p>Thunstrasse 11, 3612 Steffisburg · 033 437 92 61</p>
+    <p>Entwurf von Max Rathsack. Alle Illustrationen gezeichnet, keine Fotos.</p>
+  </footer>
+</div>
+
+<div class="dock"><a class="btn call" href="tel:+41334379261">Anrufen: 033 437 92 61</a></div>
+
+<script>
+(function(){
+  var NS="http://www.w3.org/2000/svg";
+  // Minuterie der Armbanduhr
+  var t=document.getElementById("ticks");
+  for(var i=0;i<60;i++){
+    var a=i*Math.PI/30, big=i%5===0, r1=big?82:86, r2=91;
+    var l=document.createElementNS(NS,"line");
+    l.setAttribute("x1",150+r1*Math.sin(a));l.setAttribute("y1",200-r1*Math.cos(a));
+    l.setAttribute("x2",150+r2*Math.sin(a));l.setAttribute("y2",200-r2*Math.cos(a));
+    l.setAttribute("stroke-width",big?2.4:.8);
+    if(big)l.setAttribute("stroke","#a07a33");
+    t.appendChild(l);
+  }
+  // Zahnräder: Zahnkranz als Pfad
+  function wheel(id,cx,cy,r,n,depth,fill,spokes){
+    var d="",step=Math.PI*2/n;
+    for(var k=0;k<n;k++){
+      var a0=k*step, pts=[[a0,r-depth],[a0+step*.18,r],[a0+step*.5,r],[a0+step*.68,r-depth]];
+      pts.forEach(function(p,j){var x=(cx+p[1]*Math.cos(p[0])).toFixed(2),y=(cy+p[1]*Math.sin(p[0])).toFixed(2);d+=(k===0&&j===0?"M":"L")+x+" "+y;});
+    }
+    d+="Z";
+    if(spokes){var ri=r-depth-4;d+="M"+(cx+ri)+" "+cy+"a"+ri+" "+ri+" 0 1 0 "+(-2*ri)+" 0a"+ri+" "+ri+" 0 1 0 "+(2*ri)+" 0Z";}
+    var el=document.getElementById(id);
+    el.setAttribute("d",d);el.setAttribute("fill",fill);el.setAttribute("fill-rule","evenodd");
+    el.setAttribute("stroke","#7d5c22");el.setAttribute("stroke-width",".6");
+  }
+  wheel("barrel",112,112,54,48,4,"#c9a659",false);
+  wheel("wCenter",170,170,36,40,3.4,"#d8b766",true);
+  wheel("wThird",206,120,24,30,3,"#d8b766",true);
+  wheel("wFourth",250,160,19,24,2.8,"#d8b766",true);
+  // Ankerrad: Hakenzähne
+  (function(){var cx=212,cy=196,r=15,n=15,d="";for(var k=0;k<n;k++){var a=k*Math.PI*2/n;var x1=cx+9*Math.cos(a),y1=cy+9*Math.sin(a),x2=cx+r*Math.cos(a+.18),y2=cy+r*Math.sin(a+.18),x3=cx+9*Math.cos(a+.3),y3=cy+9*Math.sin(a+.3);d+="M"+x1.toFixed(2)+" "+y1.toFixed(2)+"L"+x2.toFixed(2)+" "+y2.toFixed(2)+"L"+x3.toFixed(2)+" "+y3.toFixed(2)+"Z";}
+    d+="M"+(cx+10)+" "+cy+"a10 10 0 1 0 -20 0a10 10 0 1 0 20 0Z";var e=document.getElementById("wEscape");e.setAttribute("d",d);e.setAttribute("fill","#1f3c96");})();
+  // gebläute Schrauben
+  var sc=document.getElementById("screws");
+  [[86,206],[140,150],[242,108],[180,196],[296,184],[120,222]].forEach(function(p){
+    var g=document.createElementNS(NS,"g");
+    g.innerHTML='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="6" fill="#1f3c96" stroke="#13265e" stroke-width="1"/><path d="M'+(p[0]-4.5)+' '+(p[1]-1.5)+'l9 3" stroke="#0b1636" stroke-width="1.6"/>';
+    sc.appendChild(g);
+  });
+
+  // laufende Zeiger
+  var hH=document.getElementById("hH"),hM=document.getElementById("hM"),hS=document.getElementById("hS");
+  function tick(){
+    var n=new Date(),ms=n.getMilliseconds(),s=n.getSeconds()+Math.floor(ms/125)/8;
+    var m=n.getMinutes()+s/60,h=(n.getHours()%12)+m/60;
+    hS.setAttribute("transform","rotate("+(s*6)+" 150 200)");
+    hM.setAttribute("transform","rotate("+(m*6)+" 150 200)");
+    hH.setAttribute("transform","rotate("+(h*30)+" 150 200)");
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // Deckel & Schritte
+  var cb=document.getElementById("caseback"),lid=document.getElementById("lid"),steps=document.getElementById("steps");
+  var mks=[].slice.call(document.querySelectorAll(".mk")),sts=[].slice.call(document.querySelectorAll(".step")),dots=[].slice.call(document.querySelectorAll("#dots i"));
+  var nextB=document.getElementById("next"),pre=document.getElementById("pre"),cur=-1;
+  function show(i){
+    cur=i;pre.style.display="none";
+    sts.forEach(function(s,k){s.classList.toggle("on",k===i);});
+    mks.forEach(function(m,k){m.classList.toggle("on",k===i);});
+    dots.forEach(function(d,k){d.classList.toggle("on",k<=i);});
+    nextB.textContent=i===3?"nochmals von vorn ↺":"weiter →";
+  }
+  function open(){
+    if(cb.classList.contains("opened"))return;
+    cb.classList.add("opened");document.getElementById("hint").classList.add("gone");
+    setTimeout(function(){cb.classList.add("ready");steps.classList.add("ready");show(0);},1300);
+  }
+  lid.addEventListener("click",open);
+  nextB.addEventListener("click",function(){show((cur+1)%4);});
+  mks.forEach(function(m,k){m.addEventListener("click",function(){show(k);});});
+
+  // PDF-Endzustand
+  function pdf(){cb.classList.add("opened","ready");steps.classList.add("ready");sts.forEach(function(s){s.classList.add("on");});}
+  if(document.documentElement.classList.contains("pdf"))pdf();
+  new MutationObserver(function(){if(document.documentElement.classList.contains("pdf"))pdf();}).observe(document.documentElement,{attributes:true,attributeFilter:["class"]});
+})();
+</script>
+</body>
+</html>

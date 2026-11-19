@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Mexicano Tattoo Studio – Schablone</title>
+<meta name="description" content="Entwurf: El Mexicano Tattoo Studio, Steffisburgstrasse 4, Thun. Tattoos und Cover-ups von Gabo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#0F0D0E;
+    --noche-2:#181516;
+    --hueso:#EDE6DA;
+    --hueso-2:#B9B0A3;
+    --rojo:#C8323A;
+    --violeta:#7B5CE6;
+    --violeta-papel:#5A3EC8;
+    --piel:#E4D3BD;
+    --linea:rgba(237,230,218,.16);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--noche);color:var(--hueso);font:400 15px/1.65 "Space Mono",ui-monospace,monospace;overflow-x:hidden;padding-bottom:80px}
+  a{color:inherit}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif}
+  h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:400;margin:0;line-height:.98}
+
+  .aviso{border-bottom:1px solid var(--linea);font-size:11.5px;line-height:1.45;letter-spacing:.02em;padding:9px 16px;text-align:center;color:var(--hueso-2);background:#000}
+  .aviso strong{color:var(--hueso);font-weight:700}
+
+  .marco{max-width:560px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Kopf ---------- */
+  .cab{padding-top:26px;padding-bottom:8px;position:relative}
+  .meta{display:flex;justify-content:space-between;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hueso-2);border-bottom:1px solid var(--linea);padding-bottom:10px}
+  .cab h1{font-size:clamp(3.4rem,19vw,6.2rem);margin:26px 0 0;letter-spacing:-.01em}
+  .cab h1 em{display:block;font-style:italic;color:var(--rojo);font-weight:600;padding-left:.5em}
+  .cab .sub{display:block;font:700 12px/1 "Space Mono",monospace;letter-spacing:.42em;text-transform:uppercase;margin:18px 0 0;color:var(--hueso)}
+  .cab .orn{position:absolute;right:0;top:64px;width:132px;height:170px;opacity:.9;pointer-events:none}
+  .intro{font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;line-height:1.35;margin:22px 0 0;color:var(--hueso);max-width:26em}
+  .acciones{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0 0}
+  .b{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:10px;border-radius:2px;text-decoration:none;font:700 13px/1.15 "Space Mono",monospace;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--hueso);color:var(--hueso);background:transparent;cursor:pointer}
+  .b.rojo{background:var(--rojo);border-color:var(--rojo);color:#fff}
+  .b svg{flex:none}
+  .b:active{opacity:.8}
+  .resena{margin:22px 0 0;padding:14px 0;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);font-size:13px}
+  .resena .num{font-family:"Cormorant Garamond",serif;font-size:34px;font-style:italic;color:var(--hueso);line-height:1;margin-right:6px}
+  .ph{color:#F2C57C;background:rgba(242,197,124,.12);padding:0 3px;border-radius:2px}
+
+  /* ---------- Abziehbild ---------- */
+  .sec{padding-top:44px}
+  .rot{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--rojo);margin-bottom:10px}
+  .sec h2{font-size:clamp(2.3rem,11vw,3.4rem)}
+  .sec p{margin:12px 0 0}
+  .mesa{margin:20px 0 0;border:1px solid var(--linea);background:radial-gradient(90% 70% at 50% 40%,#211c1d 0%,var(--noche-2) 70%);position:relative}
+  .mesa svg.brazo{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+  .papel{cursor:grab}
+  .mesa.ziehen .papel{cursor:grabbing}
+  .pulso{transform-origin:236px 352px;animation:pulso 1.6s ease-out infinite}
+  @keyframes pulso{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.6)}}
+  .mesa.tocado .pulso{display:none}
+  .etiqueta{position:absolute;left:10px;top:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--hueso-2);pointer-events:none}
+  .estado{position:absolute;right:10px;top:10px;font-size:10.5px;letter-spacing:.1em;color:var(--violeta);pointer-events:none}
+  .motivo path,.motivo circle,.motivo ellipse{fill:none;stroke:var(--violeta-papel);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .motivo text{fill:none;stroke:var(--violeta-papel);stroke-width:1.1}
+  .motivo.dibuja path,.motivo.dibuja circle,.motivo.dibuja ellipse{stroke-dasharray:1;stroke-dashoffset:1;animation:traza 1.4s ease forwards}
+  .motivo.dibuja text{animation:aparece 1.2s ease forwards;opacity:0}
+  @keyframes traza{to{stroke-dashoffset:0}}
+  @keyframes aparece{to{opacity:1}}
+  .mandos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0}
+  .mandos .b{min-height:46px;font-size:12px}
+  .regla{margin:14px 0 0;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--hueso-2)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;margin:0}
+  input[type=range]::-webkit-slider-runnable-track{height:1px;background:var(--hueso-2)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--noche);border:1.5px solid var(--violeta);margin-top:-11px}
+  input[type=range]::-moz-range-track{height:1px;background:var(--hueso-2)}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--noche);border:1.5px solid var(--violeta)}
+  .hinweis{margin:16px 0 0;padding:14px 14px 14px 16px;border-left:2px solid var(--violeta);background:rgba(123,92,230,.08);font-size:13.5px}
+
+  /* ---------- Angebot ---------- */
+  .lista{list-style:none;margin:18px 0 0;padding:0;counter-reset:n}
+  .lista li{display:grid;grid-template-columns:44px 1fr;gap:6px 10px;padding:18px 0;border-top:1px solid var(--linea)}
+  .lista li:last-child{border-bottom:1px solid var(--linea)}
+  .lista li::before{counter-increment:n;content:"0" counter(n);font-size:12px;color:var(--rojo);padding-top:8px}
+  .lista h3{margin:0;font:italic 500 28px/1.1 "Cormorant Garamond",serif}
+  .lista p{grid-column:2;margin:0;color:var(--hueso-2);font-size:14px}
+  .precio{margin:16px 0 0;font-size:13px;color:var(--hueso-2)}
+
+  /* ---------- Gabo ---------- */
+  .camino{margin:20px 0 0;position:relative;padding-left:26px}
+  .camino::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:repeating-linear-gradient(var(--hueso-2) 0 4px,transparent 4px 9px)}
+  .paso{position:relative;padding:0 0 22px}
+  .paso::before{content:"";position:absolute;left:-25px;top:7px;width:11px;height:11px;border-radius:50%;border:1px solid var(--rojo);background:var(--noche)}
+  .paso b{display:block;font:italic 600 24px/1.1 "Cormorant Garamond",serif;color:var(--hueso)}
+  .paso span{font-size:13.5px;color:var(--hueso-2)}
+
+  /* ---------- Kontakt ---------- */
+  .contacto{margin:20px 0 0;border:1px solid var(--linea);padding:18px 16px}
+  .contacto dl{margin:0;display:grid;grid-template-columns:1fr;gap:2px}
+  .contacto dt{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rojo);margin-top:12px}
+  .contacto dt:first-child{margin-top:0}
+  .contacto dd{margin:0;font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.3;overflow-wrap:anywhere}
+  .contacto dd a{text-decoration:none;border-bottom:1px solid var(--linea)}
+
+  footer{margin:48px 0 0;border-top:1px solid var(--linea);padding:22px 16px 28px;font-size:11.5px;color:var(--hueso-2);text-align:center}
+  footer .firma{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:30px;color:var(--hueso);display:block;margin-bottom:6px}
+  footer .redes{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 16px;margin:10px 0 14px;font-size:12.5px}
+
+  .barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(15,13,14,.92);backdrop-filter:blur(8px);border-top:1px solid var(--linea)}
+  .barra .b{min-height:46px}
+
+  @media (prefers-reduced-motion:reduce){
+    .pulso{animation:none}
+    .motivo.dibuja path,.motivo.dibuja circle,.motivo.dibuja ellipse{animation:none;stroke-dashoffset:0}
+    .motivo.dibuja text{animation:none;opacity:1}
+  }
+
+  /* ---------- PDF ---------- */
+  html.pdf body{padding-bottom:0}
+  html.pdf .barra{position:static;background:transparent;backdrop-filter:none;border-top:0;padding:4px 16px 26px}
+  html.pdf .pulso{display:none}
+  html.pdf .motivo path,html.pdf .motivo circle,html.pdf .motivo ellipse{animation:none !important;stroke-dasharray:none !important;stroke-dashoffset:0 !important}
+  html.pdf .motivo text{animation:none !important;opacity:1 !important}
+</style>
+</head>
+<body>
+<div class="aviso" role="note"><strong>Entwurf / Demo von Max Rathsack</strong> – keine offizielle Webseite von El Mexicano Tattoo Studio</div>
+
+<header class="marco cab">
+  <div class="meta"><span>Thun</span><span>seit 2010</span><span>Steffisburgstr. 4</span></div>
+  <svg class="orn" viewBox="0 0 132 170" aria-hidden="true">
+    <g fill="none" stroke="#EDE6DA" stroke-width=".9" stroke-linecap="round" opacity=".55">
+      <path d="M96 168C94 140 90 116 84 92"/>
+      <path d="M86 112C70 108 60 96 58 82C72 84 82 94 86 112Z"/>
+      <path d="M90 130C104 124 114 112 116 98C102 102 92 114 90 130Z"/>
+      <g transform="translate(82 60)">
+        <circle r="7"/>
+        <path id="ph" d="M0-8C-6-14-6-24 0-30C6-24 6-14 0-8Z"/>
+        <use href="#ph" transform="rotate(40)"/><use href="#ph" transform="rotate(80)"/><use href="#ph" transform="rotate(120)"/>
+        <use href="#ph" transform="rotate(160)"/><use href="#ph" transform="rotate(200)"/><use href="#ph" transform="rotate(240)"/>
+        <use href="#ph" transform="rotate(280)"/><use href="#ph" transform="rotate(320)"/>
+      </g>
+    </g>
+    <circle cx="82" cy="60" r="2.2" fill="#C8323A"/>
+  </svg>
+  <h1>El<em>Mexicano</em></h1>
+  <span class="sub">Tattoo Studio</span>
+  <p class="intro">Gabo – Gabriel de Jesus Govea Trejo – tätowiert seit 1999. Seine Linien hat er in Mexiko-Stadt gelernt, seit 2010 zieht er sie in Thun.</p>
+  <div class="acciones">
+    <a class="b rojo" href="tel:+41332211140">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.2a1.4 1.4 0 0 1-.1 1.9L7.6 10a12 12 0 0 0 6.4 6.4l1.4-1.5a1.4 1.4 0 0 1 1.9-.1l3.2 2.6a1.4 1.4 0 0 1 .2 2l-1.3 1.6a3 3 0 0 1-3 1A17 17 0 0 1 2 7.6a3 3 0 0 1 1-3l1.6-1.3a1.4 1.4 0 0 1 2 .2Z" fill="currentColor"/></svg>
+      Anrufen</a>
+    <a class="b" href="https://wa.me/41798400807">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      WhatsApp</a>
+  </div>
+  <p class="resena"><span class="num">4.8 ★</span> über 100 Bewertungen <span class="ph">[Quelle/Zahl bitte bestätigen]</span><br>Oft gelobt: Cover-ups – und dass sich Gabo Zeit nimmt.</p>
+</header>
+
+<main>
+  <section class="marco sec" id="abziehbild" aria-labelledby="h-abz">
+    <span class="rot">Abziehbild</span>
+    <h2 id="h-abz">Erst die Linie, dann die Nadel.</h2>
+    <p>Vor jedem Tattoo kommt die Schablone: Das Motiv wird auf Transferpapier gezeichnet und auf die Haut übertragen. Probier es aus – halte den Finger auf das Papier oder zieh an der Ecke.</p>
+
+    <div class="mesa" id="mesa">
+      <span class="etiqueta">Unterarm · Skizze</span>
+      <span class="estado" id="estado">Papier liegt auf</span>
+      <svg class="brazo" id="brazo" viewBox="0 0 300 400" role="img" aria-label="Gezeichneter Unterarm mit Transferpapier. Darunter erscheint die violette Schablone eines Motivs.">
+        <defs>
+          <linearGradient id="g-dorso" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#d9d4e8"/>
+            <stop offset=".55" stop-color="#f4f1fb"/>
+            <stop offset="1" stop-color="#bdb5d4"/>
+          </linearGradient>
+          <clipPath id="clip-arm"><path d="M84 400C74 330 78 250 90 170C98 116 104 76 108 40L106 0H214L206 40C212 84 222 130 228 180C236 250 236 330 222 400Z"/></clipPath>
+        </defs>
+        <!-- Unterarm -->
+        <path d="M84 400C74 330 78 250 90 170C98 116 104 76 108 40L106 0H214L206 40C212 84 222 130 228 180C236 250 236 330 222 400Z" fill="#E4D3BD"/>
+        <g clip-path="url(#clip-arm)" fill="none" stroke="#C9B497" stroke-width=".8">
+          <path d="M150 400C146 330 150 250 160 160" opacity=".5"/>
+          <path d="M112 44C136 50 180 50 204 42" opacity=".9"/>
+          <path d="M110 30C136 36 182 36 208 28" opacity=".6"/>
+        </g>
+        <g fill="none" stroke="#3a3133" stroke-width="1.1" stroke-linecap="round">
+          <path d="M84 400C74 330 78 250 90 170C98 116 104 76 108 40L106 0"/>
+          <path d="M222 400C236 330 236 250 228 180C222 130 212 84 206 40L214 0"/>
+        </g>
+        <!-- Schablonen-Motiv -->
+        <g id="lienzo" transform="translate(156 214)">
+          <g id="escala">
+            <g class="motivo" id="motivo"></g>
+          </g>
+        </g>
+        <!-- Transferpapier -->
+        <g id="hoja">
+          <path id="sombra" fill="rgba(0,0,0,.22)" d=""/>
+          <path id="resto" class="papel" fill="#F6F3FB" fill-opacity=".97" stroke="#cfc8e2" stroke-width=".8" d=""/>
+          <g id="marcas" clip-path="url(#clip-resto)" pointer-events="none">
+            <text x="78" y="104" font-family="Space Mono, monospace" font-size="8" letter-spacing="2" fill="#a59cc4">TRANSFER · GABO</text>
+            <g stroke="#e3def0" stroke-width=".6">
+              <path d="M68 130H244M68 170H244M68 210H244M68 250H244M68 290H244M68 330H244"/>
+            </g>
+            <g fill="none" stroke="#bfb3e6" stroke-width="1" opacity=".55" transform="translate(156 214)" id="fantasma"></g>
+          </g>
+          <clipPath id="clip-resto"><path id="resto-clip" d=""/></clipPath>
+          <path id="solapa" class="papel" fill="url(#g-dorso)" stroke="#a79fc2" stroke-width=".8" d=""/>
+          <circle class="pulso" cx="236" cy="352" r="14" fill="none" stroke="#C8323A" stroke-width="1.4"/>
+        </g>
+      </svg>
+    </div>
+    <div class="mandos">
+      <button class="b rojo" type="button" id="b-motivo">Motiv wechseln</button>
+      <button class="b" type="button" id="b-papel">Papier abziehen</button>
+    </div>
+    <label class="regla"><span>klein</span><input type="range" id="tamano" min="70" max="125" value="100" aria-label="Grösse des Motivs"><span>gross</span></label>
+    <p class="hinweis">Diese Skizzen sind nur Beispiele. Jedes Motiv wird individuell mit Gabo besprochen und gezeichnet – Grösse, Stelle und Linien passend zu dir. Preis nach Motiv und Grösse, Anfrage per WhatsApp oder E-Mail.</p>
+  </section>
+
+  <section class="marco sec" aria-labelledby="h-of">
+    <span class="rot">Angebot</span>
+    <h2 id="h-of">Was Gabo macht</h2>
+    <ol class="lista">
+      <li><h3>Tattoos</h3><p>Motive nach deinen Ideen, im Gespräch entwickelt.</p></li>
+      <li><h3>Cover-ups</h3><p>Alte Tattoos mit einem neuen Motiv überdecken – in Bewertungen besonders gelobt.</p></li>
+      <li><h3>Zubehör &amp; Kleider</h3><p>Gibt es ebenfalls im Studio. Sortiment: <span class="ph">[bitte ergänzen]</span></p></li>
+    </ol>
+    <p class="precio">Preis nach Motiv und Grösse – Anfrage per WhatsApp oder E-Mail.</p>
+  </section>
+
+  <section class="marco sec" aria-labelledby="h-gabo">
+    <span class="rot">Der Tätowierer</span>
+    <h2 id="h-gabo">Gabo</h2>
+    <div class="camino">
+      <div class="paso"><b>1999 · Mexiko-Stadt</b><span>Beginn als Tätowierer in einer Galerie in Mexiko-Stadt.</span></div>
+      <div class="paso"><b>Cirque du Soleil</b><span>Tätowierer bei mehreren Engagements des Cirque du Soleil in Mexiko.</span></div>
+      <div class="paso"><b>Maler &amp; Künstler</b><span>Teilnahme an Festivals und Tattoo-Conventions in Europa und Lateinamerika.</span></div>
+      <div class="paso"><b>2010 · Thun</b><span>Eigenes Studio an der Steffisburgstrasse 4.</span></div>
+    </div>
+  </section>
+
+  <section class="marco sec" aria-labelledby="h-con">
+    <span class="rot">Kontakt</span>
+    <h2 id="h-con">Termin abmachen</h2>
+    <div class="contacto">
+      <dl>
+        <dt>Studio</dt><dd>Steffisburgstrasse 4<br>3600 Thun</dd>
+        <dt>Telefon</dt><dd><a href="tel:+41332211140">033 221 11 40</a></dd>
+        <dt>Mobile / WhatsApp</dt><dd><a href="https://wa.me/41798400807">079 840 08 07</a></dd>
+        <dt>E-Mail</dt><dd><a href="mailto:gabotattoo@yahoo.com.mx">gabotattoo@yahoo.com.mx</a></dd>
+        <dt>Öffnungszeiten</dt><dd style="font-size:17px"><span class="ph">[Öffnungszeiten – bitte bestätigen]</span></dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="firma">El Mexicano</span>
+  <div class="redes">
+    <a href="https://www.instagram.com/gabo.elmexicano/">Instagram @gabo.elmexicano</a>
+    <a href="https://www.youtube.com/@gabotattoo">YouTube @gabotattoo</a>
+  </div>
+  Govea Trejo El mexicano Tattoo Studio<br>Einzelunternehmen · CHE-115.634.036<br><br>
+  Entwurf / Demo von Max Rathsack – keine offizielle Webseite.
+</footer>
+
+<div class="barra">
+  <a class="b rojo" href="tel:+41332211140">Anrufen</a>
+  <a class="b" href="https://wa.me/41798400807">WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+  // --- drei gezeichnete Motive (Koordinaten um 0/0) ---
+  var MOTIVE = [
+    { name:'Ringelblume', build:function(g){
+        var s = '';
+        s += '<circle r="9"/><circle r="4"/>';
+        for (var i=0;i<12;i++){ s += '<path transform="rotate('+(i*30)+')" d="M0-10C-7-15-7-26 0-31C7-26 7-15 0-10Z"/>'; }
+        for (var j=0;j<16;j++){ s += '<path transform="rotate('+(j*22.5+11)+')" d="M0-27C-10-34-10-48 0-55C10-48 10-34 0-27Z"/>'; }
+        s += '<path d="M0 55C2 78 -4 100 -10 122"/>';
+        s += '<path d="M-3 86C-24 82-38 92-44 108C-26 108-10 100-3 86Z"/><path d="M-3 86C-18 94-30 102-44 108"/>';
+        s += '<path d="M-7 104C10 96 26 98 36 112C20 116 4 114-7 104Z"/>';
+        g.innerHTML = s;
+      }},
+    { name:'Kolibri', build:function(g){
+        var s = '';
+        s += '<circle cx="-22" cy="-18" r="10"/><circle cx="-25" cy="-20" r="1.6"/>';
+        s += '<path d="M-31-21L-82-10L-31-14"/>';
+        s += '<path d="M-14-26C6-24 22-8 28 8C32 20 38 32 46 46"/>';
+        s += '<path d="M-29-10C-20 6-2 20 16 28C26 34 32 42 36 52"/>';
+        s += '<path d="M36 52C38 62 39 72 38 84L46 80L50 88L54 76L60 70C54 62 50 54 46 46"/>';
+        s += '<path d="M-2-24C10-54 36-78 74-88C58-70 46-56 38-42C50-52 66-58 82-58C62-44 40-28 22-14"/>';
+        s += '<path d="M8-34C22-50 38-62 56-70M18-26C32-38 46-46 62-50"/>';
+        s += '<path d="M-6 4C-16 22-20 40-18 58"/>';
+        s += '<g transform="translate(-96 -2)"><circle r="4"/><path d="M0-4C-6-12-4-20 0-24C4-20 6-12 0-4Z"/><path d="M4 0C12-6 20-4 24 0C20 4 12 6 4 0Z"/><path d="M0 4C6 12 4 20 0 24C-4 20-6 12 0 4Z"/><path d="M-4 0C-12 6-20 4-24 0C-20-4-12-6-4 0Z"/></g>';
+        g.innerHTML = '<g transform="translate(12 6) scale(.8)">' + s + '</g>';
+      }},
+    { name:'Schriftzug', build:function(g){
+        var s = '';
+        s += '<text x="0" y="6" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-weight="600" font-size="76">Thun</text>';
+        s += '<path d="M-76 24C-40 34 30 14 74 26C82 28 86 34 80 38C72 42 62 34 70 28"/>';
+        s += '<text x="0" y="62" text-anchor="middle" font-family="Space Mono, monospace" font-size="12" letter-spacing="5">DESDE 2010</text>';
+        s += '<path d="M-60-58C-30-70 30-70 60-58"/><circle cx="0" cy="-72" r="3"/><circle cx="-14" cy="-70" r="1.5"/><circle cx="14" cy="-70" r="1.5"/>';
+        g.innerHTML = s;
+      }}
+  ];
+
+  var motivoG = document.getElementById('motivo');
+  var fantasma = document.getElementById('fantasma');
+  var escala = document.getElementById('escala');
+  var estado = document.getElementById('estado');
+  var mesa = document.getElementById('mesa');
+  var actual = 0;
+
+  function setzeMotiv(i, zeichnen){
+    actual = i;
+    MOTIVE[i].build(motivoG);
+    MOTIVE[i].build(fantasma);
+    // Geisterbild auf dem Papier: gespiegelt, wie durchscheinende Kohle
+    fantasma.setAttribute('transform','translate(156 214) scale(-1 1)');
+    motivoG.querySelectorAll('path,circle,ellipse').forEach(function(el){ el.setAttribute('pathLength','1'); });
+    motivoG.classList.remove('dibuja');
+    if (zeichnen){ void motivoG.getBoundingClientRect(); motivoG.classList.add('dibuja'); }
+    groesse();
+  }
+  function groesse(){
+    var v = document.getElementById('tamano').value / 100;
+    escala.setAttribute('transform','scale('+v+')');
+  }
+
+  // --- Papier-Geometrie ---
+  var X0=58, Y0=86, X1=254, Y1=366;      // Papier-Rechteck
+  var C = {x:X1, y:Y1};                  // Ecke unten rechts
+  var RECT = [{x:X0,y:Y0},{x:X1,y:Y0},{x:X1,y:Y1},{x:X0,y:Y1}];
+  var FLAECHE = (X1-X0)*(Y1-Y0);
+  var D = {x:C.x-16, y:C.y-20};          // leicht angehobene Ecke
+  var resto = document.getElementById('resto');
+  var restoClip = document.getElementById('resto-clip');
+  var solapa = document.getElementById('solapa');
+  var sombra = document.getElementById('sombra');
+  var hoja = document.getElementById('hoja');
+
+  function clip(poly, M, n, behalten){
+    var out=[];
+    function s(p){ return (p.x-M.x)*n.x + (p.y-M.y)*n.y; }
+    for (var i=0;i<poly.length;i++){
+      var a=poly[i], b=poly[(i+1)%poly.length];
+      var sa=s(a), sb=s(b);
+      var ina = behalten ? sa<=0 : sa>0;
+      var inb = behalten ? sb<=0 : sb>0;
+      if (ina) out.push(a);
+      if (ina!==inb){ var t=sa/(sa-sb); out.push({x:a.x+(b.x-a.x)*t, y:a.y+(b.y-a.y)*t}); }
+    }
+    return out;
+  }
+  function flaeche(p){ var a=0; for(var i=0;i<p.length;i++){var q=p[(i+1)%p.length]; a+=p[i].x*q.y-q.x*p[i].y;} return Math.abs(a)/2; }
+  function d(p){ if(!p.length) return ''; return 'M'+p.map(function(q){return q.x.toFixed(1)+' '+q.y.toFixed(1);}).join('L')+'Z'; }
+
+  function zeichne(){
+    var vx=C.x-D.x, vy=C.y-D.y, L=Math.hypot(vx,vy);
+    if (L<0.5){ resto.setAttribute('d',d(RECT)); restoClip.setAttribute('d',d(RECT)); solapa.setAttribute('d',''); sombra.setAttribute('d',''); return 0; }
+    var n={x:vx/L,y:vy/L}, M={x:(C.x+D.x)/2,y:(C.y+D.y)/2};
+    var rest = clip(RECT,M,n,true);
+    var lap = clip(RECT,M,n,false).map(function(p){
+      var k=2*((p.x-M.x)*n.x+(p.y-M.y)*n.y); return {x:p.x-k*n.x, y:p.y-k*n.y};
+    });
+    resto.setAttribute('d',d(rest)); restoClip.setAttribute('d',d(rest));
+    solapa.setAttribute('d',d(lap));
+    sombra.setAttribute('d',d(lap.map(function(p){return {x:p.x+4,y:p.y+6};})));
+    var anteil = 1 - flaeche(rest)/FLAECHE;
+    estado.textContent = anteil>0.97 ? 'Schablone frei' : (anteil<0.05 ? 'Papier liegt auf' : Math.round(anteil*100)+' % abgezogen');
+    return anteil;
+  }
+
+  // Ziel für «ganz abgezogen»: Ecke weit über die gegenüberliegende Ecke hinaus
+  var ENDE = {x:X0-(X1-X0)-30, y:Y0-(Y1-Y0)-30};
+  var anim=null;
+  function fahre(ziel, dauer, fertig){
+    cancelAnimationFrame(anim);
+    var start={x:D.x,y:D.y}, t0=performance.now();
+    (function schritt(t){
+      var k=Math.min(1,(t-t0)/dauer); k=1-Math.pow(1-k,3);
+      D={x:start.x+(ziel.x-start.x)*k, y:start.y+(ziel.y-start.y)*k};
+      var a=zeichne();
+      hoja.style.opacity = a>0.8 ? String(Math.max(0,1-(a-0.8)*5)) : '1';
+      if(k<1) anim=requestAnimationFrame(schritt); else if(fertig) fertig();
+    })(t0);
+  }
+  function abziehen(){ fahre(ENDE, 1100, function(){ hoja.style.opacity='0'; hoja.style.pointerEvents='none'; estado.textContent='Schablone frei'; }); mesa.classList.add('tocado'); }
+  function auflegen(){ hoja.style.pointerEvents=''; hoja.style.opacity='1'; D={x:C.x,y:C.y}; zeichne(); fahre({x:C.x-16,y:C.y-20},500); }
+
+  // --- Zeiger: gedrückt halten oder ziehen ---
+  var svg = document.getElementById('brazo');
+  function svgPunkt(e){ var p=svg.createSVGPoint(); p.x=e.clientX; p.y=e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); }
+  var drag=null, halten=null;
+  hoja.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    cancelAnimationFrame(anim);
+    try{ hoja.setPointerCapture(e.pointerId); }catch(_){}
+    mesa.classList.add('ziehen','tocado');
+    var p=svgPunkt(e);
+    drag={start:p, D0:{x:D.x,y:D.y}, bewegt:false};
+    var tStart=performance.now();
+    (function wachsen(t){
+      if(!drag || drag.bewegt) return;
+      var k=Math.min(1,(t-tStart)/1800);
+      D={x:drag.D0.x+(ENDE.x*0.8+C.x*0.2-drag.D0.x)*k, y:drag.D0.y+(ENDE.y*0.8+C.y*0.2-drag.D0.y)*k};
+      zeichne();
+      if(k<1) halten=requestAnimationFrame(wachsen);
+    })(tStart);
+  });
+  hoja.addEventListener('pointermove', function(e){
+    if(!drag) return;
+    var p=svgPunkt(e), dx=p.x-drag.start.x, dy=p.y-drag.start.y;
+    if(!drag.bewegt && Math.hypot(dx,dy)>5){ drag.bewegt=true; cancelAnimationFrame(halten); drag.D0={x:D.x,y:D.y}; drag.start=p; dx=0; dy=0; }
+    if(drag.bewegt){
+      D={x:Math.min(C.x,drag.D0.x+dx*1.4), y:Math.min(C.y,drag.D0.y+dy*1.4)};
+      zeichne();
+    }
+  });
+  function los(){
+    if(!drag) return;
+    cancelAnimationFrame(halten); drag=null; mesa.classList.remove('ziehen');
+    var a=zeichne();
+    if(a>0.45) abziehen();
+  }
+  hoja.addEventListener('pointerup', los);
+  hoja.addEventListener('pointercancel', los);
+
+  var bPapel=document.getElementById('b-papel');
+  bPapel.addEventListener('click', function(){
+    if (hoja.style.opacity==='0'){ auflegen(); bPapel.textContent='Papier abziehen'; }
+    else { abziehen(); bPapel.textContent='Neues Papier'; }
+  });
+  document.getElementById('b-motivo').addEventListener('click', function(){
+    setzeMotiv((actual+1)%MOTIVE.length, true);
+    if (hoja.style.opacity==='0') estado.textContent = MOTIVE[actual].name;
+  });
+  document.getElementById('tamano').addEventListener('input', groesse);
+  // Wenn das Papier per Geste ganz abgezogen wurde, Knopf anpassen
+  new MutationObserver(function(){ if(hoja.style.opacity==='0') bPapel.textContent='Neues Papier'; }).observe(hoja,{attributes:true,attributeFilter:['style']});
+
+  setzeMotiv(0,false);
+  zeichne();
+
+  // PDF: Papier zur Hälfte abgezogen, Ecke eingerollt, Motiv sichtbar
+  window.pdfZustand = function(){
+    cancelAnimationFrame(anim);
+    D={x:-14, y:-24};
+    zeichne();
+    estado.textContent='Ringelblume · halb abgezogen';
+  };
+})();
+</script>
+</body>
+</html>
