@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PS Umzug AG – Volle PS (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0f12;--bg2:#17191e;--card:#1e2128;--or:#ff6a00;--yel:#ffc400;--txt:#f3f4f6;--mut:#9aa0ab;--line:#2a2e36}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--txt);max-width:430px;margin:0 auto;padding-bottom:80px;overflow-x:hidden}
+.demo{background:var(--yel);color:#111;font-size:12px;text-align:center;padding:7px 10px;font-weight:600}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;position:sticky;top:0;z-index:20;background:rgba(14,15,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.5px}
+.logo i{font-style:normal;font-family:'Anton';font-size:22px;background:var(--or);color:#111;padding:2px 8px;border-radius:6px;transform:skewX(-10deg);display:inline-block}
+header a{color:#111;background:var(--yel);text-decoration:none;font-weight:800;font-size:13px;border-radius:8px;padding:9px 12px}
+/* HERO */
+.hero{position:relative;padding:34px 18px 0;overflow:hidden}
+.hero h1{font-family:'Anton';font-weight:400;font-size:76px;line-height:.95;letter-spacing:-.5px;text-transform:uppercase}
+.hero h1 span{display:block}.hero h1 .o{color:var(--or);font-size:150px;line-height:.85;margin:4px 0 2px}
+.hero h1 .s{color:transparent;-webkit-text-stroke:2px var(--txt)}
+.hero p{color:var(--mut);margin-top:16px;line-height:1.55;font-size:16px;max-width:340px}
+.badge{display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+.badge b{font-family:'Anton';font-size:30px;color:var(--yel);font-weight:400}
+.badge span{font-size:12px;color:var(--mut);line-height:1.3}
+.road{position:relative;height:150px;margin-top:22px}
+.road:before{content:'';position:absolute;left:0;right:0;bottom:26px;height:4px;background:repeating-linear-gradient(90deg,var(--yel) 0 34px,transparent 34px 64px);animation:lane 1s linear infinite}
+@keyframes lane{to{background-position:-64px 0}}
+.road:after{content:'';position:absolute;left:0;right:0;bottom:0;height:26px;background:#1a1c21}
+.truck{position:absolute;bottom:24px;left:-280px;width:260px;animation:drive 2.4s cubic-bezier(.2,.9,.3,1) .3s forwards}
+@keyframes drive{to{left:calc(50% - 130px)}}
+.truck .wh{animation:spin .5s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dust{position:absolute;bottom:30px;left:0;width:100%;height:20px;opacity:0;animation:dust 1.2s ease-out 1.8s forwards}
+@keyframes dust{0%{opacity:.6}100%{opacity:0;transform:translateX(-40px) scale(1.4)}}
+.ticker{background:var(--or);color:#111;font-family:'Anton';font-size:20px;letter-spacing:1px;white-space:nowrap;overflow:hidden;padding:10px 0;transform:rotate(-2deg);margin:18px -10px 0}
+.ticker div{display:inline-block;animation:tick 16s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+section{padding:42px 18px}
+.kick{font-size:12px;font-weight:800;letter-spacing:3px;color:var(--or);text-transform:uppercase}
+h2{font-family:'Anton';font-weight:400;font-size:46px;line-height:.95;text-transform:uppercase;margin:8px 0 10px}
+.lead{color:var(--mut);line-height:1.55;margin-bottom:20px}
+/* KONFIGURATOR */
+.cfg{background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:18px}
+.load{position:relative;height:120px;margin-bottom:8px}
+.load svg{width:100%;height:100%}
+.box{transition:opacity .35s,transform .45s cubic-bezier(.3,1.6,.5,1);transform-box:fill-box;transform-origin:center bottom}
+.box.off{opacity:0;transform:translateY(-40px) scale(.6)}
+.fill{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-bottom:16px}
+.fill b{color:var(--yel)}
+.rl{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;margin-bottom:8px}
+.rl output{font-family:'Anton';font-size:34px;font-weight:400;color:var(--or)}
+input[type=range]{width:100%;accent-color:var(--or);margin-bottom:18px}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.op{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px;text-align:left;color:var(--txt);font:600 14px 'Inter';cursor:pointer;transition:.2s}
+.op small{display:block;color:var(--mut);font-weight:400;font-size:12px;margin-top:3px}
+.op.on{border-color:var(--or);background:#2a1a10}
+.op.on:after{content:'✓';float:right;color:var(--or);font-weight:800;margin-top:-34px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.row2 label{font-size:12px;color:var(--mut);font-weight:600}
+.row2 input{width:100%;margin-top:5px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px;color:var(--txt);font:600 15px 'Inter'}
+.out{margin-top:16px;background:var(--or);color:#111;border-radius:18px;padding:16px}
+.out p{font-weight:600;line-height:1.45;font-size:15px}
+.out .b{display:flex;gap:8px;margin-top:12px}
+.out a{flex:1;text-align:center;text-decoration:none;font-weight:800;border-radius:12px;padding:13px;font-size:14px}
+.wa{background:#111;color:#fff}.ml{background:#fff;color:#111}
+/* MÖBELLIFT */
+.lift{position:relative;height:190vh}
+.lift .stick{position:sticky;top:64px;height:calc(100vh - 150px);min-height:440px;display:flex;flex-direction:column}
+.lift .txt{padding:0 18px}
+.scene{flex:1;position:relative;margin-top:10px}
+.scene svg{position:absolute;inset:0;width:100%;height:100%}
+#plat{transition:transform .1s linear}
+.lvl{position:absolute;right:18px;top:10px;font-family:'Anton';font-size:52px;color:var(--yel)}
+.lvl small{display:block;font-family:'Inter';font-size:11px;color:var(--mut);letter-spacing:2px;text-align:right}
+/* LEISTUNGEN */
+.swipe{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 18px 10px;margin:0 -18px;scrollbar-width:none}
+.swipe::-webkit-scrollbar{display:none}
+.sv{flex:0 0 78%;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;min-height:220px;position:relative;overflow:hidden}
+.sv .n{font-family:'Anton';font-size:70px;color:#262a32;position:absolute;right:12px;top:-6px}
+.sv b{font-family:'Anton';font-weight:400;font-size:28px;text-transform:uppercase;display:block;margin-top:44px;position:relative}
+.sv p{color:var(--mut);line-height:1.5;margin-top:8px;font-size:14px;position:relative}
+.sv .ic{font-size:30px;position:absolute;top:18px;left:20px}
+.hint{font-size:12px;color:var(--mut);margin-top:6px}
+/* GARANTIE */
+.guar{background:var(--bg2);border-radius:22px;padding:26px 18px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.flat{height:170px;border:2px dashed #3a3f48;border-radius:14px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px;color:var(--mut);font-size:12px;position:relative}.stamp{top:40px}
+.stamp{position:absolute;font-family:'Anton';font-size:30px;color:#24d26b;border:5px solid #24d26b;border-radius:10px;padding:6px 14px;transform:rotate(-12deg) scale(3);opacity:0;letter-spacing:1px;text-align:center;line-height:1}
+.stamp small{display:block;font-family:'Inter';font-size:10px;letter-spacing:3px;font-weight:800}
+.stamp.go{animation:stamp .45s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes stamp{to{transform:rotate(-12deg) scale(1);opacity:1}}
+.shake{animation:shake .3s .35s}
+@keyframes shake{25%{transform:translate(3px,-2px)}50%{transform:translate(-3px,2px)}75%{transform:translate(2px,1px)}}
+/* TEAM */
+.team{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st{background:var(--card);border-radius:18px;padding:18px 14px;border:1px solid var(--line)}
+.st b{font-family:'Anton';font-size:44px;font-weight:400;color:var(--yel);display:block;line-height:1}
+.st span{color:var(--mut);font-size:13px}
+.ph{margin-top:12px;height:170px;border-radius:20px;border:2px dashed var(--or);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:13px;text-align:center;background:repeating-linear-gradient(-45deg,#14161a 0 12px,#17191e 12px 24px)}
+.rv{border-left:4px solid var(--or);padding:6px 0 6px 14px;margin-bottom:16px}
+.rv p{font-family:'Anton';font-weight:400;font-size:28px;text-transform:uppercase;line-height:1.05}
+.rv small{color:var(--mut)}
+.score{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.score b{font-family:'Anton';font-size:76px;font-weight:400;color:var(--yel);line-height:.9}
+.score span{color:var(--mut);font-size:14px;line-height:1.4}
+.k{line-height:1.9}.k a{color:var(--yel);font-weight:800;text-decoration:none}
+.hrs{display:grid;grid-template-columns:1fr auto;gap:4px 10px;margin-top:14px;color:var(--mut)}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:24px 18px}
+.bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:8px;padding:10px 12px;background:rgba(14,15,18,.95);border-top:1px solid var(--line);z-index:30}
+.bar a{flex:1;text-align:center;text-decoration:none;font-weight:800;border-radius:12px;padding:14px;font-size:15px}
+.b1{background:var(--or);color:#111}.b2{background:#25d366;color:#fff}
+.rev{opacity:0;transform:translateY(30px);transition:.7s}.rev.in{opacity:1;transform:none}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der PS Umzug AG</div>
+<header><div class="logo"><i>PS</i>UMZUG AG</div><a href="#offerte">Offerte</a></header>
+
+<div class="hero">
+<h1><span class="s">Volle</span><span class="o">PS</span><span>für Ihren Umzug.</span></h1>
+<p>Privat- und Firmenumzüge, Reinigung mit Abnahmegarantie, Räumungen und Möbellift – aus Steffisburg, lokal und europaweit.</p>
+<div class="badge"><b>9.4</b><span>von 10 Punkten<br>43 Bewertungen auf Umzug-365</span></div>
+<div class="road">
+<svg class="truck" viewBox="0 0 260 110" aria-hidden="true">
+<rect x="4" y="6" width="170" height="78" rx="6" fill="#ff6a00"/>
+<text x="89" y="56" text-anchor="middle" font-family="Anton" font-size="34" fill="#111">PS UMZUG</text>
+<path d="M178 30h42l28 28v26h-70z" fill="#f3f4f6"/><path d="M186 37h30l20 21h-50z" fill="#3b4d63"/>
+<rect x="174" y="80" width="80" height="8" fill="#2a2e36"/><rect x="0" y="80" width="178" height="8" fill="#2a2e36"/>
+<g class="wh"><circle cx="45" cy="92" r="15" fill="#111"/><circle cx="45" cy="92" r="6" fill="#9aa0ab"/><rect x="43" y="79" width="4" height="26" fill="#444"/></g>
+<g class="wh"><circle cx="210" cy="92" r="15" fill="#111"/><circle cx="210" cy="92" r="6" fill="#9aa0ab"/><rect x="208" y="79" width="4" height="26" fill="#444"/></g>
+</svg>
+<svg class="dust" viewBox="0 0 430 20"><circle cx="70" cy="12" r="8" fill="#555"/><circle cx="50" cy="10" r="6" fill="#444"/><circle cx="90" cy="14" r="5" fill="#555"/></svg>
+</div>
+</div>
+<div class="ticker"><div>PRIVATUMZUG ★ FIRMENUMZUG ★ MÖBELLIFT ★ REINIGUNG MIT ABNAHMEGARANTIE ★ RÄUMUNG ★ LAGERUNG ★ KLAVIER ★ PRIVATUMZUG ★ FIRMENUMZUG ★ MÖBELLIFT ★ REINIGUNG MIT ABNAHMEGARANTIE ★ RÄUMUNG ★ LAGERUNG ★ KLAVIER ★&nbsp;</div></div>
+
+<section id="offerte">
+<div class="kick">Zügel-Konfigurator</div>
+<h2>Laden Sie Ihren Lastwagen.</h2>
+<p class="lead">Zimmer wählen, Extras antippen – der Lastwagen füllt sich mit. Ihre Offert-Anfrage ist danach in Sekunden verschickt.</p>
+<div class="cfg">
+<div class="load"><svg viewBox="0 0 390 120" id="lw"></svg></div>
+<div class="fill"><span>Ladefläche</span><b id="pct">0 %</b></div>
+<div class="rl"><span>Zimmer</span><output id="zo">3.5</output></div>
+<input type="range" id="z" min="1" max="7" step="0.5" value="3.5">
+<div class="ops" id="ops">
+<button class="op" data-l="Möbellift">Möbellift<small>über Balkon & Fenster</small></button>
+<button class="op" data-l="Reinigung mit Abnahmegarantie">Reinigung<small>mit Abnahmegarantie</small></button>
+<button class="op" data-l="Montage/Demontage">Montage<small>Schränke & Wandmöbel</small></button>
+<button class="op" data-l="Entsorgung/Räumung">Entsorgung<small>Räumung & Recycling</small></button>
+<button class="op" data-l="Klaviertransport">Klavier<small>sicher transportiert</small></button>
+<button class="op" data-l="Lagerung">Lagerung<small>zwischenlagern</small></button>
+</div>
+<div class="row2"><label>Von (Ort)<input id="von" placeholder="z.B. Thun"></label><label>Nach (Ort)<input id="nach" placeholder="z.B. Spiez"></label></div>
+<div class="row2"><label>Wunschdatum<input type="date" id="dat"></label><label>Etage<input id="et" placeholder="z.B. 3. OG ohne Lift"></label></div>
+<div class="out"><p id="sum"></p><div class="b"><a class="wa" id="wa" href="#">WhatsApp</a><a class="ml" id="ml" href="#">E-Mail</a></div></div>
+</div>
+</section>
+
+<div class="lift" id="lift"><div class="stick">
+<div class="txt"><div class="kick">Möbellift</div><h2>Das Sofa nimmt den Balkon.</h2><p class="lead" style="margin-bottom:0">Enges Treppenhaus? Mit dem Möbellift kommen grosse Stücke direkt über Balkon oder Fenster hinein – schnell und schonend. Scrollen Sie mal.</p></div>
+<div class="scene"><div class="lvl"><span id="og">EG</span><small>ETAGE</small></div>
+<svg viewBox="0 0 390 360" preserveAspectRatio="xMidYMax meet">
+<rect x="150" y="20" width="220" height="340" fill="#1e2128"/>
+<g fill="#2b3039"><rect x="175" y="40" width="70" height="56" rx="4"/><rect x="275" y="40" width="70" height="56" rx="4"/><rect x="175" y="125" width="70" height="56" rx="4"/><rect x="275" y="125" width="70" height="56" rx="4"/><rect x="175" y="210" width="70" height="56" rx="4"/><rect x="275" y="210" width="70" height="56" rx="4"/><rect x="230" y="290" width="60" height="70" rx="4"/></g>
+<g fill="#3a3f48"><rect x="150" y="96" width="110" height="6"/><rect x="150" y="181" width="110" height="6"/><rect x="150" y="266" width="110" height="6"/></g>
+<path d="M60 360L150 40" stroke="#ffc400" stroke-width="8"/><path d="M72 360L162 40" stroke="#ffc400" stroke-width="8"/>
+<g stroke="#111" stroke-width="2"><path d="M64 340l12 0M74 305l12 0M84 270l12 0M94 235l12 0M104 200l12 0M114 165l12 0M124 130l12 0M134 95l12 0M144 60l12 0"/></g>
+<rect x="20" y="330" width="80" height="30" rx="4" fill="#ff6a00"/><circle cx="38" cy="360" r="9" fill="#111"/><circle cx="82" cy="360" r="9" fill="#111"/>
+<g id="plat"><rect x="78" y="300" width="70" height="8" fill="#9aa0ab"/>
+<g><rect x="84" y="276" width="58" height="22" rx="6" fill="#c05a2a"/><rect x="80" y="268" width="12" height="30" rx="5" fill="#a54a20"/><rect x="134" y="268" width="12" height="30" rx="5" fill="#a54a20"/><rect x="88" y="270" width="50" height="10" rx="4" fill="#d9703c"/></g></g>
+</svg></div>
+</div></div>
+
+<section>
+<div class="kick">Leistungen</div>
+<h2>Alles aus einer Hand.</h2>
+<div class="swipe">
+<div class="sv"><span class="ic">🏠</span><span class="n">01</span><b>Privatumzug</b><p>Vom Studio bis zum Haus – sorgfältig verpackt, getragen und aufgestellt.</p></div>
+<div class="sv"><span class="ic">🏢</span><span class="n">02</span><b>Firmenumzug</b><p>Büro, Industrie, Altersheim oder interner Umzug – geplant, damit der Betrieb weiterläuft.</p></div>
+<div class="sv"><span class="ic">✨</span><span class="n">03</span><b>Reinigung</b><p>Wohnungsendreinigung mit Abnahmegarantie sowie Baureinigung inkl. Bauschutt und Tiefgarage.</p></div>
+<div class="sv"><span class="ic">♻️</span><span class="n">04</span><b>Räumung</b><p>Entsorgung und Räumungen – was nicht mitkommt, wird fachgerecht entsorgt.</p></div>
+<div class="sv"><span class="ic">📦</span><span class="n">05</span><b>Lagerung</b><p>Möbel zwischenlagern, wenn alte und neue Wohnung nicht zusammenpassen.</p></div>
+<div class="sv"><span class="ic">🎹</span><span class="n">06</span><b>Klavier & Montage</b><p>Klaviere mit voller Sicherheit, Schränke und Wandmöbel montiert und demontiert.</p></div>
+<div class="sv"><span class="ic">🚚</span><span class="n">07</span><b>Transporte</b><p>Gütertransporte in der ganzen Schweiz – und Umzüge europaweit.</p></div>
+</div>
+<p class="hint">← wischen →</p>
+</section>
+
+<section>
+<div class="guar rev" id="guar">
+<div class="kick">Wohnungsabgabe</div>
+<h2>Sauber. Abgenommen. Fertig.</h2>
+<p class="lead">Mit der Endreinigung mit Abnahmegarantie müssen Sie sich bei der Übergabe keine Sorgen machen.</p>
+<div class="flat" id="flat">Hier: Foto einer frisch gereinigten Wohnung
+<div class="stamp" id="stamp">ABGENOMMEN<small>GARANTIERT</small></div></div>
+</div>
+</section>
+
+<section>
+<div class="kick">Das Team</div>
+<h2>Kräftig. Zuverlässig. Aus Steffisburg.</h2>
+<p class="lead">Abdullah Rashid war zwei Jahre Teamleiter bei verschiedenen Umzugsfirmen, bevor er 2018 PS Umzug gründete. Heute packt ein eingespieltes Team mit an.</p>
+<div class="team rev"><div class="st"><b>2018</b><span>gegründet</span></div><div class="st"><b>6–10</b><span>Leute im Team</span></div><div class="st"><b>CH+EU</b><span>Einsatzgebiet</span></div><div class="st"><b>43</b><span>Bewertungen</span></div></div>
+<div class="ph">Platzhalter – hier kommen Ihre Fotos<br>vom Team und von den Fahrzeugen hin.</div>
+</section>
+
+<section>
+<div class="kick">Kundenstimmen</div>
+<div class="score rev"><b>9.4</b><span>von 10 Punkten<br>aus 43 Bewertungen auf Umzug-365<br>Kundenservice: 9.6</span></div>
+<div class="rv rev"><p>«Absolut perfekte Leistung»</p><small>Bewertung auf Umzug-365</small></div>
+<div class="rv rev"><p>«Sehr gute Leistung, guter Preis»</p><small>Bewertung auf Umzug-365</small></div>
+</section>
+
+<section>
+<div class="kick">Kontakt</div>
+<h2>Bereit zum Zügeln?</h2>
+<p class="k">PS Umzug AG, Bahnhofstrasse 85, 3613 Steffisburg<br>Büro: <a href="tel:+41798219735">079 821 97 35</a><br>Aussendienst: <a href="tel:+41798268219">079 826 82 19</a><br><a href="mailto:info@ps-umzug.ch">info@ps-umzug.ch</a></p>
+<div class="hrs"><span>Mo – Fr</span><span>08:00 – 17:00</span><span>Sa</span><span>08:00 – 12:00</span><span>So</span><span>geschlossen</span></div>
+</section>
+<footer>Entwurf von Max Rathsack · Texte, Farben und Bilder werden ganz nach Ihren Wünschen angepasst. Platzhalter werden durch eigene Fotos ersetzt.</footer>
+<div class="bar"><a class="b1" href="tel:+41798219735">Anrufen</a><a class="b2" href="https://wa.me/41798219735">WhatsApp</a></div>
+
+<script>
+// Lastwagen mit Kisten
+const lw=document.getElementById('lw');const C=['#c98a4b','#b8793c','#d69a5a','#a86c33'];
+let s='<rect x="10" y="8" width="290" height="96" rx="6" fill="none" stroke="#3a3f48" stroke-width="3" stroke-dasharray="6 6"/><path d="M304 40h44l30 30v34h-74z" fill="#ff6a00"/><path d="M312 47h32l22 23h-54z" fill="#3b4d63"/><circle cx="60" cy="108" r="11" fill="#111" stroke="#2a2e36" stroke-width="3"/><circle cx="340" cy="108" r="11" fill="#111" stroke="#2a2e36" stroke-width="3"/>';
+const B=[];for(let c=0;c<9;c++)for(let r=0;r<3;r++){const i=B.length;B.push(i);const x=16+c*31,y=74-r*30,w=28,h=27;
+s+=`<g class="box off" id="b${i}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="${C[(c+r)%4]}"/><path d="M${x+w/2-3} ${y}v${h/2}M${x+w/2+3} ${y}v${h/2}" stroke="#8a5a2b" stroke-width="2"/></g>`;}
+lw.innerHTML=s;
+const order=[];for(let c=0;c<9;c++)for(let r=0;r<3;r++)order.push(c*3+r);
+const z=document.getElementById('z'),ops=document.getElementById('ops');
+function upd(){const zi=+z.value;document.getElementById('zo').textContent=zi;
+const ex=ops.querySelectorAll('.op.on').length;let n=Math.min(27,Math.round(zi*3.2+ex*1.2));
+order.forEach((id,k)=>document.getElementById('b'+id).classList.toggle('off',k>=n));
+document.getElementById('pct').textContent=Math.round(n/27*100)+' %';
+const x=[...ops.querySelectorAll('.op.on')].map(o=>o.dataset.l);const v=document.getElementById('von').value,na=document.getElementById('nach').value,d=document.getElementById('dat').value,et=document.getElementById('et').value;
+const ds=d?new Date(d).toLocaleDateString('de-CH'):'';
+let t=`Grüezi, ich plane einen Umzug: ${zi}-Zimmer-Wohnung`+(v?` von ${v}`:'')+(na?` nach ${na}`:'')+(ds?`, am ${ds}`:'')+(et?`, ${et}`:'')+'.'+(x.length?' Dazu: '+x.join(', ')+'.':'')+' Können Sie mir eine Offerte machen?';
+document.getElementById('sum').textContent=t;
+document.getElementById('wa').href='https://wa.me/41798219735?text='+encodeURIComponent(t);
+document.getElementById('ml').href='mailto:info@ps-umzug.ch?subject='+encodeURIComponent('Offert-Anfrage Umzug')+'&body='+encodeURIComponent(t);}
+z.oninput=upd;ops.onclick=e=>{const b=e.target.closest('.op');if(b){b.classList.toggle('on');upd();}};
+['von','nach','dat','et'].forEach(i=>document.getElementById(i).oninput=upd);
+setTimeout(upd,400);
+// Möbellift
+const lift=document.getElementById('lift'),plat=document.getElementById('plat'),og=document.getElementById('og');
+function lf(){const r=lift.getBoundingClientRect(),tot=r.height-innerHeight*.6;let p=Math.min(1,Math.max(0,-r.top/tot));
+const y=-p*215,x=p*60;plat.style.transform=`translate(${x}px,${y}px)`;og.textContent=p<.3?'EG':p<.6?'1. OG':p<.9?'2. OG':'3. OG';}
+addEventListener('scroll',lf,{passive:true});lf();
+// Reveal + Stempel
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.id=='guar'){setTimeout(()=>{document.getElementById('stamp').classList.add('go');document.getElementById('flat').classList.add('shake');},500);}io.unobserve(e.target);}}),{threshold:.3});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+</body></html>
