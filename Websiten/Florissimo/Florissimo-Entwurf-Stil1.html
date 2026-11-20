@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florissimo Petra Zehr – Strauss nach Wunsch (Entwurf)</title>
+<meta name="description" content="Entwurf: Blumengeschäft Florissimo Petra Zehr, Oberdorfstrasse 6, 3612 Steffisburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papier:#fbf8f3;
+  --papier2:#f4eee5;
+  --rose:#f2dcd7;
+  --rose-tief:#c9807b;
+  --salbei:#a7b8a0;
+  --salbei-tief:#556a55;
+  --tinte:#2f3a31;
+  --grau:#6c736a;
+  --kraft:#d2ae86;
+  --kraft-tief:#b48a5e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--papier);color:var(--tinte);font:400 16px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:430px;margin:0 auto;padding:0 22px}
+
+.demo{background:var(--tinte);color:#f3efe8;font-size:12.5px;line-height:1.45;text-align:center;padding:8px 16px}
+
+header.kopf{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 6px;max-width:430px;margin:0 auto}
+.marke{font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:26px;letter-spacing:.2px;line-height:1;text-decoration:none}
+.marke small{display:block;font-family:"DM Sans",sans-serif;font-style:normal;font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--grau);margin-top:6px}
+.kopf a.ruf{font-size:13px;font-weight:500;text-decoration:none;border:1px solid var(--salbei);border-radius:99px;padding:7px 13px;white-space:nowrap}
+
+/* Hero */
+.hero{padding:16px 0 30px}
+.bogen{position:relative;margin:8px auto 0;width:100%;aspect-ratio:1/0.82;background:var(--rose);border-radius:200px 200px 18px 18px;overflow:hidden}
+.bogen svg{position:absolute;inset:0;width:100%;height:100%}
+.hero h1{font-family:Fraunces,serif;font-weight:300;font-size:clamp(34px,10vw,46px);line-height:1.06;letter-spacing:-.5px;margin:26px 0 14px}
+.hero h1 em{font-style:italic;color:var(--rose-tief)}
+.hero p.lead{font-size:17px;color:#4a544b;max-width:34ch}
+.leitsatz{display:flex;gap:10px;align-items:center;margin:18px 0 22px;font-family:Fraunces,serif;font-style:italic;font-size:18px;color:var(--salbei-tief)}
+.leitsatz:before{content:"";flex:0 0 28px;height:1px;background:var(--salbei)}
+.knoepfe{display:flex;flex-wrap:wrap;gap:10px}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 20px;border-radius:99px;font:500 15px "DM Sans",sans-serif;text-decoration:none;border:1.5px solid var(--tinte);background:transparent;color:var(--tinte);cursor:pointer}
+.knopf.voll{background:var(--tinte);color:var(--papier)}
+.knopf.rose{background:var(--rose-tief);border-color:var(--rose-tief);color:#fff}
+.knopf svg{width:18px;height:18px}
+
+/* Abschnitte */
+section{padding:44px 0}
+.ueber{font-size:11.5px;letter-spacing:2.6px;text-transform:uppercase;color:var(--salbei-tief);font-weight:700;margin-bottom:10px}
+h2{font-family:Fraunces,serif;font-weight:300;font-size:clamp(28px,8vw,36px);line-height:1.12;letter-spacing:-.3px;margin-bottom:14px}
+h2 em{font-style:italic}
+p+p{margin-top:12px}
+
+/* Werkstatt */
+.werkstatt{background:var(--papier2);border-top:1px solid #ebe3d6;border-bottom:1px solid #ebe3d6}
+.tisch{position:relative;background:#fff;border-radius:22px;margin:22px 0 16px;box-shadow:0 1px 0 #e9e1d4,0 18px 40px -26px rgba(80,60,40,.35)}
+.tisch svg#strauss{width:100%;height:auto}
+.hinweis{position:absolute;left:0;right:0;top:34%;text-align:center;font-family:Fraunces,serif;font-style:italic;color:#9aa096;font-size:17px;pointer-events:none;transition:opacity .4s}
+.hat-blumen .hinweis{opacity:0}
+.zaehler{position:absolute;right:14px;top:12px;font-size:12px;color:var(--grau);background:var(--papier);padding:4px 10px;border-radius:99px}
+
+.bl{transform-box:view-box;transform-origin:160px 300px;animation:stecken .75s cubic-bezier(.3,1.35,.5,1) both}
+@keyframes stecken{0%{transform:translateY(-90px) rotate(var(--r,0deg));opacity:0}55%{opacity:1}100%{transform:none;opacity:1}}
+html.pdf .bl,.ruhig .bl{animation:none}
+#band{opacity:0;transform-box:view-box;transform-origin:160px 302px;transform:scale(.2);transition:transform .55s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+.hat-blumen #band{opacity:1;transform:scale(1)}
+#band.zupf{animation:zupf .5s ease}
+@keyframes zupf{30%{transform:scale(1.12) rotate(-3deg)}65%{transform:scale(.96) rotate(2deg)}}
+
+.auswahl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.blume{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px 9px;background:#fff;border:1px solid #e6ddd0;border-radius:16px;font:500 13px "DM Sans",sans-serif;color:var(--tinte);cursor:pointer;transition:transform .15s,border-color .2s}
+.blume:active{transform:scale(.95)}
+.blume:hover{border-color:var(--salbei)}
+.blume svg{width:46px;height:46px}
+.blume .anz{position:absolute;top:6px;right:8px;min-width:20px;height:20px;border-radius:99px;background:var(--rose-tief);color:#fff;font-size:11px;line-height:20px;text-align:center;padding:0 5px;opacity:0;transform:scale(.4);transition:.25s}
+.blume .anz.an{opacity:1;transform:none}
+.liste{min-height:24px;margin:16px 0 4px;font-family:Fraunces,serif;font-style:italic;font-size:17px;color:var(--salbei-tief)}
+.aktion{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.aktion .knopf{flex:1 1 auto}
+.klein{font-size:13px;color:var(--grau);margin-top:12px}
+
+/* Angebot */
+.angebot{display:grid;gap:12px;margin-top:20px}
+.karte{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;padding:16px 16px 16px 12px;border-radius:18px;background:#fff;border:1px solid #ece4d8}
+.karte svg{width:54px;height:54px}
+.karte h3{font-family:Fraunces,serif;font-weight:500;font-size:19px;line-height:1.25;margin-bottom:3px}
+.karte p{font-size:14.5px;color:#535c54}
+.karte.still{background:#f3f3f0;border-color:#e2e2dc}
+.karte.still h3{font-weight:400}
+.platz{display:inline-block;background:#fff4c9;color:#6b5a1d;font-size:12.5px;padding:1px 7px;border-radius:5px;font-style:normal;font-family:"DM Sans",sans-serif}
+
+/* Petra */
+.petra{background:var(--rose)}
+.zitatlos{font-family:Fraunces,serif;font-weight:300;font-size:21px;line-height:1.4}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.person{background:var(--papier);border-radius:16px;padding:16px 14px}
+.person b{display:block;font-family:Fraunces,serif;font-weight:500;font-size:18px;line-height:1.2}
+.person span{font-size:13.5px;color:var(--grau)}
+.probon{margin-top:18px;font-size:14.5px;display:flex;gap:10px;align-items:center}
+.probon svg{flex:0 0 30px}
+
+/* Zeiten */
+.zeiten{margin-top:18px;border-top:1px solid #e3dccf}
+.zeiten div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #e3dccf;font-size:15.5px}
+.zeiten div span:last-child{text-align:right}
+.zeiten .zu{color:#9a9f97}
+.zahlung{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.zahlung span{border:1px solid var(--salbei);border-radius:99px;padding:5px 13px;font-size:13.5px}
+
+.kontakt{background:var(--salbei-tief);color:#f4f1ea}
+.kontakt h2{color:#fff}
+.kontakt .ueber{color:#cfdcc9}
+.kontakt address{font-style:normal;font-size:17px;line-height:1.55;margin:4px 0 22px}
+.kontakt .knopf{border-color:#f4f1ea;color:#f4f1ea}
+.kontakt .knopf.voll{background:#f4f1ea;color:var(--salbei-tief)}
+.kontakt .knoepfe .knopf{flex:1 1 160px}
+.kontakt p.mail{margin-top:16px;font-size:15px;word-break:break-word}
+
+footer{padding:26px 22px 36px;font-size:12.5px;color:var(--grau);line-height:1.6}
+footer b{color:var(--tinte);font-weight:500}
+
+.zeig{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.zeig.da,html.pdf .zeig{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.zeig{opacity:1;transform:none}.bl{animation:none}}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Florissimo Petra Zehr</div>
+
+<header class="kopf">
+  <a class="marke" href="#">Florissimo<small>Petra Zehr · Steffisburg</small></a>
+  <a class="ruf" href="tel:+41334372061">033 437 20 61</a>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="bogen" aria-hidden="true">
+      <!-- Von Hand gezeichnete Zweige im Bogenfenster -->
+      <svg viewBox="0 0 386 316" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M193 330 C190 260 196 200 186 120" stroke="#7f957c" stroke-width="2.2"/>
+        <path d="M190 250 C160 236 140 214 128 186" stroke="#7f957c" stroke-width="1.8"/>
+        <path d="M194 216 C222 200 246 172 252 140" stroke="#7f957c" stroke-width="1.8"/>
+        <path d="M191 290 C226 282 262 262 284 232" stroke="#7f957c" stroke-width="1.6"/>
+        <path d="M192 300 C160 296 118 280 96 250" stroke="#7f957c" stroke-width="1.6"/>
+        <!-- Eukalyptus links -->
+        <g fill="#b8c7b4" stroke="#7f957c" stroke-width="1.2">
+          <ellipse cx="112" cy="268" rx="9" ry="7"/><ellipse cx="128" cy="280" rx="8" ry="6.5"/><ellipse cx="100" cy="252" rx="8" ry="6"/><ellipse cx="146" cy="290" rx="8" ry="6"/>
+          <ellipse cx="268" cy="248" rx="9" ry="7"/><ellipse cx="252" cy="262" rx="8" ry="6"/><ellipse cx="280" cy="236" rx="7" ry="5.5"/>
+        </g>
+        <!-- Ranunkel oben -->
+        <g transform="translate(186 108)">
+          <circle r="34" fill="#f6efe8" stroke="#c9807b" stroke-width="1.6"/>
+          <path d="M-26 -8 C-20 -26 18 -28 26 -6" stroke="#c9807b" stroke-width="1.4"/>
+          <path d="M-20 4 C-16 -16 16 -18 20 2" stroke="#c9807b" stroke-width="1.4"/>
+          <path d="M-13 10 C-10 -6 10 -8 13 8" stroke="#c9807b" stroke-width="1.4"/>
+          <path d="M-6 12 C-5 2 5 2 6 12" stroke="#c9807b" stroke-width="1.4"/>
+          <path d="M-30 12 C-22 30 22 30 30 12" stroke="#c9807b" stroke-width="1.4"/>
+        </g>
+        <!-- Tulpe links -->
+        <g transform="translate(126 180) rotate(-14)">
+          <path d="M-15 -6 C-17 12 -8 22 0 22 C8 22 17 12 15 -6 L8 4 L4 -16 L0 2 L-4 -16 L-8 4 Z" fill="#fbf8f3" stroke="#c9807b" stroke-width="1.6"/>
+        </g>
+        <!-- Rose rechts -->
+        <g transform="translate(254 132)">
+          <circle r="24" fill="#fbf8f3" stroke="#c9807b" stroke-width="1.6"/>
+          <path d="M0 -3 C6 -4 7 4 0 5 C-8 6 -9 -7 0 -10 C11 -12 14 5 4 12 C-7 18 -17 6 -15 -5" stroke="#c9807b" stroke-width="1.5"/>
+        </g>
+        <!-- Schleierkraut -->
+        <g fill="#fff" stroke="#b9b2a8" stroke-width=".9">
+          <circle cx="232" cy="96" r="3"/><circle cx="244" cy="86" r="2.6"/><circle cx="222" cy="84" r="2.4"/><circle cx="236" cy="74" r="2.2"/><circle cx="252" cy="100" r="2.2"/>
+          <circle cx="140" cy="132" r="3"/><circle cx="128" cy="122" r="2.5"/><circle cx="150" cy="118" r="2.3"/><circle cx="134" cy="108" r="2.1"/>
+        </g>
+        <path d="M206 160 C220 130 228 110 232 96 M228 104 L244 86 M228 104 L222 84 M232 96 L236 74 M168 160 C156 140 146 136 140 132 M146 134 L128 122 M146 134 L150 118" stroke="#9aa894" stroke-width="1"/>
+      </svg>
+    </div>
+    <h1>Ein Strauss, <em>so wie Sie</em> ihn sich wünschen.</h1>
+    <p class="lead">Frische Blumen, saisonale Pflanzen und Floristik für die grossen und die leisen Momente – an der Oberdorfstrasse 6 in Steffisburg.</p>
+    <p class="leitsatz">Qualität und Frische haben oberste Priorität.</p>
+    <div class="knoepfe">
+      <a class="knopf voll" href="tel:+41334372061"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Anrufen</a>
+      <a class="knopf" href="mailto:info@florissimo.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>E-Mail schreiben</a>
+    </div>
+  </div>
+</main>
+
+<section class="werkstatt" id="strauss-wunsch">
+  <div class="wrap">
+    <p class="ueber">Strauss nach Wunsch</p>
+    <h2>Stecken Sie sich <em>Ihren</em> Strauss zusammen.</h2>
+    <p>Tippen Sie auf die Blumen – jede wandert in den Strauss. Wenn er Ihnen gefällt, schicken Sie uns die Auswahl. Petra Zehr und ihr Team binden ihn frisch für Sie.</p>
+
+    <div class="tisch" id="tisch">
+      <span class="zaehler" id="zaehler">0 / 12</span>
+      <p class="hinweis">Noch leer – tippen Sie unten auf eine Blume.</p>
+      <svg id="strauss" viewBox="0 0 320 400" role="img" aria-label="Gezeichneter Blumenstrauss in Packpapier">
+        <!-- hinteres Packpapier -->
+        <path d="M58 182 C100 168 220 164 264 176 L186 300 L134 300 Z" fill="#c49c70"/>
+        <path d="M58 182 C100 168 220 164 264 176" fill="none" stroke="#a9804f" stroke-width="1.4"/>
+        <g id="blumen"></g>
+        <!-- vorderes Packpapier: zwei gefaltete Lagen -->
+        <path d="M34 214 C90 226 128 240 160 244 L176 304 L168 384 L150 384 L136 304 Z" fill="#d9b78f"/>
+        <path d="M286 210 C236 226 196 240 160 244 L136 304 L150 384 L168 384 L184 304 Z" fill="#cfa97e"/>
+        <path d="M160 244 L176 304 L168 384" fill="none" stroke="#b58c5f" stroke-width="1.2"/>
+        <path d="M34 214 C90 226 128 240 160 244 C196 240 236 226 286 210" fill="none" stroke="#b58c5f" stroke-width="1.4"/>
+        <path d="M62 222 L140 296 M258 220 L182 296" stroke="#c39c6f" stroke-width="1" opacity=".7"/>
+        <!-- Band -->
+        <g id="band">
+          <path d="M134 296 Q160 306 186 296 L186 308 Q160 318 134 308 Z" fill="#c9807b"/>
+          <path d="M160 303 C140 280 116 288 126 304 C132 316 150 312 160 303 Z" fill="#d99590" stroke="#b56d68" stroke-width="1.2"/>
+          <path d="M160 303 C180 280 204 288 194 304 C188 316 170 312 160 303 Z" fill="#d99590" stroke="#b56d68" stroke-width="1.2"/>
+          <path d="M157 306 L140 350 L148 346 L152 354 L163 309 Z" fill="#c9807b"/>
+          <path d="M163 306 L182 346 L174 344 L172 353 L157 309 Z" fill="#bf7570"/>
+          <ellipse cx="160" cy="304" rx="7" ry="6" fill="#b56d68"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="auswahl" id="auswahl">
+      <button class="blume" data-art="rose" type="button"><span class="anz"></span><svg viewBox="-30 -30 60 60"></svg>Rose</button>
+      <button class="blume" data-art="tulpe" type="button"><span class="anz"></span><svg viewBox="-30 -30 60 60"></svg>Tulpe</button>
+      <button class="blume" data-art="ranunkel" type="button"><span class="anz"></span><svg viewBox="-30 -30 60 60"></svg>Ranunkel</button>
+      <button class="blume" data-art="anemone" type="button"><span class="anz"></span><svg viewBox="-30 -30 60 60"></svg>Anemone</button>
+      <button class="blume" data-art="eukalyptus" type="button"><span class="anz"></span><svg viewBox="-30 -30 60 60"></svg>Eukalyptus</button>
+      <button class="blume" data-art="schleierkraut" type="button"><span class="anz"></span><svg viewBox="-30 -30 60 60"></svg>Schleierkraut</button>
+    </div>
+    <p class="liste" id="liste" aria-live="polite"></p>
+    <div class="aktion">
+      <a class="knopf rose" id="anfragen" href="mailto:info@florissimo.ch">Diesen Strauss anfragen</a>
+      <button class="knopf" id="reset" type="button">Zurücksetzen</button>
+    </div>
+    <p class="klein">Die Auswahl ist ein Wunsch, keine Bestellung. Welche Blumen gerade frisch da sind, sagt Ihnen das Team gern.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <section id="angebot">
+    <p class="ueber">Angebot</p>
+    <h2>Was wir für Sie <em>binden, pflanzen und gestalten</em></h2>
+    <div class="angebot">
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><path d="M27 50 V22"/><circle cx="27" cy="16" r="9" fill="#f2dcd7" stroke="#c9807b"/><path d="M27 12c3 0 4 4 0 5-4 1-4-6 1-7" stroke="#c9807b"/><path d="M27 36c-6-1-10-5-11-10 5 0 10 4 11 10Z" fill="#dbe3d6"/></svg>
+        <div><h3>Schnitt- und Frischblumen</h3><p>Täglich mit Sorgfalt ausgewählt – lose, gebunden oder als Strauss nach Ihrem Wunsch.</p></div>
+      </div>
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><path d="M15 34h24l-3 16H18Z" fill="#e8d3bb" stroke="#b48a5e"/><path d="M27 34V18M27 26c-5 0-9-4-9-9 5 0 9 4 9 9Zm0-3c4 0 8-3 8-8-4 0-8 3-8 8Z" fill="#dbe3d6"/></svg>
+        <div><h3>Saisonale Pflanzen</h3><p>Für Balkon, Garten und Fensterbank – je nach Jahreszeit.</p></div>
+      </div>
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><circle cx="27" cy="27" r="17"/><circle cx="27" cy="27" r="11" stroke-dasharray="2 4"/><circle cx="27" cy="10" r="3" fill="#f2dcd7" stroke="#c9807b"/><circle cx="42" cy="34" r="3" fill="#f2dcd7" stroke="#c9807b"/><circle cx="13" cy="36" r="3" fill="#f2dcd7" stroke="#c9807b"/></svg>
+        <div><h3>Saisondekoration</h3><p>Kränze, Gestecke und Schmuck für Haus und Tisch, passend zur Jahreszeit.</p></div>
+      </div>
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><path d="M21 50l6-18 6 18"/><circle cx="20" cy="22" r="7" fill="#fff" stroke="#c9807b"/><circle cx="34" cy="22" r="7" fill="#fff" stroke="#c9807b"/><circle cx="27" cy="12" r="7" fill="#f2dcd7" stroke="#c9807b"/><path d="M21 33c4 3 8 3 12 0" stroke="#c9807b"/></svg>
+        <div><h3>Hochzeitsfloristik</h3><p>Brautstrauss, Anstecker und Blumenschmuck für Ihren Tag – wir besprechen alles persönlich mit Ihnen.</p></div>
+      </div>
+      <div class="karte still zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#7d8279" stroke-width="1.3" stroke-linecap="round"><path d="M27 50V20"/><path d="M27 20c-4-4-4-10 0-14 4 4 4 10 0 14Z" fill="#fff"/><path d="M27 32c-5 0-8-3-9-7 5 0 8 3 9 7Z"/></svg>
+        <div><h3>Trauerfloristik</h3><p>Schlicht und würdevoll. Wir nehmen uns Zeit für Ihr Gespräch und gestalten den Abschied mit Ihnen gemeinsam.</p></div>
+      </div>
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><rect x="12" y="22" width="30" height="24" rx="2" fill="#f2dcd7" stroke="#c9807b"/><path d="M12 30h30M27 22v24"/><path d="M27 22c-6-8-14-4-9 0Zm0 0c6-8 14-4 9 0Z"/></svg>
+        <div><h3>Geschenkideen</h3><p>Kleine Aufmerksamkeiten, die zu den Blumen passen.</p></div>
+      </div>
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><path d="M10 44h34"/><path d="M16 44c0-10 22-10 22 0"/><path d="M27 34V16M27 22l-7-6M27 26l7-6"/><circle cx="20" cy="16" r="3" fill="#f2dcd7" stroke="#c9807b"/><circle cx="34" cy="20" r="3" fill="#f2dcd7" stroke="#c9807b"/><circle cx="27" cy="12" r="3" fill="#f2dcd7" stroke="#c9807b"/></svg>
+        <div><h3>Kurse</h3><p>Selbst binden und gestalten, unter Anleitung. Nächste Termine: <span class="platz">[Angabe folgt]</span></p></div>
+      </div>
+      <div class="karte zeig">
+        <svg viewBox="0 0 54 54" fill="none" stroke="#556a55" stroke-width="1.5" stroke-linecap="round"><path d="M6 36h28V18H6Z" fill="#fbf8f3"/><path d="M34 24h8l6 7v5H34Z"/><circle cx="15" cy="40" r="4" fill="#fff"/><circle cx="40" cy="40" r="4" fill="#fff"/><path d="M20 27c0-4 3-6 0-8-3 2 0 4 0 8Z" fill="#f2dcd7" stroke="#c9807b"/></svg>
+        <div><h3>Hauslieferdienst</h3><p>Wir bringen die Blumen vorbei. Liefergebiet und Konditionen: <span class="platz">[Angabe folgt]</span></p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="petra">
+  <div class="wrap">
+    <p class="ueber">Wer hier bindet</p>
+    <h2>Seit 2011 <em>mit Herz und Hand</em> in Steffisburg</h2>
+    <p class="zitatlos zeig">Floristin Petra Zehr hat Florissimo 2011 übernommen. Seither steht im Laden an der Oberdorfstrasse eine Frage im Mittelpunkt: Was soll Ihr Strauss erzählen?</p>
+    <div class="team">
+      <div class="person"><b>Petra Zehr</b><span>Inhaberin, Floristin</span></div>
+      <div class="person"><b>Franziska Tschanz</b><span>Floristin</span></div>
+    </div>
+    <p class="probon"><svg viewBox="0 0 30 30" fill="none" stroke="#556a55" stroke-width="1.5"><circle cx="15" cy="15" r="13"/><path d="m9 15 4 4 8-8"/></svg>Mitglied der «Pro Bon Fachgeschäfte Region Thun»</p>
+    <p class="klein">Bewertungen: <span class="platz">[Bewertungen]</span></p>
+  </div>
+</section>
+
+<main class="wrap">
+  <section id="zeiten">
+    <p class="ueber">Öffnungszeiten</p>
+    <h2>Wann Sie uns <em>im Laden</em> finden</h2>
+    <div class="zeiten">
+      <div class="zu"><span>Montag</span><span>geschlossen</span></div>
+      <div><span>Dienstag – Freitag</span><span>08:00–12:00<br>13:30–18:30</span></div>
+      <div><span>Samstag</span><span>08:00–16:00</span></div>
+      <div class="zu"><span>Sonntag</span><span>geschlossen</span></div>
+    </div>
+    <div class="zahlung" aria-label="Zahlungsarten"><span>Bar</span><span>TWINT</span><span>Maestro</span></div>
+  </section>
+</main>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <p class="ueber">Kontakt</p>
+    <h2>Rufen Sie an <em>oder kommen Sie vorbei</em></h2>
+    <address>Florissimo Petra Zehr<br>Oberdorfstrasse 6<br>3612 Steffisburg</address>
+    <div class="knoepfe">
+      <a class="knopf voll" href="tel:+41334372061">033 437 20 61</a>
+      <a class="knopf" href="mailto:info@florissimo.ch">E-Mail</a>
+    </div>
+    <p class="mail">info@florissimo.ch</p>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p><b>Florissimo Petra Zehr</b> · Einzelunternehmen · UID CHE-311.580.661<br>Oberdorfstrasse 6, 3612 Steffisburg</p>
+  <p>Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Florissimo Petra Zehr.</p>
+</footer>
+
+<script>
+(function(){
+  /* --- Blumenzeichnungen (Kopf um 0/0) --- */
+  var zeichnung = {
+    rose: '<circle r="20" fill="#eab1ad"/><path d="M-19 -4 C-14 -20 14 -21 19 -5" fill="#f0c4c0" /><path d="M0 -3 C6 -4 7 4 0 5 C-8 6 -9 -7 0 -10 C11 -12 14 5 4 12 C-7 18 -17 6 -15 -5" fill="none" stroke="#b25f5b" stroke-width="2" stroke-linecap="round"/><path d="M-20 4 C-14 18 14 18 20 4" fill="none" stroke="#c97c77" stroke-width="1.4"/>',
+    tulpe: '<path d="M-15 -6 C-17 12 -8 22 0 22 C8 22 17 12 15 -6 L8 4 L4 -16 L0 2 L-4 -16 L-8 4 Z" fill="#e98c7d"/><path d="M-4 -16 L0 2 L4 -16 C7 -6 6 10 0 16 C-6 10 -7 -6 -4 -16 Z" fill="#f2a597"/>',
+    ranunkel: '<circle r="19" fill="#f4c7a6"/><circle r="14" fill="#f1b48f"/><circle r="9" fill="#eb9d78"/><circle r="4.5" fill="#cf7d58"/><path d="M-17 -6 C-10 -16 10 -16 17 -6 M-12 2 C-7 -9 7 -9 12 2 M-7 7 C-3 0 3 0 7 7" fill="none" stroke="#fff3ea" stroke-width="1.1"/>',
+    anemone: '<g fill="#fffdf9" stroke="#d9d0c4" stroke-width="1"><ellipse rx="8" ry="13" transform="translate(0 -11)"/><ellipse rx="8" ry="13" transform="rotate(60) translate(0 -11)"/><ellipse rx="8" ry="13" transform="rotate(120) translate(0 -11)"/><ellipse rx="8" ry="13" transform="rotate(180) translate(0 -11)"/><ellipse rx="8" ry="13" transform="rotate(240) translate(0 -11)"/><ellipse rx="8" ry="13" transform="rotate(300) translate(0 -11)"/></g><circle r="6.5" fill="#2f2b3a"/><g fill="#2f2b3a"><circle cx="0" cy="-10" r="1.3"/><circle cx="8.6" cy="-5" r="1.3"/><circle cx="8.6" cy="5" r="1.3"/><circle cx="0" cy="10" r="1.3"/><circle cx="-8.6" cy="5" r="1.3"/><circle cx="-8.6" cy="-5" r="1.3"/></g>',
+    eukalyptus: '<path d="M0 26 C2 8 -2 -10 1 -27" fill="none" stroke="#7f957c" stroke-width="1.6"/><g fill="#b4c4b4" stroke="#859b86" stroke-width="1"><circle cx="-7" cy="16" r="6.5"/><circle cx="8" cy="9" r="6.5"/><circle cx="-7" cy="0" r="6"/><circle cx="8" cy="-8" r="5.5"/><circle cx="-6" cy="-15" r="5"/><circle cx="5" cy="-23" r="4.5"/></g>',
+    schleierkraut: '<path d="M0 26 L0 6 M0 12 L-12 -6 M0 12 L12 -8 M0 6 L-3 -16 M0 6 L6 -20 M-12 -6 L-18 -14 M-12 -6 L-9 -18 M12 -8 L19 -14 M12 -8 L10 -19" fill="none" stroke="#8fa08b" stroke-width="1"/><g fill="#ffffff" stroke="#c9c2b8" stroke-width=".8"><circle cx="-18" cy="-14" r="3"/><circle cx="-9" cy="-18" r="3.2"/><circle cx="-12" cy="-6" r="2.8"/><circle cx="-3" cy="-16" r="3"/><circle cx="6" cy="-20" r="3.2"/><circle cx="12" cy="-8" r="2.8"/><circle cx="19" cy="-14" r="3"/><circle cx="10" cy="-19" r="2.6"/><circle cx="2" cy="-25" r="2.4"/><circle cx="-15" cy="-22" r="2.2"/><circle cx="16" cy="-23" r="2.2"/></g>'
+  };
+  var namen = {rose:'Rose',tulpe:'Tulpe',ranunkel:'Ranunkel',anemone:'Anemone',eukalyptus:'Eukalyptus',schleierkraut:'Schleierkraut'};
+  var mehrzahl = {rose:'Rosen',tulpe:'Tulpen',ranunkel:'Ranunkeln',anemone:'Anemonen',eukalyptus:'Eukalyptus',schleierkraut:'Schleierkraut'};
+  /* Plätze im Strauss: zuerst die Mitte, dann nach aussen */
+  var plaetze = [[160,132,0],[120,152,-10],[200,152,10],[140,100,-5],[182,102,6],[88,184,-22],[232,184,22],[104,122,-16],[218,124,16],[160,176,0],[160,68,0],[60,150,-28]];
+  var NS = 'http://www.w3.org/2000/svg';
+  var blumenG = document.getElementById('blumen');
+  var tisch = document.getElementById('tisch');
+  var band = document.getElementById('band');
+  var gewaehlt = [];
+
+  document.querySelectorAll('.blume').forEach(function(b){
+    b.querySelector('svg').innerHTML = zeichnung[b.dataset.art];
+    b.addEventListener('click', function(){ stecken(b.dataset.art, false); });
+  });
+
+  function stecken(art, still){
+    if (gewaehlt.length >= plaetze.length){
+      document.getElementById('liste').textContent = 'Der Strauss ist voll – schöner geht es kaum.';
+      return;
+    }
+    var p = plaetze[gewaehlt.length];
+    gewaehlt.push(art);
+    var g = document.createElementNS(NS,'g');
+    g.setAttribute('class','bl');
+    g.style.setProperty('--r', (p[2]*-1)+'deg');
+    var stiel = document.createElementNS(NS,'path');
+    var mx = (p[0]+160)/2 + p[2]*0.6;
+    stiel.setAttribute('d','M'+p[0]+' '+(p[1]+8)+' Q'+mx+' '+((p[1]+300)/2)+' 160 300');
+    stiel.setAttribute('fill','none');
+    stiel.setAttribute('stroke', art==='eukalyptus' || art==='schleierkraut' ? '#8fa08b' : '#6f8a6c');
+    stiel.setAttribute('stroke-width','2.4');
+    g.appendChild(stiel);
+    if (art==='rose' || art==='tulpe' || art==='ranunkel'){
+      var blatt = document.createElementNS(NS,'path');
+      var by = p[1] + (300-p[1])*0.45, bx = p[0] + (160-p[0])*0.45;
+      var s = p[0] < 160 ? -1 : 1;
+      blatt.setAttribute('d','M'+bx+' '+by+' c'+(s*10)+' -4 '+(s*16)+' -12 '+(s*16)+' -20 c'+(s*-10)+' 2 '+(s*-16)+' 10 '+(s*-16)+' 20z');
+      blatt.setAttribute('fill','#9fb39a');
+      g.appendChild(blatt);
+    }
+    var kopf = document.createElementNS(NS,'g');
+    kopf.setAttribute('transform','translate('+p[0]+' '+p[1]+') rotate('+p[2]+')');
+    kopf.innerHTML = zeichnung[art];
+    g.appendChild(kopf);
+    blumenG.appendChild(g);
+    tisch.classList.add('hat-blumen');
+    if (!still){ band.classList.remove('zupf'); void band.getBoundingClientRect(); band.classList.add('zupf'); }
+    aktualisieren();
+  }
+
+  function zusammenfassung(){
+    var z = {}, reihenfolge = [];
+    gewaehlt.forEach(function(a){ if(!z[a]){z[a]=0;reihenfolge.push(a);} z[a]++; });
+    return reihenfolge.map(function(a){ return z[a]+' × '+(z[a]>1?mehrzahl[a]:namen[a]); });
+  }
+
+  function aktualisieren(){
+    var teile = zusammenfassung();
+    document.getElementById('zaehler').textContent = gewaehlt.length+' / '+plaetze.length;
+    document.getElementById('liste').textContent = teile.length ? 'Ihr Strauss: '+teile.join(', ') : '';
+    document.querySelectorAll('.blume').forEach(function(b){
+      var n = gewaehlt.filter(function(a){return a===b.dataset.art;}).length;
+      var anz = b.querySelector('.anz');
+      anz.textContent = n; anz.classList.toggle('an', n>0);
+    });
+    var text = teile.length
+      ? 'Guten Tag Frau Zehr\n\nIch würde gern einen Strauss mit folgenden Blumen anfragen:\n– '+teile.join('\n– ')+'\n\nGewünschter Termin: \nAbholen oder Lieferung: \n\nFreundliche Grüsse\n'
+      : 'Guten Tag Frau Zehr\n\nIch würde gern einen Strauss anfragen.\n\nFreundliche Grüsse\n';
+    document.getElementById('anfragen').href = 'mailto:info@florissimo.ch?subject='+encodeURIComponent('Anfrage: Strauss nach Wunsch')+'&body='+encodeURIComponent(text);
+  }
+
+  document.getElementById('reset').addEventListener('click', function(){
+    gewaehlt = [];
+    blumenG.innerHTML = '';
+    tisch.classList.remove('hat-blumen');
+    aktualisieren();
+  });
+  aktualisieren();
+
+  /* Einblenden beim Scrollen */
+  var zeigen = document.querySelectorAll('.zeig');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('da'); io.unobserve(e.target);} }); },{threshold:.15});
+    zeigen.forEach(function(el){ io.observe(el); });
+  } else zeigen.forEach(function(el){ el.classList.add('da'); });
+
+  /* PDF-Zustand: gebundener Strauss mit mehreren Blumen */
+  function pdfZustand(){
+    if (!document.documentElement.classList.contains('pdf') || gewaehlt.length) return;
+    tisch.classList.add('ruhig');
+    ['rose','ranunkel','rose','anemone','tulpe','eukalyptus','eukalyptus','ranunkel','schleierkraut','rose'].forEach(function(a){ stecken(a, true); });
+  }
+  pdfZustand();
+  new MutationObserver(pdfZustand).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florissimo Petra Zehr – Knospe (Entwurf)</title>
+<meta name="description" content="Entwurf: Florissimo Petra Zehr, Blumen in Steffisburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nacht:#211320;
+  --aubergine:#2e1a2b;
+  --gruen:#13241e;
+  --gold:#c8a862;
+  --gold-hell:#e4cc94;
+  --creme:#efe6d6;
+  --matt:#b8aa9f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--nacht);color:var(--creme);font:400 19px/1.55 "Cormorant Garamond",Georgia,serif;overflow-x:hidden}
+svg{display:block}
+a{color:inherit}
+.wrap{max-width:430px;margin:0 auto;padding:0 24px}
+
+.demo{background:var(--gold);color:#22131f;font:500 14px/1.4 "Cormorant Garamond",serif;text-align:center;padding:7px 16px}
+
+/* Kopf */
+.kopf{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 0;max-width:430px;margin:0 auto;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.kopf a{text-decoration:none}
+
+/* Hero */
+.hero{position:relative;text-align:center;padding:10px 24px 46px}
+.hero svg.stiel{width:150px;height:auto;margin:6px auto 0}
+.hero svg .linie{fill:none;stroke:var(--gold);stroke-width:1.3;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;animation:zeichnen 2.6s ease forwards}
+.hero svg .linie.b{animation-delay:.5s}
+.hero svg .linie.c{animation-delay:1s}
+@keyframes zeichnen{to{stroke-dashoffset:0}}
+html.pdf .hero svg .linie{animation:none;stroke-dashoffset:0}
+.hero h1{font-family:"Bodoni Moda",serif;font-style:italic;font-weight:400;font-size:clamp(46px,14.5vw,64px);line-height:1;letter-spacing:-.5px;margin-top:14px}
+.hero .unter{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-top:14px}
+.hero p.lead{font-size:21px;line-height:1.45;margin:22px auto 0;max-width:30ch;color:#e6dccb}
+.linie-gold{width:56px;height:1px;background:var(--gold);margin:26px auto}
+.knoepfe{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.knopf{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;border:1px solid var(--gold);color:var(--gold-hell);text-decoration:none;font:600 13px "Bodoni Moda",serif;letter-spacing:2px;text-transform:uppercase;flex:1 1 150px;background:transparent}
+.knopf.voll{background:var(--gold);color:var(--nacht)}
+
+/* Rubriken als Knospen */
+.garten{background:var(--aubergine);padding:52px 0 30px}
+.ueber{font:400 12.5px "Bodoni Moda",serif;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-align:center}
+h2{font-family:"Bodoni Moda",serif;font-weight:400;font-size:clamp(30px,8.6vw,38px);line-height:1.12;text-align:center;margin:12px 0 10px}
+h2 em{font-style:italic;color:var(--gold-hell)}
+.garten .einleitung{text-align:center;color:var(--matt);font-style:italic;margin-bottom:22px}
+
+.rubrik{border-top:1px solid rgba(200,168,98,.28)}
+.rubrik:last-child{border-bottom:1px solid rgba(200,168,98,.28)}
+.rubrik button{width:100%;display:grid;grid-template-columns:118px 1fr;align-items:center;gap:8px;background:none;border:0;color:inherit;font:inherit;text-align:left;padding:10px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.rubrik button:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.rubrik svg.knospe{width:118px;height:150px;overflow:visible;transition:transform .3s}
+.rubrik button:active svg.knospe{transform:scale(.96)}
+.rubrik .h3{display:block;font-family:"Bodoni Moda",serif;font-weight:400;font-size:clamp(23px,6.6vw,28px);line-height:1.15}
+html.pdf .rubrik .tipp{display:none}
+.rubrik .tipp{display:block;font-size:15px;font-style:italic;color:var(--matt);margin-top:6px}
+.rubrik .tipp:after{content:"Antippen – die Knospe öffnet sich"}
+.rubrik.offen .tipp:after{content:"Wieder schliessen"}
+
+/* Blütenblätter: Zustand geschlossen = --zu, offen = --auf */
+.blatt{transform-box:view-box;transform-origin:0 0;transform:var(--zu);transition:transform 1s cubic-bezier(.35,.05,.25,1) var(--v,0s)}
+.offen .blatt{transform:var(--auf)}
+.kelch{transform-box:view-box;transform-origin:0 0;transform:var(--zu);transition:transform 1s cubic-bezier(.35,.05,.25,1)}
+.offen .kelch{transform:var(--auf)}
+.herz{transform-box:view-box;transform-origin:0 0;transform:scale(0);transition:transform .7s ease .9s}
+.offen .herz{transform:scale(1)}
+.funke{opacity:0}
+.offen .funke{animation:funke 1.6s ease-out 1.1s both}
+@keyframes funke{0%{opacity:0;transform:translate(0,0)}25%{opacity:1}100%{opacity:0;transform:translate(var(--fx),var(--fy))}}
+.funke{transform-box:view-box}
+/* Trauer: ruhig, nur sanftes Öffnen */
+.rubrik.trauer .blatt,.rubrik.trauer .kelch{transition-duration:2.2s;transition-timing-function:ease-in-out}
+.rubrik.trauer .herz{transition:transform 1.4s ease-in-out 1.6s}
+.rubrik.trauer .h3{color:#f4f1ea}
+
+.inhalt{display:grid;grid-template-rows:0fr;transition:grid-template-rows .8s ease .35s}
+.offen .inhalt{grid-template-rows:1fr}
+.inhalt > div{overflow:hidden}
+.inhalt .text{padding:0 0 26px 4px;opacity:0;transform:translateY(-6px);transition:opacity .7s ease .6s,transform .7s ease .6s}
+.offen .inhalt .text{opacity:1;transform:none}
+.trauer .inhalt{transition-duration:1.4s;transition-delay:1s}
+.trauer .inhalt .text{transition-duration:1.4s;transition-delay:1.6s}
+.inhalt ul{list-style:none;margin-top:10px}
+.inhalt li{padding-left:22px;position:relative;margin-top:4px}
+.inhalt li:before{content:"";position:absolute;left:4px;top:.72em;width:8px;height:1px;background:var(--gold)}
+.platz{display:inline-block;border:1px dashed var(--gold);color:var(--gold-hell);font:400 14px "Cormorant Garamond",serif;padding:0 7px;border-radius:2px;font-style:normal}
+
+html.pdf .blatt,html.pdf .kelch,html.pdf .herz,html.pdf .inhalt,html.pdf .inhalt .text{transition:none!important}
+html.pdf .funke{display:none}
+
+/* Leitsatz */
+.leitsatz{background:var(--gruen);padding:56px 0;text-align:center}
+.leitsatz p.gross{font-family:"Bodoni Moda",serif;font-style:italic;font-size:clamp(28px,8vw,36px);line-height:1.22;color:var(--gold-hell);margin:16px auto 0;max-width:15ch}
+.leitsatz .ornament{width:120px;margin:22px auto 0}
+
+/* Floristinnen */
+.floristinnen{padding:56px 24px 20px}
+.floristinnen p.text{text-align:center;margin:0 auto;max-width:32ch}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.duo div{text-align:center;padding:22px 10px;border:1px solid rgba(200,168,98,.35)}
+.duo .monogramm{display:block;font-family:"Bodoni Moda",serif;font-style:italic;font-size:34px;color:var(--gold);line-height:1}
+.duo b{display:block;font-family:"Bodoni Moda",serif;font-weight:400;font-size:18px;margin-top:12px;line-height:1.2}
+.duo span{font-size:16px;font-style:italic;color:var(--matt)}
+
+/* Zeiten */
+.zeiten{padding:46px 24px}
+.zeiten .z.fort:before{border-bottom-color:transparent}
+.zeiten dl{margin-top:22px}
+.zeiten .z{display:flex;align-items:baseline;gap:8px;padding:7px 0;font-size:19px}
+.zeiten dt{white-space:nowrap}
+.zeiten .z:before{content:"";order:2;flex:1;border-bottom:1px dotted rgba(200,168,98,.55);transform:translateY(-4px);min-width:12px}
+.zeiten dt{order:1}
+.zeiten dd{order:3;text-align:right;white-space:nowrap}
+.zeiten .zu{color:var(--matt);font-style:italic}
+
+.besuch{background:var(--aubergine);padding:52px 0 44px;text-align:center}
+.besuch address{font-style:normal;font-size:22px;line-height:1.45;margin:18px 0 26px}
+.besuch .mail{display:block;margin-top:18px;font-size:19px;color:var(--gold-hell)}
+.fakten{margin-top:34px;display:grid;gap:16px;font-size:17px;color:#ddd2c2}
+.fakten b{display:block;font:400 12px "Bodoni Moda",serif;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+
+footer{padding:30px 24px 40px;text-align:center;font-size:15px;color:var(--matt);max-width:430px;margin:0 auto;line-height:1.5}
+footer .klein{font-size:14px;margin-top:10px;font-style:italic}
+
+.sanft{opacity:0;transform:translateY(14px);transition:opacity 1.1s ease,transform 1.1s ease}
+.sanft.da,html.pdf .sanft{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.sanft{opacity:1;transform:none}.hero svg .linie{animation:none;stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Florissimo Petra Zehr</div>
+
+<div class="kopf"><span>Steffisburg</span><a href="tel:+41334372061">033 437 20 61</a></div>
+
+<header class="hero wrap">
+  <svg class="stiel" viewBox="0 0 150 210" aria-hidden="true">
+    <path class="linie" d="M75 208 C72 170 80 130 75 92"/>
+    <path class="linie b" d="M75 92 C58 84 54 60 66 40 C70 32 74 24 75 14 C76 24 80 32 84 40 C96 60 92 84 75 92 Z"/>
+    <path class="linie b" d="M75 92 C66 80 66 56 75 34 M75 92 C84 80 84 56 75 34"/>
+    <path class="linie c" d="M75 92 C62 92 54 84 52 74 M75 92 C88 92 96 84 98 74"/>
+    <path class="linie c" d="M74 170 C56 166 40 152 34 134 C52 136 68 150 74 170 Z"/>
+    <path class="linie c" d="M76 146 C92 140 106 126 110 110 C94 114 80 128 76 146 Z"/>
+  </svg>
+  <h1>Florissimo</h1>
+  <p class="unter">Petra Zehr · Floristin</p>
+  <p class="lead">Blumen, die man nicht nur sieht, sondern spürt – gebunden an der Oberdorfstrasse 6 in Steffisburg.</p>
+  <div class="linie-gold"></div>
+  <div class="knoepfe">
+    <a class="knopf voll" href="tel:+41334372061">Anrufen</a>
+    <a class="knopf" href="mailto:info@florissimo.ch">E-Mail</a>
+  </div>
+</header>
+
+<section class="garten" id="rubriken">
+  <div class="wrap">
+    <p class="ueber">Unser Angebot</p>
+    <h2>Fünf Knospen, <em>fünf Welten</em></h2>
+    <p class="einleitung">Tippen Sie auf eine Knospe und lassen Sie sie aufblühen.</p>
+
+    <div class="rubrik" data-farbe="#d4707e" data-innen="#eba3a6" data-herz="#e4cc94" data-kelch="#4f6b4f">
+      <button type="button" aria-expanded="false"><svg class="knospe" viewBox="-60 -62 120 152" aria-hidden="true"></svg><span><span class="h3">Frische Blumen</span><span class="tipp"></span></span></button>
+      <div class="inhalt"><div><div class="text">
+        <p>Schnittblumen und Frischblumen, ausgewählt mit einem Ziel: Qualität und Frische. Dazu finden Sie bei uns</p>
+        <ul><li>saisonale Pflanzen</li><li>Saisondekoration für Haus und Tisch</li><li>Geschenkideen, die zu den Blumen passen</li></ul>
+      </div></div></div>
+    </div>
+
+    <div class="rubrik" data-farbe="#f1e7d6" data-innen="#f3d3cb" data-herz="#d9b86e" data-kelch="#5d7458">
+      <button type="button" aria-expanded="false"><svg class="knospe" viewBox="-60 -62 120 152" aria-hidden="true"></svg><span><span class="h3">Hochzeit</span><span class="tipp"></span></span></button>
+      <div class="inhalt"><div><div class="text">
+        <p>Brautstrauss, Anstecker, Schmuck für Kirche, Saal und Tisch: Hochzeitsfloristik entsteht bei uns im persönlichen Gespräch – damit die Blumen zu Ihnen passen.</p>
+      </div></div></div>
+    </div>
+
+    <div class="rubrik trauer" data-farbe="#f5f3ee" data-innen="#e7e5df" data-herz="#cfd2c4" data-kelch="#6c7a6c">
+      <button type="button" aria-expanded="false"><svg class="knospe" viewBox="-60 -62 120 152" aria-hidden="true"></svg><span><span class="h3">Trauer</span><span class="tipp"></span></span></button>
+      <div class="inhalt"><div><div class="text">
+        <p>Wenn ein Mensch geht, braucht es Ruhe und Zeit. Wir gestalten Trauerfloristik schlicht und würdevoll und besprechen alles in Ruhe mit Ihnen – im Laden oder am Telefon.</p>
+      </div></div></div>
+    </div>
+
+    <div class="rubrik" data-farbe="#d6a64c" data-innen="#ecca7d" data-herz="#7a3b2e" data-kelch="#4f6b4f">
+      <button type="button" aria-expanded="false"><svg class="knospe" viewBox="-60 -62 120 152" aria-hidden="true"></svg><span><span class="h3">Kurse</span><span class="tipp"></span></span></button>
+      <div class="inhalt"><div><div class="text">
+        <p>Unter Anleitung selbst binden und gestalten – mit frischem Material aus dem Laden.</p>
+        <p style="margin-top:10px">Nächste Kurse: <span class="platz">[Termine folgen]</span></p>
+      </div></div></div>
+    </div>
+
+    <div class="rubrik" data-farbe="#93609f" data-innen="#bf93c5" data-herz="#e4cc94" data-kelch="#4f6b4f">
+      <button type="button" aria-expanded="false"><svg class="knospe" viewBox="-60 -62 120 152" aria-hidden="true"></svg><span><span class="h3">Lieferservice</span><span class="tipp"></span></span></button>
+      <div class="inhalt"><div><div class="text">
+        <p>Unser Hauslieferdienst bringt Ihre Blumen direkt an die Tür – zum Geburtstag, als Dank oder einfach so.</p>
+        <p style="margin-top:10px">Liefergebiet und Konditionen: <span class="platz">[Angabe folgt]</span></p>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="leitsatz">
+  <div class="wrap">
+    <p class="ueber">Unser Leitsatz</p>
+    <p class="gross sanft">Qualität und Frische haben oberste Priorität.</p>
+    <svg class="ornament" viewBox="0 0 120 20" aria-hidden="true"><path d="M2 10 H48 M72 10 H118" stroke="#c8a862" stroke-width="1"/><path d="M60 3 C54 7 54 13 60 17 C66 13 66 7 60 3 Z" fill="none" stroke="#c8a862" stroke-width="1"/><circle cx="60" cy="10" r="1.6" fill="#c8a862"/></svg>
+  </div>
+</section>
+
+<section class="floristinnen wrap">
+  <p class="ueber">Die Floristinnen</p>
+  <h2>Mit <em>Hand</em> und Gespür</h2>
+  <p class="text sanft">Petra Zehr hat Florissimo 2011 übernommen. Gemeinsam mit Floristin Franziska Tschanz bindet sie, was die Jahreszeit hergibt.</p>
+  <div class="duo">
+    <div class="sanft"><span class="monogramm">PZ</span><b>Petra Zehr</b><span>Inhaberin, Floristin</span></div>
+    <div class="sanft"><span class="monogramm">FT</span><b>Franziska Tschanz</b><span>Floristin</span></div>
+  </div>
+</section>
+
+<section class="zeiten wrap" id="zeiten">
+  <p class="ueber">Öffnungszeiten</p>
+  <dl>
+    <div class="z zu"><dt>Montag</dt><dd>geschlossen</dd></div>
+    <div class="z"><dt>Di – Fr</dt><dd>08:00 – 12:00</dd></div>
+    <div class="z fort"><dt>&nbsp;</dt><dd>13:30 – 18:30</dd></div>
+    <div class="z"><dt>Samstag</dt><dd>08:00 – 16:00</dd></div>
+    <div class="z zu"><dt>Sonntag</dt><dd>geschlossen</dd></div>
+  </dl>
+</section>
+
+<section class="besuch" id="kontakt">
+  <div class="wrap">
+    <p class="ueber">Besuch &amp; Kontakt</p>
+    <address>Florissimo Petra Zehr<br>Oberdorfstrasse 6<br>3612 Steffisburg</address>
+    <div class="knoepfe">
+      <a class="knopf voll" href="tel:+41334372061">033 437 20 61</a>
+      <a class="knopf" href="mailto:info@florissimo.ch">E-Mail</a>
+    </div>
+    <a class="mail" href="mailto:info@florissimo.ch">info@florissimo.ch</a>
+    <div class="fakten">
+      <p><b>Bezahlen</b>Bar · TWINT · Maestro</p>
+      <p><b>Mitglied</b>Pro Bon Fachgeschäfte Region Thun</p>
+      <p><b>Bewertungen</b><span class="platz">[Bewertungen]</span></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Florissimo Petra Zehr · Einzelunternehmen<br>UID CHE-311.580.661</p>
+  <p class="klein">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Florissimo Petra Zehr.</p>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  /* Ein Blütenblatt: Spitze nach oben, Ansatz im Mittelpunkt */
+  var BLATT='M0 0 C-15 -9 -19 -33 0 -50 C19 -33 15 -9 0 0 Z';
+  var KELCHBLATT='M0 4 C-9 -6 -10 -24 0 -40 C10 -24 9 -6 0 4 Z';
+
+  function el(name, attrs){ var e=document.createElementNS(NS,name); for(var k in attrs) e.setAttribute(k,attrs[k]); return e; }
+
+  document.querySelectorAll('.rubrik').forEach(function(r){
+    var svg=r.querySelector('svg.knospe');
+    var farbe=r.dataset.farbe, innen=r.dataset.innen, herzF=r.dataset.herz, kelchF=r.dataset.kelch;
+    var trauer=r.classList.contains('trauer');
+    // Stiel und Blätter
+    svg.appendChild(el('path',{d:'M0 6 C3 34 -3 60 1 88',fill:'none',stroke:kelchF,'stroke-width':'2.2','stroke-linecap':'round'}));
+    svg.appendChild(el('path',{d:'M0 62 C-12 60 -22 52 -26 40 C-14 42 -4 50 0 62 Z',fill:kelchF}));
+    // äussere Blätter (6), innere Blätter (5)
+    var aussen=6, innenN=5, i, p;
+    for(i=0;i<aussen;i++){
+      var auf=i*360/aussen + 30;
+      var zu=(i-(aussen-1)/2)*4;
+      p=el('path',{d:BLATT,fill:farbe,stroke:'rgba(0,0,0,.18)','stroke-width':'.8',class:'blatt'});
+      p.style.setProperty('--zu','rotate('+zu+'deg) scale(.5,1.08)');
+      p.style.setProperty('--auf','rotate('+auf+'deg) scale(1)');
+      p.style.setProperty('--v',(trauer? i*0.22 : i*0.09)+'s');
+      svg.appendChild(p);
+    }
+    for(i=0;i<innenN;i++){
+      var auf2=i*360/innenN;
+      var zu2=(i-(innenN-1)/2)*3;
+      p=el('path',{d:BLATT,fill:innen,stroke:'rgba(0,0,0,.14)','stroke-width':'.8',class:'blatt'});
+      p.style.setProperty('--zu','rotate('+zu2+'deg) scale(.36,.92)');
+      p.style.setProperty('--auf','rotate('+auf2+'deg) scale(.62)');
+      p.style.setProperty('--v',((trauer?1.3:.55)+i*(trauer?.2:.08))+'s');
+      svg.appendChild(p);
+    }
+    // Herz der Blüte
+    var herz=el('g',{class:'herz'});
+    herz.appendChild(el('circle',{r:'8.5',fill:herzF}));
+    if(!trauer){
+      for(i=0;i<8;i++){ var a=i*Math.PI/4; herz.appendChild(el('circle',{cx:(Math.cos(a)*12).toFixed(1),cy:(Math.sin(a)*12).toFixed(1),r:'1.6',fill:'#e4cc94'})); }
+    }
+    svg.appendChild(herz);
+    // Kelchblätter: umhüllen die Knospe, klappen beim Öffnen zurück
+    [-1,1].forEach(function(s){
+      var k=el('path',{d:KELCHBLATT,fill:kelchF,class:'kelch'});
+      k.style.setProperty('--zu','rotate('+(s*12)+'deg) scale(.74,1)');
+      k.style.setProperty('--auf','rotate('+(s*155)+'deg) translate(0,-30px) scale(.45,.55)');
+      svg.appendChild(k);
+    });
+    // Goldener Blütenstaub – nicht bei Trauer
+    if(!trauer){
+      [[-34,-40],[30,-46],[44,-6],[-46,4],[6,-58]].forEach(function(f){
+        var c=el('circle',{r:'1.8',fill:'#e4cc94',class:'funke'});
+        c.style.setProperty('--fx',f[0]+'px'); c.style.setProperty('--fy',f[1]+'px');
+        svg.appendChild(c);
+      });
+    }
+    var knopf=r.querySelector('button');
+    knopf.addEventListener('click',function(){
+      var offen=r.classList.toggle('offen');
+      knopf.setAttribute('aria-expanded',offen);
+    });
+  });
+
+  // Sanftes Einblenden
+  var s=document.querySelectorAll('.sanft');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('da');io.unobserve(e.target);}});},{threshold:.2});
+    s.forEach(function(x){io.observe(x);});
+  } else s.forEach(function(x){x.classList.add('da');});
+
+  // PDF: alle Knospen offen
+  function pdf(){
+    if(!document.documentElement.classList.contains('pdf')) return;
+    document.querySelectorAll('.rubrik').forEach(function(r){ r.classList.add('offen'); r.querySelector('button').setAttribute('aria-expanded','true'); });
+  }
+  pdf();
+  new MutationObserver(pdf).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

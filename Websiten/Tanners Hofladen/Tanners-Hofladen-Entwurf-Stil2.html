@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanners Hofladen – Kreidetafel (Entwurf)</title>
+<meta name="description" content="Entwurf: Tanners Hofladen, Steffisburg – was es an welchem Tag gibt, auf der Kreidetafel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tafel:#22362C;
+  --tafel-2:#1B2C24;
+  --holz:#8A5A2E;
+  --holz-hell:#B9844F;
+  --holz-dk:#5C3A1C;
+  --nuss:#2A1D14;
+  --kreide:#F3F0E6;
+  --kreide-2:#CFCBBE;
+  --gelb:#F2DD8E;
+  --rosa:#EDB2A6;
+  --blau:#AFD3E2;
+  --gruen:#B9DDA0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--nuss);color:var(--kreide);font-family:"Lora",Georgia,serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:430px;margin:0 auto}
+.demo{background:var(--gelb);color:#2A1D14;font-family:"Lora";font-size:12.5px;line-height:1.35;text-align:center;padding:8px 14px;font-weight:600}
+
+/* Holzrahmen + Tafel */
+.rahmen{margin:14px 12px;padding:13px;border-radius:10px;position:relative;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.18),transparent 8%,transparent 92%,rgba(0,0,0,.18)),
+    repeating-linear-gradient(178deg,var(--holz) 0 7px,#94643A 7px 9px,var(--holz) 9px 15px,#7E5229 15px 17px);
+  box-shadow:0 10px 26px rgba(0,0,0,.45),inset 0 0 0 2px var(--holz-dk),inset 0 2px 0 3px rgba(255,220,170,.18)}
+.tafel{background:
+    radial-gradient(120% 60% at 20% 10%,rgba(255,255,255,.06),transparent 60%),
+    radial-gradient(90% 50% at 85% 85%,rgba(255,255,255,.045),transparent 60%),
+    var(--tafel);
+  border-radius:4px;padding:22px 18px 24px;box-shadow:inset 0 0 22px rgba(0,0,0,.55);position:relative}
+.kreide{font-family:"Caveat",cursive;font-weight:700;text-shadow:0 0 1px rgba(255,255,255,.35),0 0 6px rgba(255,255,255,.08);line-height:1.05}
+.hand{font-family:"Kalam",cursive}
+
+/* Hero */
+.hero .ueber{font-family:"Kalam";font-size:16px;color:var(--gelb);letter-spacing:.02em}
+.hero h1{font-size:clamp(50px,15vw,66px);margin:4px 0 0;color:var(--kreide)}
+.hero .strich{width:230px;height:16px;margin:2px 0 10px}
+.hero p{font-size:17px;color:var(--kreide-2);max-width:330px}
+.hero .bild{margin:16px -6px 4px}
+.schwamm{position:absolute;right:14px;bottom:-26px;width:72px;height:26px;background:#E3C99A;border-radius:5px;box-shadow:inset 0 -6px 0 #6B7F96,0 3px 0 rgba(0,0,0,.35)}
+.ablage{height:12px;margin:0 -13px -13px;background:linear-gradient(#A26E3C,#6B4524);border-radius:0 0 10px 10px}
+
+.btns{display:grid;gap:10px;margin-top:18px}
+.kbtn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:12px;text-decoration:none;font-family:"Kalam";font-weight:700;font-size:19px;color:var(--kreide);border:2.5px solid var(--kreide);box-shadow:2px 2px 0 rgba(243,240,230,.25)}
+.kbtn.voll{background:var(--kreide);color:var(--tafel)}
+.kbtn svg{width:22px;height:22px}
+
+/* Abschnitte */
+.blk{padding:30px 22px 6px}
+.blk h2{font-family:"Caveat";font-weight:700;font-size:clamp(38px,11vw,46px);line-height:1;color:var(--gelb)}
+.blk .unter{font-family:"Kalam";color:var(--kreide-2);font-size:16px;margin-top:4px}
+
+/* Wochentafel */
+.reiter{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:4px 0 12px}
+.reiter button{appearance:none;background:none;border:0;color:var(--kreide-2);font-family:"Caveat";font-weight:700;font-size:25px;line-height:1;padding:10px 0 12px;cursor:pointer;position:relative;border-radius:10px}
+.reiter button svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0}
+.reiter button svg path{stroke:var(--gelb);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160}
+.reiter button[aria-selected="true"]{color:var(--gelb)}
+.reiter button[aria-selected="true"] svg{opacity:1}
+.reiter button[aria-selected="true"] svg path{animation:kreis .55s ease-out forwards}
+.reiter button:focus-visible{outline:2px dashed var(--blau);outline-offset:1px}
+.reiter .heute{position:absolute;left:50%;transform:translateX(-50%);bottom:-6px;font-family:"Kalam";font-size:11px;color:var(--rosa);white-space:nowrap}
+@keyframes kreis{to{stroke-dashoffset:0}}
+#schrift{min-height:260px}
+#schrift svg{width:100%;height:auto;overflow:visible}
+#schrift text{font-family:"Caveat",cursive;font-weight:700;stroke-linejoin:round;stroke-linecap:round}
+#schrift .zug{fill:transparent;stroke-width:.9;stroke-dasharray:420;stroke-dashoffset:420;animation:zug 1.1s ease-in forwards,fuell .5s ease-out forwards}
+#schrift .linie{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-dasharray:500;stroke-dashoffset:500;animation:zug .7s ease-out forwards}
+@keyframes zug{to{stroke-dashoffset:0}}
+@keyframes fuell{to{fill:var(--c)}}
+html.pdf #schrift .zug{animation:none;fill:var(--c);stroke-dashoffset:0}
+html.pdf #schrift .linie{animation:none;stroke-dashoffset:0}
+html.pdf .reiter button svg path{animation:none;stroke-dashoffset:0}
+.nur-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Steckbrief */
+.steck{display:grid;gap:14px;margin-top:14px}
+.notiz{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:start}
+.notiz svg{width:52px;height:52px}
+.notiz b{font-family:"Caveat";font-size:27px;line-height:1;color:var(--kreide);display:block;font-weight:700}
+.notiz span{font-size:15.5px;color:var(--kreide-2);display:block;margin-top:3px}
+
+/* Holzschild Milchautomat */
+.schild{margin:30px 14px 0;position:relative;padding-top:34px}
+.schild .seil{position:absolute;top:0;left:0;right:0;height:40px}
+.brett{position:relative;border-radius:12px;padding:20px 20px 18px;color:#2A1D14;
+  background:linear-gradient(90deg,rgba(0,0,0,.12),transparent 10%,transparent 90%,rgba(0,0,0,.12)),
+  repeating-linear-gradient(181deg,#C8935A 0 10px,#BD8750 10px 12px,#C8935A 12px 22px,#B07A45 22px 23px);
+  box-shadow:0 8px 0 #6B4524,0 14px 22px rgba(0,0,0,.4)}
+.brett .zeit{font-family:"Caveat";font-weight:700;font-size:54px;line-height:.9;color:#3B2410}
+.brett h3{font-family:"Lora";font-size:22px;line-height:1.2;margin:6px 0}
+.brett p{font-size:16px}
+.brett .nagel{position:absolute;top:10px;width:9px;height:9px;border-radius:50%;background:#555;box-shadow:inset -2px -2px 0 #222}
+
+/* Sortiment */
+.liste{list-style:none;margin-top:12px;display:grid;gap:9px}
+.liste li{display:grid;grid-template-columns:26px 1fr;gap:8px;font-family:"Kalam";font-size:18.5px;line-height:1.35}
+.liste li svg{width:24px;height:24px;margin-top:2px}
+.liste li small{display:block;font-family:"Lora";font-size:14.5px;color:var(--kreide-2)}
+.ph{display:inline-block;border:1.6px dashed var(--gelb);color:var(--gelb);border-radius:6px;padding:0 6px;font-family:"Lora";font-size:14.5px}
+
+/* Zeiten */
+.zt{width:100%;border-collapse:collapse;margin-top:12px;font-size:16px}
+.zt th{text-align:left;font-family:"Caveat";font-size:24px;font-weight:700;color:var(--kreide);padding:7px 10px 7px 0;width:38%;vertical-align:top;line-height:1.1}
+.zt td{padding:8px 0;border-bottom:1.5px dashed rgba(243,240,230,.25);vertical-align:top}
+.zt tr:last-child td{border-bottom:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips span{border:2px solid var(--kreide-2);border-radius:999px;padding:2px 13px;font-family:"Kalam";font-size:16px}
+.note{display:flex;align-items:center;gap:14px;margin-top:18px}
+.note b{font-family:"Caveat";font-size:52px;line-height:1;color:var(--gelb)}
+.note span{font-family:"Kalam";font-size:16px;line-height:1.3}
+
+/* Kontakt */
+.kontakt address{font-style:normal;font-family:"Kalam";font-size:21px;line-height:1.4;margin-top:10px}
+.fuss{text-align:center;color:#B9A38A;font-size:13.5px;padding:10px 20px 34px}
+.ein{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+.ein.sicht,html.pdf .ein{opacity:1;transform:none}
+html.pdf .ein{transition:none}
+@media (prefers-reduced-motion:reduce){.ein{opacity:1;transform:none}#schrift .zug,#schrift .linie{animation-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Tanners Hofladen</div>
+
+<!-- HERO-TAFEL -->
+<div class="rahmen">
+  <div class="tafel hero">
+    <div class="ueber">Hofladen Tanner-Schwarz · Steffisburg</div>
+    <h1 class="kreide">Tanners Hofladen</h1>
+    <svg class="strich" viewBox="0 0 230 16" aria-hidden="true"><path d="M3 11c40-6 90-9 140-7s60 3 84 1" stroke="#F2DD8E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M14 14c50-4 100-5 150-3" stroke="#F2DD8E" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".6"/></svg>
+    <p>Familienbetrieb in der 5. Generation. Milch, Eier, Gemüse, Fleisch – und am Samstag Zopf vom Hof.</p>
+
+    <!-- Kreidezeichnung: Kuh, Kanne, Zopf -->
+    <svg class="bild" viewBox="0 0 360 170" aria-label="Kreidezeichnung: Kuh, Milchkanne und Zopf" role="img">
+      <g fill="none" stroke="#F3F0E6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
+        <!-- Kuh -->
+        <path d="M34 70c-2-22 14-38 38-38s40 16 38 38c-1 14-6 24-10 30"/>
+        <path d="M44 100c-6-8-10-18-10-30"/>
+        <path d="M40 40c-10-8-22-6-26 2 8 4 16 6 24 4M104 40c10-8 22-6 26 2-8 4-16 6-24 4"/>
+        <path d="M50 30c-4-10-2-18 4-22M94 30c4-10 2-18-4-22"/>
+        <path d="M46 98c0-10 10-16 26-16s26 6 26 16-10 20-26 20-26-10-26-20z"/>
+        <circle cx="62" cy="99" r="3"/><circle cx="82" cy="99" r="3"/>
+        <path d="M56 60c2-3 6-3 8 0M80 60c2-3 6-3 8 0"/>
+        <path d="M80 34c6 4 12 12 12 22"/>
+        <path d="M60 122c-4 10-4 20 0 28M86 122c4 10 4 20 0 28" opacity=".6"/>
+      </g>
+      <path d="M78 36c8 4 13 11 14 20-5-2-11-2-15 0z" fill="#F3F0E6" opacity=".35"/>
+      <!-- Milchkanne -->
+      <g fill="none" stroke="#AFD3E2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M168 50h36M172 50v12c-10 8-14 16-14 26v52c0 5 4 9 9 9h38c5 0 9-4 9-9V88c0-10-4-18-14-26V50"/>
+        <path d="M170 44h32a4 4 0 0 1 0 8h-32a4 4 0 0 1 0-8z"/>
+        <path d="M160 96h52M160 128h52"/>
+        <path d="M206 72c12 0 16 8 16 14"/>
+        <path d="M176 112c4-4 10-4 14 0" opacity=".7"/>
+      </g>
+      <!-- Zopf -->
+      <g fill="#22362C" stroke="#F2DD8E" stroke-width="2.4" stroke-linejoin="round">
+        <ellipse cx="250.0" cy="114" rx="11.2" ry="6.4" transform="rotate(-32 250.0 114)"/><ellipse cx="263.5" cy="126" rx="15.0" ry="8.5" transform="rotate(32 263.5 126)"/><ellipse cx="277.0" cy="114" rx="15.0" ry="8.5" transform="rotate(-32 277.0 114)"/><ellipse cx="290.5" cy="126" rx="15.0" ry="8.5" transform="rotate(32 290.5 126)"/><ellipse cx="304.0" cy="114" rx="15.0" ry="8.5" transform="rotate(-32 304.0 114)"/><ellipse cx="317.5" cy="126" rx="15.0" ry="8.5" transform="rotate(32 317.5 126)"/><ellipse cx="331.0" cy="114" rx="11.2" ry="6.4" transform="rotate(-32 331.0 114)"/>
+      </g>
+      <path d="M232 146c40 6 84 6 120-2" fill="none" stroke="#F3F0E6" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+      <g font-family="Caveat, cursive" font-weight="700" font-size="18" fill="#EDB2A6"><text x="250" y="84" transform="rotate(-6 250 84)" font-size="21">Sa: Zopftag!</text></g>
+      <path d="M292 92c-4 4-5 8-4 12" stroke="#EDB2A6" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+
+    <div class="btns">
+      <a class="kbtn voll" href="tel:+41334374746"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>033 437 47 46</a>
+      <a class="kbtn" href="#woche">Was gibt’s heute? ↓</a>
+    </div>
+    <div class="schwamm" aria-hidden="true"></div>
+  </div>
+  <div class="ablage" aria-hidden="true"></div>
+</div>
+
+<!-- WOCHENTAFEL -->
+<div class="rahmen" id="woche" style="margin-top:30px">
+  <div class="tafel">
+    <h2 class="kreide" style="font-size:clamp(36px,10.5vw,44px);color:var(--gelb)">Was gibt’s am …</h2>
+    <p class="hand" style="color:var(--kreide-2);font-size:15.5px;margin:2px 0 10px">Tag antippen – die Tafel schreibt sich selbst.</p>
+    <div class="reiter" role="tablist" aria-label="Wochentage">
+      <button role="tab" data-tag="mo" aria-selected="false">Mo<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+      <button role="tab" data-tag="di" aria-selected="false">Di<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+      <button role="tab" data-tag="mi" aria-selected="false">Mi<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+      <button role="tab" data-tag="do" aria-selected="false">Do<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+      <button role="tab" data-tag="fr" aria-selected="false">Fr<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+      <button role="tab" data-tag="sa" aria-selected="false">Sa<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+      <button role="tab" data-tag="so" aria-selected="false">So<svg viewBox="0 0 54 50" aria-hidden="true"><path d="M27 4c14 0 24 8 23 20s-12 22-25 21S3 36 4 23 16 3 30 5"/></svg></button>
+    </div>
+    <div id="schrift" role="tabpanel" aria-live="polite"></div>
+  </div>
+  <div class="ablage" aria-hidden="true"></div>
+</div>
+
+<!-- HOF -->
+<section class="blk ein" id="hof">
+  <h2>Wer hinter der Tafel steht</h2>
+  <p class="unter">Notizen vom Hof am Ortbühlweg</p>
+  <div class="steck">
+    <div class="notiz">
+      <svg viewBox="0 0 52 52" aria-hidden="true" fill="none" stroke="#F3F0E6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 26L26 8l20 18"/><path d="M11 22v22h30V22"/><path d="M21 44V32h10v12"/><text x="26" y="29" text-anchor="middle" font-family="Caveat" font-size="13" fill="#F2DD8E" stroke="none" font-weight="700">5.</text></svg>
+      <div><b>5. Generation</b><span>Ein Familienbetrieb, der seit fünf Generationen in der Familie ist.</span></div>
+    </div>
+    <div class="notiz">
+      <svg viewBox="0 0 52 52" aria-hidden="true" fill="none" stroke="#F2DD8E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="17" r="7"/><circle cx="35" cy="17" r="7"/><path d="M6 44c0-10 6-16 12-16s12 6 12 16M23 44c0-10 6-16 12-16s12 6 12 16"/></svg>
+      <div><b>2015 übernommen</b><span>Andrea und Kurt Tanner-Schwarz führen den Hof seit 2015.</span></div>
+    </div>
+    <div class="notiz">
+      <svg viewBox="0 0 52 52" aria-hidden="true" fill="none" stroke="#AFD3E2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30l16-14 20 8-16 14z"/><path d="M8 30v8l20 8v-8M28 46l16-14v-8"/><circle cx="22" cy="27" r="2"/><circle cx="31" cy="25" r="1.6"/></svg>
+      <div><b>Die Käserin</b><span>Andrea ist Milchtechnologin und gelernte Käserin.</span></div>
+    </div>
+    <div class="notiz">
+      <svg viewBox="0 0 52 52" aria-hidden="true" fill="none" stroke="#EDB2A6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 42L34 18"/><path d="M30 12l10-4 6 6-4 10-6 2-8-8z"/><path d="M8 46h36"/></svg>
+      <div><b>Der Zimmermann</b><span>Kurt ist gelernter Zimmermann.</span></div>
+    </div>
+    <div class="notiz">
+      <svg viewBox="0 0 52 52" aria-hidden="true" fill="none" stroke="#B9DDA0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 26c0-9 7-15 16-15s16 6 16 15-7 15-16 15-16-6-16-15z"/><path d="M18 26l6 6 11-12"/></svg>
+      <div><b>IP-Suisse</b><span>Rund 30 Milchkühe mit eigener Aufzucht im Freilaufstall und ca. 90 Mastschweine.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MILCHAUTOMAT-SCHILD -->
+<div class="schild ein">
+  <svg class="seil" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M60 40L200 4 340 40" fill="none" stroke="#C9B48C" stroke-width="3"/><circle cx="200" cy="5" r="5" fill="#777"/></svg>
+  <div class="brett">
+    <span class="nagel" style="left:14px"></span><span class="nagel" style="right:14px"></span>
+    <div class="zeit">rund um die Uhr</div>
+    <h3>Milchautomat an der Zelgstrasse 6</h3>
+    <p>Frische Rohmilch – auch sonntags und nach Ladenschluss. Zelgstrasse 6, 3612 Steffisburg.</p>
+  </div>
+</div>
+
+<!-- SORTIMENT -->
+<div class="rahmen ein" style="margin-top:36px">
+  <div class="tafel">
+    <h2 class="kreide" style="font-size:clamp(36px,10.5vw,44px);color:var(--gelb)">Im Hofladen</h2>
+    <ul class="liste">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#F3F0E6" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Rohmilch &amp; pasteurisierte Milch<small>dazu Milchprodukte</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#F3F0E6" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Saisongemüse, Obst &amp; Kartoffeln</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#F3F0E6" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Eier &amp; Honig</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#EDB2A6" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Fleisch: Schwein, Poulet, Rind<small>auf Vorbestellung</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#F3F0E6" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Hausgemachtes<small>Konfitüren, Dörrobst, Saucen, Sirup, Schnaps – je nach Saison</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#F3F0E6" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Süssmost</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#F2DD8E" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Brot am Mittwoch<small>Samstag: Ankezüpfe, Dinkelzopf, Brot &amp; Süssgebäck</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#AFD3E2" stroke-width="2.2" stroke-linecap="round"><path d="M4 13l5 5L20 6"/></svg><span>Geschenkkörbe, Gutscheine &amp; Geschenktaschen</span></li>
+    </ul>
+    <p style="margin-top:14px;font-size:15px;color:var(--kreide-2)">Preise: <span class="ph">[Angabe folgt]</span></p>
+  </div>
+  <div class="ablage" aria-hidden="true"></div>
+</div>
+
+<!-- ZEITEN -->
+<section class="blk ein" id="zeiten">
+  <h2>Öffnungszeiten</h2>
+  <p class="unter">Hofladen, Ortbühlweg 63</p>
+  <table class="zt">
+    <tr><th>Montag</th><td>08:00–12:00<br>15:30–18:30</td></tr>
+    <tr><th>Dienstag</th><td>08:00–12:00<br>15:30–18:30</td></tr>
+    <tr><th>Mittwoch</th><td>08:00–12:00<br>15:30–18:30</td></tr>
+    <tr><th>Donnerstag</th><td><span class="ph">[Donnerstag: bitte bestätigen]</span></td></tr>
+    <tr><th>Freitag</th><td>08:00–12:00<br>13:30–18:30</td></tr>
+    <tr><th>Samstag</th><td>07:30–15:00</td></tr>
+    <tr><th>Sonntag</th><td>geschlossen</td></tr>
+  </table>
+  <div class="chips"><span>bar</span><span>Debitkarte</span><span>Twint</span></div>
+  <div class="note">
+    <b>5.0</b>
+    <svg viewBox="0 0 120 22" width="120" height="22" aria-label="5 von 5 Sternen"><g fill="none" stroke="#F2DD8E" stroke-width="1.8" stroke-linejoin="round"><path id="kst" d="M11 2l2.7 5.8 6.3.8-4.6 4.3 1.2 6.2L11 16l-5.6 3.1 1.2-6.2L2 8.6l6.3-.8z"/><use href="#kst" x="24"/><use href="#kst" x="48"/><use href="#kst" x="72"/><use href="#kst" x="96"/></g></svg>
+    <span>10 Bewertungen<br>auf search.ch</span>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<div class="rahmen kontakt ein" style="margin-top:30px">
+  <div class="tafel">
+    <h2 class="kreide" style="font-size:clamp(36px,10.5vw,44px);color:var(--gelb)">Vorbeikommen</h2>
+    <address>Tanners Hofladen<br>Ortbühlweg 63<br>3612 Steffisburg</address>
+    <div class="btns">
+      <a class="kbtn voll" href="tel:+41334374746"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Anrufen: 033 437 47 46</a>
+      <a class="kbtn" href="mailto:info@hofladen-tanner.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>info@hofladen-tanner.ch</a>
+    </div>
+    <p style="margin-top:14px;font-size:15px;color:var(--kreide-2)">Fleisch bitte per Telefon oder E-Mail vorbestellen.</p>
+  </div>
+  <div class="ablage" aria-hidden="true"></div>
+</div>
+
+<footer class="fuss">Tanners Hofladen · Hofladen Tanner-Schwarz · Ortbühlweg 63 · 3612 Steffisburg<br>Entwurf von Max Rathsack</footer>
+</div>
+
+<script>
+(function(){
+  var K='#F3F0E6',G='#F2DD8E',R='#EDB2A6',B='#AFD3E2',GR='#B9DDA0';
+  var VM='08:00 – 12:00', NM='15:30 – 18:30';
+  // Zeilen: [Text, Grösse, Farbe]  |  'linie' = Kreidestrich
+  var TAGE={
+    mo:{n:'Montag',z:[[VM,30,K],[NM,30,K],'linie',['Milch, Eier, Gemüse, Obst',24,K],['und alles aus dem Hofladen',24,K]]},
+    di:{n:'Dienstag',z:[[VM,30,K],[NM,30,K],'linie',['Milch, Eier, Gemüse, Obst',24,K],['Fleisch? Bitte vorbestellen!',24,R]]},
+    mi:{n:'Mittwoch',z:[[VM,30,K],[NM,30,K],'linie',['Heute frisch:',24,R],['Brot vom Hof',36,G]]},
+    do:{n:'Donnerstag',z:[['[Donnerstag:',30,G],['bitte bestätigen]',30,G],'linie',['Öffnungszeiten folgen',24,K]]},
+    fr:{n:'Freitag',z:[[VM,30,K],['13:30 – 18:30',30,K],'linie',['Fürs Wochenende einkaufen',24,K],['Rohmilch, Eier, Gemüse',24,K]]},
+    sa:{n:'Samstag',z:[['07:30 – 15:00',30,K],'linie',['Zopftag! Frisch vom Hof:',24,R],['Ankezüpfe',34,G],['Dinkelzopf',34,G],['Brot & Süssgebäck',30,G]]},
+    so:{n:'Sonntag',z:[['Hofladen zu',34,K],['– schönen Sonntag!',24,K],'linie',['Milchautomat Zelgstrasse 6:',24,B],['Rohmilch rund um die Uhr',28,GR]]}
+  };
+  var NS='http://www.w3.org/2000/svg', ziel=document.getElementById('schrift');
+  var knoepfe=[].slice.call(document.querySelectorAll('[data-tag]'));
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+  function schreib(key,sofort){
+    var d=TAGE[key]; knoepfe.forEach(function(b){b.setAttribute('aria-selected',b.dataset.tag===key?'true':'false')});
+    var svg=el('svg',{viewBox:'0 0 360 10',role:'img'}), y=8, verz=0;
+    var titel=[[d.n,44,K]].concat(d.z), alt=[];
+    titel.forEach(function(z,i){
+      if(z==='linie'){
+        y+=14;
+        var p=el('path',{d:'M4 '+y+'c60 -5 140 -6 220 -2s90 2 130 -1',class:'linie',stroke:'rgba(243,240,230,.55)'});
+        p.style.animationDelay=verz+'s'; svg.appendChild(p); verz+=.35; y+=10; return;
+      }
+      y+=z[1]*1.08;
+      var t=el('text',{x:i===0?2:6,y:y,'font-size':z[1],class:'zug',stroke:z[2]});
+      t.style.setProperty('--c',z[2]);
+      t.textContent=z[0]; alt.push(z[0]);
+      var dauer=Math.min(1.1,.4+z[0].length*.03);
+      t.style.animation='zug '+dauer+'s ease-in '+verz+'s forwards, fuell .45s ease-out '+(verz+dauer*.7)+'s forwards';
+      svg.appendChild(t); verz+=dauer*.55;
+      if(i===0){y+=4;var u=el('path',{d:'M4 '+(y+2)+'c40 -4 90 -5 '+(Math.min(330,d.n.length*21))+' -3',class:'linie',stroke:G});u.style.animationDelay=(verz-.2)+'s';svg.appendChild(u);verz+=.2;y+=6;}
+    });
+    svg.setAttribute('viewBox','0 0 360 '+(y+14));
+    svg.setAttribute('aria-label',alt.join(', '));
+    ziel.innerHTML=''; ziel.appendChild(svg);
+  }
+  knoepfe.forEach(function(b,i){
+    b.addEventListener('click',function(){schreib(b.dataset.tag)});
+    b.addEventListener('keydown',function(e){
+      var j=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null; if(j===null)return;
+      j=(j+7)%7; knoepfe[j].focus(); schreib(knoepfe[j].dataset.tag);
+    });
+  });
+  var heute=['so','mo','di','mi','do','fr','sa'][new Date().getDay()];
+  var hb=document.querySelector('[data-tag="'+heute+'"]');
+  var h=document.createElement('span');h.className='heute';h.textContent='heute';hb.appendChild(h);
+  function pdf(){return document.documentElement.classList.contains('pdf')}
+  schreib(pdf()?'sa':heute);
+  new MutationObserver(function(){if(pdf())schreib('sa')}).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+
+  var els=document.querySelectorAll('.ein');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('sicht');io.unobserve(x.target)}})},{threshold:.1});
+    els.forEach(function(e){io.observe(e)});
+  } else els.forEach(function(e){e.classList.add('sicht')});
+})();
+</script>
+</body>
+</html>
