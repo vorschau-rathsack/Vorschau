@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PS Umzug AG – Zügelkiste (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Work+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--kraft:#d9b98c;--kraft2:#c9a473;--paper:#f6efe3;--ink:#2b2118;--mut:#6f5f4e;--tape:#e9d9a8;--red:#d6402b;--or:#ff6a00}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Work Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);max-width:430px;margin:0 auto;padding-bottom:78px}
+.demo{background:var(--ink);color:var(--paper);font-size:12px;text-align:center;padding:7px 10px}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px}
+.logo{font-weight:800;font-size:18px}.logo b{background:var(--or);color:#fff;padding:2px 7px;border-radius:5px;margin-right:6px}
+header a{font-family:'Permanent Marker';color:var(--red);text-decoration:none;font-size:18px;border:2px solid var(--red);padding:4px 10px;transform:rotate(-3deg);display:inline-block}
+.hero{margin:6px 18px 0;background:var(--kraft);border-radius:6px;padding:30px 20px 26px;position:relative;box-shadow:0 10px 0 var(--kraft2);background-image:radial-gradient(rgba(0,0,0,.05) 1px,transparent 1px);background-size:6px 6px}
+.hero:before{content:'';position:absolute;left:50%;top:-6px;width:90px;height:calc(100% + 12px);transform:translateX(-50%);background:var(--tape);opacity:.75}
+.hero .lab{position:relative;background:#fff;padding:18px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15);transform:rotate(-1.5deg)}
+.hero small{font-size:11px;font-weight:800;letter-spacing:3px;color:var(--mut)}
+.hero h1{font-family:'Permanent Marker';font-weight:400;font-size:44px;line-height:1.05;margin:8px 0 10px}
+.hero h1 em{color:var(--red);font-style:normal}
+.hero p{color:var(--mut);line-height:1.5}
+.arrows{display:flex;gap:6px;margin-top:12px;font-weight:800;font-size:13px}
+.arrows span{border:2px solid var(--ink);padding:3px 8px}
+.sc{display:flex;align-items:center;gap:10px;margin:22px 18px 0;font-size:14px;color:var(--mut)}
+.sc b{font-family:'Permanent Marker';font-size:34px;color:var(--ink);font-weight:400}
+section{padding:36px 18px}
+h2{font-family:'Permanent Marker';font-weight:400;font-size:34px;line-height:1.1;margin-bottom:6px}
+.lead{color:var(--mut);line-height:1.5;margin-bottom:18px}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bx{position:relative;background:var(--kraft);border-radius:4px;aspect-ratio:1/1;cursor:pointer;perspective:600px;box-shadow:0 6px 0 var(--kraft2)}
+.bx .lid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px;transition:transform .6s cubic-bezier(.4,1.5,.5,1),opacity .4s;transform-origin:top;background:var(--kraft);border-radius:4px;z-index:2}
+.bx .lid:before{content:'';position:absolute;left:0;right:0;top:50%;height:22px;margin-top:-11px;background:var(--tape);opacity:.8}
+.bx .lid b{position:relative;font-family:'Permanent Marker';font-weight:400;font-size:21px;line-height:1.1}
+.bx .lid i{position:relative;font-style:normal;font-size:28px;margin-bottom:6px}
+.bx .in{position:absolute;inset:0;background:#fff;border:3px solid var(--kraft2);border-radius:4px;padding:12px;font-size:13px;line-height:1.45;color:var(--ink);display:flex;flex-direction:column;justify-content:center}
+.bx .in b{font-size:14px;display:block;margin-bottom:4px;color:var(--red)}
+.bx.open .lid{transform:rotateX(110deg);opacity:0}
+.tip{font-size:12px;color:var(--mut);margin-top:10px;text-align:center}
+/* Checkliste */
+.cl{background:#fff;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:6px 16px;background-image:repeating-linear-gradient(#fff 0 39px,#e8dcc8 39px 40px)}
+.wk{font-family:'Permanent Marker';color:var(--red);font-size:17px;padding-top:14px}
+.it{display:flex;gap:12px;align-items:flex-start;padding:9px 0;cursor:pointer;line-height:1.35}
+.it .cb{flex:0 0 24px;height:24px;border:2.5px solid var(--ink);border-radius:4px;position:relative;margin-top:-2px}
+.it.ok .cb:after{content:'✓';position:absolute;left:3px;top:-8px;font-family:'Permanent Marker';font-size:24px;color:var(--red)}
+.it.ok span{text-decoration:line-through;color:var(--mut)}
+.it em{font-style:normal;display:inline-block;margin-top:4px;background:var(--or);color:#fff;font-size:11px;font-weight:800;padding:2px 7px;border-radius:4px}
+.prog{display:flex;align-items:center;gap:10px;margin:14px 0 4px}
+.prog div{flex:1;height:12px;background:#eadfcc;border-radius:6px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--red);width:0;transition:width .4s}
+.prog b{font-family:'Permanent Marker';font-weight:400;min-width:52px;text-align:right}
+.send{display:block;text-align:center;margin-top:16px;background:var(--ink);color:#fff;text-decoration:none;font-weight:800;border-radius:6px;padding:15px}
+.send small{display:block;font-weight:400;font-size:12px;opacity:.75;margin-top:2px}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+.who{display:flex;gap:14px;align-items:center}
+.pol{flex:0 0 120px;background:#fff;padding:8px 8px 26px;box-shadow:0 3px 10px rgba(0,0,0,.15);transform:rotate(-4deg)}
+.pol div{height:110px;background:repeating-linear-gradient(45deg,#eee 0 8px,#e3e3e3 8px 16px);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;text-align:center}
+.who p{line-height:1.5;color:var(--mut);font-size:15px}.who b{color:var(--ink)}
+.rv{background:#fff;padding:16px;border-radius:6px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);position:relative}
+.rv:before{content:'';position:absolute;top:-8px;left:20px;width:60px;height:18px;background:var(--tape);opacity:.8;transform:rotate(-4deg)}
+.rv p{font-family:'Permanent Marker';font-size:21px}.rv small{color:var(--mut)}
+.k{line-height:1.9}.k a{color:var(--red);font-weight:800;text-decoration:none}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:22px 18px}
+.bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:8px;padding:10px 12px;background:var(--paper);border-top:2px dashed var(--kraft2)}
+.bar a{flex:1;text-align:center;text-decoration:none;font-weight:800;border-radius:6px;padding:13px;font-size:15px}
+.b1{background:var(--ink);color:#fff}.b2{background:#25d366;color:#fff}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der PS Umzug AG</div>
+<header><div class="logo"><b>PS</b>Umzug AG</div><a href="#liste">Offerte!</a></header>
+<div class="hero"><div class="lab">
+<small>INHALT: IHR UMZUG · STEFFISBURG</small>
+<h1>Wir packen <em>das.</em></h1>
+<p>Zügeln, Reinigen, Räumen, Lagern – PS Umzug AG nimmt Ihnen die schwere Arbeit ab. Privat und für Firmen, lokal und europaweit.</p>
+<div class="arrows"><span>↑ OBEN</span><span>⚠ MIT SORGFALT</span></div>
+</div></div>
+<div class="sc"><b>9.4</b>von 10 Punkten · 43 Bewertungen auf Umzug-365</div>
+
+<section>
+<h2>Was ist in der Kiste?</h2>
+<p class="lead">Tippen Sie auf eine Kiste – das Klebeband geht auf.</p>
+<div class="boxes" id="boxes">
+<div class="bx"><div class="lid"><i>🏠</i><b>Privat&shy;umzug</b></div><div class="in"><b>Privatumzug</b>Vom Studio bis zum Einfamilienhaus – verpackt, getragen, aufgestellt.</div></div>
+<div class="bx"><div class="lid"><i>🏢</i><b>Firmen&shy;umzug</b></div><div class="in"><b>Firmenumzug</b>Büro, Industrie, Altersheim oder interner Umzug innerhalb Ihres Gebäudes.</div></div>
+<div class="bx"><div class="lid"><i>✨</i><b>Reinigung</b></div><div class="in"><b>Reinigung</b>Wohnungsendreinigung mit Abnahmegarantie. Dazu Baureinigung inkl. Bauschutt und Tiefgarage.</div></div>
+<div class="bx"><div class="lid"><i>♻️</i><b>Räumung</b></div><div class="in"><b>Räumung & Entsorgung</b>Was nicht mitkommt, wird geräumt und fachgerecht entsorgt.</div></div>
+<div class="bx"><div class="lid"><i>🏗️</i><b>Möbellift</b></div><div class="in"><b>Möbellift</b>Grosse Möbel direkt über Balkon oder Fenster – schont Treppenhaus und Rücken.</div></div>
+<div class="bx"><div class="lid"><i>🎹</i><b>Klavier & Montage</b></div><div class="in"><b>Klavier & Montage</b>Klaviere sicher transportiert, Schränke und Wandmöbel montiert und demontiert.</div></div>
+<div class="bx"><div class="lid"><i>📦</i><b>Lagerung</b></div><div class="in"><b>Lagerung</b>Möbel zwischenlagern, wenn alte und neue Wohnung nicht nahtlos zusammenpassen.</div></div>
+<div class="bx"><div class="lid"><i>🚚</i><b>Transporte</b></div><div class="in"><b>Transporte</b>Gütertransporte in der ganzen Schweiz, Umzüge auch europaweit.</div></div>
+</div>
+<p class="tip">Umzugskartons gibt es auf Anfrage.</p>
+</section>
+
+<section id="liste" style="background:#efe4d1">
+<h2>Ihre Zügel-Checkliste</h2>
+<p class="lead">Abhaken, was erledigt ist. Wo «PS übernimmt» steht, nehmen wir Ihnen die Arbeit ab – die Liste wird zu Ihrer Offert-Anfrage.</p>
+<div class="cl" id="cl">
+<div class="wk">Ein paar Monate vorher</div>
+<div class="it"><i class="cb"></i><span>Alte Wohnung fristgerecht kündigen</span></div>
+<div class="it" data-ps="Offerte für den Umzug"><i class="cb"></i><span>Offerte für den Umzug einholen<br><em>PS übernimmt</em></span></div>
+<div class="wk">Ein paar Wochen vorher</div>
+<div class="it" data-ps="Umzugskartons"><i class="cb"></i><span>Umzugskartons besorgen<br><em>PS übernimmt</em></span></div>
+<div class="it" data-ps="Räumung/Entsorgung"><i class="cb"></i><span>Ausmisten – was kommt nicht mit?<br><em>PS übernimmt</em></span></div>
+<div class="it" data-ps="Lagerung"><i class="cb"></i><span>Lagerplatz für die Zwischenzeit klären<br><em>PS übernimmt</em></span></div>
+<div class="it"><i class="cb"></i><span>Post-Umleitung und Adressänderungen</span></div>
+<div class="wk">Am Zügeltag</div>
+<div class="it" data-ps="Möbellift"><i class="cb"></i><span>Grosse Möbel durchs Fenster?<br><em>PS übernimmt – Möbellift</em></span></div>
+<div class="it" data-ps="Montage/Demontage"><i class="cb"></i><span>Schränke ab- und wieder aufbauen<br><em>PS übernimmt</em></span></div>
+<div class="wk">Danach</div>
+<div class="it" data-ps="Endreinigung mit Abnahmegarantie"><i class="cb"></i><span>Wohnung reinigen für die Abgabe<br><em>PS übernimmt – mit Abnahmegarantie</em></span></div>
+<div class="it"><i class="cb"></i><span>Bei der Gemeinde ab- und anmelden</span></div>
+</div>
+<div class="prog"><div><i id="pg"></i></div><b id="pc">0/10</b></div>
+<a class="send" id="send" href="#">Offerte anfragen<small id="ss">Tippen Sie auf «PS übernimmt»-Punkte, die wir erledigen sollen</small></a>
+<p class="note">Punkte mit «PS übernimmt» landen beim Abhaken automatisch in Ihrer Anfrage.</p>
+</section>
+
+<section>
+<h2>Wer packt an?</h2>
+<div class="who"><div class="pol"><div>Platz für Ihr<br>Teamfoto</div></div><p><b>Abdullah Rashid</b> gründete PS Umzug 2018, nachdem er als Teamleiter bei verschiedenen Umzugsfirmen gearbeitet hatte. Heute sind 6–10 kräftige, zuverlässige Leute im Einsatz.</p></div>
+</section>
+
+<section>
+<div class="rv"><p>«Absolut perfekte Leistung»</p><small>Bewertung auf Umzug-365</small></div>
+<div class="rv"><p>«Sehr gute Leistung, guter Preis»</p><small>Bewertung auf Umzug-365</small></div>
+</section>
+
+<section>
+<h2>Kontakt</h2>
+<p class="k">Bahnhofstrasse 85, 3613 Steffisburg<br>Büro <a href="tel:+41798219735">079 821 97 35</a> · Aussendienst <a href="tel:+41798268219">079 826 82 19</a><br><a href="mailto:info@ps-umzug.ch">info@ps-umzug.ch</a><br>Mo–Fr 08–17 · Sa 08–12</p>
+</section>
+<footer>Entwurf von Max Rathsack · Texte, Farben und Bilder ganz nach Ihren Wünschen; Platzhalter werden durch eigene Fotos ersetzt.</footer>
+<div class="bar"><a class="b1" href="tel:+41798219735">Anrufen</a><a class="b2" href="https://wa.me/41798219735">WhatsApp</a></div>
+<script>
+document.querySelectorAll('.bx').forEach(b=>b.onclick=()=>b.classList.toggle('open'));
+const it=[...document.querySelectorAll('.it')];
+function upd(){const ok=it.filter(i=>i.classList.contains('ok'));document.getElementById('pg').style.width=ok.length/it.length*100+'%';document.getElementById('pc').textContent=ok.length+'/'+it.length;
+const ps=ok.filter(i=>i.dataset.ps).map(i=>i.dataset.ps);
+document.getElementById('ss').textContent=ps.length?'Gewünscht: '+ps.join(', '):'Tippen Sie auf «PS übernimmt»-Punkte, die wir erledigen sollen';
+const t='Grüezi, ich plane einen Umzug und hätte gerne eine Offerte'+(ps.length?' für: '+ps.join(', '):'')+'. Freundliche Grüsse';
+document.getElementById('send').href='mailto:info@ps-umzug.ch?subject='+encodeURIComponent('Offert-Anfrage Umzug')+'&body='+encodeURIComponent(t);}
+it.forEach(i=>i.onclick=()=>{i.classList.toggle('ok');upd();});upd();
+</script>
+</body></html>

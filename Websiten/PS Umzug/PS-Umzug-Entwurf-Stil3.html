@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de"><head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PS Umzug AG – Privat oder Firma (Entwurf)</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--a:#ff6a00;--bg:#fff7f0;--card:#ffffff;--ink:#1d1b1a;--mut:#6d655e;--line:#f0e2d4;--soft:#ffe9d6}
+body.firma{--a:#2f7bff;--bg:#0f1624;--card:#172133;--ink:#eef3fb;--mut:#93a1b8;--line:#253249;--soft:#1d2c46}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',system-ui,sans-serif;background:var(--bg);color:var(--ink);max-width:430px;margin:0 auto;padding-bottom:78px;transition:background .6s,color .6s}
+.demo{background:#111;color:#fff;font-size:12px;text-align:center;padding:7px 10px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px}
+.logo{font-weight:800;font-size:19px}.logo span{color:var(--a);transition:color .6s}
+.sw{position:relative;display:flex;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:4px;margin:6px 18px 0;transition:.6s}
+.sw button{flex:1;position:relative;z-index:2;border:0;background:none;padding:12px;font:800 15px 'Sora';color:var(--mut);cursor:pointer;transition:color .4s}
+.sw button.on{color:#fff}
+.sw .pill{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--a);border-radius:26px;transition:transform .45s cubic-bezier(.5,1.6,.4,1),background .6s}
+body.firma .sw .pill{transform:translateX(100%)}
+.hero{padding:30px 18px 10px;min-height:250px}
+.hero h1{font-size:40px;line-height:1.05;letter-spacing:-1.2px;font-weight:800}
+.hero h1 span{color:var(--a);transition:color .6s}
+.hero p{color:var(--mut);margin-top:12px;line-height:1.55}
+.swap{transition:opacity .25s}.swap.fade{opacity:0}
+.kpis{display:flex;gap:8px;padding:0 18px;margin-top:16px}
+.kpis div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 10px;transition:.6s}
+.kpis b{font-size:24px;display:block;color:var(--a);transition:color .6s}
+.kpis small{color:var(--mut);font-size:11px}
+section{padding:34px 18px}
+h2{font-size:27px;letter-spacing:-.6px;line-height:1.15;margin-bottom:8px}
+.lead{color:var(--mut);line-height:1.5;margin-bottom:16px}
+.list{display:grid;gap:10px}
+.li{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;transition:.6s}
+.li i{font-style:normal;width:44px;height:44px;border-radius:12px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;transition:.6s}
+.li b{display:block;font-size:15px}.li small{color:var(--mut);font-size:13px;line-height:1.4}
+.form{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;transition:.6s}
+.f{margin-bottom:14px}
+.f label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin-bottom:6px;letter-spacing:.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:1.5px solid var(--line);background:none;color:var(--ink);border-radius:20px;padding:8px 12px;font:600 13px 'Sora';cursor:pointer}
+.chips button.on{background:var(--a);border-color:var(--a);color:#fff}
+.rl{display:flex;justify-content:space-between;font-weight:800}
+.rl output{color:var(--a)}
+input[type=range]{width:100%;accent-color:var(--a)}
+input[type=text],input[type=date]{width:100%;background:none;border:1.5px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);font:600 15px 'Sora'}
+.go{display:block;text-align:center;background:var(--a);color:#fff;text-decoration:none;font-weight:800;border-radius:14px;padding:15px;margin-top:6px;transition:background .6s}
+/* Karte */
+.map{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;transition:.6s}
+.map svg{width:100%;display:block}
+.city{cursor:pointer}
+.city circle{transition:.3s}
+.city text{font:600 11px 'Sora';fill:var(--mut)}
+.city.on circle{r:8;fill:var(--a)}
+.city.on text{fill:var(--ink);font-weight:800}
+#route{stroke:var(--a);stroke-width:3;fill:none;stroke-dasharray:6 6;transition:stroke .6s}
+.dest{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:0 6px}
+.dest b{font-size:18px}.dest small{color:var(--mut)}
+.mnote{font-size:11px;color:var(--mut);margin-top:6px;padding:0 6px}
+.rv{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;transition:.6s}
+.big{display:flex;align-items:baseline;gap:8px}.big b{font-size:52px;color:var(--a);letter-spacing:-2px;transition:color .6s}.big span{color:var(--mut)}
+.bars div{display:flex;align-items:center;gap:10px;font-size:13px;margin-top:8px;color:var(--mut)}
+.bars i{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bars i:after{content:'';display:block;height:100%;width:var(--w);background:var(--a);transition:background .6s}
+.q{margin-top:14px;font-weight:600}
+.k{line-height:1.9}.k a{color:var(--a);font-weight:800;text-decoration:none}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:22px 18px}
+.bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;gap:8px;padding:10px 12px;background:var(--bg);border-top:1px solid var(--line);transition:.6s}
+.bar a{flex:1;text-align:center;text-decoration:none;font-weight:800;border-radius:14px;padding:13px;font-size:15px}
+.b1{background:var(--a);color:#fff;transition:background .6s}.b2{background:#25d366;color:#fff}
+</style></head><body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der PS Umzug AG</div>
+<header><div class="logo"><span>PS</span> Umzug AG</div></header>
+<div class="sw"><span class="pill"></span><button class="on" data-m="privat">🏠 Privat</button><button data-m="firma">🏢 Firma</button></div>
+
+<div class="hero swap" id="hero"></div>
+<div class="kpis"><div><b>9.4</b><small>von 10 · Umzug-365</small></div><div><b>2018</b><small>gegründet</small></div><div><b>CH+EU</b><small>Einsatzgebiet</small></div></div>
+
+<section>
+<h2 class="swap" id="lt"></h2>
+<div class="list swap" id="list"></div>
+</section>
+
+<section>
+<h2>Wohin geht's?</h2>
+<p class="lead">Lokal in der Region Thun – oder quer durch Europa. Ziel antippen.</p>
+<div class="map">
+<svg viewBox="0 0 360 230" id="mp">
+<g opacity=".18" fill="currentColor"><circle cx="40" cy="40" r="2"/><circle cx="80" cy="60" r="2"/><circle cx="130" cy="30" r="2"/><circle cx="300" cy="50" r="2"/><circle cx="320" cy="170" r="2"/><circle cx="60" cy="190" r="2"/><circle cx="250" cy="200" r="2"/></g>
+<path id="route" d=""/>
+<g class="city on" data-n="Steffisburg" data-x="175" data-y="128" data-d="Ausgangspunkt"><circle cx="175" cy="128" r="9" fill="#ff6a00"/><text x="187" y="132" text-anchor="start" style="font-weight:800">Steffisburg</text></g>
+</svg>
+<div class="dest"><div><small>Route</small><br><b id="rt">Steffisburg</b></div><small id="rd">Ziel antippen</small></div>
+<p class="mnote">Schematische Darstellung, nicht massstabsgetreu.</p>
+</div>
+</section>
+
+<section>
+<h2 class="swap" id="ft"></h2>
+<div class="form" id="form"></div>
+</section>
+
+<section>
+<h2>Das sagen Kunden</h2>
+<div class="rv"><div class="big"><b>9.4</b><span>/ 10 aus 43 Bewertungen</span></div>
+<div class="bars"><div>Qualität <i style="--w:94%"></i> 9.4</div><div>Kundenservice <i style="--w:96%"></i> 9.6</div><div>Preis-Leistung <i style="--w:93%"></i> 9.3</div></div>
+<p class="q">«Absolut perfekte Leistung»</p><small style="color:var(--mut)">Bewertungen auf Umzug-365</small></div>
+</section>
+
+<section>
+<h2>Kontakt</h2>
+<p class="k">PS Umzug AG · Bahnhofstrasse 85, 3613 Steffisburg<br>Büro <a href="tel:+41798219735">079 821 97 35</a><br>Aussendienst <a href="tel:+41798268219">079 826 82 19</a><br><a href="mailto:info@ps-umzug.ch">info@ps-umzug.ch</a><br>Mo–Fr 08–17 · Sa 08–12</p>
+</section>
+<footer>Entwurf von Max Rathsack · Texte, Farben und Bilder ganz nach Ihren Wünschen; eigene Fotos ersetzen später die Symbole.</footer>
+<div class="bar"><a class="b1" href="tel:+41798219735">Anrufen</a><a class="b2" href="https://wa.me/41798219735">WhatsApp</a></div>
+<script>
+const D={
+privat:{h:'<h1>Ihr Umzug.<br><span>Unsere Kraft.</span></h1><p>Vom Studio bis zum Haus: Wir packen, tragen, fahren – und reinigen die alte Wohnung mit Abnahmegarantie.</p>',
+lt:'Für Ihr Zuhause',
+l:[['🏠','Privatumzug','Sorgfältig verpackt, getragen und aufgestellt'],['✨','Endreinigung','mit Abnahmegarantie für die Wohnungsabgabe'],['🏗️','Möbellift','grosse Stücke über Balkon oder Fenster'],['🎹','Klavier','sicher transportiert'],['🔧','Montage','Schränke und Wandmöbel ab- und aufbauen'],['📦','Lagerung','wenn alt und neu nicht nahtlos passen']],
+ft:'Offerte für Ihren Umzug',
+form:`<div class="f"><div class="rl"><span>Zimmer</span><output id="z1">3.5</output></div><input type="range" id="zr" min="1" max="7" step="0.5" value="3.5"></div>
+<div class="f"><label>EXTRAS</label><div class="chips" id="ex"><button>Möbellift</button><button>Endreinigung</button><button>Montage</button><button>Klavier</button><button>Entsorgung</button><button>Lagerung</button></div></div>
+<div class="f"><label>VON – NACH</label><input type="text" id="vn" placeholder="z.B. Thun → Spiez"></div>
+<div class="f"><label>WUNSCHDATUM</label><input type="date" id="dt"></div><a class="go" id="go" href="#">Offerte anfragen</a>`},
+firma:{h:'<h1>Ihr Betrieb zieht um.<br><span>Ohne Stillstand.</span></h1><p>Büro, Industrie, Altersheim oder interner Umzug – geplant und ausgeführt, damit Ihr Betrieb schnell wieder läuft.</p>',
+lt:'Für Unternehmen',
+l:[['🏢','Büroumzug','Arbeitsplätze, Akten und Mobiliar'],['🏭','Industrieumzug','Maschinen und Material'],['🏥','Altersheimumzug','mit Rücksicht auf Bewohner und Betrieb'],['🔄','Interner Umzug','neu einrichten im gleichen Gebäude'],['🧹','Baureinigung','inkl. Bauschutt und Tiefgarage'],['♻️','Räumung','und fachgerechte Entsorgung']],
+ft:'Anfrage für Ihren Firmenumzug',
+form:`<div class="f"><label>ART</label><div class="chips" id="art"><button class="on">Büro</button><button>Industrie</button><button>Altersheim</button><button>Intern</button></div></div>
+<div class="f"><div class="rl"><span>Arbeitsplätze</span><output id="z1">20</output></div><input type="range" id="zr" min="2" max="150" value="20"></div>
+<div class="f"><label>EXTRAS</label><div class="chips" id="ex"><button>Baureinigung</button><button>Räumung</button><button>Lagerung</button><button>Möbellift</button></div></div>
+<div class="f"><label>FIRMA / ORT</label><input type="text" id="vn" placeholder="z.B. Muster AG, Thun"></div>
+<div class="f"><label>WUNSCHZEITRAUM</label><input type="date" id="dt"></div><a class="go" id="go" href="#">Anfrage senden</a>`}};
+let mode='privat';
+function render(){const d=D[mode];document.getElementById('hero').innerHTML=d.h;document.getElementById('lt').textContent=d.lt;document.getElementById('ft').textContent=d.ft;
+document.getElementById('list').innerHTML=d.l.map(x=>`<div class="li"><i>${x[0]}</i><div><b>${x[1]}</b><small>${x[2]}</small></div></div>`).join('');
+document.getElementById('form').innerHTML=d.form;
+document.getElementById('form').querySelectorAll('.chips').forEach(c=>c.onclick=e=>{const b=e.target.closest('button');if(!b)return;if(c.id=='art'){c.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));}else b.classList.toggle('on');msg();});
+['zr','vn','dt'].forEach(i=>document.getElementById(i).oninput=msg);msg();}
+function msg(){const z=document.getElementById('zr').value;document.getElementById('z1').textContent=z;
+const ex=[...document.querySelectorAll('#ex .on')].map(b=>b.textContent);const vn=document.getElementById('vn').value;const d=document.getElementById('dt').value;const ds=d?new Date(d).toLocaleDateString('de-CH'):'';
+let t;if(mode=='privat')t=`Grüezi, ich plane einen Privatumzug (${z} Zimmer)`+(vn?`, ${vn}`:'')+(ds?`, am ${ds}`:'')+'.'+(ex.length?' Extras: '+ex.join(', ')+'.':'')+' Bitte um eine Offerte.';
+else{const a=document.querySelector('#art .on').textContent;t=`Grüezi, wir planen einen Firmenumzug (${a}, ca. ${z} Arbeitsplätze)`+(vn?`, ${vn}`:'')+(ds?`, ab ${ds}`:'')+'.'+(ex.length?' Zusätzlich: '+ex.join(', ')+'.':'')+' Bitte melden Sie sich für eine Offerte.';}
+document.getElementById('go').href='mailto:info@ps-umzug.ch?subject='+encodeURIComponent(mode=='privat'?'Offert-Anfrage Privatumzug':'Anfrage Firmenumzug')+'&body='+encodeURIComponent(t);}
+document.querySelectorAll('.sw button').forEach(b=>b.onclick=()=>{if(b.dataset.m==mode)return;mode=b.dataset.m;document.querySelectorAll('.sw button').forEach(x=>x.classList.toggle('on',x===b));document.body.classList.toggle('firma',mode=='firma');
+document.querySelectorAll('.swap').forEach(s=>s.classList.add('fade'));setTimeout(()=>{render();document.querySelectorAll('.swap').forEach(s=>s.classList.remove('fade'));},250);});
+render();
+// Karte (schematisch)
+const C=[["Thun",150,150,"lokal"],['Interlaken',215,165,'Berner Oberland'],['Bern',140,105,'Schweiz'],['Zürich',200,60,'Schweiz'],['Genf',40,190,'Schweiz'],['Basel',130,25,'Schweiz'],['München',320,40,'Europa'],['Mailand',250,215,'Europa']];
+const mp=document.getElementById('mp');const ns='http://www.w3.org/2000/svg';
+C.forEach(c=>{const g=document.createElementNS(ns,'g');g.setAttribute('class','city');g.innerHTML=`<circle cx="${c[1]}" cy="${c[2]}" r="5" fill="#9aa3ad"/><text x="${c[1]}" y="${c[2]-10}" text-anchor="middle">${c[0]}</text>`;
+g.onclick=()=>{mp.querySelectorAll('.city').forEach(x=>x!==mp.querySelector('[data-n]')&&x.classList.remove('on'));g.classList.add('on');
+const r=document.getElementById('route');const mx=(175+c[1])/2,my=Math.min(128,c[2])-40;r.setAttribute('d',`M175 128 Q${mx} ${my} ${c[1]} ${c[2]}`);
+const L=r.getTotalLength();r.style.strokeDasharray=L;r.style.strokeDashoffset=L;r.getBoundingClientRect();r.style.transition='stroke-dashoffset .9s ease';r.style.strokeDashoffset=0;
+setTimeout(()=>{r.style.transition='';r.style.strokeDasharray='6 6';},950);
+document.getElementById('rt').textContent='Steffisburg → '+c[0];document.getElementById('rd').textContent=c[3];};mp.appendChild(g);});
+</script>
+</body></html>
