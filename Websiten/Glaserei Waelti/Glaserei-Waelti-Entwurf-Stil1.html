@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Glaserei Wälti – Nachfolger M. Häsler · Entwurf «Schnellservice»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Work+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ice:#e7f2f7; --ice2:#cfe3ec; --line:#b8d2de;
+  --ink:#0f2a3d; --ink2:#3e596a; --red:#d3242b; --red-dk:#a8181e;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ice);color:var(--ink);font:400 17px/1.55 "Work Sans",system-ui,sans-serif;
+  hyphens:manual;overflow-wrap:normal;word-break:normal}
+.wrap{max-width:480px;margin:0 auto;background:var(--white);overflow:hidden;padding-bottom:88px}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;margin:0;line-height:1.05;letter-spacing:-.02em}
+a{color:inherit}
+.demo{background:var(--ink);color:#d9e8ef;font-size:12px;line-height:1.35;padding:7px 16px;text-align:center}
+
+/* Kopf */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px 14px;border-bottom:1px solid var(--ice2)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{flex:none}
+.brand b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:20px;line-height:1;letter-spacing:-.01em}
+.brand small{display:block;font-size:12.5px;color:var(--ink2);margin-top:3px}
+.mini-call{flex:none;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--red);color:var(--red);border-radius:999px;
+  padding:7px 13px;font-weight:700;font-size:14px;text-decoration:none}
+
+/* Hero */
+.hero{padding:26px 20px 8px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.kicker:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red)}
+.hero h1{font-size:clamp(2.05rem,9.4vw,2.75rem);margin:12px 0 12px}
+.hero p.lead{margin:0 0 18px;color:var(--ink2)}
+
+.stage{position:relative;background:var(--ice);border:1.5px solid var(--line);border-radius:18px;padding:12px 12px 14px}
+#scene{display:block;width:100%;height:auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+#hit{cursor:crosshair}
+#hit:focus{outline:none}
+#hit:focus-visible + .focusring{opacity:1}
+.focusring{opacity:0;transition:opacity .2s}
+.hint{display:flex;align-items:center;gap:8px;font-size:14.5px;color:var(--ink2);margin:10px 4px 0;min-height:24px}
+.hint .dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex:none;animation:puls 1.6s ease-in-out infinite}
+@keyframes puls{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.45}}
+.actions{display:flex;gap:10px;align-items:center;margin:10px 4px 0;min-height:52px}
+.btn{appearance:none;border:0;border-radius:14px;font:700 17px/1 "Bricolage Grotesque",sans-serif;padding:16px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 6px 0 var(--red-dk)}
+.btn-red:active{transform:translateY(3px);box-shadow:0 3px 0 var(--red-dk)}
+.btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn[hidden]{display:none}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.done{margin:12px 4px 0;font:700 clamp(1.35rem,6vw,1.6rem)/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink);display:flex;align-items:center;gap:10px;
+  opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.done.show{opacity:1;transform:none}
+.done[hidden]{display:none}
+.done svg{flex:none}
+
+/* Band */
+.band{margin:30px 0 0;background:var(--ink);color:#fff;padding:28px 20px 26px}
+.band .words{display:flex;flex-wrap:wrap;gap:4px 14px;font:700 clamp(1.7rem,8vw,2.2rem)/1.05 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em}
+.band .words span:nth-child(2){color:#8fc3dc}
+.band .words span:nth-child(3){color:#ff6b6f}
+.band p{margin:14px 0 0;color:#c9dce6;font-size:16px}
+
+/* Abschnitte */
+section.s{padding:34px 20px 6px}
+.s h2{font-size:clamp(1.7rem,7.6vw,2.15rem);margin-bottom:6px}
+.s .sub{color:var(--ink2);margin:0 0 16px}
+.list{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
+.list li{display:grid;grid-template-columns:44px 1fr;gap:4px 10px;padding:14px 0 13px;border-bottom:1px solid var(--ice2)}
+.list .n{font:700 15px/1.5 "Bricolage Grotesque",sans-serif;color:var(--red);padding-top:2px}
+.list h3{font-size:19px;line-height:1.25;letter-spacing:-.01em}
+.list p{grid-column:2;margin:2px 0 0;font-size:15.5px;color:var(--ink2);line-height:1.45}
+.list li.hl{background:linear-gradient(90deg,#fff1f1,#fff 85%)}
+
+.rating{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rcard{border:1.5px solid var(--line);border-radius:16px;padding:16px 14px;background:var(--ice)}
+.rcard .big{font:700 2.4rem/1 "Bricolage Grotesque",sans-serif}
+.stars{color:var(--red);letter-spacing:2px;font-size:16px;margin:6px 0 4px}
+.rcard small{display:block;font-size:13.5px;color:var(--ink2);line-height:1.35}
+.paraphrase{margin:14px 0 0;padding:14px 16px;border-left:4px solid var(--red);background:#fff7f7;font-size:15.5px;color:var(--ink2)}
+
+.owner{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:start}
+.owner svg{width:118px;height:auto;display:block}
+.owner p{margin:0 0 10px;font-size:15.5px}
+blockquote{margin:18px 0 0;padding:18px 18px 16px;background:var(--ice);border-radius:16px;font:400 18px/1.45 "Work Sans",sans-serif;font-style:italic;position:relative}
+blockquote footer{font-style:normal;font-size:14px;color:var(--ink2);margin-top:8px}
+
+.contact{display:grid;gap:10px}
+.cbtn{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--line);border-radius:16px;text-decoration:none;background:#fff}
+.cbtn .ic{width:42px;height:42px;border-radius:12px;background:var(--ice);display:grid;place-items:center;flex:none}
+.cbtn small{display:block;font-size:13px;color:var(--ink2)}
+.cbtn b{font:700 19px/1.2 "Bricolage Grotesque",sans-serif}
+.facts{margin:16px 0 0;padding:0;list-style:none;font-size:15.5px}
+.facts li{padding:10px 0;border-bottom:1px solid var(--ice2)}
+.facts li b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2)}
+.ph{background:#fff4c9;padding:0 4px;border-radius:4px}
+
+.foot{margin-top:34px;padding:22px 20px 26px;background:var(--ice);font-size:13.5px;color:var(--ink2);line-height:1.5}
+.foot b{color:var(--ink)}
+
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,rgba(231,242,247,0),rgba(231,242,247,.96) 30%)}
+.callbar a{width:100%;max-width:452px;justify-content:center;font-size:18px}
+
+html.pdf .callbar{position:static;background:none;padding:6px 20px 24px}
+html.pdf .wrap{padding-bottom:0}
+html.pdf .hint .dot{animation:none}
+html.pdf .done{opacity:1;transform:none}
+
+@media (min-width:600px){ body{padding:24px 0} .wrap{border-radius:22px;box-shadow:0 10px 40px rgba(15,42,61,.12)} }
+@media (prefers-reduced-motion:reduce){ .hint .dot{animation:none} .done{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Glaserei Wälti</div>
+
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Glaserei Wälti, Nachfolger M. Häsler">
+      <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+        <rect x="3" y="3" width="32" height="32" rx="5" fill="#e7f2f7" stroke="#0f2a3d" stroke-width="2.2"/>
+        <path d="M8 30 L20 8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        <path d="M21 21 l4 -3 l3 2 M21 21 l-1 5 M21 21 l-5 -1 M21 21 l3 6" stroke="#d3242b" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span><b>Glaserei Wälti</b><small>Nachfolger M. Häsler</small></span>
+    </a>
+    <a class="mini-call" href="tel:+41333353930" aria-label="Glaserei anrufen: 033 335 39 30">
+      <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+      Anrufen
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <span class="kicker">Reparatur-Schnellservice · Gwatt (Thun)</span>
+      <h1>Glas kaputt? Die Werkstatt kommt zu Ihnen.</h1>
+      <p class="lead">Mit der mobilen Werkstatt repariert Markus Häsler Ihre Scheibe direkt vor Ort. Probieren Sie es aus:</p>
+
+      <div class="stage">
+        <svg id="scene" viewBox="0 0 400 330" role="img" aria-labelledby="sceneTitle">
+          <title id="sceneTitle">Gezeichnetes Küchenfenster mit Blick auf den Thunersee und den Niesen</title>
+          <defs>
+            <clipPath id="glassClip"><rect x="60" y="32" width="280" height="204"/></clipPath>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#b7dbee"/><stop offset="1" stop-color="#eef8fc"/>
+            </linearGradient>
+            <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5aa0c0"/><stop offset="1" stop-color="#3f86a8"/>
+            </linearGradient>
+            <linearGradient id="glossG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Küchenwand -->
+          <rect width="400" height="330" fill="#eef5f8"/>
+          <g stroke="#d6e6ed" stroke-width="1">
+            <path d="M0 262h400M0 281h400M0 300h400"/>
+            <path d="M22 262v38M66 262v38M110 262v38M154 262v38M198 262v38M242 262v38M286 262v38M330 262v38M374 262v38"/>
+          </g>
+
+          <!-- Fensterlaibung -->
+          <rect x="40" y="12" width="320" height="244" rx="5" fill="#dfeaf0"/>
+
+          <!-- Aussicht -->
+          <g clip-path="url(#glassClip)">
+            <rect x="60" y="32" width="280" height="204" fill="url(#sky)"/>
+            <path d="M92 70c4-9 18-10 22-2 7-4 17 0 15 8H86c-3-4 1-7 6-6z" fill="#fff" opacity=".9"/>
+            <path d="M262 52c3-7 14-8 18-2 6-3 13 1 11 7h-34c-2-3 1-6 5-5z" fill="#fff" opacity=".8"/>
+            <path d="M60 152 L84 130 L98 137 L122 110 L140 128 L152 121 L178 152Z" fill="#a5c3d3"/>
+            <path d="M166 153 L236 72 L247 80 L322 153Z" fill="#7d9db1"/>
+            <path d="M223 87 L236 72 L247 80 L244 89 L238 85 L231 92 Z" fill="#fff"/>
+            <path d="M236 72 L220 153" stroke="#6d8ea3" stroke-width="1.2" fill="none" opacity=".6"/>
+            <path d="M300 153 Q322 132 340 138 V153Z" fill="#a5c3d3"/>
+            <rect x="60" y="151" width="280" height="44" fill="url(#lake)"/>
+            <g stroke="#d4ecf6" stroke-width="1.3" stroke-linecap="round" opacity=".7">
+              <path d="M84 166h16M150 174h22M210 162h14M268 178h20M118 186h14M300 165h12"/>
+            </g>
+            <g transform="translate(118 168)">
+              <path d="M0 0 L0 -18 L11 0Z" fill="#fff"/><path d="M-1 -2 L-1 -14 L-8 -2Z" fill="#fff" opacity=".85"/>
+              <path d="M-9 1 H13 L9 5 H-6Z" fill="#0f2a3d"/>
+            </g>
+            <rect x="60" y="193" width="280" height="43" fill="#a8c79b"/>
+            <g fill="#7fa978">
+              <circle cx="80" cy="198" r="8"/><circle cx="92" cy="200" r="6"/>
+              <circle cx="246" cy="197" r="7"/><circle cx="322" cy="198" r="9"/>
+            </g>
+            <rect x="60" y="205" width="280" height="17" fill="#8e9ca5"/>
+            <path d="M60 213.5h280" stroke="#fff" stroke-width="1.2" stroke-dasharray="9 8"/>
+
+            <!-- Kleinbus mit Glasbock (mobile Werkstatt) -->
+            <g transform="translate(0 221)">
+              <g id="van" style="transform:translateX(-120px)">
+                <g transform="scale(.92)">
+                  <path d="M2 -5 V-30 Q2 -34 6 -34 H52 Q58 -34 62 -28 L72 -17 Q77 -16 77 -11 V-5 Z" fill="#fff" stroke="#0f2a3d" stroke-width="1.3" stroke-linejoin="round"/>
+                  <path d="M54 -31 H59 L69 -18 H54 Z" fill="#bfe0f0" stroke="#0f2a3d" stroke-width=".9"/>
+                  <rect x="2" y="-15" width="75" height="4" fill="#d3242b"/>
+                  <!-- Glasbock -->
+                  <path d="M7 -7 L12 -45 M44 -7 L49 -45 M11 -45 H50" stroke="#0f2a3d" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                  <path d="M13 -9 L17 -43 H33 L29 -9Z" fill="#cfe9f5" fill-opacity=".85" stroke="#5f8ea8" stroke-width=".9"/>
+                  <path d="M24 -9 L28 -42 H44 L40 -9Z" fill="#e6f5fb" fill-opacity=".85" stroke="#5f8ea8" stroke-width=".9"/>
+                  <path d="M19 -38 L22 -14" stroke="#fff" stroke-width="1.4" opacity=".9"/>
+                  <circle cx="18" cy="-4" r="5.2" fill="#0f2a3d"/><circle cx="18" cy="-4" r="2" fill="#cfd8dd"/>
+                  <circle cx="63" cy="-4" r="5.2" fill="#0f2a3d"/><circle cx="63" cy="-4" r="2" fill="#cfd8dd"/>
+                  <rect x="74" y="-11" width="3.5" height="3" fill="#ffd25a"/>
+                </g>
+              </g>
+            </g>
+
+            <!-- neue Scheibe -->
+            <g id="newpane" style="transform:translateX(300px);opacity:0">
+              <rect x="60" y="32" width="280" height="204" fill="#fff" fill-opacity=".08"/>
+              <rect x="60" y="32" width="280" height="204" fill="none" stroke="#9fd0e6" stroke-width="3"/>
+              <path d="M96 32 H120 L74 236 H60 V190Z" fill="#fff" opacity=".28"/>
+              <g id="gloss" style="transform:translateX(-260px)">
+                <path d="M90 32 H160 L110 236 H40Z" fill="url(#glossG)"/>
+              </g>
+            </g>
+
+            <!-- alte Scheibe mit Sprung -->
+            <g id="oldpane">
+              <rect x="60" y="32" width="280" height="204" fill="#fff" fill-opacity=".07"/>
+              <path d="M98 32 H124 L76 236 H60 V200Z" fill="#fff" opacity=".22"/>
+              <path d="M134 32 H142 L98 236 H90Z" fill="#fff" opacity=".18"/>
+              <g id="cracks"></g>
+            </g>
+          </g>
+
+          <!-- Fensterrahmen -->
+          <path fill-rule="evenodd" fill="#fff" stroke="#0f2a3d" stroke-width="2"
+            d="M44 16 H356 V252 H44Z M60 32 V236 H340 V32Z"/>
+          <rect x="52" y="24" width="296" height="220" fill="none" stroke="#0f2a3d" stroke-width="1" opacity=".35"/>
+          <rect x="344" y="118" width="7" height="26" rx="3.5" fill="#cfd8dd" stroke="#0f2a3d" stroke-width="1.3"/>
+          <rect x="34" y="250" width="332" height="11" rx="2" fill="#fff" stroke="#0f2a3d" stroke-width="2"/>
+
+          <!-- Klickfläche Scheibe -->
+          <rect id="hit" x="60" y="32" width="280" height="204" fill="transparent" tabindex="0" role="button" aria-label="Auf die Scheibe tippen"/>
+          <rect class="focusring" x="62" y="34" width="276" height="200" fill="none" stroke="#d3242b" stroke-width="2.5" stroke-dasharray="6 5" pointer-events="none"/>
+
+          <!-- Basilikum auf dem Sims -->
+          <g pointer-events="none">
+            <path d="M296 222 C290 206 300 200 306 212 C304 198 316 194 316 210 C322 198 334 204 326 220Z" fill="#6aa368"/>
+            <path d="M306 214 L310 230 M316 210 L314 230 M326 220 L318 230" stroke="#4f8a51" stroke-width="1.3" fill="none"/>
+            <path d="M298 228 H330 L326 250 H302Z" fill="#d3242b" stroke="#0f2a3d" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M298 233 H330" stroke="#0f2a3d" stroke-width="1.2"/>
+          </g>
+
+          <!-- Abdeckung / Arbeitsfläche -->
+          <rect x="0" y="300" width="400" height="30" fill="#fff"/>
+          <path d="M0 300 H400" stroke="#0f2a3d" stroke-width="2"/>
+          <path d="M0 307 H400" stroke="#cfe3ec" stroke-width="1"/>
+          <g transform="translate(64 300)" pointer-events="none">
+            <path d="M0 -26 H22 V-4 Q22 0 18 0 H4 Q0 0 0 -4Z" fill="#fff" stroke="#0f2a3d" stroke-width="1.6"/>
+            <path d="M22 -20 q9 0 9 7 t-9 6" fill="none" stroke="#0f2a3d" stroke-width="1.6"/>
+            <path d="M0 -18 H22" stroke="#d3242b" stroke-width="3"/>
+            <path d="M8 -32 q3 -4 0 -8 M14 -32 q3 -4 0 -8" stroke="#9ab3c0" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+          </g>
+        </svg>
+
+        <div class="hint" id="hint"><span class="dot" aria-hidden="true"></span><span id="hintText">Tippen Sie auf die Scheibe.</span></div>
+        <p class="done" id="done" aria-live="polite" hidden>
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="#d3242b"/><path d="M8.5 15.5 l4.3 4.3 L22 10.5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Schnell, zuverlässig, exakt.
+        </p>
+        <div class="actions">
+          <button class="btn btn-red" id="callBtn" type="button" hidden>
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+            Häsler rufen
+          </button>
+          <button class="btn btn-ghost" id="againBtn" type="button" hidden>Nochmal zeigen</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="band">
+      <div class="words"><span>Schnell.</span> <span>Zuverlässig.</span> <span>Exakt.</span></div>
+      <p>Reparatur-Schnellservice mit mobiler Werkstatt – direkt bei Ihnen vor Ort in Thun, Gwatt und Umgebung <span class="ph" style="color:var(--ink)">[Einzugsgebiet bitte bestätigen]</span>.</p>
+    </div>
+
+    <section class="s" id="leistungen">
+      <h2>Leistungen</h2>
+      <p class="sub">Alles rund um Glas und Spiegel – vom Sprung in der Scheibe bis zur Duschtrennwand.</p>
+      <ol class="list">
+        <li><span class="n">01</span><h3>Glasreparaturen</h3><p>Zerbrochene oder beschädigte Scheiben werden ersetzt.</p></li>
+        <li class="hl"><span class="n">02</span><h3>Reparatur-Schnellservice</h3><p>Mit der mobilen Werkstatt direkt bei Ihnen vor Ort.</p></li>
+        <li><span class="n">03</span><h3>Schaufenster</h3><p>Glas für Schaufenster von Geschäften.</p></li>
+        <li><span class="n">04</span><h3>Duschtrennwände</h3><p>Duschtrennwände aus Glas fürs Bad.</p></li>
+        <li><span class="n">05</span><h3>Küchenrückwände</h3><p>Glas als Rückwand in der Küche.</p></li>
+        <li><span class="n">06</span><h3>Katzentüren</h3><p>Einbau von Katzentüren direkt in die Glasscheibe.</p></li>
+        <li><span class="n">07</span><h3>Glasschalen</h3><p>Auch im Direktverkauf erhältlich.</p></li>
+        <li><span class="n">08</span><h3>Grosse Scheiben &amp; Höhenarbeiten</h3><p>Ein- und Ausbau grosser Scheiben, auch in der Höhe.</p></li>
+        <li><span class="n">09</span><h3>Glas- und Spiegelhandel</h3><p>Handel mit Glas und Spiegeln.</p></li>
+      </ol>
+    </section>
+
+    <section class="s" id="bewertungen">
+      <h2>Bewertungen</h2>
+      <p class="sub">Was Kundinnen und Kunden online schreiben.</p>
+      <div class="rating">
+        <div class="rcard"><div class="big">5.0</div><div class="stars" aria-label="5 von 5 Sternen">★★★★★</div><small>search.ch<br>4 Bewertungen</small></div>
+        <div class="rcard"><div class="big">5.0</div><div class="stars" aria-label="5 von 5 Sternen">★★★★★</div><small>local.ch<br>2 Bewertungen</small></div>
+      </div>
+      <p class="paraphrase">In einer Rezension wird der Service als schnell, freundlich und preislich fair beschrieben.</p>
+    </section>
+
+    <section class="s" id="inhaber">
+      <h2>Ihr Glaser</h2>
+      <p class="sub">Familienunternehmen in Gwatt.</p>
+      <div class="owner">
+        <svg viewBox="0 0 118 140" role="img" aria-label="Platzhalter für Ihr Foto">
+          <rect x="1" y="1" width="116" height="138" rx="14" fill="#e7f2f7" stroke="#b8d2de" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <circle cx="59" cy="50" r="17" fill="none" stroke="#3e596a" stroke-width="2"/>
+          <path d="M26 100 C30 80 88 80 92 100" fill="none" stroke="#3e596a" stroke-width="2"/>
+          <text x="59" y="120" text-anchor="middle" font-family="Work Sans,sans-serif" font-size="9.5" fill="#3e596a">Platzhalter für</text>
+          <text x="59" y="131" text-anchor="middle" font-family="Work Sans,sans-serif" font-size="9.5" fill="#3e596a">Ihr Foto</text>
+        </svg>
+        <div>
+          <p><b>Markus Häsler</b> ist gelernter Glaser.</p>
+          <p>2003 hat er den Betrieb übernommen und führt ihn seither als Nachfolger der Glaserei Wälti.</p>
+        </div>
+      </div>
+      <blockquote>«Die Zufriedenheit meiner Kunden ist mir, als Inhaber eines Familienunternehmens, ein grosses Anliegen.»<footer>Markus Häsler, Inhaber</footer></blockquote>
+    </section>
+
+    <section class="s" id="kontakt">
+      <h2>Kontakt</h2>
+      <p class="sub">Am schnellsten geht es per Telefon.</p>
+      <div class="contact">
+        <a class="cbtn" href="tel:+41793340913"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5" fill="none" stroke="#d3242b" stroke-width="2"/><path d="M10 18.5h4" stroke="#d3242b" stroke-width="2" stroke-linecap="round"/></svg></span><span><small>Mobile</small><b>079 334 09 13</b></span></a>
+        <a class="cbtn" href="tel:+41333353930"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="#0f2a3d"/></svg></span><span><small>Telefon</small><b>033 335 39 30</b></span></a>
+        <a class="cbtn" href="mailto:info@glasereiwaelti.ch"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2" fill="none" stroke="#0f2a3d" stroke-width="2"/><path d="M3 6.5 L12 13 L21 6.5" fill="none" stroke="#0f2a3d" stroke-width="2"/></svg></span><span><small>E-Mail</small><b>info@glasereiwaelti.ch</b></span></a>
+      </div>
+      <ul class="facts">
+        <li><b>Adresse</b>Hodelgasse 27, 3645 Gwatt (Thun)<br>Besuche nur nach telefonischer Vereinbarung.</li>
+        <li><b>Erreichbarkeit</b><span class="ph">[Öffnungszeiten / Erreichbarkeit bitte bestätigen]</span></li>
+        <li><b>Einzugsgebiet</b>Thun, Gwatt und Umgebung <span class="ph">[Einzugsgebiet bitte bestätigen]</span></li>
+        <li><b>Preise</b><span class="ph">[Preisangaben bitte bestätigen]</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <b>Glaserei Wälti, Nachfolger M. Häsler</b><br>
+    Einzelfirma · Hodelgasse 27 · 3645 Gwatt (Thun)<br>
+    UID CHE-110.067.236<br><br>
+    Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Glaserei Wälti.
+  </footer>
+
+  <div class="callbar">
+    <a class="btn btn-red" href="tel:+41793340913">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+      Mobile anrufen · 079 334 09 13
+    </a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("scene");
+  var hit = document.getElementById("hit");
+  var cracks = document.getElementById("cracks");
+  var van = document.getElementById("van");
+  var oldpane = document.getElementById("oldpane");
+  var newpane = document.getElementById("newpane");
+  var gloss = document.getElementById("gloss");
+  var callBtn = document.getElementById("callBtn");
+  var againBtn = document.getElementById("againBtn");
+  var done = document.getElementById("done");
+  var hintText = document.getElementById("hintText");
+  var hint = document.getElementById("hint");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var busy = false, cracked = 0, repaired = false;
+
+  var seed = 7;
+  function rnd(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+  function el(n, a){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function d(pts){ return pts.map(function(p,i){ return (i?"L":"M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" "); }
+
+  function addLine(g, pts, delay, w){
+    var path = d(pts);
+    var dark = el("path", {d: path, fill: "none", stroke: "#0f2a3d", "stroke-opacity": ".72", "stroke-width": w, "stroke-linecap": "round", "stroke-linejoin": "round"});
+    var lite = el("path", {d: path, fill: "none", stroke: "#fff", "stroke-width": w * .5, "stroke-linecap": "round", transform: "translate(.7 .5)"});
+    g.appendChild(lite); g.appendChild(dark);
+    [dark, lite].forEach(function(p){
+      var L = p.getTotalLength();
+      if (reduce || document.documentElement.classList.contains("pdf")) return;
+      p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+      p.animate([{strokeDashoffset: L}, {strokeDashoffset: 0}], {duration: 260 + L * 3, delay: delay, easing: "cubic-bezier(.2,.8,.3,1)", fill: "forwards"});
+    });
+  }
+
+  function crackAt(x, y){
+    var g = el("g", {}); cracks.appendChild(g);
+    var n = 8 + Math.floor(rnd() * 4), rays = [];
+    for (var i = 0; i < n; i++){
+      var a = i / n * Math.PI * 2 + (rnd() - .5) * .55;
+      var len = 40 + rnd() * 95, steps = 4 + Math.floor(rnd() * 3), seg = len / steps;
+      var pts = [[x, y]], px = x, py = y;
+      for (var s = 0; s < steps; s++){ a += (rnd() - .5) * .5; px += Math.cos(a) * seg; py += Math.sin(a) * seg; pts.push([px, py]); }
+      rays.push(pts);
+      addLine(g, pts, i * 25, 1.5 - (len > 100 ? .2 : 0));
+      if (rnd() < .65){
+        var k = 1 + Math.floor(rnd() * (steps - 1)), b = pts[k], ba = a + (rnd() < .5 ? -1 : 1) * (.5 + rnd() * .5);
+        var bp = [[b[0], b[1]]], bx = b[0], by = b[1];
+        for (var t = 0; t < 2; t++){ ba += (rnd() - .5) * .5; bx += Math.cos(ba) * seg * .8; by += Math.sin(ba) * seg * .8; bp.push([bx, by]); }
+        addLine(g, bp, 180 + i * 25, 1);
+      }
+    }
+    [1, 2].forEach(function(ring){
+      for (var i = 0; i < rays.length; i++){
+        if (rnd() < .3) continue;
+        var p1 = rays[i][ring], p2 = rays[(i + 1) % rays.length][ring];
+        var mx = (p1[0] + p2[0]) / 2 + (rnd() - .5) * 6, my = (p1[1] + p2[1]) / 2 + (rnd() - .5) * 6;
+        addLine(g, [p1, [mx, my], p2], 220 + ring * 90, .9);
+      }
+    });
+    var shard = [];
+    for (var j = 0; j < 6; j++){ var aa = j / 6 * Math.PI * 2, rr = 3 + rnd() * 4; shard.push([x + Math.cos(aa) * rr, y + Math.sin(aa) * rr]); }
+    g.appendChild(el("path", {d: d(shard) + "Z", fill: "#fff", "fill-opacity": ".75", stroke: "#0f2a3d", "stroke-opacity": ".5", "stroke-width": ".8"}));
+  }
+
+  function svgPoint(evt){
+    var pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+
+  function onCrack(x, y){
+    if (busy) return;
+    if (repaired) reset();
+    crackAt(x, y); cracked++;
+    callBtn.hidden = false;
+    hintText.textContent = cracked > 1 ? "Das reicht – rufen Sie Häsler!" : "Oh je, ein Sprung! Jetzt Häsler rufen.";
+  }
+
+  hit.addEventListener("pointerdown", function(e){ var p = svgPoint(e); onCrack(p.x, p.y); });
+  hit.addEventListener("keydown", function(e){
+    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); onCrack(110 + rnd() * 180, 60 + rnd() * 140); }
+  });
+
+  function anim(node, frames, dur, easing){
+    if (reduce) dur = 1;
+    var a = node.animate(frames, {duration: dur, easing: easing || "ease-in-out", fill: "forwards"});
+    return new Promise(function(res){ a.onfinish = function(){ var last = frames[frames.length - 1]; for (var k in last) node.style[k] = last[k]; a.cancel(); res(); }; });
+  }
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, reduce ? 0 : ms); }); }
+
+  async function repair(){
+    if (busy) return; busy = true;
+    callBtn.hidden = true; hintText.textContent = "Die mobile Werkstatt ist unterwegs …";
+    await anim(van, [{transform: "translateX(-120px)"}, {transform: "translateX(196px)"}], 1400, "cubic-bezier(.25,.7,.25,1)");
+    hintText.textContent = "Alte Scheibe raus …";
+    await anim(oldpane, [{transform: "translateY(0px) rotate(0deg)", opacity: 1}, {transform: "translateY(-250px) rotate(-3deg)", opacity: .2}], 900, "cubic-bezier(.5,0,.6,1)");
+    hintText.textContent = "… neue Scheibe rein.";
+    await anim(newpane, [{transform: "translateX(300px)", opacity: 1}, {transform: "translateX(0px)", opacity: 1}], 900, "cubic-bezier(.2,.8,.3,1)");
+    await anim(gloss, [{transform: "translateX(-260px)"}, {transform: "translateX(360px)"}], 800, "ease-in-out");
+    hint.style.display = "none";
+    done.hidden = false; requestAnimationFrame(function(){ done.classList.add("show"); });
+    againBtn.hidden = false; repaired = true; busy = false;
+  }
+  callBtn.addEventListener("click", repair);
+
+  function reset(){
+    cracks.textContent = ""; cracked = 0; repaired = false;
+    van.style.transform = "translateX(-120px)";
+    oldpane.style.transform = ""; oldpane.style.opacity = 1;
+    newpane.style.transform = "translateX(300px)"; newpane.style.opacity = 0;
+    gloss.style.transform = "translateX(-260px)";
+    done.classList.remove("show"); done.hidden = true;
+    againBtn.hidden = true; callBtn.hidden = true;
+    hint.style.display = ""; hintText.textContent = "Tippen Sie auf die Scheibe.";
+  }
+  againBtn.addEventListener("click", function(){ reset(); hit.focus(); });
+
+  /* PDF-Zustand: Sprung in der Scheibe, Werkstatt ist schon vorgefahren */
+  function pdfState(){
+    reset(); seed = 11;
+    crackAt(150, 96); crackAt(262, 170);
+    van.style.transform = "translateX(196px)";
+    callBtn.hidden = false;
+    hintText.textContent = "Ein Sprung! Die mobile Werkstatt ist schon da.";
+  }
+  if (document.documentElement.classList.contains("pdf")) pdfState();
+  new MutationObserver(function(){ if (document.documentElement.classList.contains("pdf")) pdfState(); })
+    .observe(document.documentElement, {attributes: true, attributeFilter: ["class"]});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schranz Geigenbau – Die richtige Grösse (Entwurf)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#f8f1e4;
+  --ahorn:#efe0c4;
+  --hellholz:#dcbf8f;
+  --holz:#b07d45;
+  --petrol:#1d6a73;
+  --petrol-dunkel:#124a51;
+  --petrol-hell:#d5e9e8;
+  --tinte:#243236;
+  --grau:#5b6866;
+  --weiss:#fffdf8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--tinte);font-family:"Outfit",system-ui,sans-serif;font-size:17px;line-height:1.55;hyphens:manual;overflow-wrap:normal;overflow-x:hidden}
+h1,h2,h3{font-family:"Lora",Georgia,serif;line-height:1.15;margin:0;font-weight:700;color:var(--tinte)}
+p{margin:0 0 1em}
+a{color:var(--petrol)}
+.demo{background:var(--tinte);color:#f3ead9;font-size:12.5px;text-align:center;padding:7px 14px;line-height:1.35}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+
+/* Kopf */
+header{padding:18px 0 6px}
+.marke{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tinte)}
+.marke svg{flex:none}
+.marke b{display:block;font-family:"Lora",serif;font-size:21px;line-height:1.1}
+.marke span{font-size:13px;color:var(--grau);letter-spacing:.04em}
+
+/* Hero */
+.hero{padding:22px 0 8px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--petrol);margin-bottom:12px}
+.hero h1{font-size:clamp(32px,9.4vw,48px);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--petrol)}
+.hero .lead{font-size:18.5px;margin:16px 0 22px;color:#34453f}
+.knoepfe{display:flex;flex-wrap:wrap;gap:10px}
+.knopf{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;font-size:16px;border:2px solid var(--petrol)}
+.knopf.voll{background:var(--petrol);color:#fff}
+.knopf.leer{color:var(--petrol);background:transparent}
+.reihe{margin:26px -6px 0;display:block}
+.reihe svg{width:100%;height:auto;display:block}
+
+/* Grössen-Finder */
+.finder{background:var(--weiss);border-radius:28px;margin:30px 0 0;padding:26px 18px 22px;box-shadow:0 1px 0 #e6d6b8,0 14px 34px -22px rgba(60,40,10,.35)}
+.finder h2{font-size:clamp(26px,7.4vw,34px)}
+.finder .anl{color:var(--grau);margin:10px 0 16px;font-size:16px}
+.umschalter{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--ahorn);border-radius:16px;padding:5px;margin-bottom:12px}
+.umschalter button{font:inherit;font-size:14.5px;font-weight:700;border:0;background:transparent;color:var(--tinte);padding:10px 2px;border-radius:12px;cursor:pointer}
+.umschalter button[aria-pressed="true"]{background:var(--petrol);color:#fff}
+.umschalter button:focus-visible,.griff:focus-visible{outline:3px solid #e39b3c;outline-offset:2px}
+.buehne{position:relative;touch-action:none;user-select:none;-webkit-user-select:none}
+.buehne svg{width:100%;height:auto;display:block}
+.griff{cursor:grab;outline:none}
+.griff:active{cursor:grabbing}
+.puls{transform-box:fill-box;transform-origin:center;animation:puls 2.2s ease-out infinite}
+@keyframes puls{0%{opacity:.7;transform:scale(.7)}100%{opacity:0;transform:scale(1.7)}}
+.leiste{display:flex;justify-content:space-between;gap:2px;margin:6px 2px 0}
+.leiste button{flex:1;font:inherit;font-size:12.5px;font-weight:700;color:var(--grau);background:transparent;border:0;border-top:3px solid var(--hellholz);padding:7px 0 2px;cursor:pointer}
+.leiste button.an{color:var(--petrol);border-top-color:var(--petrol)}
+.anzeige{margin-top:16px;background:var(--petrol-hell);border-radius:18px;padding:16px 18px}
+.anzeige .rw{font-family:"Lora",serif;font-size:clamp(24px,7vw,30px);font-weight:700;color:var(--petrol-dunkel);line-height:1.2}
+.anzeige .rw small{display:block;font-family:"Outfit",sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--petrol);margin-bottom:2px}
+.anzeige p{margin:8px 0 0;font-size:15.5px;color:#25494c}
+.verfuegbar{font-size:14.5px;color:var(--grau);margin:12px 2px 0}
+
+/* Abschnitte */
+section.abschnitt{padding:46px 0 0}
+.abschnitt h2{font-size:clamp(28px,8vw,38px);margin-bottom:14px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--holz);margin-bottom:8px;display:block}
+.karten{display:grid;gap:12px;margin-top:18px}
+.karte{background:var(--weiss);border:1.5px solid #ead9b9;border-radius:20px;padding:16px 18px;display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center}
+.karte h3{font-size:20px}
+.karte p{margin:3px 0 0;font-size:15.5px;color:var(--grau)}
+.karte svg{width:54px;height:54px}
+.platz{display:inline-block;background:#fff3c8;border:1px dashed #c9a23a;color:#6d5310;border-radius:6px;padding:1px 7px;font-size:.92em}
+.duo{display:grid;gap:12px;margin-top:6px}
+.kasten{background:var(--ahorn);border-radius:22px;padding:20px 20px 6px}
+.kasten h3{font-size:22px;margin-bottom:8px}
+.kasten.petrol{background:var(--petrol);color:#eaf4f3}
+.kasten.petrol h3{color:#fff}
+.liste{list-style:none;padding:0;margin:0 0 14px}
+.liste li{padding:7px 0 7px 28px;position:relative;border-bottom:1px dashed #d8c39d}
+.liste li:last-child{border-bottom:0}
+.liste li::before{content:"";position:absolute;left:4px;top:15px;width:11px;height:11px;border-radius:50%;border:2.5px solid var(--petrol)}
+.stimme{background:var(--weiss);border-radius:22px;padding:22px 20px;border-left:6px solid var(--petrol)}
+.stimme p{font-family:"Lora",serif;font-style:italic;font-size:19px;line-height:1.45;margin-bottom:10px}
+.foto{margin-top:18px;border-radius:22px;overflow:hidden;background:var(--ahorn)}
+.foto svg{width:100%;height:auto;display:block}
+.person{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;margin-top:16px}
+.person .rund{width:62px;height:62px;border-radius:50%;background:var(--petrol-hell);display:grid;place-items:center}
+.person b{font-family:"Lora",serif;font-size:19px;display:block}
+.person span{font-size:15px;color:var(--grau)}
+table.zeiten{width:100%;border-collapse:collapse;font-size:16.5px;margin-top:6px}
+.zeiten td{padding:9px 0;border-bottom:1px solid #e5d3b1;vertical-align:top}
+.zeiten td:first-child{font-weight:700;width:38%}
+.zeiten tr.zu td{color:#8b8b84}
+.hinweis{display:flex;gap:12px;align-items:flex-start;background:var(--petrol-hell);border-radius:16px;padding:14px 16px;margin-top:16px;font-size:15.5px;color:#1f4549}
+.kontakt{background:var(--tinte);color:#efe6d4;border-radius:28px;padding:28px 22px;margin-top:46px}
+.kontakt h2{color:#fff;font-size:clamp(28px,8vw,36px);margin-bottom:12px}
+.kontakt address{font-style:normal;font-size:17px;margin-bottom:18px}
+.kontakt .knopf.voll{background:#f0c27a;border-color:#f0c27a;color:var(--tinte)}
+.kontakt .knopf.leer{color:#f0c27a;border-color:#f0c27a}
+footer{font-size:13px;color:var(--grau);padding:26px 0 110px;text-align:center}
+.leiste-fix{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(248,241,228,.96);border-top:1px solid #e5d3b1;padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px;justify-content:center;backdrop-filter:blur(6px)}
+.leiste-fix a{flex:1;max-width:260px;justify-content:center;padding:11px 10px}
+
+@media (min-width:700px){
+  .duo{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .puls{animation:none}
+  *{scroll-behavior:auto!important;transition:none!important}
+}
+html.pdf .leiste-fix{position:static;display:none}
+html.pdf footer{padding-bottom:30px}
+html.pdf .puls{animation:none;opacity:.35}
+</style>
+</head>
+<body>
+
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Schranz Geigenbau GmbH</div>
+
+<div class="wrap">
+<header>
+  <a class="marke" href="#top" aria-label="Schranz Geigenbau">
+    <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+      <circle cx="22" cy="22" r="21" fill="#1d6a73"/>
+      <path d="M22 8c4 0 6 3 5 6-1 2-4 2-4 0" fill="none" stroke="#f8f1e4" stroke-width="2" stroke-linecap="round"/>
+      <path d="M22 14v20" stroke="#f8f1e4" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M15 27c0-3 3-4 7-4s7 1 7 4-3 6-7 6-7-3-7-6z" fill="#dcbf8f"/>
+    </svg>
+    <div><b>Schranz Geigenbau</b><span>Atelier in Thun · seit 1983</span></div>
+  </a>
+</header>
+
+<main id="top">
+<section class="hero">
+  <span class="eyebrow">Miete · Verkauf · Reparatur</span>
+  <h1>Die richtige Grösse,<br><em>von 1/32 bis 4/4.</em></h1>
+  <p class="lead">Geigen, Bratschen, Celli und Kontrabässe zum Mieten – für die ersten Töne an der Musikschule bis zum ganzen Instrument. Wir beraten Sie persönlich im Atelier in Thun.</p>
+  <div class="knoepfe">
+    <a class="knopf voll" href="tel:+41332234239">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+      033 223 42 39</a>
+    <a class="knopf leer" href="#finder">Grösse ausprobieren</a>
+  </div>
+  <div class="reihe" aria-hidden="true">
+    <!-- Reihe von Geigen in wachsenden Grössen, von Hand gezeichnet -->
+    <svg viewBox="0 0 400 150">
+      <defs>
+        <g id="g1">
+          <path d="M0 110C22 110 42 116 42 136C42 154 34 164 29 172C25 182 25 204 30 214C38 222 50 236 50 258C50 284 30 300 0 300C-30 300-50 284-50 258C-50 236-38 222-30 214C-25 204-25 182-29 172C-34 164-42 154-42 136C-42 116-22 110 0 110Z" fill="#e8cf9f" stroke="#7a5428" stroke-width="5"/>
+          <path d="M-6 36H6L9 205H-9Z" fill="#243236"/>
+          <path d="M-7 22h14v18h-14z" fill="#b07d45"/>
+          <circle cx="0" cy="13" r="11" fill="#b07d45" stroke="#7a5428" stroke-width="4"/>
+          <path d="M-20 196c-6 10 6 22 0 36M20 196c6 10-6 22 0 36" fill="none" stroke="#243236" stroke-width="5" stroke-linecap="round"/>
+          <path d="M-16 236h32" stroke="#7a5428" stroke-width="6"/>
+          <path d="M-9 252h18l-4 40h-10z" fill="#243236"/>
+        </g>
+      </defs>
+      <path d="M8 142H392" stroke="#dcbf8f" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+      <use href="#g1" transform="translate(24 80) scale(.19)"/>
+      <use href="#g1" transform="translate(62 72) scale(.22)"/>
+      <use href="#g1" transform="translate(104 62) scale(.255)"/>
+      <use href="#g1" transform="translate(150 52) scale(.29)"/>
+      <use href="#g1" transform="translate(200 40) scale(.33)"/>
+      <use href="#g1" transform="translate(254 28) scale(.37)"/>
+      <use href="#g1" transform="translate(312 16) scale(.41)"/>
+      <text x="370" y="136" text-anchor="end" font-family="Outfit,sans-serif" font-size="11" fill="#7a5428" font-weight="700" display="none">4/4</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ Grössen-Finder ============ -->
+<section class="finder" id="finder" aria-labelledby="finder-t">
+  <span class="kicker">Ausprobieren</span>
+  <h2 id="finder-t">Wie gross ist Ihr Kind gewachsen?</h2>
+  <p class="anl">Ziehen Sie die Hand <b>nach rechts oder links</b> – je länger der Arm, desto grösser das Instrument. Die Schnecke der Geige liegt dann ungefähr in der Handfläche.</p>
+
+  <div class="umschalter" role="group" aria-label="Instrument wählen">
+    <button type="button" data-inst="geige" aria-pressed="true">Geige</button>
+    <button type="button" data-inst="bratsche" aria-pressed="false">Bratsche</button>
+    <button type="button" data-inst="cello" aria-pressed="false">Cello</button>
+    <button type="button" data-inst="bass" aria-pressed="false">Bass</button>
+  </div>
+
+  <div class="buehne" id="buehne">
+    <svg id="szene" viewBox="0 0 400 300" role="img" aria-label="Gezeichnetes Kind mit ausgestrecktem Arm und Instrument">
+      <defs>
+        <path id="koerper" d="M0 110C22 110 42 116 42 136C42 154 34 164 29 172C25 182 25 204 30 214C38 222 50 236 50 258C50 284 30 300 0 300C-30 300-50 284-50 258C-50 236-38 222-30 214C-25 204-25 182-29 172C-34 164-42 154-42 136C-42 116-22 110 0 110Z"/>
+        <path id="koerperbass" d="M0 110C14 110 26 118 32 134C36 148 34 162 30 172C25 182 25 204 30 214C38 222 52 236 52 258C52 284 30 300 0 300C-30 300-52 284-52 258C-52 236-38 222-30 214C-25 204-25 182-30 172C-34 162-36 148-32 134C-26 118-14 110 0 110Z"/>
+      </defs>
+      <!-- Boden -->
+      <path d="M10 290H390" stroke="#dcbf8f" stroke-width="2.5" stroke-linecap="round"/>
+
+      <!-- stehendes Instrument (Cello/Bass) -->
+      <g id="steh" style="display:none">
+        <g id="stehInner"></g>
+      </g>
+
+      <!-- Kind, Linienzeichnung -->
+      <g fill="none" stroke="#243236" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Haare -->
+        <path d="M44 62c-2-20 14-32 30-30 16 2 26 14 22 32" fill="#f0c27a" stroke="#243236"/>
+        <circle cx="70" cy="70" r="25" fill="#fffdf8"/>
+        <path d="M46 60c10 2 22-4 28-14 6 8 14 12 22 12" fill="#f0c27a"/>
+        <circle cx="62" cy="72" r="1.6" fill="#243236"/>
+        <circle cx="80" cy="72" r="1.6" fill="#243236"/>
+        <path d="M64 83c4 3 9 3 13 0"/>
+        <circle cx="56" cy="80" r="3.5" fill="#f3b6a2" stroke="none"/>
+        <circle cx="86" cy="80" r="3.5" fill="#f3b6a2" stroke="none"/>
+        <!-- Hals, Rumpf -->
+        <path d="M70 95v10"/>
+        <path d="M46 116c4-8 14-11 24-11s20 3 24 11l4 74H42z" fill="#d5e9e8"/>
+        <path d="M58 118v50M82 118v50" stroke="#1d6a73" stroke-width="2" opacity=".5"/>
+        <!-- linker Arm hängt -->
+        <path d="M46 118c-8 18-12 40-10 62"/>
+        <circle cx="36" cy="184" r="5" fill="#fffdf8"/>
+        <!-- Beine -->
+        <path d="M58 190l-2 92h-12M82 190l2 92h12"/>
+      </g>
+
+      <!-- liegendes Instrument (Geige/Bratsche) -->
+      <g id="lieg"><g id="liegInner"></g></g>
+
+      <!-- ausgestreckter Arm -->
+      <g fill="none" stroke="#243236" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+        <path id="armOben" d="M92 118H300"/>
+        <path id="armUnten" d="M94 134H300"/>
+        <path id="armFuell" d="M92 120H300V132H94Z" fill="#fffdf8" stroke="none"/>
+        <g id="hand">
+          <!-- offene Hand, Handfläche nach oben -->
+          <path d="M0 -8c6 -2 12 -2 16 0 4 2 4 6 0 7 4 1 5 5 1 6 3 2 2 6-2 6H0" fill="#fffdf8"/>
+          <path d="M2 -9c2-6 8-9 12-7" />
+        </g>
+      </g>
+      <!-- Mass-Linie Schulter bis Hand -->
+      <g id="mass" stroke="#1d6a73" stroke-width="1.6" fill="none">
+        <path id="massLinie" d="M92 156H300" stroke-dasharray="4 5"/>
+        <path d="M92 150v12"/><path id="massEnde" d="M300 150v12"/>
+      </g>
+      <text id="massText" x="196" y="174" text-anchor="middle" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="#1d6a73">Armlänge</text>
+
+      <!-- Griff -->
+      <g id="griff" class="griff" tabindex="0" role="slider" aria-label="Armlänge – Hand ziehen" aria-valuemin="0" aria-valuemax="8" aria-valuenow="4" aria-valuetext="1/4">
+        <circle class="puls" id="pulsRing" cx="0" cy="0" r="18" fill="none" stroke="#1d6a73" stroke-width="3"/>
+        <circle cx="0" cy="0" r="22" fill="transparent"/>
+        <circle cx="0" cy="0" r="11" fill="#1d6a73" stroke="#fffdf8" stroke-width="3"/>
+        <path d="M-4 -3l-3 3 3 3M4 -3l3 3-3 3" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+  <div class="leiste" id="leiste" aria-hidden="true"></div>
+
+  <div class="anzeige" aria-live="polite">
+    <div class="rw"><small>Richtwert</small><span id="rwText">1/4-Geige</span></div>
+    <p>Die richtige Grösse bestimmen wir bei der Anprobe im Atelier – bitte vereinbaren Sie dafür einen Termin.</p>
+  </div>
+  <p class="verfuegbar" id="verfuegbar">Mietgeigen gibt es von 1/32 bis 4/4.</p>
+</section>
+
+<!-- ============ Mietinstrumente ============ -->
+<section class="abschnitt" id="miete">
+  <span class="kicker">Instrumente mieten</span>
+  <h2>Für jede Grösse das passende Instrument</h2>
+  <p>Kinder wachsen – und das Instrument wächst mit. Bei uns mieten Sie Streichinstrumente in vielen Grössen.</p>
+  <div class="karten">
+    <div class="karte">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#d5e9e8"/><g transform="translate(27 6) scale(.135)"><use href="#koerper" fill="#dcbf8f" stroke="#243236" stroke-width="9"/><path d="M-6 36H6L9 205H-9Z" fill="#243236"/><circle cx="0" cy="15" r="13" fill="#b07d45"/></g></svg>
+      <div><h3>Geigen</h3><p>von 1/32 bis 4/4</p></div>
+    </div>
+    <div class="karte">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#d5e9e8"/><g transform="translate(27 5) scale(.145 .14)"><use href="#koerper" fill="#c99a62" stroke="#243236" stroke-width="9"/><path d="M-6 36H6L9 205H-9Z" fill="#243236"/><circle cx="0" cy="15" r="13" fill="#b07d45"/></g></svg>
+      <div><h3>Bratschen</h3><p>ab 1/8</p></div>
+    </div>
+    <div class="karte">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#d5e9e8"/><g transform="translate(27 4) scale(.17 .145)"><use href="#koerper" fill="#b07d45" stroke="#243236" stroke-width="9"/><path d="M-6 36H6L9 205H-9Z" fill="#243236"/><circle cx="0" cy="15" r="13" fill="#7a5428"/></g></svg>
+      <div><h3>Celli</h3><p>von 1/16 bis 4/4</p></div>
+    </div>
+    <div class="karte">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#d5e9e8"/><g transform="translate(27 4) scale(.18 .145)"><use href="#koerperbass" fill="#8f5f30" stroke="#243236" stroke-width="9"/><path d="M-6 36H6L9 205H-9Z" fill="#243236"/><circle cx="0" cy="15" r="13" fill="#7a5428"/></g></svg>
+      <div><h3>Kontrabässe</h3><p>von 1/16 bis 3/4, auch 5-saitig</p></div>
+    </div>
+  </div>
+  <p style="margin-top:16px;font-size:15.5px;color:var(--grau)">Mietpreise: <span class="platz">[Mietpreise einfügen]</span></p>
+</section>
+
+<section class="abschnitt" id="mietkauf">
+  <div class="duo">
+    <div class="kasten petrol">
+      <h3>Mietkauf</h3>
+      <p>Aus der Miete kann ein Kauf werden: Wir bieten Mietkauf an. Die Bedingungen erklären wir Ihnen gerne im Atelier.</p>
+      <p><span class="platz" style="color:#6d5310">[Bedingungen Mietkauf ergänzen]</span></p>
+    </div>
+    <div class="kasten">
+      <h3>Eintausch</h3>
+      <p>Ihr bisheriges Instrument können Sie bei uns eintauschen. Fragen Sie uns – wir schauen es gemeinsam an.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Atelier-Leistungen ============ -->
+<section class="abschnitt" id="atelier">
+  <span class="kicker">Im Atelier</span>
+  <h2>Reparatur, Verkauf und Zubehör</h2>
+  <div class="duo">
+    <div class="kasten" style="background:var(--weiss);border:1.5px solid #ead9b9">
+      <h3>Reparaturen</h3>
+      <p>Reparaturen sind der Schwerpunkt unseres Ateliers. Bringen Sie Ihr Instrument vorbei – am besten mit Termin.</p>
+    </div>
+    <div class="kasten" style="background:var(--weiss);border:1.5px solid #ead9b9">
+      <h3>Verkauf</h3>
+      <p>Vom einfachen Schülerinstrument bis zum wertvollen Meisterinstrument.</p>
+    </div>
+    <div class="kasten" style="background:var(--weiss);border:1.5px solid #ead9b9">
+      <h3>Zubehör</h3>
+      <ul class="liste">
+        <li>Carbonbögen</li>
+        <li>Saiten</li>
+        <li>Etuis</li>
+        <li>Schulter- und Kinnstützen</li>
+      </ul>
+    </div>
+    <div class="kasten" style="background:var(--weiss);border:1.5px solid #ead9b9">
+      <h3>Für die Kleinsten</h3>
+      <p>Auch Blockflöten und Orff-Instrumente finden Sie bei uns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt" id="stimmen">
+  <span class="kicker">Das sagen Familien</span>
+  <div class="stimme">
+    <p>Viele positive Bewertungen loben das freundliche Team – und die Mietinstrumente für Kinder.</p>
+    <span style="font-size:14.5px;color:var(--grau)">Zusammenfassung der Online-Bewertungen · <span class="platz">[Google-Bewertung einfügen]</span></span>
+  </div>
+</section>
+
+<section class="abschnitt" id="wir">
+  <span class="kicker">Familienbetrieb seit 1983</span>
+  <h2>Ein Atelier mit Geschichte</h2>
+  <p>1983 gründete Daniel Schranz, eidg. dipl. Geigenbaumeister, sein eigenes Atelier im Dachgeschoss eines Thuner Altstadthauses. Heute führt Anna Barbara Schranz das Geschäft.</p>
+  <div class="foto">
+    <svg viewBox="0 0 400 230" role="img" aria-label="Platzhalter für Ihr Foto">
+      <rect width="400" height="230" fill="#efe0c4"/>
+      <!-- Dachfenster und Werkbank, gezeichnet -->
+      <path d="M0 70L200 10 400 70" fill="none" stroke="#dcbf8f" stroke-width="6"/>
+      <rect x="150" y="48" width="100" height="62" rx="4" fill="#fffdf8" stroke="#b07d45" stroke-width="3"/>
+      <path d="M200 48v62M150 79h100" stroke="#b07d45" stroke-width="3"/>
+      <path d="M40 178H360" stroke="#b07d45" stroke-width="8" stroke-linecap="round"/>
+      <path d="M60 182v40M340 182v40" stroke="#b07d45" stroke-width="6"/>
+      <g transform="translate(92 120) rotate(-74) scale(.17)"><use href="#koerper" fill="#dcbf8f" stroke="#7a5428" stroke-width="10"/></g>
+      <g fill="none" stroke="#7a5428" stroke-width="3" stroke-linecap="round"><path d="M250 176v-30M262 176v-22M274 176v-36"/><path d="M300 176c0-14 18-14 18 0"/></g>
+      <rect x="112" y="190" width="176" height="30" rx="15" fill="#fffdf8" opacity=".92"/>
+      <text x="200" y="210" text-anchor="middle" font-family="Outfit,sans-serif" font-size="13" font-weight="700" fill="#5b6866">Platzhalter für Ihr Foto</text>
+    </svg>
+  </div>
+  <div class="person">
+    <div class="rund"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="12" r="7" fill="none" stroke="#1d6a73" stroke-width="2.5"/><path d="M4 32c1-8 6-12 13-12s12 4 13 12" fill="none" stroke="#1d6a73" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+    <div><b>Anna Barbara Schranz</b><span>Geschäftsführerin · Geigenbauerin, Lehrabschluss 2016</span></div>
+  </div>
+  <div class="person">
+    <div class="rund"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="12" r="7" fill="none" stroke="#1d6a73" stroke-width="2.5"/><path d="M4 32c1-8 6-12 13-12s12 4 13 12" fill="none" stroke="#1d6a73" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+    <div><b>Daniel Schranz</b><span>Gründer · eidg. dipl. Geigenbaumeister</span></div>
+  </div>
+  <p style="margin-top:14px;font-size:15px;color:var(--grau)"><span class="platz">[Weitere Teammitglieder ergänzen]</span></p>
+</section>
+
+<section class="abschnitt" id="zeiten">
+  <span class="kicker">Öffnungszeiten</span>
+  <h2>Wann wir für Sie da sind</h2>
+  <p><span class="platz">[Öffnungszeiten bitte bestätigen]</span></p>
+  <table class="zeiten">
+    <tr class="zu"><td>Montag</td><td>geschlossen</td></tr>
+    <tr><td>Dienstag</td><td>09:30–11:30<br>14:30–17:30</td></tr>
+    <tr><td>Mittwoch</td><td>09:30–11:30<br>14:30–17:30</td></tr>
+    <tr class="zu"><td>Donnerstag</td><td>geschlossen</td></tr>
+    <tr><td>Freitag</td><td>09:30–11:30<br>14:30–17:30</td></tr>
+    <tr><td>Samstag</td><td>09:30–13:00</td></tr>
+    <tr class="zu"><td>Sonntag</td><td>geschlossen</td></tr>
+  </table>
+  <div class="hinweis">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" style="flex:none"><rect x="3" y="5" width="20" height="18" rx="3" fill="none" stroke="#1d6a73" stroke-width="2.2"/><path d="M3 10h20M8 2v6M18 2v6" stroke="#1d6a73" stroke-width="2.2" stroke-linecap="round"/><path d="M9 16l3 3 5-6" fill="none" stroke="#1d6a73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Bitte vereinbaren Sie einen Termin – auch für die Miete. Termine ausserhalb der Öffnungszeiten nach Vereinbarung.</span>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <h2>Kommen Sie mit Ihrem Kind vorbei</h2>
+  <address>
+    Schranz Geigenbau GmbH<br>
+    Pestalozzistrasse 24<br>
+    3600 Thun
+  </address>
+  <div class="knoepfe">
+    <a class="knopf voll" href="tel:+41332234239">033 223 42 39</a>
+    <a class="knopf leer" href="mailto:b.schranz@geigenbau.ch">E-Mail schreiben</a>
+  </div>
+  <p style="margin:16px 0 0;font-size:15px;opacity:.85">b.schranz@geigenbau.ch</p>
+</section>
+</main>
+
+<footer>
+  Schranz Geigenbau GmbH · Pestalozzistrasse&nbsp;24 · 3600&nbsp;Thun<br>
+  UID CHE-459.834.286
+</footer>
+</div>
+
+<div class="leiste-fix">
+  <a class="knopf voll" href="tel:+41332234239">Anrufen</a>
+  <a class="knopf leer" href="mailto:b.schranz@geigenbau.ch" style="background:#fffdf8">E-Mail</a>
+</div>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var svg=document.getElementById('szene');
+  var griff=document.getElementById('griff');
+  var leiste=document.getElementById('leiste');
+  var rwText=document.getElementById('rwText');
+  var verf=document.getElementById('verfuegbar');
+  var SCHULTER=92, KINN=97, ARM_Y=126;
+  var HAND_MIN=196, HAND_MAX=380;
+
+  var INST={
+    geige:{name:'Geige',plural:'Mietgeigen',sizes:['1/32','1/16','1/10','1/8','1/4','1/2','3/4','7/8','4/4'],text:'Mietgeigen gibt es von 1/32 bis 4/4.',farbe:'#e8cf9f',breit:1,liegend:true},
+    bratsche:{name:'Bratsche',sizes:['1/8','1/4','1/2','3/4','4/4'],text:'Mietbratschen gibt es ab 1/8.',farbe:'#d9b27a',breit:1.1,liegend:true},
+    cello:{name:'Cello',sizes:['1/16','1/10','1/8','1/4','1/2','3/4','7/8','4/4'],text:'Mietcelli gibt es von 1/16 bis 4/4.',farbe:'#c99a62',breit:1.28,liegend:false},
+    bass:{name:'Kontrabass',sizes:['1/16','1/10','1/8','1/4','1/2','3/4'],text:'Mietkontrabässe gibt es von 1/16 bis 3/4 – auch 5-saitig.',farbe:'#a8743f',breit:1.38,liegend:false,bass:true}
+  };
+  var akt='geige', idx=4, handX=0;
+
+  function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
+
+  // Instrument zeichnen (aufrecht, Schnecke oben bei 0,0; Länge 300)
+  function instrument(parent,cfg){
+    var g=el('g',{},parent);
+    var k=el('use',{href:cfg.bass?'#koerperbass':'#koerper',fill:cfg.farbe,stroke:'#7a5428','stroke-width':4.5,transform:'scale('+cfg.breit+' 1)'},g);k.setAttribute('fill-opacity',cfg.liegend?'.93':'1');
+    el('path',{d:'M-6 36H6L9 205H-9Z',fill:'#243236'},g);
+    el('path',{d:'M-7 22h14v18h-14z',fill:'#b07d45',stroke:'#7a5428','stroke-width':3},g);
+    el('circle',{cx:0,cy:13,r:11,fill:'#b07d45',stroke:'#7a5428','stroke-width':3.5},g);
+    el('path',{d:'M0 13m-5 0a5 5 0 1 0 5-5',fill:'none',stroke:'#7a5428','stroke-width':2.5},g);
+    var b=cfg.breit;
+    el('path',{d:'M'+(-20*b)+' 196c-6 10 6 22 0 36M'+(20*b)+' 196c6 10-6 22 0 36',fill:'none',stroke:'#243236','stroke-width':4.5,'stroke-linecap':'round'},g);
+    el('path',{d:'M'+(-16*b)+' 236h'+(32*b),stroke:'#7a5428','stroke-width':5},g);
+    el('path',{d:'M-9 252h18l-4 40h-10z',fill:'#243236'},g);
+    el('path',{d:'M-3 36V252M-1 36V252M1 36V252M3 36V252',stroke:'#f8f1e4','stroke-width':.9},g);
+    if(cfg.bass) el('path',{d:'M-4.5 36V252',stroke:'#f8f1e4','stroke-width':.9},g);
+    if(!cfg.liegend) el('path',{d:'M0 300v26',stroke:'#7a5428','stroke-width':4,'stroke-linecap':'round'},g);
+    return g;
+  }
+
+  var lieg=document.getElementById('liegInner'), steh=document.getElementById('stehInner');
+  var liegG=null, stehG=null;
+
+  function baueInstrument(){
+    var c=INST[akt];
+    lieg.innerHTML='';steh.innerHTML='';
+    if(c.liegend){liegG=instrument(lieg,c);document.getElementById('steh').style.display='none';document.getElementById('lieg').style.display='';}
+    else{stehG=instrument(steh,c);document.getElementById('steh').style.display='';document.getElementById('lieg').style.display='none';}
+    leiste.innerHTML='';
+    c.sizes.forEach(function(s,i){
+      var b=document.createElement('button');b.type='button';b.textContent=s;b.tabIndex=-1;
+      b.addEventListener('click',function(){setze(i,true);});
+      leiste.appendChild(b);
+    });
+    verf.textContent=c.text;
+    griff.setAttribute('aria-valuemax',c.sizes.length-1);
+  }
+
+  function xFuer(i){var n=INST[akt].sizes.length;return HAND_MIN+(HAND_MAX-HAND_MIN)*(n>1?i/(n-1):1);}
+
+  function zeichne(hx){
+    handX=hx;
+    var c=INST[akt], n=c.sizes.length;
+    var armEnde=hx-6;
+    document.getElementById('armOben').setAttribute('d','M'+SCHULTER+' 118H'+armEnde);
+    document.getElementById('armUnten').setAttribute('d','M'+(SCHULTER+2)+' 134H'+armEnde);
+    document.getElementById('armFuell').setAttribute('d','M'+SCHULTER+' 120H'+armEnde+'V132H'+(SCHULTER+2)+'Z');
+    document.getElementById('hand').setAttribute('transform','translate('+(armEnde)+' 126)');
+    document.getElementById('massLinie').setAttribute('d','M'+SCHULTER+' 156H'+hx);
+    document.getElementById('massEnde').setAttribute('d','M'+hx+' 150v12');
+    document.getElementById('massText').setAttribute('x',(SCHULTER+hx)/2);
+    griff.setAttribute('transform','translate('+hx+' 126)');
+    // Instrumentgrösse stufenweise aus der Handposition
+    var i=Math.round((hx-HAND_MIN)/(HAND_MAX-HAND_MIN)*(n-1));
+    i=Math.max(0,Math.min(n-1,i));
+    if(i!==idx||!zeichne.done){idx=i;stufe();}
+    zeichne.done=true;
+  }
+
+  function stufe(){
+    var c=INST[akt],n=c.sizes.length;
+    var xs=xFuer(idx);
+    if(c.liegend){
+      // Schnecke in der Handfläche: Länge = Hand - Kinn
+      var s=(xs-KINN-2)/300;
+      liegG.setAttribute('transform','translate('+(xs-2)+' 110) scale('+s.toFixed(3)+') rotate(90)');
+    }else{
+      var t=n>1?idx/(n-1):1;
+      var h=c.bass?(150+t*118):(140+t*120); // Höhe in px
+      var s2=h/326;
+      stehG.setAttribute('transform','translate(318 '+(290-h)+') scale('+s2.toFixed(3)+')');
+    }
+    rwText.textContent=c.sizes[idx]+'-'+c.name;
+    griff.setAttribute('aria-valuenow',idx);
+    griff.setAttribute('aria-valuetext',c.sizes[idx]+'-'+c.name);
+    Array.prototype.forEach.call(leiste.children,function(b,j){b.classList.toggle('an',j===idx);});
+  }
+
+  function setze(i,anim){
+    var n=INST[akt].sizes.length;i=Math.max(0,Math.min(n-1,i));
+    var ziel=xFuer(i);
+    zeichne.done=false;idx=-1;
+    if(anim&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var start=handX,t0=null;
+      (function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/260);p=1-Math.pow(1-p,3);zeichne(start+(ziel-start)*p);if(p<1)requestAnimationFrame(f);})(performance.now());
+    }else zeichne(ziel);
+  }
+
+  function svgX(e){var pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse()).x;}
+
+  var ziehen=false;
+  svg.addEventListener('pointerdown',function(e){
+    var x=svgX(e);
+    if(x<SCHULTER+40)return;
+    ziehen=true;svg.setPointerCapture(e.pointerId);
+    document.getElementById('pulsRing').style.display='none';
+    zeichne(Math.max(HAND_MIN,Math.min(HAND_MAX,x)));
+    e.preventDefault();
+  });
+  svg.addEventListener('pointermove',function(e){if(!ziehen)return;zeichne(Math.max(HAND_MIN,Math.min(HAND_MAX,svgX(e))));});
+  function los(){if(!ziehen)return;ziehen=false;setze(idx,true);}
+  svg.addEventListener('pointerup',los);svg.addEventListener('pointercancel',los);
+
+  griff.addEventListener('keydown',function(e){
+    var n=INST[akt].sizes.length,k=e.key;
+    if(k==='ArrowRight'||k==='ArrowUp'){setze(idx+1,true);e.preventDefault();}
+    else if(k==='ArrowLeft'||k==='ArrowDown'){setze(idx-1,true);e.preventDefault();}
+    else if(k==='Home'){setze(0,true);e.preventDefault();}
+    else if(k==='End'){setze(n-1,true);e.preventDefault();}
+  });
+
+  document.querySelectorAll('.umschalter button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.umschalter button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      var alt=INST[akt],altT=idx/(alt.sizes.length-1);
+      akt=b.dataset.inst;baueInstrument();
+      var n=INST[akt].sizes.length;
+      zeichne.done=false;idx=-1;
+      setze(Math.round(altT*(n-1)),false);
+    });
+  });
+
+  baueInstrument();
+  zeichne.done=false;
+  zeichne(xFuer(4));
+})();
+</script>
+</body>
+</html>

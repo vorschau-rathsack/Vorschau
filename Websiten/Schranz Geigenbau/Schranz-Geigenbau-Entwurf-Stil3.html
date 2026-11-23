@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schranz Geigenbau – Stimmstock (Entwurf)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Work+Sans:ital,wght@0,400;0,700;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papier:#f4e9d6;
+  --papier-2:#ead9bc;
+  --honig:#dfa443;
+  --honig-hell:#f2d39a;
+  --kupfer:#b0602c;
+  --kupfer-dunkel:#8a4520;
+  --tanne:#2b4838;
+  --tanne-hell:#dfe6d8;
+  --nuss:#33241a;
+  --grau:#6b5848;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papier);color:var(--nuss);font-family:"Work Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;hyphens:manual;overflow-wrap:normal;overflow-x:hidden}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;margin:0;line-height:1.12}
+p{margin:0 0 1em}
+a{color:var(--kupfer-dunkel)}
+.demo{background:var(--tanne);color:#e9eee3;font-size:12.5px;text-align:center;padding:7px 14px;line-height:1.35}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+.hand{font-family:"Nothing You Could Do",cursive;color:var(--kupfer);font-size:20px;line-height:1.25}
+.platz{display:inline-block;border:1.5px dashed var(--kupfer);background:#fff6e4;color:var(--kupfer-dunkel);border-radius:4px;padding:0 7px;font-size:.9em}
+
+header{display:flex;justify-content:space-between;align-items:flex-end;padding:18px 0 0;gap:10px}
+header .n{font-family:"Young Serif",serif;font-size:22px;line-height:1.05}
+header .n small{display:block;font-family:"Work Sans",sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--grau);margin-top:4px}
+header .hand{font-size:18px;transform:rotate(-4deg);white-space:nowrap}
+
+.hero{padding:18px 0 0;position:relative}
+.dach{display:block;width:100%;height:auto;margin:4px 0 0}
+.hero h1{font-size:clamp(38px,11.4vw,58px);margin-top:4px;color:var(--nuss)}
+.hero h1 span{color:var(--kupfer)}
+.hero .lead{font-size:18.5px;margin:14px 0 0}
+.hero .hand.notiz{text-align:right;transform:rotate(-2deg);font-size:19px;margin:2px 4px 0 0}
+
+/* Werkbank / Stimmstock */
+.werkbank{margin:38px -20px 0;background:var(--tanne);color:#eef1e8;padding:30px 20px 26px;position:relative}
+.werkbank::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(90deg,var(--honig) 0 22px,var(--kupfer) 22px 44px);opacity:.9}
+.werkbank h2{font-size:clamp(30px,8.6vw,40px);color:#fff7e6}
+.werkbank .hand{color:var(--honig-hell)}
+.erkl{font-size:16.5px;color:#d6dfd2;margin:12px 0 4px}
+.erkl b{color:#fff3da;font-weight:700}
+.feld{position:relative;margin:10px -6px 0;touch-action:none;user-select:none;-webkit-user-select:none}
+.feld svg{display:block;width:100%;height:auto}
+#setzer{cursor:grab;outline:none}
+#setzer:active{cursor:grabbing}
+#setzer:focus-visible .fring{opacity:1}
+.fring{opacity:0}
+.status{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-top:6px;min-height:44px}
+.status .hand{font-size:21px}
+.status button{font:inherit;font-size:14px;color:#fff3da;background:transparent;border:1.5px solid rgba(255,243,218,.5);border-radius:999px;padding:8px 14px;cursor:pointer}
+.welle{opacity:0}
+.klingt .welle{animation:welle 1.8s ease-out 3}
+.klingt .welle.w2{animation-delay:.3s}.klingt .welle.w3{animation-delay:.6s}
+@keyframes welle{0%{opacity:.9;transform:scale(.9)}100%{opacity:0;transform:scale(1.35)}}
+.welle{transform-box:view-box;transform-origin:180px 236px}
+
+.reparatur{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s ease}
+.reparatur > div{overflow:hidden}
+.offen .reparatur{grid-template-rows:1fr}
+.rep-innen{background:var(--papier);color:var(--nuss);border-radius:4px;padding:22px 20px 10px;margin-top:16px;box-shadow:6px 6px 0 var(--honig)}
+.rep-innen h3{font-size:clamp(25px,7vw,31px);color:var(--tanne)}
+.rep-liste{list-style:none;padding:0;margin:14px 0 12px}
+.rep-liste li{display:grid;grid-template-columns:30px 1fr;gap:8px;padding:9px 0;border-bottom:1.5px dashed #d7c09b}
+.rep-liste li:last-child{border-bottom:0}
+.rep-liste svg{margin-top:2px}
+
+section.teil{padding:52px 0 0}
+section.teil h2{font-size:clamp(30px,8.8vw,42px);margin-bottom:14px}
+.zeitleiste{position:relative;margin:18px 0 0;padding-left:34px}
+.zeitleiste::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(var(--kupfer) 0 6px,transparent 6px 11px)}
+.punkt{position:relative;padding-bottom:22px}
+.punkt::before{content:"";position:absolute;left:-30px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--papier);border:3px solid var(--kupfer)}
+.punkt .jahr{font-family:"Young Serif",serif;font-size:28px;color:var(--kupfer);line-height:1}
+.punkt h3{font-size:20px;margin:6px 0 4px}
+.punkt p{margin:0;color:#4d3b2d}
+.skizze{background:var(--papier-2);border-radius:4px;margin:6px 0 0;position:relative}
+.skizze svg{display:block;width:100%;height:auto}
+
+.zettel{display:grid;gap:14px;margin-top:18px}
+.z{background:#fffaf0;padding:16px 18px 12px;border-radius:2px;box-shadow:0 1px 0 #e0cba6,0 10px 18px -14px rgba(60,30,10,.5);position:relative}
+.z:nth-child(odd){transform:rotate(-.8deg)}
+.z:nth-child(even){transform:rotate(.7deg)}
+.z::before{content:"";position:absolute;top:-7px;left:50%;width:56px;height:16px;margin-left:-28px;background:rgba(223,164,67,.55);transform:rotate(-2deg)}
+.z h3{font-size:21px;color:var(--tanne);margin-bottom:4px}
+.z p{margin:0 0 6px;font-size:16px}
+.z ul{margin:4px 0 6px;padding-left:20px;font-size:16px}
+
+.stimmen{background:var(--tanne-hell);border-radius:4px;padding:20px;margin-top:14px}
+.stimmen p{font-size:18px;margin:0 0 8px}
+.zeiten{width:100%;border-collapse:collapse;font-size:16.5px}
+.zeiten td{padding:9px 0;border-bottom:1.5px dashed #d7c09b}
+.zeiten td:last-child{text-align:right}
+.zeiten tr.zu td{color:#9b8774}
+.kontakt{margin:52px -20px 0;background:var(--kupfer);color:#fff4e3;padding:34px 20px 30px}
+.kontakt h2{font-size:clamp(30px,9vw,42px);color:#fff9ef;margin-bottom:12px}
+.kontakt address{font-style:normal;font-size:18px;margin-bottom:20px}
+.knopf{display:flex;justify-content:center;align-items:center;gap:10px;padding:14px 18px;border-radius:4px;text-decoration:none;font-weight:700;font-size:17px;margin-bottom:10px}
+.knopf.voll{background:var(--nuss);color:#fff4e3}
+.knopf.leer{border:2px solid #fff4e3;color:#fff4e3}
+.kontakt .hand{color:var(--honig-hell);font-size:20px;margin-top:6px}
+footer{text-align:center;color:var(--grau);font-size:13.5px;padding:22px 20px 34px}
+
+@media (prefers-reduced-motion:reduce){
+  .klingt .welle{animation:none;opacity:.6}
+  .reparatur{transition:none}
+}
+html.pdf .reparatur{grid-template-rows:1fr;transition:none}
+html.pdf .welle{animation:none!important}
+html.pdf .welle.w1{opacity:.75}html.pdf .welle.w2{opacity:.5;transform:scale(1.12)}html.pdf .welle.w3{opacity:.28;transform:scale(1.24)}
+html.pdf .status button{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Schranz Geigenbau GmbH</div>
+
+<div class="wrap">
+<header>
+  <div class="n">Schranz Geigenbau<small>Atelier · Thun</small></div>
+  <div class="hand">seit 1983</div>
+</header>
+
+<section class="hero">
+  <!-- Altstadt-Dächer mit Dachatelier, von Hand -->
+  <svg class="dach" viewBox="0 0 390 120" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 112H390" stroke="#b0602c" stroke-width="2"/>
+    <path d="M6 112V62L46 30 86 62V112" stroke="#33241a" stroke-width="2"/>
+    <path d="M86 112V50L150 8 214 50V112" stroke="#33241a" stroke-width="2.2" fill="#ead9bc"/>
+    <path d="M214 112V66L252 38 290 66V112M290 112V56L340 24 384 56V112" stroke="#33241a" stroke-width="2"/>
+    <!-- Dachgaube mit warmem Licht -->
+    <path d="M132 40V30L150 18 168 30V40Z" fill="#dfa443" stroke="#33241a" stroke-width="2"/>
+    <path d="M150 22V40M138 32H162" stroke="#33241a" stroke-width="1.4"/>
+    <path d="M24 72h10v14H24zM58 72h10v14H58zM104 66h14v18h-14zM182 66h14v18h-14zM143 66h14v18h-14zM232 76h12v16h-12zM260 76h12v16h-12zM312 70h12v16h-12zM350 70h12v16h-12z" stroke="#8a4520" stroke-width="1.4"/>
+    <path d="M100 30v-14h8v8M318 36V22h8v6" stroke="#33241a" stroke-width="1.6"/>
+    <path d="M176 28c6-6 12 0 18-6" stroke="#b0602c" stroke-width="1.4"/>
+  </svg>
+  <div class="hand notiz">1983 hat alles unterm Dach begonnen</div>
+  <h1>Die Seele<br>der <span>Geige.</span></h1>
+  <p class="lead">Familienbetrieb seit 1983 – ein Geigenbau-Atelier in Thun für Reparatur, Verkauf und Miete von Streichinstrumenten.</p>
+</section>
+
+<!-- ============ Stimmstock setzen ============ -->
+<section class="werkbank" id="werkbank" aria-labelledby="ws-t">
+  <div class="hand">Probieren Sie es selbst:</div>
+  <h2 id="ws-t">Setzen Sie den Stimmstock</h2>
+  <p class="erkl">Der Stimmstock – französisch <b>«l'âme»</b>, die Seele der Geige. Ein dünnes Holzstäbchen im Innern, das nur durch das F-Loch an seinen Platz gelangt. <b>Ziehen Sie den Stimmstocksetzer</b> durch das rechte F-Loch bis hinter den rechten Stegfuss.</p>
+
+  <div class="feld" id="feld">
+    <svg id="geige" viewBox="0 0 360 470" role="img" aria-label="Gezeichnete Geige mit F-Loch und Stimmstocksetzer">
+      <defs>
+        <clipPath id="innen"><path id="koerperPfad" transform="translate(180 -200) scale(2)" d="M0 110C22 110 42 116 42 136C42 154 34 164 29 172C25 182 25 204 30 214C38 222 50 236 50 258C50 284 30 300 0 300C-30 300-50 284-50 258C-50 236-38 222-30 214C-25 204-25 182-29 172C-34 164-42 154-42 136C-42 116-22 110 0 110Z"/></clipPath>
+      </defs>
+      <!-- Klangwellen -->
+      <g fill="none" stroke="#f2d39a" stroke-width="2">
+        <path class="welle w1" d="M180 14C300 14 316 130 316 236S300 458 180 458 44 342 44 236 60 14 180 14Z"/>
+        <path class="welle w2" d="M180 14C300 14 316 130 316 236S300 458 180 458 44 342 44 236 60 14 180 14Z"/>
+        <path class="welle w3" d="M180 14C300 14 316 130 316 236S300 458 180 458 44 342 44 236 60 14 180 14Z"/>
+      </g>
+      <!-- Korpus -->
+      <use href="#koerperPfad" fill="#c9843f"/>
+      <g clip-path="url(#innen)">
+        <!-- Flammen / Holzmaserung der Fichtendecke -->
+        <g stroke="#a86a2d" stroke-width="1.2" opacity=".55">
+          <path d="M120 0V470M134 0V470M148 0V470M162 0V470M198 0V470M212 0V470M226 0V470M240 0V470M106 0V470M254 0V470M92 0V470M268 0V470M78 0V470M282 0V470"/>
+        </g>
+        <!-- Durchblick: Bassbalken gestrichelt -->
+        <path d="M152 92L148 384" stroke="#f2d39a" stroke-width="3" stroke-dasharray="6 7" opacity=".7"/>
+      </g>
+      <use href="#koerperPfad" fill="none" stroke="#33241a" stroke-width="2.2"/>
+      <!-- Einlage (Ader) -->
+      <path transform="translate(180 -200) scale(1.94 1.96) translate(0 3.6)" d="M0 110C22 110 42 116 42 136C42 154 34 164 29 172C25 182 25 204 30 214C38 222 50 236 50 258C50 284 30 300 0 300C-30 300-50 284-50 258C-50 236-38 222-30 214C-25 204-25 182-29 172C-34 164-42 154-42 136C-42 116-22 110 0 110Z" fill="none" stroke="#33241a" stroke-width=".7" opacity=".6"/>
+      <!-- Griffbrett -->
+      <path d="M166 0H194L198 176H162Z" fill="#2a1d15"/>
+      <!-- F-Löcher -->
+      <g fill="#1d140e">
+        <path transform="translate(14 20)" d="M128 200c-6 0-9 6-5 9 2 2 6 1 6-2 6 14-10 26-6 48 3 16 12 24 10 36-4 0-8 2-7 6 1 5 9 5 10-1 2-12-8-22-10-36-3-20 12-36 4-58z"/>
+        <path id="floch" transform="translate(-14 20)" d="M232 200c6 0 9 6 5 9-2 2-6 1-6-2-6 14 10 26 6 48-3 16-12 24-10 36 4 0 8 2 7 6-1 5-9 5-10-1-2-12 8-22 10-36 3-20-12-36-4-58z"/>
+      </g>
+      <path d="M134 267l8 2M226 267l-8 2" stroke="#1d140e" stroke-width="2"/>
+      <!-- Saitenhalter -->
+      <path d="M168 318H192L188 396H172Z" fill="#2a1d15"/>
+      <!-- Steg -->
+      <path transform="translate(180 20) scale(.8 1) translate(-180 0)" d="M140 244c10-4 70-4 80 0v8c-6-1-10 0-12 4h-6c-2-6-8-6-10-4-6-4-18-4-24 0-2-2-8-2-10 4h-6c-2-4-6-5-12-4z" fill="#f0dcb4" stroke="#33241a" stroke-width="1.6"/>
+      <!-- Saiten -->
+      <path d="M173 0V318M178 0V318M183 0V318M188 0V318" stroke="#e8e2d6" stroke-width="1"/>
+      <!-- Ziel-Zone -->
+      <g id="ziel">
+        <circle cx="203" cy="285" r="11" fill="none" stroke="#f2d39a" stroke-width="2" stroke-dasharray="3 4"/>
+        <path d="M110 418c30-20 60-60 84-124" fill="none" stroke="#f2d39a" stroke-width="1.6"/>
+        <path d="M194 294l-1 9M194 294l6 6" stroke="#f2d39a" stroke-width="1.6" stroke-linecap="round" transform="rotate(-12 194 294)"/>
+        <text x="8" y="436" font-family="Nothing You Could Do,cursive" font-size="17" fill="#fff3da">hierhin – hinter den</text>
+        <text x="8" y="458" font-family="Nothing You Could Do,cursive" font-size="17" fill="#fff3da">rechten Stegfuss</text>
+      </g>
+      <!-- Führungslinie -->
+      <path id="fuehrung" d="M314 316L227 271 203 285" fill="none" stroke="#fff3da" stroke-width="1.4" stroke-dasharray="2 6" stroke-linecap="round" opacity=".55"/>
+      <!-- Stimmstock + Setzer -->
+      <g id="setzer" tabindex="0" role="slider" aria-label="Stimmstocksetzer – Stimmstock an die richtige Stelle schieben" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <circle class="fring" cx="0" cy="0" r="22" fill="none" stroke="#dfa443" stroke-width="2" stroke-dasharray="3 3"/>
+        <!-- S-förmiges Werkzeug: Spitze bei 0,0 -->
+        <path d="M2 2c10 2 14-8 8-14-6-6-16-2-14 6 2 8 12 12 18 18 8 10 10 24 14 40L30 80" fill="none" stroke="#3b3d3f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 2c10 2 14-8 8-14-6-6-16-2-14 6 2 8 12 12 18 18 8 10 10 24 14 40L30 80" fill="none" stroke="#c9cdd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M28 70L40 128" stroke="#8a4520" stroke-width="13" stroke-linecap="round"/>
+        <path d="M30 78L38 122" stroke="#b0602c" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+        <!-- der Stimmstock selbst (von oben gesehen) -->
+        <circle id="stock" cx="0" cy="0" r="6.5" fill="#f2d39a" stroke="#33241a" stroke-width="2"/>
+        <circle cx="0" cy="0" r="30" fill="transparent"/>
+        <path d="M18 50L50 50 50 140 18 140Z" fill="transparent"/>
+      </g>
+    </svg>
+  </div>
+  <div class="status">
+    <span class="hand" id="statusText" aria-live="polite">ziehen Sie am Griff ↖</span>
+    <button type="button" id="nochmal" hidden>Nochmals</button>
+  </div>
+
+  <div class="reparatur" id="reparatur">
+    <div><div class="rep-innen">
+      <div class="hand" style="font-size:18px">sitzt – jetzt klingt sie.</div>
+      <h3>Reparaturen sind unser Schwerpunkt</h3>
+      <p style="margin:10px 0 0">Den grössten Teil unserer Arbeit im Atelier machen Reparaturen aus. Bringen Sie Ihr Instrument vorbei – am besten mit Termin.</p>
+      <ul class="rep-liste">
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#2b4838" stroke-width="2"/><circle cx="11" cy="11" r="3" fill="#dfa443"/></svg><span>Reparaturen an Streichinstrumenten – <span class="platz">[Arbeiten im Detail ergänzen]</span></span></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#2b4838" stroke-width="2"/><circle cx="11" cy="11" r="3" fill="#dfa443"/></svg><span><span class="platz">[z. B. Stimmstock setzen – bitte bestätigen]</span></span></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" fill="none" stroke="#2b4838" stroke-width="2"/><circle cx="11" cy="11" r="3" fill="#dfa443"/></svg><span><span class="platz">[z. B. Steg, Risse, Unterhalt – bitte bestätigen]</span></span></li>
+      </ul>
+      <a class="knopf voll" href="tel:+41332234239" style="margin-bottom:12px">Termin vereinbaren: 033 223 42 39</a>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ Geschichte ============ -->
+<section class="teil" id="geschichte">
+  <div class="hand">aus dem Atelierbuch</div>
+  <h2>Familienbetrieb seit 1983</h2>
+  <div class="skizze">
+    <svg viewBox="0 0 400 220" role="img" aria-label="Platzhalter für Ihr Foto">
+      <g fill="none" stroke="#8a4520" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0 76L200 6 400 76"/>
+        <path d="M30 66V214M370 66V214"/>
+        <path d="M60 52l-6 18M110 34l-6 18M290 34l6 18M340 52l6 18" opacity=".5"/>
+        <path d="M44 168H356M60 168v40M340 168v40"/>
+        <path d="M150 60h100v70H150zM200 60v70M150 95h100" stroke-width="1.6"/>
+        <!-- hängende Geigen -->
+        <path d="M84 96v14M118 96v10M318 96v14"/>
+        <path d="M84 110c8 0 12 4 12 10 0 5-3 7-4 9-1 3-1 7 0 9 3 3 6 6 6 11 0 7-6 11-14 11s-14-4-14-11c0-5 3-8 6-11 1-2 1-6 0-9-1-2-4-4-4-9 0-6 4-10 12-10z" fill="#dfa443" fill-opacity=".35"/>
+        <path d="M118 106c6 0 9 3 9 8 0 4-2 5-3 7-1 2-1 5 0 7 2 2 5 5 5 9 0 5-5 8-11 8s-11-3-11-8c0-4 3-7 5-9 1-2 1-5 0-7-1-2-3-3-3-7 0-5 3-8 9-8z" fill="#dfa443" fill-opacity=".35"/>
+        <path d="M318 110c8 0 12 4 12 10 0 5-3 7-4 9-1 3-1 7 0 9 3 3 6 6 6 11 0 7-6 11-14 11s-14-4-14-11c0-5 3-8 6-11 1-2 1-6 0-9-1-2-4-4-4-9 0-6 4-10 12-10z" fill="#dfa443" fill-opacity=".35"/>
+        <path d="M230 166c0-10 10-16 22-16M262 166l4-14 4 14" />
+      </g>
+      <rect x="118" y="184" width="164" height="26" rx="3" fill="#fffaf0"/>
+      <text x="200" y="202" text-anchor="middle" font-family="Work Sans,sans-serif" font-size="13" font-weight="700" fill="#6b5848">Platzhalter für Ihr Foto</text>
+    </svg>
+  </div>
+  <div class="zeitleiste">
+    <div class="punkt">
+      <div class="jahr">1983</div>
+      <h3>Ein Atelier unter dem Dach</h3>
+      <p>Daniel Schranz, eidg. dipl. Geigenbaumeister, gründet sein eigenes Atelier im Dachgeschoss eines Thuner Altstadthauses.</p>
+    </div>
+    <div class="punkt">
+      <div class="jahr">2016</div>
+      <h3>Lehrabschluss</h3>
+      <p>Anna Barbara Schranz schliesst ihre Lehre als Geigenbauerin ab.</p>
+    </div>
+    <div class="punkt" style="padding-bottom:0">
+      <div class="jahr">Heute</div>
+      <h3>Schranz Geigenbau GmbH</h3>
+      <p>Anna Barbara Schranz führt das Geschäft als Geschäftsführerin – an der Pestalozzistrasse 24 in Thun.</p>
+    </div>
+  </div>
+  <p style="margin-top:16px;font-size:15px;color:var(--grau)"><span class="platz">[Weitere Teammitglieder ergänzen]</span></p>
+</section>
+
+<!-- ============ Angebot ============ -->
+<section class="teil" id="angebot">
+  <div class="hand">an der Werkstattwand</div>
+  <h2>Was Sie bei uns finden</h2>
+  <div class="zettel">
+    <div class="z">
+      <h3>Verkauf</h3>
+      <p>Vom einfachen Schülerinstrument bis zum wertvollen Meisterinstrument.</p>
+    </div>
+    <div class="z">
+      <h3>Miete</h3>
+      <ul>
+        <li>Geigen 1/32 bis 4/4</li>
+        <li>Bratschen ab 1/8</li>
+        <li>Celli 1/16 bis 4/4</li>
+        <li>Kontrabässe 1/16 bis 3/4, auch 5-saitig</li>
+      </ul>
+      <p>Mietpreise: <span class="platz">[Mietpreise einfügen]</span></p>
+    </div>
+    <div class="z">
+      <h3>Mietkauf &amp; Eintausch</h3>
+      <p>Beides ist bei uns möglich – wir erklären Ihnen gerne, wie es funktioniert.</p>
+    </div>
+    <div class="z">
+      <h3>Zubehör</h3>
+      <p>Carbonbögen, Saiten, Etuis, Schulter- und Kinnstützen – dazu Blockflöten und Orff-Instrumente.</p>
+    </div>
+  </div>
+  <div class="stimmen">
+    <p><b>Viele positive Bewertungen</b> – gelobt werden unter anderem das freundliche Team und die Mietinstrumente für Kinder.</p>
+    <span style="font-size:14px;color:var(--grau)">sinngemäss aus Online-Bewertungen · <span class="platz">[Google-Bewertung einfügen]</span></span>
+  </div>
+</section>
+
+<section class="teil" id="zeiten">
+  <div class="hand">bitte vorher anrufen</div>
+  <h2>Öffnungszeiten</h2>
+  <p><span class="platz">[Öffnungszeiten bitte bestätigen]</span></p>
+  <table class="zeiten">
+    <tr class="zu"><td>Montag</td><td>geschlossen</td></tr>
+    <tr><td>Dienstag</td><td>09:30–11:30, 14:30–17:30</td></tr>
+    <tr><td>Mittwoch</td><td>09:30–11:30, 14:30–17:30</td></tr>
+    <tr class="zu"><td>Donnerstag</td><td>geschlossen</td></tr>
+    <tr><td>Freitag</td><td>09:30–11:30, 14:30–17:30</td></tr>
+    <tr><td>Samstag</td><td>09:30–13:00</td></tr>
+    <tr class="zu"><td>Sonntag</td><td>geschlossen</td></tr>
+  </table>
+  <p style="margin-top:14px">Wir empfehlen, einen Termin zu vereinbaren – auch für die Miete. Termine ausserhalb der Öffnungszeiten nach Vereinbarung.</p>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <h2>Besuchen Sie das Atelier</h2>
+  <address>Schranz Geigenbau GmbH<br>Pestalozzistrasse 24<br>3600 Thun</address>
+  <a class="knopf voll" href="tel:+41332234239">033 223 42 39</a>
+  <a class="knopf leer" href="mailto:b.schranz@geigenbau.ch">b.schranz@geigenbau.ch</a>
+  <div class="hand">wir freuen uns auf Ihr Instrument.</div>
+</section>
+</div>
+
+<footer>Schranz Geigenbau GmbH · Pestalozzistrasse&nbsp;24 · 3600&nbsp;Thun<br>UID CHE-459.834.286</footer>
+
+<script>
+(function(){
+  var svg=document.getElementById('geige');
+  var setzer=document.getElementById('setzer');
+  var stock=document.getElementById('stock');
+  var werkbank=document.getElementById('werkbank');
+  var statusText=document.getElementById('statusText');
+  var nochmal=document.getElementById('nochmal');
+  var ruhig=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Weg: von aussen, durch das rechte F-Loch, bis hinter den rechten Stegfuss
+  var P=[[314,316],[227,271],[203,285]];
+  var L=[],gesamt=0;
+  for(var i=1;i<P.length;i++){var d=Math.hypot(P[i][0]-P[i-1][0],P[i][1]-P[i-1][1]);L.push(d);gesamt+=d;}
+  var t=0,fertig=false;
+
+  function punktBei(t){
+    var s=t*gesamt;
+    for(var i=0;i<L.length;i++){
+      if(s<=L[i]||i===L.length-1){var f=Math.min(1,s/L[i]);return [P[i][0]+(P[i+1][0]-P[i][0])*f,P[i][1]+(P[i+1][1]-P[i][1])*f];}
+      s-=L[i];
+    }
+  }
+  function naechstesT(x,y){
+    var best=0,bd=1e9,acc=0;
+    for(var i=0;i<L.length;i++){
+      var ax=P[i][0],ay=P[i][1],bx=P[i+1][0],by=P[i+1][1];
+      var dx=bx-ax,dy=by-ay,u=((x-ax)*dx+(y-ay)*dy)/(dx*dx+dy*dy);u=Math.max(0,Math.min(1,u));
+      var px=ax+dx*u,py=ay+dy*u,dd=(px-x)*(px-x)+(py-y)*(py-y);
+      if(dd<bd){bd=dd;best=(acc+u*L[i])/gesamt;}
+      acc+=L[i];
+    }
+    return best;
+  }
+  function setze(nt){
+    t=Math.max(0,Math.min(1,nt));
+    var p=punktBei(t);
+    setzer.setAttribute('transform','translate('+p[0].toFixed(1)+' '+p[1].toFixed(1)+')');
+    setzer.setAttribute('aria-valuenow',Math.round(t*100));
+    var imInnern=t>(L[0]*0.97)/gesamt;
+    stock.setAttribute('stroke-dasharray',imInnern?'3 2':'none');
+    if(!fertig){
+      if(t<0.12)statusText.textContent='ziehen Sie am Griff ↖';
+      else if(!imInnern)statusText.textContent='weiter – durchs F-Loch …';
+      else statusText.textContent='fast – noch ein Stück nach links';
+    }
+  }
+
+  // kurzer, weicher Klang (nur nach Geste)
+  var ctx=null;
+  function klang(){
+    try{
+      var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+      ctx=ctx||new AC();if(ctx.state==='suspended')ctx.resume();
+      var jetzt=ctx.currentTime,master=ctx.createGain();master.gain.value=0.16;
+      var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=2200;
+      lp.connect(master).connect(ctx.destination);
+      [293.66,440].forEach(function(f,i){
+        var o=ctx.createOscillator(),g=ctx.createGain();
+        o.type='sawtooth';o.frequency.value=f;
+        var vib=ctx.createOscillator(),vg=ctx.createGain();vib.frequency.value=5.5;vg.gain.value=f*0.004;vib.connect(vg).connect(o.frequency);
+        g.gain.setValueAtTime(0,jetzt);g.gain.linearRampToValueAtTime(.5,jetzt+.18);g.gain.setValueAtTime(.5,jetzt+.9);g.gain.exponentialRampToValueAtTime(.001,jetzt+1.9);
+        o.connect(g).connect(lp);o.start(jetzt);vib.start(jetzt);o.stop(jetzt+2);vib.stop(jetzt+2);
+      });
+    }catch(e){}
+  }
+
+  function einrasten(mitKlang){
+    fertig=true;
+    var start=t;
+    function ende(){
+      setze(1);
+      stock.setAttribute('fill','#dfa443');stock.removeAttribute('stroke-dasharray');
+      document.getElementById('ziel').style.opacity='.25';
+      werkbank.classList.add('klingt','offen');
+      statusText.textContent='eingerastet – sie klingt!';
+      nochmal.hidden=false;
+      if(mitKlang)klang();
+    }
+    if(ruhig||mitKlang===false){ende();return;}
+    var t0=performance.now();
+    (function f(n){var p=Math.min(1,(n-t0)/220);setze(start+(1-start)*p);if(p<1)requestAnimationFrame(f);else ende();})(t0);
+  }
+
+  function pt(e){var p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+  var zieht=false,vx=0,vy=0;
+  setzer.addEventListener('pointerdown',function(e){
+    if(fertig)return;
+    zieht=true;setzer.setPointerCapture(e.pointerId);
+    var p=pt(e),q=punktBei(t);vx=p.x-q[0];vy=p.y-q[1];
+    e.preventDefault();
+  });
+  setzer.addEventListener('pointermove',function(e){
+    if(!zieht)return;
+    var p=pt(e);
+    // der Stimmstock folgt dem Finger, aber nur entlang des Weges durch das F-Loch
+    setze(naechstesT(p.x-vx,p.y-vy));
+    if(t>0.965){zieht=false;einrasten(true);}
+  });
+  function los(){if(!zieht)return;zieht=false;if(t>0.93)einrasten(true);}
+  setzer.addEventListener('pointerup',los);setzer.addEventListener('pointercancel',los);
+  setzer.addEventListener('keydown',function(e){
+    if(fertig)return;
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){setze(t+.07);e.preventDefault();}
+    else if(e.key==='ArrowRight'||e.key==='ArrowDown'){setze(t-.07);e.preventDefault();}
+    else if(e.key==='Enter'||e.key===' '){setze(t+.1);e.preventDefault();}
+    if(t>0.93)einrasten(true);
+  });
+  nochmal.addEventListener('click',function(){
+    fertig=false;werkbank.classList.remove('klingt','offen');
+    stock.setAttribute('fill','#f2d39a');document.getElementById('ziel').style.opacity='';
+    nochmal.hidden=true;setze(0);setzer.focus();
+  });
+
+  setze(0);
+  function pdfZustand(){
+    if(document.documentElement.classList.contains('pdf')&&!fertig){t=1;einrasten(false);}
+  }
+  pdfZustand();
+  window.addEventListener('pdfmode',pdfZustand);
+  new MutationObserver(pdfZustand).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

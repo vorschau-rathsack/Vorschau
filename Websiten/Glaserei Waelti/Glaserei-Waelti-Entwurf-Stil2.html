@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Glaserei Wälti – Nachfolger M. Häsler · Entwurf «Prisma»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0a1224; --night2:#111a30; --anth:#1b2030; --rule:#2a3350;
+  --text:#ebeef5; --muted:#9ba6bf; --soft:#c9d0df;
+  --c0:#ff5a64; --c1:#ff9d45; --c2:#ffd84f; --c3:#55e0a0; --c4:#4fb6ff; --c5:#a983ff;
+  --act:#ffd84f;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#060b17;color:var(--text);font:400 16.5px/1.6 "Instrument Sans",system-ui,sans-serif;hyphens:manual;overflow-wrap:normal;word-break:normal}
+.wrap{max-width:480px;margin:0 auto;background:var(--night);overflow:hidden}
+h1,h2,h3{font-family:"Gloock",Georgia,serif;font-weight:400;margin:0;line-height:1.08;letter-spacing:-.005em}
+a{color:inherit}
+em,.it{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
+.demo{background:#04070f;color:#8f9ab3;font-size:12px;line-height:1.35;padding:7px 16px;text-align:center;border-bottom:1px solid var(--rule)}
+
+.head{text-align:center;padding:26px 20px 0}
+.head .mark{font-family:"Gloock",serif;font-size:27px;line-height:1}
+.head .sub{margin-top:7px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.spec{height:2px;width:120px;margin:16px auto 0;background:linear-gradient(90deg,var(--c0),var(--c1),var(--c2),var(--c3),var(--c4),var(--c5));border-radius:2px;opacity:.9}
+
+.hero{padding:30px 22px 0;text-align:center}
+.hero .eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.1rem,9.6vw,2.9rem);margin:12px 0 0}
+.hero h1 em{display:block;font-size:1.08em;color:var(--soft);margin-top:4px}
+.hero p{color:var(--soft);margin:16px auto 0;max-width:30em}
+
+.stage{margin:22px 12px 0;border:1px solid var(--rule);border-radius:22px;background:radial-gradient(120% 80% at 45% 45%,#16223f 0%,#0b1326 60%,#080e1d 100%);padding:6px 6px 0;position:relative}
+#prism{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+#lamp{cursor:grab}
+#lamp:active{cursor:grabbing}
+#lamp:focus{outline:none}
+#lamp:focus-visible .ring{stroke:#fff;stroke-width:2;stroke-dasharray:3 3}
+.howto{display:flex;gap:10px;align-items:center;justify-content:center;font-size:13.5px;color:var(--muted);padding:4px 14px 14px;text-align:center}
+.howto svg{flex:none}
+
+.reveal{margin:14px 12px 0;border-radius:18px;background:var(--anth);border:1px solid var(--rule);padding:20px 20px 20px;min-height:168px;position:relative;overflow:hidden}
+.reveal:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--act);transition:background .4s}
+.reveal .lbl{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--act);transition:color .4s}
+.reveal h3{font-size:clamp(1.7rem,7.6vw,2.1rem);margin:8px 0 8px}
+.reveal p{margin:0;color:var(--soft);font-size:16px}
+.reveal .body{transition:opacity .35s,transform .35s}
+.reveal .body.fade{opacity:0;transform:translateY(6px)}
+.reveal.idle h3{color:var(--muted)}
+
+.specbar{margin:16px 12px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px 8px}
+.specbar button{appearance:none;background:none;border:0;padding:0 0 6px;color:var(--muted);font:400 13px/1.25 "Instrument Sans",sans-serif;cursor:pointer;text-align:center;border-radius:6px}
+.specbar button i{display:block;height:6px;border-radius:3px;margin-bottom:7px;opacity:.45;transition:opacity .3s,transform .3s}
+.specbar button[aria-pressed="true"]{color:var(--text)}
+.specbar button[aria-pressed="true"] i{opacity:1;transform:scaleY(1.6)}
+.specbar button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+section.s{padding:46px 22px 0}
+.s .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.s h2{font-size:clamp(1.85rem,8.2vw,2.35rem);margin:10px 0 18px}
+.services{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.services li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--rule)}
+.services li b{font-weight:400;font-size:17px}
+.services li span{color:var(--muted);font-size:14px;text-align:right}
+
+.owner{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center}
+.owner svg{display:block;width:120px;height:auto}
+.owner p{margin:0;color:var(--soft);font-size:15.5px}
+.owner p b{color:var(--text);font-weight:700}
+.quote{margin:26px 0 0;padding:0;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:clamp(1.5rem,6.6vw,1.85rem);line-height:1.25;color:var(--text)}
+.quote footer{font-family:"Instrument Sans",sans-serif;font-style:normal;font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+
+.rates{display:flex;gap:12px}
+.rate{flex:1;border:1px solid var(--rule);border-radius:16px;padding:16px;text-align:center}
+.rate .v{font-family:"Gloock",serif;font-size:2.4rem;line-height:1}
+.rate .st{color:var(--c2);letter-spacing:3px;font-size:14px;margin:6px 0 2px}
+.rate small{color:var(--muted);font-size:13px;line-height:1.35;display:block}
+.para{margin:16px 0 0;color:var(--soft);font-size:15.5px;text-align:center}
+
+.contact .addr{font-family:"Gloock",serif;font-size:22px;line-height:1.3}
+.contact .note{color:var(--muted);font-size:15px;margin:6px 0 18px}
+.btns{display:grid;gap:10px}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:14px;text-decoration:none;border:1px solid var(--rule);background:var(--night2)}
+.btn small{display:block;color:var(--muted);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.btn b{font-weight:700;font-size:18px}
+.btn.primary{background:var(--text);color:var(--night);border-color:var(--text)}
+.btn.primary small{color:#4b5673}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.info{margin:18px 0 0;padding:0;list-style:none;font-size:15px;color:var(--soft)}
+.info li{padding:10px 0;border-top:1px solid var(--rule)}
+.info li b{display:block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.ph{color:#ffe08a;background:rgba(255,216,79,.1);padding:0 4px;border-radius:4px}
+
+.foot{margin-top:50px;padding:24px 22px 30px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted);text-align:center;line-height:1.6}
+.foot .spec{margin:0 auto 16px}
+
+@media (min-width:600px){ body{padding:24px 0} .wrap{border-radius:24px;border:1px solid var(--rule)} }
+@media (prefers-reduced-motion:reduce){ .reveal .body,.reveal:before,.specbar i{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Glaserei Wälti</div>
+
+  <header class="head">
+    <div class="mark">Glaserei Wälti</div>
+    <div class="sub">Nachfolger M. Häsler · Gwatt</div>
+    <div class="spec" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Glas &amp; Spiegel · Thun</div>
+      <h1>Glas für Bad, Küche und Schaufenster <em>– aus Gwatt.</em></h1>
+      <p>Lenken Sie das Licht durch das Prisma und entdecken Sie, was der Glaser für Sie macht.</p>
+    </section>
+
+    <div class="stage">
+      <svg id="prism" viewBox="0 96 400 278" role="img" aria-labelledby="prTitle">
+        <title id="prTitle">Ein Lichtstrahl trifft ein Glasprisma und wird in sechs Farben gebrochen</title>
+        <defs>
+          <linearGradient id="glassF" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#cfe6ff" stop-opacity=".22"/>
+            <stop offset=".55" stop-color="#9fb9e6" stop-opacity=".08"/>
+            <stop offset="1" stop-color="#e3ecff" stop-opacity=".18"/>
+          </linearGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="mglow"><stop offset="0" stop-color="#ffd84f" stop-opacity=".6"/><stop offset="1" stop-color="#ffd84f" stop-opacity="0"/></radialGradient>
+        </defs>
+
+        <!-- feines Raster -->
+        <g stroke="#ffffff" stroke-opacity=".045" stroke-width="1">
+          <path d="M0 60H400M0 120H400M0 180H400M0 240H400M0 300H400M0 360H400"/>
+          <path d="M60 0V380M120 0V380M180 0V380M240 0V380M300 0V380M360 0V380"/>
+        </g>
+
+        <!-- Schiene der Lichtquelle -->
+        <path d="M24 218 V352" stroke="#ffffff" stroke-opacity=".22" stroke-width="1.2" stroke-dasharray="2 5" stroke-linecap="round"/>
+        <path d="M18 212 h12 M18 358 h12" stroke="#ffffff" stroke-opacity=".3" stroke-width="1.2"/>
+
+        <g id="rays"></g>
+
+        <!-- Prisma -->
+        <path id="prismShape" d="M190 124.9 L125 237.5 L255 237.5 Z" fill="url(#glassF)" stroke="#e9f1ff" stroke-opacity=".85" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M190 136 L134 232" stroke="#fff" stroke-opacity=".45" stroke-width="1"/>
+        <path d="M196 140 L244 225" stroke="#fff" stroke-opacity=".15" stroke-width="3"/>
+        <path d="M140 233 H245" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
+        <g id="inner"></g>
+
+        <!-- Markierung -->
+        <g id="marker" transform="translate(365 220)">
+          <circle id="mGlow" r="26" fill="url(#mglow)" opacity="0"/>
+          <circle r="11" fill="none" stroke="#ffffff" stroke-opacity=".75" stroke-width="1.2"/>
+          <circle id="mDot" r="4" fill="#ffffff" fill-opacity=".35"/>
+          <path d="M0 -18 V-13 M0 13 V18 M-18 0 H-13 M13 0 H18" stroke="#ffffff" stroke-opacity=".75" stroke-width="1.2"/>
+          <text y="-26" text-anchor="middle" font-family="Instrument Sans,sans-serif" font-size="9.5" letter-spacing="1.5" fill="#9ba6bf">ZIEL</text>
+        </g>
+
+        <!-- Lichtquelle -->
+        <g id="lamp" tabindex="0" role="slider" aria-label="Lichtquelle verschieben" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <circle r="30" fill="url(#halo)"/>
+          <circle r="22" fill="transparent"/>
+          <circle class="ring" r="13" fill="#0b1326" stroke="#ffffff" stroke-opacity=".7" stroke-width="1.2"/>
+          <circle r="6.5" fill="#fffdf3"/>
+          <path d="M0 -21 l-4 5 h8z M0 21 l-4 -5 h8z" fill="#ffffff" fill-opacity=".7"/>
+        </g>
+      </svg>
+      <div class="howto">
+        <svg width="14" height="22" viewBox="0 0 14 22" aria-hidden="true"><path d="M7 1 L2 7 H12 Z M7 21 L2 15 H12 Z" fill="#9ba6bf"/></svg>
+        Lichtquelle links nach oben oder unten ziehen.
+      </div>
+    </div>
+
+    <div class="reveal idle" id="reveal" aria-live="polite">
+      <div class="body" id="rbody">
+        <div class="lbl" id="rlbl">Noch kein Treffer</div>
+        <h3 id="rtitle">Lenken Sie eine Farbe aufs Ziel</h3>
+        <p id="rtext">Jeder der sechs Farbstrahlen steht für eine Leistung. Trifft ein Strahl die Markierung rechts, leuchtet sie auf.</p>
+      </div>
+    </div>
+
+    <div class="specbar" id="specbar" aria-label="Spektrum: Leistungen direkt wählen"></div>
+
+    <section class="s" id="leistungen">
+      <div class="eyebrow">Leistungen</div>
+      <h2>Alles aus Glas und Spiegel</h2>
+      <ul class="services">
+        <li><b>Glasreparaturen</b><span>mit Schnellservice</span></li>
+        <li><b>Mobile Werkstatt</b><span>direkt bei Ihnen</span></li>
+        <li><b>Duschtrennwände</b><span>fürs Bad</span></li>
+        <li><b>Küchenrückwände</b><span>aus Glas</span></li>
+        <li><b>Schaufenster</b><span>für Geschäfte</span></li>
+        <li><b>Glas- und Spiegelhandel</b><span>Glas &amp; Spiegel</span></li>
+        <li><b>Glasschalen</b><span>auch Direktverkauf</span></li>
+        <li><b>Katzentüren</b><span>Einbau in Glas</span></li>
+        <li><b>Grosse Scheiben</b><span>Ein- und Ausbau, Höhenarbeiten</span></li>
+      </ul>
+    </section>
+
+    <section class="s" id="inhaber">
+      <div class="eyebrow">Inhaber</div>
+      <h2>Ein Familienunternehmen</h2>
+      <div class="owner">
+        <svg viewBox="0 0 120 150" role="img" aria-label="Platzhalter für Ihr Foto">
+          <rect x=".75" y=".75" width="118.5" height="148.5" rx="60" fill="#111a30" stroke="#2a3350" stroke-width="1.5"/>
+          <path d="M60 12 L22 78 H98Z" fill="none" stroke="#e9f1ff" stroke-opacity=".25" stroke-width="1"/>
+          <circle cx="60" cy="62" r="15" fill="none" stroke="#9ba6bf" stroke-width="1.4"/>
+          <path d="M33 108 C36 86 84 86 87 108" fill="none" stroke="#9ba6bf" stroke-width="1.4"/>
+          <text x="60" y="126" text-anchor="middle" font-family="Instrument Sans,sans-serif" font-size="9" fill="#9ba6bf">Platzhalter für</text>
+          <text x="60" y="137" text-anchor="middle" font-family="Instrument Sans,sans-serif" font-size="9" fill="#9ba6bf">Ihr Foto</text>
+        </svg>
+        <p><b>Markus Häsler</b>, gelernter Glaser, hat den Betrieb 2003 übernommen – als Nachfolger der Glaserei Wälti in Gwatt.</p>
+      </div>
+      <blockquote class="quote">«Die Zufriedenheit meiner Kunden ist mir, als Inhaber eines Familienunternehmens, ein grosses Anliegen.»
+        <footer>Markus Häsler</footer>
+      </blockquote>
+    </section>
+
+    <section class="s" id="bewertungen">
+      <div class="eyebrow">Bewertungen</div>
+      <h2>Fünf von fünf Sternen</h2>
+      <div class="rates">
+        <div class="rate"><div class="v">5.0</div><div class="st" aria-label="5 von 5 Sternen">★★★★★</div><small>search.ch<br>4 Bewertungen</small></div>
+        <div class="rate"><div class="v">5.0</div><div class="st" aria-label="5 von 5 Sternen">★★★★★</div><small>local.ch<br>2 Bewertungen</small></div>
+      </div>
+      <p class="para">In einer Rezension wird der Service als <span class="it" style="font-size:1.15em">schnell, freundlich und preislich fair</span> beschrieben.</p>
+    </section>
+
+    <section class="s contact" id="kontakt">
+      <div class="eyebrow">Kontakt</div>
+      <h2>Besuch nach Vereinbarung</h2>
+      <div class="addr">Hodelgasse 27<br>3645 Gwatt (Thun)</div>
+      <p class="note">Besuche nur nach telefonischer Vereinbarung.</p>
+      <div class="btns">
+        <a class="btn primary" href="tel:+41333353930"><span><small>Telefon</small><b>033 335 39 30</b></span><span aria-hidden="true">→</span></a>
+        <a class="btn" href="tel:+41793340913"><span><small>Mobile</small><b>079 334 09 13</b></span><span aria-hidden="true">→</span></a>
+        <a class="btn" href="mailto:info@glasereiwaelti.ch"><span><small>E-Mail</small><b>info@glasereiwaelti.ch</b></span><span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="info">
+        <li><b>Erreichbarkeit</b><span class="ph">[Öffnungszeiten / Erreichbarkeit bitte bestätigen]</span></li>
+        <li><b>Einzugsgebiet</b>Thun, Gwatt und Umgebung <span class="ph">[Einzugsgebiet bitte bestätigen]</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="spec" aria-hidden="true"></div>
+    Glaserei Wälti, Nachfolger M. Häsler · Einzelfirma<br>
+    Hodelgasse 27 · 3645 Gwatt (Thun) · UID CHE-110.067.236<br>
+    Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Glaserei Wälti.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("prism");
+  var raysG = document.getElementById("rays"), innerG = document.getElementById("inner");
+  var lamp = document.getElementById("lamp");
+  var mGlow = document.getElementById("mGlow"), mDot = document.getElementById("mDot");
+  var reveal = document.getElementById("reveal"), rbody = document.getElementById("rbody");
+  var rlbl = document.getElementById("rlbl"), rtitle = document.getElementById("rtitle"), rtext = document.getElementById("rtext");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var A = [190, 124.9], B = [125, 237.5], C = [255, 237.5];
+  var faces = [[A, B], [B, C], [C, A]];
+  var AIM = [150, 190], MARK = [365, 220], LX = 24, YMIN = 218, YMAX = 352;
+
+  /* sechs Farben, von schwach (rot) bis stark (violett) gebrochen */
+  var COLORS = [
+    {c: "#ff5a64", n: 1.3769, name: "Rot", t: "Reparaturen", d: "Glasreparaturen mit Reparatur-Schnellservice: Die mobile Werkstatt kommt direkt zu Ihnen – schnell, zuverlässig, exakt."},
+    {c: "#ff9d45", n: 1.4943, name: "Orange", t: "Küchenrückwände", d: "Glas als Rückwand in der Küche."},
+    {c: "#ffd84f", n: 1.5804, name: "Gelb", t: "Schaufenster", d: "Glas für Schaufenster von Geschäften – inklusive Ein- und Ausbau grosser Scheiben und Höhenarbeiten."},
+    {c: "#55e0a0", n: 1.6406, name: "Grün", t: "Glasschalen", d: "Glasschalen – auch im Direktverkauf erhältlich."},
+    {c: "#4fb6ff", n: 1.6822, name: "Blau", t: "Duschtrennwände", d: "Duschtrennwände aus Glas fürs Bad."},
+    {c: "#a983ff", n: 1.7124, name: "Violett", t: "Spiegel", d: "Glas- und Spiegelhandel – Spiegel und Glas vom Glaser in Gwatt."}
+  ];
+
+  function sub(a, b){ return [a[0] - b[0], a[1] - b[1]]; }
+  function norm(v){ var l = Math.hypot(v[0], v[1]); return [v[0] / l, v[1] / l]; }
+  function dot(a, b){ return a[0] * b[0] + a[1] * b[1]; }
+  function hitSeg(o, d, p, q){
+    var e = sub(q, p), den = d[0] * e[1] - d[1] * e[0]; if (Math.abs(den) < 1e-9) return null;
+    var w = sub(p, o), t = (w[0] * e[1] - w[1] * e[0]) / den, u = (w[0] * d[1] - w[1] * d[0]) / den;
+    return (t > 1e-6 && u >= 0 && u <= 1) ? {t: t, pt: [o[0] + d[0] * t, o[1] + d[1] * t], e: e} : null;
+  }
+  function refract(d, n, eta){
+    var c = -dot(n, d); if (c < 0){ n = [-n[0], -n[1]]; c = -c; }
+    var k = 1 - eta * eta * (1 - c * c); if (k < 0) return null;
+    var f = eta * c - Math.sqrt(k); return norm([eta * d[0] + f * n[0], eta * d[1] + f * n[1]]);
+  }
+  function trace(S, n){
+    var d = norm(sub(AIM, S)), best = null, bf = -1;
+    faces.forEach(function(f, i){ var r = hitSeg(S, d, f[0], f[1]); if (r && (!best || r.t < best.t)){ best = r; bf = i; } });
+    if (!best) return null;
+    var d2 = refract(d, norm([-best.e[1], best.e[0]]), 1 / n); if (!d2) return null;
+    var p1 = best.pt, b2 = null;
+    faces.forEach(function(f, i){ if (i === bf) return; var r = hitSeg(p1, d2, f[0], f[1]); if (r && (!b2 || r.t < b2.t)) b2 = r; });
+    if (!b2) return null;
+    var d3 = refract(d2, norm([-b2.e[1], b2.e[0]]), n);
+    return {p1: p1, p2: b2.pt, d: d3};
+  }
+  function distToMark(r){
+    if (!r || !r.d) return Infinity;
+    var w = sub(MARK, r.p2); if (dot(w, r.d) <= 0) return Infinity;
+    return w[0] * r.d[1] - w[1] * r.d[0];
+  }
+  function el(n, a){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  function line(g, p, q, col, w, op){ g.appendChild(el("line", {x1: p[0].toFixed(1), y1: p[1].toFixed(1), x2: q[0].toFixed(1), y2: q[1].toFixed(1), stroke: col, "stroke-width": w, "stroke-opacity": op, "stroke-linecap": "round"})); }
+
+  var ly = 266, active = -2;
+
+  function draw(){
+    raysG.textContent = ""; innerG.textContent = "";
+    var S = [LX, ly];
+    lamp.setAttribute("transform", "translate(" + LX + " " + ly.toFixed(1) + ")");
+    lamp.setAttribute("aria-valuenow", Math.round((ly - YMIN) / (YMAX - YMIN) * 100));
+    var results = COLORS.map(function(c){ return trace(S, c.n); });
+    var entry = results[0] ? results[0].p1 : null;
+    /* weisser Strahl */
+    if (entry){ line(raysG, S, entry, "#fff", 9, .07); line(raysG, S, entry, "#fff", 3.5, .25); line(raysG, S, entry, "#fff", 1.6, .95); }
+    /* Treffer bestimmen */
+    var bestI = -1, bestD = 6.5;
+    results.forEach(function(r, i){ var dd = Math.abs(distToMark(r)); if (dd < bestD){ bestD = dd; bestI = i; } });
+    results.forEach(function(r, i){
+      if (!r) return; var col = COLORS[i].c;
+      line(innerG, r.p1, r.p2, col, 1.1, .55);
+      if (!r.d) return;
+      var far = [r.p2[0] + r.d[0] * 420, r.p2[1] + r.d[1] * 420];
+      var on = i === bestI;
+      line(raysG, r.p2, far, col, on ? 10 : 7, on ? .16 : .07);
+      line(raysG, r.p2, far, col, on ? 4 : 2.6, on ? .4 : .22);
+      line(raysG, r.p2, far, col, on ? 1.8 : 1.1, on ? 1 : .8);
+    });
+    if (bestI !== active) setActive(bestI);
+  }
+
+  function setActive(i){
+    active = i;
+    [].forEach.call(document.querySelectorAll("#specbar button"), function(b, k){ b.setAttribute("aria-pressed", k === i ? "true" : "false"); });
+    if (i < 0){
+      mGlow.setAttribute("opacity", "0"); mDot.setAttribute("fill", "#ffffff"); mDot.setAttribute("fill-opacity", ".35");
+      return; /* letzter Treffer bleibt stehen, damit der Text in Ruhe gelesen werden kann */
+    }
+    var c = COLORS[i];
+    document.documentElement.style.setProperty("--act", c.c);
+    document.querySelector("#mglow stop").setAttribute("stop-color", c.c);
+    document.querySelectorAll("#mglow stop")[1].setAttribute("stop-color", c.c);
+    mGlow.setAttribute("opacity", "1"); mDot.setAttribute("fill", c.c); mDot.setAttribute("fill-opacity", "1");
+    reveal.classList.remove("idle");
+    var swap = function(){
+      rlbl.textContent = c.name + " trifft · Leistung " + (i + 1) + " von 6";
+      rtitle.textContent = c.t; rtext.textContent = c.d;
+      rbody.classList.remove("fade");
+    };
+    if (reduce || document.documentElement.classList.contains("pdf")) swap();
+    else { rbody.classList.add("fade"); setTimeout(swap, 180); }
+  }
+
+  /* Spektrum-Leiste zum direkten Anwählen */
+  var bar = document.getElementById("specbar");
+  COLORS.forEach(function(c, i){
+    var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-pressed", "false");
+    b.innerHTML = '<i style="background:' + c.c + '"></i>' + c.t;
+    b.addEventListener("click", function(){ glideTo(yFor(i)); });
+    bar.appendChild(b);
+  });
+  function yFor(i){
+    var best = ly, bd = Infinity;
+    for (var y = YMIN; y <= YMAX; y += .5){ var dd = Math.abs(distToMark(trace([LX, y], COLORS[i].n))); if (dd < bd){ bd = dd; best = y; } }
+    return best;
+  }
+  var glideRAF = 0;
+  function glideTo(target){
+    cancelAnimationFrame(glideRAF);
+    if (reduce){ ly = target; draw(); return; }
+    var from = ly, t0 = performance.now(), dur = 650;
+    (function step(now){
+      var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      ly = from + (target - from) * e; draw();
+      if (k < 1) glideRAF = requestAnimationFrame(step);
+    })(t0);
+  }
+
+  /* Ziehen per Maus / Finger */
+  function toSvgY(evt){ var pt = svg.createSVGPoint(); pt.x = evt.clientX; pt.y = evt.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse()).y; }
+  var dragging = false;
+  lamp.addEventListener("pointerdown", function(e){ dragging = true; cancelAnimationFrame(glideRAF); lamp.setPointerCapture(e.pointerId); e.preventDefault(); });
+  lamp.addEventListener("pointermove", function(e){ if (!dragging) return; ly = Math.max(YMIN, Math.min(YMAX, toSvgY(e))); draw(); });
+  lamp.addEventListener("pointerup", function(){ dragging = false; });
+  lamp.addEventListener("pointercancel", function(){ dragging = false; });
+  /* Tippen irgendwo auf der Schiene springt dorthin */
+  svg.addEventListener("pointerdown", function(e){
+    if (lamp.contains(e.target)) return;
+    var p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; p = p.matrixTransform(svg.getScreenCTM().inverse());
+    if (p.x < 70) glideTo(Math.max(YMIN, Math.min(YMAX, p.y)));
+  });
+  lamp.addEventListener("keydown", function(e){
+    var step = e.shiftKey ? 10 : 2;
+    if (e.key === "ArrowUp" || e.key === "ArrowLeft"){ ly = Math.max(YMIN, ly - step); draw(); e.preventDefault(); }
+    if (e.key === "ArrowDown" || e.key === "ArrowRight"){ ly = Math.min(YMAX, ly + step); draw(); e.preventDefault(); }
+  });
+
+  draw();
+
+  /* PDF-Zustand: blauer Strahl trifft – Duschtrennwände */
+  function pdfState(){ cancelAnimationFrame(glideRAF); ly = yFor(4); draw(); }
+  if (document.documentElement.classList.contains("pdf")) pdfState();
+  new MutationObserver(function(){ if (document.documentElement.classList.contains("pdf")) pdfState(); })
+    .observe(document.documentElement, {attributes: true, attributeFilter: ["class"]});
+})();
+</script>
+</body>
+</html>
