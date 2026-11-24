@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lärrys Dachdeckergeschäft – Dachcheck (Entwurf 1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ziegel:#b5452b;
+  --ziegel-dunkel:#8e3520;
+  --ziegel-hell:#d9775a;
+  --creme:#f7efe2;
+  --sand:#ecdfc8;
+  --anthra:#2b2d31;
+  --grau:#5d6066;
+  --moos:#6f8d3c;
+  --ok:#3f7a4a;
+  --weiss:#fffaf2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Work Sans",system-ui,sans-serif;
+  background:var(--creme);
+  color:var(--anthra);
+  line-height:1.55;
+  font-size:16.5px;
+  hyphens:manual;-webkit-hyphens:manual;
+  overflow-wrap:break-word;
+}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+a{color:inherit}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.08;letter-spacing:-.01em}
+
+/* Demo-Balken */
+.demo{
+  background:var(--anthra);color:#f3e6d3;
+  font-size:12.5px;line-height:1.4;text-align:center;
+  padding:8px 14px;
+}
+.demo b{color:#ffcfae;font-weight:600}
+
+/* Kopf */
+.kopf{display:flex;align-items:center;gap:12px;padding:18px 0 6px}
+.kopf svg{flex:0 0 auto}
+.kopf .name{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(1.02rem,4.6vw,1.2rem);line-height:1.15}
+.kopf .sub{font-size:13px;color:var(--grau)}
+
+.hero{padding:26px 0 8px}
+.hero .kicker{
+  display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ziegel);background:#f3dccd;border-radius:99px;padding:4px 12px;margin-bottom:14px
+}
+.hero h1{font-size:clamp(2.1rem,10.5vw,3.3rem);font-weight:800}
+.hero h1 span{color:var(--ziegel)}
+.hero p{margin-top:14px;font-size:17px;color:#3d4046;max-width:30em}
+
+/* Spielfeld */
+.check{
+  margin-top:22px;background:var(--weiss);border-radius:26px;
+  box-shadow:0 1px 0 #e0cfb4, 0 18px 40px -22px rgba(80,40,20,.35);
+  overflow:hidden;
+}
+.check-kopf{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px 4px}
+.check-kopf strong{font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
+.zaehler{font-size:14px;font-weight:600;color:var(--grau);white-space:nowrap}
+.zaehler b{color:var(--ziegel);font-size:17px}
+.balken{display:flex;gap:6px;padding:8px 18px 0}
+.balken i{flex:1;height:8px;border-radius:5px;background:#eadac2;transition:background .4s}
+.balken i.an{background:var(--ok)}
+.haus{display:block;width:100%;height:auto;margin-top:4px;touch-action:manipulation}
+.tipp{padding:2px 18px 16px;font-size:14.5px;color:var(--grau);text-align:center}
+
+/* Hotspots */
+.spot{cursor:pointer;outline:none}
+.spot .hit{fill:transparent}
+.spot .pulse{fill:none;stroke:#fff;stroke-width:3;transform-box:fill-box;transform-origin:center;animation:puls 1.6s ease-out infinite}
+.spot .ring{fill:none;stroke:#fff;stroke-width:2.5;stroke-dasharray:4 4}
+.spot .badge{fill:var(--anthra);stroke:#fff;stroke-width:2;transition:fill .4s}
+.spot text{font:700 12px "Work Sans",sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.spot .haken{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.spot:focus-visible .ring{stroke:#ffd36b;stroke-dasharray:none}
+.spot.done{cursor:default}
+.spot.done .pulse,.spot.done .ring{display:none}
+.spot.done .badge{fill:var(--ok)}
+.spot.done text{opacity:0}
+.spot.done .haken{opacity:1}
+@keyframes puls{0%{transform:scale(.7);opacity:.95}100%{transform:scale(1.9);opacity:0}}
+
+/* Reparatur-Animationen */
+.blatt{transform-box:fill-box;transform-origin:center;transition:transform 1.1s cubic-bezier(.3,.1,.3,1),opacity 1.1s ease}
+.r0 .blatt{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0}
+.moos{transform-box:fill-box;transform-origin:center;transition:transform .9s cubic-bezier(.6,0,.4,1),opacity .9s}
+.r1 .moos{transform:scale(0);opacity:0}
+.funkel{opacity:0;transform-box:fill-box;transform-origin:center}
+.r1 .funkel{animation:funkel 1.2s .5s ease-out both}
+@keyframes funkel{0%{opacity:0;transform:scale(.3) rotate(0)}40%{opacity:1}100%{opacity:0;transform:scale(1.3) rotate(90deg)}}
+.kaputt{transform-box:fill-box;transform-origin:center;transition:transform .8s cubic-bezier(.5,0,.8,.4),opacity .8s}
+.r2 .kaputt{transform:translate(-14px,60px) rotate(-40deg);opacity:0}
+.neu{transform-box:fill-box;transform-origin:center;transform:translateY(-46px);opacity:0;transition:transform .7s .6s cubic-bezier(.2,.9,.3,1.2),opacity .4s .6s}
+.r2 .neu{transform:none;opacity:1}
+.verrutscht{transform-box:fill-box;transform-origin:20% 0;transform:translate(10px,-13px) rotate(-26deg);transition:transform .9s cubic-bezier(.3,1.5,.5,1)}
+.r3 .verrutscht{transform:none}
+
+/* Erklärungen */
+.fixes{list-style:none;padding:0 14px 6px;display:grid;gap:10px}
+.fixes li{
+  display:none;grid-template-columns:44px 1fr;gap:12px;align-items:start;
+  background:#f6ece0;border-radius:16px;padding:12px 14px;
+}
+.fixes li.zeigen{display:grid;animation:rein .5s ease both}
+@keyframes rein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fixes .nr{width:44px;height:44px;border-radius:12px;background:var(--ok);display:grid;place-items:center}
+.fixes h3{font-size:17px;margin:1px 0 3px}
+.fixes p{font-size:15px;color:#43464c}
+.fertig{display:none;margin:6px 14px 16px;background:var(--ziegel);color:#fff;border-radius:20px;padding:20px 18px}
+.fertig.zeigen{display:block;animation:rein .6s ease both}
+.fertig h3{font-size:clamp(1.3rem,6vw,1.6rem);margin-bottom:6px}
+.fertig p{font-size:15.5px;color:#fde9de}
+.fertig .knoepfe{margin-top:14px;display:grid;gap:9px}
+.fertig .k{background:#fff;color:var(--ziegel-dunkel)}
+.fertig .k.zwei{background:transparent;color:#fff;border:2px solid #f2b9a5}
+.nochmal{display:block;margin:12px auto 0;background:none;border:0;color:#fde9de;text-decoration:underline;font:500 14px "Work Sans",sans-serif;cursor:pointer}
+
+/* Knöpfe */
+.k{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  min-height:56px;border-radius:16px;padding:12px 18px;
+  font:600 17px "Work Sans",sans-serif;text-decoration:none;text-align:center;
+}
+.k svg{flex:0 0 auto}
+
+/* Abschnitte */
+section.ab{padding:48px 0 6px}
+.ab .marke{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ziegel);margin-bottom:8px}
+.ab h2{font-size:clamp(1.75rem,8vw,2.4rem);font-weight:800}
+.ab .lead{margin-top:10px;color:#43464c}
+
+.liste{list-style:none;margin-top:20px;display:grid;gap:2px;background:var(--weiss);border-radius:22px;padding:8px 0;box-shadow:0 1px 0 #e0cfb4}
+.liste li{display:flex;gap:14px;align-items:flex-start;padding:11px 18px;border-bottom:1px dashed #e7d7bf}
+.liste li:last-child{border-bottom:0}
+.liste svg{flex:0 0 auto;margin-top:3px}
+.liste span{font-weight:500}
+.hinweis{margin-top:12px;font-size:14.5px;color:var(--grau);padding:0 4px}
+
+.fassaden{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.fass{background:var(--weiss);border-radius:20px;overflow:hidden;box-shadow:0 1px 0 #e0cfb4}
+.fass svg{display:block;width:100%;height:auto}
+.fass p{padding:10px 12px 13px;font-size:14.5px;font-weight:600;line-height:1.3}
+
+.ref{margin-top:20px;background:var(--anthra);color:#f2e7d7;border-radius:22px;padding:18px}
+.ref h3{font-size:20px;margin-bottom:4px;color:#fff}
+.ref p{font-size:15px;color:#d8ccbb}
+.platz{
+  margin-top:14px;border:2.5px dashed #c7b394;border-radius:18px;
+  padding:22px 16px;text-align:center;color:#8a7b66;font-size:14.5px;background:repeating-linear-gradient(135deg,transparent 0 12px,rgba(199,179,148,.12) 12px 24px);
+}
+.ref .platz{border-color:#6b6e75;color:#b4a996;background:transparent}
+.platz b{display:block;font-size:15.5px;color:inherit;margin-bottom:3px}
+
+/* Kontakt */
+.kontakt{margin-top:20px;display:grid;gap:10px}
+.kontakt .k.tel{background:var(--ziegel);color:#fff;box-shadow:0 10px 22px -12px var(--ziegel)}
+.kontakt .k.mob{background:var(--anthra);color:#fff}
+.kontakt .k.mail{background:var(--weiss);color:var(--anthra);border:2px solid #dccbb0;font-size:15.5px}
+.k small{display:block;font-size:13px;font-weight:500;opacity:.85}
+.k .t{text-align:left;line-height:1.25}
+.adresse{margin-top:18px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--sand);border-radius:20px;padding:16px 18px;font-size:15.5px}
+.adresse strong{display:block}
+
+footer{margin-top:50px;padding:24px 0 36px;border-top:2px solid #e6d5bb;font-size:13.5px;color:var(--grau);text-align:center}
+
+/* PDF-Zustand */
+.pdf .spot .pulse{animation:none;display:none}
+.pdf .fixes li{animation:none}
+.pdf .fertig{animation:none}
+.pdf *{transition:none!important}
+.pdf .r1 .funkel{animation:none;opacity:0}
+.pdf .nochmal{display:none}
+
+@media (prefers-reduced-motion:reduce){
+  .spot .pulse{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="demo"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite von Lärrys Dachdeckergeschäft</div>
+
+<div class="wrap">
+  <header class="kopf">
+    <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+      <rect width="46" height="46" rx="13" fill="#b5452b"/>
+      <path d="M8 27 23 13l15 14" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 26v10h20V26" fill="none" stroke="#f7efe2" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M12 21.5h22M15.5 18h15" stroke="#f3c2ad" stroke-width="1.6"/>
+    </svg>
+    <div>
+      <div class="name">Lärrys Dach&shy;decker&shy;geschäft</div>
+      <div class="sub">Bernhard von Gunten · Sigriswil</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="kicker">Dachcheck</span>
+    <h1>Was fehlt Ihrem <span>Dach?</span></h1>
+    <p>Laub, Moos, ein Sprung im Ziegel, ein Sturm in der Nacht – kleine Dinge, die man vom Garten aus kaum sieht. Probieren Sie es aus: Bringen Sie dieses Dach wieder in Ordnung.</p>
+  </section>
+
+  <div class="check" id="check">
+    <div class="check-kopf">
+      <strong>Dach im Check</strong>
+      <span class="zaehler" aria-live="polite"><b id="anz">0</b> von 4 erledigt</span>
+    </div>
+    <div class="balken" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <svg class="haus" id="haus" viewBox="14 40 372 282" role="group" aria-label="Gezeichnetes Haus mit vier Problemstellen auf dem Dach">
+      <defs>
+        <pattern id="ziegel" width="22" height="32" patternUnits="userSpaceOnUse" x="0" y="86">
+          <rect width="22" height="32" fill="#b5452b"/>
+          <path d="M.5 0h21v11q0 4.5-10.5 4.5T.5 11z" fill="#bf4e31" stroke="#8e3520" stroke-width="1"/>
+          <path d="M3 3.5h7" stroke="#d9775a" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>
+          <path d="M-10.5 16h21v11q0 4.5-10.5 4.5T-10.5 27z" fill="#b84a2e" stroke="#8e3520" stroke-width="1"/>
+          <path d="M11.5 16h21v11q0 4.5-10.5 4.5T11.5 27z" fill="#b84a2e" stroke="#8e3520" stroke-width="1"/>
+          <path d="M14 19.5h7" stroke="#d9775a" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>
+        </pattern>
+        <clipPath id="dachform"><polygon points="40,192 360,192 300,86 100,86"/></clipPath>
+        <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fbe9d3"/><stop offset="1" stop-color="#fff8ee"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Hintergrund -->
+      <rect width="400" height="330" fill="url(#himmel)"/>
+      <circle cx="338" cy="52" r="20" fill="#f6c98a"/>
+      <path d="M0 236 60 196l40 18 70-52 56 40 44-22 64 44 66-30v140H0z" fill="#efdcc0"/>
+      <path d="M0 270q90-34 200-14t200-10v84H0z" fill="#d9e2c3"/>
+      <path d="M0 300h400v30H0z" fill="#c4d1a7"/>
+      <!-- Baum -->
+      <path d="M24 300v-46" stroke="#7a5a3c" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="24" cy="236" r="22" fill="#8fa65a"/><circle cx="12" cy="248" r="14" fill="#7d9850"/>
+
+      <!-- Kamin hinter dem Dach -->
+      <rect x="252" y="64" width="24" height="56" fill="#9a9387" stroke="#2b2d31" stroke-width="2.5"/>
+      <rect x="248" y="58" width="32" height="9" rx="2" fill="#6d6860" stroke="#2b2d31" stroke-width="2.5"/>
+
+      <!-- Wand -->
+      <rect x="70" y="192" width="260" height="108" fill="#f3e4cc" stroke="#2b2d31" stroke-width="3"/>
+      <path d="M70 214h260" stroke="#e4cfae" stroke-width="2"/>
+      <!-- Fenster -->
+      <g stroke="#2b2d31" stroke-width="2.5">
+        <rect x="96" y="222" width="46" height="44" fill="#cfe0e6"/>
+        <path d="M119 222v44M96 244h46" fill="none"/>
+        <rect x="258" y="222" width="46" height="44" fill="#cfe0e6"/>
+        <path d="M281 222v44M258 244h46" fill="none"/>
+        <rect x="178" y="226" width="44" height="74" rx="2" fill="#7c4a32"/>
+      </g>
+      <rect x="90" y="266" width="58" height="6" rx="2" fill="#2b2d31"/>
+      <rect x="252" y="266" width="58" height="6" rx="2" fill="#2b2d31"/>
+      <circle cx="213" cy="264" r="2.6" fill="#f6c98a"/>
+      <g fill="#c25b3f"><circle cx="102" cy="262" r="3.5"/><circle cx="112" cy="263" r="3.5"/><circle cx="136" cy="262" r="3.5"/><circle cx="268" cy="262" r="3.5"/><circle cx="296" cy="263" r="3.5"/></g>
+
+      <!-- Dach -->
+      <polygon points="40,192 360,192 300,86 100,86" fill="url(#ziegel)"/>
+      <g clip-path="url(#dachform)">
+        <!-- Dachfenster -->
+        <rect x="118" y="118" width="30" height="24" rx="2" fill="#a9c6d2" stroke="#2b2d31" stroke-width="2.5"/>
+        <path d="M122 122l10 0-8 8" stroke="#fff" stroke-width="2" fill="none" opacity=".8"/>
+        <!-- Lücke unter verrutschtem Ziegel -->
+        <path d="M198.5 150h21v11q0 4.5-10.5 4.5T198.5 161z" fill="#3b2620"/>
+      </g>
+      <polygon points="40,192 360,192 300,86 100,86" fill="none" stroke="#2b2d31" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M98 86h204" stroke="#2b2d31" stroke-width="7" stroke-linecap="round"/>
+      <path d="M100 84h200" stroke="#7d3424" stroke-width="2.5" stroke-linecap="round"/>
+
+      <!-- Stelle 2: Moos -->
+      <g id="st1">
+        <g class="moos">
+          <path d="M252 132c4-7 14-8 18-2 6-4 16 0 14 8 6 3 4 12-3 12-2 6-12 7-16 2-7 3-15-2-13-9-6-3-5-10 0-11z" fill="#6f8d3c"/>
+          <circle cx="262" cy="138" r="2.4" fill="#9bb45d"/><circle cx="272" cy="134" r="2" fill="#9bb45d"/><circle cx="276" cy="144" r="2.6" fill="#9bb45d"/><circle cx="264" cy="146" r="1.8" fill="#4f6a2a"/>
+          <path d="M286 160c3-4 9-4 11 0 4 1 4 7-1 8-3 3-9 2-10-2-3-1-3-5 0-6z" fill="#7b9a43"/>
+          <path d="M236 152c2-4 8-4 10 0 3 1 2 5-1 6-3 2-8 1-9-2-2-1-1-4 0-4z" fill="#6f8d3c"/>
+        </g>
+        <g class="funkel" fill="#fff8d6">
+          <path d="M268 126l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+        </g>
+      </g>
+
+      <!-- Stelle 3: gebrochene Platte -->
+      <g id="st2">
+        <g class="neu">
+          <path d="M176.5 118h21v11q0 4.5-10.5 4.5T176.5 129z" fill="#d0603f" stroke="#8e3520" stroke-width="1"/>
+          <path d="M179 121.5h8" stroke="#f0a083" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+        <g class="kaputt">
+          <path d="M176.5 118h21v11q0 4.5-10.5 4.5T176.5 129z" fill="#7d2f1d" stroke="#5a2214" stroke-width="1"/>
+          <path d="M184 118l3 5-4 4 5 6.5" fill="none" stroke="#1e1f22" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M193 118l4 0 0 5z" fill="#3b2620"/>
+        </g>
+      </g>
+
+      <!-- Stelle 4: verschobener Ziegel -->
+      <g id="st3">
+        <g class="verrutscht">
+          <path d="M198.5 150h21v11q0 4.5-10.5 4.5T198.5 161z" fill="#d2603f" stroke="#2b2d31" stroke-width="1.3"/>
+          <path d="M201 153.5h7" stroke="#d9775a" stroke-width="1.3" stroke-linecap="round"/>
+        </g>
+      </g>
+
+      <!-- Dachrinne + Ablaufrohr -->
+      <rect x="34" y="190" width="332" height="10" rx="5" fill="#9aa0a6" stroke="#2b2d31" stroke-width="2.5"/>
+      <path d="M352 200v100" stroke="#2b2d31" stroke-width="10" stroke-linecap="round"/>
+      <path d="M352 200v100" stroke="#9aa0a6" stroke-width="5"/>
+
+      <!-- Stelle 1: Laub -->
+      <g id="st0">
+        <g transform="translate(96 186) rotate(-20)"><path class="blatt" style="--dx:-40px;--dy:-70px;--rot:-160deg" d="M0 0c4-6 12-6 15 0-3 6-11 6-15 0z" fill="#d98a2b"/></g>
+        <g transform="translate(108 183) rotate(15)"><path class="blatt" style="--dx:-10px;--dy:-95px;--rot:220deg" d="M0 0c4-6 12-6 15 0-3 6-11 6-15 0z" fill="#b8642a"/></g>
+        <g transform="translate(120 188) rotate(-5)"><path class="blatt" style="--dx:30px;--dy:-80px;--rot:-200deg" d="M0 0c4-6 12-6 15 0-3 6-11 6-15 0z" fill="#e3b03c"/></g>
+        <g transform="translate(132 184) rotate(28)"><path class="blatt" style="--dx:60px;--dy:-60px;--rot:180deg" d="M0 0c4-6 12-6 15 0-3 6-11 6-15 0z" fill="#c7752b"/></g>
+        <g transform="translate(142 189) rotate(-30)"><path class="blatt" style="--dx:80px;--dy:-100px;--rot:-120deg" d="M0 0c4-6 12-6 15 0-3 6-11 6-15 0z" fill="#9c5a28"/></g>
+        <g transform="translate(103 191)"><path class="blatt" style="--dx:-60px;--dy:-40px;--rot:140deg" d="M0 0c4-6 12-6 15 0-3 6-11 6-15 0z" fill="#e3b03c"/></g>
+      </g>
+
+      <!-- Hotspots -->
+      <g class="spot" data-i="0" tabindex="0" role="button" aria-label="Stelle 1: Laub in der Dachrinne" transform="translate(122 190)">
+        <circle class="hit" r="30"/><circle class="pulse" r="16"/><circle class="ring" r="24"/>
+        <g transform="translate(20 -22)"><circle class="badge" r="11"/><text>1</text><path class="haken" d="M-5 0l3.5 3.5L5-4"/></g>
+      </g>
+      <g class="spot" data-i="1" tabindex="0" role="button" aria-label="Stelle 2: Moos auf den Ziegeln" transform="translate(266 142)">
+        <circle class="hit" r="30"/><circle class="pulse" r="16"/><circle class="ring" r="26"/>
+        <g transform="translate(22 -24)"><circle class="badge" r="11"/><text>2</text><path class="haken" d="M-5 0l3.5 3.5L5-4"/></g>
+      </g>
+      <g class="spot" data-i="2" tabindex="0" role="button" aria-label="Stelle 3: gebrochene Platte" transform="translate(187 126)">
+        <circle class="hit" r="28"/><circle class="pulse" r="15"/><circle class="ring" r="21"/>
+        <g transform="translate(-20 -20)"><circle class="badge" r="11"/><text>3</text><path class="haken" d="M-5 0l3.5 3.5L5-4"/></g>
+      </g>
+      <g class="spot" data-i="3" tabindex="0" role="button" aria-label="Stelle 4: vom Sturm verschobener Ziegel" transform="translate(209 158)">
+        <circle class="hit" r="26"/><circle class="pulse" r="15"/><circle class="ring" r="21"/>
+        <g transform="translate(22 10)"><circle class="badge" r="11"/><text>4</text><path class="haken" d="M-5 0l3.5 3.5L5-4"/></g>
+      </g>
+    </svg>
+    <p class="tipp" id="tipp">Tippen Sie auf die pulsierenden Punkte 1 bis 4.</p>
+
+    <ol class="fixes" id="fixes">
+      <li data-i="0">
+        <span class="nr"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 9h20l-2 7a3 3 0 0 1-3 2H8a3 3 0 0 1-3-2z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><path d="M19 18v6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <div><h3>Dachrinnen reinigen</h3><p>Laub und Schmutz kommen aus der Rinne, damit das Regenwasser wieder ablaufen kann. Fester Teil der Dachkontrolle im Herbst und im Frühling.</p></div>
+      </li>
+      <li data-i="1">
+        <span class="nr"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 18c0-6 4-11 9-12 0 3 3 4 6 4-1 6-5 9-10 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><path d="M4 22l9-9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <div><h3>Moosbehandlung</h3><p>Moos auf Ziegeln und Platten wird bei der Dachkontrolle behandelt.</p></div>
+      </li>
+      <li data-i="2">
+        <span class="nr"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 5h16v10q0 5-8 5t-8-5z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><path d="M10 10l3 3 4-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><h3>Defekte Platten ersetzen</h3><p>Gebrochene Ziegel oder Platten werden gefunden und durch neue ersetzt.</p></div>
+      </li>
+      <li data-i="3">
+        <span class="nr"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M3 9h12a3 3 0 1 0-3-3M3 14h17a3 3 0 1 1-3 3M3 19h7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <div><h3>Sturmschäden beheben</h3><p>Was der Wind verschoben oder gelöst hat, wird wieder an seinen Platz gebracht.</p></div>
+      </li>
+    </ol>
+
+    <div class="fertig" id="fertig" aria-live="polite">
+      <h3>Alle 4 Stellen erledigt.</h3>
+      <p>Genau das gehört zur Dachkontrolle im Herbst und im Frühling. Fragen Sie Herrn von Gunten nach einem Termin – nach telefonischer Vereinbarung.</p>
+      <div class="knoepfe">
+        <a class="k" href="tel:+41332513654">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.4-2 1.4a12 12 0 0 0 6.6 6.6l1.4-2L21 15l-.5 2.4A3 3 0 0 1 17.6 20 14.6 14.6 0 0 1 4 6.4a3 3 0 0 1 2.6-2.9z" fill="currentColor"/></svg>
+          Dachkontrolle anfragen
+        </a>
+        <a class="k zwei" href="mailto:bernhardvongunten@hotmail.com?subject=Anfrage%20Dachkontrolle">Per E-Mail anfragen</a>
+      </div>
+      <button class="nochmal" id="nochmal" type="button">Nochmals von vorne</button>
+    </div>
+  </div>
+
+  <!-- Leistungen -->
+  <section class="ab" id="leistungen">
+    <div class="marke">Leistungen</div>
+    <h2>Neubau und Renovationen</h2>
+    <p class="lead">Vom ersten Ziegel bis zum Dachfenster – Lärrys Dachdeckergeschäft übernimmt:</p>
+    <ul class="liste">
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#b5452b"/></svg><span>Sämtliche Ziegel&shy;eindeckungen</span></li>
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#b5452b"/></svg><span>Sämtliche Unterdach&shy;arten</span></li>
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#b5452b"/></svg><span>Eindeckungen mit Eternit, Dach&shy;schiefer und Well&shy;platten</span></li>
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#b5452b"/></svg><span>Schindel&shy;eindeckungen</span></li>
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#b5452b"/></svg><span>Einbau von Dachfenstern und jeglichem Dachzubehör</span></li>
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#b5452b"/></svg><span>Montagehilfe für Solar&shy;anlagen</span></li>
+      <li><svg width="20" height="18" viewBox="0 0 20 18" aria-hidden="true"><path d="M1 1h18v9q0 6-9 6t-9-6z" fill="#2b2d31"/></svg><span>Spenglerei</span></li>
+    </ul>
+    <p class="hinweis">Dachkontrollen im Herbst und Frühling: Dachrinnen reinigen, defekte Platten ersetzen, Sturmschäden beheben, Moosbehandlung.</p>
+  </section>
+
+  <!-- Fassaden -->
+  <section class="ab" id="fassaden">
+    <div class="marke">Fassaden</div>
+    <h2>Auch die Wand bekommt ein Kleid</h2>
+    <div class="fassaden">
+      <div class="fass">
+        <svg viewBox="0 0 160 100" aria-hidden="true"><rect width="160" height="100" fill="#cfd2d4"/><g fill="none" stroke="#a9adb1" stroke-width="2"><path d="M0 33h160M0 67h160M53 0v33M107 0v33M27 33v34M80 33v34M133 33v34M53 67v33M107 67v33"/></g><path d="M8 8h36" stroke="#e7e9ea" stroke-width="2"/></svg>
+        <p>Faserzement&shy;platten</p>
+      </div>
+      <div class="fass">
+        <svg viewBox="0 0 160 100" aria-hidden="true"><rect width="160" height="100" fill="#c69866"/><g fill="#b78550" stroke="#8c6236" stroke-width="1.2"><path d="M0 0h20v22q-10 4-20 0zM20 0h20v22q-10 4-20 0zM40 0h20v22q-10 4-20 0zM60 0h20v22q-10 4-20 0zM80 0h20v22q-10 4-20 0zM100 0h20v22q-10 4-20 0zM120 0h20v22q-10 4-20 0zM140 0h20v22q-10 4-20 0z"/><path d="M-10 24h20v22q-10 4-20 0zM10 24h20v22q-10 4-20 0zM30 24h20v22q-10 4-20 0zM50 24h20v22q-10 4-20 0zM70 24h20v22q-10 4-20 0zM90 24h20v22q-10 4-20 0zM110 24h20v22q-10 4-20 0zM130 24h20v22q-10 4-20 0zM150 24h20v22q-10 4-20 0z"/><path d="M0 48h20v22q-10 4-20 0zM20 48h20v22q-10 4-20 0zM40 48h20v22q-10 4-20 0zM60 48h20v22q-10 4-20 0zM80 48h20v22q-10 4-20 0zM100 48h20v22q-10 4-20 0zM120 48h20v22q-10 4-20 0zM140 48h20v22q-10 4-20 0z"/><path d="M-10 72h20v22q-10 4-20 0zM10 72h20v22q-10 4-20 0zM30 72h20v22q-10 4-20 0zM50 72h20v22q-10 4-20 0zM70 72h20v22q-10 4-20 0zM90 72h20v22q-10 4-20 0zM110 72h20v22q-10 4-20 0zM130 72h20v22q-10 4-20 0zM150 72h20v22q-10 4-20 0z"/></g></svg>
+        <p>Holz&shy;schindeln</p>
+      </div>
+      <div class="fass">
+        <svg viewBox="0 0 160 100" aria-hidden="true"><rect width="160" height="100" fill="#3f454c"/><g fill="#4d545c" stroke="#2a2e33" stroke-width="1.4"><path d="M10 -6l14 14-14 14-14-14zM38 -6l14 14-14 14-14-14zM66 -6l14 14-14 14-14-14zM94 -6l14 14-14 14-14-14zM122 -6l14 14-14 14-14-14zM150 -6l14 14-14 14-14-14z"/><path d="M24 14l14 14-14 14-14-14zM52 14l14 14-14 14-14-14zM80 14l14 14-14 14-14-14zM108 14l14 14-14 14-14-14zM136 14l14 14-14 14-14-14z"/><path d="M10 34l14 14-14 14-14-14zM38 34l14 14-14 14-14-14zM66 34l14 14-14 14-14-14zM94 34l14 14-14 14-14-14zM122 34l14 14-14 14-14-14zM150 34l14 14-14 14-14-14z"/><path d="M24 54l14 14-14 14-14-14zM52 54l14 14-14 14-14-14zM80 54l14 14-14 14-14-14zM108 54l14 14-14 14-14-14zM136 54l14 14-14 14-14-14z"/><path d="M10 74l14 14-14 14-14-14zM38 74l14 14-14 14-14-14zM66 74l14 14-14 14-14-14zM94 74l14 14-14 14-14-14zM122 74l14 14-14 14-14-14zM150 74l14 14-14 14-14-14z"/></g></svg>
+        <p>Schiefer&shy;platten</p>
+      </div>
+      <div class="fass">
+        <svg viewBox="0 0 160 100" aria-hidden="true"><rect width="160" height="100" fill="#d8c3a0"/><g stroke="#b99b6d" stroke-width="1.5"><path d="M0 50h160"/><path d="M80 0v100"/></g><g stroke="#c8ae84" stroke-width="1" fill="none"><path d="M6 12q30-6 66 2M6 24q34 6 68-2M6 36q30-4 66 3M88 14q32 5 66-2M88 28q30-6 66 1M88 40q34 4 66-2M6 64q30 6 66-1M6 78q34-5 68 2M6 90q30 4 66-2M88 62q32-5 66 2M88 76q30 5 66-1M88 90q34-4 66 2"/></g></svg>
+        <p>Fassaden&shy;elemente aus Holzfasern</p>
+      </div>
+    </div>
+
+    <div class="ref">
+      <h3>Referenz: Fassadenprojekt in Aeschlen</h3>
+      <p>Ein Fassadenprojekt von Lärrys Dachdeckergeschäft.</p>
+      <div class="platz"><b>Platzhalter – Ihr Foto</b>Hier ein Bild vom Fassadenprojekt in Aeschlen</div>
+    </div>
+    <div class="platz"><b>Platzhalter – weitere Referenzen</b>Weitere Dächer und Fassaden aus Ihrer Arbeit</div>
+    <div class="platz"><b>Platzhalter – Ihre Bewertungen</b>Stimmen von Kundinnen und Kunden</div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="ab" id="kontakt">
+    <div class="marke">Kontakt</div>
+    <h2>Ein Anruf genügt</h2>
+    <p class="lead">Termine nach telefonischer Vereinbarung. Rufen Sie an oder schreiben Sie Herrn von Gunten eine E-Mail.</p>
+    <div class="kontakt">
+      <a class="k tel" href="tel:+41332513654">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.4-2 1.4a12 12 0 0 0 6.6 6.6l1.4-2L21 15l-.5 2.4A3 3 0 0 1 17.6 20 14.6 14.6 0 0 1 4 6.4a3 3 0 0 1 2.6-2.9z" fill="currentColor"/></svg>
+        <span class="t">033 251 36 54<small>Telefon Geschäft</small></span>
+      </a>
+      <a class="k mob" href="tel:+41798210433">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="t">079 821 04 33<small>Mobile</small></span>
+      </a>
+      <a class="k mail" href="mailto:bernhardvongunten@hotmail.com">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3.5 6.5 8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span>bernhardvongunten@&#8203;hotmail.com</span>
+      </a>
+    </div>
+    <div class="adresse">
+      <svg width="30" height="34" viewBox="0 0 30 34" aria-hidden="true"><path d="M15 33S3 20.5 3 13a12 12 0 0 1 24 0c0 7.5-12 20-12 20z" fill="#b5452b"/><path d="M8 14l7-6 7 6M10.5 13v6h9v-6" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+      <div><strong>Lärrys Dachdeckergeschäft</strong>Bernhard von Gunten<br>Schliereggweg 6<br>3655 Sigriswil</div>
+    </div>
+  </section>
+
+  <footer>
+    Lärrys Dachdeckergeschäft<br>Schliereggweg 6 · 3655 Sigriswil<br>
+    Entwurf / Demo von Max Rathsack – keine offizielle Webseite.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var haus=document.getElementById('haus');
+  var spots=[].slice.call(document.querySelectorAll('.spot'));
+  var items=[].slice.call(document.querySelectorAll('#fixes li'));
+  var striche=[].slice.call(document.querySelectorAll('.balken i'));
+  var anz=document.getElementById('anz');
+  var tipp=document.getElementById('tipp');
+  var fertig=document.getElementById('fertig');
+  var erledigt={};
+
+  function reparieren(i,sofort){
+    if(erledigt[i]) return;
+    erledigt[i]=true;
+    haus.classList.add('r'+i);
+    spots[i].classList.add('done');
+    spots[i].setAttribute('aria-label',spots[i].getAttribute('aria-label')+' – erledigt');
+    items[i].classList.add('zeigen');
+    var n=Object.keys(erledigt).length;
+    anz.textContent=n;
+    for(var s=0;s<striche.length;s++) striche[s].classList.toggle('an',s<n);
+    tipp.textContent = n<4 ? 'Noch '+(4-n)+(4-n===1?' Stelle':' Stellen')+' offen.' : 'Alles erledigt – so sieht ein gepflegtes Dach aus.';
+    if(n===4){
+      fertig.classList.add('zeigen');
+      if(!sofort) setTimeout(function(){fertig.scrollIntoView({behavior:'smooth',block:'nearest'});},700);
+    }
+  }
+  spots.forEach(function(sp){
+    var i=+sp.getAttribute('data-i');
+    sp.addEventListener('click',function(){reparieren(i);});
+    sp.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();reparieren(i);}});
+  });
+  document.getElementById('nochmal').addEventListener('click',function(){
+    erledigt={};
+    for(var i=0;i<4;i++){
+      haus.classList.remove('r'+i);
+      spots[i].classList.remove('done');
+      spots[i].setAttribute('aria-label',spots[i].getAttribute('aria-label').replace(' – erledigt',''));
+      items[i].classList.remove('zeigen');
+    }
+    striche.forEach(function(s){s.classList.remove('an');});
+    anz.textContent='0';
+    fertig.classList.remove('zeigen');
+    tipp.textContent='Tippen Sie auf die pulsierenden Punkte 1 bis 4.';
+    document.getElementById('check').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+
+  function pdfZustand(){ for(var i=0;i<4;i++) reparieren(i,true); }
+  if(document.documentElement.classList.contains('pdf')) pdfZustand();
+  new MutationObserver(function(){
+    if(document.documentElement.classList.contains('pdf')) pdfZustand();
+  }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

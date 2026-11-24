@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lärrys Dachdeckergeschäft – Leiter rauf (Entwurf 3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --himmel:#8fd0f2;
+  --himmel-hell:#dff3fd;
+  --himmel-tief:#2f7fb5;
+  --sonne:#ffd23f;
+  --sonne-hell:#fff2b8;
+  --holz:#b07a45;
+  --holz-dunkel:#7a4f27;
+  --tinte:#1f3b57;
+  --weiss:#ffffff;
+  --gras:#7cc46a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Nunito",system-ui,sans-serif;font-size:16.5px;line-height:1.55;color:var(--tinte);
+  background:var(--himmel-hell);
+  hyphens:manual;-webkit-hyphens:manual;overflow-wrap:break-word;
+}
+h1,h2,h3{font-family:"Fredoka",system-ui,sans-serif;line-height:1.08;font-weight:600}
+a{color:inherit}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+.demo{background:var(--tinte);color:#e8f4fb;font-size:12.5px;line-height:1.4;text-align:center;padding:8px 14px}
+.demo b{color:var(--sonne)}
+
+/* Kopf */
+.kopf{position:relative;background:var(--himmel);padding:26px 0 70px;overflow:hidden}
+.kopf .wolke{position:absolute;opacity:.9}
+.kopf .inner{position:relative;text-align:center}
+.marke{display:inline-flex;align-items:center;gap:8px;background:var(--weiss);border-radius:99px;padding:6px 14px 6px 8px;font-weight:800;font-size:13.5px;box-shadow:0 3px 0 rgba(31,59,87,.12)}
+.kopf h1{margin-top:18px;font-size:clamp(1.85rem,8.4vw,2.7rem);color:var(--tinte)}
+.kopf h1 .z{display:block;color:var(--weiss);-webkit-text-stroke:0;text-shadow:0 3px 0 var(--himmel-tief)}
+.kopf p{margin-top:12px;font-size:17px;font-weight:600}
+.huegel{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
+
+/* Spiel */
+.spiel{margin-top:-30px;position:relative;background:var(--weiss);border-radius:30px;box-shadow:0 6px 0 rgba(31,59,87,.08),0 20px 40px -26px rgba(31,59,87,.5);overflow:hidden}
+.spiel-kopf{padding:20px 18px 6px;text-align:center}
+.spiel-kopf h2{font-size:clamp(1.6rem,7.4vw,2.1rem)}
+.spiel-kopf p{font-size:15.5px;margin-top:6px;color:#3f5a73}
+.szene{display:block;width:100%;height:auto}
+.figur{transition:transform .9s cubic-bezier(.45,0,.3,1)}
+.figur .bein-l,.figur .bein-r,.figur .arm-l,.figur .arm-r{transform-box:fill-box}
+.figur .bein-l{transform-origin:50% 0}
+.figur .bein-r{transform-origin:50% 0}
+.figur .arm-r{transform-origin:50% 100%}
+.figur.klettert .bein-l{animation:schritt .45s ease-in-out 2 alternate}
+.figur.klettert .bein-r{animation:schritt .45s ease-in-out 2 alternate-reverse}
+.figur.winkt .arm-r{animation:winken .5s ease-in-out infinite alternate}
+@keyframes schritt{from{transform:rotate(14deg)}to{transform:rotate(-14deg)}}
+@keyframes winken{from{transform:rotate(-14deg)}to{transform:rotate(22deg)}}
+.sprosse{transition:fill .4s}
+.sprosse.an{fill:var(--sonne)}
+.nummer circle{transition:fill .4s}
+.nummer.an circle{fill:var(--sonne);stroke:var(--holz-dunkel)}
+.blase{opacity:0;transition:opacity .4s .6s}
+.oben .blase{opacity:1}
+
+.steuer{padding:6px 16px 4px;display:grid;gap:10px}
+.hoch{
+  appearance:none;border:0;cursor:pointer;width:100%;min-height:60px;border-radius:99px;
+  background:var(--sonne);color:var(--tinte);font:600 20px "Fredoka",sans-serif;
+  box-shadow:0 5px 0 #d9a800;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .1s, box-shadow .1s;
+}
+.hoch:active{transform:translateY(4px);box-shadow:0 1px 0 #d9a800}
+.hoch:disabled{background:#e7eef3;color:#7d93a6;box-shadow:0 5px 0 #cfdbe4;cursor:default}
+.runter{display:none;background:none;border:0;color:var(--himmel-tief);font:700 15px "Nunito",sans-serif;text-decoration:underline;cursor:pointer;padding:4px}
+.oben .runter{display:block}
+.zaehler{text-align:center;font-weight:800;font-size:14px;color:#5b7690}
+
+.schritte{list-style:none;padding:12px 16px 18px;display:grid;gap:10px}
+.schritte li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start;border-radius:20px;padding:12px;background:#f1f7fb;border:2px dashed #c9dbe8}
+.schritte li .n{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font:700 20px "Fredoka",sans-serif;background:#e2ecf3;color:#8aa2b6}
+.schritte li h3{font-size:18.5px;color:#8aa2b6}
+.schritte li p{display:none;font-size:15px;margin-top:3px}
+.schritte li .zu{font-size:14px;color:#8aa2b6;margin-top:2px}
+.schritte li.offen{background:var(--sonne-hell);border:2px solid #f3d56b}
+.schritte li.offen .n{background:var(--sonne);color:var(--tinte)}
+.schritte li.offen h3{color:var(--tinte)}
+.schritte li.offen p{display:block}
+.schritte li.offen .mini{display:flex}
+.schritte li.offen .zu{display:none}
+.schritte li.neu{animation:hopp .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hopp{0%{transform:scale(.92)}100%{transform:none}}
+.schritte .mini{display:none;flex-wrap:wrap;gap:8px;margin-top:8px}
+.schritte .mini a{font-weight:800;font-size:14px;background:var(--weiss);border-radius:99px;padding:6px 12px;text-decoration:none;border:2px solid #f3d56b}
+.ablauf-hinweis{padding:0 18px 18px;font-size:13.5px;color:#5b7690;text-align:center}
+
+/* Panorama */
+.panorama{display:none;margin:0 12px 16px;border-radius:24px;overflow:hidden;background:var(--himmel-hell)}
+.panorama.offen{display:block;animation:auf 1.6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes auf{from{clip-path:inset(100% 0 0 0 round 24px)}to{clip-path:inset(0 0 0 0 round 24px)}}
+.panorama svg{display:block;width:100%;height:auto}
+.panorama .unter{background:var(--tinte);color:#e8f4fb;padding:14px 16px 16px;text-align:center}
+.panorama .unter h3{font-size:clamp(1.25rem,5.8vw,1.55rem);color:var(--sonne)}
+.panorama .unter p{font-size:15px;margin-top:4px}
+.boot{animation:segeln 14s ease-in-out infinite alternate}
+@keyframes segeln{from{transform:translateX(0)}to{transform:translateX(70px)}}
+.glitzer{animation:glitz 2.4s ease-in-out infinite}
+.glitzer:nth-child(2n){animation-delay:.8s}
+.glitzer:nth-child(3n){animation-delay:1.6s}
+@keyframes glitz{0%,100%{opacity:.2}50%{opacity:1}}
+
+/* Abschnitte */
+.ab{padding:46px 0 0}
+.ab h2{font-size:clamp(1.8rem,8vw,2.4rem);text-align:center}
+.ab .unterzeile{text-align:center;margin-top:6px;color:#3f5a73}
+.blasen{margin-top:20px;display:grid;gap:14px}
+.blase-karte{border-radius:26px;padding:18px 18px 16px;position:relative}
+.blase-karte h3{font-size:21px;display:flex;align-items:center;gap:10px}
+.blase-karte h3 svg{flex:0 0 auto}
+.blase-karte ul{list-style:none;margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.blase-karte li{background:rgba(255,255,255,.85);border-radius:99px;padding:6px 13px;font-weight:700;font-size:14.5px;line-height:1.3}
+.b-dach{background:#ffe48a}
+.b-fass{background:#c9e9fa}
+.b-kontr{background:#d9f0cf}
+.b-spengler{background:#f6dcc0}
+
+.platz{margin-top:14px;border:3px dashed #9fc2db;border-radius:24px;padding:20px 16px;text-align:center;color:#5b7690;font-size:14.5px;background:rgba(255,255,255,.55)}
+.platz b{display:block;font-family:"Fredoka",sans-serif;font-weight:600;font-size:17px;color:var(--tinte);margin-bottom:2px}
+.platz svg{display:block;margin:0 auto 8px}
+
+/* Kontakt */
+.kontakt{margin-top:20px;display:grid;gap:12px}
+.pill{display:flex;align-items:center;gap:14px;min-height:64px;border-radius:99px;padding:10px 22px 10px 10px;text-decoration:none;font-weight:800;font-size:18px;box-shadow:0 5px 0 rgba(31,59,87,.15)}
+.pill .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:rgba(255,255,255,.9)}
+.pill small{display:block;font-weight:600;font-size:13px;opacity:.8}
+.pill .t{line-height:1.2}
+.p-tel{background:var(--sonne);color:var(--tinte)}
+.p-mob{background:var(--himmel-tief);color:#fff}
+.p-mob .ic{background:rgba(255,255,255,.18)}
+.p-mail{background:var(--weiss);color:var(--tinte);font-size:15.5px}
+.p-mail .ic{background:var(--himmel-hell)}
+.termin{margin-top:16px;text-align:center;font-weight:700;background:var(--weiss);border-radius:20px;padding:12px 14px}
+.adresse{margin-top:14px;display:flex;gap:14px;align-items:center;justify-content:center;text-align:left;font-size:15.5px}
+.adresse svg{flex:0 0 auto}
+
+footer{margin-top:48px;background:var(--tinte);color:#bcd3e4;text-align:center;font-size:13.5px;padding:26px 16px 34px}
+footer b{color:#fff}
+
+/* PDF */
+.pdf .panorama{display:block;animation:none}
+.pdf .figur{transition:none}
+.pdf .boot,.pdf .glitzer,.pdf .figur *{animation:none!important}
+.pdf .glitzer{opacity:.8}
+.pdf .schritte li{animation:none}
+.pdf .blase{transition:none}
+.pdf .runter{display:none!important}
+@media (prefers-reduced-motion:reduce){.boot,.glitzer{animation:none}}
+</style>
+</head>
+<body>
+<div class="demo"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite von Lärrys Dachdeckergeschäft</div>
+
+<header class="kopf">
+  <svg class="wolke" style="left:-20px;top:22px" width="120" height="50" viewBox="0 0 120 50" aria-hidden="true"><path d="M14 44q-14 0-12-12t16-10q4-16 22-14 10-10 26-2 18-6 24 10 18 0 16 16t-18 12z" fill="#fff"/></svg>
+  <svg class="wolke" style="left:-30px;top:150px" width="96" height="40" viewBox="0 0 96 40" aria-hidden="true"><path d="M12 36q-12 0-10-10t14-8q4-12 18-11 8-8 20-2 16-4 20 8 14 0 12 13t-14 10z" fill="#fff"/></svg>
+  <svg class="wolke" style="right:58px;top:12px" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="13" fill="#ffd23f"/><g stroke="#ffd23f" stroke-width="3" stroke-linecap="round"><path d="M22 2v4M22 38v4M2 22h4M38 22h4M8 8l3 3M33 33l3 3M8 36l3-3M33 11l3-3"/></g></svg>
+  <div class="wrap inner">
+    <span class="marke">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="13" fill="#ffd23f"/><path d="M8 21 11 5M15 21 18 5M9 17h7M10 13h7M10.5 9h7" stroke="#7a4f27" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Sigriswil am Thunersee
+    </span>
+    <h1>Lärrys <span class="z">Dachdecker&shy;geschäft</span></h1>
+    <p>Bernhard von Gunten – Dächer und Fassaden</p>
+  </div>
+  <svg class="huegel" viewBox="0 0 430 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40q60-34 130-14t140-8 160 6v36H0z" fill="#b9e3f7"/>
+    <path d="M0 50q90-26 200-6t230-4v20H0z" fill="#dff3fd"/>
+  </svg>
+</header>
+
+<div class="wrap">
+  <section class="spiel" id="spiel">
+    <div class="spiel-kopf">
+      <h2>Leiter rauf!</h2>
+      <p>So läuft eine Zusammenarbeit ab – Sprosse für Sprosse. Oben wartet eine Aussicht.</p>
+    </div>
+
+    <svg class="szene" id="szene" viewBox="0 0 400 440" role="img" aria-label="Gezeichnete Leiter an einem Haus, eine kleine Dachdecker-Figur klettert hoch">
+      <defs>
+        <linearGradient id="h3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd8f5"/><stop offset="1" stop-color="#e3f5fd"/></linearGradient>
+        <pattern id="ziegel3" width="20" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)">
+          <rect width="20" height="18" fill="#e0703f"/>
+          <path d="M0 0h20v9a10 7 0 0 1-20 0z" fill="#ec8150" stroke="#b9512a" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="400" height="440" fill="url(#h3)"/>
+      <!-- Wolken -->
+      <path d="M30 70q-12 0-10-10t14-8q4-12 18-11 8-8 20-2 16-4 20 8 14 0 12 13t-14 10z" fill="#fff" opacity=".9"/>
+      <path d="M110 30q-8 0-7-7t10-6q3-9 13-8 6-6 14-1 11-3 14 6 10 0 9 9t-10 7z" fill="#fff" opacity=".8"/>
+      <!-- Hügel und Baum -->
+      <path d="M0 360q70-40 150-20t120 10v90H0z" fill="#a8db92"/>
+      <path d="M0 400q120-30 240-6t160-8v54H0z" fill="#7cc46a"/>
+      <path d="M44 402v-62" stroke="#7a4f27" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="44" cy="318" r="30" fill="#5fae55"/><circle cx="26" cy="334" r="18" fill="#6dbb5f"/><circle cx="64" cy="332" r="18" fill="#56a24d"/>
+      <g fill="#ffd23f"><circle cx="90" cy="414" r="4"/><circle cx="104" cy="420" r="4"/><circle cx="76" cy="422" r="4"/></g>
+
+      <!-- Haus: Seitenwand -->
+      <rect x="212" y="120" width="200" height="300" fill="#fff6e6" stroke="#1f3b57" stroke-width="3"/>
+      <g stroke="#ecdcbf" stroke-width="2"><path d="M212 180h188M212 240h188M212 300h188M212 360h188"/></g>
+      <rect x="262" y="170" width="70" height="66" rx="8" fill="#bfe6f8" stroke="#1f3b57" stroke-width="3"/>
+      <path d="M297 170v66M262 203h70" stroke="#1f3b57" stroke-width="3"/>
+      <path d="M254 236h86" stroke="#b07a45" stroke-width="7" stroke-linecap="round"/>
+      <g fill="#ff7a59"><circle cx="270" cy="230" r="5"/><circle cx="285" cy="231" r="5"/><circle cx="310" cy="230" r="5"/><circle cx="326" cy="231" r="5"/></g>
+      <g fill="#5fae55"><circle cx="278" cy="232" r="3"/><circle cx="318" cy="232" r="3"/></g>
+      <rect x="282" y="300" width="64" height="120" rx="6" fill="#b07a45" stroke="#1f3b57" stroke-width="3"/>
+      <circle cx="334" cy="364" r="4" fill="#ffd23f"/>
+      <!-- Dach -->
+      <path d="M190 118 400 34v92H190z" fill="url(#ziegel3)" stroke="#1f3b57" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M190 118 400 34" stroke="#1f3b57" stroke-width="3"/>
+      <!-- Rinne -->
+      <rect x="186" y="116" width="34" height="11" rx="5.5" fill="#9fb3c4" stroke="#1f3b57" stroke-width="2.5"/>
+      <path d="M203 127v20" stroke="#1f3b57" stroke-width="2.5"/>
+
+      <!-- Leiter: Holme von (96,428)->(166,104) und (136,428)->(206,104) -->
+      <g id="leiter">
+        <path d="M94 430 164 102" stroke="#7a4f27" stroke-width="10" stroke-linecap="round"/>
+        <path d="M134 430 204 102" stroke="#7a4f27" stroke-width="10" stroke-linecap="round"/>
+        <path d="M94 430 164 102" stroke="#c48a52" stroke-width="5" stroke-linecap="round"/>
+        <path d="M134 430 204 102" stroke="#c48a52" stroke-width="5" stroke-linecap="round"/>
+        <g id="sprossen"></g>
+      </g>
+      <g id="nummern"></g>
+
+      <!-- Figur -->
+      <g id="figur" class="figur">
+        <g transform="translate(-6 0)">
+          <!-- Beine -->
+          <path class="bein-l" d="M-5 -30v24" stroke="#2f7fb5" stroke-width="8" stroke-linecap="round"/>
+          <path class="bein-r" d="M5 -30v24" stroke="#24689a" stroke-width="8" stroke-linecap="round"/>
+          <path d="M-9 -3h8M1 -3h9" stroke="#1f3b57" stroke-width="5" stroke-linecap="round"/>
+          <!-- Körper -->
+          <rect x="-11" y="-58" width="22" height="31" rx="9" fill="#2f7fb5"/>
+          <rect x="-7" y="-52" width="14" height="10" rx="3" fill="#ffd23f"/>
+          <!-- Arme -->
+          <path class="arm-l" d="M-10 -52l-8 -16" stroke="#f2c19a" stroke-width="6" stroke-linecap="round"/>
+          <path class="arm-r" d="M10 -52l9 -16" stroke="#f2c19a" stroke-width="6" stroke-linecap="round"/>
+          <!-- Kopf -->
+          <circle cy="-68" r="10" fill="#f2c19a"/>
+          <path d="M-11 -70a11 10 0 0 1 22 0z" fill="#ffd23f"/>
+          <path d="M8 -71h7" stroke="#ffd23f" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="4" cy="-66" r="1.4" fill="#1f3b57"/>
+        </g>
+        <g class="blase" transform="translate(-118 -120)">
+          <rect width="120" height="34" rx="17" fill="#fff" stroke="#1f3b57" stroke-width="2.5"/>
+          <path d="M96 33l8 12 2-12" fill="#fff" stroke="#1f3b57" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M97 31h8" stroke="#fff" stroke-width="4"/>
+          <text x="60" y="22" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="15" fill="#1f3b57">Was für ein Blick!</text>
+        </g>
+      </g>
+    </svg>
+
+    <div class="steuer">
+      <div class="zaehler" id="zaehler" aria-live="polite">Noch unten – 0 von 5 Sprossen</div>
+      <button class="hoch" id="hoch" type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M5 11l7-7 7 7" fill="none" stroke="#1f3b57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="hoch-text">Eine Sprosse höher</span>
+      </button>
+    </div>
+
+    <div class="panorama" id="panorama" aria-live="polite">
+      <svg viewBox="0 0 400 210" role="img" aria-label="Gezeichneter Blick über den Thunersee auf den Niesen">
+        <defs>
+          <linearGradient id="abend" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd0f2"/><stop offset=".75" stop-color="#fff2b8"/></linearGradient>
+          <linearGradient id="see" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9fd3"/><stop offset="1" stop-color="#2f7fb5"/></linearGradient>
+          <linearGradient id="niesen" x1="0" y1="0" x2="1" y2="0"><stop offset=".5" stop-color="#5a7f9e"/><stop offset=".5" stop-color="#46698a"/></linearGradient>
+        </defs>
+        <rect width="400" height="210" fill="url(#abend)"/>
+        <circle cx="74" cy="56" r="20" fill="#ffd23f"/>
+        <!-- hintere Berge -->
+        <path d="M0 118 40 92l28 14 34-30 30 24 26-16 30 30H0z" fill="#9bb8cf"/>
+        <path d="M300 118l30-26 22 12 26-20 22 18v16z" fill="#9bb8cf"/>
+        <!-- Niesen: Pyramide -->
+        <path d="M168 120 246 34l84 86z" fill="url(#niesen)"/>
+        <path d="M240 41l6-7 7 8-4 3-4-3-3 2z" fill="#fff" opacity=".85"/>
+        <text x="246" y="24" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="13" fill="#1f3b57">Niesen</text>
+        <!-- gegenüberliegendes Ufer -->
+        <path d="M0 122q60-10 120-4t140-2 140 2v10H0z" fill="#6aa86a"/>
+        <!-- See -->
+        <path d="M0 128h400v56H0z" fill="url(#see)"/>
+        <g fill="#fff">
+          <rect class="glitzer" x="40" y="142" width="18" height="2.5" rx="1.2"/>
+          <rect class="glitzer" x="120" y="152" width="26" height="2.5" rx="1.2"/>
+          <rect class="glitzer" x="220" y="140" width="16" height="2.5" rx="1.2"/>
+          <rect class="glitzer" x="300" y="160" width="24" height="2.5" rx="1.2"/>
+          <rect class="glitzer" x="70" y="166" width="14" height="2.5" rx="1.2"/>
+          <rect class="glitzer" x="350" y="146" width="18" height="2.5" rx="1.2"/>
+        </g>
+        <text x="200" y="176" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="13" fill="#dff3fd">Thunersee</text>
+        <g class="boot">
+          <path d="M120 150h30l-5 7h-21z" fill="#fff"/>
+          <path d="M134 149v-24l13 22z" fill="#ffd23f"/>
+          <path d="M132 149v-18l-9 16z" fill="#fff"/>
+        </g>
+        <!-- Vordergrund: Dachfirst -->
+        <path d="M0 184 400 172v38H0z" fill="#e0703f"/>
+        <g fill="none" stroke="#b9512a" stroke-width="1.5">
+          <path d="M0 194 400 183M0 204 400 194"/>
+          <path d="M20 184v26M50 183v27M80 182v28M110 181v29M140 180v30M170 179v31M200 178v32M230 177v33M260 176v34M290 176v34M320 175v35M350 174v36M380 173v37"/>
+        </g>
+        <path d="M0 184 400 172" stroke="#1f3b57" stroke-width="3"/>
+        <!-- kleine Figur sitzt auf dem First -->
+        <g transform="translate(330 174)">
+          <path d="M-4 -2l-6 10M4 -2l6 10" stroke="#2f7fb5" stroke-width="5" stroke-linecap="round"/>
+          <rect x="-7" y="-20" width="14" height="19" rx="6" fill="#2f7fb5"/>
+          <path d="M6 -16l9 -10" stroke="#f2c19a" stroke-width="4" stroke-linecap="round"/>
+          <circle cy="-26" r="6.5" fill="#f2c19a"/>
+          <path d="M-7 -27a7 6.5 0 0 1 14 0z" fill="#ffd23f"/>
+        </g>
+      </svg>
+      <div class="unter">
+        <h3>Oben angekommen</h3>
+        <p>Von Sigriswil aus geht der Blick über den Thunersee bis zum Niesen. Wer aufs Dach steigt, sieht ihn so.</p>
+      </div>
+    </div>
+
+    <ol class="schritte" id="schritte">
+      <li data-s="1"><span class="n">1</span><div><h3>Anrufen oder Mail</h3><span class="zu">Sprosse 1 – noch nicht erreicht</span><p>Sie melden sich per Telefon oder E-Mail und erzählen kurz, worum es geht.</p>
+        <div class="mini"><a href="tel:+41332513654">033 251 36 54</a><a href="mailto:bernhardvongunten@hotmail.com">E-Mail</a></div></div></li>
+      <li data-s="2"><span class="n">2</span><div><h3>Besichtigung vor Ort</h3><span class="zu">Sprosse 2 – noch nicht erreicht</span><p>Herr von Gunten schaut sich Dach oder Fassade an – nach telefonischer Vereinbarung.</p></div></li>
+      <li data-s="3"><span class="n">3</span><div><h3>Offerte</h3><span class="zu">Sprosse 3 – noch nicht erreicht</span><p>Sie erhalten eine Offerte für die besprochenen Arbeiten.</p></div></li>
+      <li data-s="4"><span class="n">4</span><div><h3>Ausführung</h3><span class="zu">Sprosse 4 – noch nicht erreicht</span><p>Die Arbeiten am Dach oder an der Fassade werden ausgeführt.</p></div></li>
+      <li data-s="5"><span class="n">5</span><div><h3>Regelmässige Dachkontrolle</h3><span class="zu">Sprosse 5 – noch nicht erreicht</span><p>Im Herbst und im Frühling: Dachrinnen reinigen, defekte Platten ersetzen, Sturmschäden beheben, Moosbehandlung.</p></div></li>
+    </ol>
+    <p class="ablauf-hinweis">Allgemeiner Ablauf – die Einzelheiten besprechen Sie direkt mit Herrn von Gunten.</p>
+    <div class="steuer" style="padding-bottom:16px"><button class="runter" id="runter" type="button">Wieder runterklettern</button></div>
+  </section>
+
+  <!-- Leistungen -->
+  <section class="ab" id="leistungen">
+    <h2>Was gemacht wird</h2>
+    <p class="unterzeile">Im Neubau und bei Renovationen</p>
+    <div class="blasen">
+      <div class="blase-karte b-dach">
+        <h3><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><path d="M2 16 17 3l15 13" fill="none" stroke="#1f3b57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14v13h20V14" fill="#fff" stroke="#1f3b57" stroke-width="2.5" stroke-linejoin="round"/></svg>Fürs Dach</h3>
+        <ul>
+          <li>Sämtliche Ziegeleindeckungen</li>
+          <li>Sämtliche Unterdacharten</li>
+          <li>Eternit</li>
+          <li>Dachschiefer</li>
+          <li>Wellplatten</li>
+          <li>Schindeleindeckungen</li>
+          <li>Dachfenster und jegliches Dachzubehör</li>
+          <li>Montagehilfe für Solaranlagen</li>
+        </ul>
+      </div>
+      <div class="blase-karte b-fass">
+        <h3><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><rect x="4" y="3" width="26" height="24" rx="3" fill="#fff" stroke="#1f3b57" stroke-width="2.5"/><path d="M4 11h26M4 19h26M13 3v8M22 11v8M13 19v8" stroke="#1f3b57" stroke-width="2"/></svg>Für die Fassade</h3>
+        <ul>
+          <li>Faserzementplatten</li>
+          <li>Holzschindeln</li>
+          <li>Schieferplatten</li>
+          <li>Fassadenelemente aus Holzfasern</li>
+        </ul>
+      </div>
+      <div class="blase-karte b-kontr">
+        <h3><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><circle cx="17" cy="15" r="12" fill="#fff" stroke="#1f3b57" stroke-width="2.5"/><path d="M11 15l4 4 8-8" fill="none" stroke="#1f3b57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Dachkontrolle im Herbst und Frühling</h3>
+        <ul>
+          <li>Dachrinnen reinigen</li>
+          <li>Defekte Platten ersetzen</li>
+          <li>Sturmschäden beheben</li>
+          <li>Moosbehandlung</li>
+        </ul>
+      </div>
+      <div class="blase-karte b-spengler">
+        <h3><svg width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><path d="M4 8h26l-3 8a4 4 0 0 1-4 3H11a4 4 0 0 1-4-3z" fill="#fff" stroke="#1f3b57" stroke-width="2.5" stroke-linejoin="round"/><path d="M25 19v8" stroke="#1f3b57" stroke-width="3" stroke-linecap="round"/></svg>Spenglerei</h3>
+      </div>
+    </div>
+
+    <div class="platz">
+      <svg width="64" height="44" viewBox="0 0 64 44" aria-hidden="true"><rect x="2" y="8" width="60" height="34" rx="8" fill="none" stroke="#9fc2db" stroke-width="3"/><circle cx="32" cy="25" r="10" fill="none" stroke="#9fc2db" stroke-width="3"/><path d="M20 8l4-6h16l4 6" fill="none" stroke="#9fc2db" stroke-width="3" stroke-linejoin="round"/></svg>
+      <b>Platzhalter – Ihr Foto</b>Referenz: Fassadenprojekt in Aeschlen
+    </div>
+    <div class="platz"><b>Platzhalter – weitere Referenzen</b>Hier können weitere Dächer und Fassaden gezeigt werden.</div>
+    <div class="platz"><b>Platzhalter – Ihre Bewertungen</b>Was Kundinnen und Kunden sagen</div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="ab" id="kontakt">
+    <h2>Erste Sprosse: anrufen</h2>
+    <p class="unterzeile">Am einfachsten geht es per Telefon.</p>
+    <div class="kontakt">
+      <a class="pill p-tel" href="tel:+41332513654">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.4-2 1.4a12 12 0 0 0 6.6 6.6l1.4-2L21 15l-.5 2.4A3 3 0 0 1 17.6 20 14.6 14.6 0 0 1 4 6.4a3 3 0 0 1 2.6-2.9z" fill="#1f3b57"/></svg></span>
+        <span class="t">033 251 36 54<small>Telefon</small></span>
+      </a>
+      <a class="pill p-mob" href="tel:+41798210433">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M10 18h4" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <span class="t">079 821 04 33<small>Mobile</small></span>
+      </a>
+      <a class="pill p-mail" href="mailto:bernhardvongunten@hotmail.com">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3" fill="none" stroke="#1f3b57" stroke-width="2.2"/><path d="m3.5 6.5 8.5 7 8.5-7" fill="none" stroke="#1f3b57" stroke-width="2.2"/></svg></span>
+        <span class="t">bernhardvongunten@&#8203;hotmail.com<small>E-Mail</small></span>
+      </a>
+    </div>
+    <p class="termin">Termine nach telefonischer Vereinbarung</p>
+    <div class="adresse">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#ffd23f"/><path d="M20 31s-8-8-8-13a8 8 0 0 1 16 0c0 5-8 13-8 13z" fill="#fff" stroke="#1f3b57" stroke-width="2"/><circle cx="20" cy="18" r="3" fill="#1f3b57"/></svg>
+      <div><b>Lärrys Dachdeckergeschäft</b><br>Bernhard von Gunten<br>Schliereggweg 6, 3655 Sigriswil</div>
+    </div>
+  </section>
+</div>
+
+<footer><b>Entwurf / Demo von Max Rathsack</b><br>keine offizielle Webseite von Lärrys Dachdeckergeschäft</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var A=[115,430],B=[185,102]; // Mittellinie der Leiter
+  var T=[0.0,0.17,0.33,0.49,0.65,0.81]; // Standpunkte: Boden + 5 Sprossen
+  var spross=document.getElementById('sprossen'),num=document.getElementById('nummern');
+  var figur=document.getElementById('figur'),spiel=document.getElementById('spiel');
+  var hoch=document.getElementById('hoch'),hochText=document.getElementById('hoch-text');
+  var zaehler=document.getElementById('zaehler'),pano=document.getElementById('panorama');
+  var items=[].slice.call(document.querySelectorAll('#schritte li'));
+  var stufe=0;
+  function pt(t){return [A[0]+(B[0]-A[0])*t,A[1]+(B[1]-A[1])*t];}
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  // Sprossen zeichnen (Füsse stehen auf der Sprosse)
+  var sprossEls=[],numEls=[];
+  for(var i=1;i<=5;i++){
+    var p=pt(T[i]);
+    var r=el('rect',{x:p[0]-20,y:p[1]-3.5,width:40,height:7,rx:3.5,fill:'#c48a52',stroke:'#7a4f27','stroke-width':2,'class':'sprosse'});
+    spross.appendChild(r);sprossEls.push(r);
+    var g=el('g',{'class':'nummer',transform:'translate('+(p[0]-38)+' '+p[1]+')'});
+    g.appendChild(el('circle',{r:11,fill:'#fff',stroke:'#9fb3c4','stroke-width':2}));
+    var tx=el('text',{'text-anchor':'middle',y:5,'font-family':'Fredoka, sans-serif','font-weight':600,'font-size':14,fill:'#1f3b57'});tx.textContent=i;
+    g.appendChild(tx);num.appendChild(g);numEls.push(g);
+  }
+  function platzieren(){
+    var p=pt(T[stufe]);
+    if(stufe===0) p=[p[0]-48,p[1]-6];
+    figur.setAttribute('transform','translate('+p[0].toFixed(1)+' '+p[1].toFixed(1)+')');
+  }
+  var TEXTE=['Noch unten – 0 von 5 Sprossen','Sprosse 1 von 5','Sprosse 2 von 5','Sprosse 3 von 5','Sprosse 4 von 5','Ganz oben – alle 5 Sprossen geschafft!'];
+  function zeigen(animiert){
+    platzieren();
+    sprossEls.forEach(function(r,i){r.classList.toggle('an',i<stufe);});
+    numEls.forEach(function(g,i){g.classList.toggle('an',i<stufe);});
+    items.forEach(function(li,i){
+      var war=li.classList.contains('offen');
+      li.classList.toggle('offen',i<stufe);
+      if(animiert && !war && i<stufe){li.classList.add('neu');setTimeout(function(){li.classList.remove('neu');},600);}
+    });
+    zaehler.textContent=TEXTE[stufe];
+    var oben=stufe===5;
+    spiel.classList.toggle('oben',oben);
+    figur.classList.toggle('winkt',oben);
+    pano.classList.toggle('offen',oben);
+    hoch.disabled=oben;
+    hochText.textContent=oben?'Oben angekommen':'Eine Sprosse höher';
+  }
+  hoch.addEventListener('click',function(){
+    if(stufe>=5) return;
+    stufe++;
+    figur.classList.remove('klettert');void figur.getBoundingClientRect();figur.classList.add('klettert');
+    zeigen(true);
+    if(stufe===5) setTimeout(function(){pano.scrollIntoView({behavior:'smooth',block:'center'});},900);
+  });
+  document.getElementById('runter').addEventListener('click',function(){
+    stufe=0;zeigen(false);spiel.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  function pdfZustand(){stufe=5;figur.classList.remove('klettert');zeigen(false);}
+  zeigen(false);
+  if(document.documentElement.classList.contains('pdf')) pdfZustand();
+  new MutationObserver(function(){
+    if(document.documentElement.classList.contains('pdf')) pdfZustand();
+  }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

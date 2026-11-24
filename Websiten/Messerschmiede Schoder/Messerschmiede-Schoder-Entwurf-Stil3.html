@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Messerschmiede Schoder – Laden oben, Werkstatt unten (Entwurf)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:ital,wght@0,400;0,600;0,800;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#efe4cf;
+  --sand2:#e2d2b2;
+  --sand3:#cbb48a;
+  --aare:#2387a6;
+  --aare-hell:#7cc4d6;
+  --tanne:#2c5b45;
+  --tanne-hell:#dfe9df;
+  --tinte:#2f2a22;
+  --ziegel:#b5674a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--sand);color:var(--tinte);font-family:"Nunito",system-ui,sans-serif;font-size:17px;line-height:1.55;hyphens:manual;-webkit-hyphens:manual}
+a{color:inherit}
+.demo{background:var(--tanne);color:#f3efe2;font-size:13px;line-height:1.35;padding:8px 16px;text-align:center;font-weight:600}
+.rahmen{max-width:560px;margin:0 auto;padding:0 16px}
+.hand{font-family:"Caveat",cursive;font-weight:700}
+
+header{padding:22px 0 8px}
+.firma{display:flex;align-items:center;gap:10px}
+.firma svg{flex:none}
+.firma b{font-family:"Fredoka",sans-serif;font-weight:600;font-size:19px;line-height:1.1;display:block}
+.firma span{font-size:13.5px;color:#6d6252}
+h1{font-family:"Fredoka",sans-serif;font-weight:600;font-size:clamp(33px,9.6vw,52px);line-height:1.05;margin:22px 0 10px;color:var(--tinte)}
+h1 .oben{color:var(--ziegel)}
+h1 .unten{color:var(--aare)}
+.intro{font-size:17.5px;color:#4d4436}
+
+/* Haus */
+.haus-sek{padding:8px 0 10px}
+.haus{position:relative;margin:14px -16px 0;background:linear-gradient(180deg,#e6eff0 0%,#f4ecdc 60%);border-top:2px solid var(--sand2);border-bottom:2px solid var(--sand2)}
+.haus svg{display:block;width:100%;height:auto;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+#kabine{cursor:grab}
+#kabine.zieht{cursor:grabbing}
+.etage-flaeche{cursor:pointer}
+.welle{animation:fliessen 6s linear infinite}
+.welle.b{animation-duration:9s}
+@keyframes fliessen{from{transform:translateX(0)}to{transform:translateX(-48px)}}
+.stein3{transform-box:fill-box;transform-origin:center;animation:drehen 1.6s linear infinite;animation-play-state:paused}
+.unten-aktiv .stein3{animation-play-state:running}
+@keyframes drehen{to{transform:rotate(360deg)}}
+.funk{opacity:0;transition:opacity .4s}
+.unten-aktiv .funk{opacity:1}
+.dimm{transition:opacity .6s;pointer-events:none}
+
+.steuer{display:flex;gap:10px;align-items:center;margin-top:14px}
+.lift-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:16px;border:0;background:var(--tanne);color:#fff;font:600 18px/1.2 "Fredoka",sans-serif;cursor:pointer;box-shadow:0 4px 0 #1b3a2c;padding:10px 14px}
+.lift-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #1b3a2c}
+.lift-btn svg{flex:none}
+.wo{font-size:14.5px;color:#6d6252;margin-top:8px;text-align:center}
+.wo b{color:var(--tinte)}
+
+.etagen{margin-top:18px}
+.etage{display:none;background:#fffaf0;border-radius:22px;padding:22px 18px;box-shadow:0 2px 0 var(--sand2),0 10px 24px -14px rgba(70,50,20,.35);animation:rein .5s ease both}
+.etage.zeigen{display:block}
+@keyframes rein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.etage-kopf{display:flex;align-items:center;gap:10px}
+.etage-kopf .nr{flex:none;min-width:44px;padding:0 8px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;font:600 15px "Fredoka",sans-serif}
+.etage.laden .nr{background:var(--ziegel)}
+.etage.werkstatt .nr{background:var(--aare)}
+.etage h2{font-family:"Fredoka",sans-serif;font-weight:600;font-size:clamp(25px,7vw,32px);line-height:1.1}
+.etage .wo-genau{font-size:14px;color:#7a6e5c}
+.etage h3{font-family:"Fredoka",sans-serif;font-weight:600;font-size:19px;margin:20px 0 8px}
+.regal{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.regal li{background:var(--sand);border-radius:12px;padding:10px 10px 9px;font-weight:600;font-size:15.5px;line-height:1.25;display:flex;gap:8px;align-items:center}
+.regal li svg{flex:none}
+.regal li.breit{grid-column:1/-1}
+.zeiten{width:100%;border-collapse:collapse;font-size:16px}
+.zeiten td{padding:7px 0;border-bottom:1px dashed var(--sand3);vertical-align:top}
+.zeiten td:last-child{text-align:right;font-weight:600}
+.zeiten tr.zu td{color:#958a77;font-weight:400}
+.arbeit{list-style:none;display:grid;gap:10px}
+.arbeit li{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:start}
+.arbeit li b{display:block;font-size:16.5px}
+.arbeit li span{font-size:15.5px;color:#5c5243}
+.kunden{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.kunden span{background:var(--tanne-hell);color:var(--tanne);border-radius:99px;padding:4px 12px;font-weight:800;font-size:14px}
+.platz{border:2px dashed #b9a27a;border-radius:14px;padding:14px;text-align:center;font-weight:700;color:#8a7754;font-size:15px;margin-top:14px;background:rgba(255,255,255,.35)}
+.platz small{display:block;font-weight:400;font-size:14px;color:#8a7754;margin-top:2px}
+.ablauf{list-style:none;counter-reset:s;margin-top:8px}
+.ablauf li{counter-increment:s;padding-left:30px;position:relative;margin:6px 0;font-size:15.5px;text-align:left;color:#6f6044;font-weight:600}
+.ablauf li::before{content:counter(s);position:absolute;left:0;top:1px;width:21px;height:21px;border-radius:50%;background:#b9a27a;color:#fff;font-size:12.5px;display:grid;place-items:center}
+
+/* weitere Abschnitte */
+.sek{padding:36px 0 8px}
+.sek h2{font-family:"Fredoka",sans-serif;font-weight:600;font-size:clamp(26px,7.4vw,34px);line-height:1.1}
+.sek h2 .hand{color:var(--aare);font-size:1.05em;display:block;font-weight:700}
+.geschichte{margin-top:12px}
+.geschichte p + p{margin-top:10px}
+.slogan-zeile{margin-top:18px;font-family:"Caveat",cursive;font-size:clamp(30px,9vw,40px);color:var(--ziegel);line-height:1.1}
+.presse{display:grid;gap:10px;margin-top:16px}
+.presse div{background:#fffaf0;border-radius:16px;padding:14px 16px;border-left:6px solid var(--aare)}
+.presse small{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#7a6e5c;font-weight:800}
+.presse p{font-family:"Fredoka",sans-serif;font-weight:500;font-size:19px;line-height:1.25;margin-top:2px}
+
+.kontakt{background:var(--tanne);color:#f4f0e4;border-radius:26px;padding:26px 20px;margin-top:14px}
+.kontakt h2{color:#fff}
+.kontakt address{font-style:normal;font-size:17.5px;margin-top:12px;line-height:1.6}
+.kontakt address b{font-family:"Fredoka",sans-serif;font-weight:600;font-size:20px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:16px;text-decoration:none;font:600 18px "Fredoka",sans-serif;padding:10px 16px;margin-top:12px}
+.btn.anruf{background:#fff;color:var(--tanne)}
+.btn.platzbtn{border:2px dashed #9fbfae;color:#dfe9df;background:transparent;cursor:default;font-weight:500}
+.mail{font-size:14.5px;margin-top:10px;color:#cfe0d4}
+.mail span{border:1px dashed #9fbfae;border-radius:6px;padding:0 6px}
+.anfahrt{margin-top:22px;border-top:1px solid rgba(255,255,255,.2);padding-top:16px}
+.anfahrt h3{font-family:"Fredoka",sans-serif;font-weight:600;font-size:19px}
+.anfahrt p{font-size:16px;margin-top:6px;color:#e6efe8}
+footer{padding:26px 0 40px;font-size:13.5px;color:#7a6e5c;text-align:center}
+
+/* PDF */
+.pdf .etage{display:block;animation:none;margin-bottom:14px}
+.pdf .steuer,.pdf .wo{display:none}
+.pdf .dimm{opacity:0!important}
+.pdf .funk{opacity:1}
+.pdf .welle,.pdf .stein3{animation:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Messerschmiede Schoder</div>
+
+<header class="rahmen">
+  <div class="firma">
+    <svg width="42" height="42" viewBox="0 0 42 42" aria-hidden="true"><rect width="42" height="42" rx="12" fill="#2c5b45"/><path d="M9 26 L30 12 Q35 10 33 15 L14 30 Z" fill="#f3efe2"/><path d="M14 30 L9 34" stroke="#e2d2b2" stroke-width="4" stroke-linecap="round"/></svg>
+    <div><b>Messerschmiede Schoder</b><span>Obere Hauptgasse 64 · Thun · seit 1886</span></div>
+  </div>
+  <h1><span class="oben">Oben</span> der Laden.<br><span class="unten">Unten</span> die Werkstatt.</h1>
+  <p class="intro">Stahlwaren, Bestecke, Reparaturen und Schleiferei – in einem Altstadthaus zwischen Oberer Hauptgasse und Aare.</p>
+</header>
+
+<section class="haus-sek" id="haus">
+  <div class="rahmen">
+    <div class="haus" id="hausBox">
+      <svg id="hausSvg" viewBox="0 40 440 460" role="img" aria-label="Gezeichneter Querschnitt des Hauses: oben der Laden, unten die Werkstatt, daneben die Aare">
+        <defs>
+          <linearGradient id="wasser" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3fa3bf"/><stop offset="1" stop-color="#1b6f8a"/></linearGradient>
+          <linearGradient id="fels" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d6c39c"/><stop offset="1" stop-color="#bda57a"/></linearGradient>
+          <clipPath id="aareClip"><rect x="344" y="404" width="96" height="96"/></clipPath>
+        </defs>
+        <!-- Berge im Hintergrund -->
+        <path d="M150 140 L196 92 L222 112 L262 70 L306 116 L332 98 L380 142 L440 118 V160 H150 Z" fill="#c9d9dc" opacity=".8"/>
+        <path d="M250 82 L262 70 L276 85 L268 82 L262 88 Z" fill="#fff" opacity=".9"/>
+        <!-- anderes Ufer -->
+        <path d="M344 392 Q380 384 440 388 V406 H344 Z" fill="#9fb98f"/>
+        <!-- Tanne am Ufer -->
+        <g transform="translate(398 300)">
+          <rect x="-3" y="64" width="6" height="26" fill="#6b4f33"/>
+          <path d="M0 0 L22 36 H10 L28 64 H-28 L-10 36 H-22 Z" fill="#2c5b45"/>
+        </g>
+        <g transform="translate(366 330) scale(.7)">
+          <rect x="-3" y="64" width="6" height="26" fill="#6b4f33"/>
+          <path d="M0 0 L22 36 H10 L28 64 H-28 L-10 36 H-22 Z" fill="#3c7259"/>
+        </g>
+
+        <!-- Fels / Sandstein -->
+        <path d="M0 250 H56 V390 H344 V500 H0 Z" fill="url(#fels)"/>
+        <g stroke="#b29a6f" stroke-width="1.2" fill="none" opacity=".8">
+          <path d="M0 290 H56 M0 330 H56 M0 370 H56 M0 410 H344 M0 450 H344 M0 490 H344"/>
+          <path d="M28 250 V290 M14 290 V330 M40 330 V370 M24 370 V410 M90 410 V450 M180 410 V450 M270 410 V450 M140 450 V490 M230 450 V490 M320 450 V490 M60 450 V490"/>
+        </g>
+        <!-- Gasse -->
+        <rect x="0" y="246" width="56" height="6" fill="#8d7b5c"/>
+        <g fill="#a8946d"><circle cx="8" cy="244" r="2.2"/><circle cx="20" cy="244" r="2.2"/><circle cx="32" cy="244" r="2.2"/><circle cx="44" cy="244" r="2.2"/></g>
+        <text x="4" y="186" class="hand" font-size="14" fill="#5c4f3a">Obere</text>
+        <text x="4" y="200" class="hand" font-size="14" fill="#5c4f3a">Haupt-</text>
+        <text x="4" y="214" class="hand" font-size="14" fill="#5c4f3a">gasse</text>
+        <path d="M14 222 q4 10 14 14" fill="none" stroke="#5c4f3a" stroke-width="1.3"/><path d="M24 236 L29 236 L27 231" fill="none" stroke="#5c4f3a" stroke-width="1.3"/>
+
+        <!-- Dach -->
+        <path d="M40 144 L171 54 L302 144 Z" fill="#b5674a"/>
+        <path d="M62 140 L171 66 L280 140 Z" fill="#efe2c8"/>
+        <path d="M171 66 V140 M116 104 L226 104" stroke="#a88a62" stroke-width="3"/>
+        <rect x="226" y="58" width="16" height="32" fill="#9b5338"/>
+
+        <!-- Innenwände Hintergrund -->
+        <rect x="56" y="140" width="230" height="110" fill="#f8efdc"/>
+        <rect x="56" y="258" width="230" height="132" fill="#ece0c6"/>
+
+        <!-- LADEN -->
+        <g id="laden">
+          <text x="70" y="160" class="hand" font-size="19" fill="#b5674a">Laden</text>
+          <!-- Regale -->
+          <g stroke="#8d6b45" stroke-width="3" stroke-linecap="round"><path d="M70 176 H150 M70 204 H150 M70 232 H150"/></g>
+          <path d="M70 168 V246 M150 168 V246" stroke="#a88a62" stroke-width="2"/>
+          <!-- Scheren -->
+          <g fill="none" stroke="#5f6b73" stroke-width="1.6">
+            <circle cx="80" cy="168" r="3"/><circle cx="80" cy="174" r="3"/><path d="M83 169 L94 164 M83 173 L94 162"/>
+            <circle cx="104" cy="168" r="3"/><circle cx="104" cy="174" r="3"/><path d="M107 169 L118 164 M107 173 L118 162"/>
+            <circle cx="128" cy="168" r="3"/><circle cx="128" cy="174" r="3"/><path d="M131 169 L142 164 M131 173 L142 162"/>
+          </g>
+          <!-- Messer -->
+          <g>
+            <path d="M76 201 L96 196 L98 199 L80 202 Z" fill="#c9d0d5" stroke="#6e7980" stroke-width=".8"/><rect x="72" y="199" width="6" height="4" rx="1" fill="#6b4f33"/>
+            <path d="M104 201 L126 194 L128 198 L108 202 Z" fill="#c9d0d5" stroke="#6e7980" stroke-width=".8"/><rect x="100" y="199" width="6" height="4" rx="1" fill="#2f2a22"/>
+            <rect x="132" y="196" width="14" height="6" rx="3" fill="#b5674a"/><circle cx="135" cy="199" r="1" fill="#fff"/>
+          </g>
+          <!-- Besteck -->
+          <g stroke="#6e7980" stroke-width="1.8" stroke-linecap="round" fill="none">
+            <path d="M80 230 V214 M78 214 V220 M82 214 V220"/>
+            <path d="M92 230 V219"/><ellipse cx="92" cy="216" rx="2.6" ry="3.6" fill="#c9d0d5"/>
+            <path d="M104 230 V213"/>
+            <path d="M116 230 V214 M114 214 V220 M118 214 V220"/>
+            <path d="M128 230 V219"/><ellipse cx="128" cy="216" rx="2.6" ry="3.6" fill="#c9d0d5"/>
+            <path d="M140 230 V213"/>
+          </g>
+          <!-- Ladentisch -->
+          <rect x="158" y="222" width="48" height="28" fill="#a7774c"/>
+          <rect x="155" y="218" width="54" height="6" rx="2" fill="#7d5533"/>
+          <rect x="164" y="208" width="34" height="10" rx="2" fill="#d6eef3" stroke="#8d7b5c" stroke-width="1"/>
+          <path d="M168 214 L180 211 M184 214 L194 210" stroke="#5f6b73" stroke-width="1.4"/>
+          <!-- Fenster rechts -->
+          <rect x="260" y="166" width="26" height="46" fill="#d6eef3" stroke="#8d7b5c" stroke-width="2"/>
+          <path d="M273 166 V212 M260 189 H286" stroke="#8d7b5c" stroke-width="1.5"/>
+        </g>
+
+        <!-- WERKSTATT -->
+        <g id="werkstatt">
+          <text x="70" y="282" class="hand" font-size="19" fill="#2387a6">Werkstatt</text>
+          <!-- Transmission -->
+          <path d="M58 292 H210" stroke="#5f5648" stroke-width="3"/>
+          <circle cx="150" cy="292" r="8" fill="#7c7262" stroke="#4a4237" stroke-width="2"/>
+          <path d="M143 293 L121 352 M157 293 L135 352" stroke="#4a4237" stroke-width="2.2"/>
+          <!-- alte Schleifmaschine -->
+          <path d="M82 390 L94 352 H130 L142 390 Z" fill="#4c5a62"/>
+          <rect x="78" y="364" width="52" height="12" rx="2" fill="#3a6b80"/>
+          <g class="stein3">
+            <circle cx="104" cy="344" r="26" fill="#a39b8c" stroke="#6f685d" stroke-width="2"/>
+            <path d="M104 320 V368 M80 344 H128" stroke="#857d70" stroke-width="2"/>
+            <circle cx="104" cy="344" r="6" fill="#4c5a62"/>
+          </g>
+          <circle cx="128" cy="352" r="8" fill="#7c7262" stroke="#4a4237" stroke-width="2"/>
+          <g class="funk" stroke-linecap="round">
+            <path d="M84 324 L66 314 M83 327 L62 326 M86 322 L74 306" stroke="#f08a2c" stroke-width="1.6"/>
+            <path d="M85 325 L70 320" stroke="#f9c25a" stroke-width="1.4"/>
+          </g>
+          <!-- Werkbank -->
+          <rect x="150" y="362" width="56" height="6" fill="#7d5533"/>
+          <path d="M154 368 V390 M202 368 V390" stroke="#7d5533" stroke-width="4"/>
+          <rect x="182" y="350" width="14" height="12" fill="#5f6b73"/>
+          <path d="M156 360 L172 356 L173 358 L158 362 Z" fill="#c9d0d5"/>
+          <!-- Tür zum Quai -->
+          <rect x="262" y="320" width="24" height="70" fill="#6e8f80"/>
+          <circle cx="266" cy="356" r="1.8" fill="#f3efe2"/>
+        </g>
+
+        <!-- Wände (Schnitt) -->
+        <g fill="#7a6447">
+          <rect x="56" y="140" width="8" height="54"/>
+          <rect x="56" y="258" width="8" height="132"/>
+          <rect x="278" y="140" width="8" height="26"/><rect x="278" y="212" width="8" height="38"/>
+          <rect x="278" y="258" width="8" height="62"/>
+          <rect x="56" y="250" width="156" height="8"/><rect x="244" y="250" width="42" height="8"/>
+          <rect x="52" y="388" width="238" height="6"/>
+        </g>
+        <!-- offene Ladentür zur Gasse -->
+        <path d="M56 196 L44 200 V248 L56 250" fill="#6e8f80" stroke="#4e6a5d" stroke-width="1"/>
+
+        <!-- Quai & Aare -->
+        <rect x="286" y="390" width="58" height="8" fill="#a8946d"/>
+        <g stroke="#4a4237" stroke-width="2"><path d="M292 372 V390 M312 372 V390 M332 372 V390 M290 373 H336"/></g>
+        <text x="292" y="414" class="hand" font-size="14" fill="#5c4f3a">Aarequai</text>
+        <rect x="344" y="404" width="96" height="96" fill="url(#wasser)"/>
+        <g clip-path="url(#aareClip)">
+          <path class="welle" d="M344 410 q12 -6 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" fill="none" stroke="#bfe6ef" stroke-width="2.5"/>
+          <path class="welle b" d="M344 436 q12 -5 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" fill="none" stroke="#8fd0e0" stroke-width="2" opacity=".7"/>
+          <path class="welle" d="M344 466 q12 -5 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" fill="none" stroke="#8fd0e0" stroke-width="2" opacity=".5"/>
+        </g>
+        <text x="392" y="488" class="hand" font-size="18" fill="#fff" text-anchor="middle">Aare</text>
+
+        <!-- Abdunkelung der jeweils anderen Etage -->
+        <rect class="dimm" id="dimmOben" x="64" y="140" width="214" height="110" fill="#2f2a22" opacity="0"/>
+        <rect class="dimm" id="dimmUnten" x="64" y="258" width="214" height="130" fill="#2f2a22" opacity=".28"/>
+
+        <!-- Klickflächen der Etagen -->
+        <rect class="etage-flaeche" id="flaecheOben" x="64" y="140" width="148" height="110" fill="transparent"/>
+        <rect class="etage-flaeche" id="flaecheUnten" x="64" y="258" width="148" height="130" fill="transparent"/>
+
+        <!-- Seilzug-Lift -->
+        <rect x="212" y="146" width="32" height="244" fill="#e1d0ad" opacity=".85"/>
+        <path d="M213 146 V390 M243 146 V390" stroke="#8d6b45" stroke-width="2"/>
+        <circle cx="228" cy="150" r="9" fill="#7c7262" stroke="#4a4237" stroke-width="2"/>
+        <circle cx="228" cy="150" r="2.5" fill="#f3efe2"/>
+        <line id="seil" x1="228" y1="150" x2="228" y2="200" stroke="#4a4237" stroke-width="1.6"/>
+        <g id="kabine" transform="translate(0 200)">
+          <rect x="214" y="0" width="28" height="50" rx="3" fill="#2c5b45"/>
+          <rect x="217" y="4" width="22" height="42" rx="2" fill="#f8efdc"/>
+          <!-- Figur mit Messer -->
+          <circle cx="226" cy="15" r="4.6" fill="#e2b48c"/>
+          <path d="M221 13 Q226 7 231 13" fill="#6b4f33"/>
+          <path d="M221 46 V27 Q221 21 226 21 Q231 21 231 27 V46" fill="#2387a6"/>
+          <rect x="219.5" y="23" width="13" height="16" rx="2" fill="#efe4cf" opacity=".9"/>
+          <path d="M231 30 L238 25" stroke="#2f2a22" stroke-width="2" stroke-linecap="round"/>
+          <path d="M236 26 L241 20 L242 21 L238 27 Z" fill="#c9d0d5" stroke="#5f6b73" stroke-width=".6"/>
+          <rect x="210" y="-4" width="36" height="58" fill="transparent"/>
+        </g>
+        <text x="230" y="138" class="hand" font-size="13" fill="#5c4f3a" text-anchor="middle">Seilzug</text>
+      </svg>
+    </div>
+
+    <div class="steuer">
+      <button class="lift-btn" id="liftBtn" type="button" aria-controls="etagen">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path id="liftPfeil" d="M12 4 V19 M5 12 L12 19 L19 12" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="liftText">Hinunter in die Werkstatt</span>
+      </button>
+    </div>
+    <p class="wo" id="wo">Sie sind <b>oben im Laden</b>. Kabine ziehen oder Knopf drücken.</p>
+
+    <div class="etagen" id="etagen" aria-live="polite">
+      <article class="etage laden zeigen" id="etageLaden">
+        <div class="etage-kopf"><div class="nr">oben</div><div><h2>Der Laden</h2><div class="wo-genau">Obere Hauptgasse 64, Thuner Altstadt</div></div></div>
+        <h3>Was im Regal liegt</h3>
+        <ul class="regal">
+          <li><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><circle cx="5" cy="7" r="3.5" fill="none" stroke="#b5674a" stroke-width="2"/><circle cx="5" cy="15" r="3.5" fill="none" stroke="#b5674a" stroke-width="2"/><path d="M8 8 L24 16 M8 14 L24 6" stroke="#5f6b73" stroke-width="2"/></svg>Scheren</li>
+          <li><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><path d="M2 7 Q9 9 13 11 M2 15 Q9 13 13 11" stroke="#b5674a" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M13 11 L24 8 M13 11 L24 14" stroke="#5f6b73" stroke-width="2.6" stroke-linecap="round"/></svg>Zangen</li>
+          <li><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><rect x="2" y="10" width="17" height="7" rx="3.5" fill="#b5674a"/><path d="M17 11 L25 5 L25.5 7.5 L18 13" fill="#9aa5ac"/></svg>Taschenmesser</li>
+          <li><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><rect x="2" y="10" width="17" height="7" rx="3.5" fill="#2c5b45"/><path d="M17 11 L25 5 L25.5 7.5 L18 13" fill="#9aa5ac"/></svg>Armeemesser</li>
+          <li><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><path d="M10 7 H24 Q25 13 18 15 H10 Z" fill="#9aa5ac"/><rect x="1" y="8" width="9" height="5" rx="2" fill="#6b4f33"/></svg>Küchenmesser</li>
+          <li><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><rect x="2" y="3" width="14" height="16" rx="3" fill="none" stroke="#b5674a" stroke-width="2"/><path d="M6 7 V15 M10 7 V15" stroke="#5f6b73" stroke-width="1.8"/><path d="M19 18 L25 5" stroke="#5f6b73" stroke-width="2"/></svg>Maniküre-Sets</li>
+          <li class="breit"><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><path d="M10 4 H25 V12 Q19 16 10 15 Z" fill="#9aa5ac"/><rect x="1" y="7" width="9" height="6" rx="2" fill="#6b4f33"/></svg>Messer für Metzger und Köche</li>
+          <li class="breit"><svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true"><path d="M4 3 V8 Q4 10 6 10 Q8 10 8 8 V3 M6 3 V20" stroke="#5f6b73" stroke-width="1.8" fill="none" stroke-linecap="round"/><ellipse cx="14" cy="6" rx="3" ry="4" fill="#9aa5ac"/><path d="M14 10 V20" stroke="#5f6b73" stroke-width="1.8" stroke-linecap="round"/><path d="M21 20 V3 Q25 6 24 12 H21" stroke="#5f6b73" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>Bestecke</li>
+        </ul>
+        <h3>Öffnungszeiten Laden</h3>
+        <table class="zeiten">
+          <tr class="zu"><td>Montag</td><td>geschlossen</td></tr>
+          <tr><td>Dienstag – Freitag</td><td>10.00–12.00<br>13.30–18.00</td></tr>
+          <tr><td>Samstag</td><td>10.00–16.00</td></tr>
+          <tr class="zu"><td>Sonntag</td><td>geschlossen</td></tr>
+        </table>
+      </article>
+
+      <article class="etage werkstatt" id="etageWerkstatt">
+        <div class="etage-kopf"><div class="nr">unten</div><div><h2>Die Werkstatt</h2><div class="wo-genau">direkt unter dem Laden, am Aarequai</div></div></div>
+        <h3>Was hier gemacht wird</h3>
+        <ul class="arbeit">
+          <li><svg width="42" height="42" viewBox="0 0 42 42" aria-hidden="true"><rect width="42" height="42" rx="12" fill="#e1f0f4"/><circle cx="19" cy="23" r="11" fill="#a39b8c" stroke="#6f685d" stroke-width="2"/><circle cx="19" cy="23" r="3" fill="#4c5a62"/><path d="M28 14 L36 9 M29 17 L37 15" stroke="#f08a2c" stroke-width="2" stroke-linecap="round"/></svg><div><b>Schleifen von Klingen aller Art</b><span>Auf einer fast 100-jährigen Schleifmaschine, die noch in Betrieb ist.</span></div></li>
+          <li><svg width="42" height="42" viewBox="0 0 42 42" aria-hidden="true"><rect width="42" height="42" rx="12" fill="#e1f0f4"/><rect x="8" y="21" width="22" height="9" rx="4.5" fill="#b5674a"/><path d="M27 22 L36 14 L37 16 L29 24" fill="#9aa5ac"/><path d="M12 14 L18 18" stroke="#2387a6" stroke-width="2.4" stroke-linecap="round"/></svg><div><b>Reparatur alter Taschenmesser</b><span>Ein grosser Teil der Arbeit: alte Taschenmesser schleifen und wieder instand stellen.</span></div></li>
+        </ul>
+        <div class="kunden"><span>für Köche</span><span>für Metzger</span><span>für Schulen</span><span>für Private</span></div>
+        <div class="platz">Platzhalter – Ablauf bitte bestätigen
+          <ol class="ablauf">
+            <li>Messer oben im Laden abgeben</li>
+            <li>unten in der Werkstatt geschliffen</li>
+            <li>wieder im Laden abholen</li>
+          </ol>
+        </div>
+        <div class="platz">Platzhalter – Preise auf Anfrage<small>Schleifpreise folgen nach Absprache</small></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sek" id="geschichte">
+  <div class="rahmen">
+    <h2><span class="hand">Seit 1886</span>Vier Generationen Schoder</h2>
+    <div class="geschichte">
+      <p>Fritz Schoder gründete die Messerschmiede 1886 beim Mühlegässli. Seit 1905 ist sie an der Oberen Hauptgasse zu Hause.</p>
+      <p>Heute führt Manfred Schoder den Betrieb – in vierter Generation, seit 1991. Die Messerschmiede gilt als letzter traditioneller Betrieb dieser Art in Thun.</p>
+    </div>
+    <p class="slogan-zeile">Scharf, schärfer, Schoder.</p>
+    <div class="platz">Platzhalter – Ihr Foto<small>z. B. Schaufenster an der Oberen Hauptgasse oder die Werkstatt am Aarequai</small></div>
+  </div>
+</section>
+
+<section class="sek" id="presse">
+  <div class="rahmen">
+    <h2>In der Zeitung</h2>
+    <div class="presse">
+      <div><small>Jungfrau Zeitung</small><p>«Der schärfste Thuner»</p></div>
+      <div><small>Berner Zeitung</small><p>«Schoders schleifen seit 125 Jahren Messer»</p></div>
+    </div>
+    <div class="platz">Platzhalter – Ihre Bewertungen<small>Kundenstimmen folgen, sobald freigegeben</small></div>
+  </div>
+</section>
+
+<section class="sek" id="kontakt">
+  <div class="rahmen">
+    <div class="kontakt">
+      <h2>Vorbeikommen</h2>
+      <address><b>Messerschmiede Schoder</b><br>Manfred Schoder<br>Obere Hauptgasse 64<br>3600 Thun</address>
+      <a class="btn anruf" href="tel:+41332222303"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>033 222 23 03 anrufen</a>
+      <span class="btn platzbtn" role="note">E-Mail schreiben (Adresse folgt)</span>
+      <p class="mail">E-Mail: <span>Platzhalter</span></p>
+      <div class="anfahrt">
+        <h3>Anfahrt</h3>
+        <p>Der Laden liegt mitten in der Thuner Altstadt an der Oberen Hauptgasse 64. Vom Bahnhof Thun aus erreichen Sie die Altstadt zu Fuss. Die Werkstatt befindet sich im selben Haus, eine Etage tiefer am Aarequai.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="rahmen">Messerschmiede Schoder · Obere Hauptgasse 64 · 3600 Thun<br>Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Messerschmiede Schoder.</div></footer>
+
+<script>
+(function(){
+  var OBEN = 200, UNTEN = 340;
+  var svg = document.getElementById('hausSvg');
+  var kabine = document.getElementById('kabine');
+  var seil = document.getElementById('seil');
+  var btn = document.getElementById('liftBtn');
+  var txt = document.getElementById('liftText');
+  var pfeil = document.getElementById('liftPfeil');
+  var wo = document.getElementById('wo');
+  var dO = document.getElementById('dimmOben'), dU = document.getElementById('dimmUnten');
+  var eL = document.getElementById('etageLaden'), eW = document.getElementById('etageWerkstatt');
+  var y = OBEN, ziel = 'oben', anim = null;
+
+  function setzeY(v){
+    y = v;
+    kabine.setAttribute('transform', 'translate(0 ' + v.toFixed(1) + ')');
+    seil.setAttribute('y2', v.toFixed(1));
+    var t = (v - OBEN) / (UNTEN - OBEN);
+    dO.setAttribute('opacity', (0.28 * t).toFixed(3));
+    dU.setAttribute('opacity', (0.28 * (1 - t)).toFixed(3));
+  }
+  function zeigeEtage(e){
+    ziel = e;
+    var unten = e === 'unten';
+    document.getElementById('hausBox').classList.toggle('unten-aktiv', unten);
+    eL.classList.toggle('zeigen', !unten);
+    eW.classList.toggle('zeigen', unten);
+    txt.textContent = unten ? 'Hinauf in den Laden' : 'Hinunter in die Werkstatt';
+    pfeil.setAttribute('d', unten ? 'M12 20 V5 M5 12 L12 5 L19 12' : 'M12 4 V19 M5 12 L12 19 L19 12');
+    wo.innerHTML = unten ? 'Sie sind <b>unten in der Werkstatt</b> am Aarequai.' : 'Sie sind <b>oben im Laden</b>. Kabine ziehen oder Knopf drücken.';
+  }
+  function fahre(e){
+    var von = y, nach = e === 'unten' ? UNTEN : OBEN, t0 = null, dauer = 380 + Math.abs(nach - von) * 6;
+    if (anim) cancelAnimationFrame(anim);
+    zeigeEtage(e);
+    function schritt(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dauer);
+      var k = p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;
+      setzeY(von + (nach - von) * k);
+      if (p < 1) anim = requestAnimationFrame(schritt);
+    }
+    anim = requestAnimationFrame(schritt);
+  }
+  btn.addEventListener('click', function(){ fahre(ziel === 'oben' ? 'unten' : 'oben'); });
+  document.getElementById('flaecheOben').addEventListener('click', function(){ fahre('oben'); });
+  document.getElementById('flaecheUnten').addEventListener('click', function(){ fahre('unten'); });
+
+  // Kabine ziehen
+  var ziehen = false, startY = 0, startKab = 0, bewegt = false;
+  function svgY(clientY){ var r = svg.getBoundingClientRect(); return 40 + (clientY - r.top) * 460 / r.height; }
+  kabine.addEventListener('pointerdown', function(e){
+    ziehen = true; bewegt = false; startY = svgY(e.clientY); startKab = y;
+    kabine.classList.add('zieht'); if (anim) cancelAnimationFrame(anim);
+    try { kabine.setPointerCapture(e.pointerId); } catch(_){}
+    e.preventDefault();
+  });
+  kabine.addEventListener('pointermove', function(e){
+    if (!ziehen) return;
+    var d = svgY(e.clientY) - startY;
+    if (Math.abs(d) > 3) bewegt = true;
+    setzeY(Math.max(OBEN, Math.min(UNTEN, startKab + d)));
+  });
+  function loslassen(){
+    if (!ziehen) return; ziehen = false; kabine.classList.remove('zieht');
+    if (!bewegt) { fahre(ziel === 'oben' ? 'unten' : 'oben'); return; }
+    fahre(y > (OBEN + UNTEN) / 2 ? 'unten' : 'oben');
+  }
+  kabine.addEventListener('pointerup', loslassen);
+  kabine.addEventListener('pointercancel', loslassen);
+  kabine.style.touchAction = 'none';
+
+  function pdfZustand(){
+    if (anim) cancelAnimationFrame(anim);
+    setzeY(270);
+    eL.classList.add('zeigen'); eW.classList.add('zeigen');
+    document.getElementById('hausBox').classList.add('unten-aktiv');
+  }
+  if (document.documentElement.classList.contains('pdf')) pdfZustand();
+  new MutationObserver(function(){ if (document.documentElement.classList.contains('pdf')) pdfZustand(); })
+    .observe(document.documentElement, {attributes:true, attributeFilter:['class']});
+  setzeY(OBEN);
+  if (document.documentElement.classList.contains('pdf')) pdfZustand();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Lärrys Dachdeckergeschäft – Dachneigung (Entwurf 2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --schiefer:#1d2227;
+  --schiefer-2:#262c33;
+  --schiefer-3:#323a43;
+  --linie:#3d4650;
+  --kupfer:#c8834f;
+  --kupfer-hell:#e2a877;
+  --patina:#7fa59a;
+  --weiss:#f3efe8;
+  --text:#cfd3d6;
+  --leise:#8d969e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--schiefer);color:var(--text);
+  font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:16.5px;line-height:1.6;
+  hyphens:manual;-webkit-hyphens:manual;overflow-wrap:break-word;
+}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;color:var(--weiss);line-height:1.05}
+a{color:inherit}
+
+.demo{
+  background:var(--kupfer);color:#1d2227;font-size:12.5px;line-height:1.4;font-weight:400;
+  text-align:center;padding:8px 14px;
+}
+.demo b{font-weight:500}
+
+/* Kopf */
+.kopf{padding:34px 0 0;text-align:center}
+.zeichen{display:block;margin:0 auto 18px}
+.kopf .ueber{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--kupfer);font-weight:400}
+.kopf h1{margin-top:10px;font-size:clamp(2.2rem,10.4vw,3.2rem);font-weight:600;letter-spacing:-.005em}
+.kopf h1 .zwei{display:block;font-size:.86em;font-style:italic;font-weight:500;color:var(--kupfer-hell)}
+.kopf .inhaber{margin-top:16px;font-size:15px;color:var(--leise);letter-spacing:.04em}
+.regel{display:flex;align-items:center;gap:12px;justify-content:center;margin:26px auto 0;color:var(--kupfer)}
+.regel::before,.regel::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--kupfer))}
+.regel::after{transform:scaleX(-1)}
+.einl{margin-top:22px;text-align:center;font-size:17px;color:var(--text)}
+
+/* Studio */
+.studio{margin-top:40px;background:var(--schiefer-2);border:1px solid var(--linie);position:relative}
+.studio::before{content:"";position:absolute;inset:6px;border:1px solid rgba(200,131,79,.25);pointer-events:none}
+.studio-kopf{padding:22px 22px 0}
+.studio-kopf .nr{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--kupfer)}
+.studio-kopf h2{font-size:clamp(1.9rem,8.6vw,2.5rem);margin-top:6px}
+.studio-kopf p{margin-top:8px;font-size:15.5px;color:var(--leise)}
+.szene{display:block;width:100%;height:auto;margin-top:10px;user-select:none;-webkit-user-select:none}
+.griff{cursor:ns-resize;touch-action:none}
+.griff:focus-visible .griffring{stroke:#fff}
+.anzeige{padding:4px 22px 0;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.anzeige .stufe{font-family:"Cormorant Garamond",serif;font-size:clamp(1.7rem,7.6vw,2.2rem);color:var(--weiss);font-style:italic;font-weight:500;line-height:1.1}
+.anzeige .deck{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--kupfer-hell)}
+.regler{padding:16px 22px 4px}
+.regler input{width:100%;-webkit-appearance:none;appearance:none;background:transparent;height:44px;cursor:pointer}
+.regler input::-webkit-slider-runnable-track{height:3px;background:linear-gradient(90deg,var(--linie),var(--kupfer));}
+.regler input::-moz-range-track{height:3px;background:linear-gradient(90deg,var(--linie),var(--kupfer));}
+.regler input::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-13.5px;border-radius:50%;background:var(--schiefer);border:2px solid var(--kupfer-hell);box-shadow:0 0 0 5px rgba(200,131,79,.18)}
+.regler input::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--schiefer);border:2px solid var(--kupfer-hell)}
+.regler input:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 6px rgba(226,168,119,.5)}
+.skala{display:flex;justify-content:space-between;font-size:13px;color:var(--leise);margin-top:-4px}
+.beschrieb{padding:14px 22px 0;font-size:15.5px;min-height:4.8em}
+.legende{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:18px 22px 0}
+.legende li{border:1px solid var(--linie);padding:10px 8px 9px;text-align:center;transition:border-color .3s,background .3s;cursor:pointer}
+.legende li svg{display:block;margin:0 auto 6px}
+.legende li span{display:block;font-size:12.5px;line-height:1.3;color:var(--text)}
+.legende li em{display:block;font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--leise);margin-bottom:4px}
+.legende li.aktiv{border-color:var(--kupfer);background:rgba(200,131,79,.09)}
+.legende li.aktiv em{color:var(--kupfer-hell)}
+.vorort{margin:20px 22px 24px;padding:14px 0 0;border-top:1px solid var(--linie);font-size:15px;color:var(--weiss);display:flex;gap:12px;align-items:flex-start}
+.vorort svg{flex:0 0 auto;margin-top:2px}
+.vorort small{display:block;color:var(--leise);font-size:13px;margin-top:2px}
+
+/* Abschnitte */
+.ab{padding:64px 0 0}
+.ab .nr{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--kupfer)}
+.ab h2{font-size:clamp(2rem,9vw,2.7rem);margin-top:8px}
+.ab .lead{margin-top:10px;color:var(--leise)}
+
+.leist{list-style:none;margin-top:26px;counter-reset:l}
+.leist li{counter-increment:l;display:grid;grid-template-columns:44px 1fr;gap:8px;padding:15px 0;border-top:1px solid var(--linie);align-items:baseline}
+.leist li:last-child{border-bottom:1px solid var(--linie)}
+.leist li::before{content:counter(l,upper-roman);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:20px;color:var(--kupfer)}
+.leist strong{display:block;font-weight:400;color:var(--weiss);font-size:17px;line-height:1.35}
+.leist span{display:block;font-size:14px;color:var(--leise);margin-top:2px}
+
+.kontrolle{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--linie)}
+.kontrolle div{padding:16px 16px 18px}
+.kontrolle div+div{border-left:1px solid var(--linie)}
+.kontrolle h3{font-size:24px;font-style:italic;font-weight:500;color:var(--kupfer-hell)}
+.kontrolle p{font-size:14px;color:var(--leise);margin-top:4px}
+.kontrolle ul{grid-column:1/-1;list-style:none;border-top:1px solid var(--linie);padding:14px 16px 16px;display:grid;gap:6px}
+.kontrolle ul li{font-size:15px;color:var(--text);padding-left:20px;position:relative}
+.kontrolle ul li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--kupfer)}
+
+.fassaden{margin-top:26px;display:grid;gap:0}
+.fz{display:grid;grid-template-columns:86px 1fr;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--linie)}
+.fz:last-child{border-bottom:1px solid var(--linie)}
+.fz svg{display:block;width:86px;height:58px}
+.fz strong{font-weight:400;color:var(--weiss);font-size:17px;line-height:1.3;display:block}
+
+.referenz{margin-top:34px}
+.referenz h3{font-size:clamp(1.6rem,7.4vw,2rem)}
+.referenz h3 i{color:var(--kupfer-hell);font-weight:500}
+.platz{
+  margin-top:14px;border:1.5px dashed #5d6873;padding:16px;text-align:center;color:var(--leise);font-size:14px;
+}
+.platz svg{display:block;width:100%;height:auto;margin-bottom:10px;opacity:.9}
+.platz b{display:block;color:var(--weiss);font-weight:400;font-size:15px;letter-spacing:.04em}
+
+/* Kontakt */
+.kontakt{margin-top:26px;display:grid;gap:12px}
+.k{display:flex;align-items:center;gap:16px;min-height:62px;padding:12px 18px;text-decoration:none;border:1px solid var(--kupfer);color:var(--weiss);transition:background .2s}
+.k:hover{background:rgba(200,131,79,.12)}
+.k.haupt{background:var(--kupfer);color:#1d2227;border-color:var(--kupfer)}
+.k.haupt:hover{background:var(--kupfer-hell)}
+.k svg{flex:0 0 auto}
+.k .t{display:block;line-height:1.25}
+.k .t b{display:block;font-weight:500;font-size:19px;letter-spacing:.02em}
+.k .t small{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.k.mail .t b{font-size:15.5px;letter-spacing:0}
+.termin{margin-top:18px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:21px;color:var(--weiss);text-align:center;line-height:1.3}
+.adresse{margin-top:22px;text-align:center;color:var(--leise);font-size:15px;line-height:1.7}
+.adresse strong{color:var(--weiss);font-weight:400}
+
+footer{margin-top:64px;padding:24px 0 40px;border-top:1px solid var(--linie);text-align:center;font-size:13px;color:var(--leise)}
+
+@media (min-width:600px){ .wrap{padding:0 28px} }
+</style>
+</head>
+<body>
+<div class="demo"><b>Entwurf / Demo von Max Rathsack</b> – keine offizielle Webseite von Lärrys Dachdeckergeschäft</div>
+
+<div class="wrap">
+  <header class="kopf">
+    <svg class="zeichen" width="92" height="52" viewBox="0 0 92 52" aria-hidden="true">
+      <path d="M4 46 46 6l42 40" fill="none" stroke="#c8834f" stroke-width="1.6"/>
+      <path d="M16 46 46 18l30 28" fill="none" stroke="#c8834f" stroke-width="1" opacity=".6"/>
+      <path d="M28 46 46 30l18 16" fill="none" stroke="#c8834f" stroke-width=".8" opacity=".35"/>
+      <circle cx="46" cy="6" r="2.6" fill="#e2a877"/>
+    </svg>
+    <div class="ueber">Sigriswil · am rechten Thunerseeufer</div>
+    <h1>Lärrys <span class="zwei">Dachdecker&shy;geschäft</span></h1>
+    <div class="inhaber">Bernhard von Gunten</div>
+    <div class="regel"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5z" fill="currentColor"/></svg></div>
+    <p class="einl">Dächer und Fassaden, im Neubau und bei Renovationen – vom flachen Wellplattendach bis zum steilen Schieferdach.</p>
+  </header>
+
+  <!-- Herzstück -->
+  <section class="studio" aria-labelledby="studio-titel">
+    <div class="studio-kopf">
+      <div class="nr">Ausprobieren</div>
+      <h2 id="studio-titel">Wie steil ist Ihr Dach?</h2>
+      <p>Ziehen Sie den Firstpunkt nach oben oder unten – oder benutzen Sie den Regler. Die Eindeckung und der Regen ändern sich mit.</p>
+    </div>
+
+    <svg class="szene" id="szene" viewBox="20 4 360 284" aria-label="Skizze eines Hauses, dessen Dachneigung verändert werden kann">
+      <defs>
+        <linearGradient id="nacht" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2b333b"/><stop offset="1" stop-color="#20262c"/>
+        </linearGradient>
+        <linearGradient id="wandv" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e9e2d6"/><stop offset="1" stop-color="#cfc6b8"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="300" fill="url(#nacht)"/>
+      <!-- Wolken -->
+      <g fill="#3a434d">
+        <path d="M30 34q4-16 22-14 8-12 24-6 16-4 20 10 14 2 10 14H28q-12-2 2-4z"/>
+        <path d="M250 22q6-14 24-10 10-10 26-2 18-2 20 12 12 4 6 12H250q-12-4 0-12z"/>
+      </g>
+      <g fill="#444e59"><path d="M140 16q6-10 18-6 8-8 20 0 12 0 12 10H140z"/></g>
+      <!-- Boden -->
+      <path d="M0 272h400v28H0z" fill="#171b1f"/>
+      <path d="M0 272h400" stroke="#c8834f" stroke-width="1" opacity=".55"/>
+      <!-- Haus (Giebel und Wand werden live gezeichnet) -->
+      <path id="giebel" fill="url(#wandv)" stroke="#11151a" stroke-width="1.5"/>
+      <g id="fenster">
+        <rect x="122" y="216" width="34" height="40" fill="#2a3138" stroke="#11151a" stroke-width="1.5"/>
+        <path d="M139 216v40M122 236h34" stroke="#11151a" stroke-width="1.5"/>
+        <rect x="244" y="216" width="34" height="40" fill="#2a3138" stroke="#11151a" stroke-width="1.5"/>
+        <path d="M261 216v40M244 236h34" stroke="#11151a" stroke-width="1.5"/>
+        <rect x="186" y="222" width="28" height="50" fill="#6b4f3a" stroke="#11151a" stroke-width="1.5"/>
+        <rect x="125" y="219" width="12" height="15" fill="#e2a877" opacity=".35"/>
+      </g>
+      <path id="giebelfenster" fill="#2a3138" stroke="#11151a" stroke-width="1.5"/>
+      <!-- Eindeckung -->
+      <g id="deckung"></g>
+      <!-- Dachrinne Kupfer -->
+      <g id="rinnen"></g>
+      <!-- Regen -->
+      <g id="regen" stroke="#a9c3d6" stroke-linecap="round"></g>
+      <!-- Griff -->
+      <g class="griff" id="griff" tabindex="0" role="slider" aria-label="Dachneigung" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="mittel">
+        <circle r="26" fill="transparent"/>
+        <circle class="griffring" r="13" fill="#1d2227" stroke="#e2a877" stroke-width="2"/>
+        <path d="M-4 -3 0 -7l4 4M-4 3 0 7l4-4" fill="none" stroke="#e2a877" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+
+    <div class="anzeige" aria-live="polite">
+      <span class="stufe" id="stufe">mittel</span>
+      <span class="deck" id="deck">Ziegel</span>
+    </div>
+    <div class="regler">
+      <input type="range" id="regler" min="0" max="100" value="50" aria-label="Dachneigung von flach bis steil">
+      <div class="skala"><span>eher flach</span><span>mittel</span><span>steil</span></div>
+    </div>
+    <p class="beschrieb" id="beschrieb"></p>
+
+    <ul class="legende" id="legende">
+      <li data-wert="12">
+        <svg width="64" height="26" viewBox="0 0 64 26" aria-hidden="true"><path d="M2 16q4-8 8 0t8 0 8 0 8 0 8 0 8 0 8 0 6 0v8H2z" fill="#aeb5bb" stroke="#6f7880" stroke-width="1"/></svg>
+        <em>eher flach</em><span>Wellplatten, Eternit</span>
+      </li>
+      <li data-wert="50">
+        <svg width="64" height="26" viewBox="0 0 64 26" aria-hidden="true"><path d="M2 20q6-14 12 0 6-14 12 0 6-14 12 0 6-14 12 0 6-14 12 0v4H2z" fill="#b8673f" stroke="#7d3f22" stroke-width="1"/></svg>
+        <em>mittel</em><span>Ziegel</span>
+      </li>
+      <li data-wert="88">
+        <svg width="64" height="26" viewBox="0 0 64 26" aria-hidden="true"><g fill="#56626e" stroke="#93a0ab" stroke-width="1"><path d="M2 22 12 6h8L10 22z"/><path d="M14 22 24 6h8L22 22z"/><path d="M26 22 36 6h8L34 22z"/><path d="M38 22 48 6h8L46 22z"/><path d="M50 22 60 6h3l-1 16z"/></g></svg>
+        <em>steil</em><span>Schiefer, Schindeln</span>
+      </li>
+    </ul>
+
+    <div class="vorort">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="#c8834f" stroke-width="1.4"/><path d="M11 6v6l4 2" fill="none" stroke="#c8834f" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <div>Welche Eindeckung passt, klärt Herr von Gunten vor Ort.<small>Vereinfachte Skizze – sie ersetzt keine Beratung.</small></div>
+    </div>
+  </section>
+
+  <!-- Leistungen -->
+  <section class="ab" id="leistungen">
+    <div class="nr">Leistungen</div>
+    <h2>Neubau &amp; Renovationen</h2>
+    <ul class="leist">
+      <li><div><strong>Sämtliche Ziegeleindeckungen</strong></div></li>
+      <li><div><strong>Sämtliche Unterdacharten</strong></div></li>
+      <li><div><strong>Eternit, Dachschiefer und Wellplatten</strong><span>Eindeckungen in allen drei Materialien</span></div></li>
+      <li><div><strong>Schindeleindeckungen</strong></div></li>
+      <li><div><strong>Dachfenster und Dachzubehör</strong><span>Einbau von Dachfenstern und jeglichem Zubehör</span></div></li>
+      <li><div><strong>Montagehilfe für Solaranlagen</strong></div></li>
+      <li><div><strong>Spenglerei</strong></div></li>
+    </ul>
+
+    <div class="kontrolle">
+      <div><h3>Frühling</h3><p>Dachkontrolle nach dem Winter</p></div>
+      <div><h3>Herbst</h3><p>Dachkontrolle vor dem Winter</p></div>
+      <ul>
+        <li>Dachrinnen reinigen</li>
+        <li>Defekte Platten ersetzen</li>
+        <li>Sturmschäden beheben</li>
+        <li>Moosbehandlung</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Fassaden -->
+  <section class="ab" id="fassaden">
+    <div class="nr">Fassaden</div>
+    <h2>Die Hülle des Hauses</h2>
+    <p class="lead">Neben Dächern verkleidet Lärrys Dachdeckergeschäft auch Fassaden.</p>
+    <div class="fassaden">
+      <div class="fz">
+        <svg viewBox="0 0 86 58" aria-hidden="true"><rect width="86" height="58" fill="#3a434d"/><g fill="none" stroke="#8d969e" stroke-width="1"><rect x="6" y="6" width="34" height="20"/><rect x="46" y="6" width="34" height="20"/><rect x="6" y="32" width="34" height="20"/><rect x="46" y="32" width="34" height="20"/></g></svg>
+        <strong>Faserzementplatten</strong>
+      </div>
+      <div class="fz">
+        <svg viewBox="0 0 86 58" aria-hidden="true"><rect width="86" height="58" fill="#3a434d"/><g fill="none" stroke="#c8834f" stroke-width="1"><path d="M4 14q5 4 10 0t10 0 10 0 10 0 10 0 10 0 10 0 10 0M4 28q5 4 10 0t10 0 10 0 10 0 10 0 10 0 10 0 10 0M4 42q5 4 10 0t10 0 10 0 10 0 10 0 10 0 10 0 10 0"/><path d="M14 4v10M34 4v10M54 4v10M74 4v10M24 18v10M44 18v10M64 18v10M14 32v10M34 32v10M54 32v10M74 32v10"/></g></svg>
+        <strong>Holzschindeln</strong>
+      </div>
+      <div class="fz">
+        <svg viewBox="0 0 86 58" aria-hidden="true"><rect width="86" height="58" fill="#3a434d"/><g fill="none" stroke="#a9b4bd" stroke-width="1"><path d="M13 4l9 9-9 9-9-9zM33 4l9 9-9 9-9-9zM53 4l9 9-9 9-9-9zM73 4l9 9-9 9-9-9zM23 20l9 9-9 9-9-9zM43 20l9 9-9 9-9-9zM63 20l9 9-9 9-9-9zM13 36l9 9-9 9-9-9zM33 36l9 9-9 9-9-9zM53 36l9 9-9 9-9-9zM73 36l9 9-9 9-9-9z"/></g></svg>
+        <strong>Schieferplatten</strong>
+      </div>
+      <div class="fz">
+        <svg viewBox="0 0 86 58" aria-hidden="true"><rect width="86" height="58" fill="#3a434d"/><g fill="none" stroke="#7fa59a" stroke-width="1"><rect x="6" y="6" width="22" height="46"/><rect x="32" y="6" width="22" height="46"/><rect x="58" y="6" width="22" height="46"/><path d="M10 14q7 3 14 0M10 24q7-3 14 0M10 34q7 3 14 0M10 44q7-3 14 0M36 18q7-3 14 0M36 30q7 3 14 0M36 42q7-3 14 0M62 14q7 3 14 0M62 26q7-3 14 0M62 38q7 3 14 0"/></g></svg>
+        <strong>Fassadenelemente aus Holzfasern</strong>
+      </div>
+    </div>
+
+    <div class="referenz">
+      <div class="nr">Referenz</div>
+      <h3>Fassadenprojekt <i>in Aeschlen</i></h3>
+      <div class="platz">
+        <svg viewBox="0 0 300 150" aria-hidden="true">
+          <g fill="none" stroke="#c8834f" stroke-width="1.2" opacity=".75">
+            <path d="M60 140V70l90-50 90 50v70z"/>
+            <path d="M48 76l102-62 102 62"/>
+            <path d="M80 140V82M100 140V74M120 140V64M140 140V56M160 140V56M180 140V64M200 140V74M220 140V82" opacity=".5"/>
+            <rect x="128" y="96" width="44" height="44"/>
+          </g>
+          <path d="M20 140h260" stroke="#5d6873" stroke-width="1"/>
+        </svg>
+        <b>Platzhalter – Ihr Foto</b>Bild vom Fassadenprojekt in Aeschlen
+      </div>
+      <div class="platz"><b>Platzhalter – weitere Referenzen</b>Weitere ausgeführte Dächer und Fassaden</div>
+      <div class="platz"><b>Platzhalter – Ihre Bewertungen</b>Rückmeldungen von Kundinnen und Kunden</div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="ab" id="kontakt">
+    <div class="nr">Kontakt</div>
+    <h2>Gespräch vereinbaren</h2>
+    <div class="kontakt">
+      <a class="k haupt" href="tel:+41332513654">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.4-2 1.4a12 12 0 0 0 6.6 6.6l1.4-2L21 15l-.5 2.4A3 3 0 0 1 17.6 20 14.6 14.6 0 0 1 4 6.4a3 3 0 0 1 2.6-2.9z" fill="currentColor"/></svg>
+        <span class="t"><small>Telefon</small><b>033 251 36 54</b></span>
+      </a>
+      <a class="k" href="tel:+41798210433">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2" fill="none" stroke="#e2a877" stroke-width="1.6"/><path d="M10 18h4" stroke="#e2a877" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="t"><small>Mobile</small><b>079 821 04 33</b></span>
+      </a>
+      <a class="k mail" href="mailto:bernhardvongunten@hotmail.com">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" fill="none" stroke="#e2a877" stroke-width="1.6"/><path d="m3 6 9 7 9-7" fill="none" stroke="#e2a877" stroke-width="1.6"/></svg>
+        <span class="t"><small>E-Mail</small><b>bernhardvongunten@&#8203;hotmail.com</b></span>
+      </a>
+    </div>
+    <p class="termin">Termine nach telefonischer Vereinbarung.</p>
+    <div class="adresse"><strong>Lärrys Dachdeckergeschäft</strong><br>Bernhard von Gunten<br>Schliereggweg 6 · 3655 Sigriswil</div>
+  </section>
+
+  <footer>Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Lärrys Dachdeckergeschäft.</footer>
+</div>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var svg=document.getElementById('szene');
+  var deckung=document.getElementById('deckung');
+  var rinnen=document.getElementById('rinnen');
+  var giebel=document.getElementById('giebel');
+  var gfenster=document.getElementById('giebelfenster');
+  var griff=document.getElementById('griff');
+  var regler=document.getElementById('regler');
+  var regenG=document.getElementById('regen');
+  var stufeEl=document.getElementById('stufe'),deckEl=document.getElementById('deck'),beschEl=document.getElementById('beschrieb');
+  var legende=[].slice.call(document.querySelectorAll('#legende li'));
+
+  var TRAUFE=200, LX=64, RX=336, MX=200, WL=92, WR=308;
+  var wert=50, hoehe=0;
+
+  var STUFEN=[
+    {name:'eher flach',deck:'Wellplatten / Eternit',text:'Bei einem eher flachen Dach zeigt die Skizze Wellplatten bzw. Eternit. Das Regenwasser läuft hier langsam ab.'},
+    {name:'mittel',deck:'Ziegel',text:'Bei mittlerer Neigung zeigt die Skizze eine klassische Ziegeleindeckung. Das Wasser fliesst gleichmässig zur Rinne.'},
+    {name:'steil',deck:'Schiefer / Schindeln',text:'Bei einem steilen Dach zeigt die Skizze Schiefer bzw. Schindeln. Der Regen läuft rasch ab.'}
+  ];
+  function stufeVon(w){return w<34?0:(w<67?1:2);}
+  function hoeheVon(w){return 16+(w/100)*140;}
+  function roofY(x){
+    if(x<LX||x>RX) return null;
+    return x<=MX ? TRAUFE-hoehe*(x-LX)/(MX-LX) : TRAUFE-hoehe*(RX-x)/(RX-MX);
+  }
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function f(v){return Math.round(v*10)/10;}
+
+  // Eindeckung entlang einer Dachfläche
+  function flaeche(E,R,typ){
+    var dx=R[0]-E[0],dy=R[1]-E[1],L=Math.hypot(dx,dy),ux=dx/L,uy=dy/L;
+    var nx=uy,ny=-ux; if(ny>0){nx=-nx;ny=-ny;}
+    var D=11; // Dicke der Dachhaut
+    var P=function(s,o){return [E[0]+ux*s+nx*o,E[1]+uy*s+ny*o];};
+    var g=el('g',{});
+    // Unterkonstruktion
+    var u1=P(0,-D),u2=P(L,-D);
+    g.appendChild(el('path',{d:'M'+f(E[0])+' '+f(E[1])+'L'+f(R[0])+' '+f(R[1])+'L'+f(u2[0])+' '+f(u2[1])+'L'+f(u1[0])+' '+f(u1[1])+'Z',fill:'#5b4636',stroke:'#11151a','stroke-width':1.2}));
+    var d='',s,p,q,c;
+    if(typ===0){
+      // Wellplatten: Wellenlinie
+      d='M'+f(P(0,-3)[0])+' '+f(P(0,-3)[1]);
+      for(s=0;s<=L;s+=2){p=P(s,2.4+2.4*Math.sin(s/4.2));d+='L'+f(p[0])+' '+f(p[1]);}
+      p=P(L,-3);d+='L'+f(p[0])+' '+f(p[1])+'Z';
+      g.appendChild(el('path',{d:d,fill:'#aeb5bb',stroke:'#6f7880','stroke-width':1}));
+      for(s=28;s<L-6;s+=34){p=P(s,-3);q=P(s,5);g.appendChild(el('path',{d:'M'+f(p[0])+' '+f(p[1])+'L'+f(q[0])+' '+f(q[1]),stroke:'#7f8891','stroke-width':1}));}
+    }else if(typ===1){
+      // Ziegel: Bögen
+      var w=13;
+      for(s=0;s<L-1;s+=w){
+        var e2=Math.min(s+w,L);
+        p=P(s,-2);q=P(e2,-2);c=P((s+e2)/2,9);
+        g.appendChild(el('path',{d:'M'+f(p[0])+' '+f(p[1])+'Q'+f(c[0])+' '+f(c[1])+' '+f(q[0])+' '+f(q[1])+'Z',fill:'#b8673f',stroke:'#7d3f22','stroke-width':1}));
+      }
+    }else{
+      // Schiefer / Schindeln: überlappende Plättchen
+      var w2=10;
+      for(s=0;s<L-1;s+=w2){
+        var e3=Math.min(s+w2,L);
+        var a1=P(s,-1),a2=P(e3,-1),a3=P(e3,3),a4=P(s,8);
+        g.appendChild(el('path',{d:'M'+f(a1[0])+' '+f(a1[1])+'L'+f(a2[0])+' '+f(a2[1])+'L'+f(a3[0])+' '+f(a3[1])+'L'+f(a4[0])+' '+f(a4[1])+'Z',fill:'#56626e',stroke:'#93a0ab','stroke-width':.9}));
+      }
+    }
+    return g;
+  }
+
+  function zeichnen(){
+    hoehe=hoeheVon(wert);
+    var typ=stufeVon(wert);
+    var first=[MX,TRAUFE-hoehe];
+    // Giebelwand
+    var yWL=roofY(WL)+6,yWR=roofY(WR)+6;
+    giebel.setAttribute('d','M'+WL+' 272V'+f(yWL)+'L'+MX+' '+f(first[1]+8)+'L'+WR+' '+f(yWR)+'V272Z');
+    // Giebelfenster nur bei genug Höhe
+    var gh=hoehe;
+    if(gh>70){
+      var cy=TRAUFE-gh*0.42, r=Math.min(14,gh*0.12);
+      gfenster.setAttribute('d','M'+(MX-r)+' '+f(cy+r)+'V'+f(cy)+'A'+r+' '+r+' 0 0 1 '+(MX+r)+' '+f(cy)+'V'+f(cy+r)+'Z');
+      gfenster.style.display='';
+    } else gfenster.style.display='none';
+    // Eindeckung
+    while(deckung.firstChild) deckung.removeChild(deckung.firstChild);
+    deckung.appendChild(flaeche([LX,TRAUFE],first,typ));
+    deckung.appendChild(flaeche([RX,TRAUFE],first,typ));
+    // Firstkappe Kupfer
+    deckung.appendChild(el('path',{d:'M'+(MX-9)+' '+f(first[1]+3)+'L'+MX+' '+f(first[1]-4)+'L'+(MX+9)+' '+f(first[1]+3),fill:'none',stroke:'#c8834f','stroke-width':3,'stroke-linejoin':'round'}));
+    // Rinnen
+    while(rinnen.firstChild) rinnen.removeChild(rinnen.firstChild);
+    [[LX,-1],[RX,1]].forEach(function(r){
+      rinnen.appendChild(el('rect',{x:r[0]-7,y:TRAUFE-1,width:14,height:8,rx:3,fill:'#c8834f',stroke:'#7a4a28','stroke-width':1}));
+      rinnen.appendChild(el('path',{d:'M'+(r[0]+ (r[1]<0?5:-5))+' '+(TRAUFE+7)+'V272',stroke:'#b0703f','stroke-width':4}));
+    });
+    // Griff
+    griff.setAttribute('transform','translate('+MX+' '+f(first[1]-16)+')');
+    griff.setAttribute('aria-valuenow',Math.round(wert));
+    griff.setAttribute('aria-valuetext',STUFEN[typ].name);
+    // Texte
+    stufeEl.textContent=STUFEN[typ].name;
+    deckEl.textContent=STUFEN[typ].deck;
+    beschEl.textContent=STUFEN[typ].text;
+    legende.forEach(function(li,i){li.classList.toggle('aktiv',i===typ);});
+  }
+
+  function setzen(w){wert=Math.max(0,Math.min(100,w));regler.value=Math.round(wert);zeichnen();}
+  regler.addEventListener('input',function(){setzen(+regler.value);});
+  legende.forEach(function(li){li.addEventListener('click',function(){setzen(+li.getAttribute('data-wert'));});});
+
+  // Firstpunkt ziehen
+  function svgY(evt){var pt=svg.createSVGPoint();pt.x=evt.clientX;pt.y=evt.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse()).y;}
+  var zieht=false;
+  griff.addEventListener('pointerdown',function(e){zieht=true;griff.setPointerCapture(e.pointerId);e.preventDefault();});
+  griff.addEventListener('pointermove',function(e){if(!zieht)return;var y=svgY(e)+16;var h=TRAUFE-y;setzen((h-16)/140*100);});
+  griff.addEventListener('pointerup',function(){zieht=false;});
+  griff.addEventListener('pointercancel',function(){zieht=false;});
+  griff.addEventListener('keydown',function(e){
+    if(e.key==='ArrowUp'||e.key==='ArrowRight'){setzen(wert+5);e.preventDefault();}
+    if(e.key==='ArrowDown'||e.key==='ArrowLeft'){setzen(wert-5);e.preventDefault();}
+  });
+
+  // Regen
+  var tropfen=[],N=34;
+  function neu(t,start){
+    t.x=20+Math.random()*360;t.y=start?Math.random()*260:-10-Math.random()*60;
+    t.phase='fall';t.v=2.6+Math.random()*1.2;t.dir=0;
+  }
+  for(var i=0;i<N;i++){
+    var t={line:el('line',{'stroke-width':1.4,opacity:.7})};
+    neu(t,true);regenG.appendChild(t.line);tropfen.push(t);
+  }
+  function schritt(k){
+    var winkel=Math.atan2(hoehe,MX-LX); // 0..~0.93
+    var sin=Math.sin(winkel);
+    tropfen.forEach(function(t){
+      if(t.phase==='fall'){
+        t.y+=t.v*k*1.6;
+        var ry=roofY(t.x);
+        if(ry!==null && t.y>=ry-2 && t.y<ry+14){t.phase='rutsch';t.dir=t.x<MX?-1:1;t.y=ry-2;}
+        if(t.y>272){neu(t,false);}
+        t.line.setAttribute('x1',f(t.x));t.line.setAttribute('y1',f(t.y-7));
+        t.line.setAttribute('x2',f(t.x));t.line.setAttribute('y2',f(t.y));
+        t.line.setAttribute('stroke-width',1.3);
+      }else if(t.phase==='rutsch'){
+        var v=(0.25+sin*sin*5.2)*k;
+        t.x+=t.dir*v*Math.cos(winkel);
+        var ry2=roofY(t.x);
+        if(ry2===null){t.phase='fall';t.v=1.2;t.x=t.dir<0?LX-3:RX+3;}
+        else t.y=ry2-2;
+        var lx=t.dir*Math.cos(winkel)*-3, ly=-Math.sin(winkel)*3;
+        t.line.setAttribute('x1',f(t.x+lx));t.line.setAttribute('y1',f(t.y+ly));
+        t.line.setAttribute('x2',f(t.x));t.line.setAttribute('y2',f(t.y));
+        t.line.setAttribute('stroke-width',2.6);
+      }
+    });
+  }
+  var letzte=0,laeuft=true;
+  function loop(ts){
+    if(!laeuft) return;
+    var k=letzte?Math.min(3,(ts-letzte)/16.7):1;letzte=ts;
+    schritt(k);requestAnimationFrame(loop);
+  }
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function pdfZustand(){
+    laeuft=false;setzen(50);
+    // feste, gut sichtbare Tropfen
+    var pos=[[40,60],[90,110],[150,40],[230,70],[300,120],[360,50],[20,160],[380,180],[120,150],[270,150]];
+    tropfen.forEach(function(t,i){
+      if(i<pos.length){t.x=pos[i][0];t.y=pos[i][1];t.phase='fall';}
+      else {var s=(i-pos.length)/(N-pos.length);t.x=LX+20+s*(RX-LX-40);if(Math.abs(t.x-MX)<12)t.x+=24;t.y=roofY(t.x)-2;t.phase='rutsch';t.dir=t.x<MX?-1:1;}
+      if(i>=pos.length+10){t.line.setAttribute('opacity',0);return;}
+      schritt(0);
+    });
+  }
+
+  setzen(50);
+  if(document.documentElement.classList.contains('pdf')) pdfZustand();
+  else if(!still) requestAnimationFrame(loop);
+  new MutationObserver(function(){
+    if(document.documentElement.classList.contains('pdf')) pdfZustand();
+  }).observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Messerschmiede Schoder – Seit 1886 (Entwurf)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+SC:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nacht:#0c1424;
+  --nacht2:#121d33;
+  --nacht3:#1a2844;
+  --messing:#c9a46a;
+  --messing-hell:#e6cc98;
+  --messing-tief:#8a6a3c;
+  --elfenbein:#f2eadb;
+  --gedaempft:#b8b2a3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--nacht);color:var(--elfenbein);font-family:"EB Garamond",Georgia,serif;font-size:18.5px;line-height:1.55;hyphens:manual;-webkit-hyphens:manual}
+a{color:inherit}
+.demo{background:#060a13;color:var(--messing-hell);font-family:"EB Garamond",serif;font-size:13.5px;line-height:1.35;padding:8px 16px;text-align:center;border-bottom:1px solid var(--messing-tief)}
+.inhalt{max-width:560px;margin:0 auto;padding:0 20px}
+.sc{font-family:"Cormorant SC",serif;letter-spacing:.14em;font-weight:600}
+
+/* Kopf */
+.kopf{text-align:center;padding:40px 20px 10px;position:relative}
+.kopf .seit{font-family:"Cormorant SC",serif;font-size:16px;letter-spacing:.32em;color:var(--messing);display:flex;align-items:center;justify-content:center;gap:12px}
+.kopf .seit::before,.kopf .seit::after{content:"";width:42px;height:1px;background:linear-gradient(90deg,transparent,var(--messing))}
+.kopf .seit::after{transform:scaleX(-1)}
+h1{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(36px,10.6vw,64px);line-height:1;margin:16px 0 0;letter-spacing:.005em}
+h1 span{display:block}
+h1 .klein{font-size:.52em;font-style:italic;font-weight:500;color:var(--messing-hell);margin-top:8px;letter-spacing:.01em}
+.kopf p.unter{max-width:24em;margin:18px auto 0;color:var(--gedaempft);font-size:18px}
+.zier{display:block;margin:22px auto 0;width:150px;height:14px}
+
+/* Messer */
+.messer-sek{padding:16px 0 34px}
+.anleitung{text-align:center;font-style:italic;color:var(--messing-hell);font-size:18px;margin-bottom:4px}
+.messer-buehne{position:relative;margin:0 -20px}
+.messer-buehne svg{display:block;width:100%;height:auto;overflow:visible}
+.wz{transform-box:view-box;transition:transform .9s cubic-bezier(.34,1.35,.5,1);cursor:pointer}
+.wz.links{transform:rotate(180deg)}
+.wz.rechts{transform:rotate(-180deg)}
+#wzL1{transform-origin:214px 222px}#wzL2{transform-origin:214px 222px}#wzL3{transform-origin:214px 222px}
+#wzR1{transform-origin:386px 222px}#wzR2{transform-origin:386px 222px}#wzR3{transform-origin:386px 222px}
+.griff{cursor:pointer}
+.wz.aktiv .stahl{filter:drop-shadow(0 0 5px rgba(230,204,152,.75))}
+
+.werkzeuge{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.werkzeuge button{font:600 15px/1.15 "Cormorant Garamond",serif;color:var(--elfenbein);background:var(--nacht2);border:1px solid #34446a;padding:10px 6px 9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:58px}
+.werkzeuge button i{font:normal 500 12px "Cormorant SC",serif;letter-spacing:.16em;color:var(--messing)}
+.werkzeuge button[aria-pressed="true"]{border-color:var(--messing);background:linear-gradient(180deg,#1d2a46,#162238);box-shadow:inset 0 0 0 1px rgba(201,164,106,.35)}
+.werkzeuge button.zeigt{background:var(--messing);color:var(--nacht);border-color:var(--messing)}
+.werkzeuge button.zeigt i{color:var(--nacht)}
+
+.karten{margin-top:18px;min-height:210px;position:relative}
+.karte{display:none;background:var(--elfenbein);color:#1b2233;padding:22px 22px 20px;border-top:3px solid var(--messing);position:relative}
+.karte.zeigen{display:block;animation:auf .55s ease both}
+@keyframes auf{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.karte .nr{font-family:"Cormorant SC",serif;letter-spacing:.2em;font-size:14px;color:var(--messing-tief)}
+.karte h3{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:clamp(25px,7vw,32px);line-height:1.08;margin:4px 0 8px}
+.karte p{font-size:17.5px;line-height:1.5}
+.karte .wzname{position:absolute;right:18px;top:18px;font-style:italic;font-size:15px;color:#7d6a4c}
+.leer{border:1px solid #2d3b5c;padding:26px 20px;text-align:center;color:var(--gedaempft);font-style:italic}
+.karte .platz{margin-top:14px}
+
+.platz{border:1.5px dashed var(--messing-tief);padding:15px;text-align:center;font-size:15.5px;color:#7d6a4c;background:rgba(201,164,106,.07)}
+.platz small{display:block;font-size:14px;font-style:italic;margin-top:2px}
+.platz.nachts{color:var(--messing);border-color:#6b5532;background:rgba(201,164,106,.04)}
+
+/* Chronik */
+.chronik-sek{background:var(--nacht2);padding:46px 0 40px;border-top:1px solid #23324f;border-bottom:1px solid #23324f}
+h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(32px,9vw,46px);line-height:1.05;text-align:center}
+h2 + .unterzeile{text-align:center;font-style:italic;color:var(--gedaempft);margin-top:6px}
+.chronik{list-style:none;margin:30px 0 0;position:relative;padding-left:0}
+.chronik::before{content:"";position:absolute;left:84px;top:10px;bottom:10px;width:1px;background:linear-gradient(180deg,var(--messing),var(--messing-tief) 80%,transparent)}
+.chronik li{display:grid;grid-template-columns:72px 1fr;gap:26px;padding:0 0 26px;position:relative}
+.chronik li::after{content:"";position:absolute;left:79px;top:12px;width:11px;height:11px;border-radius:50%;background:var(--nacht2);border:1.5px solid var(--messing)}
+.chronik li:last-child::after{background:var(--messing)}
+.chronik .jahr{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:27px;line-height:1.1;color:var(--messing-hell);text-align:right}
+.chronik .jahr.heute{font-style:italic;font-weight:600}
+.chronik h3{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:21px;line-height:1.2}
+.chronik p{color:var(--gedaempft);font-size:17px;margin-top:3px}
+.chronik svg{display:block;margin-top:10px}
+.letzter{margin:10px 0 0;text-align:center;font-style:italic;font-size:19px;color:var(--elfenbein)}
+.letzter b{font-style:normal;color:var(--messing-hell);font-weight:500}
+
+/* Werkstatt & Presse */
+.werkstatt-sek{padding:46px 0 34px}
+.werk-text{margin-top:18px}
+.werk-text p + p{margin-top:12px}
+.schild{margin:26px 0 0;border:1px solid var(--messing-tief);padding:16px 14px;text-align:center;position:relative}
+.schild::before{content:"";position:absolute;inset:4px;border:1px solid rgba(201,164,106,.3);pointer-events:none}
+.schild .sc{font-size:13px;color:var(--messing)}
+.schild p{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:600;margin-top:4px;line-height:1.35}
+.presse{margin-top:30px;display:grid;gap:12px}
+.presse div{border-left:2px solid var(--messing);padding:4px 0 4px 14px}
+.presse .sc{font-size:13px;color:var(--messing)}
+.presse p{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;line-height:1.2;font-weight:500}
+.werkstatt-sek .platz{margin-top:22px}
+
+/* Zeiten */
+.zeiten-sek{background:var(--elfenbein);color:#1b2233;padding:44px 0 40px}
+.zeiten-sek h2{color:#121a2b}
+.zeiten{list-style:none;margin:24px auto 0;max-width:400px}
+.zeiten li{display:flex;align-items:baseline;gap:8px;padding:9px 0}
+.zeiten li .tag{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:20px}
+.zeiten li .punkte{flex:1;border-bottom:1.5px dotted #b9a47f;transform:translateY(-5px);min-width:16px}
+.zeiten li .zeit{font-size:18px;text-align:right}
+.zeiten li.zu{color:#8a8576}
+.slogan{text-align:center;margin-top:28px;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(24px,7vw,32px);color:var(--messing-tief)}
+
+/* Kontakt */
+.kontakt-sek{padding:46px 0 34px;text-align:center}
+.kontakt-sek address{font-style:normal;font-size:19px;line-height:1.55;margin-top:18px}
+.kontakt-sek address b{display:block;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:700}
+.kontakt-sek .unter{color:var(--gedaempft);font-style:italic;margin-top:10px}
+.knoepfe{display:grid;gap:10px;margin:24px auto 0;max-width:340px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:12px 18px;text-decoration:none;font-family:"Cormorant Garamond",serif;font-weight:700;font-size:20px;background:var(--messing);color:var(--nacht);border:1px solid var(--messing)}
+.btn.platzbtn{background:transparent;color:var(--messing);border:1.5px dashed #6b5532;font-weight:600;cursor:default}
+.mail{margin-top:12px;color:var(--gedaempft);font-size:16px}
+.mail span{border:1px dashed #6b5532;padding:0 6px;color:var(--messing)}
+footer{border-top:1px solid #23324f;padding:26px 0 40px;text-align:center;font-size:14.5px;color:#8790a3}
+
+/* PDF */
+.pdf .anleitung,.pdf .werkzeuge{display:none}
+.pdf .wz{transition:none}
+.pdf .karten{display:grid;gap:12px}
+.pdf .karte{display:block;animation:none}
+.pdf .leer{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Messerschmiede Schoder</div>
+
+<header class="kopf inhalt">
+  <div class="seit">Seit 1886</div>
+  <h1><span>Messerschmiede</span><span>Schoder</span><span class="klein">an der Oberen Hauptgasse, Thun</span></h1>
+  <p class="unter">Stahlwaren, Bestecke, Reparaturen und Schleiferei – geführt von Manfred Schoder in vierter Generation.</p>
+  <svg class="zier" viewBox="0 0 150 14" aria-hidden="true"><path d="M0 7 H58 M92 7 H150" stroke="#8a6a3c" stroke-width="1"/><path d="M62 7 L75 1 L88 7 L75 13 Z" fill="none" stroke="#c9a46a" stroke-width="1.2"/><circle cx="75" cy="7" r="2" fill="#c9a46a"/></svg>
+</header>
+
+<section class="messer-sek" id="messer">
+  <div class="inhalt">
+    <p class="anleitung">Tippen Sie auf ein Werkzeug – es klappt auf.</p>
+    <div class="messer-buehne">
+      <svg viewBox="22 110 488 156" role="img" aria-label="Gezeichnetes Taschenmesser mit Holzschalen">
+        <defs>
+          <linearGradient id="stahl" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#f1f3f4"/><stop offset=".5" stop-color="#c2c8cd"/><stop offset="1" stop-color="#848d95"/>
+          </linearGradient>
+          <linearGradient id="holz" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#7a4a28"/><stop offset=".45" stop-color="#5c3519"/><stop offset="1" stop-color="#3a200e"/>
+          </linearGradient>
+          <linearGradient id="messingG" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#f0d9a4"/><stop offset=".5" stop-color="#c9a46a"/><stop offset="1" stop-color="#8a6a3c"/>
+          </linearGradient>
+          <radialGradient id="schein" cx="50%" cy="60%" r="55%">
+            <stop offset="0" stop-color="#22325a" stop-opacity=".9"/><stop offset="1" stop-color="#0c1424" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="300" cy="200" rx="250" ry="90" fill="url(#schein)"/>
+        <ellipse cx="300" cy="262" rx="140" ry="7" fill="#05080f" opacity=".6"/>
+
+        <!-- Werkzeuge links (Drehpunkt 214/222) -->
+        <g class="wz links" id="wzL1" data-i="0">
+          <g class="stahl">
+            <path d="M226 210 L72 210 Q50 211 40 217 Q72 236 112 236 L226 236 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width="1"/>
+            <path d="M200 214 q-6 4 0 8" fill="none" stroke="#7d868e" stroke-width="1.4"/>
+            <path d="M46 218 Q74 233 112 233 L190 233" fill="none" stroke="#ffffff" stroke-width="1" opacity=".7"/>
+          </g>
+          <rect x="30" y="196" width="200" height="54" fill="transparent"/>
+        </g>
+        <g class="wz links" id="wzL2" data-i="1">
+          <g class="stahl">
+            <path d="M226 213 L122 213 Q108 214 100 219 Q118 232 142 232 L226 232 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width="1"/>
+            <path d="M204 216 q-5 3 0 7" fill="none" stroke="#7d868e" stroke-width="1.3"/>
+          </g>
+          <rect x="94" y="200" width="134" height="44" fill="transparent"/>
+        </g>
+        <g class="wz links" id="wzL3" data-i="2">
+          <g class="stahl">
+            <path d="M226 219 L190 219 L190 225 L226 225 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width=".8"/>
+            <path d="M190 222 c-4 -9 -10 -9 -12 0 c-2 9 -8 9 -12 0 c-4 -9 -10 -9 -12 0 c-2 9 -8 9 -12 0 c-4 -9 -10 -9 -12 0 c-2 9 -6 8 -10 2" fill="none" stroke="#c2c8cd" stroke-width="4" stroke-linecap="round"/>
+            <path d="M190 222 c-4 -9 -10 -9 -12 0 c-2 9 -8 9 -12 0 c-4 -9 -10 -9 -12 0 c-2 9 -8 9 -12 0 c-4 -9 -10 -9 -12 0" fill="none" stroke="#f4f6f7" stroke-width="1.2" opacity=".8"/>
+          </g>
+          <rect x="114" y="204" width="114" height="36" fill="transparent"/>
+        </g>
+
+        <!-- Werkzeuge rechts (Drehpunkt 386/222) -->
+        <g class="wz rechts" id="wzR1" data-i="3">
+          <g class="stahl">
+            <path d="M376 219 L474 208 L478 211 L382 226 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width="1"/>
+            <path d="M376 225 L474 234 L476 230 L382 218 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width="1"/>
+            <circle cx="420" cy="222" r="3.4" fill="#8a6a3c" stroke="#f0d9a4" stroke-width="1"/>
+          </g>
+          <rect x="374" y="200" width="110" height="44" fill="transparent"/>
+        </g>
+        <g class="wz rechts" id="wzR2" data-i="4">
+          <g class="stahl">
+            <path d="M374 216 L478 216 Q488 222 478 228 L374 228 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width="1"/>
+            <path d="M402 217 l-4 10 M410 217 l-4 10 M418 217 l-4 10 M426 217 l-4 10 M434 217 l-4 10 M442 217 l-4 10 M450 217 l-4 10 M458 217 l-4 10 M466 217 l-4 10" stroke="#8b949b" stroke-width="1"/>
+          </g>
+          <rect x="372" y="204" width="120" height="36" fill="transparent"/>
+        </g>
+        <g class="wz rechts" id="wzR3" data-i="5">
+          <g class="stahl">
+            <path d="M374 215 L392 215 L484 221 L392 229 L374 229 Z" fill="url(#stahl)" stroke="#6d767e" stroke-width="1"/>
+            <path d="M398 222 L470 221.6" stroke="#7d868e" stroke-width="1"/>
+          </g>
+          <rect x="372" y="204" width="118" height="36" fill="transparent"/>
+        </g>
+
+        <!-- Griff mit Holzschalen -->
+        <g class="griff" id="griff">
+          <rect x="188" y="198" width="224" height="56" rx="26" fill="#2b2f36"/>
+          <path d="M206 200 H394 Q408 200 408 226 Q408 252 394 252 H206 Q192 252 192 226 Q192 200 206 200 Z" fill="url(#holz)"/>
+          <g fill="none" stroke="#2c170a" stroke-width="1" opacity=".55">
+            <path d="M200 212 C250 206 300 214 350 208 S400 212 404 210"/>
+            <path d="M196 224 C240 220 280 230 330 222 S390 226 406 222"/>
+            <path d="M198 238 C250 234 310 244 360 236 S396 240 404 238"/>
+            <path d="M210 246 C260 244 300 249 380 244"/>
+          </g>
+          <path d="M210 203 H390" stroke="#a46d40" stroke-width="1.5" opacity=".55" stroke-linecap="round"/>
+          <!-- Messingbacken -->
+          <path d="M206 200 Q192 200 192 226 Q192 252 206 252 H224 V200 Z" fill="url(#messingG)"/>
+          <path d="M394 200 Q408 200 408 226 Q408 252 394 252 H376 V200 Z" fill="url(#messingG)"/>
+          <circle cx="214" cy="222" r="4.5" fill="#f0d9a4" stroke="#6d5128" stroke-width="1"/>
+          <circle cx="386" cy="222" r="4.5" fill="#f0d9a4" stroke="#6d5128" stroke-width="1"/>
+          <circle cx="300" cy="226" r="3.2" fill="url(#messingG)" stroke="#6d5128" stroke-width=".8"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="werkzeuge" role="group" aria-label="Werkzeuge des Messers">
+      <button type="button" data-i="0" aria-pressed="false"><i>I</i>Grosse Klinge</button>
+      <button type="button" data-i="1" aria-pressed="false"><i>II</i>Kleine Klinge</button>
+      <button type="button" data-i="2" aria-pressed="false"><i>III</i>Korkenzieher</button>
+      <button type="button" data-i="3" aria-pressed="false"><i>IV</i>Schere</button>
+      <button type="button" data-i="4" aria-pressed="false"><i>V</i>Feile</button>
+      <button type="button" data-i="5" aria-pressed="false"><i>VI</i>Ahle</button>
+    </div>
+
+    <div class="karten" aria-live="polite">
+      <div class="leer" id="leer">Jedes Werkzeug öffnet ein Kapitel aus Laden und Werkstatt.<br>Oder tippen Sie einfach auf den Griff.</div>
+      <article class="karte" data-i="0"><span class="wzname">Grosse Klinge</span><div class="nr">I · Laden</div><h3>Küchenmesser</h3><p>Messer für die tägliche Arbeit in der Küche. Und wenn die Schneide nachlässt, wird sie eine Etage tiefer, in der eigenen Werkstatt, wieder geschliffen.</p></article>
+      <article class="karte" data-i="1"><span class="wzname">Kleine Klinge</span><div class="nr">II · Laden &amp; Werkstatt</div><h3>Messer für Metzger und Köche</h3><p>Werkzeug für alle, die beruflich schneiden. Köche und Metzger gehören auch zu den Kunden der Schleiferei – ihre Messer kommen zum Nachschleifen an den Aarequai.</p></article>
+      <article class="karte" data-i="2"><span class="wzname">Korkenzieher</span><div class="nr">III · Laden</div><h3>Bestecke</h3><p>Bestecke für den gedeckten Tisch – nicht umsonst stehen sie gleich auf dem Ladenschild an der Oberen Hauptgasse.</p></article>
+      <article class="karte" data-i="3"><span class="wzname">Schere</span><div class="nr">IV · Laden</div><h3>Scheren &amp; Zangen</h3><p>Scheren und Zangen gehören zum festen Sortiment. Schneidet eine Schere nicht mehr sauber, wird sie in der Werkstatt geschliffen.</p></article>
+      <article class="karte" data-i="4"><span class="wzname">Feile</span><div class="nr">V · Laden</div><h3>Maniküre</h3><p>Maniküre-Sets für die Pflege von Händen und Nägeln – feines Werkzeug aus Stahl, im Laden zur Auswahl.</p></article>
+      <article class="karte" data-i="5"><span class="wzname">Ahle</span><div class="nr">VI · Werkstatt</div><h3>Reparatur alter Taschenmesser</h3><p>Ein grosser Teil der Werkstattarbeit: alte Taschenmesser schleifen und reparieren, damit sie wieder schneiden. Neue Taschenmesser – auch Armeemesser – gibt es oben im Laden.</p><div class="platz">Platzhalter – Preise auf Anfrage<small>Schleif- und Reparaturpreise folgen nach Absprache</small></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="chronik-sek" id="chronik">
+  <div class="inhalt">
+    <h2>Eine Chronik in Stahl</h2>
+    <p class="unterzeile">Vier Generationen, zwei Adressen – ein Handwerk.</p>
+    <ol class="chronik">
+      <li><div class="jahr">1886</div><div><h3>Gründung beim Mühlegässli</h3><p>Fritz Schoder eröffnet seine Messerschmiede in Thun.</p></div></li>
+      <li><div class="jahr">1905</div><div><h3>An die Obere Hauptgasse</h3><p>Der Betrieb zieht in die Altstadt – an die Adresse, an der der Laden bis heute steht.</p></div></li>
+      <li><div class="jahr">1991</div><div><h3>Manfred Schoder übernimmt</h3><p>In vierter Generation führt er seither Laden und Werkstatt.</p></div></li>
+      <li><div class="jahr heute">heute</div><div><h3>Die Schleifmaschine läuft</h3><p>In der Werkstatt am Aarequai ist eine fast 100-jährige Schleifmaschine noch in Betrieb.</p>
+        <svg width="150" height="56" viewBox="0 0 150 56" aria-hidden="true"><circle cx="40" cy="28" r="24" fill="none" stroke="#c9a46a" stroke-width="1.4"/><circle cx="40" cy="28" r="5" fill="#c9a46a"/><path d="M40 4 V12 M40 44 V52 M16 28 H24 M56 28 H64" stroke="#8a6a3c" stroke-width="1.2"/><path d="M40 33 L72 54 H8 Z" fill="none" stroke="#8a6a3c" stroke-width="1.2"/><path d="M62 16 L96 8 M63 19 L110 18 M62 21 L100 30" stroke="#e6cc98" stroke-width="1" stroke-linecap="round" opacity=".8"/></svg></div></li>
+    </ol>
+    <p class="letzter">Die Messerschmiede Schoder gilt als<br><b>letzter traditioneller Betrieb dieser Art in Thun.</b></p>
+  </div>
+</section>
+
+<section class="werkstatt-sek" id="werkstatt">
+  <div class="inhalt">
+    <h2>Laden &amp; Werkstatt</h2>
+    <div class="werk-text">
+      <p>Oben, an der Oberen Hauptgasse 64, liegt der Laden mit Scheren, Zangen, Taschenmessern, Küchenmessern, Maniküre-Sets und Bestecken.</p>
+      <p>Darunter, am Aarequai, arbeitet die Werkstatt: Hier werden Klingen aller Art geschliffen – für Köche, Metzger, Schulen und alle, deren Messer wieder schneiden soll.</p>
+    </div>
+    <div class="schild"><div class="sc">Auf dem Ladenschild</div><p>Messerschmiede · Stahlwaren · Bestecke · Reparaturen · Schleiferei</p></div>
+    <div class="platz nachts">Platzhalter – Ihr Foto<small>Schaufenster an der Oberen Hauptgasse oder die alte Schleifmaschine</small></div>
+    <div class="presse">
+      <div><span class="sc">Jungfrau Zeitung</span><p>«Der schärfste Thuner»</p></div>
+      <div><span class="sc">Berner Zeitung</span><p>«Schoders schleifen seit 125 Jahren Messer»</p></div>
+    </div>
+    <div class="platz nachts">Platzhalter – Ihre Bewertungen<small>Stimmen von Kundinnen und Kunden, sobald freigegeben</small></div>
+  </div>
+</section>
+
+<section class="zeiten-sek" id="zeiten">
+  <div class="inhalt">
+    <h2>Öffnungszeiten</h2>
+    <ul class="zeiten">
+      <li class="zu"><span class="tag">Montag</span><span class="punkte"></span><span class="zeit">geschlossen</span></li>
+      <li><span class="tag">Dienstag – Freitag</span><span class="punkte"></span><span class="zeit">10.00–12.00<br>13.30–18.00</span></li>
+      <li><span class="tag">Samstag</span><span class="punkte"></span><span class="zeit">10.00–16.00</span></li>
+      <li class="zu"><span class="tag">Sonntag</span><span class="punkte"></span><span class="zeit">geschlossen</span></li>
+    </ul>
+    <p class="slogan">Scharf, schärfer, Schoder.</p>
+  </div>
+</section>
+
+<section class="kontakt-sek" id="kontakt">
+  <div class="inhalt">
+    <h2>Besuch &amp; Kontakt</h2>
+    <address><b>Messerschmiede Schoder</b>Manfred Schoder<br>Obere Hauptgasse 64<br>3600 Thun</address>
+    <p class="unter">Der Laden liegt in der Altstadt, die Werkstatt direkt darunter am Aarequai.</p>
+    <div class="knoepfe">
+      <a class="btn" href="tel:+41332222303">Anrufen · 033 222 23 03</a>
+      <span class="btn platzbtn" role="note">E-Mail schreiben (Adresse folgt)</span>
+    </div>
+    <p class="mail">E-Mail: <span>Platzhalter</span></p>
+  </div>
+</section>
+
+<footer><div class="inhalt">Messerschmiede Schoder · seit 1886 · Thun<br>Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Messerschmiede Schoder.</div></footer>
+
+<script>
+(function(){
+  var offenWinkel = [6, 38, 74, -8, -40, -72];
+  var ids = ['wzL1','wzL2','wzL3','wzR1','wzR2','wzR3'];
+  var wz = ids.map(function(id){ return document.getElementById(id); });
+  var knoepfe = [].slice.call(document.querySelectorAll('.werkzeuge button'));
+  var karten = [].slice.call(document.querySelectorAll('.karte'));
+  var leer = document.getElementById('leer');
+  var offen = [false,false,false,false,false,false];
+  var aktiv = -1;
+
+  function zu(i){ return i < 3 ? 180 : -180; }
+  function setze(i, auf){
+    offen[i] = auf;
+    wz[i].style.transform = 'rotate(' + (auf ? offenWinkel[i] : zu(i)) + 'deg)';
+    knoepfe[i].setAttribute('aria-pressed', auf ? 'true' : 'false');
+  }
+  function zeige(i){
+    aktiv = i;
+    karten.forEach(function(k, n){ k.classList.toggle('zeigen', n === i); });
+    knoepfe.forEach(function(b, n){ b.classList.toggle('zeigt', n === i); });
+    wz.forEach(function(w, n){ w.classList.toggle('aktiv', n === i); });
+    leer.style.display = i < 0 ? '' : 'none';
+  }
+  function tippe(i){
+    if (!offen[i]) { setze(i, true); zeige(i); }
+    else if (aktiv !== i) { zeige(i); }
+    else {
+      setze(i, false);
+      var naechst = offen.lastIndexOf(true);
+      zeige(naechst);
+    }
+  }
+  knoepfe.forEach(function(b){ b.addEventListener('click', function(){ tippe(+b.dataset.i); }); });
+  wz.forEach(function(w){ w.addEventListener('click', function(){ tippe(+w.dataset.i); }); });
+  document.getElementById('griff').addEventListener('click', function(){
+    var reihenfolge = [0,3,1,4,2,5];
+    for (var n = 0; n < reihenfolge.length; n++) {
+      if (!offen[reihenfolge[n]]) { setze(reihenfolge[n], true); zeige(reihenfolge[n]); return; }
+    }
+    for (var k = 0; k < 6; k++) setze(k, false);
+    zeige(-1);
+  });
+
+  // Hinweis: die grosse Klinge lugt kurz hervor, wenn das Messer ins Bild kommt
+  var gezeigt = false;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(e, obs){
+      if (e[0].isIntersecting && !gezeigt && !document.documentElement.classList.contains('pdf')) {
+        gezeigt = true; obs.disconnect();
+        setTimeout(function(){ if (!offen[0]) { wz[0].style.transform = 'rotate(150deg)'; setTimeout(function(){ if (!offen[0]) wz[0].style.transform = 'rotate(180deg)'; }, 700); } }, 500);
+      }
+    }, {threshold:.6}).observe(document.querySelector('.messer-buehne'));
+  }
+
+  function pdfZustand(){
+    for (var i = 0; i < 6; i++) { offen[i] = true; wz[i].style.transform = 'rotate(' + offenWinkel[i] + 'deg)'; }
+  }
+  if (document.documentElement.classList.contains('pdf')) pdfZustand();
+  new MutationObserver(function(){ if (document.documentElement.classList.contains('pdf')) pdfZustand(); })
+    .observe(document.documentElement, {attributes:true, attributeFilter:['class']});
+})();
+</script>
+</body>
+</html>
