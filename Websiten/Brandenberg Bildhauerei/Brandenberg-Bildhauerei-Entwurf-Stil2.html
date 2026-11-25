@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Brandenberg Bildhauerei – Entwurf «Von Hand skizziert»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Caveat:wght@500;600&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --granit:#1B1C1E;
+  --granit2:#242629;
+  --granit3:#2E3034;
+  --sand:#D6BC94;
+  --sand-hell:#EFE4D0;
+  --kupfer:#C07A4C;
+  --kupfer-d:#9E5E37;
+  --text:#E9E2D6;
+  --leise:#A9A39A;
+  --linie:#3C3F44;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--granit);color:var(--text);font-family:"Libre Franklin",system-ui,sans-serif;font-weight:300;font-size:16.5px;line-height:1.7;overflow-x:hidden}
+svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:300;line-height:1.08;overflow-wrap:break-word}
+.hand{font-family:"Caveat",cursive;font-weight:500}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+.demo{background:var(--kupfer-d);color:#FFF6EA;font-size:12.5px;line-height:1.45;text-align:center;padding:8px 16px}
+
+/* Kopf */
+.kopf{position:sticky;top:0;z-index:20;background:rgba(27,28,30,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--linie)}
+.kopf .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;height:62px}
+.logo{text-decoration:none;font-family:"Fraunces",serif;font-size:19px;line-height:1;letter-spacing:.01em}
+.logo b{font-weight:500}
+.logo span{display:block;font-family:"Caveat",cursive;font-size:17px;color:var(--kupfer);margin-top:2px}
+.ruf{display:inline-flex;align-items:center;gap:7px;background:var(--kupfer);color:#1B1C1E;text-decoration:none;font-weight:500;font-size:14px;padding:9px 14px;border-radius:4px;white-space:nowrap}
+.ruf svg{width:16px;height:16px}
+
+/* Hero */
+.hero{padding:46px 0 30px;position:relative}
+.hero .notiz{font-family:"Caveat",cursive;font-size:24px;color:var(--kupfer);transform:rotate(-2deg);display:inline-block}
+.hero h1{font-size:clamp(40px,10.6vw,78px);margin-top:10px;max-width:13ch}
+.hero h1 i{font-style:italic;color:var(--sand)}
+.hero p{margin-top:20px;max-width:33em;color:#CFC8BC;font-size:17.5px}
+.werkzeug{margin:34px -6px 0;max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 20px;border-radius:4px;text-decoration:none;font-weight:500;font-size:15.5px}
+.btn svg{width:18px;height:18px}
+.btn.k{background:var(--sand);color:#1B1C1E}
+.btn.r{border:1px solid var(--sand);color:var(--sand)}
+
+/* Abschnitte */
+section{padding:66px 0}
+.label{font-family:"Caveat",cursive;font-size:23px;color:var(--kupfer);display:flex;align-items:center;gap:10px}
+.label svg{width:34px;height:12px}
+h2{font-size:clamp(32px,8.6vw,54px);margin-top:6px}
+.einl{color:#CFC8BC;max-width:36em;margin-top:14px}
+
+/* Stepper */
+.weg{background:var(--granit2);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie)}
+.weg-grid{display:grid;gap:22px;margin-top:28px}
+.blatt{background:#2A2C30;border-radius:6px;padding:10px;position:relative}
+#entstehung{width:100%;height:auto;max-width:460px;margin:0 auto}
+.schritte{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.schritte button{font:inherit;cursor:pointer;background:transparent;border:1px solid var(--linie);color:var(--leise);border-radius:4px;padding:8px 4px 7px;text-align:center;min-height:56px;line-height:1.2}
+.schritte button b{display:block;font-family:"Fraunces",serif;font-weight:500;font-size:20px;color:var(--text)}
+.schritte button small{font-size:11.5px;display:block;margin-top:2px}
+.schritte button[aria-current="step"]{background:var(--sand);border-color:var(--sand);color:#3A332A}
+.schritte button[aria-current="step"] b{color:#1B1C1E}
+.schritt-text{min-height:200px;margin-top:18px}
+.schritt-text article{display:none}
+.schritt-text article.an{display:block;animation:auf .5s ease}
+.schritt-text h3{font-size:clamp(24px,6.4vw,32px)}
+.schritt-text .hand{font-size:22px;color:var(--kupfer);display:block;margin-bottom:2px}
+.schritt-text p{margin-top:10px;color:#D3CCC0}
+.nav{display:flex;gap:10px;margin-top:18px}
+.nav button{font:inherit;font-weight:500;font-size:15px;cursor:pointer;padding:11px 18px;border-radius:4px;border:1px solid var(--sand);background:transparent;color:var(--sand);min-height:46px}
+.nav button.vor{background:var(--sand);color:#1B1C1E}
+.nav button:disabled{opacity:.35;cursor:default}
+@keyframes auf{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Zeichnungs-Stufen */
+#entstehung .lage{transition:opacity .8s ease}
+#entstehung .stift{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s ease}
+#entstehung.s1 .l-papier,#entstehung.s1 .l-skizze{opacity:1}
+#entstehung.s1 .l-skizze .stift{stroke-dashoffset:0}
+#entstehung .l-papier,#entstehung .l-skizze,#entstehung .l-block,#entstehung .l-kreide,#entstehung .l-form,#entstehung .l-werkzeug,#entstehung .l-friedhof,#entstehung .l-schrift{opacity:0}
+#entstehung.s2 .l-block,#entstehung.s2 .l-kreide{opacity:1}
+#entstehung.s2 .l-kreide .stift{stroke-dashoffset:0}
+#entstehung.s3 .l-block{opacity:.28}
+#entstehung.s3 .l-form,#entstehung.s3 .l-werkzeug,#entstehung.s3 .l-kreide{opacity:1}
+#entstehung.s3 .l-kreide .stift,#entstehung.s4 .l-kreide .stift{stroke-dashoffset:0}
+#entstehung.s3 .l-kreide{opacity:.5}
+#entstehung.s4 .l-form,#entstehung.s4 .l-friedhof,#entstehung.s4 .l-schrift{opacity:1}
+#entstehung .spur{transition:opacity .8s ease .4s;opacity:0}
+#entstehung.s3 .spur{opacity:1}
+#entstehung.s4 .spur{opacity:.25}
+
+/* Porträt */
+.portrait-grid{display:grid;gap:30px;margin-top:26px}
+.skizzenbuch{background:var(--sand-hell);color:#2B2622;border-radius:4px;padding:26px 22px 22px;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.skizzenbuch::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:repeating-linear-gradient(90deg,transparent 0 18px,#C9B89C 18px 22px);opacity:.8;border-radius:4px 4px 0 0}
+.skizzenbuch li{list-style:none;display:grid;grid-template-columns:70px 1fr;gap:12px;padding:12px 0;border-bottom:1px dashed #C8B99E}
+.skizzenbuch li:last-child{border-bottom:0}
+.skizzenbuch .jahr{font-family:"Caveat",cursive;font-size:28px;color:var(--kupfer-d);line-height:1}
+.skizzenbuch p{font-size:15.5px;line-height:1.5}
+.portrait-text p{margin-top:14px;color:#D3CCC0}
+.portrait-text p:first-child{margin-top:0}
+.portrait-text .zitat{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(22px,5.6vw,28px);line-height:1.35;color:var(--sand);border-left:2px solid var(--kupfer);padding-left:16px;margin:24px 0}
+.paar{display:grid;gap:14px;margin-top:22px}
+.paar div{border:1px solid var(--linie);border-radius:4px;padding:14px 16px}
+.paar b{font-family:"Fraunces",serif;font-weight:500;font-size:19px;display:block;color:var(--text)}
+.paar span{font-size:14px;color:var(--leise)}
+
+/* Leistungen */
+.karten{display:grid;gap:14px;margin-top:28px}
+.karte{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center;padding:16px;border:1px solid var(--linie);border-radius:6px;background:var(--granit2)}
+.karte svg{width:64px;height:64px}
+.karte h3{font-size:22px;font-weight:500}
+.karte p{font-size:15px;color:var(--leise);margin-top:2px;line-height:1.5}
+
+/* Region & Platzhalter */
+.region{background:var(--granit2)}
+.orte{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.orte span{font-family:"Caveat",cursive;font-size:23px;line-height:1;padding:8px 12px;border:1px solid var(--linie);border-radius:30px;color:var(--sand-hell)}
+.platz{border:1.5px dashed #6B6258;border-radius:6px;padding:18px;color:var(--leise);font-size:15px;margin-top:16px}
+.platz b{display:block;color:var(--text);font-weight:500}
+
+/* Kontakt */
+.kontakt h2 i{font-style:italic;color:var(--sand)}
+.kontakt address{font-style:normal;font-size:18px;margin-top:20px;line-height:1.7}
+footer{border-top:1px solid var(--linie);padding:26px 0 36px;font-size:13.5px;color:var(--leise);line-height:1.7}
+
+/* Einblenden */
+.zeige{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
+.zeige.da{opacity:1;transform:none}
+
+@media (min-width:780px){
+  .weg-grid{grid-template-columns:1fr 1fr;align-items:start;gap:40px}
+  .portrait-grid{grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+  .karten{grid-template-columns:1fr 1fr}
+  .paar{grid-template-columns:1fr 1fr}
+  .hero{padding:80px 0 50px}
+}
+@media (min-width:960px){
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;column-gap:40px;align-items:start}
+  .hero .wrap>*{grid-column:1}
+  .hero .werkzeug{grid-column:2;grid-row:1 / span 4;align-self:center;margin:0}
+}
+
+/* PDF */
+html.pdf .kopf{position:static;backdrop-filter:none}
+html.pdf .zeige{opacity:1!important;transform:none!important}
+html.pdf *{transition:none!important;animation:none!important}
+html.pdf .schritt-text article{display:block;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--linie)}
+html.pdf .schritt-text article:last-child{border-bottom:0}
+html.pdf .nav,html.pdf .schritte{display:none}
+</style>
+</head>
+<body>
+
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Brandenberg Bildhauerei GmbH</div>
+
+<header class="kopf">
+  <div class="wrap">
+    <a class="logo" href="#"><b>Brandenberg</b> Bildhauerei<span>Steffisburg</span></a>
+    <a class="ruf" href="tel:+41334380022"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Anrufen</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <span class="notiz">Grabmale · Skulpturen · Brunnen</span>
+    <h1>Jeder Stein beginnt mit einem <i>Bleistiftstrich.</i></h1>
+    <p>Jonas Brandenberg skizziert jedes Grabmal zuerst von Hand. Erst wenn die Form stimmt, kommen Meissel und moderne Werkzeuge zum Einsatz – in der Werkstatt an der Alten Bernstrasse in Steffisburg.</p>
+    <div class="cta">
+      <a class="btn k" href="tel:+41334380022"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>033 438 00 22</a>
+      <a class="btn r" href="mailto:info@jonasbrandenberg.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>E-Mail</a>
+    </div>
+    <!-- Werkzeuge als Bleistiftzeichnung -->
+    <svg class="werkzeug" viewBox="0 0 420 170" aria-hidden="true">
+      <g fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".9">
+        <!-- Bleistift -->
+        <path d="M24 136L178 52l9 15L33 151z"/>
+        <path d="M24 136l-12 22 21-7"/>
+        <path d="M178 52l12-6 6 11-9 10"/>
+        <path d="M30 141l150-82" opacity=".45"/>
+        <!-- Meissel -->
+        <path d="M226 30l10 4-36 112-6 2-4-5z"/>
+        <path d="M236 34l6-18 9 4-7 17" />
+        <path d="M190 143l-3 14 11-8"/>
+        <!-- Knüpfel -->
+        <path d="M286 64c10-22 46-30 66-14 16 13 12 36-6 44-20 9-50 4-60-12-4-6-3-12 0-18z"/>
+        <path d="M300 92l-22 60" stroke-width="1.6"/>
+        <path d="M290 95l-22 60" stroke-width="1.6"/>
+        <path d="M268 155l10 4"/>
+        <path d="M302 62c12-12 34-14 46-4" opacity=".45"/>
+        <!-- Zirkel -->
+        <path d="M384 34l-18 110M384 34l18 110M384 34v-10M378 22h12M372 90h24" opacity=".85"/>
+      </g>
+      <g stroke="#C07A4C" stroke-width="1" fill="none" opacity=".7" stroke-dasharray="3 5">
+        <path d="M8 164h404"/>
+      </g>
+      <text x="40" y="34" class="hand" font-size="19" fill="#C07A4C" font-family="Caveat, cursive">zuerst die Hand,</text>
+      <text x="48" y="159" class="hand" font-size="17" fill="#C07A4C" font-family="Caveat, cursive">dann das Werkzeug</text>
+    </svg>
+  </div>
+</section>
+
+<section class="weg" id="weg">
+  <div class="wrap">
+    <div class="label"><svg viewBox="0 0 34 12" fill="none" stroke="#C07A4C" stroke-width="1.4" stroke-linecap="round"><path d="M1 7c6-5 10 3 16-1s10-4 16 0"/></svg>in vier Schritten</div>
+    <h2>Vom Gedanken zum Stein</h2>
+    <p class="einl">Tippen Sie sich durch die Entstehung eines Grabmals – und sehen Sie, wie aus einer Skizze eine Stele wird.</p>
+
+    <div class="weg-grid">
+      <div class="blatt">
+        <svg id="entstehung" class="s1" viewBox="0 0 360 400" role="img" aria-label="Zeichnung: Entstehung eines Grabmals in vier Schritten">
+          <defs>
+            <linearGradient id="sandstein" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#DCC7A3"/>
+              <stop offset=".6" stop-color="#CDB48A"/>
+              <stop offset="1" stop-color="#B89C72"/>
+            </linearGradient>
+            <linearGradient id="roh" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#A89478"/>
+              <stop offset="1" stop-color="#7E6E58"/>
+            </linearGradient>
+            <linearGradient id="abend" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2E3034"/>
+              <stop offset="1" stop-color="#3A3A37"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Stufe 4: Friedhof (Hintergrund) -->
+          <g class="lage l-friedhof">
+            <rect x="0" y="0" width="360" height="400" fill="url(#abend)"/>
+            <path d="M0 250c50-30 90-36 140-22s100 6 140-14 60-12 80-4v190H0z" fill="#33363A"/>
+            <circle cx="290" cy="236" r="40" fill="#D6BC94" opacity=".08"/>
+            <path d="M50 352c-10-40-8-110 8-150 16 40 18 110 8 150z" fill="#2A2E2B"/>
+            <path d="M74 352c-6-30-5-80 5-110 10 30 11 80 5 110z" fill="#262A27"/>
+            <path d="M306 352c-9-36-7-96 7-130 14 34 16 94 7 130z" fill="#2A2E2B"/>
+            <path d="M0 352h360v48H0z" fill="#3F4A38"/>
+            <path d="M0 352c30-4 60 3 90 0s60-4 90 0 60 3 90 0 60-4 90 0" fill="none" stroke="#5E6E50" stroke-width="2"/>
+            <path d="M96 360h168v16H96z" fill="#8B8172"/>
+          </g>
+
+          <!-- Stufe 1: Papier -->
+          <g class="lage l-papier">
+            <path d="M28 30l298-8 8 352-300 6z" fill="#EFE4D0"/>
+            <path d="M34 380l300-6" stroke="#CDBFA6" stroke-width="2"/>
+          </g>
+          <!-- Stufe 1: Skizze -->
+          <g class="lage l-skizze" fill="none" stroke="#45403A" stroke-linecap="round" stroke-linejoin="round">
+            <path class="stift" pathLength="1" stroke-width="1.6" d="M121 352V152C121 121 141 97 173 93C201 89 231 101 239 131L239 352"/>
+            <path class="stift" pathLength="1" stroke-width=".9" opacity=".6" d="M118 350V150C119 118 140 95 170 91C204 86 234 100 241 133L241 350"/>
+            <path class="stift" pathLength="1" stroke-width=".8" opacity=".55" stroke-dasharray="4 4" d="M180 70V364"/>
+            <path class="stift" pathLength="1" stroke-width=".8" opacity=".55" d="M100 352H262"/>
+            <path class="stift" pathLength="1" stroke-width=".8" opacity=".5" d="M140 196H222M146 220H214M156 244H204"/>
+            <path class="stift" pathLength="1" stroke-width="1" d="M168 156c6-14 20-18 26-8-8 2-14 6-18 14"/>
+            <text x="226" y="76" font-family="Caveat, cursive" font-size="17" fill="#8E5530" stroke="none">weicher Bogen</text>
+            <path class="stift" pathLength="1" stroke="#8E5530" stroke-width="1" d="M236 82c-2 8 0 16 2 22"/>
+            <text x="48" y="200" font-family="Caveat, cursive" font-size="17" fill="#8E5530" stroke="none">Name</text>
+            <text x="44" y="246" font-family="Caveat, cursive" font-size="17" fill="#8E5530" stroke="none">Jahre</text>
+            <text x="248" y="300" font-family="Caveat, cursive" font-size="16" fill="#8E5530" stroke="none">Zweig?</text>
+          </g>
+
+          <!-- Stufe 2: Rohblock -->
+          <g class="lage l-block">
+            <path d="M104 362l-4-276 8-6 66-4 72 2 10 8-2 276z" fill="url(#roh)"/>
+            <path d="M100 86l8-6 66-4 72 2 10 8-70 4z" fill="#BCA98B"/>
+            <path d="M256 86l-2 276-8 2 2-274z" fill="#6A5C49"/>
+            <g stroke="#5E5141" stroke-width="1" opacity=".5" fill="none">
+              <path d="M112 140l14-4M130 230l10 6M210 180l16-6M150 300l12 4M226 290l8 10M118 320l6-8"/>
+            </g>
+          </g>
+          <!-- Stufe 2: Kreidelinie auf dem Block -->
+          <g class="lage l-kreide" fill="none" stroke="#C07A4C" stroke-linecap="round">
+            <path class="stift" pathLength="1" stroke-width="2" d="M121 352V152C121 121 141 97 173 93C201 89 231 101 239 131L239 352"/>
+          </g>
+
+          <!-- Stufe 3+4: Form der Stele -->
+          <g class="lage l-form">
+            <path d="M121 360V152C121 121 141 97 173 93C201 89 231 101 239 131V360z" fill="url(#sandstein)"/>
+            <path d="M239 131V360h7V136c-1-2-4-4-7-5z" fill="#9E845E"/>
+            <g class="spur" stroke="#9C8460" stroke-width=".9" opacity=".7">
+              <path d="M128 170l10-10M128 186l16-16M128 202l20-20M128 218l20-20M128 234l20-20M128 250l20-20M128 266l20-20M128 282l20-20M128 298l20-20M128 314l20-20M128 330l20-20M128 346l20-20"/>
+              <path d="M216 160l14-14M212 180l20-20M212 200l20-20M212 220l20-20M212 240l20-20M212 260l20-20M212 280l20-20M212 300l20-20M212 320l20-20M212 340l20-20"/>
+              <path d="M150 120l8-10M160 116l10-10M188 104l8-6M204 106l10-6"/>
+            </g>
+          </g>
+          <!-- Stufe 3: Werkzeuge -->
+          <g class="lage l-werkzeug" fill="none" stroke="#EFE4D0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M286 186l8 3-24 70-5 1-3-4z" fill="#2E3034"/>
+            <path d="M294 189l4-12 6 2-4 12"/>
+            <path d="M300 140c10-16 34-20 46-8 9 10 4 24-8 28-14 4-32 0-38-8-3-4-3-8 0-12z" fill="#2E3034"/>
+            <path d="M312 160l-14 42M304 160l-14 42"/>
+            <text x="262" y="292" font-family="Caveat, cursive" font-size="17" fill="#D6BC94" stroke="none">von Hand</text>
+            <text x="262" y="312" font-family="Caveat, cursive" font-size="17" fill="#D6BC94" stroke="none">+ moderne</text>
+            <text x="262" y="330" font-family="Caveat, cursive" font-size="17" fill="#D6BC94" stroke="none">Werkzeuge</text>
+          </g>
+          <!-- Stufe 4: Inschrift und Blumen -->
+          <g class="lage l-schrift">
+            <path d="M168 156c6-14 20-18 26-8-8 2-14 6-18 14" fill="none" stroke="#7E6847" stroke-width="2"/>
+            <rect x="140" y="192" width="82" height="5" rx="2" fill="#7E6847"/>
+            <rect x="152" y="216" width="58" height="4" rx="2" fill="#8E7856"/>
+            <g fill="none" stroke="#6F8A57" stroke-width="1.6" stroke-linecap="round">
+              <path d="M110 360c-4-14-2-26 6-34M118 360c2-12 8-20 16-24M104 360c-8-10-10-20-6-28"/>
+              <path d="M250 360c4-16 2-28-6-36M258 360c-2-12-8-20-16-22"/>
+            </g>
+            <circle cx="116" cy="326" r="5" fill="#C07A4C"/><circle cx="134" cy="336" r="4" fill="#E2C48E"/><circle cx="98" cy="332" r="4" fill="#C07A4C" opacity=".8"/>
+            <circle cx="244" cy="324" r="5" fill="#E2C48E"/><circle cx="242" cy="338" r="3.5" fill="#C07A4C"/>
+          </g>
+        </svg>
+      </div>
+
+      <div>
+        <div class="schritte" role="group" aria-label="Schritte">
+          <button type="button" data-s="1" aria-current="step"><b>1</b><small>Skizze</small></button>
+          <button type="button" data-s="2"><b>2</b><small>Rohblock</small></button>
+          <button type="button" data-s="3"><b>3</b><small>Werkstatt</small></button>
+          <button type="button" data-s="4"><b>4</b><small>Setzen</small></button>
+        </div>
+        <div class="schritt-text" aria-live="polite">
+          <article data-s="1" class="an">
+            <span class="hand">Schritt 1</span>
+            <h3>Gespräch &amp; Handskizze</h3>
+            <p>Am Anfang steht ein ruhiges Gespräch: Wer war dieser Mensch, was war ihm wichtig? Aus Ihren Worten entsteht eine erste Skizze – von Hand, mit Bleistift auf Papier.</p>
+          </article>
+          <article data-s="2">
+            <span class="hand">Schritt 2</span>
+            <h3>Den Rohblock wählen</h3>
+            <p>Gemeinsam suchen wir den passenden Stein aus – nach Farbe, Struktur und Charakter. Auf den rohen Block wird die Form der Skizze übertragen.</p>
+          </article>
+          <article data-s="3">
+            <span class="hand">Schritt 3</span>
+            <h3>Bearbeitung von Hand und mit modernen Werkzeugen</h3>
+            <p>In der Werkstatt nimmt der Stein Gestalt an: mit Knüpfel und Meissel, und dort, wo es sinnvoll ist, mit modernen Werkzeugen. Oberfläche und Inschrift entstehen Schritt für Schritt.</p>
+          </article>
+          <article data-s="4">
+            <span class="hand">Schritt 4</span>
+            <h3>Setzen auf dem Friedhof</h3>
+            <p>Zum Schluss bringen wir das Grabmal an seinen Ort und setzen es sorgfältig – auf Friedhöfen in der ganzen Region, von Spiez bis Münsingen.</p>
+          </article>
+        </div>
+        <div class="nav">
+          <button type="button" id="zurueck" disabled>Zurück</button>
+          <button type="button" id="weiter" class="vor">Weiter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portrait">
+  <div class="wrap">
+    <div class="label"><svg viewBox="0 0 34 12" fill="none" stroke="#C07A4C" stroke-width="1.4" stroke-linecap="round"><path d="M1 7c6-5 10 3 16-1s10-4 16 0"/></svg>Porträt</div>
+    <h2>Ein Handwerk, weitergegeben</h2>
+    <div class="portrait-grid">
+      <div class="portrait-text zeige">
+        <p>Jonas Brandenberg ist Steinbildhauer und seit 2007 selbständig. Als Diplomarbeit in der Denkmalpflege restaurierte er ein Mausoleum – eine Arbeit, die Geduld und Respekt vor dem verlangt, was frühere Generationen geschaffen haben.</p>
+        <p>Als sein letzter Arbeitgeber in Pension ging, übernahm er dessen Werkstatt. Seit 2012 führt er die Firma gemeinsam mit <span style="white-space:nowrap">Monika Brandenberg-Schmid</span>.</p>
+        <p class="zitat">Er skizziert von Hand – und setzt dann moderne Werkzeuge ein.</p>
+        <div class="paar">
+          <div><b>Jonas Brandenberg</b><span>Steinbildhauer, Inhaber</span></div>
+          <div><b>Monika Brandenberg-Schmid</b><span>Inhaberin</span></div>
+        </div>
+      </div>
+      <ol class="skizzenbuch zeige" aria-label="Werkstatt-Geschichte">
+        <li><span class="jahr">2002</span><p>Gründung als Hefti Bildhauerei GmbH in Thun – Nachfolge der Bildhauerei Hefti.</p></li>
+        <li><span class="jahr">2007</span><p>Jonas Brandenberg macht sich als Steinbildhauer selbständig.</p></li>
+        <li><span class="jahr">2012</span><p>Jonas Brandenberg und Monika Brandenberg-Schmid werden Inhaber.</p></li>
+        <li><span class="jahr">2024</span><p>Neuer Name: Brandenberg Bildhauerei GmbH – und der Umzug nach Steffisburg.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="leistungen" style="padding-top:20px">
+  <div class="wrap">
+    <div class="label"><svg viewBox="0 0 34 12" fill="none" stroke="#C07A4C" stroke-width="1.4" stroke-linecap="round"><path d="M1 7c6-5 10 3 16-1s10-4 16 0"/></svg>aus der Werkstatt</div>
+    <h2>Was bei uns entsteht</h2>
+    <div class="karten">
+      <div class="karte zeige">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round"><path d="M20 56V24c0-8 6-14 13-15 8-1 13 4 13 12v35"/><path d="M12 56h40"/><path d="M27 30h12M29 36h8" stroke="#C07A4C"/></svg>
+        <div><h3>Grabmale</h3><p>Individuell, nach den Wünschen und Vorstellungen der Angehörigen.</p></div>
+      </div>
+      <div class="karte zeige">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round"><path d="M32 8v48M20 22h24"/><path d="M26 56h12"/><path d="M30 14v38M34 14v38" stroke="#C07A4C" opacity=".6"/></svg>
+        <div><h3>Holzkreuze</h3><p>Erinnerungen in Holz – schlicht und von Hand gefertigt.</p></div>
+      </div>
+      <div class="karte zeige">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round"><path d="M12 44h40l-4 12H16z"/><path d="M32 44V22"/><path d="M32 22c-6 2-9 10-9 18M32 22c6 2 9 10 9 18" stroke="#C07A4C"/><path d="M32 22v-6"/></svg>
+        <div><h3>Brunnen</h3><p>Aus Naturstein, als ruhiger Mittelpunkt für Garten und Hof.</p></div>
+      </div>
+      <div class="karte zeige">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round"><path d="M22 56h20M27 56l1-12c-7-4-9-12-6-19 3-8 12-11 18-6 6 6 3 15-3 19l-3 3v15"/><path d="M33 22c3 1 5 4 4 7" stroke="#C07A4C"/></svg>
+        <div><h3>Skulpturen &amp; Gartenfiguren</h3><p>Freie Arbeiten und Kunstwerke aus Stein.</p></div>
+      </div>
+      <div class="karte zeige">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round"><path d="M14 56V30c0-10 8-18 18-18s18 8 18 18v26"/><path d="M8 56h48"/><path d="M24 56V36h16v20"/><path d="M38 18l6-6M42 22l6-4" stroke="#C07A4C"/></svg>
+        <div><h3>Restaurierungen</h3><p>Mit dem Blick der Denkmalpflege – behutsam und mit Respekt vor dem Bestehenden.</p></div>
+      </div>
+      <div class="karte zeige">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#D6BC94" stroke-width="1.3" stroke-linecap="round"><path d="M8 50l10-14h28l10 14z"/><path d="M18 36l4-10h20l4 10"/><path d="M22 26l2-8h16l2 8" stroke="#C07A4C"/></svg>
+        <div><h3>Natursteinarbeiten</h3><p>Arbeiten in Naturstein für Haus, Garten und Friedhof.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="region" id="region">
+  <div class="wrap">
+    <div class="label"><svg viewBox="0 0 34 12" fill="none" stroke="#C07A4C" stroke-width="1.4" stroke-linecap="round"><path d="M1 7c6-5 10 3 16-1s10-4 16 0"/></svg>unterwegs</div>
+    <h2>Auf Friedhöfen in der ganzen Region</h2>
+    <div class="orte">
+      <span>Spiez</span><span>Heimberg</span><span>Fahrni</span><span>Uttigen</span><span>Diemtigen</span><span>Zweisimmen</span><span>Oberdiessbach</span><span>Münsingen</span><span>…</span>
+    </div>
+    <div class="platz"><b>[Öffnungszeiten folgen]</b>Laut Verzeichnis Mo–Fr 07:30–12:00 und 13:30–18:30, Sa nach Vereinbarung – bitte bestätigen.</div>
+    <div class="platz"><b>[Kundenstimmen]</b>Hier erscheinen Ihre Google-Bewertungen.</div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <div class="label"><svg viewBox="0 0 34 12" fill="none" stroke="#C07A4C" stroke-width="1.4" stroke-linecap="round"><path d="M1 7c6-5 10 3 16-1s10-4 16 0"/></svg>Kontakt</div>
+    <h2>Lassen Sie uns <i>in Ruhe</i> darüber sprechen.</h2>
+    <p class="einl">Rufen Sie an oder schreiben Sie uns. Gerne vereinbaren wir ein Gespräch in der Werkstatt – ohne Eile.</p>
+    <address>Brandenberg Bildhauerei GmbH<br>Alte Bernstrasse 173<br>3613 Steffisburg</address>
+    <div class="cta">
+      <a class="btn k" href="tel:+41334380022"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>033 438 00 22</a>
+      <a class="btn r" href="mailto:info@jonasbrandenberg.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>info@jonasbrandenberg.ch</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Brandenberg Bildhauerei GmbH · Alte Bernstrasse 173 · <span style="white-space:nowrap">3613 Steffisburg</span><br>
+    Tel. <a href="tel:+41334380022">033 438 00 22</a> · <a href="mailto:info@jonasbrandenberg.ch">info@jonasbrandenberg.ch</a><br><span style="white-space:nowrap">UID CHE-109.400.961</span><br>
+    <span style="opacity:.75">Entwurf von Max Rathsack. Alle Bilder sind gezeichnete Platzhalter – später eigene Fotos.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var svg=document.getElementById('entstehung');
+  var knoepfe=document.querySelectorAll('.schritte button');
+  var texte=document.querySelectorAll('.schritt-text article');
+  var zur=document.getElementById('zurueck'),wei=document.getElementById('weiter');
+  var akt=1;
+  function geh(n){
+    akt=Math.max(1,Math.min(4,n));
+    svg.setAttribute('class','s'+akt);
+    knoepfe.forEach(function(b){if(+b.dataset.s===akt)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+    texte.forEach(function(t){t.classList.toggle('an',+t.dataset.s===akt);});
+    zur.disabled=akt===1;wei.disabled=akt===4;
+  }
+  knoepfe.forEach(function(b){b.addEventListener('click',function(){geh(+b.dataset.s);});});
+  zur.addEventListener('click',function(){geh(akt-1);});
+  wei.addEventListener('click',function(){geh(akt+1);});
+  /* Skizze zeichnet sich, sobald sie sichtbar wird */
+  svg.setAttribute('class','s0');
+  var gestartet=false;
+  function start(){if(!gestartet){gestartet=true;requestAnimationFrame(function(){geh(akt);});}}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,o){if(es[0].isIntersecting){start();o.disconnect();}},{threshold:.3}).observe(svg);
+  }else start();
+  window.schrittGehe=geh;
+  window.pdfZustand=function(){gestartet=true;geh(4);};
+
+  var z=document.querySelectorAll('.zeige');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('da');io.unobserve(e.target);}});},{threshold:.12});
+    z.forEach(function(e){io.observe(e);});
+  }else z.forEach(function(e){e.classList.add('da');});
+})();
+</script>
+</body>
+</html>

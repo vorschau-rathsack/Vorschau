@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Brandenberg Bildhauerei – Entwurf «Inschrift»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kalk:#F1ECE2;
+  --kalk2:#E6DFD1;
+  --papier:#FAF8F3;
+  --schiefer:#454C53;
+  --schiefer2:#2F353B;
+  --moos:#66734F;
+  --moos-hell:#DCE0D0;
+  --linie:#CFC6B5;
+  --text:#2F353B;
+  --leise:#6D7278;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--papier);color:var(--text);font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.65;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.1;letter-spacing:.005em;overflow-wrap:break-word;hyphens:manual}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+/* Hinweis */
+.demo{background:var(--schiefer2);color:#E9E4D8;font-size:12.5px;line-height:1.45;text-align:center;padding:8px 16px;letter-spacing:.02em}
+
+/* Kopf */
+header.kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px 0;max-width:1040px;margin:0 auto}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke svg{width:30px;height:38px;flex:none}
+.marke span{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:600;line-height:1.05;letter-spacing:.04em;text-transform:uppercase}
+.marke small{display:block;font-family:"Jost",sans-serif;font-size:10.5px;letter-spacing:.22em;font-weight:400;color:var(--leise);margin-top:3px}
+.kopf-tel{font-size:13px;text-decoration:none;border:1px solid var(--linie);padding:8px 14px;border-radius:30px;white-space:nowrap;font-weight:400}
+
+/* Hero */
+.hero{padding:56px 0 40px;text-align:center}
+.hero .ueber{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--moos);font-weight:400}
+.hero h1{font-size:clamp(40px,11vw,76px);margin:18px auto 0;max-width:12ch;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--moos)}
+.hero p.lead{max-width:34ch;margin:22px auto 0;color:var(--leise);font-size:18px}
+.meissel{width:120px;margin:34px auto 0;opacity:.85}
+.knoepfe{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.knopf{display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border-radius:40px;text-decoration:none;font-weight:400;font-size:16px;letter-spacing:.02em}
+.knopf svg{width:18px;height:18px}
+.knopf.voll{background:var(--schiefer);color:#F6F2EA}
+.knopf.leer{border:1px solid var(--schiefer);color:var(--schiefer)}
+
+/* Abschnitte */
+section{padding:64px 0}
+.kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--moos);font-weight:400;display:flex;align-items:center;gap:12px}
+.kicker::after{content:"";height:1px;background:var(--linie);flex:1;max-width:80px}
+h2{font-size:clamp(32px,8.4vw,52px);margin-top:12px;font-weight:400}
+.text-sp{max-width:38em}
+.text-sp p{margin-top:16px}
+
+/* Inschrift-Werkstatt */
+.werkstatt{background:var(--kalk)}
+.werk-grid{display:grid;gap:28px;margin-top:28px}
+.stein-buehne{background:linear-gradient(#ECE6DA,#E2DACB);border-radius:6px;padding:18px 10px 0;position:relative;overflow:hidden}
+#grabstein{width:100%;height:auto;max-width:440px;margin:0 auto}
+#grabstein text{transition:opacity .4s}
+.steuer{display:grid;gap:18px}
+.feld label,.gruppe-titel{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--leise);margin-bottom:6px;font-weight:400}
+.feld input{width:100%;font:400 20px "Cormorant Garamond",serif;padding:12px 14px;border:1px solid var(--linie);border-radius:4px;background:var(--papier);color:var(--text)}
+.feld input:focus{outline:2px solid var(--moos);outline-offset:1px}
+.wahl{display:flex;flex-wrap:wrap;gap:8px}
+.wahl button{font:inherit;font-size:15px;font-weight:400;padding:9px 14px;border-radius:30px;border:1px solid var(--linie);background:var(--papier);color:var(--text);cursor:pointer;min-height:42px}
+.wahl button[aria-pressed="true"]{background:var(--schiefer);border-color:var(--schiefer);color:#F6F2EA}
+.wahl .f-antiqua{font-family:"Cormorant Garamond",serif;font-size:18px}
+.wahl .f-grotesk{font-family:"Jost",sans-serif;letter-spacing:.12em;font-size:13px;text-transform:uppercase}
+.wahl .f-schrift{font-family:"Pinyon Script",cursive;font-size:20px;padding-top:6px;padding-bottom:6px}
+.hinweis{font-size:14px;color:var(--leise);border-left:2px solid var(--moos);padding:4px 0 4px 14px;font-style:normal}
+
+/* Leistungen */
+.leist{display:grid;grid-template-columns:1fr;gap:0;margin-top:30px;border-top:1px solid var(--linie)}
+.leist li{list-style:none;display:grid;grid-template-columns:52px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--linie);align-items:start}
+.leist svg{width:52px;height:52px}
+.leist h3{font-size:25px;font-weight:500}
+.leist p{font-size:15.5px;color:var(--leise);margin-top:4px}
+
+/* Zitat */
+.still{background:var(--moos);color:#F1EFE6;text-align:center;padding:72px 0}
+.still blockquote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(26px,6.4vw,40px);line-height:1.3;max-width:22ch;margin:0 auto}
+.still cite{display:block;font-style:normal;font-size:12px;letter-spacing:.26em;text-transform:uppercase;margin-top:20px;opacity:.85}
+
+/* Menschen */
+.menschen-grid{display:grid;gap:30px;margin-top:30px}
+.person{background:var(--kalk);border-radius:6px;padding:24px}
+.person svg{width:64px;height:64px;margin-bottom:12px}
+.person h3{font-size:27px}
+.person .rolle{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--moos);font-weight:400;margin-top:2px}
+.person p{margin-top:10px;font-size:16px}
+
+/* Region */
+.orte{font-family:"Cormorant Garamond",serif;font-size:clamp(22px,5.6vw,30px);line-height:1.5;margin-top:22px;color:var(--schiefer)}
+.orte span{white-space:nowrap}
+.orte i{color:var(--linie);font-style:normal;padding:0 .25em}
+
+/* Platzhalter */
+.platz{border:1.5px dashed #B9AE99;border-radius:6px;padding:20px;color:var(--leise);font-size:15px;background:rgba(255,255,255,.4)}
+.platz strong{display:block;font-weight:500;color:var(--text);margin-bottom:4px;font-size:15px}
+.zwei{display:grid;gap:18px;margin-top:28px}
+
+/* Kontakt */
+.kontakt{background:var(--schiefer2);color:#ECE7DC}
+.kontakt .kicker{color:#B9C3A2}
+.kontakt .kicker::after{background:#59616A}
+.kontakt h2{color:#F6F2EA}
+.adresse{font-style:normal;margin-top:24px;font-size:18px;line-height:1.7}
+.kontakt .knoepfe{justify-content:flex-start}
+.kontakt .knopf.voll{background:#ECE7DC;color:var(--schiefer2)}
+.kontakt .knopf.leer{border-color:#ECE7DC;color:#ECE7DC}
+footer{background:#24292E;color:#A8ADB2;font-size:13.5px;padding:26px 0 34px;line-height:1.7}
+footer a{color:#D6D2C8}
+
+/* Einblenden */
+.ein{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.ein.da{opacity:1;transform:none}
+
+@media (min-width:760px){
+  .werk-grid{grid-template-columns:1.1fr .9fr;align-items:center}
+  .leist{grid-template-columns:1fr 1fr;column-gap:40px}
+  .menschen-grid,.zwei{grid-template-columns:1fr 1fr}
+  .hero{padding:90px 0 60px}
+}
+@media (prefers-reduced-motion:reduce){.ein{opacity:1;transform:none;transition:none}}
+
+/* PDF */
+html.pdf{scroll-behavior:auto}
+html.pdf .ein{opacity:1!important;transform:none!important;transition:none!important}
+html.pdf *{animation:none!important;transition:none!important}
+</style>
+</head>
+<body>
+
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Brandenberg Bildhauerei GmbH</div>
+
+<header class="kopf">
+  <a class="marke" href="#">
+    <svg viewBox="0 0 30 38" aria-hidden="true"><path d="M3 37V12C3 5.5 8.5 1.5 15 1.5S27 5.5 27 12v25" fill="none" stroke="#454C53" stroke-width="1.4"/><path d="M1 37h28" stroke="#454C53" stroke-width="1.4"/><path d="M10 16l5 7 5-7" fill="none" stroke="#66734F" stroke-width="1.4"/></svg>
+    <span>Brandenberg<small>BILDHAUEREI · STEFFISBURG</small></span>
+  </a>
+  <a class="kopf-tel" href="tel:+41334380022">033 438 00 22</a>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="ueber">Grabmale · Skulpturen · Naturstein</div>
+    <h1>Ein Stein, der von einem <em>Leben</em> erzählt.</h1>
+    <p class="lead">Jedes Grabmal entsteht bei uns von Hand – nach den Wünschen und Erinnerungen der Angehörigen, in unserer Werkstatt in Steffisburg.</p>
+    <svg class="meissel" viewBox="0 0 120 20" aria-hidden="true"><path d="M2 10h46" stroke="#CFC6B5" stroke-width="1"/><path d="M72 10h46" stroke="#CFC6B5" stroke-width="1"/><path d="M60 3l6 7-6 7-6-7z" fill="none" stroke="#66734F" stroke-width="1.2"/></svg>
+    <div class="knoepfe">
+      <a class="knopf voll" href="tel:+41334380022"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Anrufen</a>
+      <a class="knopf leer" href="mailto:info@jonasbrandenberg.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>E-Mail schreiben</a>
+    </div>
+  </div>
+</section>
+
+<section class="werkstatt" id="inschrift">
+  <div class="wrap">
+    <div class="kicker">Die Inschrift</div>
+    <h2>Probieren Sie in Ruhe, wie Worte im Stein wirken.</h2>
+    <p class="text-sp" style="margin-top:14px">Schreiben Sie einen Namen und die Lebensjahre. Die Buchstaben erscheinen so, wie sie mit dem Meissel im V-Schnitt in den Stein kommen – mit Licht auf der einen und Schatten auf der anderen Flanke.</p>
+
+    <div class="werk-grid">
+      <div class="stein-buehne">
+        <svg id="grabstein" viewBox="0 0 400 470" role="img" aria-label="Gezeichneter Grabstein mit Ihrer Beispiel-Inschrift">
+          <defs>
+            <linearGradient id="steinFl" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#D9D4C9"/>
+              <stop offset=".55" stop-color="#C9C3B6"/>
+              <stop offset="1" stop-color="#B3AC9E"/>
+            </linearGradient>
+            <linearGradient id="steinKante" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#9E978A"/>
+              <stop offset="1" stop-color="#8B8477"/>
+            </linearGradient>
+            <linearGradient id="sockelFl" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#A9A295"/>
+              <stop offset="1" stop-color="#928B7E"/>
+            </linearGradient>
+            <!-- V-Schnitt: Schatten oben links in der Kerbe, Licht unten rechts -->
+            <filter id="vSchnitt" x="-5%" y="-20%" width="110%" height="140%">
+              <feOffset in="SourceAlpha" dx="1.3" dy="1.5" result="verschoben"/>
+              <feComposite in="SourceAlpha" in2="verschoben" operator="out" result="schattenKante"/>
+              <feFlood flood-color="#2F2C27" flood-opacity=".9"/>
+              <feComposite in2="schattenKante" operator="in" result="schatten"/>
+              <feOffset in="SourceAlpha" dx="-1.1" dy="-1.2" result="verschoben2"/>
+              <feComposite in="SourceAlpha" in2="verschoben2" operator="out" result="lichtKante"/>
+              <feFlood flood-color="#F3EFE6" flood-opacity=".9"/>
+              <feComposite in2="lichtKante" operator="in" result="licht"/>
+              <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="weich"/>
+              <feSpecularLighting in="weich" surfaceScale="-2.2" specularConstant=".7" specularExponent="14" lighting-color="#FFFDF6" result="glanz">
+                <feDistantLight azimuth="225" elevation="42"/>
+              </feSpecularLighting>
+              <feComposite in="glanz" in2="SourceAlpha" operator="in" result="glanzIn"/>
+              <feDropShadow in="SourceGraphic" dx="0" dy="0.8" stdDeviation="0" flood-color="#EEE9DE" flood-opacity=".7" result="lippe"/>
+              <feMerge>
+                <feMergeNode in="lippe"/>
+                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode in="glanzIn"/>
+                <feMergeNode in="schatten"/>
+                <feMergeNode in="licht"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Boden und Bepflanzung -->
+          <ellipse cx="200" cy="452" rx="196" ry="14" fill="#CFC7B6"/>
+          <!-- Stein: Seitenkante -->
+          <path d="M70 410V120C70 70 130 38 200 38S330 70 330 120v290z" fill="url(#steinKante)" transform="translate(8 4)"/>
+          <!-- Stein: Front -->
+          <path id="steinFront" d="M70 410V120C70 70 130 38 200 38S330 70 330 120v290z" fill="url(#steinFl)"/>
+          <!-- feine Steinkörnung, wenige Punkte -->
+          <g fill="#8F897D" opacity=".35">
+            <circle cx="96" cy="150" r=".9"/><circle cx="133" cy="98" r=".7"/><circle cx="288" cy="140" r="1"/><circle cx="305" cy="260" r=".8"/><circle cx="110" cy="330" r="1"/><circle cx="250" cy="372" r=".7"/><circle cx="180" cy="80" r=".6"/><circle cx="92" cy="240" r=".7"/><circle cx="318" cy="350" r=".9"/><circle cx="228" cy="66" r=".8"/><circle cx="150" cy="392" r=".6"/><circle cx="276" cy="210" r=".6"/>
+          </g>
+          <g fill="#FFFFFF" opacity=".35">
+            <circle cx="120" cy="190" r=".8"/><circle cx="262" cy="104" r=".7"/><circle cx="296" cy="300" r=".8"/><circle cx="140" cy="280" r=".6"/><circle cx="210" cy="395" r=".7"/>
+          </g>
+          <!-- feiner Schliff-Rand -->
+          <path d="M82 404V122C82 78 136 50 200 50S318 78 318 122v282" fill="none" stroke="#E4DFD5" stroke-width="1" opacity=".7"/>
+          <!-- Sockel -->
+          <rect x="44" y="410" width="320" height="34" fill="url(#sockelFl)"/>
+          <rect x="44" y="410" width="320" height="3" fill="#BDB6A9"/>
+          <!-- Symbol -->
+          <g id="symbol" filter="url(#vSchnitt)" fill="#9A9386"></g>
+          <!-- Inschrift -->
+          <g id="inschrift" filter="url(#vSchnitt)" fill="#7D766A">
+            <text id="tName" x="200" y="226" text-anchor="middle">Name Vorname</text>
+            <text id="tJahre" x="200" y="272" text-anchor="middle">1940 – 2025</text>
+          </g>
+          <!-- Efeu-Zweig am Sockel -->
+          <g fill="none" stroke="#66734F" stroke-width="1.6" stroke-linecap="round">
+            <path d="M330 444c-10-18-30-26-52-26"/>
+            <path d="M306 424c-2-8 2-14 9-16-1 8-4 13-9 16z" fill="#7C8962" stroke="none"/>
+            <path d="M290 420c-6-5-6-12-1-17 3 7 3 12 1 17z" fill="#7C8962" stroke="none"/>
+            <path d="M318 433c4-7 11-9 17-6-5 6-10 8-17 6z" fill="#8C9871" stroke="none"/>
+          </g>
+          <g fill="none" stroke="#66734F" stroke-width="1.4" stroke-linecap="round">
+            <path d="M58 444c6-14 18-22 34-24"/>
+            <path d="M74 428c-6-3-8-9-6-14 6 3 8 8 6 14z" fill="#8C9871" stroke="none"/>
+            <path d="M86 422c2-7 8-10 14-9-3 6-8 9-14 9z" fill="#7C8962" stroke="none"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="steuer">
+        <div class="feld">
+          <label for="eName">Name</label>
+          <input id="eName" type="text" value="Name Vorname" maxlength="34" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="feld">
+          <label for="eJahre">Jahre</label>
+          <input id="eJahre" type="text" value="1940 – 2025" maxlength="26" autocomplete="off" spellcheck="false">
+        </div>
+        <div>
+          <span class="gruppe-titel">Schrift</span>
+          <div class="wahl" id="wSchrift">
+            <button type="button" class="f-antiqua" data-schrift="antiqua" aria-pressed="true">Antiqua</button>
+            <button type="button" class="f-grotesk" data-schrift="grotesk" aria-pressed="false">Grotesk</button>
+            <button type="button" class="f-schrift" data-schrift="schrift" aria-pressed="false">Schreibschrift</button>
+          </div>
+        </div>
+        <div>
+          <span class="gruppe-titel">Ausrichtung</span>
+          <div class="wahl" id="wAusr">
+            <button type="button" data-ausr="mitte" aria-pressed="true">Mittig</button>
+            <button type="button" data-ausr="links" aria-pressed="false">Linksbündig</button>
+          </div>
+        </div>
+        <div>
+          <span class="gruppe-titel">Zeichen</span>
+          <div class="wahl" id="wZeichen">
+            <button type="button" data-zeichen="keins" aria-pressed="false">Ohne</button>
+            <button type="button" data-zeichen="kreuz" aria-pressed="false">Kreuz</button>
+            <button type="button" data-zeichen="zweig" aria-pressed="true">Zweig</button>
+          </div>
+        </div>
+        <p class="hinweis">Nur zur Veranschaulichung – jede Inschrift entsteht im persönlichen Gespräch. Hier wird nichts gespeichert oder versendet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="arbeit">
+  <div class="wrap">
+    <div class="kicker">Was wir machen</div>
+    <h2>Arbeiten in Stein und Holz</h2>
+    <ul class="leist">
+      <li class="ein">
+        <svg viewBox="0 0 52 52" fill="none" stroke="#454C53" stroke-width="1.3"><path d="M14 46V18c0-7 5-12 12-12s12 5 12 12v28"/><path d="M8 46h36"/><path d="M21 22h10M23 28h6" stroke="#66734F"/></svg>
+        <div><h3>Grabmale</h3><p>Individuell gestaltet – nach den Wünschen und Vorstellungen der Angehörigen.</p></div>
+      </li>
+      <li class="ein">
+        <svg viewBox="0 0 52 52" fill="none" stroke="#454C53" stroke-width="1.3"><path d="M26 6v40M16 17h20"/><path d="M22 46h8"/><path d="M24 24c2 0 4 1 4 3" stroke="#66734F"/></svg>
+        <div><h3>Holzkreuze</h3><p>Erinnerungen in Holz – schlicht, warm und von Hand gefertigt.</p></div>
+      </li>
+      <li class="ein">
+        <svg viewBox="0 0 52 52" fill="none" stroke="#454C53" stroke-width="1.3"><path d="M10 34h32l-4 12H14z"/><path d="M26 34V14"/><path d="M26 14c-6 0-9 6-9 12M26 14c6 0 9 6 9 12" stroke="#66734F"/></svg>
+        <div><h3>Brunnen</h3><p>Brunnen aus Naturstein – gestaltet und gefertigt in der eigenen Werkstatt.</p></div>
+      </li>
+      <li class="ein">
+        <svg viewBox="0 0 52 52" fill="none" stroke="#454C53" stroke-width="1.3"><path d="M18 46h16M22 46l1-10c-5-3-7-9-5-15 2-7 9-10 14-7 5 4 4 12-1 16l-3 2v14"/><path d="M27 16c2 1 3 3 3 5" stroke="#66734F"/></svg>
+        <div><h3>Skulpturen &amp; Kunstwerke</h3><p>Freie Arbeiten, Gartenfiguren und Kunstwerke aus Stein.</p></div>
+      </li>
+      <li class="ein">
+        <svg viewBox="0 0 52 52" fill="none" stroke="#454C53" stroke-width="1.3"><path d="M10 46V20l16-12 16 12v26"/><path d="M18 46V28h16v18"/><path d="M30 12l4-4 3 3" stroke="#66734F"/></svg>
+        <div><h3>Restaurierungen</h3><p>Behutsame Restaurierung alter Steine – mit Erfahrung aus der Denkmalpflege.</p></div>
+      </li>
+      <li class="ein">
+        <svg viewBox="0 0 52 52" fill="none" stroke="#454C53" stroke-width="1.3"><path d="M6 40h40M10 40l4-12h24l4 12"/><path d="M16 22h20l-2-8H18z"/><path d="M22 14v-4h8v4" stroke="#66734F"/></svg>
+        <div><h3>Natursteinarbeiten</h3><p>Arbeiten in Naturstein für Haus, Garten und Friedhof.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="still">
+  <div class="wrap">
+    <blockquote>Zuerst entsteht die Skizze von Hand. Erst dann kommen die modernen Werkzeuge.</blockquote>
+    <cite>So arbeitet Jonas Brandenberg</cite>
+  </div>
+</div>
+
+<section id="menschen">
+  <div class="wrap">
+    <div class="kicker">Wer wir sind</div>
+    <h2>Eine Werkstatt, zwei Menschen</h2>
+    <div class="menschen-grid">
+      <div class="person ein">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#454C53" stroke-width="1.3"><circle cx="32" cy="32" r="30" stroke="#CFC6B5"/><path d="M20 42l18-18"/><path d="M36 22l6-6 4 4-6 6z" stroke="#66734F"/><path d="M18 46l3-3"/></svg>
+        <h3>Jonas Brandenberg</h3>
+        <div class="rolle">Steinbildhauer · selbständig seit 2007</div>
+        <p>Als Diplomarbeit in der Denkmalpflege restaurierte er ein Mausoleum. Als sein letzter Arbeitgeber in Pension ging, übernahm er dessen Werkstatt – und führt das Handwerk seither weiter.</p>
+      </div>
+      <div class="person ein">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#454C53" stroke-width="1.3"><circle cx="32" cy="32" r="30" stroke="#CFC6B5"/><path d="M22 20h20v26H22z"/><path d="M27 28h10M27 34h10M27 40h6" stroke="#66734F"/></svg>
+        <h3>Monika Brandenberg-Schmid</h3>
+        <div class="rolle">Mitinhaberin seit 2012</div>
+        <p>Seit 2012 führt sie die Firma gemeinsam mit Jonas Brandenberg – als Mitinhaberin der Werkstatt.</p>
+      </div>
+    </div>
+    <div class="text-sp ein" style="margin-top:30px">
+      <p>Die Firma wurde 2002 als Hefti Bildhauerei GmbH in Thun gegründet, als Nachfolgerin der Bildhauerei Hefti. 2024 erhielt sie ihren heutigen Namen Brandenberg Bildhauerei GmbH und zog nach Steffisburg an die Alte Bernstrasse.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--kalk);padding-top:56px" id="region">
+  <div class="wrap">
+    <div class="kicker">In der Region</div>
+    <h2>Auf den Friedhöfen rund um Thun</h2>
+    <p class="orte ein"><span>Spiez</span><i>·</i> <span>Heimberg</span><i>·</i> <span>Fahrni</span><i>·</i> <span>Uttigen</span><i>·</i> <span>Diemtigen</span><i>·</i> <span>Zweisimmen</span><i>·</i> <span>Oberdiessbach</span><i>·</i> <span>Münsingen</span><i>·</i> <span>und weitere</span></p>
+    <div class="zwei">
+      <div class="platz"><strong>[Öffnungszeiten folgen]</strong>Laut Verzeichnis Mo–Fr 07:30–12:00 und 13:30–18:30, Sa nach Vereinbarung – bitte bestätigen.</div>
+      <div class="platz"><strong>[Stimmen von Angehörigen]</strong>Hier erscheinen Ihre Google-Bewertungen.</div>
+    </div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <div class="kicker">Kontakt</div>
+    <h2>Nehmen Sie sich Zeit. Wir&nbsp;auch.</h2>
+    <p class="text-sp" style="margin-top:14px">Ein erstes Gespräch hilft, Gedanken zu ordnen. Rufen Sie an oder schreiben Sie uns – gerne auch für einen Termin in der Werkstatt.</p>
+    <address class="adresse">Brandenberg Bildhauerei GmbH<br>Alte Bernstrasse 173<br>3613 Steffisburg</address>
+    <div class="knoepfe">
+      <a class="knopf voll" href="tel:+41334380022"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>033 438 00 22</a>
+      <a class="knopf leer" href="mailto:info@jonasbrandenberg.ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>E-Mail</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    Brandenberg Bildhauerei GmbH · Alte Bernstrasse 173 · <span style="white-space:nowrap">3613 Steffisburg</span><br>
+    Tel. <a href="tel:+41334380022">033 438 00 22</a> · <a href="mailto:info@jonasbrandenberg.ch">info@jonasbrandenberg.ch</a><br>
+    UID CHE-109.400.961<br>
+    <span style="opacity:.75">Entwurf von Max Rathsack – Bilder sind gezeichnete Platzhalter.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var SCHRIFTEN={
+    antiqua:{fam:'"Cormorant Garamond", Georgia, serif',name:46,jahre:28,gew:600,lsN:'.02em',lsJ:'.12em',case:'none'},
+    grotesk:{fam:'"Jost", system-ui, sans-serif',name:30,jahre:20,gew:400,lsN:'.2em',lsJ:'.28em',case:'uppercase'},
+    schrift:{fam:'"Pinyon Script", cursive',name:48,jahre:24,gew:400,lsN:'0',lsJ:'.04em',case:'none',jahreFam:'"Cormorant Garamond", Georgia, serif'}
+  };
+  var zustand={schrift:'antiqua',ausr:'mitte',zeichen:'zweig'};
+  var tName=document.getElementById('tName'),tJahre=document.getElementById('tJahre');
+  var eName=document.getElementById('eName'),eJahre=document.getElementById('eJahre');
+  var symbol=document.getElementById('symbol');
+  var BREITE=200; /* nutzbare Breite im Stein (x 100..300) */
+
+  var ZEICHEN={
+    keins:'',
+    kreuz:'<rect x="197" y="112" width="6" height="58"/><rect x="180" y="128" width="40" height="6"/>',
+    zweig:'<path d="M168 160C184 150 206 146 234 150" fill="none" stroke="#7D766A" stroke-width="2.2" stroke-linecap="round"/>'+
+      '<ellipse cx="180" cy="148" rx="8" ry="3" transform="rotate(-50 180 148)"/><ellipse cx="184" cy="160" rx="8" ry="3" transform="rotate(30 184 160)"/>'+
+      '<ellipse cx="196" cy="143" rx="8.5" ry="3.1" transform="rotate(-62 196 143)"/><ellipse cx="200" cy="157" rx="8.5" ry="3.1" transform="rotate(22 200 157)"/>'+
+      '<ellipse cx="213" cy="140" rx="8.5" ry="3.1" transform="rotate(-70 213 140)"/><ellipse cx="217" cy="155" rx="8" ry="3" transform="rotate(14 217 155)"/>'+
+      '<ellipse cx="238" cy="148" rx="7.5" ry="3" transform="rotate(-8 238 148)"/>'
+  };
+
+  function passe(el,soll){
+    el.style.fontSize=soll+'px';
+    var w=el.getComputedTextLength();
+    if(w>BREITE){el.style.fontSize=(soll*BREITE/w).toFixed(1)+'px';}
+    return parseFloat(el.style.fontSize);
+  }
+  function teile(txt){
+    /* Bruchstelle nahe der Mitte suchen (Leerzeichen oder nach Bindestrich) */
+    var best=-1,bestD=1e9;
+    for(var i=1;i<txt.length-1;i++){
+      var c=txt[i];
+      if(c===' '||txt[i-1]==='-'){var d=Math.abs(i-txt.length/2);if(d<bestD){bestD=d;best=i;}}
+    }
+    if(best<0)return null;
+    return [txt.slice(0,best).trim(),txt.slice(best).trim()];
+  }
+  function zeichne(){
+    var s=SCHRIFTEN[zustand.schrift];
+    var n=eName.value.trim()||' ';
+    var j=eJahre.value.trim()||' ';
+    if(s.case==='uppercase')n=n.toUpperCase();
+    var links=zustand.ausr==='links';
+    var x=links?100:200,anker=links?'start':'middle';
+    tName.style.fontFamily=s.fam;tName.style.fontWeight=s.gew;tName.style.letterSpacing=s.lsN;
+    tJahre.style.fontFamily=s.jahreFam||s.fam;tJahre.style.fontWeight=s.jahreFam?500:s.gew;tJahre.style.letterSpacing=s.lsJ;
+    [tName,tJahre].forEach(function(t){t.setAttribute('x',x);t.setAttribute('text-anchor',anker);});
+    tJahre.textContent=j;
+    var mitZ=zustand.zeichen!=='keins';
+    var y0=mitZ?236:214;
+    /* eine Zeile probieren */
+    tName.textContent=n;
+    tName.style.fontSize=s.name+'px';
+    var zeilen=[n];
+    if(tName.getComputedTextLength()>BREITE*1.3){var t=teile(n);if(t)zeilen=t;}
+    var gr;
+    if(zeilen.length===1){
+      gr=passe(tName,s.name);
+      tName.setAttribute('y',y0);
+    }else{
+      tName.textContent='';
+      var NS='http://www.w3.org/2000/svg',spans=[];
+      zeilen.forEach(function(z,i){var sp=document.createElementNS(NS,'tspan');sp.setAttribute('x',x);sp.textContent=z;tName.appendChild(sp);spans.push(sp);});
+      tName.style.fontSize=s.name+'px';
+      var maxW=Math.max(spans[0].getComputedTextLength(),spans[1].getComputedTextLength());
+      gr=maxW>BREITE?s.name*BREITE/maxW:s.name;
+      tName.style.fontSize=gr.toFixed(1)+'px';
+      var abst=gr*1.18;
+      tName.setAttribute('y',y0-abst/2);
+      spans[1].setAttribute('dy',abst.toFixed(1));
+      y0=y0+abst/2;
+    }
+    tName.setAttribute('y',zeilen.length===1?y0:tName.getAttribute('y'));
+    passe(tJahre,s.jahre);
+    tJahre.setAttribute('y',(y0+(mitZ?46:48)).toFixed(1));
+    symbol.innerHTML=ZEICHEN[zustand.zeichen];
+    symbol.setAttribute('transform',links?'translate(-82 0)':'');
+  }
+  function gruppe(id,key){
+    var g=document.getElementById(id);
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b)return;
+      zustand[key]=b.dataset[key];
+      g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      zeichne();
+    });
+  }
+  gruppe('wSchrift','schrift');gruppe('wAusr','ausr');gruppe('wZeichen','zeichen');
+  eName.addEventListener('input',zeichne);eJahre.addEventListener('input',zeichne);
+  zeichne();
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(zeichne);}
+  window.inschriftNeu=zeichne;
+
+  /* Einblenden */
+  var els=document.querySelectorAll('.ein');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('da');io.unobserve(e.target);}});},{threshold:.15});
+    els.forEach(function(e){io.observe(e);});
+  }else{els.forEach(function(e){e.classList.add('da');});}
+})();
+</script>
+</body>
+</html>

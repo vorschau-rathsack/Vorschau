@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Briggen Parkett GmbH, Spiez – Entwurf «Fischgrat»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kreide:#F8F4EC;
+  --kreide2:#EFE7DA;
+  --eiche:#C99A63;
+  --eiche-hell:#E2C49A;
+  --eiche-dunkel:#8E6239;
+  --salbei:#7F9C82;
+  --salbei-tief:#3F5E4A;
+  --tinte:#2D2822;
+  --grau:#6E655B;
+  --linie:#E2D7C6;
+  --rund:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--kreide);color:var(--tinte);font-family:"Outfit",system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.01em;hyphens:manual;overflow-wrap:break-word}
+a{color:inherit}
+.huelle{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* Hinweisbalken */
+.demo{background:var(--salbei-tief);color:#EAF1E8;font-size:13px;line-height:1.4;text-align:center;padding:8px 14px}
+
+/* Kopf */
+.kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;max-width:1080px;margin:0 auto}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke svg{flex:none}
+.marke b{display:block;font-family:"Fraunces",serif;font-size:19px;line-height:1.05;font-weight:700}
+.marke small{display:block;font-size:12px;color:var(--grau);letter-spacing:.06em;text-transform:uppercase}
+.kopf-tel{flex:none;display:inline-flex;align-items:center;gap:6px;background:var(--tinte);color:var(--kreide);text-decoration:none;border-radius:99px;padding:9px 14px;font-weight:600;font-size:14px}
+
+/* Held */
+.held{padding:18px 0 34px}
+.held .huelle{display:grid;gap:26px}
+.zeile-klein{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--salbei-tief);background:#E3EBDF;border-radius:99px;padding:6px 12px}
+.held h1{font-size:clamp(38px,11vw,72px);margin:16px 0 14px}
+.held h1 em{font-style:italic;font-weight:400;color:var(--eiche-dunkel)}
+.held p.lead{font-size:18px;color:#4A433B;max-width:34em}
+.knoepfe{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:54px;padding:0 22px;border-radius:99px;font-weight:600;font-size:17px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit;transition:transform .15s}
+.knopf:active{transform:scale(.97)}
+.knopf.voll{background:var(--salbei-tief);color:#fff}
+.knopf.rand{border-color:var(--tinte);color:var(--tinte);background:transparent}
+.knopf.eiche{background:var(--eiche);color:#2A1C0E}
+.held-bild{position:relative;max-width:420px;width:100%;justify-self:center}
+.held-bild svg{display:block;width:100%;height:auto}
+.stempel{position:absolute;right:-4px;top:8px;width:96px;height:96px;border-radius:50%;background:var(--salbei);color:#fff;display:grid;place-items:center;text-align:center;font-family:"Fraunces",serif;line-height:1;transform:rotate(8deg);box-shadow:0 6px 18px rgba(63,94,74,.25)}
+.stempel span{font-size:12px;font-family:"Outfit",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.stempel b{display:block;font-size:30px;margin-top:2px}
+
+/* Abschnitte */
+section{padding:46px 0}
+.ab-titel{font-size:clamp(30px,8.4vw,48px);margin-bottom:12px}
+.ab-text{color:#4A433B;max-width:36em}
+.mark{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--eiche-dunkel);margin-bottom:10px}
+
+/* Diele für Diele */
+.werkstatt{background:var(--kreide2);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie)}
+.flaeche-rahmen{margin-top:22px;background:#fff;border-radius:24px;padding:14px;box-shadow:0 10px 30px rgba(80,58,30,.08)}
+.flaeche{display:block;width:100%;height:auto;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:12px}
+.diele{opacity:0;transition:transform .5s cubic-bezier(.2,.8,.25,1.15),opacity .3s ease}
+.diele.a{transform:translate(70px,0)}
+.diele.b{transform:translate(0,70px)}
+.diele.gelegt{opacity:1;transform:translate(0,0)}
+.hinweis-tippen{transition:opacity .3s}
+.zaehler-zeile{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;flex-wrap:wrap}
+.zaehler{font-weight:600;font-size:18px}
+.zaehler output{font-family:"Fraunces",serif;font-size:26px;color:var(--salbei-tief)}
+.balken{height:8px;background:var(--kreide2);border-radius:9px;overflow:hidden;margin-top:10px}
+.balken i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--eiche),var(--salbei));transition:width .4s}
+.steuer{display:flex;gap:8px;flex-wrap:wrap}
+.klein-knopf{border:2px solid var(--tinte);background:transparent;color:var(--tinte);font:600 15px "Outfit",sans-serif;border-radius:99px;padding:10px 16px;cursor:pointer;min-height:44px}
+.klein-knopf.voll{background:var(--tinte);color:var(--kreide)}
+.fertig{display:none;margin-top:16px;background:var(--salbei-tief);color:#fff;border-radius:20px;padding:22px 20px;text-align:center}
+.fertig.da{display:block;animation:auf .5s ease}
+.fertig h3{font-size:clamp(24px,6.6vw,32px);margin-bottom:6px}
+.fertig p{opacity:.9;margin-bottom:16px}
+.fertig .knopf{background:#fff;color:var(--salbei-tief)}
+@keyframes auf{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* Leistungen */
+.karten{display:grid;gap:14px;margin-top:24px}
+.karte{background:#fff;border:1px solid var(--linie);border-radius:var(--rund);padding:20px 18px;display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start}
+.karte svg{width:54px;height:54px}
+.karte h3{font-size:21px;margin-bottom:4px}
+.karte p{font-size:15.5px;color:#5A5148}
+.karte.gross{background:var(--salbei-tief);color:#fff;border-color:transparent}
+.karte.gross p{color:#DCE7DA}
+
+/* Showroom */
+.showroom .huelle{display:grid;gap:24px}
+.platzhalter{border:2px dashed #B9A88F;border-radius:16px;padding:16px;color:#7A6B58;background:rgba(255,255,255,.55);font-size:15px}
+.platzhalter b{display:block;color:#5C4E3D;margin-bottom:2px}
+.foto-platz{aspect-ratio:4/3;display:grid;place-items:center;text-align:center}
+
+/* Familie */
+.familie{background:var(--tinte);color:var(--kreide)}
+.familie .mark{color:var(--eiche-hell)}
+.familie .ab-text{color:#D8CFC2}
+.jahre{list-style:none;display:grid;gap:12px;margin-top:24px}
+.jahre li{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:baseline;border-top:1px solid #4A4239;padding-top:12px}
+.jahre b{font-family:"Fraunces",serif;font-size:30px;color:var(--eiche-hell);line-height:1}
+.preis{margin-top:26px;display:flex;gap:14px;align-items:center;background:#3A332B;border-radius:18px;padding:16px}
+.preis svg{flex:none}
+.preis p{font-size:15.5px;color:#E9E0D2}
+
+/* Stimmen + Kontakt */
+.stimmen .platzhalter{margin-top:20px;text-align:center;padding:28px 16px}
+.sterne{font-size:24px;letter-spacing:4px;color:#D9C9AE;margin-bottom:6px}
+.kontakt{background:var(--eiche-hell)}
+.kontakt .huelle{display:grid;gap:22px}
+.kontakt-knoepfe{display:grid;gap:12px}
+.kontakt-knoepfe .knopf{width:100%;min-height:64px;font-size:19px}
+.adresse{font-style:normal;background:rgba(255,255,255,.55);border-radius:18px;padding:18px}
+.adresse b{font-family:"Fraunces",serif;font-size:21px;display:block;margin-bottom:4px}
+.fuss{background:var(--tinte);color:#BDB3A6;font-size:14px;padding:26px 0 30px}
+.fuss .huelle{display:grid;gap:6px}
+.fuss strong{color:var(--kreide)}
+
+/* Einblenden */
+.zeig{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.zeig.sichtbar{opacity:1;transform:none}
+
+@media (min-width:760px){
+  .held .huelle{grid-template-columns:1.15fr .85fr;align-items:center}
+  .karten{grid-template-columns:1fr 1fr}
+  .showroom .huelle{grid-template-columns:1fr 1fr;align-items:start}
+  .kontakt .huelle{grid-template-columns:1fr 1fr;align-items:start}
+  .werkstatt-innen{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center}
+  .jahre{grid-template-columns:1fr 1fr;column-gap:30px}
+}
+@media (min-width:1000px){.karten{grid-template-columns:repeat(3,1fr)}}
+
+/* PDF-Fassung */
+html.pdf .zeig{opacity:1!important;transform:none!important;transition:none!important}
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .hinweis-tippen{display:none}
+html.pdf .steuer{display:none}
+html.pdf #nochmalsZeile{display:none}
+.adresse .platzhalter b{font-family:"Outfit",sans-serif;font-size:15px;margin:0}
+</style>
+</head>
+<body>
+
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Briggen Parkett GmbH</div>
+
+<header class="kopf">
+  <a class="marke" href="#">
+    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="10" fill="#3F5E4A"/>
+      <g fill="#E2C49A">
+        <path d="M8 20 L18 10 L22 14 L12 24Z"/>
+        <path d="M18 30 L28 20 L32 24 L22 34Z" opacity=".75"/>
+        <path d="M18 10 L28 20 L24 24 L14 14Z" fill="#C99A63"/>
+        <path d="M8 20 L18 30 L14 34 L4 24Z" fill="#C99A63" opacity=".7"/>
+      </g>
+    </svg>
+    <span><b>Briggen Parkett</b><small>GmbH · Spiez</small></span>
+  </a>
+  <a class="kopf-tel" href="tel:+41336549116" aria-label="Anrufen">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+    Anrufen
+  </a>
+</header>
+
+<section class="held">
+  <div class="huelle">
+    <div>
+      <span class="zeile-klein">Parkett · Kork · Vinyl · Terrassen</span>
+      <h1>Böden, die man <em>gern</em> barfuss begeht.</h1>
+      <p class="lead">Seit 1957 legt die Familie Briggen in Spiez Parkett. Heute berät Sie Werner Briggen – bei Ihnen zu Hause oder im Showroom an der Simmentalstrasse 18.</p>
+      <div class="knoepfe">
+        <a class="knopf voll" href="tel:+41336549116">033 654 91 16 anrufen</a>
+        <a class="knopf rand" href="mailto:briggenparkett@bluewin.ch">E-Mail schreiben</a>
+      </div>
+    </div>
+    <div class="held-bild">
+      <svg id="heldSvg" viewBox="0 0 360 380" role="img" aria-label="Gezeichnetes Zimmer mit Fischgratparkett und Pflanze">
+        <defs>
+          <clipPath id="bodenClip"><rect x="0" y="250" width="360" height="130"/></clipPath>
+          <clipPath id="heldClip"><path d="M30 380 V150 A150 150 0 0 1 330 150 V380Z"/></clipPath>
+        </defs>
+        <path d="M30 380 V150 A150 150 0 0 1 330 150 V380Z" fill="#EFE7DA"/>
+        <g clip-path="url(#heldClip)">
+          <!-- Fenster -->
+          <rect x="120" y="60" width="120" height="150" rx="60" fill="#DCE6DA"/>
+          <path d="M180 60 V210 M120 140 H240" stroke="#F8F4EC" stroke-width="6"/>
+          <rect x="120" y="60" width="120" height="150" rx="60" fill="none" stroke="#F8F4EC" stroke-width="8"/>
+          <path d="M130 196 q50 -30 100 0" fill="none" stroke="#C7D6C4" stroke-width="3"/>
+          <!-- Boden mit Fischgrat (per Skript) -->
+          <g clip-path="url(#bodenClip)"><g id="heldBoden"></g></g>
+          <rect x="0" y="246" width="360" height="8" fill="#E2D7C6"/>
+        </g>
+        <path d="M30 380 V150 A150 150 0 0 1 330 150 V380" fill="none" stroke="#2D2822" stroke-width="3"/>
+        <!-- Pflanze -->
+        <g transform="translate(262 268)">
+          <path d="M18 0 C-10 -40 -6 -76 10 -96" fill="none" stroke="#3F5E4A" stroke-width="3"/>
+          <path d="M20 0 C34 -36 48 -60 44 -88" fill="none" stroke="#3F5E4A" stroke-width="3"/>
+          <ellipse cx="2" cy="-70" rx="9" ry="20" transform="rotate(-30 2 -70)" fill="#7F9C82"/>
+          <ellipse cx="14" cy="-92" rx="8" ry="18" transform="rotate(10 14 -92)" fill="#7F9C82"/>
+          <ellipse cx="38" cy="-60" rx="9" ry="20" transform="rotate(28 38 -60)" fill="#9BB39C"/>
+          <ellipse cx="46" cy="-86" rx="8" ry="17" transform="rotate(6 46 -86)" fill="#7F9C82"/>
+          <ellipse cx="-2" cy="-38" rx="8" ry="17" transform="rotate(-52 -2 -38)" fill="#9BB39C"/>
+          <path d="M0 0 H40 L34 42 H6Z" fill="#F8F4EC" stroke="#2D2822" stroke-width="2.5" stroke-linejoin="round"/>
+        </g>
+      </svg>
+      <div class="stempel"><div><span>Familie seit</span><b>1957</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="werkstatt" id="diele">
+  <div class="huelle werkstatt-innen">
+    <div class="zeig">
+      <span class="mark">Zum Ausprobieren</span>
+      <h2 class="ab-titel">Diele für Diele.</h2>
+      <p class="ab-text">Ein Fischgratboden entsteht nicht auf einmal, sondern Stück für Stück. Tippen Sie auf die leere Fläche – mit jeder Berührung legt sich die nächste Diele ins Muster.</p>
+    </div>
+    <div class="flaeche-rahmen zeig">
+      <svg class="flaeche" id="flaeche" viewBox="0 0 360 280" role="button" aria-label="Fläche: tippen, um die nächste Diele zu legen" tabindex="0">
+        <defs>
+          <clipPath id="raumClip"><rect x="10" y="10" width="340" height="260" rx="4"/></clipPath>
+        </defs>
+        <rect x="10" y="10" width="340" height="260" rx="4" fill="#F3ECE0"/>
+        <g opacity=".55" stroke="#DCCFBB" stroke-width="1">
+          <path d="M10 60 H350 M10 120 H350 M10 180 H350 M10 240 H350 M70 10 V270 M150 10 V270 M230 10 V270 M310 10 V270" stroke-dasharray="3 5"/>
+        </g>
+        <g id="dielen" clip-path="url(#raumClip)"></g>
+        <rect x="10" y="10" width="340" height="260" rx="4" fill="none" stroke="#2D2822" stroke-width="4"/>
+        <g class="hinweis-tippen" id="tippHinweis">
+          <rect x="105" y="118" width="150" height="44" rx="22" fill="#2D2822"/>
+          <text x="180" y="146" text-anchor="middle" font-family="Outfit, sans-serif" font-size="16" font-weight="600" fill="#F8F4EC">Hier tippen</text>
+        </g>
+      </svg>
+      <div class="zaehler-zeile">
+        <div class="zaehler"><output id="anzahl">0</output> von <span id="total">24</span> Dielen gelegt</div>
+        <div class="steuer">
+          <button class="klein-knopf" id="naechste" type="button">Nächste Diele</button>
+          <button class="klein-knopf voll" id="alle" type="button">Alle auf einmal</button>
+        </div>
+      </div>
+      <div class="balken"><i id="balken"></i></div>
+      <div class="fertig" id="fertig" aria-live="polite">
+        <h3>Fertig verlegt.</h3>
+        <p>So sorgfältig arbeiten wir auch bei Ihnen.</p>
+        <a class="knopf" href="tel:+41336549116">Jetzt anrufen: 033 654 91 16</a>
+        <p style="margin:14px 0 0;font-size:14px" id="nochmalsZeile"><button class="klein-knopf" id="nochmals" type="button" style="border-color:#fff;color:#fff">Nochmals legen</button></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leistungen">
+  <div class="huelle">
+    <span class="mark zeig">Was wir machen</span>
+    <h2 class="ab-titel zeig">Vom ersten Muster bis zum letzten Pflegetipp.</h2>
+    <div class="karten">
+      <article class="karte gross zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#7F9C82"/><g fill="#E2C49A" stroke="#3F5E4A" stroke-width="1.2"><path d="M10 27 L22 15 L27 20 L15 32Z"/><path d="M22 15 L34 27 L29 32 L17 20Z" fill="#C99A63"/><path d="M27 32 L39 20 L44 25 L32 37Z"/><path d="M15 32 L27 44 L22 49 L10 37Z" fill="#C99A63"/></g></svg>
+        <div><h3>Parkett</h3><p>Verlegen, renovieren und pflegen – ob neuer Boden oder ein alter, der wieder schön werden soll.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><g fill="#E2C49A" stroke="#8E6239" stroke-width="1.2"><rect x="9" y="14" width="36" height="8" rx="1"/><rect x="9" y="23" width="36" height="8" rx="1" fill="#D3AE7C"/><rect x="9" y="32" width="36" height="8" rx="1"/></g><path d="M21 14v8M33 23v8M17 32v8" stroke="#8E6239" stroke-width="1.2"/></svg>
+        <div><h3>Laminat</h3><p>Robust und pflegeleicht – wir beraten Sie, wo Laminat passt.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><rect x="10" y="12" width="34" height="30" rx="3" fill="#C9A47A"/><g fill="#9C7650"><circle cx="16" cy="18" r="1.6"/><circle cx="24" cy="21" r="1.2"/><circle cx="34" cy="17" r="1.8"/><circle cx="19" cy="30" r="1.3"/><circle cx="30" cy="28" r="1.6"/><circle cx="38" cy="35" r="1.2"/><circle cx="25" cy="37" r="1.7"/><circle cx="14" cy="38" r="1"/><circle cx="39" cy="24" r="1"/></g></svg>
+        <div><h3>Kork &amp; Vinylkork</h3><p>Angenehm warm unter den Füssen und leise im Alltag.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><rect x="10" y="12" width="16" height="14" fill="#B9C9B7"/><rect x="28" y="12" width="16" height="14" fill="#D8C3A3"/><rect x="10" y="28" width="16" height="14" fill="#D8C3A3"/><rect x="28" y="28" width="16" height="14" fill="#7F9C82"/></svg>
+        <div><h3>Gerflor-Designbeläge</h3><p>Seit 2021 im Angebot: Designbeläge von Gerflor in vielen Dekoren.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><circle cx="40" cy="14" r="6" fill="#E9B94F"/><g fill="#C99A63" stroke="#8E6239" stroke-width="1"><rect x="8" y="26" width="38" height="5" rx="1"/><rect x="8" y="33" width="38" height="5" rx="1"/><rect x="8" y="40" width="38" height="5" rx="1"/></g></svg>
+        <div><h3>Terrassenböden</h3><p>Damit der schöne Boden nicht an der Balkontüre aufhört.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><path d="M12 40 L12 22 Q27 8 42 22 L42 40Z" fill="#E2C49A" stroke="#8E6239" stroke-width="1.5"/><path d="M18 40 V26 M27 40 V20 M36 40 V26" stroke="#8E6239" stroke-width="1.2"/></svg>
+        <div><h3>Sonderanfertigungen</h3><p>Wenn ein Raum keine Standardlösung zulässt, wird massgefertigt.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><rect x="8" y="14" width="38" height="7" fill="#E2C49A" stroke="#8E6239"/><rect x="8" y="23" width="38" height="8" fill="#CFCFCB" stroke="#8A8A86"/><path d="M8 37 Q14 33 20 37 T32 37 T46 37" fill="none" stroke="#7F9C82" stroke-width="2.5"/><rect x="8" y="41" width="38" height="4" fill="#B5ACA0"/></svg>
+        <div><h3>Trocken&shy;unterbau</h3><p>Mit Fermacell – geeignet für Altbausanierung, Nassräume und Bodenheizung.</p></div>
+      </article>
+      <article class="karte zeig">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><rect width="54" height="54" rx="14" fill="#EFE7DA"/><path d="M12 26 L27 13 L42 26 V42 H12Z" fill="#F8F4EC" stroke="#2D2822" stroke-width="1.8" stroke-linejoin="round"/><rect x="23" y="30" width="8" height="12" fill="#7F9C82"/></svg>
+        <div><h3>Beratung</h3><p>Bei Ihnen zu Hause oder im Showroom in Spiez – mit Mustern zum Anfassen.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="showroom werkstatt" id="showroom">
+  <div class="huelle">
+    <div class="zeig">
+      <span class="mark">Showroom Spiez</span>
+      <h2 class="ab-titel">Muster anfassen, bevor man entscheidet.</h2>
+      <p class="ab-text">An der Simmentalstrasse 18 liegen viele Parkettmuster bereit. Holz sieht im eigenen Licht oft anders aus – darum kommt Werner Briggen auf Wunsch auch mit Mustern zu Ihnen nach Hause.</p>
+      <div class="platzhalter" style="margin-top:20px"><b>[Öffnungszeiten Showroom folgen]</b>Hier stehen später die Zeiten, zu denen der Showroom offen ist.</div>
+    </div>
+    <div class="platzhalter foto-platz zeig">
+      <div>
+        <svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="14" width="52" height="38" rx="6" fill="none" stroke="#B9A88F" stroke-width="3"/><circle cx="32" cy="33" r="10" fill="none" stroke="#B9A88F" stroke-width="3"/><rect x="22" y="8" width="20" height="8" rx="2" fill="#B9A88F"/></svg>
+        <b>[Hier kommen Fotos]</b>Bilder aus dem Showroom und von verlegten Böden
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="familie" id="familie">
+  <div class="huelle">
+    <span class="mark zeig">Familienbetrieb</span>
+    <h2 class="ab-titel zeig">Zwei Generationen, ein Handwerk.</h2>
+    <p class="ab-text zeig">Was neben einer Zimmerei begann, ist heute ein Fachbetrieb für Böden aller Art.</p>
+    <ul class="jahre">
+      <li class="zeig"><b>1957</b><span>Willi Briggen senior beginnt neben seiner Zimmerei mit dem Parkettlegen.</span></li>
+      <li class="zeig"><b>1981</b><span>Sohn Werner Briggen, bei ihm zum Zimmermann ausgebildet, steigt ein und spezialisiert sich mit Weiterbildungen auf Parkett.</span></li>
+      <li class="zeig"><b>2007</b><span>Gründung der Briggen Parkett GmbH.</span></li>
+      <li class="zeig"><b>2021</b><span>Gerflor-Designbeläge kommen dazu – neben Vinyl, Kork und Terrassenböden.</span></li>
+    </ul>
+    <div class="preis zeig">
+      <svg width="52" height="62" viewBox="0 0 52 62" aria-hidden="true"><path d="M14 0 H38 L32 22 H20Z" fill="#7F9C82"/><circle cx="26" cy="38" r="20" fill="#E2C49A" stroke="#C99A63" stroke-width="3"/><text x="26" y="46" text-anchor="middle" font-family="Fraunces, serif" font-size="22" font-weight="700" fill="#2D2822">3.</text></svg>
+      <p>Auszeichnung der Interessengemeinschaft Schweizer Parkettindustrie (ISP), 3. Platz, für die Renovation des Regezhauses in Spiez.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stimmen">
+  <div class="huelle">
+    <span class="mark zeig">Kundenstimmen</span>
+    <h2 class="ab-titel zeig">Was Kundinnen und Kunden sagen.</h2>
+    <div class="platzhalter zeig"><div class="sterne">★★★★★</div><b>[Hier erscheinen Ihre Google-Bewertungen]</b>Echte Bewertungen werden später eingebunden.</div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="huelle">
+    <div class="zeig">
+      <span class="mark" style="color:#5A3D1E">Kontakt</span>
+      <h2 class="ab-titel">Reden wir über Ihren Boden.</h2>
+      <p class="ab-text" style="color:#3E3022">Ein Anruf genügt – oder schreiben Sie kurz, um welchen Raum es geht.</p>
+    </div>
+    <div class="kontakt-knoepfe zeig">
+      <a class="knopf voll" href="tel:+41336549116">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        033 654 91 16
+      </a>
+      <a class="knopf rand" href="mailto:briggenparkett@bluewin.ch">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+        E-Mail schreiben
+      </a>
+      <address class="adresse">
+        <b>Briggen Parkett GmbH</b>
+        Simmentalstrasse 18<br>3700 Spiez<br>
+        <a href="mailto:briggenparkett@bluewin.ch">briggenparkett@bluewin.ch</a>
+        <div class="platzhalter" style="margin-top:12px;padding:10px 12px"><b>[Öffnungszeiten folgen]</b></div>
+      </address>
+    </div>
+  </div>
+</section>
+
+<footer class="fuss">
+  <div class="huelle">
+    <strong>Briggen Parkett GmbH</strong>
+    <span>Simmentalstrasse 18, 3700 Spiez · 033 654 91 16</span>
+    <span>UID CHE-113.788.881</span>
+    <span style="margin-top:8px;font-size:12.5px">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Briggen Parkett GmbH</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var NS = "http://www.w3.org/2000/svg";
+  var TOENE = ["#D9B583","#CFA672","#E2C49A","#C99A63","#D6AE7A","#BF8F5A"];
+
+  function el(name, attrs, eltern){
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (eltern) eltern.appendChild(e);
+    return e;
+  }
+
+  /* Fischgrat: Dielen L×u, Stränge um 45° gedreht; nur Dielen, die in den Rahmen ragen */
+  function fischgrat(B, H, u, ox, oy, mx, my){
+    var L = 4*u, c = Math.SQRT1_2, s = Math.SQRT1_2, cx = B/2, cy = H/2, liste = [];
+    function welt(x, y){ return [cx + (x-ox)*c - (y-oy)*s, cy + (x-ox)*s + (y-oy)*c]; }
+    for (var st = -4; st <= 4; st++){
+      for (var k = -16; k <= 16; k++){
+        ["a","b"].forEach(function(t){
+          var x = k*u + st*2*L, y = (t === "a") ? k*u : k*u + u;
+          var w = (t === "a") ? L : u, h = (t === "a") ? u : L;
+          var drin = 0, n = 0, sx = 0, sy = 0;
+          for (var i = 0.5; i < 12; i++) for (var j = 0.5; j < 12; j++){
+            var q = welt(x + w*i/12, y + h*j/12); n++;
+            if (q[0] > 0 && q[0] < B && q[1] > 0 && q[1] < H){ drin++; sx += q[0]; sy += q[1]; }
+          }
+          if (drin/n > 0.01) liste.push({t:t, x:x, y:y, w:w, h:h, mx:sx/drin, my:sy/drin});
+        });
+      }
+    }
+    return {liste: liste, transform: "translate(" + (mx + cx) + " " + (my + cy) + ") rotate(45) translate(" + (-ox) + " " + (-oy) + ")"};
+  }
+
+  function zeichne(gruppe, d, i){
+    var g = el("g", {"class":"diele " + d.t}, gruppe);
+    el("rect", {x:d.x+0.6, y:d.y+0.6, width:d.w-1.2, height:d.h-1.2, rx:1.5, fill:TOENE[i % TOENE.length], stroke:"#8E6239", "stroke-width":"1"}, g);
+    var lang = d.t === "a";
+    var a = lang ? [d.x+d.w*0.12, d.y+d.h*0.34, d.x+d.w*0.62, d.y+d.h*0.30] : [d.x+d.w*0.34, d.y+d.h*0.10, d.x+d.w*0.30, d.y+d.h*0.58];
+    var b = lang ? [d.x+d.w*0.40, d.y+d.h*0.68, d.x+d.w*0.90, d.y+d.h*0.64] : [d.x+d.w*0.68, d.y+d.h*0.42, d.x+d.w*0.64, d.y+d.h*0.90];
+    el("path", {d:"M"+a[0]+" "+a[1]+" Q"+((a[0]+a[2])/2+2)+" "+((a[1]+a[3])/2-2)+" "+a[2]+" "+a[3], fill:"none", stroke:"#A9784A", "stroke-width":"1", opacity:".55"}, g);
+    el("path", {d:"M"+b[0]+" "+b[1]+" Q"+((b[0]+b[2])/2-2)+" "+((b[1]+b[3])/2+2)+" "+b[2]+" "+b[3], fill:"none", stroke:"#A9784A", "stroke-width":"1", opacity:".45"}, g);
+    return g;
+  }
+
+  /* Held: kleiner, fertig verlegter Boden */
+  var held = document.getElementById("heldBoden");
+  var hb = fischgrat(360, 140, 18, 9, 9, 0, 0);
+  held.setAttribute("transform", "translate(0 250) " + hb.transform);
+  hb.liste.forEach(function(d, i){ zeichne(held, d, i).classList.add("gelegt"); });
+
+  /* Interaktive Fläche */
+  var flaeche = document.getElementById("flaeche");
+  var gruppe = document.getElementById("dielen");
+  var f = fischgrat(340, 260, 40, 30, 30, 10, 10);
+  gruppe.innerHTML = "";
+  var inner = el("g", {transform: f.transform}, gruppe);
+  /* Reihenfolge: von der Mitte an der unteren Wand aus nach aussen – so beginnt man auch beim echten Verlegen */
+  function abstand(d){ return Math.hypot(d.mx - 180, (d.my - 290) * 1.25); }
+  f.liste.sort(function(p, q){ return abstand(p) - abstand(q); });
+  var dielen = f.liste.map(function(d, i){ return zeichne(inner, d, i); });
+  var total = dielen.length, gelegt = 0;
+  document.getElementById("total").textContent = total;
+
+  var anzeige = document.getElementById("anzahl"), balken = document.getElementById("balken"),
+      fertig = document.getElementById("fertig"), hinweis = document.getElementById("tippHinweis");
+
+  function aktualisieren(){
+    anzeige.textContent = gelegt;
+    balken.style.width = (gelegt / total * 100) + "%";
+    hinweis.style.opacity = gelegt ? 0 : 1;
+    fertig.classList.toggle("da", gelegt >= total);
+  }
+  function naechste(){
+    if (gelegt >= total) return;
+    dielen[gelegt].classList.add("gelegt");
+    gelegt++;
+    aktualisieren();
+  }
+  function alle(){
+    var start = gelegt;
+    for (var i = start; i < total; i++){
+      (function(i){ setTimeout(function(){ dielen[i].classList.add("gelegt"); gelegt = Math.max(gelegt, i+1); aktualisieren(); }, (i-start)*55); })(i);
+    }
+  }
+  function sofortAlle(){ dielen.forEach(function(d){ d.classList.add("gelegt"); }); gelegt = total; aktualisieren(); }
+  function zuruecksetzen(){ dielen.forEach(function(d){ d.classList.remove("gelegt"); }); gelegt = 0; aktualisieren(); }
+
+  flaeche.addEventListener("click", naechste);
+  flaeche.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " "){ e.preventDefault(); naechste(); } });
+  document.getElementById("naechste").addEventListener("click", naechste);
+  document.getElementById("alle").addEventListener("click", alle);
+  document.getElementById("nochmals").addEventListener("click", function(){ zuruecksetzen(); flaeche.scrollIntoView({behavior:"smooth", block:"center"}); });
+  aktualisieren();
+
+  /* Einblenden beim Scrollen */
+  var teile = document.querySelectorAll(".zeig");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(eintraege){
+      eintraege.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("sichtbar"); io.unobserve(e.target); } });
+    }, {threshold: 0.12});
+    teile.forEach(function(t){ io.observe(t); });
+  } else { teile.forEach(function(t){ t.classList.add("sichtbar"); }); }
+
+  /* Für die PDF-Fassung */
+  window.pdfEndzustand = function(){
+    document.documentElement.classList.add("pdf");
+    teile.forEach(function(t){ t.classList.add("sichtbar"); });
+    sofortAlle();
+  };
+})();
+</script>
+</body>
+</html>
