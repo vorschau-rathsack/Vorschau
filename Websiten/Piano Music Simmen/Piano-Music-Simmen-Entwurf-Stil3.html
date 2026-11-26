@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Piano Music Simmen – Klaviere in Thun (Entwurf «Metronom»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#f5eddd;
+  --creme2:#ebe0c9;
+  --karte:#fffaf0;
+  --nuss:#5b3a24;
+  --nuss-d:#3b2517;
+  --salbei:#8ea489;
+  --salbei-d:#4e684f;
+  --salbei-h:#dfe7d6;
+  --text:#2e2219;
+  --grau:#6f6252;
+  --rund:"Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --kursiv:"Lora", Georgia, serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--text);font-family:var(--rund);font-size:17px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:var(--rund);font-weight:600;margin:0;letter-spacing:-.02em;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal;word-break:normal}
+em,.k{font-family:var(--kursiv);font-style:italic;font-weight:400;letter-spacing:0}
+a{color:inherit}
+.rahmen{max-width:560px;margin:0 auto;padding:0 16px}
+
+.hinweis{background:var(--salbei-d);color:#f5eddd;font-size:12.5px;line-height:1.4;padding:8px 16px;text-align:center}
+
+.kopf{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 16px 0;max-width:560px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;line-height:1.1}
+.logo small{display:block;font-weight:400;font-size:13px;color:var(--grau)}
+.logo svg{flex:none}
+.pille{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:99px;padding:13px 20px;font:600 15px/1 var(--rund);text-decoration:none;border:0;cursor:pointer;background:var(--nuss);color:var(--creme)}
+.pille.hell{background:var(--karte);color:var(--nuss);box-shadow:inset 0 0 0 1.5px var(--nuss)}
+.pille.salbei{background:var(--salbei-d);color:#fff}
+.pille.klein{padding:9px 14px;font-size:14px}
+
+.hero{padding:30px 0 0}
+.hero h1{font-size:clamp(38px,10.6vw,58px);line-height:1.02}
+.hero h1 em{color:var(--salbei-d)}
+.hero p{color:var(--grau);margin:14px 0 0;max-width:30em}
+
+/* Metronom-Karte */
+.mkarte{margin:22px 0 0;background:var(--karte);border-radius:30px;padding:18px 14px 20px;position:relative}
+.tempo-kopf{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;padding:0 6px}
+.tempo-kopf .zahl{font-size:clamp(46px,14vw,64px);font-weight:700;line-height:.9;color:var(--nuss);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.tempo-kopf .zahl small{font-size:14px;font-weight:500;color:var(--grau);letter-spacing:0;margin-left:4px}
+.tempo-kopf .name{font-family:var(--kursiv);font-style:italic;font-size:clamp(28px,8vw,36px);line-height:1;color:var(--salbei-d);text-align:right}
+.kap-link{display:inline-block;margin:10px 6px 0;font-size:14px;color:var(--salbei-d);text-decoration:none;background:var(--salbei-h);border-radius:99px;padding:6px 12px}
+.kap-link b{font-weight:600}
+.metronom{display:block;width:100%;height:auto;margin:8px 0 0;touch-action:none;user-select:none;-webkit-user-select:none}
+#gewicht{cursor:grab}
+#gewicht:focus{outline:none}
+#gewicht:focus-visible .gw{stroke:var(--salbei-d);stroke-width:3}
+.band{cursor:pointer}
+.band text{font-family:var(--kursiv);font-style:italic;font-size:17px;fill:#9a8b76;transition:fill .2s}
+.band rect{fill:transparent;transition:fill .2s}
+.band.an text{fill:#fff}
+.band.an rect{fill:var(--salbei-d)}
+.knopfreihe{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.knopfreihe button{font:500 14px var(--rund);border:0;background:var(--creme2);color:var(--nuss);border-radius:99px;padding:10px 14px;cursor:pointer}
+.knopfreihe button[aria-pressed="true"]{background:var(--salbei-d);color:#fff}
+.tipp{text-align:center;font-size:14px;color:var(--grau);margin:10px 6px 0}
+
+/* Kapitel */
+.kapitel-bereich{margin:16px 0 0}
+.kapitel{display:none;background:var(--nuss);color:var(--creme);border-radius:30px;padding:24px 20px 24px}
+.kapitel.an{display:block;animation:rein .45s cubic-bezier(.2,.8,.3,1)}
+@keyframes rein{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.kapitel .kopfzeile{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
+.kapitel .tempo{font-family:var(--kursiv);font-style:italic;font-size:24px;color:#c8d6bf}
+.kapitel .bpm{font-size:13px;color:#cbb59c;white-space:nowrap}
+.kapitel h2{font-size:clamp(28px,8vw,36px);line-height:1.08;margin:0 0 12px}
+.kapitel p{margin:0 0 12px;color:#eadfca}
+.kapitel ul{list-style:none;margin:0 0 16px;padding:0}
+.kapitel li{padding:10px 0 10px 26px;border-top:1px solid rgba(245,237,221,.18);position:relative}
+.kapitel li::before{content:"";position:absolute;left:4px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--salbei)}
+.kapitel li b{font-weight:600}
+.kapitel li span{display:block;color:#cdbfa8;font-size:15px}
+.kapitel .pille.hell{box-shadow:none}
+.kapitel .platz{border-color:#b49c80;color:#e0d2bb;background:transparent;margin-bottom:16px}
+.jahre{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:0 0 16px}
+.jahre b{font-size:22px;font-weight:700;color:#c8d6bf;font-variant-numeric:tabular-nums}
+.jahre span{color:#eadfca}
+
+.platz{border:2px dashed #b9a88e;border-radius:20px;padding:14px 16px;color:#7c6d5a;text-align:center;font-size:15px}
+
+/* Weg zum Klavier */
+.teil{padding:54px 0 0}
+.teil h2{font-size:clamp(30px,8.6vw,42px);line-height:1.08}
+.teil h2 em{color:var(--salbei-d)}
+.teil .vor{color:var(--grau);margin:10px 0 20px}
+.schritte{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.schritt{background:var(--salbei-h);border-radius:24px;padding:18px 18px 18px 74px;position:relative;min-height:84px}
+.schritt .n{position:absolute;left:16px;top:16px;width:44px;height:44px;border-radius:50%;background:var(--salbei-d);color:#fff;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center}
+.schritt h3{font-size:19px;margin:0 0 2px}
+.schritt p{margin:0;color:#3f4a3c;font-size:15.5px}
+.schritt .platz{margin-top:8px;padding:8px 12px;font-size:14px;border-color:#8ea489;color:#4e684f}
+.frage{margin:18px 0 0;background:var(--karte);border-radius:24px;padding:20px}
+.frage h3{font-size:20px;margin-bottom:6px}
+.frage p{margin:0;color:var(--grau)}
+
+/* Kontakt */
+.kontakt{margin:56px 0 0;background:var(--salbei-d);color:#f5eddd;border-radius:34px 34px 0 0;padding:34px 0 24px}
+.kontakt h2{font-size:clamp(32px,9vw,44px);line-height:1.05}
+.kontakt h2 em{color:#dfe7d6}
+.tel-gross{display:block;margin:18px 0 6px;font-size:clamp(32px,9.6vw,44px);font-weight:700;letter-spacing:-.02em;text-decoration:none;color:#fff;white-space:nowrap}
+.kontakt .zeiten{color:#dfe7d6;margin:0 0 18px}
+.kontakt .zeilen{background:rgba(0,0,0,.14);border-radius:22px;padding:16px 18px;margin:0 0 18px}
+.kontakt .zeilen div{padding:6px 0}
+.kontakt .zeilen small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#c8d6bf}
+.kontakt .pille.hell{box-shadow:none;background:#f5eddd}
+.fuss{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:#c8d6bf;margin-top:26px}
+
+/* PDF */
+.pdf .kapitel{display:block !important;animation:none;margin-bottom:12px}
+.pdf *{transition:none !important;animation:none !important}
+</style>
+</head>
+<body>
+<div class="hinweis">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Piano Music Simmen</div>
+
+<header class="kopf">
+  <div class="logo">
+    <svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true"><path d="M11 2 H23 L32 38 H2 Z" fill="#5b3a24"/><path d="M17 33 L22 8" stroke="#f5eddd" stroke-width="2" stroke-linecap="round"/><rect x="18" y="14" width="6" height="5" rx="1" fill="#8ea489" transform="rotate(11 21 16)"/></svg>
+    <div>Piano Music Simmen<small>Klavierservice Thun</small></div>
+  </div>
+  <a class="pille klein" href="tel:+41333454528">Anrufen</a>
+</header>
+
+<main class="rahmen">
+  <section class="hero">
+    <h1>Klavier – in <em>Ihrem</em> Tempo.</h1>
+    <p>Stimmen, reparieren, kaufen: Matthias Simmen ist gelernter Klavierbauer und Klavierstimmer in Thun. Schieben Sie das Gewicht am Metronom – jedes Tempo erzählt ein Kapitel.</p>
+  </section>
+
+  <!-- ============ HERZSTÜCK: METRONOM ============ -->
+  <section class="mkarte" aria-labelledby="m-h">
+    <h2 id="m-h" style="position:absolute;left:-9999px">Metronom</h2>
+    <div class="tempo-kopf" aria-live="polite">
+      <div class="zahl"><span id="bpm">92</span><small>Schläge/Min.</small></div>
+      <div class="name" id="tname">Andante</div>
+    </div>
+    <a class="kap-link" id="kap-link" href="#kapitel">Kapitel: <b id="ktitel">Stimmen &amp; Pflegen</b> ↓</a>
+
+    <svg class="metronom" id="metronom" viewBox="0 0 360 400">
+      <!-- Sockel-Schatten -->
+      <ellipse cx="140" cy="384" rx="120" ry="8" fill="#ebe0c9"/>
+      <!-- Gehäuse -->
+      <path d="M100 24 Q140 10 180 24 L254 376 Q140 388 26 376 Z" fill="#5b3a24"/>
+      <path d="M106 30 Q140 18 174 30 L244 370 Q140 380 36 370 Z" fill="none" stroke="#7c5537" stroke-width="1.2"/>
+      <!-- Holzmaserung -->
+      <path d="M70 330 C90 300 80 260 100 220 M210 330 C196 300 206 260 188 220" fill="none" stroke="#6c4a30" stroke-width="1.2"/>
+      <!-- Front-Öffnung -->
+      <path d="M112 48 L168 48 L196 318 L84 318 Z" fill="#f5eddd"/>
+      <rect x="117" y="70" width="46" height="214" rx="6" fill="#fffaf0" stroke="#d8c9ad" stroke-width="1"/>
+      <!-- Skala -->
+      <g id="skala" font-family="Outfit, sans-serif" font-size="11" font-weight="500" fill="#5b3a24"></g>
+      <!-- Sockelplatte -->
+      <path d="M58 318 H222 L232 352 H48 Z" fill="#3b2517"/>
+      <circle cx="140" cy="300" r="5" fill="#3b2517"/>
+      <!-- Pendel -->
+      <g id="pendel">
+        <rect x="138" y="58" width="4" height="244" rx="2" fill="#3b2517"/>
+        <g id="gewicht" tabindex="0" role="slider" aria-label="Laufgewicht: Tempo" aria-valuemin="40" aria-valuemax="208" aria-valuenow="92">
+          <rect x="104" y="-26" width="72" height="52" fill="transparent"/>
+          <path class="gw" d="M126 -12 H154 L160 12 H120 Z" fill="#8ea489" stroke="#3b2517" stroke-width="1.6" stroke-linejoin="round"/>
+          <rect x="128" y="-3" width="24" height="3" rx="1.5" fill="#4e684f"/>
+          <path d="M108 -2 l-6 2 l6 2 M172 -2 l6 2 l-6 2" fill="#4e684f"/>
+        </g>
+      </g>
+      <!-- Tempobereiche -->
+      <g id="baender"></g>
+    </svg>
+
+    <div class="knopfreihe">
+      <button type="button" id="langsamer">− langsamer</button>
+      <button type="button" id="klick" aria-pressed="false">Klick an</button>
+      <button type="button" id="schneller">schneller +</button>
+    </div>
+    <p class="tipp">Grünes Gewicht nach oben = langsamer, nach unten = schneller.</p>
+  </section>
+
+  <div class="kapitel-bereich" id="kapitel" aria-live="polite">
+    <article class="kapitel" data-k="0">
+      <div class="kopfzeile"><span class="tempo">Largo</span><span class="bpm">40–65 Schläge</span></div>
+      <h2>Seit 1999 in Thun</h2>
+      <div class="jahre">
+        <b>1987</b><span>Lehre als Klavierbauer, mit Auszeichnung abgeschlossen. Danach eine Stelle in Cossonay-Ville (Waadt).</span>
+        <b>1989</b><span>Bis 1999 im Pianohaus Krämer in Thun – vor allem Konzertflügel und Reparaturen.</span>
+        <b>1999</b><span>Selbständig: Piano Music Simmen, Klavierservice Thun.</span>
+      </div>
+      <p>Matthias Simmen, gelernter Klavierbauer und Klavierstimmer, führt den Klavierservice bis heute.</p>
+      <div class="platz">[Foto von Matthias Simmen]</div>
+    </article>
+    <article class="kapitel an" data-k="1">
+      <div class="kopfzeile"><span class="tempo">Andante</span><span class="bpm">66–107 Schläge</span></div>
+      <h2>Stimmen &amp; Pflegen</h2>
+      <ul>
+        <li><b>Stimmungen</b><span>für Klaviere und Flügel</span></li>
+        <li><b>Konzertservice</b><span>mit langjähriger Erfahrung an Konzertflügeln</span></li>
+        <li><b>Gutachten &amp; Expertisen</b><span>eine fachliche Einschätzung Ihres Instruments</span></li>
+      </ul>
+      <a class="pille hell" href="tel:+41333454528">Stimmung vereinbaren</a>
+    </article>
+    <article class="kapitel" data-k="2">
+      <div class="kopfzeile"><span class="tempo">Allegro</span><span class="bpm">108–167 Schläge</span></div>
+      <h2>Reparieren &amp; Überholen</h2>
+      <ul>
+        <li><b>Reparatur</b><span>von Klavieren und Flügeln</span></li>
+        <li><b>Generalüberholung</b><span>neue Mechanik und neue Klaviatur</span></li>
+        <li><b>Stimmstock &amp; Steg</b><span>Ersatz (Doublierung)</span></li>
+        <li><b>Resonanzboden</b><span>Reparaturen</span></li>
+        <li><b>Saiten</b><span>Neuberechnung der Saiten</span></li>
+      </ul>
+      <a class="pille hell" href="mailto:info@pianosimmen.ch?subject=Reparatur">Reparatur anfragen</a>
+    </article>
+    <article class="kapitel" data-k="3">
+      <div class="kopfzeile"><span class="tempo">Presto</span><span class="bpm">168–208 Schläge</span></div>
+      <h2>Kaufen: neu, Occasion, Petrof</h2>
+      <ul>
+        <li><b>Neue Instrumente</b><span>Klaviere und Flügel</span></li>
+        <li><b>Occasionen</b><span>gebrauchte Instrumente</span></li>
+        <li><b>Petrof</b><span>Händler für den tschechischen Klavier- und Flügelhersteller</span></li>
+      </ul>
+      <div class="platz">[aktuelle Instrumente &amp; Preise]</div>
+      <a class="pille hell" href="#weg">So kommen Sie zu Ihrem Klavier ↓</a>
+    </article>
+  </div>
+
+  <!-- ============ WEG ZUM KLAVIER ============ -->
+  <section class="teil" id="weg">
+    <h2>Ihr Weg zum <em>eigenen</em> Klavier.</h2>
+    <p class="vor">Für Eltern, deren Kind spielen lernen möchte – und für alle, die nach Jahren wieder anfangen.</p>
+    <ol class="schritte">
+      <li class="schritt"><span class="n">1</span><h3>Anfragen</h3><p>Anrufen (Mo–Fr 8–12 und 14–17 Uhr) oder eine E-Mail schreiben: Was suchen Sie, was haben Sie schon?</p></li>
+      <li class="schritt"><span class="n">2</span><h3>Anschauen &amp; anspielen</h3><p>Nach Vereinbarung an der Kyburgstrasse 9A in Thun. Neu, Occasion oder Petrof – ausprobieren, was zu Ihnen passt.</p></li>
+      <li class="schritt"><span class="n">3</span><h3>Lieferung</h3><div class="platz">[Details zur Lieferung bestätigen]</div></li>
+    </ol>
+    <div class="frage">
+      <h3>Steht zu Hause schon ein altes Klavier?</h3>
+      <p>Lassen Sie es anschauen: Eine Stimmung, eine Reparatur oder ein Gutachten zeigt, was mit dem Instrument möglich ist.</p>
+    </div>
+    <div class="platz" style="margin-top:18px">[Stimmen von Kundinnen und Kunden]</div>
+  </section>
+</main>
+
+<!-- ============ KONTAKT ============ -->
+<section class="kontakt" id="kontakt">
+  <div class="rahmen">
+    <h2>Finden wir <em>Ihr</em> Tempo.</h2>
+    <a class="tel-gross" href="tel:+41333454528">033 345 45 28</a>
+    <p class="zeiten">Telefon Büro: Mo–Fr 8–12 und 14–17 Uhr · Besuche nach Vereinbarung</p>
+    <div class="zeilen">
+      <div><small>E-Mail</small><a href="mailto:info@pianosimmen.ch">info@pianosimmen.ch</a></div>
+      <div><small>Adresse</small>Piano Music Simmen<br>Kyburgstrasse 9A, 3600&nbsp;Thun</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="pille hell" href="tel:+41333454528">Anrufen</a>
+      <a class="pille" href="mailto:info@pianosimmen.ch">E-Mail schreiben</a>
+    </div>
+    <div class="fuss"><span>Piano Music Simmen, Thun</span><span>Entwurf von Max Rathsack</span></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var Y_OBEN=84, Y_UNTEN=270, PIV_X=140, PIV_Y=300;     // Gewicht-Bereich auf dem Pendel
+  var B_MIN=40, B_MAX=208;
+  var BAENDER=[{n:'Largo',a:40,b:65},{n:'Andante',a:66,b:107},{n:'Allegro',a:108,b:167},{n:'Presto',a:168,b:208}];
+  function bpmAusY(y){ var p=(y-Y_OBEN)/(Y_UNTEN-Y_OBEN); return B_MIN*Math.pow(B_MAX/B_MIN,p); }
+  function yAusBpm(b){ return Y_OBEN+(Math.log(b/B_MIN)/Math.log(B_MAX/B_MIN))*(Y_UNTEN-Y_OBEN); }
+  function el(n,a){ var e=document.createElementNS(NS,n); for(var k in a) e.setAttribute(k,a[k]); return e; }
+
+  // Skala zeichnen (Striche + Zahlen links, wie auf einem echten Metronom)
+  var skala=document.getElementById('skala');
+  [40,50,63,80,100,126,160,208].forEach(function(b){
+    var y=yAusBpm(b);
+    skala.appendChild(el('line',{x1:117,y1:y,x2:126,y2:y,stroke:'#5b3a24','stroke-width':1.2}));
+    skala.appendChild(el('line',{x1:154,y1:y,x2:163,y2:y,stroke:'#5b3a24','stroke-width':1.2}));
+    var t=el('text',{x:140,y:y+3.8,'text-anchor':'middle'}); t.textContent=b; skala.appendChild(t);
+  });
+  for(var b=44;b<208;b+=6){ var yy=yAusBpm(b); skala.appendChild(el('line',{x1:117,y1:yy,x2:122,y2:yy,stroke:'#b9a88e','stroke-width':.8})); skala.appendChild(el('line',{x1:158,y1:yy,x2:163,y2:yy,stroke:'#b9a88e','stroke-width':.8})); }
+
+  // Tempobereiche rechts
+  var baender=document.getElementById('baender'), bandEl=[];
+  BAENDER.forEach(function(bd,i){
+    var y1=yAusBpm(bd.a), y2=yAusBpm(bd.b), ym=(y1+y2)/2;
+    var g=el('g',{'class':'band','data-i':i,role:'button',tabindex:'0','aria-label':bd.n+' – Kapitel zeigen'});
+    g.appendChild(el('path',{d:'M262 '+(y1+2)+' h6 V'+(y2-2)+' h-6',fill:'none',stroke:'#b9a88e','stroke-width':1.2}));
+    g.appendChild(el('rect',{x:274,y:ym-14,width:82,height:28,rx:14}));
+    var t=el('text',{x:315,y:ym+5.5,'text-anchor':'middle'}); t.textContent=bd.n; g.appendChild(t);
+    baender.appendChild(g); bandEl.push(g);
+  });
+
+  var pendel=document.getElementById('pendel'), gewicht=document.getElementById('gewicht'), svg=document.getElementById('metronom');
+  var bpmEl=document.getElementById('bpm'), nameEl=document.getElementById('tname');
+  var kapitel=document.querySelectorAll('.kapitel');
+  var bpm=92, gy=yAusBpm(92), aktiv=-1;
+  var phase=0, amp=24, zielAmp=24, letzte=performance.now(), ziehen=false, standbild=false, letzterSchlag=0;
+
+  function bandVon(b){ for(var i=0;i<BAENDER.length;i++){ if(b<=BAENDER[i].b) return i; } return 3; }
+  function setzeY(y){
+    gy=Math.max(Y_OBEN,Math.min(Y_UNTEN,y));
+    bpm=Math.round(bpmAusY(gy));
+    gewicht.setAttribute('transform','translate(0 '+gy.toFixed(1)+')');
+    bpmEl.textContent=bpm;
+    gewicht.setAttribute('aria-valuenow',bpm);
+    var i=bandVon(bpm);
+    gewicht.setAttribute('aria-valuetext',bpm+' Schläge pro Minute, '+BAENDER[i].n);
+    if(i!==aktiv){
+      aktiv=i; nameEl.textContent=BAENDER[i].n;
+      document.getElementById('ktitel').textContent=kapitel[i].querySelector('h2').textContent;
+      bandEl.forEach(function(g,j){ g.classList.toggle('an',j===i); });
+      kapitel.forEach(function(k){ k.classList.toggle('an',+k.getAttribute('data-k')===i); });
+    }
+  }
+
+  // Ticken
+  var ctx=null, klickAn=false;
+  function klick(hoch){
+    if(!klickAn||!ctx) return;
+    var t=ctx.currentTime, o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='square'; o.frequency.value=hoch?1650:1250;
+    g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.12,t+0.002); g.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
+    o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t+0.06);
+  }
+  function lauf(now){
+    var dt=Math.min(0.05,(now-letzte)/1000); letzte=now;
+    amp+=(zielAmp-amp)*Math.min(1,dt*8);
+    phase+=dt*Math.PI*bpm/60;
+    var schlag=Math.floor((phase-Math.PI/2)/Math.PI);
+    if(schlag!==letzterSchlag){ letzterSchlag=schlag; if(!ziehen) klick(schlag%2===0); }
+    var w=amp*Math.sin(phase);
+    pendel.setAttribute('transform','rotate('+w.toFixed(2)+' '+PIV_X+' '+PIV_Y+')');
+    if(!standbild) requestAnimationFrame(lauf);
+  }
+
+  // Ziehen
+  function svgY(e){ var r=svg.getBoundingClientRect(); return (e.clientY-r.top)*(400/r.height); }
+  svg.addEventListener('pointerdown',function(e){
+    if(e.target.closest && e.target.closest('.band')) return;
+    var r=svg.getBoundingClientRect(), x=(e.clientX-r.left)*(360/r.width);
+    if(x<70||x>215) return;           // nur im Bereich des Pendels
+    ziehen=true; zielAmp=2; try{svg.setPointerCapture(e.pointerId)}catch(_){}
+    setzeY(svgY(e)); e.preventDefault();
+  });
+  svg.addEventListener('pointermove',function(e){ if(ziehen) setzeY(svgY(e)); });
+  function los(){ if(!ziehen) return; ziehen=false; zielAmp=24; }
+  svg.addEventListener('pointerup',los); svg.addEventListener('pointercancel',los);
+
+  // Bänder antippen = Gewicht hinschieben
+  function fahreZu(b){
+    var start=gy, ziel=yAusBpm(b), t0=performance.now();
+    (function s(n){ var p=Math.min(1,(n-t0)/450); p=1-Math.pow(1-p,3); setzeY(start+(ziel-start)*p); if(p<1) requestAnimationFrame(s); })(t0);
+  }
+  bandEl.forEach(function(g,i){
+    var mitte=Math.round(Math.sqrt(BAENDER[i].a*BAENDER[i].b));
+    g.addEventListener('click',function(){ fahreZu(mitte); });
+    g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fahreZu(mitte); } });
+  });
+
+  // Tastatur + Knöpfe
+  function schritt(d){ setzeY(yAusBpm(Math.max(B_MIN,Math.min(B_MAX,bpm+d)))); }
+  gewicht.addEventListener('keydown',function(e){
+    if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ schritt(-(e.shiftKey?10:2)); e.preventDefault(); }
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'){ schritt(e.shiftKey?10:2); e.preventDefault(); }
+  });
+  document.getElementById('langsamer').addEventListener('click',function(){ schritt(-8); });
+  document.getElementById('schneller').addEventListener('click',function(){ schritt(8); });
+  document.getElementById('klick').addEventListener('click',function(){
+    klickAn=!klickAn; this.setAttribute('aria-pressed',klickAn); this.textContent=klickAn?'Klick aus':'Klick an';
+    if(klickAn){ var AC=window.AudioContext||window.webkitAudioContext; if(AC){ ctx=ctx||new AC(); if(ctx.resume) ctx.resume(); } }
+  });
+
+  window.pdfZustand=function(){ standbild=true; setzeY(yAusBpm(120)); pendel.setAttribute('transform','rotate(15 '+PIV_X+' '+PIV_Y+')'); };
+
+  setzeY(gy);
+  requestAnimationFrame(lauf);
+})();
+</script>
+</body>
+</html>

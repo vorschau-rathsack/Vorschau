@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Schnaps-Brennerei Stähli – Entwurf Stil 1 «Brennhafen»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --copper:#B5652B; --copper-d:#86431C; --copper-l:#E3A06A; --copper-xl:#F4CFA6;
+  --apple:#7DA23A; --apple-d:#4F7019; --apple-l:#DDEBB8;
+  --cream:#F8F0DE; --cream2:#EFE2C4; --paper:#FFFBF2;
+  --ink:#33241A; --ink2:#5E4836; --brick:#A9503A; --brick-d:#7E3826;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.55 Karla,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Zilla Slab",Georgia,serif;line-height:1.08;margin:0;hyphens:none;-webkit-hyphens:none;word-break:normal;overflow-wrap:normal;letter-spacing:-.01em}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+.ph{display:inline-block;border:1.5px dashed currentColor;border-radius:6px;padding:0 .4em;font-size:.88em;opacity:.85;white-space:nowrap}
+
+/* Hinweis */
+.hinweis{background:var(--ink);color:var(--cream);font-size:13px;line-height:1.35;padding:8px 16px;text-align:center}
+
+/* Kopf */
+.kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;max-width:560px;margin:0 auto}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke b{font:700 20px/1 "Zilla Slab",serif;display:block}
+.marke small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-d);font-weight:700}
+.kopf nav a{font-weight:700;font-size:14px;text-decoration:none;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:6px 12px;white-space:nowrap}
+
+/* Hero */
+.hero{padding:6px 0 0}
+.hero .kicker{font-weight:700;color:var(--apple-d);letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+.hero h1{font-size:clamp(38px,11.4vw,58px);margin:8px 0 14px;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--copper)}
+.hero p{margin:0 0 16px;color:var(--ink2);font-size:18px}
+.knoepfe{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 16px/1 Karla,sans-serif;padding:14px 18px;border-radius:12px;text-decoration:none;border:2px solid var(--ink);cursor:pointer;background:var(--paper);color:var(--ink)}
+.btn.voll{background:var(--copper);border-color:var(--copper-d);color:#fff;box-shadow:0 3px 0 var(--copper-d)}
+.btn.gruen{background:var(--apple);border-color:var(--apple-d);color:#fff;box-shadow:0 3px 0 var(--apple-d)}
+.landschaft{margin-top:22px}
+
+/* Abschnitte */
+section{padding:44px 0}
+.titel{font-size:clamp(30px,8.6vw,42px);margin-bottom:12px}
+.unter{color:var(--ink2);margin:0 0 18px}
+.band{background:var(--paper);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+
+/* Brennhafen-Spiel */
+.anlage{background:linear-gradient(#FCF5E6,#F3E6C9);border:3px solid var(--ink);border-radius:20px;padding:8px 8px 0;position:relative;overflow:hidden}
+.anlage svg{width:100%;height:auto}
+.kessel-inhalt{min-height:34px;display:flex;flex-wrap:wrap;gap:6px;padding:8px 6px 10px;font-size:14px;color:var(--ink2)}
+.kessel-inhalt span.chip{background:var(--copper-xl);color:var(--copper-d);font-weight:700;border-radius:999px;padding:3px 10px}
+.schritt{font:700 13px/1 Karla,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--copper-d);margin:22px 0 10px}
+.fruechte{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.frucht{background:var(--paper);border:2px solid var(--ink);border-radius:14px;padding:8px 2px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:700 12px/1.1 Karla,sans-serif;color:var(--ink);touch-action:manipulation;transition:transform .15s}
+.frucht svg{width:40px;height:40px}
+.frucht:active{transform:translateY(2px)}
+.frucht:disabled{opacity:.45;cursor:default}
+.feuerzeile{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.btn.feuer{background:var(--brick);border-color:var(--brick-d);color:#fff;box-shadow:0 3px 0 var(--brick-d);font-size:18px;padding:15px 22px}
+.btn:disabled{opacity:.45;cursor:default;box-shadow:none}
+.status{font-size:14px;color:var(--ink2);flex:1;min-width:150px}
+.flieger{position:fixed;left:0;top:0;width:40px;height:40px;pointer-events:none;z-index:50}
+
+.etikett{margin-top:18px;display:none;background:var(--paper);border:3px solid var(--ink);border-radius:8px;padding:6px;box-shadow:6px 6px 0 var(--apple)}
+.etikett.zeigen{display:block;animation:auf .6s cubic-bezier(.2,1.4,.4,1)}
+@keyframes auf{from{transform:scale(.6) rotate(-4deg);opacity:0}to{transform:none;opacity:1}}
+.etikett .innen{border:1.5px solid var(--copper);border-radius:4px;padding:16px 14px;text-align:center}
+.etikett small{display:block;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--copper-d)}
+.etikett h3{font-size:clamp(30px,9vw,40px);margin:6px 0;color:var(--ink)}
+.etikett p{margin:0;color:var(--ink2);font-size:15px}
+
+/* Flammen, Animationen */
+#flammen{opacity:0;transition:opacity .4s}
+.brennt #flammen{opacity:1}
+.flamme{transform-box:fill-box;transform-origin:50% 100%;animation:flacker .5s ease-in-out infinite alternate}
+.flamme:nth-child(2){animation-delay:.15s}.flamme:nth-child(3){animation-delay:.3s}
+@keyframes flacker{from{transform:scaleY(.82) skewX(-3deg)}to{transform:scaleY(1.08) skewX(3deg)}}
+#quecksilber{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.08);transition:transform 2.6s ease-in}
+.brennt #quecksilber,.fertig #quecksilber{transform:scaleY(1)}
+#glasinhalt{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0)}
+.trichterfrucht{transform-box:fill-box;transform-origin:50% 100%;animation:plopp .35s ease-out}
+@keyframes plopp{from{transform:scale(1.5)}to{transform:scale(1)}}
+
+/* Text-Karten */
+.zweier{display:grid;gap:14px}
+.karte{background:var(--paper);border:2px solid var(--ink);border-radius:16px;padding:18px}
+.karte h3{font-size:24px;margin-bottom:6px}
+.karte p{margin:0 0 8px}
+.zahl{font:700 44px/1 "Zilla Slab",serif;color:var(--copper)}
+ul.gebiet{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+ul.gebiet li{background:var(--apple-l);color:var(--apple-d);font-weight:700;border-radius:999px;padding:5px 12px;font-size:15px}
+
+/* Treberwurst */
+.treber{background:var(--apple-d);color:#F4F8E8}
+.treber .titel{color:#fff}
+.treber .unter{color:#DDE9C4}
+.treber .karte{background:#5E8224;border-color:#2F4410;color:#fff}
+
+/* Chronik */
+.chronik{list-style:none;margin:0;padding:0;position:relative}
+.chronik:before{content:"";position:absolute;left:31px;top:8px;bottom:60px;width:4px;background:repeating-linear-gradient(var(--copper) 0 10px,transparent 10px 16px)}
+.chronik li{display:grid;grid-template-columns:66px 1fr;gap:12px;padding:0 0 22px;position:relative}
+.chronik .jahr{width:66px;height:66px;border-radius:50%;background:var(--copper);color:#fff;display:grid;place-items:center;font:700 19px/1 "Zilla Slab",serif;border:3px solid var(--ink);position:relative;z-index:1}
+.chronik li.anders .jahr{background:var(--apple)}
+.chronik h3{font-size:21px;margin:8px 0 4px}
+.chronik p{margin:0;color:var(--ink2)}
+
+/* Boutique */
+.regalzeile{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.anhaenger{background:var(--paper);border:2px solid var(--ink);border-radius:10px 10px 10px 10px;padding:22px 12px 14px;position:relative;text-align:center}
+.anhaenger:before{content:"";position:absolute;top:8px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;border:2px solid var(--ink);background:var(--cream)}
+.anhaenger b{display:block;font:700 21px/1.1 "Zilla Slab",serif;margin-top:4px}
+.anhaenger span{font-size:14px;color:var(--ink2)}
+.anhaenger.leer{border-style:dashed;color:var(--ink2)}
+.hinweis18{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--ink2);margin-top:16px}
+.hinweis18 i{font-style:normal;font:700 14px/1 Karla;border:2px solid var(--ink2);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;flex:none}
+
+/* Kontakt */
+.kontakt{background:var(--ink);color:var(--cream)}
+.kontakt .titel{color:#fff}
+.ort{background:#46331F;border-radius:16px;padding:18px;margin-bottom:14px;border:2px solid #6B4C30}
+.ort small{color:var(--copper-l);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px}
+.ort h3{font-size:24px;margin:4px 0 6px;color:#fff}
+.ort p{margin:0 0 12px;color:#E9DCC4}
+.ort .btn{background:var(--copper);border-color:var(--copper-l);color:#fff}
+.personen{display:grid;gap:8px;margin:18px 0;color:#E9DCC4;font-size:15px}
+.personen b{color:#fff}
+.fuss{font-size:13px;color:#BFAE94;border-top:1px solid #5C4630;margin-top:24px;padding:18px 0 30px}
+.fuss p{margin:0 0 6px}
+
+/* PDF */
+[hidden]{display:none!important}
+.pdf *{animation:none!important;transition:none!important}
+.pdf .flamme{transform:none}
+</style>
+</head>
+<body>
+<div class="hinweis">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Schnaps-Brennerei Stähli GmbH</div>
+
+<header class="kopf">
+  <a class="marke" href="#top" aria-label="Schnaps-Brennerei Stähli">
+    <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="#B5652B" stroke="#33241A" stroke-width="2.5"/><path d="M13 30 q0-11 9-11 q9 0 9 11 z" fill="#E3A06A" stroke="#33241A" stroke-width="2"/><path d="M17 19 q5-8 10 0" fill="#E3A06A" stroke="#33241A" stroke-width="2"/><path d="M22 11 q8 -3 11 6" fill="none" stroke="#33241A" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span><b>Stähli</b><small>Schnaps-Brennerei</small></span>
+  </a>
+  <nav><a href="#kontakt">Kontakt</a></nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Familienbetrieb · seit 1964</div>
+    <h1>Sie bringen die Früchte, <em>wir brennen.</em></h1>
+    <p>Lohnbrennerei für Bauern und Private im Berner Oberland – und rund 25 eigene Brände in der Disti-Boutique in Einigen.</p>
+    <div class="knoepfe">
+      <a class="btn voll" href="#brennen">Brennhafen ausprobieren</a>
+      <a class="btn" href="tel:+41793755576">Brennerei anrufen</a>
+    </div>
+  </div>
+  <svg class="landschaft" viewBox="0 0 430 150" aria-hidden="true">
+    <path d="M0 150V84 L60 70 L120 80 L160 66 L205 18 L250 64 L300 72 L360 60 L430 74 V150Z" fill="#C9D3B4"/>
+    <path d="M205 18 L190 34 L198 32 L205 38 L212 31 L221 36Z" fill="#fff" opacity=".9"/>
+    <rect x="0" y="90" width="430" height="22" fill="#A8C8CF"/>
+    <path d="M30 98h40M120 104h60M260 99h50M350 105h40" stroke="#E8F2F2" stroke-width="2" stroke-linecap="round"/>
+    <path d="M0 150V112 Q80 98 170 114 T340 108 T430 112V150Z" fill="#7DA23A"/>
+    <path d="M0 150V128 Q120 116 240 130 T430 126V150Z" fill="#5E8224"/>
+    <!-- Bauernhaus -->
+    <g transform="translate(300 92)">
+      <path d="M0 30 L34 8 L68 30Z" fill="#A9503A" stroke="#33241A" stroke-width="2"/>
+      <rect x="6" y="30" width="56" height="26" fill="#F8F0DE" stroke="#33241A" stroke-width="2"/>
+      <rect x="14" y="36" width="10" height="9" fill="#33241A"/><rect x="44" y="36" width="10" height="9" fill="#33241A"/>
+      <rect x="29" y="40" width="10" height="16" fill="#86431C"/>
+    </g>
+    <!-- Obstbäume -->
+    <g stroke="#33241A" stroke-width="2">
+      <g transform="translate(70 104)"><path d="M0 34V12" /><circle cx="0" cy="6" r="16" fill="#7DA23A"/><circle cx="-6" cy="4" r="2.6" fill="#B8252B" stroke="none"/><circle cx="5" cy="10" r="2.6" fill="#B8252B" stroke="none"/><circle cx="7" cy="0" r="2.6" fill="#B8252B" stroke="none"/></g>
+      <g transform="translate(130 110)"><path d="M0 30V10" /><circle cx="0" cy="4" r="13" fill="#4F7019"/><circle cx="-4" cy="2" r="2.6" fill="#E3C14A" stroke="none"/><circle cx="5" cy="7" r="2.6" fill="#E3C14A" stroke="none"/></g>
+      <g transform="translate(230 112)"><path d="M0 30V10" /><circle cx="0" cy="4" r="14" fill="#7DA23A"/><circle cx="-5" cy="4" r="2.6" fill="#6A3C7A" stroke="none"/><circle cx="4" cy="-1" r="2.6" fill="#6A3C7A" stroke="none"/></g>
+    </g>
+  </svg>
+</div>
+
+<section id="brennen" class="band">
+  <div class="wrap">
+    <h2 class="titel">Einmal selber brennen</h2>
+    <p class="unter">So funktioniert unsere Lohnbrennerei – im Kleinen erklärt. Früchte antippen, dann das Feuer anzünden.</p>
+
+    <div class="anlage" id="anlage">
+      <svg id="hafen" viewBox="0 0 400 350" role="img" aria-label="Gezeichneter kupferner Brennhafen mit Geistrohr, Kühler und Glas">
+        <defs>
+          <linearGradient id="kupfer" x1="0" x2="1">
+            <stop offset="0" stop-color="#86431C"/><stop offset=".35" stop-color="#E3A06A"/><stop offset=".6" stop-color="#B5652B"/><stop offset="1" stop-color="#86431C"/>
+          </linearGradient>
+          <linearGradient id="wasser" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFDCE0"/><stop offset="1" stop-color="#8FBCC4"/></linearGradient>
+          <clipPath id="glasclip"><path d="M332 286 L384 286 L379 336 L337 336Z"/></clipPath>
+        </defs>
+        <!-- Boden -->
+        <path d="M0 336 H400" stroke="#33241A" stroke-width="3"/>
+        <!-- Thermometer -->
+        <g>
+          <rect x="14" y="118" width="16" height="140" rx="8" fill="#FFFBF2" stroke="#33241A" stroke-width="2.5"/>
+          <rect id="quecksilber" x="18.5" y="126" width="7" height="126" rx="3.5" fill="#C8352B"/>
+          <circle cx="22" cy="266" r="12" fill="#C8352B" stroke="#33241A" stroke-width="2.5"/>
+          <g stroke="#33241A" stroke-width="1.5"><path d="M30 140h5M30 165h5M30 190h5M30 215h5M30 240h5"/></g>
+          <path d="M34 210 H52" stroke="#33241A" stroke-width="3"/>
+        </g>
+        <!-- Ofen -->
+        <g>
+          <rect x="44" y="234" width="160" height="102" fill="#A9503A" stroke="#33241A" stroke-width="3"/>
+          <g stroke="#7E3826" stroke-width="2">
+            <path d="M44 254H204M44 274H204M44 294H204M44 314H204"/>
+            <path d="M74 234v20M124 234v20M174 234v20M99 254v20M149 254v20M74 274v20M174 274v20M99 294v20M149 294v20M74 314v22M124 314v22M174 314v22"/>
+          </g>
+          <path d="M92 336 V292 Q124 268 156 292 V336Z" fill="#2A1A12" stroke="#33241A" stroke-width="3"/>
+          <g id="flammen">
+            <path class="flamme" d="M104 336 Q98 318 110 300 Q112 314 120 316 Q116 326 104 336Z" fill="#F2A33A"/>
+            <path class="flamme" d="M118 336 Q110 312 126 288 Q130 306 140 312 Q138 326 118 336Z" fill="#F5C64B"/>
+            <path class="flamme" d="M134 336 Q132 318 144 304 Q148 322 146 336Z" fill="#E8742C"/>
+          </g>
+        </g>
+        <!-- Kessel -->
+        <path d="M50 236 Q38 176 70 152 L178 152 Q210 176 198 236Z" fill="url(#kupfer)" stroke="#33241A" stroke-width="3"/>
+        <path d="M58 200 H190" stroke="#86431C" stroke-width="2" opacity=".7"/>
+        <g fill="#33241A"><circle cx="62" cy="214" r="2"/><circle cx="90" cy="214" r="2"/><circle cx="124" cy="214" r="2"/><circle cx="158" cy="214" r="2"/><circle cx="186" cy="214" r="2"/></g>
+        <rect x="64" y="146" width="120" height="10" rx="3" fill="#E3A06A" stroke="#33241A" stroke-width="2.5"/>
+        <!-- Trichter (Einfüllstutzen) -->
+        <path d="M58 154 L48 128 H86 L76 154Z" fill="url(#kupfer)" stroke="#33241A" stroke-width="2.5"/>
+        <ellipse cx="67" cy="128" rx="19" ry="5" fill="#5E3416" stroke="#33241A" stroke-width="2.5"/>
+        <g id="trichterInhalt"></g>
+        <!-- Hut / Helm -->
+        <path d="M86 146 Q86 92 124 92 Q162 92 162 146Z" fill="url(#kupfer)" stroke="#33241A" stroke-width="3"/>
+        <path d="M100 120 Q106 104 120 100" stroke="#F4CFA6" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8"/>
+        <!-- Geistrohr -->
+        <path id="geistrohr" d="M124 94 C126 52 196 46 246 74 L290 102" fill="none" stroke="#33241A" stroke-width="13" stroke-linecap="round"/>
+        <path d="M124 94 C126 52 196 46 246 74 L290 102" fill="none" stroke="#C97A3F" stroke-width="8" stroke-linecap="round"/>
+        <path id="dampfpfad" d="M124 94 C126 52 196 46 246 74 L290 102" fill="none" stroke="none"/>
+        <g id="dampf"></g>
+        <!-- Kühler -->
+        <g>
+          <rect x="250" y="104" width="96" height="160" rx="10" fill="url(#wasser)" stroke="#33241A" stroke-width="3"/>
+          <path d="M262 128 q34 10 72 0 M262 154 q34 10 72 0 M262 180 q34 10 72 0 M262 206 q34 10 72 0 M262 232 q34 10 72 0" stroke="#B5652B" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/>
+          <rect x="246" y="112" width="104" height="10" rx="3" fill="#B5652B" stroke="#33241A" stroke-width="2"/>
+          <rect x="246" y="246" width="104" height="10" rx="3" fill="#B5652B" stroke="#33241A" stroke-width="2"/>
+          <path d="M268 264 V336 M326 264 V336" stroke="#33241A" stroke-width="5"/>
+          <text x="297" y="304" text-anchor="middle" font-family="Karla,sans-serif" font-weight="700" font-size="12" fill="#5E4836">Kühler</text>
+        </g>
+        <!-- Auslauf -->
+        <path d="M346 236 H366 V256" fill="none" stroke="#33241A" stroke-width="9" stroke-linecap="round"/>
+        <path d="M346 236 H366 V256" fill="none" stroke="#C97A3F" stroke-width="5" stroke-linecap="round"/>
+        <g id="tropfen"></g>
+        <!-- Glas -->
+        <g>
+          <rect id="glasinhalt" x="330" y="294" width="56" height="44" fill="#F3D98A" clip-path="url(#glasclip)"/>
+          <path d="M332 286 L384 286 L379 336 L337 336Z" fill="#E8F3F4" fill-opacity=".35" stroke="#33241A" stroke-width="2.5"/>
+          <path d="M338 292 L341 330" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+        </g>
+        <!-- Beschriftungen -->
+        <g font-family="Karla,sans-serif" font-weight="700" font-size="12" fill="#5E4836">
+          <text x="168" y="132">Hut</text>
+          <text x="188" y="44">Geistrohr</text>
+          <text x="124" y="188" text-anchor="middle" fill="#33241A">Brennhafen</text>
+        </g>
+      </svg>
+      <div class="kessel-inhalt" id="inhalt" aria-live="polite">Der Kessel ist noch leer.</div>
+    </div>
+
+    <div class="schritt">1 · Früchte in den Kessel</div>
+    <div class="fruechte" id="fruechte">
+      <button class="frucht" data-f="kirschen" aria-label="Kirschen in den Kessel">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 Q14 16 12 24 M20 4 Q26 14 28 26" stroke="#4F7019" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M20 4 q8 -2 10 4 q-6 2 -10 -4z" fill="#7DA23A"/><circle cx="12" cy="29" r="7.5" fill="#B8252B" stroke="#33241A" stroke-width="2"/><circle cx="28" cy="30" r="7.5" fill="#B8252B" stroke="#33241A" stroke-width="2"/><circle cx="9" cy="26" r="2" fill="#fff" opacity=".7"/></svg>Kirschen</button>
+      <button class="frucht" data-f="zwetschgen" aria-label="Zwetschgen in den Kessel">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="23" rx="11" ry="14" fill="#5B3A78" stroke="#33241A" stroke-width="2"/><path d="M20 10 q-2 12 0 26" stroke="#3F2756" stroke-width="1.5" fill="none"/><path d="M20 9 v-5" stroke="#4F7019" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="15" cy="19" rx="2.5" ry="4" fill="#fff" opacity=".35"/></svg>Zwetschgen</button>
+      <button class="frucht" data-f="birnen" aria-label="Birnen in den Kessel">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 7 C14 7 15 16 12 22 C7 31 12 38 20 38 C28 38 33 31 28 22 C25 16 26 7 20 7Z" fill="#C9C34A" stroke="#33241A" stroke-width="2"/><path d="M20 7 v-5" stroke="#5E4836" stroke-width="2.5" stroke-linecap="round"/><path d="M21 5 q7 -3 9 2 q-6 2 -9 -2z" fill="#7DA23A"/></svg>Birnen</button>
+      <button class="frucht" data-f="quitten" aria-label="Quitten in den Kessel">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 8 C10 8 6 16 8 24 C10 33 16 37 20 37 C25 37 31 33 33 24 C35 16 30 8 20 8Z" fill="#EBC338" stroke="#33241A" stroke-width="2"/><path d="M17 9 q3 -3 6 0" fill="#5E4836"/><path d="M20 8 q6 -6 12 -2 q-6 4 -12 2z" fill="#7DA23A" stroke="#33241A" stroke-width="1"/><path d="M12 20 q2 -4 5 -5" stroke="#fff" stroke-width="2" fill="none" opacity=".6" stroke-linecap="round"/></svg>Quitten</button>
+      <button class="frucht" data-f="kartoffeln" aria-label="Kartoffeln in den Kessel">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 20 C6 12 14 8 22 9 C32 10 36 17 34 25 C32 33 22 35 15 32 C9 30 9 25 8 20Z" fill="#C79A5C" stroke="#33241A" stroke-width="2"/><g fill="#86431C"><circle cx="15" cy="17" r="1.4"/><circle cx="25" cy="15" r="1.4"/><circle cx="28" cy="25" r="1.4"/><circle cx="18" cy="26" r="1.4"/></g></svg>Kartoffeln</button>
+    </div>
+
+    <div class="schritt">2 · Anfeuern</div>
+    <div class="feuerzeile">
+      <button class="btn feuer" id="feuer" disabled>Feuer</button>
+      <span class="status" id="status">Zuerst ein paar Früchte in den Kessel geben.</span>
+    </div>
+
+    <div class="etikett" id="etikett" role="status">
+      <div class="innen">
+        <small id="etKlein">Schnaps-Brennerei Stähli</small>
+        <h3 id="etName">Chütene</h3>
+        <p id="etText">Quittenbrand</p>
+      </div>
+    </div>
+    <p style="margin-top:14px"><button class="btn" id="nochmals" hidden>Nochmals brennen</button></p>
+  </div>
+</section>
+
+<section id="lohn">
+  <div class="wrap">
+    <h2 class="titel">Lohnbrennerei: Ihre Früchte, Ihr Brand</h2>
+    <p class="unter">Für Bauern und Private aus der Region brennen wir die eigenen Früchte. Im Sommer und Herbst zieht die mobile Brennerei durchs Berner Oberland.</p>
+    <div class="zweier">
+      <div class="karte">
+        <div class="zahl">rund 1'500</div>
+        <p>Adressen, für die wir brennen – Bauernbetriebe und Private.</p>
+        <ul class="gebiet"><li>Thun-Ost</li><li>oberes Emmental</li><li>Grindelwald</li></ul>
+      </div>
+      <div class="karte">
+        <div class="zahl">1977</div>
+        <p>Baujahr unserer mobilen Brennerei. Im Sommer und Herbst ist sie als Lohnbrennerei unterwegs, im Winter steht sie in Reutigen.</p>
+        <p><span class="ph">[Ablauf und Termine bestätigen]</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="treber" id="treber">
+  <div class="wrap">
+    <h2 class="titel">Schaubrennen &amp; Treberwurst-Essen</h2>
+    <p class="unter">Treberwurst ist eine Wurst, die im Dampf des Brennhafens auf dem Trester gegart wird. Das erste öffentliche Treberwurst-Essen gab es 1990.</p>
+    <div class="karte">
+      <h3>An jedem Ort möglich</h3>
+      <p>Seit 1998 der dritte Brennhafen dazukam, sind Schaubrennen und Treberwurst-Garen an jedem Ort möglich.</p>
+      <p>Anfragen gerne per Telefon oder E-Mail.</p>
+      <div class="knoepfe" style="margin-top:10px">
+        <a class="btn gruen" href="tel:+41793755576">079 375 55 76</a>
+        <a class="btn" href="mailto:staehli@schnaps-brennerei.ch?subject=Anfrage%20Schaubrennen%20%2F%20Treberwurst">E-Mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chronik">
+  <div class="wrap">
+    <h2 class="titel">Unsere Geschichte</h2>
+    <p class="unter">Vom Nebenerwerb auf dem Bauernhof zur GmbH.</p>
+    <ol class="chronik">
+      <li><span class="jahr">1964</span><div><h3>Der Anfang in Einigen</h3><p>Fritz Stähli beginnt mit dem Brennen – als Nebenerwerb zum Bauernhof.</p></div></li>
+      <li class="anders"><span class="jahr">1977</span><div><h3>Baujahr der mobilen Brennerei</h3><p>Sie ist bis heute im Einsatz.</p></div></li>
+      <li><span class="jahr">1989</span><div><h3>Übergabe</h3><p>Im April übernimmt sein Sohn Rudolf.</p></div></li>
+      <li><span class="jahr">1990</span><div><h3>Erstes Treberwurst-Essen</h3><p>Zum ersten Mal öffentlich.</p></div></li>
+      <li><span class="jahr">1998</span><div><h3>Dritter Brennhafen</h3><p>Seither sind Schaubrennen und Treberwurst-Garen an jedem Ort möglich.</p></div></li>
+      <li><span class="jahr">2007</span><div><h3>Winterquartier Reutigen</h3><p>Die Brennerei bekommt ihr Winterquartier.</p></div></li>
+      <li class="anders"><span class="jahr">2025</span><div><h3>Gründung der GmbH</h3><p>Schnaps-Brennerei Stähli GmbH, Sitz Spiez.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="boutique">
+  <div class="wrap">
+    <h2 class="titel">Disti-Boutique in Einigen</h2>
+    <p class="unter">Rund 25 eigene Brände – dazu kleine Geschenkflaschen. Besuch nach telefonischer Absprache.</p>
+    <div class="regalzeile">
+      <div class="anhaenger"><span>Quitte</span><b>Chütene</b></div>
+      <div class="anhaenger"><span>Birne</span><b>Hanslibirne</b></div>
+      <div class="anhaenger"><span>Apfel</span><b>Sauergrauech</b></div>
+      <div class="anhaenger"><span>Kartoffel</span><b>Härdöpfeler</b></div>
+      <div class="anhaenger leer"><span><span class="ph">[Preis]</span></span><b>[Sorte]</b></div>
+      <div class="anhaenger leer"><span><span class="ph">[Preis]</span></span><b>[Sorte]</b></div>
+    </div>
+    <p style="margin-top:16px">Markttage: <span class="ph">[Markttage 2027]</span></p>
+    <div class="knoepfe"><a class="btn voll" href="tel:+41794820150">Besuch vereinbaren: 079 482 01 50</a></div>
+    <div class="hinweis18"><i>18+</i><span>Abgabe von Spirituosen erst ab 18 Jahren.</span></div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <h2 class="titel">Kontakt</h2>
+    <div class="ort">
+      <small>Verkauf</small>
+      <h3>Disti-Boutique</h3>
+      <p>Holleeweg 6<br>3646 Einigen<br>Öffnungszeiten nach telefonischer Absprache</p>
+      <a class="btn" href="tel:+41794820150">079 482 01 50</a>
+    </div>
+    <div class="ort">
+      <small>Brennerei · Winterquartier</small>
+      <h3>Reutigen</h3>
+      <p>Stockentalstrasse 50a<br>3647 Reutigen</p>
+      <a class="btn" href="tel:+41793755576">079 375 55 76</a>
+    </div>
+    <p><a href="mailto:staehli@schnaps-brennerei.ch" style="color:#F4CFA6;font-weight:700">staehli@schnaps-brennerei.ch</a></p>
+    <div class="personen">
+      <div><b>Rudolf Stähli</b> – Gesellschafter, Vorsitz der Geschäftsführung</div>
+      <div><b>Hans Stähli</b> – Geschäftsführer</div>
+      <div>Mitglied bei «Die Schweizer Brenner»</div>
+    </div>
+    <div class="fuss">
+      <p>Schnaps-Brennerei Stähli GmbH · Sitz Spiez · CHE-357.168.638</p>
+      <p>Abgabe von Spirituosen erst ab 18 Jahren.</p>
+      <p>Entwurf von Max Rathsack · Alle Bilder sind gezeichnete Platzhalter.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var svg=document.getElementById('hafen'), anlage=document.getElementById('anlage');
+  var inhaltEl=document.getElementById('inhalt'), feuerBtn=document.getElementById('feuer');
+  var statusEl=document.getElementById('status'), etikett=document.getElementById('etikett');
+  var nochmals=document.getElementById('nochmals'), trichter=document.getElementById('trichterInhalt');
+  var namen={kirschen:'Kirschen',zwetschgen:'Zwetschgen',birnen:'Birnen',quitten:'Quitten',kartoffeln:'Kartoffeln'};
+  var farbe={kirschen:'#B8252B',zwetschgen:'#5B3A78',birnen:'#C9C34A',quitten:'#EBC338',kartoffeln:'#C79A5C'};
+  var kessel=[], laeuft=false, MAX=8;
+  var reduziert=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function svgPunkt(x,y){var p=svg.createSVGPoint();p.x=x;p.y=y;return p.matrixTransform(svg.getScreenCTM());}
+  function zeigeInhalt(){
+    if(!kessel.length){inhaltEl.textContent='Der Kessel ist noch leer.';return;}
+    var z={};kessel.forEach(function(f){z[f]=(z[f]||0)+1});
+    inhaltEl.innerHTML='Im Kessel: '+Object.keys(z).map(function(f){return '<span class="chip">'+namen[f]+' ×'+z[f]+'</span>'}).join(' ');
+  }
+  function trichterFrucht(f){
+    var c=document.createElementNS(NS,'circle');
+    var i=kessel.length-1;
+    c.setAttribute('cx',56+(i%4)*7);c.setAttribute('cy',126-Math.floor(i/4)*5);c.setAttribute('r',5);
+    c.setAttribute('fill',farbe[f]);c.setAttribute('stroke','#33241A');c.setAttribute('stroke-width','1.5');
+    c.setAttribute('class','trichterfrucht');trichter.appendChild(c);
+  }
+  function rein(f){
+    kessel.push(f);trichterFrucht(f);zeigeInhalt();
+    feuerBtn.disabled=false;
+    statusEl.textContent=kessel.length>=MAX?'Der Kessel ist voll – jetzt anfeuern.':'Noch mehr Früchte – oder anfeuern.';
+    if(kessel.length>=MAX)setzeFrucht(false);
+  }
+  function setzeFrucht(an){document.querySelectorAll('.frucht').forEach(function(b){b.disabled=!an})}
+
+  document.getElementById('fruechte').addEventListener('click',function(e){
+    var b=e.target.closest('.frucht'); if(!b||b.disabled||laeuft)return;
+    var f=b.dataset.f;
+    if(reduziert||!Element.prototype.animate){rein(f);return;}
+    var r=b.querySelector('svg').getBoundingClientRect();
+    var ziel=svgPunkt(67,122), zr=svg.getScreenCTM().a;
+    var fl=b.querySelector('svg').cloneNode(true);fl.classList.add('flieger');document.body.appendChild(fl);
+    var sx=r.left, sy=r.top, ex=ziel.x-20, ey=ziel.y-20;
+    var hoch=Math.min(sy,ey)-90;
+    var anim=fl.animate([
+      {transform:'translate('+sx+'px,'+sy+'px) scale(1) rotate(0)'},
+      {transform:'translate('+(sx+(ex-sx)*.25)+'px,'+(sy-40)+'px) scale(1.1) rotate(-30deg)',offset:.22},
+      {transform:'translate('+(sx+(ex-sx)*.6)+'px,'+hoch+'px) scale(1) rotate(-120deg)',offset:.6},
+      {transform:'translate('+ex+'px,'+ey+'px) scale('+(0.45*zr+0.1)+') rotate(-260deg)'}
+    ],{duration:760,easing:'cubic-bezier(.3,.1,.5,1)'});
+    anim.onfinish=function(){fl.remove();rein(f);};
+  });
+
+  // Dampf und Tropfen
+  var pfad=document.getElementById('dampfpfad'), dampfG=document.getElementById('dampf'), tropfenG=document.getElementById('tropfen');
+  var glas=document.getElementById('glasinhalt');
+  var L=pfad.getTotalLength(), teilchen=[], tropfen=[], t0=0, raf=0, letzterDampf=0, letzterTropfen=0, fuell=0;
+  var DAUER=8200;
+  function schleife(t){
+    if(!t0)t0=t; var dt=t-t0;
+    if(dt>1600&&dt<DAUER-1200&&t-letzterDampf>180){letzterDampf=t;
+      var c=document.createElementNS(NS,'circle');c.setAttribute('r',4);c.setAttribute('fill','#fff');dampfG.appendChild(c);teilchen.push({el:c,s:t});}
+    if(dt>3200&&dt<DAUER-400&&t-letzterTropfen>260){letzterTropfen=t;
+      var d=document.createElementNS(NS,'path');d.setAttribute('d','M0 -5 Q4 1 0 4 Q-4 1 0 -5Z');d.setAttribute('fill','#E9C96B');d.setAttribute('stroke','#86431C');d.setAttribute('stroke-width','.8');tropfenG.appendChild(d);tropfen.push({el:d,s:t});}
+    teilchen=teilchen.filter(function(p){var k=(t-p.s)/1500;if(k>=1){p.el.remove();return false;}
+      var pt=pfad.getPointAtLength(k*L);p.el.setAttribute('cx',pt.x+Math.sin(k*20)*1.5);p.el.setAttribute('cy',pt.y-Math.sin(k*14)*1.5);
+      p.el.setAttribute('r',3+k*3);p.el.setAttribute('opacity',(1-k)*.9);return true;});
+    var stand=290+ (1-fuell)*44;
+    tropfen=tropfen.filter(function(p){var k=(t-p.s)/520;var y=258+k*k*(stand-258);
+      if(y>=stand){p.el.remove();fuell=Math.min(1,fuell+0.042);glas.style.transform='scaleY('+fuell+')';return false;}
+      p.el.setAttribute('transform','translate(366 '+y+')');return true;});
+    if(dt<DAUER||tropfen.length||teilchen.length){raf=requestAnimationFrame(schleife);}else{fertig();}
+  }
+  function brand(){
+    var arten=kessel.filter(function(f,i){return kessel.indexOf(f)===i});
+    if(arten.length===1&&arten[0]==='quitten')return{n:'Chütene',t:'Quittenbrand – auch in der Disti-Boutique erhältlich.',k:'Eigener Brand der Brennerei Stähli'};
+    if(arten.length===1&&arten[0]==='kartoffeln')return{n:'Härdöpfeler',t:'Kartoffelbrand – auch in der Disti-Boutique erhältlich.',k:'Eigener Brand der Brennerei Stähli'};
+    return{n:'Ihr eigener Brand',t:'Aus Ihren '+arten.map(function(f){return namen[f]}).join(', ').replace(/, ([^,]*)$/,' und $1')+' – Lohnbrennerei: Sie bringen die Früchte, wir brennen.',k:'Lohnbrennerei'};
+  }
+  function zeigeEtikett(){var b=brand();
+    document.getElementById('etName').textContent=b.n;document.getElementById('etText').textContent=b.t;document.getElementById('etKlein').textContent=b.k;
+    etikett.classList.add('zeigen');}
+  function fertig(){
+    laeuft=false;anlage.classList.remove('brennt');anlage.classList.add('fertig');
+    statusEl.textContent='Fertig gebrannt.';zeigeEtikett();nochmals.hidden=false;
+  }
+  feuerBtn.addEventListener('click',function(){
+    if(laeuft||!kessel.length)return;
+    laeuft=true;feuerBtn.disabled=true;setzeFrucht(false);
+    anlage.classList.add('brennt');statusEl.textContent='Der Kessel heizt auf … Dampf steigt ins Geistrohr, im Kühler wird er wieder flüssig.';
+    fuell=0;glas.style.transform='scaleY(0)';t0=0;letzterDampf=letzterTropfen=0;
+    if(reduziert){glas.style.transform='scaleY(1)';fertig();return;}
+    raf=requestAnimationFrame(schleife);
+  });
+  nochmals.addEventListener('click',function(){
+    kessel=[];trichter.innerHTML='';zeigeInhalt();etikett.classList.remove('zeigen');nochmals.hidden=true;
+    anlage.classList.remove('fertig');glas.style.transform='scaleY(0)';setzeFrucht(true);feuerBtn.disabled=true;
+    statusEl.textContent='Zuerst ein paar Früchte in den Kessel geben.';
+    document.getElementById('brennen').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Zustand für PDF: Quitten gebrannt, Glas voll, etwas Dampf
+  window.pdfZustand=function(){
+    ['quitten','quitten','quitten'].forEach(function(f){kessel.push(f);trichterFrucht(f)});zeigeInhalt();
+    anlage.classList.add('brennt','fertig');glas.style.transform='scaleY(.85)';
+    [0.15,0.35,0.55,0.78].forEach(function(k,i){var pt=pfad.getPointAtLength(k*L);var c=document.createElementNS(NS,'circle');
+      c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);c.setAttribute('r',3+k*3);c.setAttribute('fill','#fff');c.setAttribute('opacity',.9-k*.5);dampfG.appendChild(c);});
+    [266,280].forEach(function(y){var d=document.createElementNS(NS,'path');d.setAttribute('d','M0 -5 Q4 1 0 4 Q-4 1 0 -5Z');d.setAttribute('fill','#E9C96B');d.setAttribute('stroke','#86431C');d.setAttribute('transform','translate(366 '+y+')');tropfenG.appendChild(d);});
+    feuerBtn.disabled=true;statusEl.textContent='Fertig gebrannt.';zeigeEtikett();
+  };
+})();
+</script>
+</body>
+</html>

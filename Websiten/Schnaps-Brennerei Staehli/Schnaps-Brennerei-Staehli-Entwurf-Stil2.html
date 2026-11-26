@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Schnaps-Brennerei Stähli – Entwurf Stil 2 «Flaschenregal»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nacht:#0D2325; --nacht2:#12302F; --tief:#081617;
+  --messing:#C9A55C; --messing-l:#E8CF94; --messing-d:#8E6F32;
+  --creme:#F1E8D2; --text:#E6DFCC; --leise:#A7B8B1;
+  --holz:#5B3A22; --holz-l:#7A5132; --holz-d:#3B2415;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nacht);color:var(--text);font:400 16px/1.65 Lato,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05;margin:0;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal;color:var(--creme)}
+a{color:var(--messing-l)}
+svg{display:block}
+.wrap{max-width:540px;margin:0 auto;padding:0 22px}
+.schrift{font-family:"Pinyon Script",cursive;color:var(--messing);font-weight:400}
+.ph{display:inline-block;border:1px dashed var(--messing);color:var(--messing-l);border-radius:3px;padding:0 .45em;font-size:.9em;white-space:nowrap}
+.linie{display:flex;align-items:center;gap:12px;color:var(--messing);justify-content:center;margin:0 auto 14px}
+.linie:before,.linie:after{content:"";height:1px;width:52px;background:currentColor;opacity:.7}
+.linie span{font:600 11px/1 Lato;letter-spacing:.32em;text-transform:uppercase}
+
+.hinweis{background:var(--tief);color:var(--leise);font-size:12.5px;line-height:1.4;text-align:center;padding:8px 16px;border-bottom:1px solid #20403F}
+
+/* Kopf */
+.kopf{text-align:center;padding:30px 22px 10px}
+.monogramm{width:64px;height:64px;margin:0 auto 12px}
+.kopf .name{font:600 12px/1.4 Lato;letter-spacing:.34em;text-transform:uppercase;color:var(--messing-l)}
+.kopf .ort{font-size:13px;color:var(--leise);letter-spacing:.1em}
+
+.hero{text-align:center;padding:26px 0 8px}
+.hero h1{font-size:clamp(40px,11.6vw,62px);font-weight:500}
+.hero h1 i{font-weight:400}
+.hero .schrift{font-size:clamp(34px,9.6vw,48px);display:block;margin-top:6px;line-height:1.1}
+.hero p{color:var(--leise);max-width:30em;margin:16px auto 0;font-size:16.5px}
+
+/* Vitrine + Regal */
+.boutique{padding:34px 0 50px}
+.vitrine{position:relative;margin:8px 0 0;min-height:268px;border-radius:6px 6px 0 0;background:radial-gradient(ellipse 60% 70% at 32% 30%,rgba(232,207,148,.20),transparent 70%),linear-gradient(#0A1C1D,#0F2929);border:1px solid #2A4847;border-bottom:none;display:grid;grid-template-columns:132px 1fr;gap:6px;padding:18px 16px 14px;overflow:hidden}
+.vitrine .podest{position:absolute;left:14px;bottom:12px;width:122px;height:12px;border-radius:50%;background:rgba(0,0,0,.45)}
+.buehne{position:relative;height:236px;perspective:700px}
+.dreher{position:absolute;inset:0;transform-style:preserve-3d}
+.seite{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:flex-end;justify-content:center}
+.seite.hinten{transform:rotateY(180deg)}
+.seite svg{width:118px;height:236px;overflow:visible}
+.karte{align-self:center;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s}
+.karte.zeigen{opacity:1;transform:none}
+.karte .klein{font:700 10.5px/1.3 Lato;letter-spacing:.28em;text-transform:uppercase;color:var(--messing)}
+.karte h3{font-size:clamp(30px,8.6vw,40px);margin:4px 0 2px}
+.karte .art{font-family:"Pinyon Script",cursive;color:var(--messing-l);font-size:24px;line-height:1.1}
+.karte p{font-size:14.5px;color:var(--text);margin:8px 0 10px}
+.zurueck{font:700 13px/1 Lato;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:var(--messing-l);border:1px solid var(--messing);border-radius:999px;padding:11px 16px;cursor:pointer}
+.zurueck:hover{background:rgba(201,165,92,.12)}
+.leer-hinweis{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--leise);padding:20px;font-size:15px;transition:opacity .3s}
+.leer-hinweis b{display:block;font:500 28px/1.1 "Cormorant Garamond",serif;color:var(--creme);margin-bottom:4px}
+.vitrine.belegt .leer-hinweis{opacity:0;pointer-events:none}
+
+.regal{background:var(--holz-d);border-radius:0 0 6px 6px;padding:0;border:1px solid #2A4847;border-top:none}
+.regal svg{width:100%;height:auto}
+.flasche{cursor:pointer;outline:none}
+.flasche .glanz{transition:opacity .2s;opacity:0}
+.flasche:hover .glanz,.flasche:focus-visible .glanz{opacity:1}
+.flasche:focus-visible .umriss{stroke:#fff;stroke-width:2.5}
+.flasche.weg{opacity:0;pointer-events:none}
+.flieger{position:fixed;left:0;top:0;pointer-events:none;z-index:40;overflow:visible}
+
+.hinweis18{display:flex;align-items:center;gap:10px;justify-content:center;color:var(--leise);font-size:13px;margin-top:18px}
+.hinweis18 i{font-style:normal;border:1px solid var(--leise);border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font:700 12px/1 Lato;flex:none}
+
+/* Abschnitte */
+section{padding:56px 0}
+.titel{font-size:clamp(34px,9.6vw,48px);text-align:center;margin-bottom:12px}
+.titel i{font-weight:400}
+.einl{color:var(--leise);text-align:center;margin:0 auto 24px;max-width:32em}
+.dunkel{background:var(--tief)}
+
+/* Treberwurst */
+.deckelknopf{display:block;margin:56px auto 0;background:none;border:none;padding:0;cursor:pointer;width:100%;max-width:360px;-webkit-tap-highlight-color:transparent}
+.deckelknopf svg{width:100%;height:auto;overflow:visible}
+#deckel{transition:transform .9s cubic-bezier(.3,1.3,.5,1);transform-box:view-box;transform-origin:262px 130px}
+.offen #deckel{transform:translate(18px,-58px) rotate(24deg)}
+.wolke{opacity:0;transform-box:fill-box;transform-origin:50% 100%}
+.offen .wolke{animation:steigen 3.2s ease-out infinite}
+.offen .wolke:nth-of-type(2){animation-delay:.5s}.offen .wolke:nth-of-type(3){animation-delay:1s}.offen .wolke:nth-of-type(4){animation-delay:1.5s}.offen .wolke:nth-of-type(5){animation-delay:2s}
+@keyframes steigen{0%{opacity:0;transform:translateY(20px) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateY(-110px) scale(1.5)}}
+.faden{animation:faden 2.6s ease-in-out infinite;opacity:.55}
+.faden:nth-of-type(2){animation-delay:.8s}.faden:nth-of-type(3){animation-delay:1.6s}
+@keyframes faden{0%{transform:translateY(6px);opacity:0}40%{opacity:.6}100%{transform:translateY(-18px);opacity:0}}
+.offen .faden{display:none}
+.tipp{text-align:center;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--messing);margin-top:6px}
+.offen + .tipp{visibility:hidden}
+.aufgedeckt{display:grid;grid-template-rows:0fr;transition:grid-template-rows .8s ease .4s}
+.aufgedeckt>div{overflow:hidden}
+.aufgedeckt.offen{grid-template-rows:1fr}
+.tafel{border:1px solid var(--messing-d);padding:24px 20px;margin-top:16px;text-align:center;background:linear-gradient(#0F2B2B,#0B2021)}
+.tafel h3{font-size:30px;margin-bottom:8px}
+.tafel p{margin:0 0 12px}
+.knoepfe{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.knopf{display:inline-block;font:700 13px/1 Lato;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:15px 20px;border-radius:999px;border:1px solid var(--messing);color:var(--messing-l)}
+.knopf.voll{background:var(--messing);color:var(--tief)}
+
+/* Chronik */
+.chronik{list-style:none;padding:0;margin:0}
+.chronik li{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:18px 0;border-top:1px solid #26403F;align-items:baseline}
+.chronik li:last-child{border-bottom:1px solid #26403F}
+.chronik .j{font:italic 400 40px/1 "Cormorant Garamond",serif;color:var(--messing)}
+.chronik h3{font-size:24px;margin-bottom:2px}
+.chronik p{margin:0;color:var(--leise);font-size:15px}
+
+/* Lohnbrennerei */
+.zitatlos{border-left:1px solid var(--messing);padding-left:18px;margin:0 0 18px}
+.zitatlos p{margin:0 0 10px}
+.orte{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.orte span{border:1px solid #3A5857;border-radius:999px;padding:4px 12px;font-size:14px;color:var(--creme)}
+
+/* Kontakt */
+.standort{border:1px solid #2F4F4E;padding:22px 20px;margin-bottom:14px;text-align:center}
+.standort .klein{font:700 10.5px/1 Lato;letter-spacing:.3em;text-transform:uppercase;color:var(--messing)}
+.standort h3{font-size:30px;margin:8px 0 6px}
+.standort p{margin:0 0 14px;color:var(--leise)}
+.personen{text-align:center;color:var(--leise);font-size:15px;margin:24px 0}
+.personen b{color:var(--creme);font-weight:400;font-family:"Cormorant Garamond",serif;font-size:21px}
+footer{text-align:center;color:#7F938C;font-size:12.5px;padding:26px 22px 40px;border-top:1px solid #20403F}
+footer p{margin:0 0 6px}
+
+[hidden]{display:none!important}
+.pdf *{animation:none!important;transition:none!important}
+.pdf .wolke{opacity:.75}
+.pdf .karte{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="hinweis">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Schnaps-Brennerei Stähli GmbH</div>
+
+<header class="kopf">
+  <svg class="monogramm" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="none" stroke="#C9A55C" stroke-width="1.2"/><circle cx="32" cy="32" r="26" fill="none" stroke="#C9A55C" stroke-width=".6"/><text x="32" y="43" text-anchor="middle" font-family="Pinyon Script,cursive" font-size="34" fill="#E8CF94">S</text></svg>
+  <div class="name">Schnaps-Brennerei Stähli</div>
+  <div class="ort">Einigen · Reutigen · seit 1964</div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <h1>Gebrannt im <i>Berner Oberland</i></h1>
+    <span class="schrift">Die Disti-Boutique</span>
+    <p>Rund 25 eigene Brände, kleine Geschenkflaschen und eine Familie, die seit 1964 brennt – oberhalb des Thunersees, mit Blick auf den Niesen.</p>
+  </div>
+</div>
+
+<section class="boutique" id="boutique" style="padding-top:30px">
+  <div class="wrap">
+    <div class="linie"><span>Das Regal</span></div>
+    <h2 class="titel">Nehmen Sie eine <i>Flasche</i> heraus</h2>
+    <p class="einl">Tippen Sie auf eine Flasche im Regal – sie wird herausgehoben und zeigt ihr Etikett.</p>
+
+    <div class="vitrine" id="vitrine" aria-live="polite">
+      <div class="podest"></div>
+      <div class="buehne"><div class="dreher" id="dreher">
+        <div class="seite vorne" id="vorne"></div>
+        <div class="seite hinten" id="hinten"></div>
+      </div></div>
+      <div class="karte" id="karte">
+        <div class="klein" id="kKlein">Eigener Brand</div>
+        <h3 id="kName">Chütene</h3>
+        <div class="art" id="kArt">aus Quitten</div>
+        <p id="kText"></p>
+        <button class="zurueck" id="zurueck">Zurückstellen</button>
+      </div>
+      <div class="leer-hinweis"><div><b>Die Vitrine ist leer</b>Wählen Sie eine Flasche aus dem Regal.</div></div>
+    </div>
+    <div class="regal">
+      <svg id="regal" viewBox="0 0 400 380" role="group" aria-label="Holzregal der Disti-Boutique mit Flaschen">
+        <defs>
+          <linearGradient id="brett" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A5C38"/><stop offset="1" stop-color="#5B3A22"/></linearGradient>
+          <linearGradient id="rueck" x1="0" x2="1"><stop offset="0" stop-color="#2A1A0F"/><stop offset=".5" stop-color="#3B2415"/><stop offset="1" stop-color="#2A1A0F"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="400" height="380" fill="url(#rueck)"/>
+        <g stroke="#2A190E" stroke-width="1" opacity=".6">
+          <path d="M60 0V380M140 0V380M220 0V380M300 0V380"/>
+        </g>
+        <rect x="0" y="0" width="14" height="380" fill="#6E472A"/><rect x="386" y="0" width="14" height="380" fill="#6E472A"/>
+        <rect x="0" y="160" width="400" height="16" fill="url(#brett)"/><rect x="0" y="176" width="400" height="4" fill="#24160C"/>
+        <rect x="0" y="344" width="400" height="16" fill="url(#brett)"/><rect x="0" y="360" width="400" height="20" fill="#24160C"/>
+        <path d="M14 160 H386" stroke="#B88A5C" stroke-width="1"/><path d="M14 344 H386" stroke="#B88A5C" stroke-width="1"/>
+        <g id="flaschen"></g>
+      </svg>
+    </div>
+    <p class="einl" style="margin-top:18px">Neben den vier gezeigten Bränden führen wir rund 25 Sorten. Kleine Geschenkflaschen sind erhältlich. Preise: <span class="ph">[Preis]</span></p>
+    <div class="hinweis18"><i>18+</i><span>Abgabe von Spirituosen erst ab 18 Jahren.</span></div>
+  </div>
+</section>
+
+<section class="dunkel" id="treberwurst">
+  <div class="wrap">
+    <div class="linie"><span>Aus dem Brennhafen</span></div>
+    <h2 class="titel">Treberwurst &amp; <i>Schaubrennen</i></h2>
+    <p class="einl">Heben Sie den Deckel.</p>
+    <button class="deckelknopf" id="deckelknopf" aria-expanded="false" aria-controls="aufgedeckt" aria-label="Deckel des Brennhafens anheben">
+      <svg viewBox="0 0 360 250" aria-hidden="true">
+        <defs>
+          <linearGradient id="kupfer2" x1="0" x2="1"><stop offset="0" stop-color="#6B3A1B"/><stop offset=".4" stop-color="#C98A52"/><stop offset=".7" stop-color="#9A5A2C"/><stop offset="1" stop-color="#5A2F15"/></linearGradient>
+          <radialGradient id="glut" cx=".5" cy="1" r=".8"><stop offset="0" stop-color="#E7A44C" stop-opacity=".5"/><stop offset="1" stop-color="#E7A44C" stop-opacity="0"/></radialGradient>
+        </defs>
+        <ellipse cx="180" cy="236" rx="150" ry="16" fill="url(#glut)"/>
+        <!-- Wolken -->
+        <g fill="#F6F1E6">
+          <g class="wolke"><circle cx="150" cy="118" r="20"/><circle cx="170" cy="108" r="24"/><circle cx="192" cy="118" r="18"/></g>
+          <g class="wolke"><circle cx="196" cy="110" r="18"/><circle cx="214" cy="102" r="22"/><circle cx="232" cy="114" r="16"/></g>
+          <g class="wolke"><circle cx="128" cy="114" r="16"/><circle cx="144" cy="104" r="20"/><circle cx="160" cy="114" r="14"/></g>
+          <g class="wolke"><circle cx="176" cy="96" r="22"/><circle cx="198" cy="88" r="26"/><circle cx="218" cy="100" r="18"/></g>
+          <g class="wolke"><circle cx="210" cy="120" r="14"/><circle cx="226" cy="112" r="18"/></g>
+        </g>
+        <!-- Dampffäden bei geschlossenem Deckel -->
+        <g stroke="#E9E3D3" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <path class="faden" d="M150 60 q-8 -12 0 -24 q8 -12 0 -24"/>
+          <path class="faden" d="M182 54 q-8 -12 0 -24 q8 -12 0 -24"/>
+          <path class="faden" d="M214 60 q-8 -12 0 -24 q8 -12 0 -24"/>
+        </g>
+        <!-- Kessel -->
+        <path d="M60 140 Q48 200 82 232 H278 Q312 200 300 140Z" fill="url(#kupfer2)" stroke="#2A160A" stroke-width="2"/>
+        <path d="M72 186 H288" stroke="#5A2F15" stroke-width="1.5"/>
+        <g fill="#3A1E0E"><circle cx="84" cy="196" r="2"/><circle cx="132" cy="196" r="2"/><circle cx="180" cy="196" r="2"/><circle cx="228" cy="196" r="2"/><circle cx="276" cy="196" r="2"/></g>
+        <rect x="52" y="130" width="256" height="14" rx="4" fill="#C9A55C" stroke="#2A160A" stroke-width="1.5"/>
+        <!-- Trester sichtbar -->
+        <path d="M66 132 Q120 122 180 128 Q240 122 294 132" fill="none" stroke="#6A4A2E" stroke-width="5" stroke-linecap="round"/>
+        <!-- Deckel -->
+        <g id="deckel">
+          <path d="M64 132 Q70 70 180 64 Q290 70 296 132Z" fill="url(#kupfer2)" stroke="#2A160A" stroke-width="2"/>
+          <path d="M96 116 Q108 86 160 78" stroke="#F0C894" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>
+          <path d="M160 64 Q160 44 180 44 Q200 44 200 64" fill="none" stroke="#C9A55C" stroke-width="7" stroke-linecap="round"/>
+          <path d="M160 64 Q160 44 180 44 Q200 44 200 64" fill="none" stroke="#2A160A" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+        </g>
+      </svg>
+    </button>
+    <div class="tipp">Antippen</div>
+    <div class="aufgedeckt" id="aufgedeckt">
+      <div>
+        <div class="tafel">
+          <h3>Was ist eine Treberwurst?</h3>
+          <p>Eine Wurst, die im Dampf des Brennhafens auf dem Trester gegart wird. Das erste öffentliche Treberwurst-Essen fand 1990 statt.</p>
+          <p>Seit 1998 der dritte Brennhafen dazukam, sind Schaubrennen und Treberwurst-Garen an jedem Ort möglich.</p>
+          <p style="color:var(--leise)">Anfragen für Schaubrennen und Treberwurst-Essen per E-Mail oder Telefon. <span class="ph">[Daten und Ablauf bestätigen]</span></p>
+          <div class="knoepfe">
+            <a class="knopf voll" href="mailto:staehli@schnaps-brennerei.ch?subject=Anfrage%20Treberwurst-Essen%20%2F%20Schaubrennen">E-Mail-Anfrage</a>
+            <a class="knopf" href="tel:+41793755576">079 375 55 76</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chronik">
+  <div class="wrap">
+    <div class="linie"><span>Chronik</span></div>
+    <h2 class="titel">Seit <i>1964</i></h2>
+    <p class="einl">Ein Handwerk, das seit über sechzig Jahren in der Familie liegt.</p>
+    <ol class="chronik">
+      <li><span class="j">1964</span><div><h3>Erste Brände in Einigen</h3><p>Fritz Stähli beginnt mit dem Brennen, als Nebenerwerb zum Bauernhof.</p></div></li>
+      <li><span class="j">1977</span><div><h3>Die mobile Brennerei</h3><p>Ihr Baujahr. Im Sommer und Herbst zieht sie bis heute als Lohnbrennerei durchs Berner Oberland.</p></div></li>
+      <li><span class="j">1989</span><div><h3>Rudolf übernimmt</h3><p>Im April übernimmt der Sohn Rudolf den Betrieb.</p></div></li>
+      <li><span class="j">1990</span><div><h3>Treberwurst-Essen</h3><p>Das erste öffentliche Treberwurst-Essen.</p></div></li>
+      <li><span class="j">1998</span><div><h3>Der dritte Brennhafen</h3><p>Seither sind Schaubrennen und Treberwurst-Garen an jedem Ort möglich.</p></div></li>
+      <li><span class="j">2007</span><div><h3>Winterquartier Reutigen</h3><p>Die Brennerei überwintert an der Stockentalstrasse.</p></div></li>
+      <li><span class="j">2025</span><div><h3>Die GmbH</h3><p>Gründung der Schnaps-Brennerei Stähli GmbH mit Sitz in Spiez.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="dunkel" id="lohnbrennerei">
+  <div class="wrap">
+    <div class="linie"><span>Lohnbrennerei</span></div>
+    <h2 class="titel">Ihre Früchte, <i>gebrannt</i></h2>
+    <div class="zitatlos">
+      <p>Für Bauern und Private der Region brennen wir die eigenen Früchte – für rund 1'500 Adressen.</p>
+      <p>Die mobile Brennerei, Baujahr 1977, ist im Sommer und Herbst unterwegs:</p>
+      <div class="orte"><span>Thun-Ost</span><span>oberes Emmental</span><span>Grindelwald</span></div>
+    </div>
+    <div class="knoepfe"><a class="knopf" href="tel:+41793755576">Brennerei: 079 375 55 76</a></div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <div class="linie"><span>Besuch &amp; Kontakt</span></div>
+    <h2 class="titel">Wir freuen uns auf <i>Sie</i></h2>
+    <div class="standort">
+      <div class="klein">Verkauf</div>
+      <h3>Disti-Boutique</h3>
+      <p>Holleeweg 6, 3646 Einigen<br>Besuch nach telefonischer Absprache<br>Markttage: <span class="ph">[Markttage 2027]</span></p>
+      <a class="knopf voll" href="tel:+41794820150">079 482 01 50</a>
+    </div>
+    <div class="standort">
+      <div class="klein">Brennerei · Winterquartier</div>
+      <h3>Reutigen</h3>
+      <p>Stockentalstrasse 50a, 3647 Reutigen</p>
+      <a class="knopf" href="tel:+41793755576">079 375 55 76</a>
+    </div>
+    <p style="text-align:center"><a href="mailto:staehli@schnaps-brennerei.ch">staehli@schnaps-brennerei.ch</a></p>
+    <div class="personen">
+      <p><b>Rudolf Stähli</b><br>Gesellschafter, Vorsitz der Geschäftsführung</p>
+      <p><b>Hans Stähli</b><br>Geschäftsführer</p>
+      <p>Mitglied bei «Die Schweizer Brenner»</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <p>Schnaps-Brennerei Stähli GmbH · Sitz Spiez · CHE-357.168.638</p>
+  <p>Abgabe von Spirituosen erst ab 18 Jahren.</p>
+  <p>Entwurf von Max Rathsack · Alle Bilder sind gezeichnete Platzhalter.</p>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  // Flaschen: Form (Ursprung unten Mitte), Glasfarbe, Etikett-Höhe
+  var F=[
+    {n:'Chütene',art:'aus Quitten',k:'Eigener Brand',t:'«Chütene» ist das berndeutsche Wort für Quitte. Einer der eigenen Brände aus der Disti-Boutique in Einigen.',
+     d:'M-14 0Q-16 0-16-4V-70Q-16-84-6-92V-130H6V-92Q16-84 16-70V-4Q16 0 14 0Z',g:'#CFE2DA',e:[-58,26],kap:'#8E6F32',b:16,x:62,s:1},
+    {n:'Hanslibirne',art:'aus Birnen',k:'Eigener Brand',t:'Ein Brand aus der Birnensorte Hanslibirne – erhältlich in der Disti-Boutique.',
+     d:'M-10 0Q-32-2-32-30Q-32-56-7-64V-100H7V-64Q32-56 32-30Q32-2 10 0Z',g:'#DCE6C8',e:[-40,22],kap:'#C9A55C',b:32,x:146,s:1},
+    {n:'Sauergrauech',art:'aus Äpfeln',k:'Eigener Brand',t:'Gebrannt aus der Apfelsorte Sauergrauech – einer der rund 25 Brände der Disti-Boutique.',
+     d:'M-19 0V-80Q-19-88-10-90L-6-98V-116H6V-98L10-90Q19-88 19-80V0Z',g:'#C8DCD6',e:[-62,28],kap:'#2C2C2C',b:19,x:240,s:1},
+    {n:'Härdöpfeler',art:'aus Kartoffeln',k:'Eigener Brand',t:'Ein Kartoffelbrand – «Härdöpfel» ist Berndeutsch für Kartoffel.',
+     d:'M-22 0Q-24 0-24-4V-62Q-24-72-11-76V-94H11V-76Q24-72 24-62V-4Q24 0 22 0Z',g:'#E3DDC5',e:[-48,26],kap:'#7A5132',b:24,x:332,s:1},
+    {n:'[Sorte]',art:'Geschenkflasche',k:'Platzhalter',t:'Kleine Geschenkflaschen sind erhältlich. [Sorte und Beschreibung ergänzen]',
+     d:'M-11 0V-40Q-11-48-4-50V-66H4V-50Q11-48 11-40V0Z',g:'#D6E4DE',e:[-30,16],kap:'#C9A55C',b:11,x:52,s:2},
+    {n:'[Sorte]',art:'[Frucht]',k:'Platzhalter',t:'[Beschreibung der Sorte ergänzen] · [Preis]',
+     d:'M-18 0Q-25-2-25-14V-46Q-25-60-6-62V-82H6V-62Q25-60 25-46V-14Q25-2 18 0Z',g:'#5E7A5E',e:[-40,20],kap:'#8E6F32',b:25,x:124,s:2},
+    {n:'[Sorte]',art:'[Frucht]',k:'Platzhalter',t:'[Beschreibung der Sorte ergänzen] · [Preis]',
+     d:'M-15 0V-84Q-15-96-5-102V-126H5V-102Q15-96 15-84V0Z',g:'#6B4A2E',e:[-60,24],kap:'#2C2C2C',b:15,x:210,s:2},
+    {n:'[Sorte]',art:'Geschenkflasche',k:'Platzhalter',t:'Kleine Geschenkflaschen sind erhältlich. [Sorte und Beschreibung ergänzen]',
+     d:'M-9 0Q-20 0-20-16Q-20-32-5-36V-54H5V-36Q20-32 20-16Q20 0 9 0Z',g:'#D9E4DC',e:[-24,14],kap:'#C9A55C',b:20,x:292,s:2},
+    {n:'[Sorte]',art:'[Frucht]',k:'Platzhalter',t:'[Beschreibung der Sorte ergänzen] · [Preis]',
+     d:'M-17 0Q-19 0-19-4V-58Q-19-72-5-76V-100H5V-76Q19-72 19-58V-4Q19 0 17 0Z',g:'#CFE0D8',e:[-44,22],kap:'#8E6F32',b:19,x:356,s:2}
+  ];
+  function el(tag,a){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  // Hälse: Ende des Halses = kleinste Y im Pfad
+  function top(d){var m=d.match(/-?\d+/g).map(Number);return Math.min.apply(null,m);}
+  function zeichne(f,mitEtikett,gross){
+    var g=el('g',{});
+    var t=top(f.d), b=f.b;
+    g.appendChild(el('path',{d:f.d,fill:f.g,'fill-opacity':.88,stroke:'#0A1414','stroke-width':gross?1.4:1.2,class:'umriss'}));
+    // Flüssigkeit
+    var cp='c'+Math.random().toString(36).slice(2,8);
+    var c=el('clipPath',{id:cp});c.appendChild(el('path',{d:f.d}));g.appendChild(c);
+    var hoch=-t*0.55;
+    g.appendChild(el('rect',{x:-b,y:-hoch,width:2*b,height:hoch,fill:'#FFFFFF','fill-opacity':.22,'clip-path':'url(#'+cp+')'}));
+    g.appendChild(el('path',{d:'M'+(-b+6)+' -8 V'+(-hoch+6),stroke:'#fff','stroke-width':2.4,'stroke-linecap':'round',opacity:.45}));
+    g.appendChild(el('rect',{x:-6.5,y:t-9,width:13,height:10,rx:2,fill:f.kap,stroke:'#0A1414','stroke-width':.8}));
+    if(mitEtikett){
+      var ew=Math.min(2*b-6,46), ey=f.e[0]-f.e[1]/2, eh=f.e[1];
+      g.appendChild(el('rect',{x:-ew/2,y:ey,width:ew,height:eh,fill:'#F1E8D2',stroke:'#8E6F32','stroke-width':.8}));
+      g.appendChild(el('rect',{x:-ew/2+2,y:ey+2,width:ew-4,height:eh-4,fill:'none',stroke:'#C9A55C','stroke-width':.5}));
+      if(gross){
+        var tx=el('text',{x:0,y:ey+eh/2+3,'text-anchor':'middle','font-family':'Pinyon Script,cursive','font-size':f.n.length>9?6.4:8,fill:'#3B2415'});tx.textContent=f.n;g.appendChild(tx);
+      }else{
+        g.appendChild(el('path',{d:'M'+(-ew/2+6)+' '+(ey+eh/2)+'H'+(ew/2-6),stroke:'#8E6F32','stroke-width':1.2}));
+      }
+    }
+    return g;
+  }
+  var wo=document.getElementById('flaschen');
+  F.forEach(function(f,i){
+    var g=el('g',{class:'flasche',tabindex:0,role:'button','aria-label':'Flasche '+f.n+' aus dem Regal nehmen','data-i':i});
+    g.setAttribute('transform','translate('+f.x+' '+(f.s===1?160:344)+')');
+    var gl=el('ellipse',{class:'glanz',cx:0,cy:-50,rx:30,ry:70,fill:'#E8CF94',opacity:0,'fill-opacity':.14});g.appendChild(gl);
+    g.appendChild(zeichne(f,true,false));
+    wo.appendChild(g);
+  });
+
+  var vitrine=document.getElementById('vitrine'), dreher=document.getElementById('dreher');
+  var vorne=document.getElementById('vorne'), hinten=document.getElementById('hinten'), karte=document.getElementById('karte');
+  var aktiv=null, beschaeftigt=false;
+  var reduziert=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SK=1.75; // Vergrösserung in der Vitrine
+  function grossSvg(f,mitEt){
+    var s=el('svg',{viewBox:'-34 -140 68 140',width:118,height:236,'aria-hidden':'true'});
+    s.style.overflow='visible';
+    s.appendChild(zeichne(f,mitEt,true));return s;
+  }
+  function fuelleKarte(f){
+    document.getElementById('kName').textContent=f.n;document.getElementById('kArt').textContent=f.art;
+    document.getElementById('kKlein').textContent=f.k;document.getElementById('kText').textContent=f.t;
+  }
+  function flug(f,von,nach,dauer,schluss){
+    var s=grossSvg(f,true);s.classList.add('flieger');s.setAttribute('width',von.width);s.setAttribute('height',von.height);
+    s.style.width=von.width+'px';s.style.height=von.height+'px';document.body.appendChild(s);
+    var sx=nach.width/von.width;
+    var a=s.animate([
+      {transform:'translate('+von.left+'px,'+von.top+'px) scale(1)',transformOrigin:'0 0'},
+      {transform:'translate('+von.left+'px,'+(von.top-30)+'px) scale(1.05)',transformOrigin:'0 0',offset:.2},
+      {transform:'translate('+nach.left+'px,'+nach.top+'px) scale('+sx+')',transformOrigin:'0 0'}
+    ],{duration:dauer,easing:'cubic-bezier(.4,.1,.3,1)'});
+    a.onfinish=function(){s.remove();schluss();};
+  }
+  // Rechteck der Flasche im Regal (in Bildschirm-Pixeln, gleicher Ausschnitt wie viewBox -34 -140 68 140)
+  function regalRect(g){
+    var m=g.getScreenCTM(), p=document.getElementById('regal').createSVGPoint();
+    p.x=-34;p.y=-140;var a=p.matrixTransform(m);p.x=34;p.y=0;var b=p.matrixTransform(m);
+    return{left:a.x,top:a.y,width:b.x-a.x,height:b.y-a.y};
+  }
+  function buehneRect(){var r=vorne.querySelector('svg').getBoundingClientRect();return{left:r.left,top:r.top,width:r.width,height:r.height};}
+
+  function heraus(i){
+    if(beschaeftigt)return;
+    if(aktiv!==null){zurueck(function(){heraus(i)});return;}
+    beschaeftigt=true;aktiv=i;var f=F[i];var g=wo.querySelector('[data-i="'+i+'"]');
+    vorne.innerHTML='';hinten.innerHTML='';vorne.appendChild(grossSvg(f,true));hinten.appendChild(grossSvg(f,false));
+    fuelleKarte(f);vitrine.classList.add('belegt');
+    var von=regalRect(g);g.classList.add('weg');
+    dreher.style.visibility='hidden';
+    if(vitrine.getBoundingClientRect().top<0)vitrine.scrollIntoView({behavior:reduziert?'auto':'smooth',block:'start'});
+    setTimeout(function(){
+      var nach=buehneRect();
+      if(reduziert){dreher.style.visibility='';karte.classList.add('zeigen');beschaeftigt=false;return;}
+      flug(f,regalRect(g),nach,700,function(){
+        dreher.style.visibility='';
+        // Flasche kommt mit der Rückseite an und dreht sich zum Etikett
+        var a=dreher.animate([{transform:'rotateY(180deg)'},{transform:'rotateY(540deg)'}],{duration:1300,easing:'cubic-bezier(.3,.6,.3,1)'});
+        a.onfinish=function(){karte.classList.add('zeigen');beschaeftigt=false;document.getElementById('zurueck').focus({preventScroll:true});};
+      });
+    },vitrine.getBoundingClientRect().top<0?420:0);
+  }
+  function zurueck(danach){
+    if(aktiv===null)return;beschaeftigt=true;
+    var f=F[aktiv], g=wo.querySelector('[data-i="'+aktiv+'"]');
+    karte.classList.remove('zeigen');
+    var von=buehneRect();dreher.style.visibility='hidden';
+    var fertig=function(){g.classList.remove('weg');aktiv=null;beschaeftigt=false;vitrine.classList.remove('belegt');vorne.innerHTML='';hinten.innerHTML='';dreher.style.visibility='';if(danach)danach();};
+    if(reduziert){fertig();return;}
+    flug(f,von,regalRect(g),650,fertig);
+  }
+  wo.addEventListener('click',function(e){var g=e.target.closest('.flasche');if(g)heraus(+g.dataset.i);});
+  wo.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var g=e.target.closest('.flasche');if(g){e.preventDefault();heraus(+g.dataset.i);}}});
+  document.getElementById('zurueck').addEventListener('click',function(){zurueck();});
+
+  // Deckel
+  var knopf=document.getElementById('deckelknopf'), auf=document.getElementById('aufgedeckt');
+  knopf.addEventListener('click',function(){
+    var offen=!knopf.classList.contains('offen');
+    knopf.classList.toggle('offen',offen);auf.classList.toggle('offen',offen);
+    knopf.setAttribute('aria-expanded',offen);
+    knopf.setAttribute('aria-label',offen?'Deckel wieder schliessen':'Deckel des Brennhafens anheben');
+  });
+
+  window.pdfZustand=function(){
+    var i=0,f=F[i],g=wo.querySelector('[data-i="0"]');aktiv=0;
+    vorne.appendChild(grossSvg(f,true));hinten.appendChild(grossSvg(f,false));fuelleKarte(f);
+    vitrine.classList.add('belegt');g.classList.add('weg');karte.classList.add('zeigen');
+    knopf.classList.add('offen');auf.classList.add('offen');
+  };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Piano Music Simmen – Thun (Entwurf «Anschlag»)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lack:#0c0b0a;
+  --lack2:#171513;
+  --lack3:#221f1b;
+  --elfenbein:#efe6d2;
+  --grau:#a89f8d;
+  --messing:#c9a55a;
+  --messing-d:#8d7239;
+  --filz:#a8262c;
+  --display:"Gloock", "Didot", Georgia, serif;
+  --text:"Crimson Pro", Georgia, serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--lack);color:var(--elfenbein);font-family:var(--text);font-size:19px;line-height:1.5;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal;word-break:normal}
+a{color:inherit}
+.innen{max-width:560px;margin:0 auto;padding:0 20px}
+.kap{font-family:var(--text);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--messing);font-weight:600}
+.linie{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--messing);margin:0 auto}
+.linie::before,.linie::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--messing))}
+.linie::after{transform:scaleX(-1)}
+.raute{width:7px;height:7px;background:var(--messing);transform:rotate(45deg);flex:none}
+
+.hinweis{background:var(--messing);color:#1a1408;font-family:Arial,Helvetica,sans-serif;font-size:12.5px;line-height:1.4;padding:8px 16px;text-align:center}
+
+/* Kopf */
+.kopf{text-align:center;padding:26px 20px 0}
+.kopf .name{font-family:var(--display);font-size:22px;letter-spacing:.02em}
+.kopf .ort{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--grau);margin-top:2px}
+
+/* Hero */
+.hero{text-align:center;padding:40px 0 8px}
+.hero h1{font-size:clamp(44px,12.4vw,70px);line-height:1;letter-spacing:-.005em;margin:16px 0 18px}
+.hero h1 i{font-style:normal;color:var(--messing)}
+.hero p{margin:0 auto 22px;max-width:24em;color:#d8cfbc;font-size:19px}
+.knopf{display:inline-flex;align-items:center;justify-content:center;font:600 16px/1 var(--text);letter-spacing:.06em;padding:15px 22px;border:1px solid var(--messing);color:var(--elfenbein);text-decoration:none;background:transparent;border-radius:2px}
+.knopf.voll{background:var(--messing);color:#15110a}
+.knoepfe{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* Bühne mit Mechanik */
+.buehne{margin:34px 0 0;padding:26px 0 0;background:radial-gradient(120% 70% at 50% 0%, #26211b 0%, var(--lack) 70%)}
+.buehne h2{text-align:center;font-size:clamp(32px,9vw,44px);line-height:1.05;margin:10px 0 8px}
+.buehne .anl{text-align:center;color:var(--grau);font-size:17px;margin:0 auto 6px;max-width:24em}
+.mechanik{display:block;width:100%;height:auto;margin:6px 0 0;overflow:visible}
+.mechanik .lbl{font-family:var(--text);font-size:11px;letter-spacing:.2em;text-transform:uppercase;fill:var(--grau)}
+#taste,#hammer,#daempfer{transform-box:view-box}
+#taste{transform-origin:150px 206px;transition:transform .09s ease-out}
+#daempfer{transition:transform .09s ease-out}
+#hammer{transform-origin:178px 148px}
+.schlag #taste{transform:rotate(-5deg)}
+.schlag #daempfer{transform:translateY(-17px)}
+.schlag #taste-front{fill:#fff7e2}
+
+/* Klaviatur */
+.klaviatur{position:relative;height:170px;margin:4px 0 0;padding:0;display:flex;touch-action:manipulation;user-select:none;-webkit-user-select:none;border-top:4px solid var(--filz)}
+.weiss{flex:1;position:relative;background:linear-gradient(#f3ecdc,#e8dec6);border:0;border-right:1px solid #8f8571;border-radius:0 0 5px 5px;margin:0;padding:0 0 12px;display:flex;align-items:flex-end;justify-content:center;font:600 15px var(--display);color:#5a5244;cursor:pointer;transition:transform .08s, background .08s;transform-origin:top}
+.weiss:last-child{border-right:0}
+.weiss.unten{background:linear-gradient(#e3d8bf,#d8cba9);transform:scaleY(.985)}
+.weiss .gefunden{position:absolute;bottom:38px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--filz);opacity:0;transition:opacity .3s}
+.weiss.entdeckt .gefunden{opacity:1}
+.schwarz{position:absolute;top:0;width:8.6%;height:98px;background:linear-gradient(#2a2622,#0a0908 70%);border:1px solid #000;border-top:0;border-radius:0 0 4px 4px;z-index:2;cursor:pointer;padding:0;transition:height .08s}
+.schwarz.unten{height:95px;background:linear-gradient(#1a1714,#000)}
+.klaviatur button:focus{outline:none}
+.klaviatur button:focus-visible{outline:2px solid var(--messing);outline-offset:-4px}
+.zaehler{text-align:center;color:var(--grau);font-size:15px;margin:12px 0 0}
+
+/* Leistungs-Fenster unter den Tasten */
+.fenster{position:relative;margin:14px 0 0;min-height:250px}
+.blatt{display:none;border:1px solid #3a342c;background:var(--lack2);padding:22px 20px 22px;border-radius:3px}
+.blatt.aktiv{display:block;animation:auf .35s ease-out}
+@keyframes auf{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.blatt .ton{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.blatt .ton b{font-family:var(--display);font-weight:400;font-size:46px;line-height:1;color:var(--messing)}
+.blatt .ton span{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--grau)}
+.blatt h3{font-size:28px;line-height:1.1;margin:4px 0 8px}
+.blatt p{margin:0 0 16px;color:#d8cfbc}
+.blatt .knopf{padding:12px 18px;font-size:15px}
+.blatt.start{text-align:center;color:var(--grau)}
+.blatt.start h3{color:var(--elfenbein)}
+.blatt.start svg{display:block;margin:6px auto 10px}
+
+/* Verkauf */
+.teil{padding:62px 0 0;text-align:center}
+.teil h2{font-size:clamp(34px,9.6vw,48px);line-height:1.05;margin:12px 0 12px}
+.teil .anl{color:#d8cfbc;margin:0 auto 22px;max-width:25em}
+.drei{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid #3a342c;text-align:left}
+.drei div{padding:16px 4px;border-bottom:1px solid #3a342c;display:grid;grid-template-columns:52px 1fr;gap:2px 12px;align-items:baseline}
+.drei .z{font-family:var(--display);font-size:26px;color:var(--messing);grid-row:span 2}
+.drei h3{font-size:22px}
+.drei p{margin:0;color:var(--grau);font-size:17px}
+.platz{border:1px dashed #7a6f5c;color:#b8ad97;padding:16px;margin:20px 0 0;border-radius:3px;font-size:17px;text-align:center}
+.klavier-bild{display:block;width:78%;max-width:320px;height:auto;margin:0 auto 10px}
+
+/* Geschichte */
+.geschichte{text-align:left}
+.geschichte h2{text-align:center}
+.zahl{font-family:var(--display);font-size:clamp(84px,26vw,130px);line-height:.9;color:var(--messing);text-align:center;margin:8px 0 0}
+.zahl-text{text-align:center;color:#d8cfbc;margin:6px auto 26px;max-width:20em;font-size:19px}
+.erzaehl p{margin:0 0 14px;color:#d8cfbc}
+.erzaehl p:first-child::first-letter{font-family:var(--display);float:left;font-size:62px;line-height:.85;padding:6px 8px 0 0;color:var(--messing)}
+.stationen{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #3a342c;margin:20px 0 0;text-align:center}
+.stationen div{padding:14px 6px;border-right:1px solid #3a342c}
+.stationen div:last-child{border-right:0}
+.stationen b{display:block;font-family:var(--display);font-weight:400;font-size:24px;color:var(--elfenbein)}
+.stationen span{font-size:14px;color:var(--grau);line-height:1.3;display:block;margin-top:4px}
+
+/* Kontakt */
+.kontakt{margin:66px 0 0;padding:0 0 30px}
+.rahmen{border:1px solid var(--messing);padding:30px 22px 26px;text-align:center;position:relative}
+.rahmen::before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,165,90,.35);pointer-events:none}
+.rahmen h2{font-size:clamp(34px,9.4vw,46px);line-height:1.05;margin:10px 0 18px}
+.rahmen .gross{display:block;font-family:var(--display);font-size:clamp(28px,8.4vw,38px);color:var(--messing);text-decoration:none;margin:4px 0 2px;white-space:nowrap}
+.rahmen p{margin:0 0 14px;color:#d8cfbc}
+.rahmen .knoepfe{position:relative;z-index:1;margin-top:18px}
+.fuss{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:#7d7564;font-size:14px;margin-top:26px}
+
+/* PDF */
+.pdf .blatt{display:block !important;animation:none;margin-bottom:12px}
+.pdf .blatt.start{display:none !important}
+.pdf .fenster{min-height:0}
+.pdf *{transition:none !important;animation:none !important}
+.pdf .buehne{background:var(--lack)}
+</style>
+</head>
+<body>
+<div class="hinweis">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Piano Music Simmen</div>
+
+<header class="kopf">
+  <div class="name">Piano Music Simmen</div>
+  <div class="ort">Klavierservice · Thun</div>
+</header>
+
+<main>
+<div class="innen">
+  <section class="hero">
+    <div class="linie"><span class="raute"></span></div>
+    <h1>Der Ton beginnt in der <i>Mechanik.</i></h1>
+    <p>Matthias Simmen ist gelernter Klavierbauer und Klavierstimmer. Er stimmt, repariert und überholt Klaviere und Flügel – und verkauft Petrof, neue Instrumente und Occasionen.</p>
+    <div class="knoepfe">
+      <a class="knopf voll" href="#spielen">Eine Taste anschlagen</a>
+      <a class="knopf" href="tel:+41333454528">033 345 45 28</a>
+    </div>
+  </section>
+</div>
+
+<!-- ============ HERZSTÜCK ============ -->
+<section class="buehne" id="spielen" aria-labelledby="sp-h">
+  <div class="innen">
+    <div class="kap" style="text-align:center">Spielen Sie</div>
+    <h2 id="sp-h">Was passiert, wenn Sie eine Taste drücken?</h2>
+    <p class="anl">Tippen Sie unten auf eine Taste. Hinter jeder weissen Taste steckt eine Leistung.</p>
+
+    <svg class="mechanik" id="mechanik" viewBox="0 0 400 236" aria-label="Querschnitt einer Klaviermechanik: Taste, Hammer, Dämpfer und Saite" role="img">
+      <!-- Rahmen / Gussplatte angedeutet -->
+      <path d="M8 46 L392 46" stroke="#3a342c" stroke-width="1"/>
+      <!-- Saite -->
+      <circle cx="28" cy="62" r="3" fill="#8d7239"/>
+      <circle cx="386" cy="62" r="3" fill="#8d7239"/>
+      <path id="saite" d="M28 62 Q207 62 386 62" fill="none" stroke="#d8c38a" stroke-width="1.6"/>
+      <!-- Dämpfer: hängt an der Taste hinten -->
+      <g id="daempfer">
+        <line x1="352" y1="66" x2="352" y2="184" stroke="#8d7239" stroke-width="2"/>
+        <rect x="334" y="34" width="36" height="12" rx="2" fill="#3a2e22" stroke="#8d7239" stroke-width="1"/>
+        <rect x="337" y="46" width="30" height="13" rx="2" fill="#f2ecdf"/>
+        <line x1="352" y1="34" x2="352" y2="20" stroke="#8d7239" stroke-width="2"/>
+      </g>
+      <!-- Hammerleiste / Lager -->
+      <rect x="162" y="140" width="24" height="18" rx="2" fill="#2b2620" stroke="#8d7239" stroke-width="1"/>
+      <!-- Hammer -->
+      <g id="hammer">
+        <line x1="178" y1="148" x2="292" y2="148" stroke="#c9a55a" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="178" cy="148" r="4.5" fill="#0c0b0a" stroke="#c9a55a" stroke-width="1.5"/>
+        <path d="M280 150 L284 108 L300 108 L304 150 Z" fill="#6b4a2c" stroke="#c9a55a" stroke-width="1"/>
+        <path d="M282 112 C282 92 302 92 302 112 Z" fill="#a8262c"/>
+        <path d="M284 110 C285 98 299 98 300 110" fill="none" stroke="#e2c9a0" stroke-width=".8"/>
+        <!-- Rolle -->
+        <circle cx="232" cy="153" r="5" fill="#a8262c" stroke="#c9a55a" stroke-width="1"/>
+      </g>
+      <!-- Taste (Hebel) inkl. Stösser -->
+      <g id="taste">
+        <rect x="24" y="190" width="350" height="14" rx="2" fill="#2b2620" stroke="#c9a55a" stroke-width="1"/>
+        <rect id="taste-front" x="16" y="184" width="62" height="20" rx="3" fill="#efe6d2"/>
+        <!-- Stösser -->
+        <rect x="227" y="160" width="10" height="30" fill="#3a2e22" stroke="#c9a55a" stroke-width="1"/>
+        <!-- Pilote -->
+        <rect x="340" y="184" width="24" height="6" fill="#c9a55a"/>
+      </g>
+      <!-- Waagebalken -->
+      <path d="M142 222 L150 206 L158 222 Z" fill="#c9a55a"/>
+      <line x1="40" y1="222" x2="380" y2="222" stroke="#3a342c"/>
+      <!-- Finger-Hinweis -->
+      <g id="finger" fill="none" stroke="#c9a55a" stroke-width="1.4" stroke-linecap="round">
+        <path d="M47 150 L47 176"/><path d="M41 170 L47 177 L53 170"/>
+      </g>
+      <!-- Beschriftung -->
+      <text class="lbl" x="28" y="30">Saite</text>
+      <text class="lbl" x="296" y="16" text-anchor="end">Dämpfer</text>
+      <line x1="300" y1="12" x2="332" y2="38" stroke="#5c5446" stroke-width=".8"/>
+      <text class="lbl" x="40" y="108" style="fill:#d8a2a2">Hammer · Filzkopf</text>
+      <line x1="196" y1="104" x2="274" y2="104" stroke="#5c5446" stroke-width=".8"/>
+      <text class="lbl" x="62" y="146">Taste</text>
+      <text class="lbl" x="164" y="234">Waagebalken</text>
+    </svg>
+  </div>
+
+  <div class="klaviatur" id="klaviatur" role="group" aria-label="Eine Oktave – jede Taste zeigt eine Leistung">
+    <button class="weiss" data-i="0" data-f="261.63" aria-label="Taste C: Stimmungen">C<span class="gefunden"></span></button>
+    <button class="weiss" data-i="1" data-f="293.66" aria-label="Taste D: Reparatur">D<span class="gefunden"></span></button>
+    <button class="weiss" data-i="2" data-f="329.63" aria-label="Taste E: Generalüberholung">E<span class="gefunden"></span></button>
+    <button class="weiss" data-i="3" data-f="349.23" aria-label="Taste F: Stimmstock und Steg">F<span class="gefunden"></span></button>
+    <button class="weiss" data-i="4" data-f="392.00" aria-label="Taste G: Resonanzboden">G<span class="gefunden"></span></button>
+    <button class="weiss" data-i="5" data-f="440.00" aria-label="Taste A: Saiten neu berechnen">A<span class="gefunden"></span></button>
+    <button class="weiss" data-i="6" data-f="493.88" aria-label="Taste H: Gutachten">H<span class="gefunden"></span></button>
+    <button class="weiss" data-i="7" data-f="523.25" aria-label="Taste c: Konzertservice">c<span class="gefunden"></span></button>
+    <button class="schwarz" data-i="8"  data-f="277.18" style="left:calc(12.5% - 4.3%)" aria-label="Taste Cis: neue Instrumente"></button>
+    <button class="schwarz" data-i="9"  data-f="311.13" style="left:calc(25% - 4.3%)" aria-label="Taste Dis: Occasionen"></button>
+    <button class="schwarz" data-i="10" data-f="369.99" style="left:calc(50% - 4.3%)" aria-label="Taste Fis: Petrof"></button>
+    <button class="schwarz" data-i="11" data-f="415.30" style="left:calc(62.5% - 4.3%)" aria-label="Taste Gis: Besuch nach Vereinbarung"></button>
+    <button class="schwarz" data-i="12" data-f="466.16" style="left:calc(75% - 4.3%)" aria-label="Taste B: Kontakt"></button>
+  </div>
+
+  <div class="innen">
+    <p class="zaehler" id="zaehler">0 von 8 Leistungen angeschlagen</p>
+    <div class="fenster" id="fenster" aria-live="polite">
+      <div class="blatt start aktiv" id="b-start">
+        <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 6 V30 M14 22 L22 31 L30 22" fill="none" stroke="#c9a55a" stroke-width="1.6" stroke-linecap="round"/><path d="M8 38 H36" stroke="#a8262c" stroke-width="3"/></svg>
+        <h3>Tippen Sie eine Taste.</h3>
+        <p>Die Mechanik oben bewegt sich mit: Hammer, Dämpfer, Saite.</p>
+      </div>
+      <div class="blatt" data-b="0"><div class="ton"><b>C</b><span>Stimmungen</span></div><h3>Damit jeder Ton rein klingt.</h3><p>Stimmungen für Klaviere und Flügel – von einem gelernten Klavierstimmer.</p><a class="knopf" href="tel:+41333454528">Stimmung anfragen</a></div>
+      <div class="blatt" data-b="1"><div class="ton"><b>D</b><span>Reparatur</span></div><h3>Reparatur von Klavieren und Flügeln.</h3><p>Wenn eine Taste hängt oder etwas nicht mehr klingt, wie es soll: Matthias Simmen schaut sich das Instrument an.</p><a class="knopf" href="tel:+41333454528">Reparatur besprechen</a></div>
+      <div class="blatt" data-b="2"><div class="ton"><b>E</b><span>Generalüberholung</span></div><h3>Neue Mechanik, neue Klaviatur.</h3><p>Generalüberholung – auch mit neuer Mechanik und neuer Klaviatur. Genau das, was Sie oben in Bewegung sehen.</p><a class="knopf" href="mailto:info@pianosimmen.ch?subject=Generalüberholung">Per E-Mail anfragen</a></div>
+      <div class="blatt" data-b="3"><div class="ton"><b>F</b><span>Stimmstock &amp; Steg</span></div><h3>Ersatz von Stimmstock und Steg.</h3><p>Der Stimmstock hält die Stimmwirbel, der Steg überträgt die Schwingung der Saite. Beides wird bei Bedarf ersetzt (Doublierung).</p><a class="knopf" href="tel:+41333454528">Beraten lassen</a></div>
+      <div class="blatt" data-b="4"><div class="ton"><b>G</b><span>Resonanzboden</span></div><h3>Reparaturen am Resonanzboden.</h3><p>Der Resonanzboden macht aus der schwingenden Saite den Klang, den Sie hören.</p><a class="knopf" href="tel:+41333454528">Beraten lassen</a></div>
+      <div class="blatt" data-b="5"><div class="ton"><b>A</b><span>Saiten</span></div><h3>Neuberechnung der Saiten.</h3><p>Die Saite, die Sie oben schwingen sehen – neu berechnet, wenn ein Instrument neu besaitet wird.</p><a class="knopf" href="mailto:info@pianosimmen.ch?subject=Saiten">Per E-Mail anfragen</a></div>
+      <div class="blatt" data-b="6"><div class="ton"><b>H</b><span>Gutachten</span></div><h3>Gutachten und Expertisen.</h3><p>Eine fachliche Einschätzung Ihres Klaviers oder Flügels.</p><a class="knopf" href="mailto:info@pianosimmen.ch?subject=Gutachten">Gutachten anfragen</a></div>
+      <div class="blatt" data-b="7"><div class="ton"><b>c</b><span>Konzertservice</span></div><h3>Konzertservice.</h3><p>Zehn Jahre lang betreute Matthias Simmen im Pianohaus Krämer vor allem Konzertflügel. Diese Erfahrung bringt er heute in seinen Konzertservice ein.</p><a class="knopf" href="tel:+41333454528">Konzert anfragen</a></div>
+      <div class="blatt" data-b="8"><div class="ton"><b>Cis</b><span>Verkauf</span></div><h3>Neue Instrumente.</h3><p>Neue Klaviere und Flügel – unter anderem von Petrof.</p><a class="knopf" href="#verkauf">Zum Verkauf</a></div>
+      <div class="blatt" data-b="9"><div class="ton"><b>Dis</b><span>Verkauf</span></div><h3>Occasionen.</h3><p>Gebrauchte Instrumente aus dem Verkauf von Piano Music Simmen.</p><a class="knopf" href="#verkauf">Zum Verkauf</a></div>
+      <div class="blatt" data-b="10"><div class="ton"><b>Fis</b><span>Petrof</span></div><h3>Händler für Petrof.</h3><p>Klaviere und Flügel des tschechischen Herstellers Petrof.</p><a class="knopf" href="#verkauf">Mehr dazu</a></div>
+      <div class="blatt" data-b="11"><div class="ton"><b>Gis</b><span>Besuch</span></div><h3>Nach Vereinbarung.</h3><p>Besuche an der Kyburgstrasse 9A in Thun nach Vereinbarung. Telefon Mo–Fr 8–12 und 14–17 Uhr.</p><a class="knopf" href="tel:+41333454528">Termin vereinbaren</a></div>
+      <div class="blatt" data-b="12"><div class="ton"><b>B</b><span>Kontakt</span></div><h3>Rufen Sie an.</h3><p>033 345 45 28 · info@pianosimmen.ch</p><a class="knopf" href="#kontakt">Zum Kontakt</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="innen">
+  <!-- ============ VERKAUF ============ -->
+  <section class="teil" id="verkauf">
+    <div class="linie"><span class="raute"></span></div>
+    <div class="kap" style="margin-top:14px">Verkauf</div>
+    <h2>Ein Instrument fürs Leben finden.</h2>
+    <svg class="klavier-bild" viewBox="0 0 300 200" aria-hidden="true">
+      <!-- Klavier frontal, Messinglinie -->
+      <g fill="none" stroke="#c9a55a" stroke-width="1.3" stroke-linejoin="round">
+        <path d="M40 20 H260 V112 H40 Z"/>
+        <path d="M34 14 H266 V20 H34 Z"/>
+        <path d="M52 34 H248 V96 H52 Z" stroke-width=".7"/>
+        <path d="M124 60 C134 50 166 50 176 60 C166 70 134 70 124 60 Z" stroke-width=".7"/>
+        <path d="M30 112 H270 V128 H30 Z"/>
+        <path d="M40 128 V176 M260 128 V176"/>
+        <path d="M30 176 H52 M248 176 H270"/>
+        <path d="M110 176 H190" stroke-width=".7"/>
+        <path d="M128 176 v-6 h8 v6 M164 176 v-6 h8 v6" stroke-width=".7"/>
+      </g>
+      <g stroke="#c9a55a" stroke-width=".6"><path d="M48 112 V128 M60 112 V128 M72 112 V128 M84 112 V128 M96 112 V128 M108 112 V128 M120 112 V128 M132 112 V128 M144 112 V128 M156 112 V128 M168 112 V128 M180 112 V128 M192 112 V128 M204 112 V128 M216 112 V128 M228 112 V128 M240 112 V128 M252 112 V128"/></g>
+      <path d="M30 128 H270" stroke="#a8262c" stroke-width="2"/>
+      <path d="M0 190 H300" stroke="#3a342c"/>
+    </svg>
+    <p class="anl">Anschauen und anspielen nach Vereinbarung – bei einem Klavierbauer, der das Innenleben kennt.</p>
+    <div class="drei">
+      <div><span class="z">I</span><h3>Neue Instrumente</h3><p>Klaviere und Flügel.</p></div>
+      <div><span class="z">II</span><h3>Occasionen</h3><p>Gebrauchte Instrumente.</p></div>
+      <div><span class="z">III</span><h3>Petrof</h3><p>Händler für den tschechischen Klavier- und Flügelhersteller.</p></div>
+    </div>
+    <div class="platz">[aktuelle Instrumente &amp; Preise]</div>
+  </section>
+
+  <!-- ============ GESCHICHTE ============ -->
+  <section class="teil geschichte" id="geschichte">
+    <div class="linie"><span class="raute"></span></div>
+    <div class="kap" style="margin-top:14px;text-align:center">Geschichte</div>
+    <h2>Erfahrung am Konzertflügel.</h2>
+    <div class="zahl">10</div>
+    <p class="zahl-text">Jahre im Pianohaus Krämer in Thun – vor allem bei Konzertflügeln und Reparaturen.</p>
+    <div class="erzaehl">
+      <p>Matthias Simmen schloss seine Lehre als Klavierbauer 1987 mit Auszeichnung ab. Danach arbeitete er in Cossonay-Ville in der Waadt.</p>
+      <p>Von 1989 bis 1999 war er im Pianohaus Krämer in Thun tätig, dort vor allem für die Betreuung von Konzertflügeln und für Reparaturen. 1999 machte er sich selbständig: Piano Music Simmen, Klavierservice Thun.</p>
+    </div>
+    <div class="stationen">
+      <div><b>1987</b><span>Lehre mit Auszeichnung</span></div>
+      <div><b>1989</b><span>Pianohaus Krämer, Thun</span></div>
+      <div><b>1999</b><span>Selbständig in Thun</span></div>
+    </div>
+    <div class="platz">[Foto: Matthias Simmen am Flügel]</div>
+    <div class="platz">[Stimmen von Kundinnen und Kunden]</div>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section class="kontakt" id="kontakt">
+    <div class="rahmen">
+      <div class="kap">Kontakt</div>
+      <h2>Schlagen Sie an.</h2>
+      <a class="gross" href="tel:+41333454528">033 345 45 28</a>
+      <p>Telefon Büro Mo–Fr 8–12 und 14–17 Uhr</p>
+      <p><a href="mailto:info@pianosimmen.ch">info@pianosimmen.ch</a></p>
+      <p>Piano Music Simmen<br>Kyburgstrasse 9A · 3600 Thun<br>Besuche nach Vereinbarung</p>
+      <div class="knoepfe">
+        <a class="knopf voll" href="tel:+41333454528">Anrufen</a>
+        <a class="knopf" href="mailto:info@pianosimmen.ch">E-Mail</a>
+      </div>
+    </div>
+    <div class="fuss"><span>Piano Music Simmen · Thun</span><span>Entwurf von Max Rathsack</span></div>
+  </section>
+</div>
+</main>
+
+<script>
+(function(){
+  var mech=document.getElementById('mechanik');
+  var hammer=document.getElementById('hammer');
+  var saite=document.getElementById('saite');
+  var blaetter=document.querySelectorAll('.blatt[data-b]');
+  var start=document.getElementById('b-start');
+  var zaehler=document.getElementById('zaehler');
+  var entdeckt={};
+  var ctx=null, schwingt=0, daempfung=0.9965, phase=0, laufend=false, ham=null, loslassTimer=null;
+
+  function ton(f){
+    var AC=window.AudioContext||window.webkitAudioContext; if(!AC) return;
+    try{
+      ctx=ctx||new AC(); if(ctx.resume) ctx.resume();
+      var t=ctx.currentTime, out=ctx.createGain();
+      out.gain.setValueAtTime(0.0001,t); out.gain.exponentialRampToValueAtTime(0.22,t+0.008);
+      out.gain.exponentialRampToValueAtTime(0.0001,t+1.4);
+      out.connect(ctx.destination);
+      [[1,1],[2,.45],[3,.2],[4,.08]].forEach(function(p){
+        var o=ctx.createOscillator(), g=ctx.createGain();
+        o.type='sine'; o.frequency.value=f*p[0]*(1+0.0004*p[0]*p[0]);
+        g.gain.value=p[1]; o.connect(g); g.connect(out); o.start(t); o.stop(t+1.5);
+      });
+    }catch(e){}
+  }
+
+  function zeichneSaite(){
+    phase+=0.9;
+    var a=schwingt*Math.sin(phase);
+    saite.setAttribute('d','M28 62 Q207 '+(62+a).toFixed(2)+' 386 62');
+    schwingt*=(mech.classList.contains('schlag')?daempfung:0.82);
+    if(schwingt>0.05){ requestAnimationFrame(zeichneSaite); } else { schwingt=0; laufend=false; saite.setAttribute('d','M28 62 Q207 62 386 62'); }
+  }
+
+  function anschlagen(btn){
+    var i=+btn.getAttribute('data-i');
+    clearTimeout(loslassTimer);
+    document.querySelectorAll('.klaviatur .unten').forEach(function(k){k.classList.remove('unten')});
+    btn.classList.add('unten');
+    mech.classList.remove('schlag'); void mech.getBoundingClientRect(); mech.classList.add('schlag');
+    document.getElementById('finger').style.opacity='0';
+    if(ham) ham.cancel();
+    ham=hammer.animate([{transform:'rotate(0deg)'},{transform:'rotate(-19.5deg)',offset:.45},{transform:'rotate(-7deg)'}],{duration:240,easing:'ease-out',fill:'forwards'});
+    setTimeout(function(){ schwingt=9; if(!laufend){laufend=true; requestAnimationFrame(zeichneSaite);} }, 105);
+    ton(+btn.getAttribute('data-f'));
+    loslassTimer=setTimeout(function(){ loslassen(btn); }, 750);
+    // Leistung zeigen
+    start.classList.remove('aktiv');
+    blaetter.forEach(function(b){ b.classList.toggle('aktiv', +b.getAttribute('data-b')===i); });
+    if(i<8 && !entdeckt[i]){ entdeckt[i]=1; btn.classList.add('entdeckt');
+      var n=Object.keys(entdeckt).length;
+      zaehler.textContent = n===8 ? 'Alle 8 Leistungen angeschlagen – danke fürs Spielen!' : n+' von 8 Leistungen angeschlagen'; }
+  }
+  function loslassen(btn){
+    btn.classList.remove('unten'); mech.classList.remove('schlag');
+    if(ham){ ham.cancel(); ham=hammer.animate([{transform:'rotate(-7deg)'},{transform:'rotate(0deg)'}],{duration:160,easing:'ease-in',fill:'forwards'}); }
+  }
+
+  document.querySelectorAll('.klaviatur button').forEach(function(b){
+    b.addEventListener('pointerdown',function(e){ e.preventDefault(); anschlagen(b); });
+    b.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); anschlagen(b); } });
+  });
+
+  window.pdfZustand=function(){
+    mech.classList.add('schlag');
+    hammer.style.transform='rotate(-19.5deg)';
+    saite.setAttribute('d','M28 62 Q207 55 386 62');
+    document.querySelector('.weiss[data-i="2"]').classList.add('unten');
+    document.querySelectorAll('.weiss').forEach(function(w){w.classList.add('entdeckt')});
+    zaehler.textContent='Jede Taste – eine Leistung:';
+    document.getElementById('finger').style.opacity='0';
+  };
+})();
+</script>
+</body>
+</html>

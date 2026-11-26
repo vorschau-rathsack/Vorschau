@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Schnaps-Brennerei Stähli – Entwurf Stil 3 «Herzstück»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --weiss:#FFFFFF; --glas:#EEF6FA; --glas2:#CFE6F0; --blau:#3E87A8; --blau-d:#1F5F7D;
+  --tinte:#0F1D24; --grau:#56656D; --linie:#DCE6EB; --rot:#C8102E; --rot-l:#FBE7EA;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--weiss);color:var(--tinte);font:400 16.5px/1.6 "Schibsted Grotesk",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{margin:0;line-height:1.02;letter-spacing:-.025em;font-weight:800;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal}
+a{color:inherit}
+a[href^="tel"]{white-space:nowrap}
+svg{display:block}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--grau)}
+.ph{display:inline-block;border:1.5px dashed var(--rot);color:var(--rot);border-radius:4px;padding:0 .4em;font-family:"JetBrains Mono",monospace;font-size:.78em;white-space:nowrap;background:#fff}
+
+.hinweis{background:var(--tinte);color:#DDE6EA;font-size:12.5px;line-height:1.4;padding:8px 16px;text-align:center}
+.kopf{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--linie);max-width:560px;margin:0 auto}
+.logo{font:800 22px/1 "Schibsted Grotesk";letter-spacing:-.03em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:12px;height:12px;border-radius:50%;background:var(--rot);display:inline-block}
+.kopf .mono{font-size:11px}
+
+.hero{padding:34px 0 26px}
+.hero h1{font-size:clamp(42px,12.6vw,66px)}
+.hero h1 span{color:var(--rot)}
+.hero p{color:var(--grau);font-size:18px;margin:18px 0 22px}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 "Schibsted Grotesk";padding:15px 20px;border-radius:999px;text-decoration:none;background:var(--tinte);color:#fff;border:2px solid var(--tinte)}
+.knopf.hell{background:#fff;color:var(--tinte)}
+.knopf.rot{background:var(--rot);border-color:var(--rot)}
+.reihe{display:flex;flex-wrap:wrap;gap:10px}
+.fakten{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--linie);border-left:1px solid var(--linie);margin-top:30px}
+.fakten div{border-right:1px solid var(--linie);border-bottom:1px solid var(--linie);padding:14px 12px}
+.fakten b{display:block;font:800 30px/1 "Schibsted Grotesk";letter-spacing:-.03em}
+.fakten span{font-size:13.5px;color:var(--grau)}
+
+section{padding:48px 0}
+.nr{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.nr:after{content:"";flex:1;height:1px;background:var(--linie)}
+h2{font-size:clamp(32px,9.4vw,46px);margin-bottom:12px}
+.lead{color:var(--grau);margin:0 0 20px}
+
+/* Ablauf-Hahn */
+.labor{background:var(--glas);border-radius:22px;padding:14px 10px 18px;border:1px solid var(--glas2)}
+.labor svg{width:100%;height:auto;touch-action:none}
+#hebel{cursor:grab}
+#hebel:active{cursor:grabbing}
+.strahl{stroke-dasharray:16 5;animation:fliessen .45s linear infinite}
+@keyframes fliessen{to{stroke-dashoffset:-21}}
+.schieber{margin:10px 8px 0}
+.schieber label{display:block;margin-bottom:6px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--glas2),var(--rot) 50%,var(--glas2))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:34px;border-radius:50%;background:#fff;border:3px solid var(--tinte);margin-top:-13px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--glas2),var(--rot) 50%,var(--glas2))}
+input[type=range]::-moz-range-thumb{width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid var(--tinte)}
+input[type=range]:focus-visible{outline:2px solid var(--blau);outline-offset:2px;border-radius:8px}
+.stopps{display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center}
+.stopps button{background:none;border:none;font:600 12px/1.2 "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--grau);padding:6px 0;cursor:pointer}
+.stopps button[aria-pressed=true]{color:var(--tinte)}
+.stopps button:nth-child(2)[aria-pressed=true]{color:var(--rot)}
+.erklaer{background:#fff;border-left:3px solid var(--rot);padding:12px 14px;margin:18px 0 0;font-size:15.5px}
+
+.kapitel{display:none;padding-top:26px}
+.kapitel.aktiv{display:block;animation:rein .5s ease}
+@keyframes rein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kapitel h3{font-size:clamp(26px,7.4vw,34px);margin:6px 0 10px}
+.kapitel .tag{display:inline-block;font:600 11px/1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--glas);color:var(--blau-d)}
+.kapitel.k1 .tag{background:var(--rot-l);color:var(--rot)}
+.zeitleiste{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--linie)}
+.zeitleiste li{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--linie);font-size:15.5px}
+.zeitleiste b{font-family:"JetBrains Mono",monospace;font-weight:600;color:var(--blau-d)}
+.sorten{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.sorte{border:1px solid var(--linie);border-radius:14px;padding:14px 12px}
+.sorte b{display:block;font-size:19px;letter-spacing:-.02em}
+.sorte span{font-size:13.5px;color:var(--grau)}
+.sorte.platz{border:1.5px dashed var(--rot);color:var(--rot)}
+.sorte.platz span{color:var(--rot)}
+.kasten{background:var(--glas);border-radius:14px;padding:14px 16px;margin:12px 0;font-size:15.5px}
+.kasten p{margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips span{border:1.5px solid var(--tinte);border-radius:999px;padding:4px 12px;font-weight:700;font-size:14px}
+.ab18{font-size:13px;color:var(--grau);display:flex;gap:8px;align-items:center;margin-top:12px}
+.ab18 i{font-style:normal;font:600 11px/1 "JetBrains Mono";border:1.5px solid var(--grau);border-radius:6px;padding:4px 5px}
+
+/* Schritte */
+.grau{background:#F6F8F9;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie)}
+.schritte{list-style:none;margin:0;padding:0;counter-reset:s}
+.schritte li{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--linie)}
+.schritte li:before{counter-increment:s;content:counter(s);width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--tinte);display:grid;place-items:center;font:800 20px/1 "Schibsted Grotesk"}
+.schritte h3{font-size:20px;letter-spacing:-.015em;margin:4px 0 4px}
+.schritte p{margin:0;color:var(--grau);font-size:15.5px}
+
+.treber{border:1px solid var(--linie);border-radius:22px;padding:20px;display:grid;gap:8px}
+.treber h3{font-size:24px}
+.treber p{margin:0;color:var(--grau)}
+
+/* Kontakt */
+.kontakt{background:var(--tinte);color:#E6EDF0}
+.kontakt h2{color:#fff}
+.kontakt .mono{color:#9FB2BB}
+.ortkarte{border:1px solid #2C3D46;border-radius:18px;padding:18px;margin-bottom:12px}
+.ortkarte h3{font-size:24px;color:#fff;margin:6px 0}
+.ortkarte p{margin:0 0 14px;color:#B9C8CF}
+.ortkarte .knopf{background:var(--rot);border-color:var(--rot)}
+.mail{display:inline-block;color:#fff;font-weight:700;margin:6px 0 18px}
+.leute{border-top:1px solid #2C3D46;padding-top:16px;font-size:15px;color:#B9C8CF}
+.leute p{margin:0 0 8px}
+.leute b{color:#fff}
+footer{background:var(--tinte);color:#7F949E;font-size:12.5px;padding:0 0 34px}
+footer .wrap{border-top:1px solid #2C3D46;padding-top:16px}
+footer p{margin:0 0 6px}
+
+.pdf *{animation:none!important;transition:none!important}
+.pdf .kapitel{display:block;border-top:1px solid var(--linie);margin-top:22px}
+.pdf .strahl{stroke-dasharray:none}
+</style>
+</head>
+<body>
+<div class="hinweis">Entwurf / Demo von Max Rathsack – keine offizielle Webseite der Schnaps-Brennerei Stähli GmbH</div>
+<header class="kopf">
+  <a class="logo" href="#top"><i></i>Stähli</a>
+  <span class="mono">Schnaps-Brennerei · Spiez</span>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div class="mono" style="margin-bottom:14px">Familienbetrieb seit 1964</div>
+    <h1>Nur das <span>Herzstück</span> kommt in die Flasche.</h1>
+    <p>Eigene Brände aus der Disti-Boutique in Einigen – und Lohnbrennerei für Ihre Früchte im Berner Oberland.</p>
+    <div class="reihe">
+      <a class="knopf rot" href="#hahn">Hahn ausprobieren</a>
+      <a class="knopf hell" href="#kontakt">Kontakt</a>
+    </div>
+    <div class="fakten">
+      <div><b>1964</b><span>erste Brände in Einigen</span></div>
+      <div><b>1977</b><span>Baujahr der mobilen Brennerei</span></div>
+      <div><b>~25</b><span>eigene Sorten in der Disti-Boutique</span></div>
+      <div><b>~1'500</b><span>Adressen in der Lohnbrennerei</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="hahn" style="padding-top:20px">
+  <div class="wrap">
+    <div class="nr mono">01 — Das Prinzip</div>
+    <h2>Drehen Sie den Hahn.</h2>
+    <p class="lead">Beim Brennen fliesst das Destillat nicht immer gleich. Lenken Sie den Strahl in die drei Gläser – jedes öffnet ein Kapitel über uns.</p>
+
+    <div class="labor">
+      <svg id="anlage" viewBox="0 0 400 330" role="img" aria-label="Ablauf-Hahn über drei Glasgefässen: Vorlauf, Herzstück, Nachlauf">
+        <defs>
+          <clipPath id="c0"><path id="g0p" d="M58 200 V230 L30 300 Q28 308 36 308 H104 Q112 308 110 300 L82 230 V200Z"/></clipPath>
+          <clipPath id="c1"><path id="g1p" d="M188 150 V176 Q150 186 150 222 V296 Q150 308 162 308 H238 Q250 308 250 296 V222 Q250 186 212 176 V150Z"/></clipPath>
+          <clipPath id="c2"><path id="g2p" d="M296 206 H364 V300 Q364 308 356 308 H304 Q296 308 296 300Z"/></clipPath>
+        </defs>
+        <!-- Leitung vom Kühler -->
+        <path d="M0 44 H178" stroke="#0F1D24" stroke-width="10" stroke-linecap="round"/>
+        <path d="M0 44 H178" stroke="#CFE6F0" stroke-width="5"/>
+        <text x="8" y="30" font-family="JetBrains Mono,monospace" font-size="10" fill="#56656D">VOM KÜHLER</text>
+        <!-- Strahl -->
+        <path id="strahl" class="strahl" d="M200 96 Q200 140 200 170" fill="none" stroke="#3E87A8" stroke-width="5" stroke-linecap="round"/>
+        <!-- Gefässe: Flüssigkeit -->
+        <rect id="f0" x="20" y="308" width="100" height="0" fill="#C3D5DD" clip-path="url(#c0)"/>
+        <rect id="f1" x="140" y="308" width="120" height="0" fill="#9FD0E6" clip-path="url(#c1)"/>
+        <rect id="f2" x="290" y="308" width="80" height="0" fill="#D9C88A" clip-path="url(#c2)"/>
+        <!-- Gefässe: Glas -->
+        <g fill="#FFFFFF" fill-opacity=".35" stroke="#0F1D24" stroke-width="2.5" stroke-linejoin="round">
+          <use href="#g0p"/><use href="#g1p" stroke="#C8102E" stroke-width="3.5"/><use href="#g2p"/>
+        </g>
+        <g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".9">
+          <path d="M44 290 L62 248"/><path d="M162 230 V290"/><path d="M306 222 V292"/>
+        </g>
+        <g fill="none" stroke="#0F1D24" stroke-width="2.5" stroke-linecap="round"><path d="M54 200 H86"/><path d="M184 150 H216"/><path d="M292 206 H368"/></g>
+        <!-- Skalenstriche -->
+        <g stroke="#56656D" stroke-width="1.2"><path d="M236 236h8M236 256h8M236 276h8"/><path d="M350 232h8M350 256h8M350 280h8"/></g>
+        <!-- Beschriftung -->
+        <g font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" text-anchor="middle" fill="#56656D">
+          <text id="t0" x="70" y="326">VORLAUF</text>
+          <text id="t1" x="200" y="326">HERZSTÜCK</text>
+          <text id="t2" x="330" y="326">NACHLAUF</text>
+        </g>
+        <!-- Hahn -->
+        <g id="hahnkopf" transform="rotate(0 200 54)">
+          <path d="M193 60 V92 Q193 98 200 98 Q207 98 207 92 V60Z" fill="#E6EEF2" stroke="#0F1D24" stroke-width="2.5"/>
+        </g>
+        <rect x="176" y="36" width="12" height="16" rx="2" fill="#0F1D24"/>
+        <circle cx="200" cy="54" r="17" fill="#fff" stroke="#0F1D24" stroke-width="2.5"/>
+        <g id="hebel" transform="rotate(0 200 54)">
+          <rect x="140" y="0" width="120" height="44" fill="transparent"/>
+          <path d="M200 54 V14" stroke="#0F1D24" stroke-width="5" stroke-linecap="round"/>
+          <rect x="172" y="4" width="56" height="14" rx="7" fill="#C8102E" stroke="#0F1D24" stroke-width="2.5"/>
+        </g>
+        <circle cx="200" cy="54" r="5" fill="#C8102E"/>
+      </svg>
+      <div class="schieber">
+        <label class="mono" for="regler">Hahn drehen – oder den roten Griff ziehen</label>
+        <input type="range" id="regler" min="0" max="2" step="1" value="0" aria-valuetext="Vorlauf">
+        <div class="stopps" role="group" aria-label="Gefäss wählen">
+          <button data-k="0" aria-pressed="true">Vorlauf</button>
+          <button data-k="1" aria-pressed="false">Herzstück</button>
+          <button data-k="2" aria-pressed="false">Nachlauf</button>
+        </div>
+      </div>
+    </div>
+    <p class="erklaer">Zuerst kommt der Vorlauf, am Schluss der Nachlauf – beide werden abgetrennt. In die Flasche kommt nur der Mittellauf: das Herzstück.</p>
+
+    <div id="kapitel" aria-live="polite">
+      <article class="kapitel k0 aktiv" data-k="0">
+        <span class="tag">Vorlauf · Herkunft</span>
+        <h3>Angefangen hat es 1964 in Einigen.</h3>
+        <p>Fritz Stähli begann mit dem Brennen als Nebenerwerb zum Bauernhof. Heute ist die Schnaps-Brennerei Stähli eine GmbH mit Sitz in Spiez – und noch immer ein Familienbetrieb.</p>
+        <ol class="zeitleiste">
+          <li><b>1964</b><span>Fritz Stähli beginnt in Einigen mit dem Brennen.</span></li>
+          <li><b>1977</b><span>Baujahr der mobilen Brennerei.</span></li>
+          <li><b>1989</b><span>Im April übernimmt sein Sohn Rudolf.</span></li>
+          <li><b>1990</b><span>Erstes öffentliches Treberwurst-Essen.</span></li>
+          <li><b>1998</b><span>Dritter Brennhafen – seither sind Schaubrennen und Treberwurst-Garen an jedem Ort möglich.</span></li>
+          <li><b>2007</b><span>Winterquartier in Reutigen.</span></li>
+          <li><b>2025</b><span>Gründung der Schnaps-Brennerei Stähli GmbH.</span></li>
+        </ol>
+      </article>
+      <article class="kapitel k1" data-k="1">
+        <span class="tag">Herzstück · Eigene Brände</span>
+        <h3>Rund 25 Sorten in der Disti-Boutique.</h3>
+        <p>Unsere eigenen Brände gibt es in der Disti-Boutique in Einigen – auch als kleine Geschenkflaschen.</p>
+        <div class="sorten">
+          <div class="sorte"><b>Chütene</b><span>Quitte</span></div>
+          <div class="sorte"><b>Hanslibirne</b><span>Birne</span></div>
+          <div class="sorte"><b>Sauergrauech</b><span>Apfel</span></div>
+          <div class="sorte"><b>Härdöpfeler</b><span>Kartoffelbrand</span></div>
+          <div class="sorte platz"><b>[Sorte]</b><span>[Preis]</span></div>
+          <div class="sorte platz"><b>[Sorte]</b><span>[Preis]</span></div>
+        </div>
+        <div class="kasten">
+          <p><b>Disti-Boutique</b> · Holleeweg 6, 3646 Einigen</p>
+          <p>Öffnungszeiten nach telefonischer Absprache</p>
+          <p>Markttage: <span class="ph">[Markttage 2027]</span></p>
+        </div>
+        <a class="knopf" href="tel:+41794820150">Verkauf: 079 482 01 50</a>
+        <div class="ab18"><i>18+</i>Abgabe von Spirituosen erst ab 18 Jahren.</div>
+      </article>
+      <article class="kapitel k2" data-k="2">
+        <span class="tag">Nachlauf · Lohnbrennerei</span>
+        <h3>Wir brennen Ihre Früchte.</h3>
+        <p>Für Bauern und Private der Region – rund 1'500 Adressen. Im Sommer und Herbst zieht unsere mobile Brennerei, Baujahr 1977, als Lohnbrennerei durchs Berner Oberland. Im Winter steht sie in Reutigen.</p>
+        <div class="kasten">
+          <p><b>Unser Gebiet</b></p>
+          <div class="chips"><span>Thun-Ost</span><span>oberes Emmental</span><span>Grindelwald</span></div>
+        </div>
+        <a class="knopf" href="tel:+41793755576">Brennerei: 079 375 55 76</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="grau" id="ablauf">
+  <div class="wrap">
+    <div class="nr mono">02 — Lohnbrennerei</div>
+    <h2>So kommen Ihre Früchte zu uns</h2>
+    <p class="lead">In drei Schritten zum eigenen Brand. <span class="ph">[Ablauf bestätigen]</span></p>
+    <ol class="schritte">
+      <li><div><h3>Anrufen</h3><p>Melden Sie sich bei der Brennerei unter <a href="tel:+41793755576">079 375 55 76</a> und vereinbaren Sie einen Termin.</p></div></li>
+      <li><div><h3>Früchte bereitstellen</h3><p>Im Sommer und Herbst ist die mobile Brennerei in der Region unterwegs – in Thun‑Ost, im oberen Emmental und bis Grindelwald.</p></div></li>
+      <li><div><h3>Ihr eigener Brand</h3><p>Wir brennen Ihre Früchte – das Ergebnis ist Ihr eigener Brand.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="treberwurst">
+  <div class="wrap">
+    <div class="nr mono">03 — Anlässe</div>
+    <div class="treber">
+      <h3>Schaubrennen und Treberwurst-Essen</h3>
+      <p>Eine Treberwurst wird im Dampf des Brennhafens auf dem Trester gegart. Seit 1998 der dritte Brennhafen dazukam, sind Schaubrennen und Treberwurst-Garen an jedem Ort möglich.</p>
+      <div class="reihe" style="margin-top:8px">
+        <a class="knopf" href="mailto:staehli@schnaps-brennerei.ch?subject=Anfrage%20Schaubrennen%20%2F%20Treberwurst">Anfrage per E-Mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="wrap">
+    <div class="nr mono">04 — Kontakt</div>
+    <h2>Zwei Orte, eine Familie.</h2>
+    <div class="ortkarte">
+      <span class="mono">Verkauf</span>
+      <h3>Disti-Boutique Einigen</h3>
+      <p>Holleeweg 6, 3646 Einigen<br>Nach telefonischer Absprache</p>
+      <a class="knopf" href="tel:+41794820150">079 482 01 50</a>
+    </div>
+    <div class="ortkarte">
+      <span class="mono">Brennerei · Winterquartier</span>
+      <h3>Reutigen</h3>
+      <p>Stockentalstrasse 50a, 3647 Reutigen</p>
+      <a class="knopf" href="tel:+41793755576">079 375 55 76</a>
+    </div>
+    <a class="mail" href="mailto:staehli@schnaps-brennerei.ch">staehli@schnaps-brennerei.ch</a>
+    <div class="leute">
+      <p><b>Rudolf Stähli</b> · Gesellschafter, Vorsitz der Geschäftsführung</p>
+      <p><b>Hans Stähli</b> · Geschäftsführer</p>
+      <p>Mitglied bei «Die Schweizer Brenner»</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>Schnaps-Brennerei Stähli GmbH · Sitz Spiez · CHE-357.168.638</p>
+    <p>Abgabe von Spirituosen erst ab 18 Jahren.</p>
+    <p>Entwurf von Max Rathsack · Alle Bilder sind gezeichnete Platzhalter.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var svg=document.getElementById('anlage'), regler=document.getElementById('regler');
+  var hebel=document.getElementById('hebel'), kopf=document.getElementById('hahnkopf'), strahl=document.getElementById('strahl');
+  var knoepfe=[].slice.call(document.querySelectorAll('.stopps button'));
+  var kap=[].slice.call(document.querySelectorAll('.kapitel'));
+  var NAMEN=['Vorlauf','Herzstück','Nachlauf'];
+  // Ziel = Öffnung des Gefässes; Füllgrenzen (oberes/unteres y der Flüssigkeit)
+  var Z=[{x:70,y:200,oben:236,max:.75},{x:200,y:150,oben:186,max:.9},{x:330,y:206,oben:214,max:.7}];
+  var BODEN=308, P={x:200,y:54}, LEN=44;
+  var stand=[0,0,0], aktiv=0, winkel=0, zielWinkel=0;
+  var fill=[0,1,2].map(function(i){return document.getElementById('f'+i)});
+  var texte=[0,1,2].map(function(i){return document.getElementById('t'+i)});
+  var reduziert=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function winkelFuer(i){var z=Z[i];return Math.atan2(z.x-P.x, z.y-P.y)*180/Math.PI*0.62;}
+  function zeichneHahn(w){
+    kopf.setAttribute('transform','rotate('+(-w)+' 200 54)');
+    hebel.setAttribute('transform','rotate('+(-w)+' 200 54)');
+    var r=-w*Math.PI/180;
+    var tx=P.x - Math.sin(r)*LEN, ty=P.y + Math.cos(r)*LEN;
+    // Ziel: nächstgelegenes Gefäss für Strahl
+    var z=Z[aktiv];
+    var cx=tx + (-Math.sin(r))*40, cy=ty + Math.cos(r)*40;
+    strahl.setAttribute('d','M'+tx.toFixed(1)+' '+ty.toFixed(1)+' Q'+cx.toFixed(1)+' '+cy.toFixed(1)+' '+z.x+' '+(z.y+20));
+  }
+  function zeichneFuellung(i){
+    var z=Z[i], h=(BODEN-z.oben)*stand[i];
+    fill[i].setAttribute('y',BODEN-h);fill[i].setAttribute('height',h);
+  }
+  function setze(i,vonWo){
+    i=Math.max(0,Math.min(2,i));
+    if(i===aktiv&&vonWo!=='start')return;
+    aktiv=i;zielWinkel=winkelFuer(i);
+    if(vonWo!=='regler')regler.value=i;
+    regler.setAttribute('aria-valuetext',NAMEN[i]);
+    knoepfe.forEach(function(b,k){b.setAttribute('aria-pressed',k===i)});
+    texte.forEach(function(t,k){t.setAttribute('fill',k===i?(k===1?'#C8102E':'#0F1D24'):'#56656D')});
+    kap.forEach(function(a,k){a.classList.toggle('aktiv',k===i)});
+    if(reduziert){winkel=zielWinkel;stand[i]=Z[i].max;zeichneFuellung(i);zeichneHahn(winkel);}
+  }
+  regler.addEventListener('input',function(){setze(+regler.value,'regler')});
+  knoepfe.forEach(function(b){b.addEventListener('click',function(){setze(+b.dataset.k)})});
+
+  // Griff im Bild ziehen
+  var ziehen=false, zw=0;
+  function pt(e){var p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+  hebel.addEventListener('pointerdown',function(e){ziehen=true;hebel.setPointerCapture(e.pointerId);e.preventDefault();});
+  hebel.addEventListener('pointermove',function(e){
+    if(!ziehen)return;var q=pt(e);
+    // Griff zeigt nach oben; Hahnspitze dreht entgegengesetzt
+    var w=Math.atan2(q.x-P.x, P.y-q.y)*180/Math.PI; // Griff nach rechts = positiv
+    w=Math.max(-40,Math.min(40,-w));
+    winkel=zielWinkel=w;
+    var naechst=0,best=1e9;[0,1,2].forEach(function(k){var d=Math.abs(winkelFuer(k)-w);if(d<best){best=d;naechst=k}});
+    if(naechst!==aktiv)setze(naechst,'zug');
+    zielWinkel=w;
+  });
+  function los(){if(!ziehen)return;ziehen=false;zielWinkel=winkelFuer(aktiv);}
+  hebel.addEventListener('pointerup',los);hebel.addEventListener('pointercancel',los);
+
+  var letzte=0;
+  function schleife(t){
+    var dt=letzte?Math.min(50,t-letzte)/1000:0;letzte=t;
+    winkel+= (zielWinkel-winkel)*Math.min(1,dt*9);
+    zeichneHahn(winkel);
+    if(stand[aktiv]<Z[aktiv].max){stand[aktiv]=Math.min(Z[aktiv].max,stand[aktiv]+dt*.32);zeichneFuellung(aktiv);}
+    requestAnimationFrame(schleife);
+  }
+  setze(0,'start');winkel=zielWinkel;zeichneHahn(winkel);
+  if(!reduziert)requestAnimationFrame(schleife);
+
+  window.pdfZustand=function(){
+    stand=[.7,.62,.45];[0,1,2].forEach(zeichneFuellung);
+    setze(1);winkel=zielWinkel;zeichneHahn(winkel);
+    kap.forEach(function(a){a.classList.add('aktiv')});
+  };
+})();
+</script>
+</body>
+</html>
