@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wygarte – Entwurf Einschenken</title>
+<meta name="description" content="Demo-Entwurf von Max Rathsack für Rebbau Steffisburg – Wygarte: Steffisburger Wein, bio-dynamisch, Thunersee AOC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kreide:#f8f6f0;
+  --kreide-2:#efebe1;
+  --papier:#ffffff;
+  --tinte:#1f241c;
+  --leise:#5d6457;
+  --rebe:#4f7a2c;
+  --rebe-hell:#dfe8cf;
+  --rot:#7d1c2c;
+  --rot-hell:#f3dfe1;
+  --linie:#ddd8cb;
+  --grot:"Hanken Grotesk",system-ui,sans-serif;
+  --serif:"Instrument Serif",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--kreide);color:var(--tinte);font-family:var(--grot);font-size:16.5px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+.demo{background:var(--tinte);color:#f2efe6;font-size:12.5px;font-weight:500;text-align:center;padding:7px 14px;line-height:1.35}
+.wrap{max-width:540px;margin:0 auto;padding:0 20px}
+
+/* Kopf */
+.kopf{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 0;max-width:540px;margin:0 auto}
+.marke{display:flex;align-items:center;gap:9px;text-decoration:none}
+.marke svg{width:30px;height:30px}
+.marke b{font-family:var(--serif);font-weight:400;font-size:27px;letter-spacing:.01em;line-height:1}
+.kopf nav a{font-size:14px;font-weight:600;text-decoration:none;color:var(--rebe);border-bottom:1.5px solid currentColor;padding-bottom:1px}
+
+/* Held */
+.held{padding:30px 0 10px}
+.ueberzeile{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rebe);margin:0 0 12px;display:flex;gap:8px;align-items:center}
+.ueberzeile::before{content:"";width:22px;height:2px;background:currentColor}
+h1{font-family:var(--grot);font-weight:800;font-size:clamp(2.5rem,12.4vw,3.6rem);line-height:.98;letter-spacing:-.035em;margin:0 0 14px}
+h1 em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em;color:var(--rot)}
+.lead{font-size:17.5px;color:#3a4035;margin:0 0 22px;max-width:30em}
+.siegel{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.siegel li{font-size:13px;font-weight:600;border:1.5px solid var(--linie);border-radius:99px;padding:5px 11px;background:var(--papier)}
+.siegel li b{color:var(--rebe)}
+
+/* Einschenken */
+.schank{margin:8px 0 0;background:var(--papier);border:1px solid var(--linie);border-radius:22px;padding:18px 16px 18px;position:relative}
+.schank h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,8.6vw,2.4rem);line-height:1.05;margin:2px 0 4px}
+.schank .hilfe{font-size:14.5px;color:var(--leise);margin:0 0 10px}
+.sorten{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 0 6px}
+.sorte{appearance:none;border:1.5px solid var(--linie);background:var(--kreide);border-radius:14px;padding:9px 6px 8px;font:inherit;font-size:13.5px;font-weight:700;line-height:1.2;cursor:pointer;color:var(--tinte);display:flex;flex-direction:column;align-items:center;gap:5px;min-height:62px}
+.sorte i{width:16px;height:16px;border-radius:50%;display:block;border:1.5px solid rgba(0,0,0,.15)}
+.sorte span{font-weight:500;font-size:11.5px;color:var(--leise)}
+.sorte[aria-pressed="true"]{border-color:var(--tinte);background:var(--papier);box-shadow:0 0 0 2px var(--tinte) inset}
+.buehne{position:relative;touch-action:none;user-select:none;-webkit-user-select:none}
+.buehne svg{display:block;width:100%;height:auto}
+#flasche{cursor:grab}
+.buehne.zieht #flasche{cursor:grabbing}
+.tipp{position:absolute;left:40px;top:6px;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--rot);pointer-events:none;transition:opacity .4s}
+.tipp.weg{opacity:0}
+.knopfreihe{display:flex;gap:8px;margin-top:4px}
+.schenk-knopf{flex:1;appearance:none;border:0;border-radius:12px;background:var(--rot);color:#fff;font:inherit;font-weight:700;font-size:16px;min-height:50px;cursor:pointer}
+.leer-knopf{appearance:none;border:1.5px solid var(--linie);border-radius:12px;background:transparent;font:inherit;font-weight:600;font-size:14px;padding:0 14px;cursor:pointer;color:var(--leise)}
+.fakten{margin-top:14px;border-top:1px dashed var(--linie);padding-top:14px;opacity:.28;transition:opacity .5s}
+.fakten.offen{opacity:1}
+.fakten .wer{font-family:var(--serif);font-size:30px;line-height:1.05;margin:0 0 4px}
+.fakten .art{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
+.fakten dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+.fakten dl div{background:var(--kreide);border-radius:12px;padding:10px 12px}
+.fakten dt{font-size:12px;font-weight:600;color:var(--leise);text-transform:uppercase;letter-spacing:.08em}
+.fakten dd{margin:2px 0 0;font-weight:700;font-size:17px;line-height:1.25}
+.fakten p.zus{font-size:14.5px;color:#3d4339;margin:12px 0 0}
+.fakten .wart{font-size:14px;color:var(--leise);font-style:italic;margin:0 0 6px}
+.fakten.offen .wart{display:none}
+
+/* Abschnitte */
+section.abschnitt{padding:46px 0 0}
+.kicker{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rebe);margin:0 0 8px}
+h2.gross{font-weight:800;font-size:clamp(1.9rem,8.4vw,2.5rem);line-height:1.04;letter-spacing:-.03em;margin:0 0 14px}
+h2.gross em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:0;color:var(--rot)}
+p{margin:0 0 14px}
+
+.boden{display:grid;gap:12px;margin-top:6px}
+.bkarte{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;background:var(--papier);border:1px solid var(--linie);border-radius:16px;padding:14px}
+.bkarte svg{width:54px;height:54px}
+.bkarte h3{margin:0 0 3px;font-size:17px}
+.bkarte p{margin:0;font-size:15px;color:#3d4339}
+
+.bestellen{background:var(--rebe);color:#fff;border-radius:22px;padding:24px 20px 22px;margin-top:6px}
+.bestellen h2{color:#fff}
+.bestellen h2 em{color:#f1e6c0}
+.bestellen ol{list-style:none;padding:0;margin:0 0 18px;counter-reset:s}
+.bestellen li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;padding:9px 0;border-top:1px solid rgba(255,255,255,.22);font-size:15.5px}
+.bestellen li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:#fff;color:var(--rebe);font-weight:800;display:grid;place-items:center;font-size:14px}
+.knopf{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:14px;font-weight:700;font-size:17.5px;text-decoration:none;margin-top:10px}
+.knopf svg{width:22px;height:22px}
+.knopf.tel{background:#fff;color:var(--rebe)}
+.knopf.mail{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+.platz{border:2px dashed #b9b2a1;border-radius:14px;padding:14px;color:#6a6252;background:rgba(255,255,255,.5);font-size:14.5px;font-weight:600}
+.bestellen .platz{border-color:rgba(255,255,255,.65);color:#fff;background:rgba(255,255,255,.08);margin-top:16px}
+
+.foto{border-radius:18px;overflow:hidden;border:1px solid var(--linie);background:var(--papier);margin:4px 0 0}
+.foto svg{display:block;width:100%;height:auto}
+.foto small{display:block;padding:8px 14px;font-size:12.5px;color:var(--leise);border-top:1px solid var(--linie)}
+
+.hof{display:grid;gap:12px}
+.hkarte{background:var(--papier);border:1px solid var(--linie);border-radius:16px;padding:16px}
+.hkarte h3{margin:0 0 4px;font-size:19px;display:flex;align-items:center;gap:8px}
+.hkarte h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--rot)}
+.hkarte p{font-size:15px;color:#3d4339;margin:0 0 8px}
+.hkarte a.zeile{font-weight:700;color:var(--rot);text-decoration:none;font-size:15.5px}
+.hkarte .platz{margin-top:8px;font-size:13.5px}
+
+.gaeste{list-style:none;padding:0;margin:0 0 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gaeste li{background:var(--rebe-hell);border-radius:12px;padding:12px;font-weight:600;font-size:15px;line-height:1.3}
+.gaeste li:nth-child(5){grid-column:1/-1;background:var(--rot-hell)}
+
+.kontakt{margin:46px 0 0;padding:26px 20px 24px;background:var(--tinte);color:#f1eee6;border-radius:22px}
+.kontakt h2{color:#fff;margin-bottom:10px}
+.kontakt h2 em{color:#e7b9c0}
+.kontakt address{font-style:normal;font-size:16px;margin:0 0 8px;line-height:1.5}
+.kontakt .knopf.tel{background:var(--rot);color:#fff}
+.kontakt .knopf.res{background:#f1eee6;color:var(--tinte)}
+.kontakt .knopf.mail{border-color:rgba(255,255,255,.45)}
+.kontakt .knopf span{display:flex;flex-direction:column;line-height:1.15;align-items:flex-start}
+.kontakt .knopf small{font-weight:500;font-size:12.5px;opacity:.8}
+footer{padding:26px 20px 40px;font-size:13px;color:var(--leise);text-align:center;max-width:540px;margin:0 auto}
+
+/* PDF */
+html.pdf .tipp{display:none}
+html.pdf .fakten{opacity:1}
+html.pdf *{animation:none!important;transition:none!important}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Rebbau Steffisburg – Wygarte</div>
+
+<header class="kopf">
+  <a class="marke" href="#" aria-label="Wygarte">
+    <svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 3c2 2 2.4 4 1.6 6" fill="none" stroke="#4f7a2c" stroke-width="1.8" stroke-linecap="round"/><path d="M16.4 6.5c3-1.6 6.2-.6 7.4 1.4-2.6 1.4-5.4.9-7.4-1.4z" fill="#4f7a2c"/><g fill="#7d1c2c"><circle cx="11" cy="12" r="3"/><circle cx="17.2" cy="12" r="3"/><circle cx="14.1" cy="17" r="3"/><circle cx="8.3" cy="16.6" r="2.6"/><circle cx="19.9" cy="16.6" r="2.6"/><circle cx="11.1" cy="21.8" r="2.6"/><circle cx="17.1" cy="21.8" r="2.6"/><circle cx="14.1" cy="26" r="2.4"/></g></svg>
+    <b>Wygarte</b>
+  </a>
+  <nav><a href="#bestellen">Wein bestellen</a></nav>
+</header>
+
+<main class="wrap">
+  <section class="held">
+    <p class="ueberzeile">Rebbau Steffisburg</p>
+    <h1>Steffisburger <em>Wein.</em></h1>
+    <p class="lead">Das einzige Weingut in Steffisburg. Thunersee AOC, bio-dynamisch gepflegt nach den Richtlinien von Bio Suisse und Demeter.</p>
+    <ul class="siegel">
+      <li><b>Thunersee</b> AOC</li>
+      <li>Bio Suisse &amp; <b>Demeter</b>-Richtlinien</li>
+      <li>Slow Food «<b>Slow Wine</b>»</li>
+    </ul>
+
+    <div class="schank" id="schank">
+      <p class="kicker">Probieren Sie</p>
+      <h2>Schenken Sie sich <em style="font-style:italic;color:var(--rot)">ein.</em></h2>
+      <p class="hilfe">Sorte wählen, dann die Flasche nach rechts kippen – oder einfach antippen.</p>
+      <div class="sorten" role="group" aria-label="Rebsorte wählen">
+        <button class="sorte" data-sorte="regent" aria-pressed="true"><i style="background:#7a1a2e"></i>Regent<span>rot</span></button>
+        <button class="sorte" data-sorte="solaris" aria-pressed="false"><i style="background:#e9cf6a"></i>Solaris<span>weiss</span></button>
+        <button class="sorte" data-sorte="sauvignon" aria-pressed="false"><i style="background:#dfe0a2"></i>Sauvignon Soyhières<span>weiss</span></button>
+      </div>
+
+      <div class="buehne" id="buehne">
+        <span class="tipp" id="tipp">Flasche nach rechts kippen →</span>
+        <svg viewBox="-26 0 366 300" aria-label="Gezeichnete Weinflasche und Weinglas">
+          <defs>
+            <clipPath id="kelch"><path d="M200 168 C198 205 205 236 230 240 C255 236 262 205 260 168 Z"/></clipPath>
+            <linearGradient id="glanz" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          </defs>
+          <!-- Tischkante -->
+          <path d="M-16 286 H332" stroke="#ddd8cb" stroke-width="2" stroke-linecap="round"/>
+          <path d="M40 292 H300" stroke="#ece8dd" stroke-width="2" stroke-linecap="round"/>
+          <!-- Rebblatt Deko -->
+          <g opacity=".9" transform="translate(286 40) rotate(18)">
+            <path d="M0 -22 C10 -18 18 -8 16 4 C22 6 22 14 16 16 C10 26 -10 26 -16 16 C-22 14 -22 6 -16 4 C-18 -8 -10 -18 0 -22Z" fill="#dfe8cf" stroke="#4f7a2c" stroke-width="1.4"/>
+            <path d="M0 -18 V20 M0 0 L11 -8 M0 0 L-11 -8 M0 9 L12 10 M0 9 L-12 10" stroke="#4f7a2c" stroke-width="1.1" fill="none"/>
+          </g>
+          <!-- Glas -->
+          <g id="glas">
+            <ellipse cx="230" cy="286" rx="30" ry="5" fill="#ece8dd"/>
+            <g clip-path="url(#kelch)">
+              <rect id="wein" x="190" y="240" width="80" height="80" fill="#7a1a2e"/>
+              <rect id="weinglanz" x="190" y="240" width="80" height="3" fill="#fff" opacity=".35"/>
+            </g>
+            <path d="M200 168 C198 205 205 236 230 240 C255 236 262 205 260 168" fill="none" stroke="#1f241c" stroke-width="2.2" stroke-linejoin="round"/>
+            <ellipse cx="230" cy="168" rx="30" ry="4.5" fill="none" stroke="#1f241c" stroke-width="1.6"/>
+            <path d="M210 178 C209 200 212 218 220 228" fill="none" stroke="url(#glanz)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M230 240 V282" stroke="#1f241c" stroke-width="2.2"/>
+            <path d="M206 285 C214 280 246 280 254 285" fill="none" stroke="#1f241c" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+          <!-- Strahl -->
+          <path id="strahl" d="" fill="none" stroke="#7a1a2e" stroke-width="4" stroke-linecap="round" opacity="0"/>
+          <!-- Flasche: Drehpunkt 118/150 -->
+          <g id="flasche" transform="translate(118 150) rotate(0)">
+            <rect x="-60" y="-120" width="120" height="250" fill="transparent"/>
+            <path d="M-29 118 V0 C-29 -22 -12 -32 -10 -52 V-96 H10 V-52 C12 -32 29 -22 29 0 V118 C29 124 25 127 19 127 H-19 C-25 127 -29 124 -29 118Z" fill="#2f4a22" stroke="#1f241c" stroke-width="2.2"/>
+            <path d="M-19 -2 C-19 -14 -12 -22 -8 -30" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-21 10 V110" stroke="#fff" stroke-opacity=".2" stroke-width="4" stroke-linecap="round"/>
+            <rect x="-11.5" y="-112" width="23" height="18" rx="2.5" id="kapsel" fill="#7a1a2e" stroke="#1f241c" stroke-width="2"/>
+            <!-- Etikett -->
+            <rect x="-24" y="20" width="48" height="74" rx="3" fill="#f8f6f0" stroke="#1f241c" stroke-width="1.6"/>
+            <text x="0" y="38" text-anchor="middle" font-family="Instrument Serif, Georgia, serif" font-size="12" fill="#1f241c">Wygarte</text>
+            <path d="M-14 44 H14" stroke="#4f7a2c" stroke-width="1"/>
+            <text id="etikett" x="0" y="60" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="800" font-size="10" fill="#7a1a2e">REGENT</text>
+            <text x="0" y="74" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="5.6" fill="#5d6457" letter-spacing=".2">THUNERSEE AOC</text>
+            <text x="0" y="84" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="6.2" fill="#5d6457">Steffisburg</text>
+          </g>
+          <!-- Füllstand-Marke -->
+          <text id="prozent" x="292" y="210" font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="20" fill="#7d1c2c" opacity="0">0 dl</text>
+        </svg>
+      </div>
+      <div class="knopfreihe">
+        <button class="schenk-knopf" id="schenkknopf">Einschenken</button>
+        <button class="leer-knopf" id="leerknopf">Glas leeren</button>
+      </div>
+
+      <div class="fakten" id="fakten" aria-live="polite">
+        <p class="wart">Füllen Sie das Glas – dann erfahren Sie mehr über die Sorte.</p>
+        <p class="wer" id="f-name">Regent</p>
+        <p class="art" id="f-art" style="color:#7a1a2e">Rote Sorte</p>
+        <dl>
+          <div><dt>Fläche</dt><dd id="f-flaeche">ca. 1 ha</dd></div>
+          <div><dt>Im Rebberg</dt><dd id="f-seit">seit über 20 Jahren</dd></div>
+        </dl>
+        <p class="zus" id="f-zus">Die rote Sorte wächst schon seit über 20 Jahren im Steffisburger Rebberg.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt">
+    <p class="kicker">Im Rebberg</p>
+    <h2 class="gross">Bio-dynamisch <em>gepflegt.</em></h2>
+    <p>In Steffisburg wächst der Wein nach den Richtlinien von Bio Suisse und Demeter. Die Weine tragen die Herkunft «Thunersee AOC» und sind bei Slow Food im «Slow Wine» eingetragen.</p>
+    <div class="boden">
+      <div class="bkarte">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#f3dfe1"/><g fill="#7a1a2e"><circle cx="21" cy="21" r="5"/><circle cx="31" cy="21" r="5"/><circle cx="26" cy="29.5" r="5"/><circle cx="18" cy="30" r="4.4"/><circle cx="34" cy="30" r="4.4"/><circle cx="22" cy="38" r="4.2"/><circle cx="30" cy="38" r="4.2"/></g><path d="M26 15 C26 11 28 9 31 8" stroke="#4f7a2c" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div><h3>Regent – seit über 20 Jahren</h3><p>Die rote Sorte wächst auf rund einer Hektare.</p></div>
+      </div>
+      <div class="bkarte">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#f4edcf"/><g fill="#d8b84a" stroke="#a58a2a" stroke-width=".8"><circle cx="21" cy="21" r="5"/><circle cx="31" cy="21" r="5"/><circle cx="26" cy="29.5" r="5"/><circle cx="18" cy="30" r="4.4"/><circle cx="34" cy="30" r="4.4"/><circle cx="22" cy="38" r="4.2"/><circle cx="30" cy="38" r="4.2"/></g><path d="M26 15 C26 11 28 9 31 8" stroke="#4f7a2c" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div><h3>Weisse Sorten seit 2016</h3><p>Solaris und Sauvignon Soyhières auf rund 0,3 ha – der erste Weisswein kam 2018.</p></div>
+      </div>
+      <div class="bkarte">
+        <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="26" fill="#dfe8cf"/><path d="M27 42 V20" stroke="#4f7a2c" stroke-width="2.4" stroke-linecap="round"/><path d="M27 26 C19 26 15 20 15 14 C22 14 27 18 27 26Z M27 22 C33 22 39 18 39 11 C32 11 27 15 27 22Z" fill="#4f7a2c"/><path d="M14 42 H40" stroke="#7a5a3a" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div><h3>Bio Suisse &amp; Demeter</h3><p>Gepflegt nach bio-dynamischen Richtlinien – eingetragen bei Slow Food «Slow Wine».</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt">
+    <figure class="foto" style="margin:0">
+      <svg viewBox="0 0 400 230" aria-label="Gezeichneter Rebberg">
+        <rect width="400" height="230" fill="#f1ede2"/>
+        <path d="M0 120 L60 74 L96 96 L150 52 L200 90 L246 60 L300 96 L350 70 L400 92 V230 H0Z" fill="#dfe3e6"/>
+        <path d="M150 52 L166 64 L158 64 L150 58 L140 66Z" fill="#fff"/>
+        <path d="M0 150 C80 128 170 140 240 126 C300 116 360 122 400 116 V230 H0Z" fill="#c9d9b0"/>
+        <path d="M0 176 C90 154 200 160 400 140 V230 H0Z" fill="#9db877"/>
+        <g stroke="#4f7a2c" stroke-width="2" fill="none" stroke-linecap="round">
+          <path d="M-10 196 C100 174 220 172 410 152"/><path d="M-10 214 C100 192 220 190 410 170"/><path d="M-10 232 C100 210 220 208 410 188"/>
+        </g>
+        <g fill="#4f7a2c">
+          <circle cx="40" cy="186" r="5"/><circle cx="90" cy="178" r="5"/><circle cx="140" cy="172" r="5"/><circle cx="190" cy="168" r="5"/><circle cx="240" cy="164" r="5"/><circle cx="290" cy="160" r="5"/><circle cx="340" cy="155" r="5"/>
+          <circle cx="60" cy="202" r="5.5"/><circle cx="115" cy="195" r="5.5"/><circle cx="170" cy="190" r="5.5"/><circle cx="225" cy="185" r="5.5"/><circle cx="280" cy="180" r="5.5"/><circle cx="335" cy="174" r="5.5"/>
+        </g>
+        <g fill="#7a1a2e"><circle cx="117" cy="200" r="2.4"/><circle cx="227" cy="190" r="2.4"/><circle cx="62" cy="207" r="2.4"/></g>
+        <circle cx="330" cy="40" r="16" fill="#f3e2a6"/>
+      </svg>
+      <small>Gezeichneter Platzhalter – hier später Ihr eigenes Foto vom Rebberg</small>
+    </figure>
+  </section>
+
+  <section class="abschnitt" id="bestellen">
+    <div class="bestellen">
+      <p class="kicker" style="color:#dfe8cf">Wein bestellen</p>
+      <h2 class="gross">Einfach anrufen <em>oder schreiben.</em></h2>
+      <ol>
+        <li><span>Telefonisch oder per E-Mail bestellen.</span></li>
+        <li><span>Postversand ist möglich.</span></li>
+        <li><span>Abholen jederzeit nach Absprache – am Ortbühlweg 53 in Steffisburg.</span></li>
+      </ol>
+      <a class="knopf tel" href="tel:+41763291211"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>076 329 12 11 anrufen</a>
+      <a class="knopf mail" href="mailto:mail@wygarte.ch?subject=Weinbestellung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>mail@wygarte.ch</a>
+      <div class="platz">[Platzhalter: Weinliste mit Jahrgängen und Preisen – bitte zusenden]</div>
+    </div>
+  </section>
+
+  <section class="abschnitt">
+    <p class="kicker">Mehr vom Hof</p>
+    <h2 class="gross">Hofbeiz, Hofladen, <em>Acker.</em></h2>
+    <div class="hof">
+      <div class="hkarte">
+        <h3>Hofbeiz</h3>
+        <p>Saisonal geöffnet: Pizza und Salate aus regionalen Produkten, dazu ein Degustationsraum. Auch für Firmen-Apéros mit Führung.</p>
+        <a class="zeile" href="tel:+41794283048">Reservation: 079 428 30 48</a>
+        <div class="platz">[Öffnungszeiten Hofbeiz bitte bestätigen – saisonal, ca. Frühling bis Herbst, Ende Woche]</div>
+      </div>
+      <div class="hkarte">
+        <h3>Hofladen</h3>
+        <p>Den ganzen Tag offen – mit Buchweizen, Haferflocken, grünen Linsen und der Mischung für «Körner-Börger».</p>
+      </div>
+      <div class="hkarte">
+        <h3>Ackerbau</h3>
+        <p>Auf rund 8 ha wachsen Weizen, Dinkel, Hafer und Buchweizen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="abschnitt">
+    <p class="kicker">Was Gäste schätzen</p>
+    <h2 class="gross">Gerne <em>wieder.</em></h2>
+    <p>Das heben Besucherinnen und Besucher immer wieder hervor:</p>
+    <ul class="gaeste">
+      <li>Die Aussicht</li>
+      <li>Der Wein</li>
+      <li>Die Pizza</li>
+      <li>Gemütlich unter den Bäumen</li>
+      <li>Team-Events mit Apéro und Führung</li>
+    </ul>
+    <div class="platz">[Google-Bewertung einfügen]</div>
+  </section>
+
+  <section class="kontakt">
+    <p class="kicker" style="color:#c9d9b0">Kontakt</p>
+    <h2 class="gross">Bis bald <em>in Steffisburg.</em></h2>
+    <address>Rebbau Steffisburg – Wygarte<br>Andreas Lanz<br>Ortbühlweg 53, 3612 Steffisburg</address>
+    <a class="knopf tel" href="tel:+41763291211"><span>076 329 12 11<small>Weinverkauf</small></span></a>
+    <a class="knopf res" href="tel:+41794283048"><span>079 428 30 48<small>Reservation Hofbeiz</small></span></a>
+    <a class="knopf mail" href="mailto:mail@wygarte.ch">mail@wygarte.ch</a>
+  </section>
+</main>
+<footer>Rebbau Steffisburg – Andreas Lanz · Einzelunternehmen · <span style="white-space:nowrap">CHE-112.704.769</span><br>Inhaber: Andreas Lanz</footer>
+
+<script>
+(function(){
+  var SORTEN={
+    regent:{name:'Regent',art:'Rote Sorte',farbe:'#7a1a2e',etikett:'REGENT',flaeche:'ca. 1 ha',seit:'seit über 20 Jahren',zus:'Die rote Sorte wächst schon seit über 20 Jahren im Steffisburger Rebberg.'},
+    solaris:{name:'Solaris',art:'Weisse Sorte',farbe:'#e3c457',etikett:'SOLARIS',flaeche:'Teil von ca. 0,3 ha',seit:'seit 2016',zus:'Gepflanzt 2016 zusammen mit Sauvignon Soyhières. Der erste Weisswein kam 2018.'},
+    sauvignon:{name:'Sauvignon Soyhières',art:'Weisse Sorte',farbe:'#d6d98f',etikett:'SAUVIGNON',flaeche:'Teil von ca. 0,3 ha',seit:'seit 2016',zus:'Gepflanzt 2016 zusammen mit Solaris. Der erste Weisswein kam 2018.'}
+  };
+  var $=function(id){return document.getElementById(id)};
+  var flasche=$('flasche'),wein=$('wein'),glanz=$('weinglanz'),strahl=$('strahl'),buehne=$('buehne'),fakten=$('fakten'),prozent=$('prozent'),tipp=$('tipp');
+  var svg=buehne.querySelector('svg');
+  var PX=118,PY=150,L=104; // Drehpunkt, Abstand zur Öffnung
+  var winkel=0,ziel=0,fuell=0,sorte='regent',zieht=false,auto=false,startX=0,startW=0,bewegt=false,letzte=0;
+  var BODEN=240,HOEHE=72; // Glas: Boden bei y=240, randvoll bei 168
+
+  function wahl(k){
+    sorte=k;var s=SORTEN[k];
+    document.querySelectorAll('.sorte').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.sorte===k?'true':'false')});
+    $('etikett').textContent=s.etikett;$('etikett').setAttribute('fill',k==='regent'?'#7a1a2e':'#8a7420');
+    $('kapsel').setAttribute('fill',k==='regent'?'#7a1a2e':'#c9a83a');
+    flasche.querySelector('path').setAttribute('fill',k==='regent'?'#2f4a22':'#6f8a4a');
+    wein.setAttribute('fill',s.farbe);strahl.setAttribute('stroke',s.farbe);
+    $('f-name').textContent=s.name;$('f-art').textContent=s.art;$('f-art').style.color=k==='regent'?'#7a1a2e':'#8a7420';
+    $('f-flaeche').textContent=s.flaeche;$('f-seit').textContent=s.seit;$('f-zus').textContent=s.zus;
+    fuell=0;fakten.classList.remove('offen');zeichne();
+  }
+  document.querySelectorAll('.sorte').forEach(function(b){b.addEventListener('click',function(){wahl(b.dataset.sorte)})});
+
+  function zeichne(){
+    flasche.setAttribute('transform','translate('+PX+' '+PY+') rotate('+winkel.toFixed(2)+')');
+    var y=BODEN-fuell*HOEHE;
+    wein.setAttribute('y',y.toFixed(2));glanz.setAttribute('y',(y-0.5).toFixed(2));
+    glanz.setAttribute('opacity',fuell>0.02?.35:0);
+    var r=winkel*Math.PI/180;
+    var tx=PX+L*Math.sin(r)+10*Math.cos(r)*0, ty=PY-L*Math.cos(r);
+    if(winkel>82){
+      var st=Math.min(1,(winkel-82)/25);
+      var zielX=230+(tx-230)*0.15;
+      strahl.setAttribute('d','M'+tx.toFixed(1)+' '+ty.toFixed(1)+' Q'+(tx+6).toFixed(1)+' '+(ty+12).toFixed(1)+' '+zielX.toFixed(1)+' '+(y-1).toFixed(1));
+      strahl.setAttribute('opacity',st);strahl.setAttribute('stroke-width',(2+st*3).toFixed(1));
+    }else{strahl.setAttribute('opacity',0)}
+    var dl=Math.round(fuell*15)/10;
+    prozent.textContent=dl.toFixed(1).replace('.',',')+' dl';
+    prozent.setAttribute('opacity',fuell>0.01?1:0);
+    if(fuell>=0.55&&!fakten.classList.contains('offen'))fakten.classList.add('offen');
+  }
+
+  function takt(t){
+    if(window.eingefroren){requestAnimationFrame(takt);return}
+    var dt=Math.min(0.05,(t-(letzte||t))/1000);letzte=t;
+    if(!zieht){winkel+=(ziel-winkel)*Math.min(1,dt*7)}
+    if(winkel>82&&fuell<1){fuell=Math.min(1,fuell+dt*0.42*Math.min(1,(winkel-82)/25+0.25))}
+    if(auto&&fuell>=0.82){auto=false;ziel=0}
+    zeichne();requestAnimationFrame(takt);
+  }
+  requestAnimationFrame(takt);
+
+  function einschenken(){tipp.classList.add('weg');if(fuell>=1){fuell=0;fakten.classList.remove('offen')}auto=true;ziel=108}
+  $('schenkknopf').addEventListener('click',einschenken);
+  $('leerknopf').addEventListener('click',function(){fuell=0;auto=false;ziel=0;fakten.classList.remove('offen')});
+
+  function pt(e){var b=svg.getBoundingClientRect();return (e.clientX-b.left)*366/b.width}
+  flasche.addEventListener('pointerdown',function(e){zieht=true;auto=false;bewegt=false;startX=pt(e);startW=winkel;buehne.classList.add('zieht');tipp.classList.add('weg');try{flasche.setPointerCapture(e.pointerId)}catch(_){};e.preventDefault()});
+  flasche.addEventListener('pointermove',function(e){if(!zieht)return;var dx=pt(e)-startX;if(Math.abs(dx)>4)bewegt=true;winkel=Math.max(0,Math.min(118,startW+dx*0.9))});
+  function los(){if(!zieht)return;zieht=false;buehne.classList.remove('zieht');if(!bewegt){einschenken()}else{ziel=0}}
+  flasche.addEventListener('pointerup',los);flasche.addEventListener('pointercancel',los);
+
+  window.zwischenzustand=function(){window.eingefroren=true;wahl('regent');winkel=ziel=100;fuell=0.7;auto=false;zeichne();fakten.classList.add('offen')};
+  zeichne();
+})();
+</script>
+</body>
+</html>

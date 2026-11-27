@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schlüssel-Shop, Oliver Galli – Entwurf Stiftzylinder</title>
+<meta name="description" content="Demo-Entwurf von Max Rathsack für den Schlüssel-Shop von Oliver Galli in Thun: Schlüssel, Schlösser, Öffnungsdienst.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nacht:#0d1625;
+  --nacht-2:#14203a;
+  --anth:#1f252e;
+  --anth-2:#2b333e;
+  --stahl:#8d99a8;
+  --hell:#e9edf3;
+  --leise:#a7b1bf;
+  --orange:#ff6b1a;
+  --orange-d:#d9520a;
+  --gut:#5fd39a;
+  --schwer:"Archivo Black","Arial Black",sans-serif;
+  --text:"Archivo",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nacht);color:var(--hell);font-family:var(--text);font-size:16.5px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+.demo{background:#000;color:#ffd2b8;font-size:12.5px;font-weight:500;text-align:center;padding:8px 14px;line-height:1.35;border-bottom:2px solid var(--orange)}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+
+.kopf{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 18px;max-width:560px;margin:0 auto}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke b{display:block;font-family:var(--schwer);font-size:16px;letter-spacing:.01em;line-height:1.05;text-transform:uppercase}
+.marke small{display:block;font-size:12.5px;color:var(--leise)}
+.kopf-not{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#140a03;text-decoration:none;font-weight:700;font-size:14px;padding:9px 13px;border-radius:8px;white-space:nowrap}
+
+.hero{padding-top:22px;padding-bottom:6px}
+.kicker{display:inline-block;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--stahl);margin:0 0 12px}
+h1{font-family:var(--schwer);font-weight:400;font-size:clamp(2.2rem,11vw,3.3rem);line-height:1;letter-spacing:-.01em;margin:0 0 16px;text-transform:uppercase;hyphens:none}
+h1 span{color:var(--orange)}
+.lead{font-size:17.5px;color:#c9d1dc;margin:0 0 20px}
+
+.notkarte{background:linear-gradient(160deg,#1b2740,#121b2e);border:1px solid #2c3a58;border-radius:16px;padding:18px 16px 16px;margin:6px 0 0;position:relative;overflow:hidden}
+.notkarte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--orange)}
+.notkarte .t{font-family:var(--schwer);font-size:21px;text-transform:uppercase;margin:0 0 4px;letter-spacing:.01em}
+.notkarte p{margin:0 0 12px;color:#c9d1dc}
+.k{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:12px;font-weight:700;font-size:18px;text-decoration:none;padding:0 16px;text-align:center}
+.k-not{background:var(--orange);color:#140a03;box-shadow:0 6px 0 var(--orange-d)}
+.k-not:active{transform:translateY(3px);box-shadow:0 3px 0 var(--orange-d)}
+.k-mail{border:2px solid #3a4a6a;color:var(--hell)}
+.k:focus-visible,button:focus-visible,.kopf-not:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.ph{border:1.5px dashed #ff9a5c;background:rgba(255,107,26,.08);color:#ffd2b8;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.45}
+.ph-inline{display:inline-block;padding:5px 9px}
+.knoepfe{display:grid;gap:12px}
+
+.abschnitt{padding-top:50px;padding-bottom:8px}
+.ueber{font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin:0 0 8px}
+h2{font-family:var(--schwer);font-weight:400;font-size:clamp(1.65rem,8vw,2.25rem);line-height:1.05;text-transform:uppercase;margin:0 0 12px;hyphens:none}
+.abschnitt > p{color:#c9d1dc;margin:0 0 16px}
+
+/* Zylinder */
+.zylinder{background:var(--anth);border:1px solid var(--anth-2);border-radius:18px;padding:12px 10px 14px}
+#schloss{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+#schloss .stapel{cursor:pointer}
+#schloss .stapel:focus{outline:none}
+#schloss .stapel:focus-visible .rahmen{stroke:#fff;stroke-width:2}
+.anzeige{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 6px 4px;font-size:14px}
+.anzeige b{font-family:var(--schwer);font-weight:400;font-size:18px}
+#meldung{color:#c9d1dc;min-height:1.5em}
+.tasten{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:8px 2px 0}
+.tasten button{min-height:46px;border-radius:10px;border:1.5px solid #3a4658;background:#252c37;color:var(--hell);font-family:var(--text);font-weight:700;font-size:15px;cursor:pointer}
+.tasten button.ok{border-color:var(--gut);color:var(--gut)}
+.abkuerz{display:block;margin:12px auto 0;background:none;border:none;color:var(--leise);text-decoration:underline;font-family:var(--text);font-size:14px;cursor:pointer;padding:8px}
+
+.erklaer{list-style:none;padding:0;margin:18px 0 0;counter-reset:n}
+.erklaer li{position:relative;padding:0 0 14px 44px;color:#c9d1dc}
+.erklaer li::before{counter-increment:n;content:counter(n);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;border:2px solid var(--stahl);display:grid;place-items:center;font-weight:700;font-size:14px;color:var(--hell)}
+.erklaer b{color:var(--hell)}
+
+/* Tür */
+.tuerrahmen{position:relative;margin-top:22px;perspective:1400px;border-radius:14px}
+.hinter{background:var(--nacht-2);border:1px solid #2c3a58;border-radius:14px;padding:22px 16px 18px;min-height:560px;visibility:hidden}
+.tuerrahmen.offen .hinter{visibility:visible;animation:rein .7s .35s both}
+@keyframes rein{from{opacity:0}to{opacity:1}}
+.tuer{position:absolute;inset:0;border-radius:12px;transform-origin:left center;transition:transform 1.1s cubic-bezier(.6,.05,.3,1),opacity .4s 1s;background:linear-gradient(90deg,#26303d,#313c4b 50%,#26303d);border:3px solid #3e4b5c;overflow:hidden}
+.tuer svg{position:absolute;inset:0;width:100%;height:100%}
+.tuer .schild{position:absolute;left:0;right:0;top:46%;text-align:center;font-family:var(--schwer);font-size:15px;color:#8d99a8;letter-spacing:.08em;text-transform:uppercase}
+.tuerrahmen.offen .tuer{transform:rotateY(-104deg);opacity:0;pointer-events:none}
+.hinter h3{font-family:var(--schwer);font-weight:400;font-size:clamp(1.45rem,7vw,1.9rem);text-transform:uppercase;margin:0 0 8px;line-height:1.05}
+.hinter p{color:#c9d1dc;margin:0 0 14px}
+.daten{margin:22px 0 16px;border-top:1px solid #2c3a58}
+.daten div{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid #2c3a58}
+.daten dt{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--stahl);padding-top:2px}
+.daten dd{margin:0}
+.daten a{text-decoration:none;border-bottom:2px solid var(--orange)}
+
+/* Leistungen */
+.raster{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.leistung{background:var(--anth);border:1px solid var(--anth-2);border-radius:14px;padding:14px 12px}
+.leistung svg{display:block;margin-bottom:8px}
+.leistung h3{font-size:16px;line-height:1.25;margin:0 0 4px;font-weight:700}
+.leistung p{font-size:14px;color:var(--leise);margin:0}
+.leistung.breit{grid-column:1/-1;border-color:var(--orange)}
+
+.stimme{border-left:5px solid var(--orange);padding:4px 0 4px 16px;margin:0 0 16px}
+.stimme small{display:block;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--stahl);margin-bottom:6px}
+.stimme p{margin:0;font-size:18px;line-height:1.45}
+
+.team{display:grid;gap:10px;margin:16px 0 0}
+.person{display:flex;align-items:center;gap:14px;background:var(--anth);border-radius:14px;padding:12px}
+.person svg{flex:none}
+.person b{display:block;font-size:17px}
+.person span{color:var(--leise);font-size:14px}
+.fotohinweis{font-size:13px;color:var(--leise);margin:8px 0 0}
+.chronik{margin:18px 0 0;color:#c9d1dc}
+
+footer{margin-top:50px;border-top:1px solid #24304a;padding:24px 18px 32px;color:var(--leise);font-size:13.5px;line-height:1.7}
+footer b{color:var(--hell)}
+
+html.pdf *{animation:none !important;transition:none !important}
+html.pdf .hinter{visibility:visible;opacity:1}
+html.pdf .tuer{display:none}
+html.pdf .k-not{box-shadow:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Schlüssel-Shop, Oliver Galli</div>
+
+<header class="kopf">
+  <a class="marke" href="#top" aria-label="Schlüssel-Shop, Oliver Galli">
+    <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="18" fill="#1f252e" stroke="#8d99a8" stroke-width="2"/>
+      <circle cx="20" cy="20" r="11" fill="#2b333e" stroke="#ff6b1a" stroke-width="2"/>
+      <path d="M18 12h4v9l2 3h-8l2-3z" fill="#e9edf3"/>
+    </svg>
+    <span><b>Schlüssel-Shop</b><small>Oliver Galli · Thun</small></span>
+  </a>
+  <a class="kopf-not" href="tel:+41332227040">Notfall
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.4-1.6 2.4a12 12 0 0 0 7.1 7.1l2.4-1.6 3.4 2.6-1.4 3.1c-.3.6-1 .9-1.6.8C9.6 20.3 3.7 14.4 2.7 6.6c-.1-.7.2-1.3.8-1.6z" fill="currentColor"/></svg></a>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <p class="kicker">Schlüssel · Schlösser · Öffnungsdienst</p>
+    <h1>Schlösser verstehen wir <span>von innen.</span></h1>
+    <p class="lead">Schlüssel für alle Schliesssysteme, Schliessanlagen, Autoschlüssel und der Aufsperrdienst – vom Schlüssel-Shop an der Pestalozzistrasse 2A in Thun.</p>
+
+    <div class="notkarte" id="notfall">
+      <p class="t">Ausgesperrt?</p>
+      <p>Rufen Sie direkt an – wir öffnen Türen und Schlösser.</p>
+      <div class="knoepfe">
+        <a class="k k-not" href="tel:+41332227040">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.4-1.6 2.4a12 12 0 0 0 7.1 7.1l2.4-1.6 3.4 2.6-1.4 3.1c-.3.6-1 .9-1.6.8C9.6 20.3 3.7 14.4 2.7 6.6c-.1-.7.2-1.3.8-1.6z" fill="currentColor"/></svg>
+          033 222 70 40</a>
+        <div class="ph">[Platzhalter: Erreichbarkeit / Zeiten des Öffnungsdienstes bitte bestätigen]</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-zyl">
+    <p class="ueber">Blick ins Schloss</p>
+    <h2 id="t-zyl">Öffnen Sie den Zylinder.</h2>
+    <p>Tippen Sie auf die Stifte, um sie anzuheben. Liegen alle fünf Trennstellen genau auf der orangen Linie, dreht sich der Kern – und die Tür geht auf.</p>
+
+    <div class="zylinder">
+      <svg id="schloss" viewBox="0 0 400 330" role="group" aria-label="Querschnitt eines Profilzylinders mit fünf Stiftpaaren">
+        <defs>
+          <linearGradient id="gGeh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b6675"/><stop offset="1" stop-color="#434c58"/></linearGradient>
+          <linearGradient id="gKern" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aa6b4"/><stop offset=".5" stop-color="#b9c3cf"/><stop offset="1" stop-color="#7f8a98"/></linearGradient>
+          <linearGradient id="gStift" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b78a2c"/><stop offset=".45" stop-color="#ebc874"/><stop offset="1" stop-color="#a87c24"/></linearGradient>
+          <linearGradient id="gStift2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8e99a6"/><stop offset=".45" stop-color="#e1e6ec"/><stop offset="1" stop-color="#7d8895"/></linearGradient>
+        </defs>
+        <!-- Gehäuse -->
+        <rect x="24" y="28" width="352" height="142" rx="10" fill="url(#gGeh)"/>
+        <text x="298" y="52" font-family="Archivo, sans-serif" font-size="11" font-weight="700" fill="#c9d1dc" letter-spacing="1.2">GEHÄUSE</text>
+        <!-- Kern -->
+        <g id="kern">
+          <rect x="24" y="170" width="352" height="100" rx="10" fill="url(#gKern)"/>
+          <path d="M40 240h320v22H40z" fill="#2a313b"/>
+          <path d="M40 240h320" stroke="#1a1f26" stroke-width="2"/>
+          <text x="298" y="200" font-family="Archivo, sans-serif" font-size="11" font-weight="700" fill="#2a313b" letter-spacing="1.2">KERN</text>
+          <text x="352" y="255" text-anchor="end" font-family="Archivo, sans-serif" font-size="10" font-weight="600" fill="#8d99a8" letter-spacing="1">SCHLÜSSELKANAL</text>
+        </g>
+        <!-- Stifte (per Script) -->
+        <g id="stifte"></g>
+        <!-- Trennlinie -->
+        <line x1="18" y1="170" x2="382" y2="170" stroke="#ff6b1a" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <text x="298" y="163" font-family="Archivo, sans-serif" font-size="10.5" font-weight="700" fill="#ff8a45" letter-spacing="1">TRENNLINIE</text>
+        <!-- Anzeige-Lämpchen -->
+        <g id="lampen"></g>
+        <!-- Frontansicht -->
+        <g transform="translate(200,306)">
+          <text x="-170" y="4" font-family="Archivo, sans-serif" font-size="10.5" font-weight="700" fill="#8d99a8" letter-spacing="1">VON VORNE</text>
+        </g>
+        <g transform="translate(130,306)">
+          <circle r="17" fill="#434c58" stroke="#5b6675" stroke-width="2"/>
+          <g id="front"><circle r="11" fill="#b9c3cf"/><path d="M-2 -9h4v8l2 3v6h-8v-6l2-3z" fill="#2a313b"/></g>
+        </g>
+        <text id="frontText" x="158" y="310" font-family="Archivo, sans-serif" font-size="12" font-weight="600" fill="#c9d1dc">Kern blockiert</text>
+      </svg>
+      <div class="anzeige"><span id="meldung" aria-live="polite">Tippen Sie auf einen Stift.</span><b><span id="zahl">0</span>/5</b></div>
+      <div class="tasten" id="tasten">
+        <button type="button" data-i="0" aria-label="Stift 1 anheben">1</button>
+        <button type="button" data-i="1" aria-label="Stift 2 anheben">2</button>
+        <button type="button" data-i="2" aria-label="Stift 3 anheben">3</button>
+        <button type="button" data-i="3" aria-label="Stift 4 anheben">4</button>
+        <button type="button" data-i="4" aria-label="Stift 5 anheben">5</button>
+      </div>
+    </div>
+    <button class="abkuerz" id="abkuerz" type="button">Lieber gleich: Tür öffnen</button>
+
+    <ol class="erklaer">
+      <li><b>Federn drücken die Stifte nach unten.</b> Gehäusestift (silber) und Kernstift (messing) blockieren den Kern, solange ein Stift über die Trennlinie ragt.</li>
+      <li><b>Der richtige Schlüssel hebt jeden Stift genau so weit,</b> dass die Trennstelle auf der Linie liegt.</li>
+      <li><b>Dann lässt sich der Kern drehen.</b> Genau dieses Prinzip steckt in den Schlüsseln und Schliessanlagen, die wir anfertigen.</li>
+    </ol>
+
+    <div class="tuerrahmen" id="tuerrahmen">
+      <div class="hinter" id="hinter">
+        <p class="ueber">Tür ist offen</p>
+        <h3>Öffnungsdienst</h3>
+        <p>Ausgesperrt? Rufen Sie an – wir helfen Ihnen weiter.</p>
+        <div class="knoepfe">
+          <a class="k k-not" href="tel:+41332227040">Jetzt anrufen: 033 222 70 40</a>
+          <div class="ph">[Platzhalter: Erreichbarkeit / Zeiten des Öffnungsdienstes bitte bestätigen]</div>
+        </div>
+        <dl class="daten">
+          <div><dt>Adresse</dt><dd>Pestalozzistrasse 2A<br>3600 Thun</dd></div>
+          <div><dt>Telefon</dt><dd><a href="tel:+41332227040">033 222 70 40</a></dd></div>
+          <div><dt>E-Mail</dt><dd><a href="mailto:kontakt@schluessel-shop.ch">kontakt@schluessel-shop.ch</a></dd></div>
+          <div><dt>Laden</dt><dd><span class="ph ph-inline">[Öffnungszeiten bitte bestätigen]</span></dd></div>
+        </dl>
+        <a class="k k-mail" href="mailto:kontakt@schluessel-shop.ch">E-Mail schreiben</a>
+      </div>
+      <div class="tuer" id="tuer" aria-hidden="true">
+        <svg viewBox="0 0 300 560" preserveAspectRatio="none">
+          <rect x="22" y="24" width="256" height="220" rx="6" fill="none" stroke="#3e4b5c" stroke-width="3"/>
+          <rect x="22" y="300" width="256" height="236" rx="6" fill="none" stroke="#3e4b5c" stroke-width="3"/>
+        </svg>
+        <svg viewBox="0 0 60 120" style="left:auto;right:14px;top:calc(50% - 60px);width:60px;height:120px;inset:auto 14px auto auto;top:calc(50% - 30px)">
+          <rect x="18" y="0" width="24" height="110" rx="12" fill="#1c2128" stroke="#5b6675" stroke-width="2"/>
+          <rect x="-6" y="22" width="44" height="12" rx="6" fill="#b9c3cf"/>
+          <circle cx="30" cy="78" r="8" fill="#ff6b1a"/>
+          <path d="M28.5 73h3v7l1.5 2h-6l1.5-2z" fill="#1c2128"/>
+        </svg>
+        <div class="schild">Zylinder öffnen,<br>um einzutreten</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-leist">
+    <p class="ueber">Leistungen</p>
+    <h2 id="t-leist">Was wir machen.</h2>
+    <div class="raster">
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="10" cy="17" r="7" fill="none" stroke="#ff6b1a" stroke-width="2.5"/><path d="M17 15h14v4h-3l-1.5 2.5L25 19h-2l-1.5 2.5L20 19h-3z" fill="#e9edf3"/></svg><h3>Schlüssel für alle Schliesssysteme</h3><p>Ersatz und Nachschlüssel.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="8" width="16" height="20" rx="6" fill="none" stroke="#ff6b1a" stroke-width="2.5"/><circle cx="11" cy="15" r="2.4" fill="#e9edf3"/><path d="M19 16h12v3h-3v3h-3v-3h-6z" fill="#e9edf3"/></svg><h3>Autoschlüssel</h3><p>Auch mit Wegfahrsperre bzw. elektronisch.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="4" y="4" width="26" height="26" rx="4" fill="none" stroke="#ff6b1a" stroke-width="2.5"/><circle cx="17" cy="17" r="6" fill="none" stroke="#e9edf3" stroke-width="2.2"/><path d="M17 11v3M23 17h-3" stroke="#e9edf3" stroke-width="2"/></svg><h3>Möbel- und Tresorschlüssel</h3><p>Für Möbel und Tresore.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M9 15v-4a8 8 0 0 1 16 0v4" fill="none" stroke="#e9edf3" stroke-width="2.5"/><rect x="5" y="15" width="24" height="16" rx="3" fill="none" stroke="#ff6b1a" stroke-width="2.5"/><circle cx="17" cy="23" r="2.5" fill="#e9edf3"/></svg><h3>Schlösser restaurieren</h3><p>Restaurieren von Schlössern.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="6" width="28" height="6" rx="3" fill="none" stroke="#ff6b1a" stroke-width="2.5"/><path d="M10 12l12 14" stroke="#e9edf3" stroke-width="2.5"/><circle cx="22" cy="26" r="2.6" fill="#e9edf3"/></svg><h3>Türschliesser</h3><p>Montage von Türschliessern.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="4" y="4" width="11" height="11" rx="2" fill="none" stroke="#ff6b1a" stroke-width="2.2"/><rect x="19" y="4" width="11" height="11" rx="2" fill="none" stroke="#ff6b1a" stroke-width="2.2"/><rect x="4" y="19" width="11" height="11" rx="2" fill="none" stroke="#ff6b1a" stroke-width="2.2"/><circle cx="24.5" cy="24.5" r="5" fill="#e9edf3"/></svg><h3>Schliessanlagen</h3><p>Ein Schlüssel, viele Türen.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M6 28l16-16 4 4-16 16H6z" fill="none" stroke="#e9edf3" stroke-width="2.3"/><path d="M22 12l4-4 4 4-4 4" fill="none" stroke="#ff6b1a" stroke-width="2.3"/></svg><h3>Gravuren und Stempel</h3><p>Gravieren und Stempel anfertigen.</p></div>
+      <div class="leistung"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="7" y="3" width="20" height="28" rx="2" fill="none" stroke="#e9edf3" stroke-width="2.3"/><circle cx="22" cy="18" r="2.4" fill="#ff6b1a"/><path d="M27 31l-6-4" stroke="#ff6b1a" stroke-width="2.3"/></svg><h3>Aufsperrdienst</h3><p>Öffnungsdienst für Türen und Schlösser.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-stimme">
+    <p class="ueber">Kundschaft</p>
+    <h2 id="t-stimme">Wenn's schnell gehen muss.</h2>
+    <div class="stimme">
+      <small>Sinngemäss aus Google-Bewertungen</small>
+      <p>Gelobt werden Tempo und Hilfsbereitschaft – zum Beispiel ein Ersatz-Autoschlüssel innerhalb eines Tages, als Garagen nicht helfen konnten.</p>
+    </div>
+    <span class="ph ph-inline">[Google-Bewertung aktuell einsetzen: z.B. 4.9 ★]</span>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-team">
+    <p class="ueber">Team</p>
+    <h2 id="t-team">Wer für Sie öffnet.</h2>
+    <div class="team">
+      <div class="person"><svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="12" fill="#2b333e"/><circle cx="28" cy="22" r="9" fill="#8d99a8"/><path d="M11 50c2-10 9-15 17-15s15 5 17 15z" fill="#8d99a8"/></svg><div><b>Oliver Galli</b><span>Inhaber</span></div></div>
+      <div class="person"><svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="12" fill="#2b333e"/><circle cx="28" cy="22" r="9" fill="#8d99a8"/><path d="M11 50c2-10 9-15 17-15s15 5 17 15z" fill="#8d99a8"/></svg><div><b>Beat Galli</b><span>Gründer des Geschäfts, 1977</span></div></div>
+      <div class="person"><svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><rect width="56" height="56" rx="12" fill="#2b333e"/><circle cx="28" cy="22" r="9" fill="#8d99a8"/><path d="M11 50c2-10 9-15 17-15s15 5 17 15z" fill="#8d99a8"/></svg><div><b>Daniel Chavanne</b><span>Monteur</span></div></div>
+    </div>
+    <p class="fotohinweis">hier später Ihr eigenes Foto</p>
+    <p class="chronik">1977 gegründet von Beat Galli, seit 1984 unter dem Namen «Schlüssel-Shop», 1988 von Therese Gerber übernommen – heute führt Oliver Galli den Betrieb.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <b>Schlüssel-Shop, Oliver Galli</b> · Einzelunternehmen<br>
+    Pestalozzistrasse 2A, 3600 Thun · <a href="tel:+41332227040">033 222 70 40</a><br>
+    <a href="mailto:kontakt@schluessel-shop.ch">kontakt@schluessel-shop.ch</a><br>
+    CHE-206.610.014<br>
+    Entwurf / Demo von Max Rathsack
+  </div>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var S=170, BASIS=238, STUFE=10, MAX=5;
+  var XS=[66,116,166,216,266];
+  var ZIEL=[2,4,1,3,2];
+  var GEH=34;
+  var stufe=[0,0,0,0,0];
+  var offen=false;
+  var gStifte=document.getElementById('stifte');
+  var gLampen=document.getElementById('lampen');
+  var meldung=document.getElementById('meldung');
+  var zahl=document.getElementById('zahl');
+  var tasten=document.querySelectorAll('#tasten button');
+  var stapel=[];
+
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+
+  XS.forEach(function(x,i){
+    var g=el('g',{'class':'stapel',tabindex:'0',role:'button','aria-label':'Stift '+(i+1)+' anheben'});
+    g.appendChild(el('rect',{'class':'rahmen',x:x-15,y:44,width:30,height:BASIS-44,rx:4,fill:'#1a2029',stroke:'#11151b','stroke-width':1}));
+    var feder=el('polyline',{fill:'none',stroke:'#c9d1dc','stroke-width':1.8,'stroke-linejoin':'round'});
+    var geh=el('rect',{x:x-11,width:22,height:GEH,rx:3,fill:'url(#gStift2)',stroke:'#59636f','stroke-width':1});
+    var kern=el('path',{fill:'url(#gStift)',stroke:'#7a5a17','stroke-width':1});
+    g.appendChild(feder);g.appendChild(geh);g.appendChild(kern);
+    g.appendChild(el('rect',{x:x-15,y:44,width:30,height:BASIS-44,fill:'transparent'}));
+    gStifte.appendChild(g);
+    var lampe=el('circle',{cx:x,cy:284,r:5,fill:'#2b333e',stroke:'#5b6675','stroke-width':1.5});
+    gLampen.appendChild(lampe);
+    stapel.push({feder:feder,geh:geh,kern:kern,lampe:lampe,y:0,soll:0});
+    g.addEventListener('click',function(){heben(i);});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();heben(i);}});
+  });
+  // Beschriftungen
+  gStifte.appendChild(el('text',{x:298,y:96,'font-family':'Archivo, sans-serif','font-size':10,'font-weight':700,fill:'#c9d1dc'})).textContent='FEDER';
+
+  function kernLaenge(i){return (BASIS-S)-ZIEL[i]*STUFE;}
+
+  function zeichne(i,hub){
+    var x=XS[i], s=stapel[i];
+    var L=kernLaenge(i);
+    var unten=BASIS-hub, oben=unten-L;
+    s.kern.setAttribute('d','M'+(x-10)+' '+oben+'h20v'+(L-8)+'l-10 8l-10-8z');
+    var gTop=oben-GEH;
+    s.geh.setAttribute('y',gTop);
+    // Feder von 48 bis gTop
+    var pts=[], n=9, h=gTop-48;
+    for(var k=0;k<=n;k++){pts.push((x+(k===0||k===n?0:(k%2?8:-8)))+','+(48+h*k/n).toFixed(1));}
+    s.feder.setAttribute('points',pts.join(' '));
+  }
+
+  function bewegen(){
+    var aktiv=false;
+    stapel.forEach(function(s,i){
+      s.soll=stufe[i]*STUFE;
+      var d=s.soll-s.y;
+      if(Math.abs(d)>.3){s.y+=d*.25;aktiv=true;}else s.y=s.soll;
+      zeichne(i,s.y);
+    });
+    if(aktiv)requestAnimationFrame(bewegen);
+  }
+
+  function auswerten(){
+    var n=0;
+    stufe.forEach(function(v,i){
+      var ok=v===ZIEL[i];
+      if(ok)n++;
+      stapel[i].lampe.setAttribute('fill',ok?'#5fd39a':'#2b333e');
+      stapel[i].lampe.setAttribute('stroke',ok?'#5fd39a':'#5b6675');
+      tasten[i].classList.toggle('ok',ok);
+    });
+    zahl.textContent=n;
+    return n;
+  }
+
+  function heben(i){
+    if(offen)return;
+    stufe[i]=(stufe[i]+1)%(MAX+1);
+    var v=stufe[i], z=ZIEL[i], t;
+    if(v===0) t='Stift '+(i+1)+' fällt zurück – die Feder drückt ihn runter.';
+    else if(v<z) t='Stift '+(i+1)+': noch zu tief, Kernstift ragt ins Gehäuse.';
+    else if(v===z) t='Stift '+(i+1)+': passt genau auf die Trennlinie.';
+    else t='Stift '+(i+1)+': zu hoch – jetzt blockiert der Gehäusestift.';
+    meldung.textContent=t;
+    requestAnimationFrame(bewegen);
+    if(auswerten()===5) setTimeout(aufschliessen,450);
+  }
+
+  function aufschliessen(sofort){
+    if(offen)return; offen=true;
+    meldung.textContent='Alle Stifte auf der Linie – der Kern dreht!';
+    document.getElementById('frontText').textContent='Kern dreht – offen';
+    var front=document.getElementById('front'), kern=document.getElementById('kern');
+    var t0=null;
+    function dreh(ts){
+      if(!t0)t0=ts; var p=Math.min(1,(ts-t0)/700);
+      front.setAttribute('transform','rotate('+(p*90)+')');
+      var sy=1-Math.sin(p*Math.PI)*.12;
+      kern.setAttribute('transform','translate(0,'+(220*(1-sy))+') scale(1,'+sy+')');
+      if(p<1)requestAnimationFrame(dreh);
+      else setTimeout(function(){
+        document.getElementById('tuerrahmen').classList.add('offen');
+        if(!sofort) document.getElementById('tuerrahmen').scrollIntoView({behavior:'smooth',block:'start'});
+      },250);
+    }
+    requestAnimationFrame(dreh);
+  }
+
+  tasten.forEach(function(b){b.addEventListener('click',function(){heben(+b.dataset.i);});});
+  document.getElementById('abkuerz').addEventListener('click',function(){
+    stufe=ZIEL.slice();auswerten();requestAnimationFrame(bewegen);aufschliessen();
+  });
+
+  stapel.forEach(function(s,i){zeichne(i,0);});
+
+  window.pdfZustand=function(){
+    offen=true;
+    stufe=ZIEL.slice();
+    stapel.forEach(function(s,i){s.y=stufe[i]*STUFE;zeichne(i,s.y);});
+    auswerten();
+    meldung.textContent='Alle Stifte auf der Linie – der Kern dreht!';
+    document.getElementById('front').setAttribute('transform','rotate(90)');
+    document.getElementById('frontText').textContent='Kern dreht – offen';
+    document.getElementById('tuerrahmen').classList.add('offen');
+  };
+})();
+</script>
+</body>
+</html>

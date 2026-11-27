@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schlüssel-Shop, Oliver Galli – Entwurf Rohling</title>
+<meta name="description" content="Demo-Entwurf von Max Rathsack für den Schlüssel-Shop von Oliver Galli in Thun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --weiss:#f3f5f6;
+  --weiss-2:#e6eaec;
+  --linie:#d3d8db;
+  --graphit:#25292d;
+  --graphit-2:#3a4045;
+  --grau:#646c73;
+  --messing:#b8902f;
+  --messing-hell:#d8b75e;
+  --messing-dunkel:#8a6a1e;
+  --grot:"Space Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--weiss);color:var(--graphit);font-family:var(--grot);font-size:16.5px;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+.demo{background:var(--graphit);color:#f1e3b8;font-family:var(--mono);font-size:11.5px;text-align:center;padding:8px 14px;line-height:1.4}
+.wrap{max-width:560px;margin:0 auto;padding:0 18px}
+
+/* Kopf */
+.kopf{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;max-width:560px;margin:0 auto}
+.marke{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marke svg{flex:none}
+.marke b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.marke small{display:block;font-family:var(--mono);font-size:11px;color:var(--grau);letter-spacing:.04em}
+.kopf-tel{font-family:var(--mono);font-size:13px;font-weight:700;text-decoration:none;border:1.5px solid var(--graphit);border-radius:999px;padding:7px 12px;white-space:nowrap}
+
+/* Hero */
+.hero{padding-top:18px;padding-bottom:8px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--messing-dunkel);margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.kicker::before{content:"";width:22px;height:2px;background:var(--messing)}
+h1{font-size:clamp(2.3rem,11.5vw,3.5rem);line-height:.98;letter-spacing:-.035em;margin:0 0 16px;font-weight:700;hyphens:none}
+h1 em{font-style:normal;color:var(--messing);}
+.lead{font-size:17.5px;color:#3c4248;margin:0 0 22px}
+.knoepfe{display:grid;gap:10px;margin:0 0 18px}
+.k{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;border-radius:12px;font-weight:600;font-size:17px;text-decoration:none;padding:0 18px}
+.k-tel{background:var(--graphit);color:#fff}
+.k-mail{background:transparent;border:1.5px solid var(--graphit);color:var(--graphit)}
+.k-gold{background:var(--messing);color:var(--graphit)}
+.k:focus-visible,.kopf-tel:focus-visible,button:focus-visible{outline:3px solid var(--messing);outline-offset:3px}
+.ph{border:1.5px dashed var(--messing);background:#fbf6e7;color:#5a4613;border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:12.5px;line-height:1.45}
+.ph-inline{display:inline-block;padding:4px 8px}
+
+/* Abschnitte */
+.abschnitt{padding-top:46px;padding-bottom:10px}
+.nummer{font-family:var(--mono);font-size:12px;color:var(--grau);letter-spacing:.06em;margin:0 0 6px}
+h2{font-size:clamp(1.75rem,8vw,2.3rem);line-height:1.05;letter-spacing:-.025em;margin:0 0 12px;font-weight:700;hyphens:none}
+.abschnitt > p{margin:0 0 16px;color:#3c4248}
+
+/* Fräse */
+.fraese{background:#fff;border:1px solid var(--linie);border-radius:18px;padding:14px 12px 16px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.fraese-kopf{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11.5px;color:var(--grau);padding:0 4px 8px}
+.fraese-kopf b{color:var(--graphit)}
+#maschine{display:block;width:100%;height:auto;touch-action:none;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.regler{padding:10px 4px 0}
+.regler label{display:block;font-family:var(--mono);font-size:11.5px;color:var(--grau);margin-bottom:6px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin:0;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--linie) 0 2px,transparent 2px 10px),var(--weiss-2)}
+input[type=range]::-moz-range-track{height:8px;border-radius:4px;background:var(--weiss-2)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:30px;margin-top:-11px;border-radius:8px;background:var(--graphit);border:3px solid var(--messing)}
+input[type=range]::-moz-range-thumb{width:38px;height:24px;border-radius:8px;background:var(--graphit);border:3px solid var(--messing)}
+.fraese-fuss{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 4px 0}
+.zaehler{font-family:var(--mono);font-size:13px}
+.zaehler b{font-size:20px;color:var(--messing-dunkel)}
+.auto{font-family:var(--mono);font-size:12px;background:none;border:1.5px solid var(--graphit-2);border-radius:999px;padding:9px 14px;color:var(--graphit);cursor:pointer}
+
+/* Leistungen */
+.zaehne{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.zahn{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--linie);border-radius:12px;padding:12px 14px;transition:border-color .3s, background .3s}
+.zahn .nr{font-family:var(--mono);font-size:12px;color:var(--grau);padding-top:3px}
+.zahn h3{margin:0;font-size:17px;line-height:1.25;letter-spacing:-.01em}
+.zahn p{margin:3px 0 0;font-size:15px;color:#4a5157}
+.zahn .zu{font-family:var(--mono);font-size:12.5px;color:#9aa1a7;margin:2px 0 0}
+.zahn .offen{display:none}
+.zahn.frei{border-color:var(--messing);background:linear-gradient(90deg,#fbf6e7,#fff 60%)}
+.zahn.frei .offen{display:block;animation:auf .45s ease-out}
+.zahn.frei .zu{display:none}
+.zahn.frei .nr{color:var(--messing-dunkel);font-weight:700}
+@keyframes auf{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.fertig{display:none;margin-top:16px;background:var(--graphit);color:#fff;border-radius:18px;padding:22px 18px 18px;text-align:left}
+.fertig.da{display:block;animation:auf .5s ease-out}
+.fertig h3{font-size:clamp(1.5rem,7vw,1.9rem);line-height:1.1;margin:6px 0 8px;letter-spacing:-.02em}
+.fertig p{margin:0 0 16px;color:#cdd2d6}
+.fertig .mini{font-family:var(--mono);font-size:11.5px;color:var(--messing-hell);letter-spacing:.06em;text-transform:uppercase}
+
+/* Stimmen */
+.stimme{background:#fff;border:1px solid var(--linie);border-left:4px solid var(--messing);border-radius:12px;padding:16px 16px}
+.stimme .label{font-family:var(--mono);font-size:11.5px;color:var(--grau);margin:0 0 6px}
+.stimme p{margin:0;font-size:17px;line-height:1.45}
+.bewertung{display:flex;align-items:center;gap:12px;margin:14px 0 0;flex-wrap:wrap}
+
+/* Werkstatt */
+.foto{background:var(--weiss-2);border-radius:16px;overflow:hidden;position:relative}
+.foto svg{display:block;width:100%;height:auto}
+.foto .hinweis{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.9);border:1px dashed var(--messing);padding:4px 8px;border-radius:6px}
+.team{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:0;border-top:1px solid var(--linie)}
+.team li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 2px;border-bottom:1px solid var(--linie)}
+.team b{font-size:17px}
+.team span{font-family:var(--mono);font-size:12px;color:var(--grau);text-align:right}
+.chronik{font-family:var(--mono);font-size:12.5px;color:var(--grau);margin:14px 0 0;line-height:1.7}
+.chronik b{color:var(--graphit)}
+
+/* Notdienst */
+.notdienst{background:var(--graphit);color:#fff;border-radius:18px;padding:22px 18px}
+.notdienst h2{color:#fff}
+.notdienst p{color:#cdd2d6;margin:0 0 14px}
+.notdienst .ph{background:#2f3439;color:#f1e3b8}
+
+/* Kontakt */
+.daten{display:grid;gap:0;margin:0 0 16px;border-top:1px solid var(--linie)}
+.daten div{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:12px 2px;border-bottom:1px solid var(--linie)}
+.daten dt{font-family:var(--mono);font-size:12px;color:var(--grau);padding-top:2px}
+.daten dd{margin:0;font-weight:500}
+.daten a{text-decoration:none;border-bottom:1.5px solid var(--messing)}
+
+footer{margin-top:46px;background:var(--graphit);color:#aeb5bb;font-family:var(--mono);font-size:11.5px;padding:22px 18px 28px;line-height:1.7}
+footer .wrap{padding:0}
+footer b{color:#fff;font-family:var(--grot);font-size:15px}
+
+/* PDF */
+html.pdf .zahn .offen{display:block !important;animation:none}
+html.pdf .zahn .zu{display:none}
+html.pdf .fertig{display:block;animation:none}
+html.pdf *{animation:none !important;transition:none !important}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Schlüssel-Shop, Oliver Galli</div>
+
+<header class="kopf">
+  <a class="marke" href="#top" aria-label="Schlüssel-Shop, Oliver Galli">
+    <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+      <rect x="1" y="1" width="36" height="36" rx="9" fill="#25292d"/>
+      <circle cx="13" cy="19" r="6.5" fill="none" stroke="#d8b75e" stroke-width="2.4"/>
+      <circle cx="13" cy="19" r="2" fill="#d8b75e"/>
+      <path d="M19.5 17.6h12v3.2h-2.2l-1.4 2.2-1.4-2.2h-1.6l-1.2 1.8-1.2-1.8h-3z" fill="#d8b75e"/>
+    </svg>
+    <span><b>Schlüssel-Shop</b><small>Oliver Galli · Thun</small></span>
+  </a>
+  <a class="kopf-tel" href="tel:+41332227040">033 222 70 40</a>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <p class="kicker">Pestalozzistrasse 2A · 3600 Thun</p>
+    <h1>Vom Rohling zum <em>Schlüssel.</em></h1>
+    <p class="lead">Schlüssel für alle Schliesssysteme, Autoschlüssel, Schliessanlagen und Öffnungsdienst – aus der Werkstatt von Oliver Galli in Thun.</p>
+    <div class="knoepfe">
+      <a class="k k-tel" href="tel:+41332227040">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3.4-1.6 2.4a12 12 0 0 0 7.1 7.1l2.4-1.6 3.4 2.6-1.4 3.1c-.3.6-1 .9-1.6.8C9.6 20.3 3.7 14.4 2.7 6.6c-.1-.7.2-1.3.8-1.6z" fill="currentColor"/></svg>
+        Anrufen: 033 222 70 40</a>
+      <a class="k k-mail" href="mailto:kontakt@schluessel-shop.ch">E-Mail schreiben</a>
+    </div>
+    <div class="ph ph-inline">[Google-Bewertung aktuell einsetzen: z.B. 4.9 ★]</div>
+  </section>
+
+  <section class="wrap abschnitt" id="fraese" aria-labelledby="t-fraese">
+    <p class="nummer">01 / Werkbank</p>
+    <h2 id="t-fraese">Fräsen Sie Ihren Schlüssel.</h2>
+    <p>Ziehen Sie den Fräskopf am Regler (oder direkt im Bild) über den Bart des Rohlings. Jeder fertige Zahn zeigt eine unserer Leistungen.</p>
+
+    <div class="fraese">
+      <div class="fraese-kopf"><span>ROHLING · 8 ZÄHNE</span><b id="status">bereit</b></div>
+      <svg id="maschine" viewBox="0 0 400 290" role="img" aria-label="Gezeichnete Schlüsselfräse mit Rohling">
+        <defs>
+          <linearGradient id="gMessing" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e2c36d"/>
+            <stop offset=".55" stop-color="#c49b3a"/>
+            <stop offset="1" stop-color="#9a7524"/>
+          </linearGradient>
+          <linearGradient id="gStahl" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#7c858c"/>
+            <stop offset=".5" stop-color="#c8cfd4"/>
+            <stop offset="1" stop-color="#7c858c"/>
+          </linearGradient>
+        </defs>
+        <!-- Schiene oben -->
+        <rect x="14" y="18" width="372" height="16" rx="3" fill="#3a4045"/>
+        <rect x="14" y="31" width="372" height="3" fill="#25292d"/>
+        <g id="skala" font-family="JetBrains Mono, monospace" font-size="7" fill="#8b939a"></g>
+        <!-- Maschinenbett -->
+        <rect x="8" y="222" width="384" height="58" rx="8" fill="#25292d"/>
+        <rect x="8" y="222" width="384" height="6" fill="#3a4045"/>
+        <text x="24" y="262" font-family="JetBrains Mono, monospace" font-size="9" fill="#8b939a" letter-spacing="1">SPANBACKE</text>
+        <text x="376" y="262" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#8b939a" letter-spacing="1">SPÄNE-WANNE</text>
+        <rect x="150" y="236" width="230" height="10" rx="2" fill="#1b1e21"/>
+        <!-- Spannbacke -->
+        <rect x="96" y="118" width="44" height="104" rx="4" fill="#4a5258"/>
+        <rect x="96" y="118" width="44" height="14" rx="3" fill="#5c656c"/>
+        <rect x="96" y="194" width="44" height="28" fill="#41484e"/>
+        <circle cx="118" cy="125" r="3.2" fill="#2b3035"/><line x1="115.5" y1="125" x2="120.5" y2="125" stroke="#7c858c" stroke-width="1"/>
+        <circle cx="118" cy="206" r="3.2" fill="#2b3035"/><line x1="115.5" y1="206" x2="120.5" y2="206" stroke="#7c858c" stroke-width="1"/>
+        <!-- Schlüsselkopf (Reide) -->
+        <g>
+          <path d="M100 160c0-30-18-48-46-48S8 130 8 160s18 48 46 48 46-18 46-48z" fill="url(#gMessing)" stroke="#8a6a1e" stroke-width="1.5"/>
+          <circle cx="40" cy="160" r="11" fill="#f3f5f6" stroke="#8a6a1e" stroke-width="1.5"/>
+          <path d="M66 136c10 6 16 14 16 24s-6 18-16 24" fill="none" stroke="#f1dc9c" stroke-width="2" opacity=".6"/>
+        </g>
+        <!-- Bart, dynamisch -->
+        <path id="bart" d="" fill="url(#gMessing)" stroke="#8a6a1e" stroke-width="1.3" stroke-linejoin="round"/>
+        <line x1="140" y1="166" x2="364" y2="166" stroke="#8a6a1e" stroke-width="1.2" opacity=".7"/>
+        <line x1="140" y1="174" x2="370" y2="174" stroke="#f1dc9c" stroke-width="1" opacity=".55"/>
+        <g id="marken"></g>
+        <!-- Spannbacke vorne (über Bart) -->
+        <rect x="126" y="140" width="14" height="44" fill="#5c656c"/>
+        <!-- Späne -->
+        <g id="spaene"></g>
+        <!-- Fräskopf -->
+        <g id="kopf">
+          <rect x="-24" y="12" width="48" height="28" rx="5" fill="#25292d"/>
+          <rect x="-18" y="18" width="36" height="5" rx="2" fill="#b8902f"/>
+          <g id="spindel">
+            <rect x="-9" y="40" width="18" height="66" fill="url(#gStahl)"/>
+            <rect x="-13" y="100" width="26" height="8" rx="2" fill="#4a5258"/>
+            <g id="fraeser" transform="translate(0,124)">
+              <circle r="15" fill="#c8cfd4" stroke="#5c656c" stroke-width="1.5"/>
+              <g id="raeder" stroke="#5c656c" stroke-width="1.6">
+                <line x1="0" y1="-15" x2="0" y2="-9"/><line x1="0" y1="15" x2="0" y2="9"/>
+                <line x1="-15" y1="0" x2="-9" y2="0"/><line x1="15" y1="0" x2="9" y2="0"/>
+                <line x1="-10.6" y1="-10.6" x2="-6.4" y2="-6.4"/><line x1="10.6" y1="10.6" x2="6.4" y2="6.4"/>
+                <line x1="-10.6" y1="10.6" x2="-6.4" y2="6.4"/><line x1="10.6" y1="-10.6" x2="6.4" y2="-6.4"/>
+              </g>
+              <circle r="4" fill="#25292d"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <div class="regler">
+        <label for="schieber">FRÄSKOPF ← ZIEHEN →</label>
+        <input id="schieber" type="range" min="0" max="1000" value="0" aria-label="Fräskopf entlang des Barts bewegen">
+      </div>
+      <div class="fraese-fuss">
+        <span class="zaehler"><b id="anzahl">0</b> / 8 Zähne</span>
+        <button class="auto" id="auto" type="button">Automatisch fräsen</button>
+      </div>
+    </div>
+
+    <ol class="zaehne" id="liste">
+      <li class="zahn"><span class="nr">Z-01</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Schlüssel für alle Schliesssysteme</h3><p>Ersatz- und Nachschlüssel – für alle gängigen Schliesssysteme.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-02</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Autoschlüssel</h3><p>Auch mit Wegfahrsperre bzw. elektronische Autoschlüssel.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-03</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Möbel- und Tresorschlüssel</h3><p>Für Möbel, Schränke und Tresore.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-04</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Schlösser restaurieren</h3><p>Wir restaurieren Schlösser.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-05</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Türschliesser</h3><p>Montage von Türschliessern.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-06</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Schliessanlagen</h3><p>Schliessanlagen – sprechen Sie uns an.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-07</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Gravuren und Stempel</h3><p>Gravuren sowie Stempel.</p></div></div></li>
+      <li class="zahn"><span class="nr">Z-08</span><div><p class="zu">noch nicht gefräst</p><div class="offen"><h3>Aufsperr- und Öffnungsdienst</h3><p>Ausgesperrt? Wir öffnen. Erreichbarkeit siehe unten.</p></div></div></li>
+    </ol>
+
+    <div class="fertig" id="fertig" aria-live="polite">
+      <span class="mini">8 / 8 Zähne · Kontrolle ok</span>
+      <h3>Ihr Schlüssel ist fertig.</h3>
+      <p>Jetzt fehlt nur noch Ihr echter Auftrag. Rufen Sie an oder kommen Sie an der Pestalozzistrasse 2A vorbei.</p>
+      <a class="k k-gold" href="tel:+41332227040">033 222 70 40 anrufen</a>
+    </div>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-stimmen">
+    <p class="nummer">02 / Kundschaft</p>
+    <h2 id="t-stimmen">Schnell und hilfsbereit.</h2>
+    <div class="stimme">
+      <p class="label">SINNGEMÄSS AUS GOOGLE-BEWERTUNGEN</p>
+      <p>Kundinnen und Kunden loben vor allem das Tempo und die Hilfsbereitschaft – etwa einen Ersatz-Autoschlüssel innerhalb eines Tages, als Garagen nicht weiterhelfen konnten.</p>
+    </div>
+    <div class="bewertung"><span class="ph ph-inline">[Google-Bewertung aktuell einsetzen: z.B. 4.9 ★]</span></div>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-werkstatt">
+    <p class="nummer">03 / Werkstatt</p>
+    <h2 id="t-werkstatt">Ein Familienbetrieb seit 1977.</h2>
+    <div class="foto">
+      <svg viewBox="0 0 400 220" aria-hidden="true">
+        <rect width="400" height="220" fill="#e6eaec"/>
+        <rect x="0" y="160" width="400" height="60" fill="#d3d8db"/>
+        <rect x="30" y="40" width="160" height="110" rx="4" fill="none" stroke="#9aa1a7" stroke-width="1.5"/>
+        <g stroke="#9aa1a7" stroke-width="1.2">
+          <line x1="30" y1="77" x2="190" y2="77"/><line x1="30" y1="114" x2="190" y2="114"/>
+        </g>
+        <g fill="#b8902f">
+          <rect x="44" y="52" width="6" height="18" rx="2"/><rect x="58" y="52" width="6" height="18" rx="2"/><rect x="72" y="52" width="6" height="18" rx="2"/><rect x="86" y="52" width="6" height="18" rx="2"/>
+          <rect x="44" y="89" width="6" height="18" rx="2"/><rect x="58" y="89" width="6" height="18" rx="2"/><rect x="72" y="89" width="6" height="18" rx="2"/>
+        </g>
+        <rect x="220" y="96" width="150" height="64" rx="6" fill="#25292d"/>
+        <rect x="236" y="70" width="40" height="26" rx="4" fill="#3a4045"/>
+        <rect x="252" y="96" width="8" height="18" fill="#c8cfd4"/>
+        <rect x="300" y="108" width="56" height="10" rx="2" fill="#b8902f"/>
+        <circle cx="300" cy="113" r="9" fill="#b8902f"/>
+      </svg>
+      <span class="hinweis">hier später Ihr eigenes Foto</span>
+    </div>
+    <ul class="team">
+      <li><b>Oliver Galli</b><span>Inhaber</span></li>
+      <li><b>Beat Galli</b><span>Gründer, 1977</span></li>
+      <li><b>Daniel Chavanne</b><span>Monteur</span></li>
+    </ul>
+    <p class="chronik"><b>1977</b> gegründet von Beat Galli · <b>1984</b> Name «Schlüssel-Shop» · <b>1988</b> Übernahme durch Therese Gerber · <b>heute</b> geführt von Oliver Galli</p>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-not">
+    <div class="notdienst">
+      <p class="nummer" style="color:#d8b75e">04 / Öffnungsdienst</p>
+      <h2 id="t-not">Ausgesperrt?</h2>
+      <p>Wir öffnen Türen und Schlösser – rufen Sie direkt an.</p>
+      <div class="ph" style="margin-bottom:14px">[Platzhalter: Erreichbarkeit / Zeiten des Öffnungsdienstes bitte bestätigen]</div>
+      <a class="k k-gold" href="tel:+41332227040">Öffnungsdienst anrufen</a>
+    </div>
+  </section>
+
+  <section class="wrap abschnitt" aria-labelledby="t-kontakt">
+    <p class="nummer">05 / Kontakt</p>
+    <h2 id="t-kontakt">So finden Sie uns.</h2>
+    <dl class="daten">
+      <div><dt>ADRESSE</dt><dd>Pestalozzistrasse 2A<br>3600 Thun</dd></div>
+      <div><dt>TELEFON</dt><dd><a href="tel:+41332227040">033 222 70 40</a></dd></div>
+      <div><dt>E-MAIL</dt><dd><a href="mailto:kontakt@schluessel-shop.ch">kontakt@schluessel-shop.ch</a></dd></div>
+      <div><dt>ÖFFNUNGS­ZEITEN</dt><dd><span class="ph ph-inline">[Öffnungszeiten bitte bestätigen]</span></dd></div>
+    </dl>
+    <div class="knoepfe">
+      <a class="k k-tel" href="tel:+41332227040">Anrufen</a>
+      <a class="k k-mail" href="mailto:kontakt@schluessel-shop.ch">E-Mail schreiben</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>Schlüssel-Shop, Oliver Galli</b><br>
+    Einzelunternehmen · CHE-206.610.014<br>
+    Pestalozzistrasse 2A, 3600 Thun<br>
+    Entwurf / Demo von Max Rathsack
+  </div>
+</footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var X0=140, X1=372, TOP=140, UNTEN=182;
+  var MITTEN=[156,184,212,240,268,296,324,352];
+  var TIEFEN=[14,8,18,10,20,12,16,9];
+  var ist=[0,0,0,0,0,0,0,0];
+  var fertigZ=[false,false,false,false,false,false,false,false];
+  var bart=document.getElementById('bart');
+  var kopf=document.getElementById('kopf');
+  var fraeser=document.getElementById('fraeser');
+  var raeder=document.getElementById('raeder');
+  var spaene=document.getElementById('spaene');
+  var schieber=document.getElementById('schieber');
+  var anzahl=document.getElementById('anzahl');
+  var status=document.getElementById('status');
+  var liste=document.querySelectorAll('#liste .zahn');
+  var fertig=document.getElementById('fertig');
+  var svg=document.getElementById('maschine');
+  var kopfX=X0, kopfDip=0, dreh=0, teile=[], laeuft=false;
+
+  // Skala
+  var skala=document.getElementById('skala');
+  for(var s=0;s<=36;s++){
+    var x=20+s*10;
+    var l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',x);l.setAttribute('x2',x);
+    l.setAttribute('y1',18);l.setAttribute('y2',s%5===0?27:23);
+    l.setAttribute('stroke','#8b939a');l.setAttribute('stroke-width','1');
+    skala.appendChild(l);
+    if(s%10===0){var t=document.createElementNS(NS,'text');t.setAttribute('x',x+2);t.setAttribute('y',12);t.textContent=s*10;skala.appendChild(t);}
+  }
+  // Markierungen über den Zahnpositionen
+  var marken=document.getElementById('marken');
+  MITTEN.forEach(function(m,i){
+    var t=document.createElementNS(NS,'path');
+    t.setAttribute('d','M'+(m-3)+' 194 L'+m+' 189 L'+(m+3)+' 194 Z');
+    t.setAttribute('fill','#9aa1a7');t.setAttribute('id','m'+i);
+    marken.appendChild(t);
+  });
+
+  function zeichneBart(){
+    var d='M'+X0+' '+TOP;
+    for(var i=0;i<MITTEN.length;i++){
+      var c=MITTEN[i], t=ist[i];
+      d+=' L'+(c-11)+' '+TOP+' L'+(c-4)+' '+(TOP+t).toFixed(2)+' L'+(c+4)+' '+(TOP+t).toFixed(2)+' L'+(c+11)+' '+TOP;
+    }
+    d+=' L'+X1+' '+TOP+' L388 158 L388 166 L'+X1+' '+UNTEN+' L'+X0+' '+UNTEN+' Z';
+    bart.setAttribute('d',d);
+  }
+
+  function spaeneSpruehen(x,y,n){
+    for(var k=0;k<n;k++){
+      var p=document.createElementNS(NS,'path');
+      var g=1.5+Math.random()*2.5;
+      p.setAttribute('d','M0 0 L'+g+' '+(g*.4)+' L'+(g*.3)+' '+g+' Z');
+      p.setAttribute('fill',Math.random()<.7?'#d8b75e':'#8a6a1e');
+      spaene.appendChild(p);
+      teile.push({el:p,x:x,y:y,vx:(Math.random()-.5)*5,vy:-1.5-Math.random()*3.5,r:Math.random()*360,vr:(Math.random()-.5)*30,t:0});
+    }
+  }
+
+  function zaehlen(){
+    var n=fertigZ.filter(Boolean).length;
+    anzahl.textContent=n;
+    if(n===8){status.textContent='fertig';fertig.classList.add('da');}
+    else status.textContent=n?'fräst …':'bereit';
+  }
+
+  function pruefen(){
+    for(var i=0;i<MITTEN.length;i++){
+      if(!fertigZ[i] && Math.abs(kopfX-MITTEN[i])<7){
+        fertigZ[i]=true;
+        liste[i].classList.add('frei');
+        document.getElementById('m'+i).setAttribute('fill','#b8902f');
+        spaeneSpruehen(MITTEN[i],TOP+4,16);
+        kopfDip=TIEFEN[i];
+        if(navigator.vibrate){try{navigator.vibrate(8)}catch(e){}}
+        zaehlen();
+      }
+    }
+  }
+
+  function setzeKopf(x){
+    kopfX=Math.max(X0+2,Math.min(X1+8,x));
+    schieber.value=Math.round((kopfX-X0)/(X1+8-X0)*1000);
+    pruefen();
+    starte();
+  }
+
+  function schritt(){
+    var aktiv=false;
+    // Zähne einfräsen (animiert)
+    for(var i=0;i<ist.length;i++){
+      if(fertigZ[i] && ist[i]<TIEFEN[i]){ist[i]=Math.min(TIEFEN[i],ist[i]+TIEFEN[i]*.12);aktiv=true;}
+    }
+    zeichneBart();
+    if(kopfDip>0.2){kopfDip*=.86;aktiv=true;}else kopfDip=0;
+    dreh=(dreh+ (laeuft?28:6))%360;
+    kopf.setAttribute('transform','translate('+kopfX.toFixed(1)+','+(kopfDip*.9).toFixed(2)+')');
+    raeder.setAttribute('transform','rotate('+dreh+')');
+    // Späne
+    for(var j=teile.length-1;j>=0;j--){
+      var t=teile[j];t.t++;t.vy+=.32;t.x+=t.vx;t.y+=t.vy;t.r+=t.vr;
+      if(t.y>238){t.y=238;t.vx*=.5;t.vy=0;}
+      t.el.setAttribute('transform','translate('+t.x.toFixed(1)+','+t.y.toFixed(1)+') rotate('+t.r.toFixed(0)+')');
+      if(t.t>70){t.el.setAttribute('opacity',Math.max(0,1-(t.t-70)/30));}
+      if(t.t>100){t.el.remove();teile.splice(j,1);}
+      aktiv=true;
+    }
+    if(aktiv||laeuft) requestAnimationFrame(schritt); else lauf=false;
+  }
+  var lauf=false;
+  function starte(){ if(!lauf){lauf=true;requestAnimationFrame(schritt);} }
+
+  schieber.addEventListener('input',function(){
+    var x=X0+(+schieber.value/1000)*(X1+8-X0);
+    kopfX=x;pruefen();starte();
+  });
+
+  // Direkt im Bild ziehen
+  var ziehen=false;
+  function svgX(ev){
+    var r=svg.getBoundingClientRect();
+    return (ev.clientX-r.left)/r.width*400;
+  }
+  svg.addEventListener('pointerdown',function(ev){ziehen=true;svg.setPointerCapture(ev.pointerId);setzeKopf(svgX(ev));});
+  svg.addEventListener('pointermove',function(ev){if(ziehen)setzeKopf(svgX(ev));});
+  svg.addEventListener('pointerup',function(){ziehen=false;});
+  svg.addEventListener('pointercancel',function(){ziehen=false;});
+
+  // Automatisch fräsen
+  document.getElementById('auto').addEventListener('click',function(){
+    if(laeuft)return; laeuft=true;
+    var start=null, von=kopfX<X1-4?kopfX:X0+2;
+    function fahr(ts){
+      if(!start)start=ts;
+      var p=Math.min(1,(ts-start)/2600);
+      setzeKopf(von+(X1+8-von)*p);
+      if(p<1)requestAnimationFrame(fahr);else laeuft=false;
+    }
+    requestAnimationFrame(fahr);
+    starte();
+  });
+
+  zeichneBart();
+  kopf.setAttribute('transform','translate('+kopfX+',0)');
+
+  // Zwischenzustand für die PDF-Ansicht
+  window.pdfZustand=function(){
+    for(var i=0;i<5;i++){fertigZ[i]=true;ist[i]=TIEFEN[i];liste[i].classList.add('frei');document.getElementById('m'+i).setAttribute('fill','#b8902f');}
+    kopfX=282;kopfDip=0;
+    schieber.value=Math.round((kopfX-X0)/(X1+8-X0)*1000);
+    zeichneBart();
+    kopf.setAttribute('transform','translate('+kopfX+',0)');
+    raeder.setAttribute('transform','rotate(20)');
+    var feste=[[262,150],[270,142],[276,156],[258,170],[288,236],[300,237],[310,236],[205,237],[226,236],[180,237],[246,236],[290,128],[268,128]];
+    feste.forEach(function(f,k){
+      var p=document.createElementNS(NS,'path');
+      p.setAttribute('d','M0 0 L3 1.2 L1 3 Z');p.setAttribute('fill',k%3?'#d8b75e':'#8a6a1e');
+      p.setAttribute('transform','translate('+f[0]+','+f[1]+') rotate('+(k*47)+')');
+      spaene.appendChild(p);
+    });
+    anzahl.textContent='5';status.textContent='fräst …';
+  };
+})();
+</script>
+</body>
+</html>

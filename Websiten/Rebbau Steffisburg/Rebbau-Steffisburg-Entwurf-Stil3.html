@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wygarte – Entwurf Sonnenhang</title>
+<meta name="description" content="Demo-Entwurf von Max Rathsack für Rebbau Steffisburg – Wygarte: Wein vom Rebhang über Steffisburg, Hofladen und Hofbeiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nacht:#131833;
+  --nacht-2:#1c2244;
+  --aubergine:#3a1f3d;
+  --aub-2:#4b2a4e;
+  --gold:#d0a24a;
+  --gold-hell:#ecd29a;
+  --rebe:#7f9a46;
+  --creme:#f1e9da;
+  --leise:#b9b0c4;
+  --linie:rgba(236,210,154,.22);
+  --serif:"Cormorant Garamond",Garamond,Georgia,serif;
+  --sans:"Mulish",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nacht);color:var(--creme);font-family:var(--sans);font-size:16.5px;line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+.demo{background:var(--gold);color:var(--nacht);font-size:12.5px;font-weight:700;text-align:center;padding:7px 14px;line-height:1.35}
+.wrap{max-width:540px;margin:0 auto;padding:0 22px}
+
+.kopf{max-width:540px;margin:0 auto;padding:18px 22px 0;display:flex;justify-content:space-between;align-items:center}
+.marke{text-decoration:none;font-family:var(--serif);font-style:italic;font-weight:600;font-size:28px;line-height:1;color:var(--gold-hell)}
+.marke small{display:block;font-family:var(--sans);font-style:normal;font-weight:600;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--leise);margin-top:4px}
+.kopf a.k{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);color:var(--gold-hell);padding:8px 12px;border-radius:40px}
+
+.held{padding:34px 0 18px;text-align:center}
+.zier{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;margin:0 0 12px}
+.zier::before,.zier::after{content:"";width:28px;height:1px;background:var(--gold)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(3rem,15vw,4.4rem);line-height:.95;margin:0 0 14px;letter-spacing:-.01em;color:#fff}
+h1 em{display:block;font-style:italic;font-weight:500;font-size:.42em;color:var(--gold-hell);letter-spacing:.01em;margin-top:8px;line-height:1.15}
+.held p{margin:0 auto;max-width:25em;color:#d9d1e2;font-size:17px}
+
+/* Szene */
+.szene{position:relative;max-width:540px;margin:16px auto 0;touch-action:none;user-select:none;-webkit-user-select:none}
+.szene svg{display:block;width:100%;height:auto}
+#sonne{cursor:grab}
+.szene.zieht #sonne{cursor:grabbing}
+.zeitname{position:absolute;left:0;right:0;bottom:12px;text-align:center;pointer-events:none}
+.zeitname span{display:inline-block;font-family:var(--serif);font-style:italic;font-size:22px;font-weight:600;color:#fff;background:rgba(19,24,51,.55);border:1px solid rgba(236,210,154,.45);padding:2px 16px;border-radius:30px}
+.anleitung{text-align:center;font-size:14px;color:var(--leise);margin:12px 22px 0}
+
+.tafeln{max-width:540px;margin:0 auto;padding:18px 22px 0}
+.tafel{display:none;background:var(--aubergine);box-shadow:inset 0 3px 0 var(--aub-2);border:1px solid var(--linie);border-radius:4px 40px 4px 4px;padding:22px 20px 20px;animation:auf .5s ease}
+.tafel.aktiv{display:block}
+@keyframes auf{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tafel .zeit{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 4px}
+.tafel h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,8.4vw,2.4rem);line-height:1.05;margin:0 0 10px;color:#fff}
+.tafel p{margin:0 0 12px;color:#e6deea}
+.tafel ul{margin:0 0 12px;padding:0;list-style:none}
+.tafel li{padding:8px 0;border-top:1px solid var(--linie);display:flex;justify-content:space-between;gap:10px}
+.tafel li span:last-child{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--gold-hell);white-space:nowrap}
+.platz{border:1.5px dashed rgba(236,210,154,.6);border-radius:8px;padding:12px 14px;color:var(--gold-hell);font-size:14px;font-weight:600;background:rgba(236,210,154,.06);margin:10px 0 0}
+
+section.teil{padding:52px 0 0}
+.teil h2{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,9vw,2.6rem);line-height:1.04;margin:0 0 14px;color:#fff}
+.teil h2 em{font-style:italic;font-weight:500;color:var(--gold-hell)}
+.kl{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+p{margin:0 0 14px}
+
+.weine{margin:6px 0 0;border-top:1px solid var(--linie)}
+.wein{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--linie);align-items:center}
+.wein svg{width:56px;height:56px}
+.wein h3{font-family:var(--serif);font-weight:600;font-size:25px;margin:0;line-height:1.1;color:#fff}
+.wein p{margin:2px 0 0;font-size:15px;color:#d4cbdc}
+.siegel{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.siegel li{border:1px solid var(--gold);color:var(--gold-hell);border-radius:40px;padding:5px 12px;font-size:13px;font-weight:600}
+
+.bestell{background:var(--creme);color:var(--nacht);border-radius:4px 40px 4px 40px;padding:26px 22px 22px;margin-top:4px}
+.bestell h2{color:var(--nacht)!important}
+.bestell h2 em{color:#8a5a1a!important}
+.bestell .kl{color:#8a5a1a}
+.bestell dl{margin:0 0 6px;display:grid;gap:10px}
+.bestell dl div{display:grid;grid-template-columns:104px 1fr;gap:10px;border-top:1px solid #d8ccb4;padding-top:10px}
+.bestell dt{font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#7a6a5a}
+.bestell dd{margin:0}
+.bestell .platz{color:#6a5230;border-color:#b79a64;background:#f8f2e6}
+.knopf{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:40px;font-weight:700;font-size:17px;text-decoration:none;margin-top:12px;letter-spacing:.02em}
+.knopf svg{width:21px;height:21px}
+.knopf.gold{background:var(--gold);color:var(--nacht)}
+.knopf.nacht{background:var(--nacht);color:var(--gold-hell)}
+.knopf.rand{border:1.5px solid var(--gold);color:var(--gold-hell)}
+
+.foto{margin:0;border:1px solid var(--linie);border-radius:4px 40px 4px 4px;overflow:hidden}
+.foto svg{display:block;width:100%;height:auto}
+.foto small{display:block;padding:9px 14px;font-size:12.5px;color:var(--leise);background:var(--nacht-2)}
+
+.lob{list-style:none;padding:0;margin:0 0 12px}
+.lob li{font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.25;padding:10px 0;border-bottom:1px solid var(--linie);color:#fff;display:flex;gap:12px;align-items:baseline}
+.lob li::before{content:"✦";font-style:normal;font-size:13px;color:var(--gold)}
+
+.kontakt{margin:56px 0 0;background:var(--aubergine);padding:34px 0 30px;border-top:1px solid var(--linie)}
+.kontakt address{font-style:normal;margin:0 0 6px;color:#e6deea}
+.kontakt .knopf span{display:flex;flex-direction:column;align-items:center;line-height:1.1}
+.kontakt .knopf small{font-weight:500;font-size:12.5px;opacity:.8}
+footer{text-align:center;font-size:12.5px;color:var(--leise);padding:20px 22px 40px;background:var(--aubergine)}
+
+html.pdf .tafel{display:block;margin-bottom:14px;animation:none}
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .anleitung{display:none}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Rebbau Steffisburg – Wygarte</div>
+
+<header class="kopf">
+  <a class="marke" href="#">Wygarte<small>Rebbau Steffisburg</small></a>
+  <a class="k" href="tel:+41763291211">Anrufen</a>
+</header>
+
+<section class="held wrap">
+  <p class="zier">Thunersee AOC</p>
+  <h1>Sonnenhang<em>Steffisburger Wein, bio-dynamisch</em></h1>
+  <p>Ein Tag am Rebhang über Steffisburg – ziehen Sie die Sonne über den Himmel.</p>
+</section>
+
+<div class="szene" id="szene">
+  <svg viewBox="0 0 400 420" aria-label="Gezeichneter Rebhang über Steffisburg mit Blick Richtung Thunersee und Berge">
+    <defs>
+      <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+        <stop id="h-oben" offset="0" stop-color="#4a6fa8"/>
+        <stop id="h-unten" offset="1" stop-color="#f2d6b0"/>
+      </linearGradient>
+      <symbol id="stock" viewBox="-14 -40 28 44" width="28" height="44" overflow="visible">
+        <path d="M0 2 V-30" stroke="#5a3d27" stroke-width="2.2"/>
+        <path d="M-1 -6 C-6 -12 -4 -18 0 -22 C4 -18 6 -12 1 -6" fill="none" stroke="#4b3220" stroke-width="1.6"/>
+        <g class="laub"><circle cx="-7" cy="-24" r="7"/><circle cx="6" cy="-26" r="7.5"/><circle cx="0" cy="-33" r="6.5"/><circle cx="-1" cy="-18" r="6"/></g>
+      </symbol>
+      <symbol id="traube" viewBox="-5 -2 10 14" width="10" height="14" overflow="visible">
+        <circle cx="-2.2" cy="1" r="2.3"/><circle cx="2.2" cy="1" r="2.3"/><circle cx="0" cy="4.6" r="2.3"/><circle cx="-2.6" cy="5" r="2"/><circle cx="2.6" cy="5" r="2"/><circle cx="0" cy="8.4" r="2"/>
+      </symbol>
+      <path id="schattenform" d="M0 0 L20 3 L20 5 L0 2Z" fill="#000"/>
+    </defs>
+
+    <rect width="400" height="420" fill="url(#himmel)"/>
+
+    <!-- Sonnenbogen + Zeitmarken -->
+    <path d="M30 290 A170 190 0 0 1 370 290" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.2" stroke-dasharray="2 6"/>
+
+    <!-- Berge -->
+    <path id="berge" d="M0 236 L28 214 L46 222 L78 176 L96 192 L118 168 L140 196 L168 184 L196 150 L214 170 L236 160 L262 190 L288 174 L312 196 L338 172 L364 190 L400 180 V260 H0Z" fill="#8ea2b8"/>
+    <path id="schnee" d="M78 176 L88 186 L82 186 L78 182 L72 186 Z M118 168 L128 180 L120 178 L114 182 L112 174Z M196 150 L208 164 L200 162 L194 168 L188 160Z M236 160 L244 168 L236 167 L230 168Z M338 172 L348 182 L340 180 L334 182Z" fill="#ffffff"/>
+    <!-- Sonne -->
+    <g id="sonne" tabindex="0" role="slider" aria-label="Sonnenstand" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
+      <g id="sonne-schein"><circle r="58" opacity=".10"/><circle r="44" opacity=".14"/><circle r="32" opacity=".22"/></g>
+      <circle id="sonne-kern" cx="0" cy="0" r="20" fill="#fff2c2"/>
+      <circle cx="0" cy="0" r="28" fill="transparent"/>
+    </g>
+
+    <path id="vorberg" d="M0 250 C40 232 80 236 120 226 C160 218 200 230 240 222 C290 212 340 224 400 214 V270 H0Z" fill="#6a7f8a"/>
+    <!-- Thunersee -->
+    <path id="see" d="M0 262 C80 254 170 256 260 252 C320 250 370 252 400 250 V276 C300 280 150 282 0 282Z" fill="#6f9fbf"/>
+    <g id="glitzer" stroke="#fff" stroke-linecap="round" stroke-width="1.6" opacity=".7"><path d="M-12 262 H12"/><path d="M-8 268 H8"/><path d="M-16 274 H16"/></g>
+    <!-- Steffisburg -->
+    <path id="dorfhang" d="M0 282 C90 276 200 280 400 274 V420 H0Z" fill="#7d9356"/>
+    <g id="dorf" stroke="#2b2236" stroke-width="1">
+      <g fill="#efe4d0"><rect x="196" y="282" width="16" height="12"/><rect x="222" y="284" width="20" height="11"/><rect x="250" y="281" width="14" height="13"/><rect x="274" y="285" width="18" height="10"/><rect x="152" y="286" width="16" height="10"/><rect x="300" y="283" width="15" height="11"/></g>
+      <g fill="#a8513a"><path d="M193 283 L204 274 L215 283Z"/><path d="M219 285 L232 276 L245 285Z"/><path d="M247 282 L257 273 L267 282Z"/><path d="M271 286 L283 278 L295 286Z"/><path d="M149 287 L160 279 L171 287Z"/><path d="M297 284 L307 276 L318 284Z"/></g>
+      <rect x="236" y="262" width="7" height="22" fill="#efe4d0"/><path d="M234 263 L239.5 250 L245 263Z" fill="#4a5a6a"/>
+    </g>
+    <g font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="15" fill="#fff" fill-opacity=".92">
+      <text class="marke-zeit" data-t="0.14" x="22" y="150" style="cursor:pointer">Morgen</text>
+      <text class="marke-zeit" data-t="0.5" x="200" y="64" text-anchor="middle" style="cursor:pointer">Mittag</text>
+      <text class="marke-zeit" data-t="0.86" x="378" y="150" text-anchor="end" style="cursor:pointer">Abend</text>
+    </g>
+
+    <path id="licht" d="M0 0 H400 V420 H0Z" fill="#20183a" opacity="0" pointer-events="none"/>
+
+    <!-- Rebhang Vordergrund -->
+    <path id="hang" d="M0 296 C110 298 250 318 400 346 V420 H0Z" fill="#6f8a3c"/>
+    <path id="hang2" d="M0 330 C120 334 260 356 400 384 V420 H0Z" fill="#5e7a33" opacity=".7"/>
+
+    <!-- Bäume der Hofbeiz -->
+    <g id="baeume">
+      <path d="M46 312 V272 M80 316 V280" stroke="#4b3220" stroke-width="5" stroke-linecap="round"/>
+      <g class="krone"><circle cx="34" cy="262" r="20"/><circle cx="56" cy="252" r="22"/><circle cx="48" cy="274" r="17"/><circle cx="74" cy="268" r="18"/><circle cx="88" cy="276" r="14"/><circle cx="82" cy="256" r="15"/></g>
+      <rect x="52" y="304" width="26" height="3" fill="#4b3220"/><path d="M55 307 v8 M75 307 v8" stroke="#4b3220" stroke-width="2"/>
+      <path d="M50 313 h8 M70 313 h10" stroke="#4b3220" stroke-width="2"/>
+    </g>
+
+    <!-- Drahtrahmen -->
+    <g stroke="#3b2a1e" stroke-width="1" opacity=".55" fill="none">
+      <path d="M118 296 C200 300 300 316 400 336"/>
+      <path d="M0 318 C120 322 260 342 400 368"/>
+      <path d="M0 352 C130 356 270 380 400 408"/>
+    </g>
+    <!-- Schatten -->
+    <g id="schatten" opacity=".28"></g>
+    <!-- Rebstöcke Reihe 1 -->
+    <g id="reihe1" class="reben">
+      <use href="#stock" x="116" y="262" width="20" height="32"/><use href="#stock" x="166" y="266" width="20" height="32"/><use href="#stock" x="216" y="271" width="20" height="32"/><use href="#stock" x="266" y="278" width="20" height="32"/><use href="#stock" x="316" y="286" width="20" height="32"/><use href="#stock" x="366" y="295" width="20" height="32"/>
+    </g>
+    <g id="reihe2" class="reben">
+      <use href="#stock" x="4" y="276" width="24" height="38"/><use href="#stock" x="69" y="279" width="24" height="38"/><use href="#stock" x="134" y="285" width="24" height="38"/><use href="#stock" x="199" y="292" width="24" height="38"/><use href="#stock" x="264" y="300" width="24" height="38"/><use href="#stock" x="329" y="310" width="24" height="38"/>
+    </g>
+    <g id="reihe3" class="reben">
+      <use href="#stock" x="22" y="308" width="30" height="47"/><use href="#stock" x="102" y="312" width="30" height="47"/><use href="#stock" x="182" y="322" width="30" height="47"/><use href="#stock" x="262" y="334" width="30" height="47"/><use href="#stock" x="342" y="348" width="30" height="47"/>
+    </g>
+    <!-- Trauben: links Regent, rechts Solaris -->
+    <g class="regent">
+      <use href="#traube" x="122" y="290" width="7" height="10"/><use href="#traube" x="172" y="294" width="7" height="10"/>
+      <use href="#traube" x="11" y="305" width="9" height="12"/><use href="#traube" x="76" y="308" width="9" height="12"/><use href="#traube" x="141" y="314" width="9" height="12"/>
+      <use href="#traube" x="30" y="344" width="12" height="16"/><use href="#traube" x="110" y="348" width="12" height="16"/><use href="#traube" x="190" y="358" width="12" height="16"/>
+    </g>
+    <g class="solaris">
+      <use href="#traube" x="222" y="299" width="7" height="10"/><use href="#traube" x="272" y="306" width="7" height="10"/><use href="#traube" x="322" y="314" width="7" height="10"/><use href="#traube" x="372" y="323" width="7" height="10"/>
+      <use href="#traube" x="206" y="321" width="9" height="12"/><use href="#traube" x="271" y="329" width="9" height="12"/><use href="#traube" x="336" y="339" width="9" height="12"/>
+      <use href="#traube" x="270" y="370" width="12" height="16"/><use href="#traube" x="350" y="384" width="12" height="16"/>
+    </g>
+    <g font-family="Mulish, sans-serif" font-weight="700" font-size="9.5" letter-spacing="1.6" fill="#fff" fill-opacity=".9">
+      <text x="14" y="410">REGENT</text>
+      <text x="386" y="414" text-anchor="end" transform="rotate(-6 386 414)">SOLARIS</text>
+    </g>
+  </svg>
+  <div class="zeitname"><span id="zeitname">Morgen</span></div>
+</div>
+<p class="anleitung">Sonne antippen und ziehen – oder auf Morgen, Mittag, Abend tippen.</p>
+
+<div class="tafeln" aria-live="polite">
+  <article class="tafel aktiv" data-zeit="morgen">
+    <p class="zeit">Morgen · im Rebberg</p>
+    <h2>Arbeit am Rebhang</h2>
+    <p>Bio-dynamisch gepflegt nach den Richtlinien von Bio&nbsp;Suisse und Demeter. Die Weine tragen die Herkunft «Thunersee AOC» und sind bei Slow Food im «Slow Wine» eingetragen.</p>
+    <ul>
+      <li><span>Regent (rot)</span><span>ca. 1 ha</span></li>
+      <li><span>Solaris &amp; Sauvignon Soyhières (weiss), seit 2016</span><span>ca. 0,3 ha</span></li>
+    </ul>
+  </article>
+  <article class="tafel" data-zeit="mittag">
+    <p class="zeit">Mittag · im Hofladen</p>
+    <h2>Den ganzen Tag offen</h2>
+    <p>Aus dem Ackerbau auf rund 8 ha wachsen Weizen, Dinkel, Hafer und Buchweizen. Im Hofladen:</p>
+    <ul>
+      <li><span>Buchweizen, 750 g</span><span>CHF 7.40</span></li>
+      <li><span>Haferflocken, 500 g</span><span>CHF 4.60</span></li>
+      <li><span>Grüne Linsen, 300 g</span><span>CHF 4.50</span></li>
+      <li><span>Mischung «Körner-Börger», 500 g</span><span>CHF 5.–</span></li>
+    </ul>
+    <p style="margin:0;font-size:15px">Grössere Mengen (5, 10 oder 25 kg) auf Anfrage.</p>
+  </article>
+  <article class="tafel" data-zeit="abend">
+    <p class="zeit">Abend · in der Hofbeiz</p>
+    <h2>Unter den Bäumen</h2>
+    <p>Saisonal: Pizza und Salate aus regionalen Produkten, dazu der Degustationsraum. Für Firmen gibt es Apéros mit Führung.</p>
+    <a class="knopf gold" href="tel:+41794283048"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Reservieren: 079 428 30 48</a>
+    <div class="platz">[Öffnungszeiten Hofbeiz bitte bestätigen – saisonal, ca. Frühling bis Herbst, Ende Woche]</div>
+  </article>
+</div>
+
+<main class="wrap">
+  <section class="teil">
+    <p class="kl">Die Weine</p>
+    <h2>Drei Sorten, <em>ein Hang</em></h2>
+    <p>Das einzige Weingut in Steffisburg – «Steffisburger Wein».</p>
+    <div class="weine">
+      <div class="wein">
+        <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="none" stroke="#d0a24a" stroke-width="1"/><g fill="#5a1a3a"><circle cx="22" cy="22" r="5"/><circle cx="32" cy="22" r="5"/><circle cx="27" cy="30" r="5"/><circle cx="19" cy="31" r="4.4"/><circle cx="35" cy="31" r="4.4"/><circle cx="23" cy="39" r="4.2"/><circle cx="31" cy="39" r="4.2"/></g><path d="M27 16 C27 12 29 10 33 9" stroke="#7f9a46" stroke-width="2" fill="none"/></svg>
+        <div><h3>Regent</h3><p>Rot · seit über 20 Jahren · auf ca. 1 ha</p></div>
+      </div>
+      <div class="wein">
+        <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="none" stroke="#d0a24a" stroke-width="1"/><g fill="#d9a531"><circle cx="22" cy="22" r="5"/><circle cx="32" cy="22" r="5"/><circle cx="27" cy="30" r="5"/><circle cx="19" cy="31" r="4.4"/><circle cx="35" cy="31" r="4.4"/><circle cx="23" cy="39" r="4.2"/><circle cx="31" cy="39" r="4.2"/></g><path d="M27 16 C27 12 29 10 33 9" stroke="#7f9a46" stroke-width="2" fill="none"/></svg>
+        <div><h3>Solaris</h3><p>Weiss · seit 2016 · Teil von ca. 0,3 ha</p></div>
+      </div>
+      <div class="wein">
+        <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="none" stroke="#d0a24a" stroke-width="1"/><g fill="#b9c46a"><circle cx="22" cy="22" r="5"/><circle cx="32" cy="22" r="5"/><circle cx="27" cy="30" r="5"/><circle cx="19" cy="31" r="4.4"/><circle cx="35" cy="31" r="4.4"/><circle cx="23" cy="39" r="4.2"/><circle cx="31" cy="39" r="4.2"/></g><path d="M27 16 C27 12 29 10 33 9" stroke="#7f9a46" stroke-width="2" fill="none"/></svg>
+        <div><h3>Sauvignon Soyhières</h3><p>Weiss · seit 2016 · Teil von ca. 0,3 ha</p></div>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:15px;color:#d4cbdc">Der erste Weisswein kam 2018.</p>
+    <ul class="siegel"><li>Thunersee AOC</li><li>Bio Suisse</li><li>Demeter-Richtlinien</li><li>Slow Food «Slow Wine»</li></ul>
+  </section>
+
+  <section class="teil">
+    <div class="bestell">
+      <p class="kl">Wein bestellen</p>
+      <h2>Per Telefon <em>oder Mail</em></h2>
+      <dl>
+        <div><dt>Bestellen</dt><dd>Telefonisch oder per E-Mail</dd></div>
+        <div><dt>Versand</dt><dd>Postversand möglich</dd></div>
+        <div><dt>Abholen</dt><dd>Jederzeit nach Absprache</dd></div>
+      </dl>
+      <a class="knopf nacht" href="tel:+41763291211"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>076 329 12 11</a>
+      <a class="knopf" style="border:1.5px solid #131833;color:#131833" href="mailto:mail@wygarte.ch?subject=Weinbestellung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>mail@wygarte.ch</a>
+      <div class="platz">[Platzhalter: Weinliste mit Preisen – bitte zusenden]</div>
+    </div>
+  </section>
+
+  <section class="teil">
+    <figure class="foto">
+      <svg viewBox="0 0 400 230" aria-label="Gezeichneter Tisch unter Bäumen">
+        <rect width="400" height="230" fill="#3a1f3d"/>
+        <path d="M0 150 C100 140 300 146 400 136 V230 H0Z" fill="#2b3a24"/>
+        <g fill="#24331f"><circle cx="60" cy="60" r="56"/><circle cx="130" cy="40" r="50"/><circle cx="300" cy="50" r="58"/><circle cx="370" cy="70" r="46"/><circle cx="210" cy="30" r="40"/></g>
+        <path d="M90 150 V90 M320 150 V96" stroke="#1a1410" stroke-width="10"/>
+        <rect x="120" y="150" width="170" height="8" rx="2" fill="#8a6a4a"/>
+        <path d="M134 158 V200 M276 158 V200" stroke="#6a4e36" stroke-width="5"/>
+        <g stroke="#ecd29a" stroke-width="1.8" fill="none"><path d="M160 122 C158 136 162 144 168 145 C174 144 178 136 176 122Z"/><path d="M168 145 V150"/><path d="M230 122 C228 136 232 144 238 145 C244 144 248 136 246 122Z"/><path d="M238 145 V150"/></g>
+        <path d="M161 134 C162 141 165 144 168 144 C171 144 174 141 175 134Z" fill="#7a1a3a"/><path d="M231 134 C232 141 235 144 238 144 C241 144 244 141 245 134Z" fill="#d9a531"/>
+        <ellipse cx="203" cy="146" rx="22" ry="5" fill="#d0a24a"/>
+      </svg>
+      <small>Gezeichneter Platzhalter – hier später Ihr eigenes Foto aus der Hofbeiz</small>
+    </figure>
+  </section>
+
+  <section class="teil">
+    <p class="kl">Was Gäste loben</p>
+    <h2>Gerne <em>wieder</em></h2>
+    <ul class="lob"><li>die Aussicht</li><li>der Wein</li><li>die Pizza</li><li>gemütlich unter den Bäumen</li><li>Team-Events mit Apéro und Führung</li></ul>
+    <div class="platz">[Google-Bewertung einfügen]</div>
+  </section>
+</main>
+
+<section class="kontakt">
+  <div class="wrap">
+    <p class="kl">Kontakt</p>
+    <h2 style="font-family:var(--serif);font-weight:600;font-size:clamp(2rem,9vw,2.6rem);line-height:1.05;margin:0 0 12px;color:#fff">Bis bald <em style="color:var(--gold-hell)">am Hang</em></h2>
+    <address>Rebbau Steffisburg – Wygarte<br>Andreas Lanz<br>Ortbühlweg 53, 3612 Steffisburg</address>
+    <a class="knopf gold" href="tel:+41763291211"><span>076 329 12 11<small>Weinverkauf</small></span></a>
+    <a class="knopf rand" href="tel:+41794283048"><span>079 428 30 48<small>Reservation Hofbeiz</small></span></a>
+    <a class="knopf rand" href="mailto:mail@wygarte.ch">mail@wygarte.ch</a>
+  </div>
+</section>
+<footer>Rebbau Steffisburg – Andreas Lanz · Einzelunternehmen · <span style="white-space:nowrap">CHE-112.704.769</span></footer>
+
+<script>
+(function(){
+  function hex(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+  function mix(a,b,k){var x=hex(a),y=hex(b);return 'rgb('+x.map(function(v,i){return Math.round(v+(y[i]-v)*k)}).join(',')+')'}
+  function verlauf(stops,t){ // stops: [[t,farbe],...]
+    for(var i=1;i<stops.length;i++){if(t<=stops[i][0]){var a=stops[i-1],b=stops[i];return mix(a[1],b[1],(t-a[0])/(b[0]-a[0]))}}
+    return stops[stops.length-1][1];
+  }
+  var P={
+    oben:[[0,'#2a2c5a'],[.25,'#4a6fa8'],[.5,'#5b8cc4'],[.75,'#3d3a72'],[1,'#1b1733']],
+    unten:[[0,'#eaa58a'],[.25,'#f2d6b0'],[.5,'#d6e6ee'],[.75,'#f0b866'],[1,'#b8603c']],
+    berge:[[0,'#7a7598'],[.5,'#8ea2b8'],[.8,'#6a4f78'],[1,'#3a2d4f']],
+    schnee:[[0,'#f6dfe0'],[.5,'#ffffff'],[.8,'#f2c48a'],[1,'#c98a6a']],
+    vorberg:[[0,'#5d6a80'],[.5,'#6a7f8a'],[1,'#33284a']],
+    see:[[0,'#a497b8'],[.5,'#6f9fbf'],[.8,'#c88a5a'],[1,'#5a3f62']],
+    dorfhang:[[0,'#667a4c'],[.5,'#7d9356'],[1,'#3f4630']],
+    hang:[[0,'#55703a'],[.5,'#6f8a3c'],[1,'#3a4a28']],
+    laub:[[0,'#4a6a2e'],[.5,'#5f8a32'],[1,'#33471f']],
+    krone:[[0,'#3c5a2a'],[.5,'#4b7330'],[1,'#26361c']],
+    sonne:[[0,'#ffb88a'],[.5,'#fff3c4'],[1,'#f08a3a']]
+  };
+  var $=function(i){return document.getElementById(i)};
+  var svg=document.querySelector('#szene svg'),szene=$('szene'),sonne=$('sonne');
+  var reifG='#8fb04a';
+  var t=0.18,ziel=null,zieht=false;
+  var zeiten=['morgen','mittag','abend'],namen={morgen:'Morgen',mittag:'Mittag',abend:'Abend'},aktiv='';
+
+  function setze(n){
+    t=Math.max(0.08,Math.min(0.92,n));
+    var a=Math.PI*(1-t);
+    var x=200+170*Math.cos(a),y=290-190*Math.sin(a);
+    sonne.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+')');
+    sonne.setAttribute('aria-valuenow',Math.round(t*100));
+    $('h-oben').setAttribute('stop-color',verlauf(P.oben,t));
+    $('h-unten').setAttribute('stop-color',verlauf(P.unten,t));
+    var sf=verlauf(P.sonne,t);$('sonne-kern').setAttribute('fill',sf);$('sonne-schein').setAttribute('fill',sf);
+    $('berge').setAttribute('fill',verlauf(P.berge,t));$('schnee').setAttribute('fill',verlauf(P.schnee,t));
+    $('vorberg').setAttribute('fill',verlauf(P.vorberg,t));$('see').setAttribute('fill',verlauf(P.see,t));
+    $('dorfhang').setAttribute('fill',verlauf(P.dorfhang,t));$('hang').setAttribute('fill',verlauf(P.hang,t));
+    svg.querySelectorAll('.laub').forEach(function(g){g.setAttribute('fill',verlauf(P.laub,t))});
+    svg.querySelectorAll('.krone').forEach(function(g){g.setAttribute('fill',verlauf(P.krone,t))});
+    // Glitzer auf dem See unter der Sonne
+    $('glitzer').setAttribute('transform','translate('+x.toFixed(1)+' 0)');
+    $('glitzer').setAttribute('opacity',(0.35+0.5*Math.sin(a)).toFixed(2));
+    // Abend-/Morgendämmerung
+    var d=Math.max(0,Math.abs(t-0.5)*2-0.45);$('licht').setAttribute('opacity',(d*0.42).toFixed(3));
+    // Schatten: weg von der Sonne, kurz am Mittag
+    var c=Math.cos(a),L=6+34*Math.abs(c)+ (1-Math.sin(a))*10;var dx=-Math.sign(c||1)*L;
+    $('schattenform').setAttribute('d','M0 0 L'+dx.toFixed(1)+' 3 L'+dx.toFixed(1)+' 6 L0 3Z');
+    $('schatten').setAttribute('opacity',(0.16+0.22*Math.sin(a)).toFixed(2));
+    // Trauben reifen über den Tag
+    var r=Math.min(1,Math.max(0,(t-0.1)/0.7));
+    svg.querySelector('.regent').setAttribute('fill',mix(reifG,'#4a1838',r));
+    svg.querySelector('.solaris').setAttribute('fill',mix(reifG,'#e0a92e',r));
+    // Abschnitt
+    var z=t<0.36?'morgen':t<0.68?'mittag':'abend';
+    if(z!==aktiv){aktiv=z;$('zeitname').textContent=namen[z];
+      document.querySelectorAll('.tafel').forEach(function(e){e.classList.toggle('aktiv',e.dataset.zeit===z)})}
+  }
+
+  function lauf(){if(ziel===null||window.eingefroren)return;var d=ziel-t;if(Math.abs(d)<0.004){setze(ziel);ziel=null;return}setze(t+d*0.12);requestAnimationFrame(lauf)}
+  function gehe(n){var war=ziel;ziel=n;if(war===null)requestAnimationFrame(lauf)}
+
+  function ausPunkt(e){var b=svg.getBoundingClientRect();var x=(e.clientX-b.left)*400/b.width,y=(e.clientY-b.top)*420/b.height;
+    var a=Math.atan2((290-y)/190,(x-200)/170);if(a<0)a=x<200?Math.PI:0;return 1-a/Math.PI}
+  sonne.addEventListener('pointerdown',function(e){zieht=true;ziel=null;szene.classList.add('zieht');try{sonne.setPointerCapture(e.pointerId)}catch(_){};e.preventDefault()});
+  sonne.addEventListener('pointermove',function(e){if(zieht)setze(ausPunkt(e))});
+  function los(){zieht=false;szene.classList.remove('zieht')}
+  sonne.addEventListener('pointerup',los);sonne.addEventListener('pointercancel',los);
+  // Tippen in den Himmel bewegt die Sonne dorthin
+  svg.addEventListener('click',function(e){if(e.target.closest('#sonne'))return;var m=e.target.closest('.marke-zeit');if(m){gehe(parseFloat(m.dataset.t));return}
+    var b=svg.getBoundingClientRect();if((e.clientY-b.top)*420/b.height<250)gehe(ausPunkt(e))});
+  sonne.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowUp'){setze(t+0.04);e.preventDefault()}if(e.key==='ArrowLeft'||e.key==='ArrowDown'){setze(t-0.04);e.preventDefault()}});
+
+  // Schatten zu jedem Rebstock
+  var NS='http://www.w3.org/2000/svg';
+  svg.querySelectorAll('.reben use').forEach(function(u){var x=+u.getAttribute('x'),y=+u.getAttribute('y'),w=+u.getAttribute('width'),h=+u.getAttribute('height');
+    var s=document.createElementNS(NS,'use');s.setAttribute('href','#schattenform');s.setAttribute('x',(x+w/2).toFixed(1));s.setAttribute('y',(y+h*40/44).toFixed(1));$('schatten').appendChild(s)});
+  [[46,312],[80,316]].forEach(function(b){var s=document.createElementNS(NS,'use');s.setAttribute('href','#schattenform');s.setAttribute('x',b[0]);s.setAttribute('y',b[1]);s.setAttribute('transform','translate(0 0)');$('schatten').appendChild(s)});
+  window.zwischenzustand=function(){window.eingefroren=true;ziel=null;setze(0.8)};
+  setze(t);
+})();
+</script>
+</body>
+</html>

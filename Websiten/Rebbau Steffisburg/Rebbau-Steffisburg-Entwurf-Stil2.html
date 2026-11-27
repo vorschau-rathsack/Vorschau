@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de-CH">
+<head><script src="../../assets/geraet.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wygarte – Entwurf Chornchammer</title>
+<meta name="description" content="Demo-Entwurf von Max Rathsack für Rebbau Steffisburg – Wygarte: Hofladen, Ackerbau, Wein und Hofbeiz in Steffisburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --hafer:#ece2cb;
+  --leinen:#f5efe1;
+  --sack:#e2d3b2;
+  --braun:#3a2618;
+  --braun-2:#5a3d27;
+  --holz:#9a6a3f;
+  --holz-hell:#c08d57;
+  --blau:#3657a8;
+  --blau-hell:#dbe3f5;
+  --leise:#6b5848;
+  --slab:"Zilla Slab",Rockwell,Georgia,serif;
+  --kond:"Barlow Condensed","Arial Narrow",sans-serif;
+  --sans:"Barlow",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--hafer);color:var(--braun);font-family:var(--sans);font-size:17px;line-height:1.5;overflow-x:hidden}
+a{color:inherit}
+.demo{background:var(--blau);color:#fff;font-size:12.5px;font-weight:600;text-align:center;padding:7px 14px;line-height:1.35}
+.wrap{max-width:540px;margin:0 auto;padding:0 18px}
+
+.kopf{background:var(--braun);color:var(--leinen)}
+.kopf .wrap{display:flex;align-items:center;justify-content:space-between;min-height:58px}
+.marke{font-family:var(--slab);font-weight:700;font-size:24px;text-decoration:none;letter-spacing:.01em}
+.marke small{display:block;font-family:var(--kond);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--holz-hell);margin-top:-2px}
+.kopf a.ruf{font-family:var(--kond);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;background:var(--leinen);color:var(--braun);border-radius:6px;padding:7px 12px}
+
+/* Held */
+.held{background:var(--braun);color:var(--leinen);padding:20px 0 0;overflow:hidden}
+.held .kick{font-family:var(--kond);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:14px;color:var(--holz-hell);margin:0 0 4px}
+.held h1{font-family:var(--slab);font-weight:700;font-size:clamp(2.6rem,13.2vw,3.9rem);line-height:.92;letter-spacing:-.02em;margin:0 0 14px;color:#fff}
+.held p.lead{font-size:18px;margin:0 0 18px;color:#eadfca}
+.offen-band{display:flex;align-items:center;gap:12px;background:var(--blau);color:#fff;border-radius:10px;padding:12px 14px;margin:0 0 18px}
+.offen-band svg{width:34px;height:34px;flex:none}
+.offen-band b{font-family:var(--slab);font-size:21px;display:block;line-height:1.1}
+.offen-band span{font-size:14.5px;opacity:.9}
+.held svg.acker{display:block;width:calc(100% + 36px);margin:0 -18px;height:auto}
+
+/* Acker */
+.feld{padding:34px 0 8px}
+.etikett-kl{font-family:var(--kond);font-weight:700;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--blau);margin:0 0 6px}
+h2{font-family:var(--slab);font-weight:700;font-size:clamp(1.9rem,8.8vw,2.5rem);line-height:1.02;margin:0 0 12px;letter-spacing:-.01em}
+p{margin:0 0 14px}
+.aehren{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 0}
+.aehren div{background:var(--leinen);border:2px solid var(--braun);border-radius:8px;padding:8px 4px 8px;text-align:center}
+.aehren svg{width:44px;height:64px;display:block;margin:0 auto 4px}
+.aehren b{font-family:var(--kond);font-size:16px;letter-spacing:.04em;text-transform:uppercase}
+
+/* Mühle */
+.muehle{margin:30px 0 0;background:var(--leinen);border:2.5px solid var(--braun);border-radius:14px;padding:18px 14px 16px;box-shadow:6px 6px 0 var(--braun)}
+.muehle h2{margin-bottom:6px}
+.muehle .hilfe{font-size:15px;color:var(--leise);margin:0 0 12px}
+.regal{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;border-bottom:6px solid var(--holz);padding:0 2px 0;margin:0 0 4px}
+.ware{appearance:none;background:none;border:0;padding:0 0 2px;cursor:pointer;font:inherit;color:var(--braun);display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.ware svg{width:58px;height:62px;transition:transform .25s}
+.ware span{font-family:var(--kond);font-weight:700;font-size:13.5px;line-height:1.05;text-transform:uppercase;letter-spacing:.03em;text-align:center;min-height:30px;display:flex;align-items:center}
+.ware[aria-pressed="true"] svg{transform:translateY(-6px)}
+.ware[aria-pressed="true"]::after{content:"";position:absolute;bottom:-12px;left:50%;margin-left:-7px;border:7px solid transparent;border-bottom-color:var(--blau)}
+.ware[aria-pressed="true"] span{color:var(--blau)}
+.szene{position:relative;touch-action:none;user-select:none;-webkit-user-select:none;margin-top:10px}
+.szene svg{display:block;width:100%;height:auto}
+#kurbel{cursor:grab}
+.szene.dreht #kurbel{cursor:grabbing}
+.kurbel-knopf{display:block;width:100%;appearance:none;border:0;border-radius:10px;background:var(--braun);color:var(--leinen);font-family:var(--kond);font-weight:700;font-size:19px;letter-spacing:.08em;text-transform:uppercase;min-height:52px;cursor:pointer;margin-top:6px}
+.zettel{margin:16px auto 0;max-width:300px;position:relative;background:#fbf7ec;border:2px solid var(--braun);border-radius:6px 6px 6px 6px;padding:20px 18px 16px;text-align:center;transform:rotate(-2deg);opacity:.25;transition:opacity .4s,transform .5s}
+.zettel::before{content:"";position:absolute;top:8px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid var(--braun);background:var(--hafer)}
+.zettel.da{opacity:1;transform:rotate(-2deg) translateY(0)}
+.zettel .z-oben{font-family:var(--kond);font-weight:700;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--holz);margin:8px 0 2px}
+.zettel .z-name{font-family:var(--slab);font-weight:700;font-size:28px;line-height:1.05;margin:0 0 8px}
+.zettel .z-reihe{display:flex;justify-content:space-between;align-items:baseline;border-top:2px dashed #cdbb98;padding-top:10px}
+.zettel .z-gew{font-family:var(--kond);font-weight:700;font-size:24px}
+.zettel .z-preis{font-family:var(--slab);font-weight:700;font-size:28px;color:var(--blau)}
+.zettel .z-fuss{font-size:12.5px;color:var(--leise);margin:8px 0 0}
+.zettel .z-wart{font-size:14px;color:var(--leise);margin:0}
+
+/* Preisliste */
+.liste{margin:40px 0 0}
+.liste ul{list-style:none;padding:0;margin:0 0 12px;border-top:2.5px solid var(--braun)}
+.liste li{display:flex;align-items:baseline;gap:8px;padding:12px 0;border-bottom:1.5px dashed #b9a684}
+.liste li b{font-family:var(--slab);font-weight:600;font-size:19px}
+.liste li em{font-style:normal;font-family:var(--kond);font-weight:600;font-size:16px;color:var(--leise)}
+.liste li .p{margin-left:auto;font-family:var(--slab);font-weight:700;font-size:19px;white-space:nowrap}
+.mengen{background:var(--blau-hell);border-radius:12px;padding:14px 16px;margin:0 0 6px}
+.mengen b{font-family:var(--slab);font-size:19px}
+.mengen .sk{display:flex;gap:8px;margin:10px 0 0}
+.mengen .sk span{flex:1;text-align:center;background:#fff;border:2px solid var(--blau);border-radius:8px;font-family:var(--kond);font-weight:700;font-size:20px;padding:6px 0;color:var(--blau)}
+.knopf{display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;border-radius:10px;font-family:var(--kond);font-weight:700;font-size:20px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;margin-top:10px}
+.knopf svg{width:22px;height:22px}
+.knopf.blau{background:var(--blau);color:#fff}
+.knopf.braun{background:var(--braun);color:var(--leinen)}
+.knopf.hell{background:var(--leinen);color:var(--braun)}
+.knopf.rand{border:2.5px solid currentColor}
+.platz{border:2px dashed #a8916c;border-radius:10px;padding:12px 14px;color:#6b5848;background:rgba(255,255,255,.35);font-size:14.5px;font-weight:600;margin:10px 0 0}
+
+/* Wein + Beiz */
+.zwei{margin:44px 0 0;display:grid;gap:16px}
+.block{border-radius:14px;padding:20px 18px 18px;position:relative;overflow:hidden}
+.block.wein{background:#4a1e26;color:#f6e9e2}
+.block.wein .etikett-kl{color:#e7b7a0}
+.block.beiz{background:var(--leinen);border:2.5px solid var(--braun)}
+.block h2{font-size:clamp(1.7rem,7.6vw,2.1rem)}
+.block .deko{position:absolute;right:-8px;top:-8px;width:72px;height:72px;opacity:.9}
+.block h2{padding-right:44px}
+.block ul{margin:0 0 12px;padding-left:20px}
+.block li{margin:0 0 4px}
+.block.wein .platz{border-color:rgba(255,255,255,.55);color:#f6e9e2;background:rgba(255,255,255,.06)}
+
+.foto{margin:40px 0 0;border:2.5px solid var(--braun);border-radius:14px;overflow:hidden;background:var(--leinen)}
+.foto svg{display:block;width:100%;height:auto}
+.foto small{display:block;padding:8px 12px;font-size:13px;color:var(--leise);border-top:2px solid var(--braun)}
+
+.lob{margin:40px 0 0}
+.lob ul{list-style:none;padding:0;margin:0 0 10px;display:flex;flex-wrap:wrap;gap:8px}
+.lob li{font-family:var(--kond);font-weight:700;font-size:17px;letter-spacing:.03em;background:var(--leinen);border:2px solid var(--braun);border-radius:30px;padding:6px 14px}
+
+.kontakt{margin:44px 0 0;background:var(--braun);color:var(--leinen);padding:30px 0 28px}
+.kontakt h2{color:#fff}
+.kontakt address{font-style:normal;margin:0 0 6px;font-size:17px}
+.kontakt .knopf span{display:flex;flex-direction:column;align-items:center;line-height:1.05}
+.kontakt .knopf small{font-family:var(--sans);text-transform:none;letter-spacing:0;font-weight:500;font-size:13px;opacity:.85}
+footer{background:#2a1b10;color:#c9b694;font-size:13px;text-align:center;padding:18px 18px 34px}
+
+html.pdf *{animation:none!important;transition:none!important}
+html.pdf .zettel{opacity:1}
+</style>
+</head>
+<body>
+<div class="demo">Entwurf / Demo von Max Rathsack – keine offizielle Webseite von Rebbau Steffisburg – Wygarte</div>
+
+<header class="kopf">
+  <div class="wrap">
+    <a class="marke" href="#">Wygarte<small>Rebbau Steffisburg</small></a>
+    <a class="ruf" href="tel:+41763291211">Anrufen</a>
+  </div>
+</header>
+
+<section class="held">
+  <div class="wrap">
+    <p class="kick">Hofladen · Acker · Wein</p>
+    <h1>Chorn&shy;chammer</h1>
+    <p class="lead">Buchweizen, Haferflocken, Linsen und Körner – direkt ab Hof am Ortbühlweg in Steffisburg.</p>
+    <div class="offen-band">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M17 8v9l6 4" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <div><b>Hofladen: den ganzen Tag offen</b><span>Einfach vorbeikommen und mitnehmen.</span></div>
+    </div>
+  </div>
+  <svg class="acker" viewBox="0 0 430 120" aria-hidden="true">
+    <rect width="430" height="120" fill="#3a2618"/>
+    <path d="M0 40 C90 22 190 30 260 20 C330 12 390 18 430 14 V120 H0Z" fill="#6f8a3f"/>
+    <path d="M0 62 C110 44 220 50 430 34 V120 H0Z" fill="#d7b968"/>
+    <path d="M0 84 C120 68 240 72 430 56 V120 H0Z" fill="#c9a24e"/>
+    <path d="M0 104 C130 92 250 94 430 80 V120 H0Z" fill="#8a5a3a"/>
+    <g stroke="#a7802f" stroke-width="1.6" stroke-linecap="round">
+      <path d="M20 80v-9M44 78v-9M68 76v-9M92 75v-9M116 74v-9M140 73v-9M164 72v-9M188 71v-9M212 70v-9M236 69v-9M260 67v-9M284 66v-9M308 64v-9M332 62v-9M356 60v-9M380 59v-9M404 58v-9"/>
+    </g>
+    <g fill="#fff" opacity=".18"><path d="M0 104 C130 92 250 94 430 80 V84 C250 98 130 96 0 108Z"/></g>
+  </svg>
+</section>
+
+<main class="wrap">
+  <section class="feld">
+    <p class="etikett-kl">Ackerbau</p>
+    <h2>Rund 8 Hektaren Acker</h2>
+    <p>Neben den Reben wachsen auf dem Hof Weizen, Dinkel, Hafer und Buchweizen.</p>
+    <div class="aehren" aria-label="Getreide vom Hof">
+      <div><svg viewBox="0 0 44 64" aria-hidden="true"><path d="M22 62V20" stroke="#8a6a2f" stroke-width="2"/><g fill="#d3a84a" stroke="#8a6a2f" stroke-width="1"><ellipse cx="17" cy="20" rx="4" ry="6.5" transform="rotate(-20 17 20)"/><ellipse cx="27" cy="20" rx="4" ry="6.5" transform="rotate(20 27 20)"/><ellipse cx="17" cy="31" rx="4" ry="6.5" transform="rotate(-20 17 31)"/><ellipse cx="27" cy="31" rx="4" ry="6.5" transform="rotate(20 27 31)"/><ellipse cx="17" cy="42" rx="4" ry="6.5" transform="rotate(-20 17 42)"/><ellipse cx="27" cy="42" rx="4" ry="6.5" transform="rotate(20 27 42)"/><ellipse cx="22" cy="11" rx="3.6" ry="6"/></g></svg><b>Weizen</b></div>
+      <div><svg viewBox="0 0 44 64" aria-hidden="true"><path d="M22 62V16" stroke="#7a5a2a" stroke-width="2"/><g fill="#b98a46" stroke="#6d4b22" stroke-width="1"><rect x="14" y="14" width="7" height="9" rx="3"/><rect x="23" y="18" width="7" height="9" rx="3"/><rect x="14" y="25" width="7" height="9" rx="3"/><rect x="23" y="29" width="7" height="9" rx="3"/><rect x="14" y="36" width="7" height="9" rx="3"/><rect x="23" y="40" width="7" height="9" rx="3"/></g><path d="M17 14l-4-12M26 18l5-12" stroke="#6d4b22" stroke-width="1"/></svg><b>Dinkel</b></div>
+      <div><svg viewBox="0 0 44 64" aria-hidden="true"><path d="M22 62V6M22 16l-10 10M22 24l10 10M22 34l-9 9M22 12l9 8" stroke="#8a7a3a" stroke-width="1.6" fill="none"/><g fill="#e3cf8f" stroke="#8a7a3a" stroke-width="1"><path d="M12 26c-3 1-4 6-2 9 3-1 4-6 2-9z"/><path d="M32 34c3 1 4 6 2 9-3-1-4-6-2-9z"/><path d="M13 43c-3 1-4 6-2 9 3-1 4-6 2-9z"/><path d="M31 20c3 1 4 6 2 9-3-1-4-6-2-9z"/><path d="M22 6c-3 1-3 6 0 8 3-2 3-7 0-8z"/></g></svg><b>Hafer</b></div>
+      <div><svg viewBox="0 0 44 64" aria-hidden="true"><path d="M22 62V22M22 40c-6-2-10-8-10-14M22 34c6-2 9-6 9-12" stroke="#7a8a3a" stroke-width="2" fill="none"/><path d="M12 26c-6-2-6-10 0-12 2 4 2 8 0 12zM31 22c6-2 6-10 0-12-2 4-2 8 0 12z" fill="#6f8a3f"/><g fill="#f1e6e6" stroke="#b07a8a" stroke-width=".8"><circle cx="18" cy="16" r="3"/><circle cx="24" cy="14" r="3"/><circle cx="21" cy="10" r="3"/><circle cx="26" cy="19" r="3"/></g><g fill="#5a3d27"><path d="M14 50l3-5 3 5z"/><path d="M24 54l3-5 3 5z"/></g></svg><b>Buch&shy;weizen</b></div>
+    </div>
+  </section>
+
+  <section class="muehle" id="muehle">
+    <p class="etikett-kl">Die Hofmühle</p>
+    <h2>Kurbeln Sie sich ein Säckli</h2>
+    <p class="hilfe">Ware im Regal wählen, dann die Kurbel im Kreis drehen – oder einfach antippen. Das Säckli füllt sich und bekommt sein Etikett.</p>
+    <div class="regal" role="group" aria-label="Produkt wählen">
+      <button class="ware" data-ware="buchweizen" aria-pressed="true">
+        <svg viewBox="0 0 58 62" aria-hidden="true"><path d="M14 18 C12 30 10 48 12 58 H46 C48 48 46 30 44 18Z" fill="#e2d3b2" stroke="#3a2618" stroke-width="2"/><path d="M14 18 C20 12 38 12 44 18 L40 10 C34 6 24 6 18 10Z" fill="#d6c39b" stroke="#3a2618" stroke-width="2"/><path d="M18 12 C22 15 36 15 40 12" stroke="#3657a8" stroke-width="2.2" fill="none"/><g fill="#6b4a2e"><path d="M22 40l4-7 4 7z"/><path d="M30 46l4-7 4 7z"/><path d="M20 50l4-7 4 7z"/></g></svg>
+        <span>Buch&shy;weizen</span></button>
+      <button class="ware" data-ware="hafer" aria-pressed="false">
+        <svg viewBox="0 0 58 62" aria-hidden="true"><path d="M14 18 C12 30 10 48 12 58 H46 C48 48 46 30 44 18Z" fill="#e2d3b2" stroke="#3a2618" stroke-width="2"/><path d="M14 18 C20 12 38 12 44 18 L40 10 C34 6 24 6 18 10Z" fill="#d6c39b" stroke="#3a2618" stroke-width="2"/><path d="M18 12 C22 15 36 15 40 12" stroke="#3657a8" stroke-width="2.2" fill="none"/><g fill="#f3e5bd" stroke="#b39a60" stroke-width="1"><ellipse cx="24" cy="38" rx="5" ry="3.4"/><ellipse cx="34" cy="44" rx="5" ry="3.4" transform="rotate(25 34 44)"/><ellipse cx="25" cy="50" rx="5" ry="3.4" transform="rotate(-15 25 50)"/></g></svg>
+        <span>Hafer&shy;flocken</span></button>
+      <button class="ware" data-ware="linsen" aria-pressed="false">
+        <svg viewBox="0 0 58 62" aria-hidden="true"><path d="M14 18 C12 30 10 48 12 58 H46 C48 48 46 30 44 18Z" fill="#e2d3b2" stroke="#3a2618" stroke-width="2"/><path d="M14 18 C20 12 38 12 44 18 L40 10 C34 6 24 6 18 10Z" fill="#d6c39b" stroke="#3a2618" stroke-width="2"/><path d="M18 12 C22 15 36 15 40 12" stroke="#3657a8" stroke-width="2.2" fill="none"/><g fill="#6f7d3a"><ellipse cx="24" cy="38" rx="4" ry="2.8"/><ellipse cx="34" cy="42" rx="4" ry="2.8"/><ellipse cx="27" cy="48" rx="4" ry="2.8"/><ellipse cx="36" cy="51" rx="4" ry="2.8"/></g></svg>
+        <span>Grüne Linsen</span></button>
+      <button class="ware" data-ware="boerger" aria-pressed="false">
+        <svg viewBox="0 0 58 62" aria-hidden="true"><path d="M14 18 C12 30 10 48 12 58 H46 C48 48 46 30 44 18Z" fill="#e2d3b2" stroke="#3a2618" stroke-width="2"/><path d="M14 18 C20 12 38 12 44 18 L40 10 C34 6 24 6 18 10Z" fill="#d6c39b" stroke="#3a2618" stroke-width="2"/><path d="M18 12 C22 15 36 15 40 12" stroke="#3657a8" stroke-width="2.2" fill="none"/><g><circle cx="23" cy="39" r="3" fill="#6b4a2e"/><circle cx="32" cy="41" r="3" fill="#d3a84a"/><circle cx="27" cy="48" r="3" fill="#6f7d3a"/><circle cx="36" cy="50" r="3" fill="#f3e5bd" stroke="#b39a60"/></g></svg>
+        <span>Körner-Börger</span></button>
+    </div>
+
+    <div class="szene" id="szene">
+      <svg viewBox="0 0 360 390" aria-label="Gezeichnete Handmühle mit Kurbel und Säckli">
+        <defs>
+          <clipPath id="sackinnen"><path d="M118 300 C112 330 110 362 116 380 H244 C250 362 248 330 242 300Z"/></clipPath>
+          <clipPath id="trichterinnen"><path d="M112 34 H248 L206 98 H154Z"/></clipPath>
+        </defs>
+        <!-- Tisch -->
+        <rect x="0" y="380" width="360" height="10" fill="#9a6a3f"/>
+        <!-- Trichter -->
+        <path d="M106 30 H254 L210 100 H150Z" fill="#c08d57" stroke="#3a2618" stroke-width="3" stroke-linejoin="round"/>
+        <g clip-path="url(#trichterinnen)">
+          <rect id="vorrat" x="100" y="40" width="160" height="70" fill="#6b4a2e"/>
+          <g id="vorratkorn" fill="#4a321e" opacity=".5"><circle cx="130" cy="48" r="3"/><circle cx="150" cy="44" r="3"/><circle cx="172" cy="49" r="3"/><circle cx="196" cy="45" r="3"/><circle cx="220" cy="48" r="3"/><circle cx="160" cy="60" r="3"/><circle cx="186" cy="62" r="3"/><circle cx="206" cy="58" r="3"/><circle cx="140" cy="56" r="3"/></g>
+        </g>
+        <path d="M106 30 H254" stroke="#3a2618" stroke-width="5" stroke-linecap="round"/>
+        <path d="M120 40 L158 96" stroke="#fff" stroke-opacity=".25" stroke-width="4"/>
+        <path id="kreisspur" d="M286 96 A62 62 0 1 1 285.9 96" fill="none" stroke="#3657a8" stroke-width="2" stroke-dasharray="3 7" opacity=".6"/>
+        <!-- Gehäuse -->
+        <rect x="104" y="98" width="152" height="130" rx="6" fill="#9a6a3f" stroke="#3a2618" stroke-width="3"/>
+        <path d="M112 124 H248 M112 150 H248 M112 176 H248 M112 202 H248" stroke="#7c5230" stroke-width="1.6"/>
+        <rect x="98" y="98" width="164" height="14" rx="4" fill="#3a2618"/>
+        <circle cx="114" cy="105" r="2.6" fill="#c9a24e"/><circle cx="246" cy="105" r="2.6" fill="#c9a24e"/>
+        <rect x="128" y="186" width="104" height="30" rx="3" fill="#b07a48" stroke="#3a2618" stroke-width="2.4"/>
+        <circle cx="180" cy="201" r="5" fill="#c9a24e" stroke="#3a2618" stroke-width="2"/>
+        <text x="180" y="150" text-anchor="middle" font-family="Zilla Slab, serif" font-weight="700" font-size="17" fill="#f5efe1" letter-spacing="1">WYGARTE</text>
+        <text x="180" y="170" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="11" fill="#e2d3b2" letter-spacing="2.4">STEFFISBURG</text>
+        <!-- Auslauf -->
+        <path d="M168 228 H192 L188 252 H172Z" fill="#3a2618"/>
+        <!-- Kurbel-Achse -->
+        <rect x="256" y="152" width="22" height="12" fill="#3a2618"/>
+        <g id="kurbel" transform="rotate(0 286 158)">
+          <circle cx="286" cy="158" r="64" fill="transparent"/>
+          <path d="M286 158 L286 104" stroke="#3a2618" stroke-width="9" stroke-linecap="round"/>
+          <path d="M286 158 L286 104" stroke="#6b4a2e" stroke-width="4" stroke-linecap="round"/>
+          <rect x="276" y="86" width="20" height="26" rx="9" fill="#3657a8" stroke="#3a2618" stroke-width="2.6"/>
+          <path d="M281 92 V104" stroke="#fff" stroke-opacity=".5" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+        <circle cx="286" cy="158" r="12" fill="#c9a24e" stroke="#3a2618" stroke-width="3"/>
+        <circle cx="286" cy="158" r="3.5" fill="#3a2618"/>
+        <!-- Rieseln -->
+        <g id="koerner"></g>
+        <!-- Säckli -->
+        <path d="M118 300 C112 330 110 362 116 380 H244 C250 362 248 330 242 300Z" fill="#c4ad80" stroke="#3a2618" stroke-width="3"/>
+        <g clip-path="url(#sackinnen)">
+          <path id="inhalt" d="M100 380 H260 V400 H100Z" fill="#6b4a2e" stroke="#3a2618" stroke-width="2.4"/>
+        </g>
+        <path d="M118 300 C112 290 112 276 122 266 L238 266 C248 276 248 290 242 300" fill="#efe4c8" stroke="#3a2618" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M126 300 C122 324 121 350 124 372" stroke="#fff" stroke-opacity=".35" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- kleines Anhänger-Etikett am Sack -->
+        <g id="anhaenger" opacity="0">
+          <path d="M240 284 C254 282 262 290 266 300" stroke="#3a2618" stroke-width="1.6" fill="none"/>
+          <rect x="250" y="300" width="70" height="44" rx="4" fill="#fbf7ec" stroke="#3a2618" stroke-width="2" transform="rotate(8 285 322)"/>
+          <text id="anh-gew" x="285" y="320" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="15" fill="#3a2618" transform="rotate(8 285 322)">750 g</text>
+          <text id="anh-preis" x="285" y="338" text-anchor="middle" font-family="Zilla Slab, serif" font-weight="700" font-size="14" fill="#3657a8" transform="rotate(8 285 322)">CHF 7.40</text>
+        </g>
+        <!-- Fortschritt -->
+        <text id="umdr" x="28" y="300" font-family="Barlow Condensed, sans-serif" font-weight="700" font-size="15" fill="#6b5848" letter-spacing="1">0 %</text>
+        <text x="28" y="318" font-family="Barlow Condensed, sans-serif" font-weight="600" font-size="12" fill="#6b5848" letter-spacing="1">GEFÜLLT</text>
+      </svg>
+    </div>
+    <button class="kurbel-knopf" id="kurbelknopf">Kurbel drehen</button>
+
+    <div class="zettel" id="zettel" aria-live="polite">
+      <p class="z-wart" id="z-wart">Drehen Sie, bis das Säckli voll ist – dann hängt hier das Etikett.</p>
+      <p class="z-oben">Hofladen Wygarte</p>
+      <p class="z-name" id="z-name">Buchweizen</p>
+      <div class="z-reihe"><span class="z-gew" id="z-gew">750 g</span><span class="z-preis" id="z-preis">CHF 7.40</span></div>
+      <p class="z-fuss">Rebbau Steffisburg · Ortbühlweg 53</p>
+    </div>
+  </section>
+
+  <section class="liste">
+    <p class="etikett-kl">Im Hofladen</p>
+    <h2>Preise ab Hof</h2>
+    <ul>
+      <li><b>Buchweizen</b><em>750 g</em><span class="p">CHF 7.40</span></li>
+      <li><b>Haferflocken</b><em>500 g</em><span class="p">CHF 4.60</span></li>
+      <li><b>Grüne Linsen</b><em>300 g</em><span class="p">CHF 4.50</span></li>
+      <li><b>Mischung für «Körner-Börger»</b><em>500 g</em><span class="p">CHF 5.–</span></li>
+    </ul>
+    <div class="mengen">
+      <b>Grössere Mengen auf Anfrage</b>
+      <div class="sk"><span>5 kg</span><span>10 kg</span><span>25 kg</span></div>
+    </div>
+    <a class="knopf blau" href="mailto:mail@wygarte.ch?subject=Anfrage%20gr%C3%B6ssere%20Menge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Menge anfragen</a>
+  </section>
+
+  <div class="zwei">
+    <section class="block wein">
+      <svg class="deko" viewBox="0 0 86 86" aria-hidden="true"><g fill="#7d2a38"><circle cx="34" cy="30" r="8"/><circle cx="50" cy="30" r="8"/><circle cx="42" cy="43" r="8"/><circle cx="28" cy="44" r="7"/><circle cx="56" cy="44" r="7"/><circle cx="36" cy="56" r="7"/><circle cx="50" cy="56" r="7"/><circle cx="43" cy="67" r="6"/></g><path d="M42 22 C42 14 46 10 52 8" stroke="#9cb36a" stroke-width="3" fill="none"/></svg>
+      <p class="etikett-kl">Auch vom Hof</p>
+      <h2>Steffisburger Wein</h2>
+      <p>Das einzige Weingut in Steffisburg: Thunersee AOC, bio-dynamisch nach Bio-Suisse- und Demeter-Richtlinien, eingetragen bei Slow Food «Slow Wine».</p>
+      <ul>
+        <li><b>Regent</b> – rot, seit über 20 Jahren, ca. 1 ha</li>
+        <li><b>Solaris</b> und <b>Sauvignon Soyhières</b> – weiss, seit 2016 auf ca. 0,3 ha, erster Weisswein 2018</li>
+      </ul>
+      <p style="margin:0">Bestellen per Telefon oder Mail. Postversand möglich, Abholung jederzeit nach Absprache.</p>
+      <a class="knopf hell" href="tel:+41763291211"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>076 329 12 11</a>
+      <div class="platz">[Platzhalter: Weinliste und Preise – bitte zusenden]</div>
+    </section>
+
+    <section class="block beiz">
+      <svg class="deko" viewBox="0 0 86 86" aria-hidden="true"><circle cx="46" cy="40" r="30" fill="#e2b25c" stroke="#3a2618" stroke-width="2.4"/><circle cx="46" cy="40" r="24" fill="#c8553d"/><g fill="#f5efe1"><circle cx="38" cy="32" r="5"/><circle cx="54" cy="44" r="5"/><circle cx="40" cy="50" r="4"/></g><g fill="#6f8a3f"><circle cx="52" cy="30" r="3"/><circle cx="32" cy="42" r="3"/></g><path d="M46 10v60M16 40h60" stroke="#3a2618" stroke-width="1.2" opacity=".35"/></svg>
+      <p class="etikett-kl">Hofbeiz (saisonal)</p>
+      <h2>Pizza unter den Bäumen</h2>
+      <p>Pizza und Salate aus regionalen Produkten, ein Degustationsraum und Firmen-Apéros mit Führung.</p>
+      <div class="platz">[Öffnungszeiten Hofbeiz bitte bestätigen – saisonal, ca. Frühling bis Herbst, Ende Woche]</div>
+      <a class="knopf braun" href="tel:+41794283048"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Reservieren: 079 428 30 48</a>
+    </section>
+  </div>
+
+  <figure class="foto" style="margin-left:0;margin-right:0">
+    <svg viewBox="0 0 400 220" aria-label="Gezeichnetes Regal im Hofladen">
+      <rect width="400" height="220" fill="#f5efe1"/>
+      <rect x="0" y="0" width="400" height="18" fill="#e2d3b2"/>
+      <g fill="#9a6a3f"><rect x="20" y="96" width="360" height="9"/><rect x="20" y="190" width="360" height="9"/><rect x="20" y="20" width="9" height="180"/><rect x="371" y="20" width="9" height="180"/></g>
+      <g stroke="#3a2618" stroke-width="2">
+        <path d="M46 96 C44 76 46 60 52 50 H86 C92 60 94 76 92 96Z" fill="#e2d3b2"/><path d="M110 96 C108 76 110 60 116 50 H150 C156 60 158 76 156 96Z" fill="#e2d3b2"/><path d="M174 96 C172 76 174 60 180 50 H214 C220 60 222 76 220 96Z" fill="#e2d3b2"/>
+        <rect x="244" y="44" width="40" height="52" rx="6" fill="#f3e5bd"/><rect x="300" y="44" width="40" height="52" rx="6" fill="#d7e0b4"/>
+        <path d="M46 190 C44 170 46 154 52 144 H86 C92 154 94 170 92 190Z" fill="#e2d3b2"/><path d="M110 190 C108 170 110 154 116 144 H150 C156 154 158 170 156 190Z" fill="#e2d3b2"/>
+        <path d="M196 190 V140 C196 130 202 126 206 118 V100 H214 V118 C218 126 224 130 224 140 V190Z" fill="#4a1e26"/><path d="M240 190 V140 C240 130 246 126 250 118 V100 H258 V118 C262 126 268 130 268 140 V190Z" fill="#6f8a4a"/>
+        <path d="M290 190 h70 l-6 -34 h-58z" fill="#c08d57"/>
+      </g>
+      <g fill="#3657a8"><rect x="56" y="70" width="26" height="10" rx="2"/><rect x="120" y="70" width="26" height="10" rx="2"/><rect x="184" y="70" width="26" height="10" rx="2"/><rect x="56" y="164" width="26" height="10" rx="2"/><rect x="120" y="164" width="26" height="10" rx="2"/></g>
+    </svg>
+    <small>Gezeichneter Platzhalter – hier später Ihr eigenes Foto vom Hofladen</small>
+  </figure>
+
+  <section class="lob">
+    <p class="etikett-kl">Das loben Gäste</p>
+    <h2>Darum kommt man gern</h2>
+    <ul><li>Aussicht</li><li>Wein</li><li>Pizza</li><li>Gemütlich unter den Bäumen</li><li>Team-Events mit Apéro &amp; Führung</li></ul>
+    <div class="platz">[Google-Bewertung einfügen]</div>
+  </section>
+</main>
+
+<section class="kontakt">
+  <div class="wrap">
+    <p class="etikett-kl" style="color:#c08d57">Kontakt</p>
+    <h2>Grüessech am Ortbühlweg</h2>
+    <address>Rebbau Steffisburg – Wygarte<br>Andreas Lanz<br>Ortbühlweg 53, 3612 Steffisburg</address>
+    <a class="knopf blau" href="tel:+41763291211"><span>076 329 12 11<small>Weinverkauf</small></span></a>
+    <a class="knopf hell" href="tel:+41794283048"><span>079 428 30 48<small>Reservation Hofbeiz</small></span></a>
+    <a class="knopf rand" href="mailto:mail@wygarte.ch" style="text-transform:none;letter-spacing:.02em">mail@wygarte.ch</a>
+  </div>
+</section>
+<footer>Rebbau Steffisburg – Andreas Lanz, Einzelunternehmen · <span style="white-space:nowrap">CHE-112.704.769</span></footer>
+
+<script>
+(function(){
+  var WARE={
+    buchweizen:{name:'Buchweizen',gew:'750 g',preis:'CHF 7.40',farbe:'#6b4a2e',korn:'#4a321e',form:'tri'},
+    hafer:{name:'Haferflocken',gew:'500 g',preis:'CHF 4.60',farbe:'#f6ead0',korn:'#b39a60',form:'flocke'},
+    linsen:{name:'Grüne Linsen',gew:'300 g',preis:'CHF 4.50',farbe:'#6f7d3a',korn:'#4f5c25',form:'linse'},
+    boerger:{name:'Mischung für «Körner-Börger»',gew:'500 g',preis:'CHF 5.–',farbe:'#a88752',korn:'mix',form:'mix'}
+  };
+  var MIX=['#6b4a2e','#d3a84a','#6f7d3a','#f3e5bd'];
+  var $=function(i){return document.getElementById(i)};
+  var NS='http://www.w3.org/2000/svg';
+  var szene=$('szene'),svg=szene.querySelector('svg'),kurbel=$('kurbel'),inhalt=$('inhalt'),koerner=$('koerner'),zettel=$('zettel');
+  var AX=286,AY=158;
+  var ware='buchweizen',winkel=0,voll=0,dreht=false,letzterW=null,bewegt=0,auto=0,tempo=0,letzte=0,fertig=false;
+  var TURNS=2.2; // Umdrehungen bis voll
+
+  // Körner-Pool
+  var pool=[];
+  for(var i=0;i<26;i++){var c=document.createElementNS(NS,'ellipse');c.setAttribute('rx',2.6);c.setAttribute('ry',2);c.setAttribute('opacity',0);koerner.appendChild(c);pool.push({el:c,aktiv:false,x:0,y:0,vy:0,vx:0})}
+
+  function wahl(k){
+    ware=k;var w=WARE[k];
+    document.querySelectorAll('.ware').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.ware===k?'true':'false')});
+    inhalt.setAttribute('fill',w.farbe);$('vorrat').setAttribute('fill',w.farbe);
+    $('vorratkorn').setAttribute('fill',w.korn==='mix'?'#3a2618':w.korn);
+    $('z-name').textContent=w.name;$('z-gew').textContent=w.gew;$('z-preis').textContent=w.preis;
+    $('anh-gew').textContent=w.gew;$('anh-preis').textContent=w.preis;
+    voll=0;fertig=false;zettel.classList.remove('da');$('z-wart').style.display='';$('anhaenger').setAttribute('opacity',0);
+    zeichne();
+  }
+  document.querySelectorAll('.ware').forEach(function(b){b.addEventListener('click',function(){wahl(b.dataset.ware)})});
+
+  function zeichne(){
+    kurbel.setAttribute('transform','rotate('+(winkel*180/Math.PI).toFixed(2)+' '+AX+' '+AY+')');
+    var top=378-voll*84; // Säckli füllt sich bis ~294
+    var welle=voll>0.01?'M100 '+top.toFixed(1)+' Q140 '+(top-7).toFixed(1)+' 180 '+(top-2).toFixed(1)+' T260 '+(top+1).toFixed(1)+' V400 H100Z':'M100 400 H260 V401 H100Z';
+    inhalt.setAttribute('d',welle);
+    $('vorrat').setAttribute('y',(40+voll*44).toFixed(1));
+    $('vorratkorn').setAttribute('transform','translate(0 '+(voll*44).toFixed(1)+')');
+    $('umdr').textContent=Math.round(voll*100)+' %';
+    if(voll>=1&&!fertig){fertig=true;zettel.classList.add('da');$('z-wart').style.display='none';$('anhaenger').setAttribute('opacity',1)}
+  }
+
+  function spawn(){
+    for(var i=0;i<pool.length;i++){var k=pool[i];if(!k.aktiv){
+      k.aktiv=true;k.x=172+Math.random()*16;k.y=250;k.vy=40+Math.random()*40;k.vx=(Math.random()-.5)*14;
+      var w=WARE[ware];var f=w.korn==='mix'?MIX[(Math.random()*4)|0]:w.farbe;
+      k.el.setAttribute('fill',f);k.el.setAttribute('stroke',w.form==='flocke'?'#b39a60':'none');
+      k.el.setAttribute('rx',w.form==='flocke'?3.6:w.form==='linse'?3:2.4);k.el.setAttribute('ry',w.form==='flocke'?2.2:2);
+      k.el.setAttribute('opacity',1);return}}
+  }
+
+  function zugabe(d){ // d = Radiant gedreht
+    if(fertig)return;
+    voll=Math.min(1,voll+Math.abs(d)/(Math.PI*2*TURNS));
+    tempo=Math.min(1,tempo+Math.abs(d)*0.9);
+  }
+
+  var spawnAcc=0;
+  function takt(t){
+    if(window.eingefroren){requestAnimationFrame(takt);return}
+    var dt=Math.min(.05,(t-(letzte||t))/1000);letzte=t;
+    if(auto>0){var d=Math.min(auto,dt*7.5);auto-=d;winkel+=d;zugabe(d)}
+    tempo=Math.max(0,tempo-dt*1.6);
+    if(tempo>0.05&&!fertig){spawnAcc+=dt*tempo*60;while(spawnAcc>1){spawn();spawnAcc-=1}}
+    var top=378-voll*84;
+    pool.forEach(function(k){if(!k.aktiv)return;k.vy+=420*dt;k.y+=k.vy*dt;k.x+=k.vx*dt;
+      if(k.y>=top-2||k.y>380){k.aktiv=false;k.el.setAttribute('opacity',0)}else{k.el.setAttribute('cx',k.x.toFixed(1));k.el.setAttribute('cy',k.y.toFixed(1))}});
+    zeichne();requestAnimationFrame(takt);
+  }
+  requestAnimationFrame(takt);
+
+  function punkt(e){var b=svg.getBoundingClientRect();return {x:(e.clientX-b.left)*360/b.width,y:(e.clientY-b.top)*390/b.height}}
+  function drehen(){if(fertig||auto>0){wahl(ware);auto=0}auto+=Math.PI*2*TURNS*1.02}
+  kurbel.addEventListener('pointerdown',function(e){if(fertig){wahl(ware)}var p=punkt(e);dreht=true;bewegt=0;letzterW=Math.atan2(p.y-AY,p.x-AX);szene.classList.add('dreht');try{kurbel.setPointerCapture(e.pointerId)}catch(_){};e.preventDefault()});
+  kurbel.addEventListener('pointermove',function(e){if(!dreht)return;var p=punkt(e);var w=Math.atan2(p.y-AY,p.x-AX);var d=w-letzterW;if(d>Math.PI)d-=2*Math.PI;if(d<-Math.PI)d+=2*Math.PI;letzterW=w;bewegt+=Math.abs(d);winkel+=d;zugabe(d)});
+  function los(){if(!dreht)return;dreht=false;szene.classList.remove('dreht');if(bewegt<0.15){fertig=false;if(voll===0)drehen();else auto+=Math.PI*2*TURNS*1.02}}
+  kurbel.addEventListener('pointerup',los);kurbel.addEventListener('pointercancel',los);
+  $('kurbelknopf').addEventListener('click',drehen);
+
+  window.zwischenzustand=function(){window.eingefroren=true;wahl('buchweizen');voll=1;winkel=1.1;fertig=false;zeichne();
+    var top=378-84;[[180,262],[176,276],[184,284],[179,268]].forEach(function(p,i){var k=pool[i];k.el.setAttribute('cx',p[0]);k.el.setAttribute('cy',p[1]);k.el.setAttribute('fill','#6b4a2e');k.el.setAttribute('opacity',1)})};
+  zeichne();
+})();
+</script>
+</body>
+</html>
